@@ -494,13 +494,17 @@ async function loadGroupsDirectory() {
 
 
                     const card =
-                        document.createElement(
-                            "div"
-                        );
+    document.createElement(
+        "a"
+    );
 
 
-                    card.className =
-                        "group-card";
+card.href =
+    `faction.html?id=${encodeURIComponent(faction.id)}`;
+
+
+card.className =
+    "group-card";
 
 
                     const memberNames =
