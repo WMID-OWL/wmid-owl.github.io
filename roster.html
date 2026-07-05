@@ -84,23 +84,99 @@
 
     <!-- PAGE HEADER -->
 
-    <section class="page-hero">
+    <!-- ROSTER SEARCH AND FILTERS -->
 
-        <p class="eyebrow">
-            THE OWL TALENT DATABASE
-        </p>
+<section class="roster-controls">
 
-        <h1>
-            Roster
-        </h1>
+    <div class="roster-search-area">
 
-        <p>
-            The wrestlers of Ascension and Revolt.
-            Select a wrestler to view their complete profile,
-            record, accomplishments, and match history.
-        </p>
+        <label for="roster-search">
+            SEARCH THE ROSTER
+        </label>
 
-    </section>
+        <input
+            type="search"
+            id="roster-search"
+            placeholder="Search wrestler, hometown, team, faction..."
+            autocomplete="off"
+        >
+
+    </div>
+
+
+    <div
+        class="roster-filter-bar"
+        aria-label="Roster filters"
+    >
+
+        <button
+            type="button"
+            class="roster-filter is-active"
+            data-filter="all"
+        >
+            All
+        </button>
+
+        <button
+            type="button"
+            class="roster-filter"
+            data-filter="ascension"
+        >
+            Ascension
+        </button>
+
+        <button
+            type="button"
+            class="roster-filter"
+            data-filter="revolt"
+        >
+            Revolt
+        </button>
+
+        <button
+            type="button"
+            class="roster-filter"
+            data-filter="men"
+        >
+            Men
+        </button>
+
+        <button
+            type="button"
+            class="roster-filter"
+            data-filter="women"
+        >
+            Women
+        </button>
+
+        <button
+            type="button"
+            class="roster-filter"
+            data-filter="tag-teams"
+        >
+            Tag Teams
+        </button>
+
+        <button
+            type="button"
+            class="roster-filter"
+            data-filter="factions"
+        >
+            Factions
+        </button>
+
+    </div>
+
+
+    <p
+        id="roster-empty-state"
+        class="roster-empty-state"
+        hidden
+    >
+        No wrestlers match this search.
+    </p>
+
+</section>
 
 
 
