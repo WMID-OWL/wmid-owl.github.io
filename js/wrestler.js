@@ -337,23 +337,40 @@ async function loadWrestlerProfile() {
 
         if (wrestler.team) {
 
-            affiliations.push(`
+    const teamContent =
+        wrestler.teamId
 
-                <div class="affiliation-item">
+            ? `
+                <a
+                    href="team.html?id=${encodeURIComponent(wrestler.teamId)}"
+                    class="affiliation-link"
+                >
+                    ${wrestler.team} →
+                </a>
+            `
 
-                    <span>
-                        TEAM
-                    </span>
+            : `
+                <strong>
+                    ${wrestler.team}
+                </strong>
+            `;
 
-                    <strong>
-                        ${wrestler.team}
-                    </strong>
 
-                </div>
+    affiliations.push(`
 
-            `);
+        <div class="affiliation-item">
 
-        }
+            <span>
+                TEAM
+            </span>
+
+            ${teamContent}
+
+        </div>
+
+    `);
+
+}
 
 
         if (wrestler.faction) {
