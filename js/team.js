@@ -578,7 +578,86 @@ async function loadTeamProfile() {
                 .join(" vs. ");
 
         }
+function formatFinish(match) {
 
+
+    const resultType =
+        getResultType(
+            match
+        );
+
+
+    if (
+        resultType === "no-contest"
+    ) {
+
+        return "No Contest";
+
+    }
+
+
+    if (
+        resultType === "draw"
+    ) {
+
+        return "Draw";
+
+    }
+
+
+    if (
+        match.finish &&
+        match.finish.winner &&
+        match.finish.loser
+    ) {
+
+
+        const winner =
+            wrestlerMap[
+                match.finish.winner
+            ];
+
+
+        const loser =
+            wrestlerMap[
+                match.finish.loser
+            ];
+
+
+        const winnerName =
+            winner
+                ? winner.name
+                : match.finish.winner;
+
+
+        const loserName =
+            loser
+                ? loser.name
+                : match.finish.loser;
+
+
+        const method =
+            match.finish.method ||
+            "Unknown Method";
+
+
+        return `${winnerName} defeated ${loserName} by ${method}`;
+
+    }
+
+
+    if (
+        match.resultMethod
+    ) {
+
+        return match.resultMethod;
+
+    }
+
+
+    return "";
+
+}
 
 
         // =================================
@@ -788,7 +867,10 @@ async function loadTeamProfile() {
                 }
 
 
-
+const finishText =
+    formatFinish(
+        match
+    );
                 const row =
                     document.createElement(
                         "tr"
@@ -816,10 +898,25 @@ async function loadTeamProfile() {
                         <br>
 
                         <span class="match-fixture">
-                            ${formatMatch(match)}
-                        </span>
+    ${formatMatch(match)}
+</span>
 
-                    </td>
+
+${
+    finishText
+
+        ? `
+            <br>
+
+            <span class="finish-text">
+                ${finishText}
+            </span>
+        `
+
+        : ""
+}
+
+</td>
 
 
                     <td>
