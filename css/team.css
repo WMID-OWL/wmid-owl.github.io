@@ -1,0 +1,350 @@
+.team-page {
+
+    width:
+        min(
+            1200px,
+            calc(100% - 48px)
+        );
+
+    margin:
+        0 auto;
+
+}
+
+
+.team-header {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        360px 1fr;
+
+    gap:
+        4rem;
+
+    align-items:
+        center;
+
+    padding:
+        5rem 0;
+
+}
+
+
+.team-logo-box {
+
+    aspect-ratio:
+        1 / 1;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    overflow:
+        hidden;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.team-logo-box img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
+
+}
+
+
+#team-logo-placeholder {
+
+    font-size:
+        4rem;
+
+    font-weight:
+        900;
+
+    opacity:
+        0.15;
+
+}
+
+
+.team-identity h1 {
+
+    margin:
+        0;
+
+    font-size:
+        clamp(
+            3.5rem,
+            8vw,
+            7rem
+        );
+
+    line-height:
+        0.9;
+
+    letter-spacing:
+        -0.06em;
+
+}
+
+
+.team-brand {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        1.1rem;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.record-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(180px, 260px)
+        );
+
+    gap:
+        1rem;
+
+    margin-top:
+        2.5rem;
+
+}
+
+
+.record-box {
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    padding:
+        1.5rem;
+
+}
+
+
+.record-box span {
+
+    display:
+        block;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.7rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+.record-box strong {
+
+    display:
+        block;
+
+    margin-top:
+        0.25rem;
+
+    font-size:
+        2.4rem;
+
+}
+
+
+.team-section {
+
+    padding:
+        4rem 0;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.team-section h2 {
+
+    margin:
+        0 0 1.5rem;
+
+    font-size:
+        clamp(
+            2rem,
+            5vw,
+            3.5rem
+        );
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+.team-member-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px, 1fr)
+        );
+
+    gap:
+        1rem;
+
+}
+
+
+.team-member-card {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    padding:
+        1.5rem;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.team-member-card:hover {
+
+    border-color:
+        rgba(198, 161, 91, 0.7);
+
+}
+
+
+.team-member-card strong {
+
+    font-size:
+        1.4rem;
+
+}
+
+
+.team-member-card span {
+
+    margin-top:
+        0.3rem;
+
+    color:
+        #c6a15b;
+
+    font-style:
+        italic;
+
+}
+
+
+.team-accomplishment {
+
+    padding:
+        1.25rem;
+
+    margin-bottom:
+        0.75rem;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+@media (max-width: 800px) {
+
+    .team-header {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            2rem;
+
+    }
+
+
+    .team-logo-column {
+
+        max-width:
+            420px;
+
+    }
+
+
+    .record-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .record-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
