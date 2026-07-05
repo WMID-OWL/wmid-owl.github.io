@@ -18,7 +18,12 @@
       }
     ],
     "winnerSide": 0,
-    "resultMethod": "Pinfall",
+    "resultType": "win",
+    "finish": {
+      "winner": "zee-allmighty",
+      "loser": "dorian-atlas",
+      "method": "Pinfall"
+    },
     "rating": 91,
     "starRating": 4.5
   },
@@ -43,7 +48,12 @@
       }
     ],
     "winnerSide": 0,
-    "resultMethod": "Submission",
+    "resultType": "win",
+    "finish": {
+      "winner": "levi-martin",
+      "loser": "zee-allmighty",
+      "method": "Submission"
+    },
     "rating": 89,
     "starRating": 4
   }
