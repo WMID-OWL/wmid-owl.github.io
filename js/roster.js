@@ -1,1359 +1,627 @@
-async function loadRosterPage() {
-
-    try {
-
-
-        // =================================
-        // LOAD DATABASES
-        // =================================
-
-
-        const wrestlerResponse =
-            await fetch(
-                "data/wrestlers.json",
-                {
-                    cache: "no-store"
-                }
-            );
-
-
-        const teamResponse =
-            await fetch(
-                "data/teams.json",
-                {
-                    cache: "no-store"
-                }
-            );
-
-
-        const matchResponse =
-            await fetch(
-                "data/matches.json",
-                {
-                    cache: "no-store"
-                }
-            );
-
-
-        if (
-            !wrestlerResponse.ok ||
-            !teamResponse.ok ||
-            !matchResponse.ok
-        ) {
-
-            throw new Error(
-                "Could not load roster databases."
-            );
-
-        }
-
-
-        const wrestlers =
-            await wrestlerResponse.json();
-
-
-        const teams =
-            await teamResponse.json();
-
-
-        const matches =
-            await matchResponse.json();
+const wrestlers = await response.json();
 
 
 
-        // =================================
-        // PAGE ELEMENTS
-        // =================================
+        // ROSTER CONTAINERS
 
-
-        const ascensionGrid =
-            document.getElementById(
-                "ascension-roster"
-            );
-
-
-        const revoltGrid =
-            document.getElementById(
-                "revolt-roster"
-            );
-
-
-        const unassignedGrid =
-            document.getElementById(
-                "unassigned-roster"
-            );
-
-
-        const noResults =
-            document.getElementById(
-                "no-roster-results"
-            );
-
-
-        const searchInput =
-
-            document.getElementById(
-                "roster-search"
-            )
-
-            ||
-
-            document.querySelector(
-                'input[type="search"]'
-            );
+const ascensionRoster =
+document.getElementById(
+"ascension-roster"
+@@ -31,13 +34,60 @@ async function loadRoster() {
+);
 
 
 
-        if (
-            !ascensionGrid ||
-            !revoltGrid
-        ) {
-
-            throw new Error(
-                "Roster sections could not be found."
-            );
-
-        }
-
-
+        // SECTIONS
 
         const ascensionSection =
-            ascensionGrid.closest(
-                "section"
+            document.getElementById(
+                "ascension"
             );
 
 
         const revoltSection =
-            revoltGrid.closest(
-                "section"
-            );
-
-
-        const unassignedSection =
-            unassignedGrid
-
-                ? unassignedGrid.closest(
-                    "section"
-                )
-
-                : null;
-
-
-
-        // =================================
-        // WRESTLER LOOKUP
-        // =================================
-
-
-        const wrestlerMap = {};
-
-
-        wrestlers.forEach(
-            wrestler => {
-
-                wrestlerMap[
-                    wrestler.id
-                ] = wrestler;
-
-            }
-        );
-
-
-
-        // =================================
-        // CREATE TEAM RESULTS SECTION
-        // =================================
-
-
-        let teamSection =
             document.getElementById(
-                "team-roster-section"
+                "revolt"
             );
 
 
-        if (!teamSection) {
+const unassignedSection =
+document.getElementById(
+"unassigned-section"
+);
 
 
-            teamSection =
-                document.createElement(
-                    "section"
-                );
+        let unassignedCount = 0;
 
+        // SEARCH AND FILTER ELEMENTS
 
-            teamSection.id =
-                "team-roster-section";
-
-
-            teamSection.className =
-                "roster-team-section";
-
-
-            teamSection.hidden =
-                true;
-
-
-            teamSection.innerHTML = `
-
-                <div class="roster-section-heading">
-
-                    <div>
-
-                        <p class="eyebrow">
-                            TWO AS ONE
-                        </p>
-
-                        <h2>
-                            Tag Teams
-                        </h2>
-
-                    </div>
-
-                    <span id="roster-team-count">
-                        0 Teams
-                    </span>
-
-                </div>
-
-
-                <div
-                    id="roster-team-grid"
-                    class="roster-team-grid"
-                >
-                </div>
-
-            `;
-
-
-            ascensionSection.parentNode.insertBefore(
-                teamSection,
-                ascensionSection
-            );
-
-        }
-
-
-
-        const teamGrid =
+        const searchInput =
             document.getElementById(
-                "roster-team-grid"
+                "roster-search"
             );
-
-
-        const teamCount =
-            document.getElementById(
-                "roster-team-count"
-            );
-
-
-
-        // =================================
-        // HELPER: INITIALS
-        // =================================
-
-
-        function getInitials(name) {
-
-
-            return name
-
-                .split(" ")
-
-                .map(
-                    word =>
-                        word.charAt(0)
-                )
-
-                .join("")
-
-                .slice(0, 3)
-
-                .toUpperCase();
-
-        }
-
-
-
-        // =================================
-        // WRESTLER CARD
-        // =================================
-
-
-        function createWrestlerCard(
-            wrestler
-        ) {
-
-
-            const card =
-                document.createElement(
-                    "a"
-                );
-
-
-            card.href =
-                `wrestler.html?id=${encodeURIComponent(wrestler.id)}`;
-
-
-            card.className =
-                "roster-card";
-
-
-            const hometownParts = [];
-
-
-            if (wrestler.hometown) {
-
-                hometownParts.push(
-                    wrestler.hometown
-                );
-
-            }
-
-
-            if (wrestler.flag) {
-
-                hometownParts.push(
-                    wrestler.flag
-                );
-
-            }
-
-
-            const hometown =
-                hometownParts.join(" ");
-
-
-
-            card.innerHTML = `
-
-                <div class="roster-card-image">
-
-                    ${
-                        wrestler.photo
-
-                            ? `
-                                <img
-                                    src="${wrestler.photo}"
-                                    alt="${wrestler.name}"
-                                >
-                            `
-
-                            : `
-                                <span class="roster-initials">
-                                    ${getInitials(wrestler.name)}
-                                </span>
-                            `
-                    }
-
-                </div>
-
-
-                <div class="roster-card-content">
-
-
-                    <span class="roster-card-brand">
-
-                        ${
-                            wrestler.brand ||
-                            "OWL"
-                        }
-
-                    </span>
-
-
-                    <h3>
-                        ${wrestler.name}
-                    </h3>
-
-
-                    ${
-                        wrestler.nickname
-
-                            ? `
-                                <p class="roster-nickname">
-                                    "${wrestler.nickname}"
-                                </p>
-                            `
-
-                            : ""
-                    }
-
-
-                    ${
-                        hometown
-
-                            ? `
-                                <p class="roster-hometown">
-                                    ${hometown}
-                                </p>
-                            `
-
-                            : ""
-                    }
-
-
-                </div>
-
-            `;
-
-
-            return card;
-
-        }
-
-
-
-        // =================================
-        // TEAM RECORD HELPERS
-        // =================================
-
-
-        function findTeamSide(
-            match,
-            members
-        ) {
-
-
-            return match.sides.findIndex(
-                side =>
-
-                    members.every(
-                        memberId =>
-
-                            side.wrestlers.includes(
-                                memberId
-                            )
-                    )
-            );
-
-        }
-
-
-
-        function getResultType(match) {
-
-
-            const resultType =
-                String(
-                    match.resultType || ""
-                )
-                    .trim()
-                    .toLowerCase();
-
-
-            if (
-                resultType === "no-contest" ||
-                resultType === "no contest" ||
-                resultType === "nc"
-            ) {
-
-                return "no-contest";
-
-            }
-
-
-            if (
-                resultType === "draw"
-            ) {
-
-                return "draw";
-
-            }
-
-
-            if (
-                match.winnerSide === null ||
-                match.winnerSide === undefined
-            ) {
-
-                return "draw";
-
-            }
-
-
-            return "win";
-
-        }
-
-
-
-        function calculateTeamRecord(
-            team
-        ) {
-
-
-            let wins = 0;
-
-            let losses = 0;
-
-            let draws = 0;
-
-
-            matches.forEach(
-                match => {
-
-
-                    const teamSide =
-                        findTeamSide(
-                            match,
-                            team.members
-                        );
-
-
-                    if (
-                        teamSide === -1
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    const resultType =
-                        getResultType(
-                            match
-                        );
-
-
-                    if (
-                        resultType === "no-contest"
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    if (
-                        resultType === "draw"
-                    ) {
-
-                        draws++;
-
-                        return;
-
-                    }
-
-
-                    if (
-                        teamSide ===
-                        match.winnerSide
-                    ) {
-
-                        wins++;
-
-                    }
-
-                    else {
-
-                        losses++;
-
-                    }
-
-
-                }
-            );
-
-
-            return `${wins}-${losses}-${draws}`;
-
-        }
-
-
-
-        // =================================
-        // TEAM MEMBER NAMES
-        // =================================
-
-
-        function getTeamMemberNames(
-            team
-        ) {
-
-
-            return team.members
-
-                .map(
-                    memberId => {
-
-
-                        const wrestler =
-                            wrestlerMap[
-                                memberId
-                            ];
-
-
-                        return wrestler
-
-                            ? wrestler.name
-
-                            : memberId;
-
-                    }
-                )
-
-                .join(" & ");
-
-        }
-
-
-
-        // =================================
-        // TEAM CARD
-        // =================================
-
-
-        function createTeamCard(team) {
-
-
-            const card =
-                document.createElement(
-                    "a"
-                );
-
-
-            card.href =
-                `team.html?id=${encodeURIComponent(team.id)}`;
-
-
-            card.className =
-                "roster-team-card";
-
-
-            const record =
-                calculateTeamRecord(
-                    team
-                );
-
-
-            const members =
-                getTeamMemberNames(
-                    team
-                );
-
-
-
-            card.innerHTML = `
-
-                <div class="roster-team-image">
-
-                    ${
-                        team.logo
-
-                            ? `
-                                <img
-                                    src="${team.logo}"
-                                    alt="${team.name}"
-                                >
-                            `
-
-                            : `
-                                <span>
-                                    OWL
-                                </span>
-                            `
-                    }
-
-                </div>
-
-
-                <div class="roster-team-body">
-
-
-                    <div class="roster-team-topline">
-
-                        <span>
-                            ${
-                                team.brand ||
-                                "OWL"
-                            }
-                        </span>
-
-                        <strong>
-                            ${record}
-                        </strong>
-
-                    </div>
-
-
-                    <h3>
-                        ${team.name}
-                    </h3>
-
-
-                    <p>
-                        ${members}
-                    </p>
-
-
-                    <span class="roster-view-team">
-                        View Team →
-                    </span>
-
-
-                </div>
-
-            `;
-
-
-            return card;
-
-        }
-
-
-
-        // =================================
-        // FILTER BUTTON DETECTION
-        // =================================
-
-
-        function getButtonFilter(
-            button
-        ) {
-
-
-            const dataFilter =
-                String(
-                    button.dataset.filter || ""
-                )
-                    .trim()
-                    .toLowerCase();
-
-
-            const buttonText =
-                button.textContent
-                    .trim()
-                    .toLowerCase();
-
-
-            const value =
-                dataFilter ||
-                buttonText;
-
-
-
-            const filterMap = {
-
-                "all":
-                    "all",
-
-                "ascension":
-                    "ascension",
-
-                "revolt":
-                    "revolt",
-
-                "men":
-                    "men",
-
-                "women":
-                    "women",
-
-                "teams":
-                    "teams",
-
-                "team":
-                    "teams",
-
-                "tag":
-                    "teams",
-
-                "tag-team":
-                    "teams",
-
-                "tag-teams":
-                    "teams",
-
-                "tag team":
-                    "teams",
-
-                "tag teams":
-                    "teams",
-
-                "faction":
-                    "factions",
-
-                "factions":
-                    "factions"
-
-            };
-
-
-            return filterMap[
-                value
-            ] || null;
-
-        }
-
 
 
         const filterButtons =
+            document.querySelectorAll(
+                ".roster-filter"
+            );
 
-            Array.from(
-                document.querySelectorAll(
-                    "button"
-                )
-            )
 
-            .filter(
-                button =>
-                    getButtonFilter(
-                        button
-                    ) !== null
+        const emptyState =
+            document.getElementById(
+                "roster-empty-state"
             );
 
 
 
-        // =================================
-        // CURRENT FILTER
-        // =================================
-
-
-        let currentFilter =
-            "all";
+        let activeFilter = "all";
 
 
 
-        // =================================
-        // SEARCH TEXT HELPERS
-        // =================================
+        function normalize(value) {
+
+            return String(value || "")
+                .trim()
+                .toLowerCase();
+
+        }
 
 
-        function getWrestlerSearchText(
-            wrestler
-        ) {
+
+@@ -57,7 +107,7 @@ async function loadRoster() {
+function createWrestlerCard(wrestler) {
 
 
-            return [
+            // LINK TO PROFILE
+            // PROFILE LINK
+
+const link =
+document.createElement("a");
+@@ -72,21 +122,66 @@ async function loadRoster() {
+
+
+
+            // STORE FILTER INFORMATION ON CARD
+
+            link.dataset.brand =
+                normalize(wrestler.brand);
+
+
+            link.dataset.division =
+                normalize(wrestler.division);
+
+
+            link.dataset.hasTeam =
+                wrestler.team
+                    ? "true"
+                    : "false";
+
+
+            link.dataset.hasFaction =
+                wrestler.faction
+                    ? "true"
+                    : "false";
+
+
+
+            // SEARCHABLE TEXT
+
+            link.dataset.search = [
 
                 wrestler.name,
                 wrestler.nickname,
                 wrestler.hometown,
                 wrestler.country,
-                wrestler.brand,
-                wrestler.division,
                 wrestler.team,
                 wrestler.faction
 
             ]
-
                 .filter(Boolean)
-
                 .join(" ")
-
                 .toLowerCase();
 
-        }
 
 
+// CARD
 
-        function getTeamSearchText(
-            team
-        ) {
-
-
-            return [
-
-                team.name,
-                team.brand,
-                getTeamMemberNames(team)
-
-            ]
-
-                .filter(Boolean)
-
-                .join(" ")
-
-                .toLowerCase();
-
-        }
-
-
-
-        // =================================
-        // HIDE WRESTLER SECTIONS
-        // =================================
-
-
-        function hideWrestlerSections() {
-
-
-            ascensionSection.hidden =
-                true;
-
-
-            revoltSection.hidden =
-                true;
-
-
-            if (
-                unassignedSection
-            ) {
-
-                unassignedSection.hidden =
-                    true;
-
-            }
-
-        }
-
-
-
-        // =================================
-        // TEAM FILTER DISPLAY
-        // =================================
-
-
-        function renderTeams(
-            searchTerm
-        ) {
-
-
-            hideWrestlerSections();
-
-
-            teamSection.hidden =
-                false;
-
-
-            teamGrid.innerHTML =
-                "";
-
-
-            const filteredTeams =
-                teams.filter(
-                    team =>
-
-                        getTeamSearchText(
-                            team
-                        ).includes(
-                            searchTerm
-                        )
+const card =
+                document.createElement("article");
+                document.createElement(
+                    "article"
                 );
 
 
-            teamCount.textContent =
-
-                `${filteredTeams.length} ${
-                    filteredTeams.length === 1
-
-                        ? "Team"
-
-                        : "Teams"
-                }`;
+card.className =
+"wrestler-card roster-wrestler-card";
 
 
-            filteredTeams.forEach(
-                team => {
 
-                    teamGrid.appendChild(
-                        createTeamCard(
-                            team
-                        )
+            // PORTRAIT AREA
+            // PORTRAIT
+
+const portrait =
+                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
+
+portrait.className =
+@@ -96,7 +191,9 @@ async function loadRoster() {
+if (wrestler.photo) {
+
+const image =
+                    document.createElement("img");
+                    document.createElement(
+                        "img"
                     );
 
-                }
-            );
+
+image.src =
+@@ -107,21 +204,29 @@ async function loadRoster() {
+wrestler.name;
 
 
-            if (noResults) {
-
-                noResults.hidden =
-                    filteredTeams.length !== 0;
-
-            }
-
-        }
-
-
-
-        // =================================
-        // WRESTLER FILTER DISPLAY
-        // =================================
-
-
-        function renderWrestlers(
-            searchTerm
-        ) {
-
-
-            teamSection.hidden =
-                true;
-
-
-            ascensionGrid.innerHTML =
-                "";
-
-
-            revoltGrid.innerHTML =
-                "";
-
-
-            if (
-                unassignedGrid
-            ) {
-
-                unassignedGrid.innerHTML =
-                    "";
-
-            }
-
-
-
-            const filteredWrestlers =
-                wrestlers.filter(
-                    wrestler => {
-
-
-                        const matchesSearch =
-                            getWrestlerSearchText(
-                                wrestler
-                            ).includes(
-                                searchTerm
-                            );
-
-
-                        if (
-                            !matchesSearch
-                        ) {
-
-                            return false;
-
-                        }
-
-
-
-                        if (
-                            currentFilter === "ascension"
-                        ) {
-
-                            return (
-                                String(
-                                    wrestler.brand || ""
-                                ).toLowerCase()
-                                === "ascension"
-                            );
-
-                        }
-
-
-
-                        if (
-                            currentFilter === "revolt"
-                        ) {
-
-                            return (
-                                String(
-                                    wrestler.brand || ""
-                                ).toLowerCase()
-                                === "revolt"
-                            );
-
-                        }
-
-
-
-                        if (
-                            currentFilter === "men"
-                        ) {
-
-                            return (
-                                String(
-                                    wrestler.division || ""
-                                ).toLowerCase()
-                                === "men"
-                            );
-
-                        }
-
-
-
-                        if (
-                            currentFilter === "women"
-                        ) {
-
-                            return (
-                                String(
-                                    wrestler.division || ""
-                                ).toLowerCase()
-                                === "women"
-                            );
-
-                        }
-
-
-
-                        if (
-                            currentFilter === "factions"
-                        ) {
-
-                            return Boolean(
-                                wrestler.faction
-                            );
-
-                        }
-
-
-
-                        return true;
-
-                    }
+                portrait.appendChild(image);
+                portrait.appendChild(
+                    image
                 );
 
-
-
-            let ascensionCount = 0;
-
-            let revoltCount = 0;
-
-            let unassignedCount = 0;
-
-
-
-            filteredWrestlers.forEach(
-                wrestler => {
-
-
-                    const card =
-                        createWrestlerCard(
-                            wrestler
-                        );
-
-
-                    const brand =
-                        String(
-                            wrestler.brand || ""
-                        ).toLowerCase();
-
-
-
-                    if (
-                        brand === "ascension"
-                    ) {
-
-
-                        ascensionGrid.appendChild(
-                            card
-                        );
-
-
-                        ascensionCount++;
-
-                    }
-
-
-
-                    else if (
-                        brand === "revolt"
-                    ) {
-
-
-                        revoltGrid.appendChild(
-                            card
-                        );
-
-
-                        revoltCount++;
-
-                    }
-
-
-
-                    else if (
-                        unassignedGrid
-                    ) {
-
-
-                        unassignedGrid.appendChild(
-                            card
-                        );
-
-
-                        unassignedCount++;
-
-                    }
-
-
-                }
-            );
-
-
-
-            ascensionSection.hidden =
-                ascensionCount === 0;
-
-
-            revoltSection.hidden =
-                revoltCount === 0;
-
-
-            if (
-                unassignedSection
-            ) {
-
-                unassignedSection.hidden =
-                    unassignedCount === 0;
-
+            } else {
             }
 
-
-            if (noResults) {
-
-                noResults.hidden =
-                    filteredWrestlers.length !== 0;
-
-            }
-
-        }
-
-
-
-        // =================================
-        // MAIN RENDER FUNCTION
-        // =================================
-
-
-        function renderRoster() {
-
-
-            const searchTerm =
-
-                searchInput
-
-                    ? searchInput.value
-                        .trim()
-                        .toLowerCase()
-
-                    : "";
-
-
-            if (
-                currentFilter === "teams"
-            ) {
-
-                renderTeams(
-                    searchTerm
-                );
-
-                return;
-
-            }
-
-
-            renderWrestlers(
-                searchTerm
-            );
-
-        }
-
-
-
-        // =================================
-        // FILTER BUTTON EVENTS
-        // =================================
-
-
-        filterButtons.forEach(
-            button => {
-
-
-                button.addEventListener(
-                    "click",
-                    () => {
-
-
-                        currentFilter =
-                            getButtonFilter(
-                                button
-                            );
-
-
-                        filterButtons.forEach(
-                            item => {
-
-                                item.classList.remove(
-                                    "active"
-                                );
-
-                            }
-                        );
-
-
-                        button.classList.add(
-                            "active"
-                        );
-
-
-                        renderRoster();
-
-                    }
-                );
-
-
-            }
-        );
-
-
-
-        // =================================
-        // SEARCH EVENT
-        // =================================
-
-
-        if (
-            searchInput
-        ) {
-
-
-            searchInput.addEventListener(
-                "input",
-                renderRoster
-            );
-
-        }
-
-
-
-        // =================================
-        // INITIAL PAGE LOAD
-        // =================================
-
-
-        renderRoster();
-
-
-    }
-
-
-    catch (error) {
-
-
-        console.error(
-            "Could not load roster:",
-            error
-        );
-
-
-        document.querySelector(
-            "main"
-        ).innerHTML += `
-
-            <section class="section">
-
-                <p class="empty-message">
-
-                    The OWL roster
-                    could not be loaded.
-
-                </p>
-
-            </section>
-
-        `;
-
-    }
+            else {
+
+portrait.textContent =
+                    getInitials(wrestler.name);
+                    getInitials(
+                        wrestler.name
+                    );
 
 }
 
 
 
-loadRosterPage();
+            // INFORMATION AREA
+            // INFORMATION
+
+const info =
+                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
+
+info.className =
+@@ -132,7 +237,9 @@ async function loadRoster() {
+// NAME
+
+const name =
+                document.createElement("h3");
+                document.createElement(
+                    "h3"
+                );
+
+
+name.textContent =
+@@ -148,7 +255,9 @@ async function loadRoster() {
+if (wrestler.nickname) {
+
+const nickname =
+                    document.createElement("p");
+                    document.createElement(
+                        "p"
+                    );
+
+
+nickname.className =
+@@ -159,47 +268,64 @@ async function loadRoster() {
+`"${wrestler.nickname}"`;
+
+
+                info.appendChild(nickname);
+                info.appendChild(
+                    nickname
+                );
+
+}
+
+
+
+            // HOMETOWN
+            // HOMETOWN + FLAG
+
+if (wrestler.hometown) {
+
+    const hometown =
+        document.createElement("p");
+                const hometown =
+                    document.createElement(
+                        "p"
+                    );
+
+
+    hometown.className =
+        "roster-hometown";
+                hometown.className =
+                    "roster-hometown";
+
+
+    if (wrestler.flag) {
+                if (wrestler.flag) {
+
+        hometown.textContent =
+            `${wrestler.hometown} ${wrestler.flag}`;
+                    hometown.textContent =
+                        `${wrestler.hometown} ${wrestler.flag}`;
+
+    } else {
+                }
+
+        hometown.textContent =
+            wrestler.hometown;
+                else {
+
+    }
+                    hometown.textContent =
+                        wrestler.hometown;
+
+                }
+
+    info.appendChild(hometown);
+
+}
+                info.appendChild(
+                    hometown
+                );
+
+            }
+
+
+            card.appendChild(portrait);
+
+            card.appendChild(info);
+            card.appendChild(
+                portrait
+            );
+
+
+            card.appendChild(
+                info
+            );
+
+
+            link.appendChild(card);
+            link.appendChild(
+                card
+            );
+
+
+return link;
+@@ -208,61 +334,307 @@ async function loadRoster() {
+
+
+
+        // CREATE THE ROSTER
+
+wrestlers.forEach(wrestler => {
+
+
+const card =
+                createWrestlerCard(wrestler);
+                createWrestlerCard(
+                    wrestler
+                );
+
+
+const brand =
+                wrestler.brand
+                    ? wrestler.brand.toLowerCase()
+                    : "";
+                normalize(
+                    wrestler.brand
+                );
+
+
+if (brand === "ascension") {
+
+                ascensionRoster.appendChild(card);
+                ascensionRoster.appendChild(
+                    card
+                );
+
+}
+
+else if (brand === "revolt") {
+
+                revoltRoster.appendChild(card);
+                revoltRoster.appendChild(
+                    card
+                );
+
+}
+
+else {
+
+                unassignedRoster.appendChild(card);
+
+                unassignedCount++;
+                unassignedRoster.appendChild(
+                    card
+                );
+
+}
+
+});
+
+
+
+        if (unassignedCount > 0) {
+        function matchesActiveFilter(card) {
+
+
+            switch (activeFilter) {
+
+
+            unassignedSection.hidden = false;
+                case "ascension":
+
+                    return (
+                        card.dataset.brand
+                        === "ascension"
+                    );
+
+
+                case "revolt":
+
+                    return (
+                        card.dataset.brand
+                        === "revolt"
+                    );
+
+
+                case "men":
+
+                    return (
+                        card.dataset.division
+                        === "men"
+                    );
+
+
+                case "women":
+
+                    return (
+                        card.dataset.division
+                        === "women"
+                    );
+
+
+                case "tag-teams":
+
+                    return (
+                        card.dataset.hasTeam
+                        === "true"
+                    );
+
+
+                case "factions":
+
+                    return (
+                        card.dataset.hasFaction
+                        === "true"
+                    );
+
+
+                case "all":
+
+                default:
+
+                    return true;
+
+            }
+
+}
+
+
+
+        function updateSectionVisibility() {
+
+
+            const sections = [
+
+                {
+                    section:
+                        ascensionSection,
+
+                    container:
+                        ascensionRoster
+                },
+
+                {
+                    section:
+                        revoltSection,
+
+                    container:
+                        revoltRoster
+                },
+
+                {
+                    section:
+                        unassignedSection,
+
+                    container:
+                        unassignedRoster
+                }
+
+            ];
+
+
+
+            let totalVisible = 0;
+
+
+
+            sections.forEach(item => {
+
+
+                const cards = [
+
+                    ...item.container
+                        .querySelectorAll(
+                            ".roster-card-link"
+                        )
+
+                ];
+
+
+                const visibleCards =
+                    cards.filter(
+                        card => !card.hidden
+                    );
+
+
+                item.section.hidden =
+                    visibleCards.length === 0;
+
+
+                totalVisible +=
+                    visibleCards.length;
+
+            });
+
+
+
+            emptyState.hidden =
+                totalVisible !== 0;
+
+        }
+
+
+
+        function applyFilters() {
+
+
+            const searchText =
+                normalize(
+                    searchInput.value
+                );
+
+
+            const cards =
+                document.querySelectorAll(
+                    ".roster-card-link"
+                );
+
+
+
+            cards.forEach(card => {
+
+
+                const matchesFilter =
+                    matchesActiveFilter(
+                        card
+                    );
+
+
+                const matchesSearch =
+                    card.dataset.search
+                        .includes(
+                            searchText
+                        );
+
+
+                card.hidden =
+                    !(
+                        matchesFilter
+                        &&
+                        matchesSearch
+                    );
+
+            });
+
+
+
+            updateSectionVisibility();
+
+        }
+
+
+
+        // FILTER BUTTONS
+
+        filterButtons.forEach(button => {
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+
+                    activeFilter =
+                        button.dataset.filter;
+
+
+                    filterButtons.forEach(
+                        otherButton => {
+
+                            otherButton.classList.remove(
+                                "is-active"
+                            );
+
+                        }
+                    );
+
+
+                    button.classList.add(
+                        "is-active"
+                    );
+
+
+                    applyFilters();
+
+                }
+            );
+
+        });
+
+
+
+        // SEARCH BOX
+
+        searchInput.addEventListener(
+            "input",
+            applyFilters
+        );
+
+
+
+        // INITIAL DISPLAY
+
+        applyFilters();
+
+
+}
+
+catch (error) {
+
+
+console.error(
+"Could not load OWL roster:",
+error
+);
+
+
+        document.querySelector("main").innerHTML += `
+        document.querySelector(
+            "main"
+        ).innerHTML += `
+
+           <section class="section">
+
+@@ -281,4 +653,5 @@ async function loadRoster() {
+}
+
+
+
+loadRoster();
