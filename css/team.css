@@ -348,3 +348,91 @@
     }
 
 }
+/* =================================
+   TEAM MATCH HISTORY
+================================= */
+
+
+.match-table-wrapper {
+
+    overflow-x:
+        auto;
+
+}
+
+
+.match-table {
+
+    width:
+        100%;
+
+    border-collapse:
+        collapse;
+
+    background:
+        #111517;
+
+}
+
+
+.match-table th,
+.match-table td {
+
+    text-align:
+        left;
+
+    padding:
+        1rem;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.match-table th {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.7rem;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.match-fixture {
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.9rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+.match-table td:nth-child(4) {
+
+    font-weight:
+        900;
+
+}
+
+
+.empty-message {
+
+    color:
+        #a7b0b3;
+
+}
