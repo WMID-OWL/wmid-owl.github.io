@@ -2,18 +2,42 @@ async function loadRoster() {
 
     try {
 
-        const response = await fetch(
-            "data/wrestlers.json",
-            {
-                cache: "no-store"
-            }
-        );
+        const wrestlerResponse = await fetch(
+    "data/wrestlers.json",
+    {
+        cache: "no-store"
+    }
+);
 
 
-        const wrestlers = await response.json();
+const teamResponse = await fetch(
+    "data/teams.json",
+    {
+        cache: "no-store"
+    }
+);
 
 
+const matchResponse = await fetch(
+    "data/matches.json",
+    {
+        cache: "no-store"
+    }
+);
 
+
+const wrestlers =
+    await wrestlerResponse.json();
+
+
+const teams =
+    await teamResponse.json();
+
+
+const matches =
+    await matchResponse.json();
+
+        
         // ROSTER CONTAINERS
 
         const ascensionRoster =
@@ -78,7 +102,75 @@ async function loadRoster() {
 
 
         let activeFilter = "all";
+// TAG TEAM DISPLAY SECTION
 
+const teamSection =
+    document.createElement(
+        "section"
+    );
+
+
+teamSection.id =
+    "roster-team-section";
+
+
+teamSection.className =
+    "roster-team-section";
+
+
+teamSection.hidden =
+    true;
+
+
+teamSection.innerHTML = `
+
+    <div class="roster-section-heading">
+
+        <div>
+
+            <p class="eyebrow">
+                TWO AS ONE
+            </p>
+
+            <h2>
+                Tag Teams
+            </h2>
+
+        </div>
+
+
+        <span id="roster-team-count">
+            0 Teams
+        </span>
+
+    </div>
+
+
+    <div
+        id="roster-team-grid"
+        class="roster-team-grid"
+    >
+    </div>
+
+`;
+
+
+ascensionSection.parentNode.insertBefore(
+    teamSection,
+    ascensionSection
+);
+
+
+const teamGrid =
+    document.getElementById(
+        "roster-team-grid"
+    );
+
+
+const teamCount =
+    document.getElementById(
+        "roster-team-count"
+    );
 
 
         function normalize(value) {
@@ -101,6 +193,229 @@ async function loadRoster() {
                 .toUpperCase();
 
         }
+
+
+// =================================
+// TAG TEAM HELPERS
+// =================================
+
+
+function getTeamMemberNames(team) {
+
+    return team.members
+
+        .map(memberId => {
+
+            const wrestler =
+                wrestlers.find(
+                    item =>
+                        item.id === memberId
+                );
+
+
+            return wrestler
+                ? wrestler.name
+                : memberId;
+
+        })
+
+        .join(" & ");
+
+}
+
+
+
+function findTeamSide(
+    match,
+    team
+) {
+
+    return match.sides.findIndex(
+        side =>
+
+            team.members.every(
+                memberId =>
+
+                    side.wrestlers.includes(
+                        memberId
+                    )
+            )
+    );
+
+}
+
+
+
+function calculateTeamRecord(team) {
+
+    let wins = 0;
+
+    let losses = 0;
+
+    let draws = 0;
+
+
+    matches.forEach(match => {
+
+        const teamSide =
+            findTeamSide(
+                match,
+                team
+            );
+
+
+        if (teamSide === -1) {
+
+            return;
+
+        }
+
+
+        const resultType =
+            normalize(
+                match.resultType
+            );
+
+
+        if (
+            resultType === "no-contest" ||
+            resultType === "no contest" ||
+            resultType === "nc"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            resultType === "draw" ||
+            match.winnerSide === null ||
+            match.winnerSide === undefined
+        ) {
+
+            draws++;
+
+            return;
+
+        }
+
+
+        if (
+            teamSide ===
+            match.winnerSide
+        ) {
+
+            wins++;
+
+        }
+
+        else {
+
+            losses++;
+
+        }
+
+    });
+
+
+    return `${wins}-${losses}-${draws}`;
+
+}
+
+
+
+function createTeamCard(team) {
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+
+    link.href =
+        `team.html?id=${encodeURIComponent(team.id)}`;
+
+
+    link.className =
+        "roster-team-card";
+
+
+    const memberNames =
+        getTeamMemberNames(
+            team
+        );
+
+
+    const record =
+        calculateTeamRecord(
+            team
+        );
+
+
+    link.innerHTML = `
+
+        <div class="roster-team-image">
+
+            ${
+                team.logo
+
+                    ? `
+                        <img
+                            src="${team.logo}"
+                            alt="${team.name}"
+                        >
+                    `
+
+                    : `
+                        <span>
+                            OWL
+                        </span>
+                    `
+            }
+
+        </div>
+
+
+        <div class="roster-team-body">
+
+
+            <div class="roster-team-topline">
+
+                <span>
+                    ${team.brand || "OWL"}
+                </span>
+
+                <strong>
+                    ${record}
+                </strong>
+
+            </div>
+
+
+            <h3>
+                ${team.name}
+            </h3>
+
+
+            <p>
+                ${memberNames}
+            </p>
+
+
+            <span class="roster-view-team">
+                View Team →
+            </span>
+
+
+        </div>
+
+    `;
+
+
+    return link;
+
+}
 
 
 
@@ -522,10 +837,106 @@ async function loadRoster() {
         function applyFilters() {
 
 
-            const searchText =
-                normalize(
-                    searchInput.value
+    const searchText =
+        normalize(
+            searchInput.value
+        );
+
+
+
+    // TAG TEAM MODE
+
+    if (
+        activeFilter === "tag-teams"
+    ) {
+
+
+        ascensionSection.hidden =
+            true;
+
+
+        revoltSection.hidden =
+            true;
+
+
+        unassignedSection.hidden =
+            true;
+
+
+        teamSection.hidden =
+            false;
+
+
+        teamGrid.innerHTML =
+            "";
+
+
+        const visibleTeams =
+            teams.filter(team => {
+
+
+                const searchableText =
+                    normalize(
+
+                        [
+                            team.name,
+                            team.brand,
+                            getTeamMemberNames(team)
+                        ]
+                            .filter(Boolean)
+                            .join(" ")
+
+                    );
+
+
+                return searchableText.includes(
+                    searchText
                 );
+
+            });
+
+
+
+        visibleTeams.forEach(team => {
+
+            teamGrid.appendChild(
+                createTeamCard(team)
+            );
+
+        });
+
+
+
+        teamCount.textContent =
+
+            `${visibleTeams.length} ${
+                visibleTeams.length === 1
+                    ? "Team"
+                    : "Teams"
+            }`;
+
+
+
+        emptyState.hidden =
+            visibleTeams.length !== 0;
+
+
+        return;
+
+    }
+
+
+
+    // NORMAL WRESTLER MODE
+
+    teamSection.hidden =
+        true;
+
+
+    const cards =
+        document.querySelectorAll(
+            ".roster-card-link"
+        );
 
 
             const cards =
