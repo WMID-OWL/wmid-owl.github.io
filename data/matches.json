@@ -22,4 +22,53 @@
     "rating": 91,
     "starRating": 4.5
   }
+],
+[
+  {
+    "id": "match-0001",
+    "date": "2026-07-01",
+    "event": "Ascension",
+    "eventType": "weekly",
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "zee-allmighty"
+        ]
+      },
+      {
+        "wrestlers": [
+          "dorian-atlas"
+        ]
+      }
+    ],
+    "winnerSide": 0,
+    "resultMethod": "Pinfall",
+    "rating": 91
+  },
+
+  {
+    "id": "match-0002",
+    "date": "2026-07-08",
+    "event": "Ascension",
+    "eventType": "weekly",
+    "matchType": "Tag Team",
+    "sides": [
+      {
+        "wrestlers": [
+          "levi-martin",
+          "connor-canada"
+        ]
+      },
+      {
+        "wrestlers": [
+          "zee-allmighty",
+          "dorian-atlas"
+        ]
+      }
+    ],
+    "winnerSide": 1,
+    "resultMethod": "Submission",
+    "rating": 89
+  }
 ]
