@@ -1,59 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/style.css">
 
-  <title>Champions | OWL Wrestling</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Champions | OWL Wrestling</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/champions.css"
+    >
+
 </head>
+
+
 <body>
 
+
 <header class="site-header">
-  <a class="brand" href="index.html" aria-label="OWL Wrestling Home">
-    <span class="brand-mark">OWL</span>
-    <span class="brand-sub">WRESTLING</span>
-  </a>
-  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
-  <nav class="site-nav">
-    <a href="index.html">Home</a>
-    <a href="roster.html">Roster</a>
-    <a href="champions.html">Champions</a>
-    <a href="events.html">Events</a>
-    <a href="records.html">Records</a>
-  </nav>
+
+    <a class="brand" href="index.html">
+
+        <span class="brand-mark">
+            OWL
+        </span>
+
+        <span class="brand-sub">
+            WRESTLING
+        </span>
+
+    </a>
+
+
+    <button
+        class="nav-toggle"
+        aria-label="Toggle navigation"
+    >
+        ☰
+    </button>
+
+
+    <nav class="site-nav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="roster.html">
+            Roster
+        </a>
+
+        <a href="groups.html">
+            Teams
+        </a>
+
+        <a
+            href="champions.html"
+            class="active"
+        >
+            Champions
+        </a>
+
+        <a href="events.html">
+            Events
+        </a>
+
+        <a href="records.html">
+            Records
+        </a>
+
+    </nav>
+
 </header>
 
-<main>
-  <section class="page-hero">
-    <p class="eyebrow">THE GOLD STANDARD</p>
-    <h1>Champions</h1>
-    <p>Current titleholders, championship history, and future lineage records.</p>
-  </section>
-  
-<section class="section">
-  <div class="card-grid two">
-    <article class="info-card"><p class="card-kicker">ASCENSION</p><h3>OWL World Championship</h3><p>Champion: To be entered</p></article>
-    <article class="info-card"><p class="card-kicker">ASCENSION</p><h3>OWL Women's World Championship</h3><p>Champion: To be entered</p></article>
-    <article class="info-card"><p class="card-kicker">REVOLT</p><h3>OWL Heavyweight Championship</h3><p>Champion: To be entered</p></article>
-    <article class="info-card"><p class="card-kicker">REVOLT</p><h3>OWL Women's Heavyweight Championship</h3><p>Champion: To be entered</p></article>
-    <article class="info-card"><p class="card-kicker">SHARED</p><h3>Men's Twin Talon Tag Titles</h3><p>Champions: To be entered</p></article>
-    <article class="info-card"><p class="card-kicker">SHARED</p><h3>Women's Twin Talon Tag Titles</h3><p>Champions: To be entered</p></article>
-  </div>
-  <p class="note">The four brand midcard championships can be added here once we begin filling in the title database.</p>
-</section>
+
+
+<main class="champions-page">
+
+
+    <!-- PAGE HERO -->
+
+    <section class="champions-hero">
+
+        <p class="eyebrow">
+            THE GOLD STANDARD
+        </p>
+
+        <h1>
+            Champions
+        </h1>
+
+        <p class="champions-intro">
+
+            The titleholders, prizes, and championship
+            lineages of OWL Wrestling.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- ASCENSION -->
+
+    <section class="championship-brand-section">
+
+        <div class="championship-section-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    RISE ABOVE
+                </p>
+
+                <h2>
+                    Ascension
+                </h2>
+
+            </div>
+
+
+            <span id="ascension-title-count">
+                0 Championships
+            </span>
+
+        </div>
+
+
+        <div
+            id="ascension-title-grid"
+            class="championship-grid"
+        >
+        </div>
+
+    </section>
+
+
+
+    <!-- REVOLT -->
+
+    <section class="championship-brand-section">
+
+        <div class="championship-section-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    BREAK THE ORDER
+                </p>
+
+                <h2>
+                    Revolt
+                </h2>
+
+            </div>
+
+
+            <span id="revolt-title-count">
+                0 Championships
+            </span>
+
+        </div>
+
+
+        <div
+            id="revolt-title-grid"
+            class="championship-grid"
+        >
+        </div>
+
+    </section>
+
+
+
+    <!-- SHARED OWL TITLES -->
+
+    <section class="championship-brand-section">
+
+        <div class="championship-section-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    ONE COMPANY
+                </p>
+
+                <h2>
+                    OWL Championships
+                </h2>
+
+            </div>
+
+
+            <span id="owl-title-count">
+                0 Championships
+            </span>
+
+        </div>
+
+
+        <div
+            id="owl-title-grid"
+            class="championship-grid"
+        >
+        </div>
+
+    </section>
+
+
+
+    <p
+        id="championship-empty-state"
+        class="empty-message"
+        hidden
+    >
+        No championships are currently listed.
+    </p>
+
 
 </main>
 
+
+
 <footer class="site-footer">
-  <div>
-    <strong>OWL Wrestling</strong>
-    <p>Ascension. Revolt. One world.</p>
-  </div>
-  <p class="footer-note">A fan-made efed universe.</p>
+
+    <div>
+
+        <strong>
+            OWL Wrestling
+        </strong>
+
+        <p>
+            Ascension. Revolt. One world.
+        </p>
+
+    </div>
+
 </footer>
+
+
+
 <script src="js/app.js"></script>
 
+<script src="js/champions.js"></script>
+
+
 </body>
+
 </html>
