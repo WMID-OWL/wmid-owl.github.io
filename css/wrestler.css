@@ -229,3 +229,26 @@
     }
 
 }
+.finish-text {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.82rem;
+
+    font-style:
+        italic;
+
+}
+
+
+.result-nc {
+
+    font-weight:
+        900;
+
+    color:
+        #a7b0b3;
+
+}
