@@ -1,0 +1,153 @@
+.roster-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(280px, 1fr)
+        );
+
+    gap: 1rem;
+
+}
+
+
+
+.roster-card-link {
+
+    display: block;
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+
+
+.roster-wrestler-card {
+
+    height: 100%;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+
+.roster-card-link:hover
+.roster-wrestler-card {
+
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(198, 161, 91, 0.7);
+
+    background: #171d20;
+
+}
+
+
+
+.roster-portrait {
+
+    flex: 0 0 110px;
+
+    width: 110px;
+
+    aspect-ratio: 4 / 5;
+
+    display: grid;
+
+    place-items: center;
+
+    overflow: hidden;
+
+    background: #171d20;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    font-size: 1.8rem;
+
+    font-weight: 900;
+
+}
+
+
+
+.roster-portrait img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+
+.roster-card-info {
+
+    min-width: 0;
+
+}
+
+
+
+.roster-card-info h3 {
+
+    margin: 0 0 0.4rem;
+
+    font-size: 1.5rem;
+
+}
+
+
+
+.roster-nickname {
+
+    color: #c6a15b !important;
+
+    font-style: italic;
+
+    margin: 0 0 0.35rem !important;
+
+}
+
+
+
+.roster-hometown {
+
+    color: #a7b0b3;
+
+    margin: 0 !important;
+
+}
+
+
+
+@media (max-width: 520px) {
+
+    .roster-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .roster-portrait {
+
+        flex-basis: 90px;
+
+        width: 90px;
+
+    }
+
+}
