@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Faction Profile | OWL Wrestling</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/team.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/faction.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+    <a class="brand" href="index.html">
+
+        <span class="brand-mark">
+            OWL
+        </span>
+
+        <span class="brand-sub">
+            WRESTLING
+        </span>
+
+    </a>
+
+
+    <button
+        class="nav-toggle"
+        aria-label="Toggle navigation"
+    >
+        ☰
+    </button>
+
+
+    <nav class="site-nav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="roster.html">
+            Roster
+        </a>
+
+        <a href="groups.html">
+            Teams
+        </a>
+
+        <a href="champions.html">
+            Champions
+        </a>
+
+        <a href="events.html">
+            Events
+        </a>
+
+        <a href="records.html">
+            Records
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<main class="team-page faction-page">
+
+
+    <!-- FACTION HEADER -->
+
+    <section class="team-header">
+
+
+        <div class="team-logo-column">
+
+
+            <div class="team-logo-box">
+
+                <div id="faction-logo-placeholder">
+                    OWL
+                </div>
+
+
+                <img
+                    id="faction-logo"
+                    src=""
+                    alt=""
+                    hidden
+                >
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="team-identity">
+
+
+            <p class="eyebrow">
+                OWL FACTION PROFILE
+            </p>
+
+
+            <h1 id="faction-name">
+                Loading...
+            </h1>
+
+
+            <p
+                id="faction-brand"
+                class="team-brand"
+            >
+            </p>
+
+
+
+            <div
+                id="leader-display"
+                class="faction-leader-display"
+                hidden
+            >
+
+                <span>
+                    FACTION LEADER
+                </span>
+
+                <a id="faction-leader" href="#">
+                </a>
+
+            </div>
+
+
+
+            <div class="record-grid">
+
+
+                <div class="record-box">
+
+                    <span>
+                        OVERALL RECORD
+                    </span>
+
+                    <strong id="faction-overall-record">
+                        0-0-0
+                    </strong>
+
+                </div>
+
+
+                <div class="record-box">
+
+                    <span>
+                        PPV RECORD
+                    </span>
+
+                    <strong id="faction-ppv-record">
+                        0-0-0
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- OFFICIAL TEAM -->
+
+    <section class="team-section">
+
+        <p class="eyebrow">
+            THE FOUNDATION
+        </p>
+
+        <h2>
+            Official Tag Team
+        </h2>
+
+        <a
+            id="official-team-card"
+            class="official-team-card"
+            href="#"
+        >
+        </a>
+
+    </section>
+
+
+
+    <!-- SINGLES MEMBERS -->
+
+    <section
+        id="singles-members-section"
+        class="team-section"
+        hidden
+    >
+
+        <p class="eyebrow">
+            SINGLES COMPETITORS
+        </p>
+
+        <h2>
+            Singles Members
+        </h2>
+
+        <div
+            id="singles-member-grid"
+            class="faction-member-grid"
+        >
+        </div>
+
+    </section>
+
+
+
+    <!-- STORY -->
+
+    <section class="team-section">
+
+        <p class="eyebrow">
+            THE STORY
+        </p>
+
+        <h2>
+            Why We're Here
+        </h2>
+
+        <p id="faction-story">
+            Faction story coming soon.
+        </p>
+
+    </section>
+
+
+
+    <!-- CHAMPIONSHIPS -->
+
+    <section
+        id="faction-championship-section"
+        class="team-section"
+        hidden
+    >
+
+        <p class="eyebrow">
+            CAREER ACCOMPLISHMENTS
+        </p>
+
+        <h2>
+            Championships Held
+        </h2>
+
+        <div id="faction-championships">
+        </div>
+
+    </section>
+
+
+
+    <!-- AWARDS -->
+
+    <section
+        id="faction-awards-section"
+        class="team-section"
+        hidden
+    >
+
+        <p class="eyebrow">
+            YEAR-END HONORS
+        </p>
+
+        <h2>
+            End of the Year Awards
+        </h2>
+
+        <div id="faction-awards">
+        </div>
+
+    </section>
+
+
+
+    <!-- MATCH HISTORY -->
+
+    <section class="team-section">
+
+        <p class="eyebrow">
+            FACTION DATABASE
+        </p>
+
+        <h2>
+            Match History
+        </h2>
+
+
+        <div class="match-table-wrapper">
+
+
+            <table class="match-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Event
+                        </th>
+
+                        <th>
+                            Match
+                        </th>
+
+                        <th>
+                            Result
+                        </th>
+
+                        <th>
+                            Match %
+                        </th>
+
+                        <th>
+                            Stars
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="faction-match-history">
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+        <p
+            id="faction-no-matches"
+            class="empty-message"
+            hidden
+        >
+            No faction matches recorded yet.
+        </p>
+
+
+    </section>
+
+
+</main>
+
+
+
+<footer class="site-footer">
+
+    <div>
+
+        <strong>
+            OWL Wrestling
+        </strong>
+
+        <p>
+            Ascension. Revolt. One world.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<script src="js/app.js"></script>
+
+<script src="js/faction.js"></script>
+
+
+</body>
+
+</html>
