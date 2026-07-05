@@ -169,22 +169,30 @@ async function loadRoster() {
 
             if (wrestler.hometown) {
 
-                const hometown =
-                    document.createElement("p");
+    const hometown =
+        document.createElement("p");
 
 
-                hometown.className =
-                    "roster-hometown";
+    hometown.className =
+        "roster-hometown";
 
 
-                hometown.textContent =
-                    wrestler.hometown;
+    if (wrestler.flag) {
+
+        hometown.textContent =
+            `${wrestler.hometown} ${wrestler.flag}`;
+
+    } else {
+
+        hometown.textContent =
+            wrestler.hometown;
+
+    }
 
 
-                info.appendChild(hometown);
+    info.appendChild(hometown);
 
-            }
-
+}
 
 
             card.appendChild(portrait);
