@@ -1,0 +1,102 @@
+[
+  {
+    "id": "owl-world-championship",
+    "name": "OWL World Championship",
+    "brand": "Ascension",
+    "division": "Men",
+    "type": "Singles",
+    "tier": "World",
+    "image": "",
+    "description": ""
+  },
+  {
+    "id": "owl-womens-world-championship",
+    "name": "OWL Women's World Championship",
+    "brand": "Ascension",
+    "division": "Women",
+    "type": "Singles",
+    "tier": "World",
+    "image": "",
+    "description": ""
+  },
+  {
+    "id": "ascension-championship",
+    "name": "Ascension Championship",
+    "brand": "Ascension",
+    "division": "Men",
+    "type": "Singles",
+    "tier": "Midcard",
+    "image": "",
+    "description": ""
+  },
+  {
+    "id": "womens-ascension-championship",
+    "name": "Women's Ascension Championship",
+    "brand": "Ascension",
+    "division": "Women",
+    "type": "Singles",
+    "tier": "Midcard",
+    "image": "",
+    "description": ""
+  },
+  {
+    "id": "owl-heavyweight-championship",
+    "name": "OWL Heavyweight Championship",
+    "brand": "Revolt",
+    "division": "Men",
+    "type": "Singles",
+    "tier": "World",
+    "image": "",
+    "description": ""
+  },
+  {
+    "id": "owl-womens-heavyweight-championship",
+    "name": "OWL Women's Heavyweight Championship",
+    "brand": "Revolt",
+    "division": "Women",
+    "type": "Singles",
+    "tier": "World",
+    "image": "",
+    "description": ""
+  },
+  {
+    "id": "revolt-championship",
+    "name": "Revolt Championship",
+    "brand": "Revolt",
+    "division": "Men",
+    "type": "Singles",
+    "tier": "Midcard",
+    "image": "",
+    "description": ""
+  },
+  {
+    "id": "womens-revolt-championship",
+    "name": "Women's Revolt Championship",
+    "brand": "Revolt",
+    "division": "Women",
+    "type": "Singles",
+    "tier": "Midcard",
+    "image": "",
+    "description": ""
+  },
+  {
+    "id": "twin-talon-tag-team-championship",
+    "name": "Twin Talon Tag Team Championship",
+    "brand": "OWL",
+    "division": "Men",
+    "type": "Tag Team",
+    "tier": "Tag Team",
+    "image": "",
+    "description": ""
+  },
+  {
+    "id": "womens-twin-talon-tag-team-championship",
+    "name": "Women's Twin Talon Tag Team Championship",
+    "brand": "OWL",
+    "division": "Women",
+    "type": "Tag Team",
+    "tier": "Tag Team",
+    "image": "",
+    "description": ""
+  }
+]
