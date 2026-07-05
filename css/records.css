@@ -256,3 +256,79 @@
     }
 
 }
+/* SEARCH BUTTON FEEDBACK */
+
+
+#search-button {
+
+    position: relative;
+
+    transition:
+        transform 0.08s ease,
+        box-shadow 0.08s ease,
+        background 0.15s ease;
+
+    box-shadow:
+        0 5px 0
+        rgba(198, 161, 91, 0.45);
+
+}
+
+
+#search-button:hover {
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+#search-button:active {
+
+    transform:
+        translateY(4px)
+        scale(0.98);
+
+    box-shadow:
+        0 1px 0
+        rgba(198, 161, 91, 0.45);
+
+}
+
+
+#search-button.searching {
+
+    transform:
+        translateY(3px);
+
+    box-shadow:
+        0 2px 0
+        rgba(198, 161, 91, 0.45);
+
+    opacity:
+        0.85;
+
+    cursor:
+        wait;
+
+}
+
+
+#search-button.search-confirmed {
+
+    transform:
+        translateY(0);
+
+    box-shadow:
+        0 5px 0
+        rgba(198, 161, 91, 0.45);
+
+}
+
+
+#search-button:disabled {
+
+    cursor:
+        wait;
+
+}
