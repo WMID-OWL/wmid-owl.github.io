@@ -1,52 +1,62 @@
 [
   {
+    "id": "zee-allmighty",
     "name": "Zee Allmighty",
-    "origin": "Trinidad & Tobago",
+    "nickname": "",
+    "hometown": "Trinidad & Tobago",
+    "photo": "",
+    "currentTitle": "",
+    "finisher": "",
+    "signatureMoves": [],
+    "whyImHere": "",
     "team": "",
-    "record": {
-      "wins": 0,
-      "losses": 0,
-      "draws": 0
-    }
+    "faction": "",
+    "championshipsHeld": [],
+    "awards": []
   },
   {
+    "id": "dorian-atlas",
+    "name": "Dorian Atlas",
+    "nickname": "",
+    "hometown": "Athens, Greece",
+    "photo": "",
+    "currentTitle": "",
+    "finisher": "",
+    "signatureMoves": [],
+    "whyImHere": "",
+    "team": "",
+    "faction": "",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "levi-martin",
     "name": "Levi Martín",
-    "origin": "Canada",
+    "nickname": "",
+    "hometown": "Canada",
+    "photo": "",
+    "currentTitle": "",
+    "finisher": "",
+    "signatureMoves": [],
+    "whyImHere": "",
     "team": "True North Elite",
-    "record": {
-      "wins": 0,
-      "losses": 0,
-      "draws": 0
-    }
+    "faction": "",
+    "championshipsHeld": [],
+    "awards": []
   },
   {
+    "id": "connor-canada",
     "name": "Connor Canada",
-    "origin": "Canada",
+    "nickname": "",
+    "hometown": "Canada",
+    "photo": "",
+    "currentTitle": "",
+    "finisher": "",
+    "signatureMoves": [],
+    "whyImHere": "",
     "team": "True North Elite",
-    "record": {
-      "wins": 0,
-      "losses": 0,
-      "draws": 0
-    }
-  },
-  {
-    "name": "Will Komplane",
-    "origin": "",
-    "team": "The IWC",
-    "record": {
-      "wins": 0,
-      "losses": 0,
-      "draws": 0
-    }
-  },
-  {
-    "name": "Buzz Kihl",
-    "origin": "",
-    "team": "The IWC",
-    "record": {
-      "wins": 0,
-      "losses": 0,
-      "draws": 0
-    }
+    "faction": "",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
