@@ -1,15 +1,37 @@
-(async function () {
-const wrestlers = await response.json();
+async function loadRoster() {
+
+    try {
+
+        const response = await fetch(
+            "data/wrestlers.json",
+            {
+                cache: "no-store"
+            }
+        );
+
+
+        const wrestlers = await response.json();
 
 
 
         // ROSTER CONTAINERS
 
-const ascensionRoster =
-document.getElementById(
-"ascension-roster"
-@@ -31,13 +34,60 @@ async function loadRoster() {
-);
+        const ascensionRoster =
+            document.getElementById(
+                "ascension-roster"
+            );
+
+
+        const revoltRoster =
+            document.getElementById(
+                "revolt-roster"
+            );
+
+
+        const unassignedRoster =
+            document.getElementById(
+                "unassigned-roster"
+            );
 
 
 
@@ -27,13 +49,12 @@ document.getElementById(
             );
 
 
-const unassignedSection =
-document.getElementById(
-"unassigned-section"
-);
+        const unassignedSection =
+            document.getElementById(
+                "unassigned-section"
+            );
 
 
-        let unassignedCount = 0;
 
         // SEARCH AND FILTER ELEMENTS
 
@@ -70,16 +91,34 @@ document.getElementById(
 
 
 
-@@ -57,7 +107,7 @@ async function loadRoster() {
-function createWrestlerCard(wrestler) {
+        function getInitials(name) {
+
+            return name
+                .split(" ")
+                .map(word => word[0])
+                .join("")
+                .slice(0, 3)
+                .toUpperCase();
+
+        }
 
 
-            // LINK TO PROFILE
+
+        function createWrestlerCard(wrestler) {
+
+
             // PROFILE LINK
 
-const link =
-document.createElement("a");
-@@ -72,21 +122,66 @@ async function loadRoster() {
+            const link =
+                document.createElement("a");
+
+
+            link.href =
+                `wrestler.html?id=${encodeURIComponent(wrestler.id)}`;
+
+
+            link.className =
+                "roster-card-link";
 
 
 
@@ -124,155 +163,148 @@ document.createElement("a");
 
 
 
-// CARD
+            // CARD
 
-const card =
-                document.createElement("article");
+            const card =
                 document.createElement(
                     "article"
                 );
 
 
-card.className =
-"wrestler-card roster-wrestler-card";
+            card.className =
+                "wrestler-card roster-wrestler-card";
 
 
 
-            // PORTRAIT AREA
             // PORTRAIT
 
-const portrait =
-                document.createElement("div");
+            const portrait =
                 document.createElement(
                     "div"
                 );
 
 
-portrait.className =
-@@ -96,7 +191,9 @@ async function loadRoster() {
-if (wrestler.photo) {
+            portrait.className =
+                "roster-portrait";
 
-const image =
-                    document.createElement("img");
+
+            if (wrestler.photo) {
+
+                const image =
                     document.createElement(
                         "img"
                     );
 
 
-image.src =
-@@ -107,21 +204,29 @@ async function loadRoster() {
-wrestler.name;
+                image.src =
+                    wrestler.photo;
 
 
-                portrait.appendChild(image);
+                image.alt =
+                    wrestler.name;
+
+
                 portrait.appendChild(
                     image
                 );
 
-            } else {
             }
 
             else {
 
-portrait.textContent =
-                    getInitials(wrestler.name);
+                portrait.textContent =
                     getInitials(
                         wrestler.name
                     );
 
-}
+            }
 
 
 
-            // INFORMATION AREA
             // INFORMATION
 
-const info =
-                document.createElement("div");
+            const info =
                 document.createElement(
                     "div"
                 );
 
 
-info.className =
-@@ -132,7 +237,9 @@ async function loadRoster() {
-// NAME
+            info.className =
+                "roster-card-info";
 
-const name =
-                document.createElement("h3");
+
+
+            // NAME
+
+            const name =
                 document.createElement(
                     "h3"
                 );
 
 
-name.textContent =
-@@ -148,7 +255,9 @@ async function loadRoster() {
-if (wrestler.nickname) {
+            name.textContent =
+                wrestler.name;
 
-const nickname =
-                    document.createElement("p");
+
+            info.appendChild(name);
+
+
+
+            // NICKNAME
+
+            if (wrestler.nickname) {
+
+                const nickname =
                     document.createElement(
                         "p"
                     );
 
 
-nickname.className =
-@@ -159,47 +268,64 @@ async function loadRoster() {
-`"${wrestler.nickname}"`;
+                nickname.className =
+                    "roster-nickname";
 
 
-                info.appendChild(nickname);
+                nickname.textContent =
+                    `"${wrestler.nickname}"`;
+
+
                 info.appendChild(
                     nickname
                 );
 
-}
+            }
 
 
 
-            // HOMETOWN
             // HOMETOWN + FLAG
 
-if (wrestler.hometown) {
+            if (wrestler.hometown) {
 
-    const hometown =
-        document.createElement("p");
                 const hometown =
                     document.createElement(
                         "p"
                     );
 
 
-    hometown.className =
-        "roster-hometown";
                 hometown.className =
                     "roster-hometown";
 
 
-    if (wrestler.flag) {
                 if (wrestler.flag) {
 
-        hometown.textContent =
-            `${wrestler.hometown} ${wrestler.flag}`;
                     hometown.textContent =
                         `${wrestler.hometown} ${wrestler.flag}`;
 
-    } else {
                 }
 
-        hometown.textContent =
-            wrestler.hometown;
                 else {
 
-    }
                     hometown.textContent =
                         wrestler.hometown;
 
                 }
 
-    info.appendChild(hometown);
 
-}
                 info.appendChild(
                     hometown
                 );
@@ -280,9 +312,7 @@ if (wrestler.hometown) {
             }
 
 
-            card.appendChild(portrait);
 
-            card.appendChild(info);
             card.appendChild(
                 portrait
             );
@@ -293,79 +323,68 @@ if (wrestler.hometown) {
             );
 
 
-            link.appendChild(card);
             link.appendChild(
                 card
             );
 
 
-return link;
-@@ -208,61 +334,307 @@ async function loadRoster() {
+            return link;
+
+        }
 
 
 
         // CREATE THE ROSTER
 
-wrestlers.forEach(wrestler => {
+        wrestlers.forEach(wrestler => {
 
 
-const card =
-                createWrestlerCard(wrestler);
+            const card =
                 createWrestlerCard(
                     wrestler
                 );
 
 
-const brand =
-                wrestler.brand
-                    ? wrestler.brand.toLowerCase()
-                    : "";
+            const brand =
                 normalize(
                     wrestler.brand
                 );
 
 
-if (brand === "ascension") {
+            if (brand === "ascension") {
 
-                ascensionRoster.appendChild(card);
                 ascensionRoster.appendChild(
                     card
                 );
 
-}
+            }
 
-else if (brand === "revolt") {
+            else if (brand === "revolt") {
 
-                revoltRoster.appendChild(card);
                 revoltRoster.appendChild(
                     card
                 );
 
-}
+            }
 
-else {
+            else {
 
-                unassignedRoster.appendChild(card);
-
-                unassignedCount++;
                 unassignedRoster.appendChild(
                     card
                 );
 
-}
+            }
 
-});
+        });
 
 
 
-        if (unassignedCount > 0) {
         function matchesActiveFilter(card) {
 
 
             switch (activeFilter) {
 
 
-            unassignedSection.hidden = false;
                 case "ascension":
 
                     return (
@@ -422,7 +441,7 @@ else {
 
             }
 
-}
+        }
 
 
 
@@ -602,28 +621,37 @@ else {
         applyFilters();
 
 
-}
+    }
 
-catch (error) {
-
-
-console.error(
-"Could not load OWL roster:",
-error
-);
+    catch (error) {
 
 
-        document.querySelector("main").innerHTML += `
+        console.error(
+            "Could not load OWL roster:",
+            error
+        );
+
+
         document.querySelector(
             "main"
         ).innerHTML += `
 
-           <section class="section">
+            <section class="section">
 
-@@ -281,4 +653,5 @@ async function loadRoster() {
+                <p class="empty-message">
+
+                    The roster database could not be loaded.
+
+                </p>
+
+            </section>
+
+        `;
+
+    }
+
 }
 
 
 
 loadRoster();
-})();
