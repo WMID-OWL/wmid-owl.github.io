@@ -669,12 +669,95 @@ async function loadMatchDatabase() {
 
 
 
-        // SEARCH BUTTON
+       // SEARCH BUTTON WITH VISUAL FEEDBACK
 
-        searchButton.addEventListener(
-            "click",
-            searchMatches
+searchButton.addEventListener(
+    "click",
+    () => {
+
+
+        // Prevent repeated clicks during feedback
+
+        searchButton.disabled = true;
+
+
+        // Show pressed/searching state
+
+        searchButton.classList.remove(
+            "search-confirmed"
         );
+
+
+        searchButton.classList.add(
+            "searching"
+        );
+
+
+        searchButton.textContent =
+            "Searching...";
+
+
+
+        // Small delay makes the interaction
+        // feel deliberate instead of invisible
+
+        setTimeout(
+            () => {
+
+
+                // RUN THE ACTUAL SEARCH
+
+                searchMatches();
+
+
+
+                // CONFIRM RESULTS UPDATED
+
+                searchButton.classList.remove(
+                    "searching"
+                );
+
+
+                searchButton.classList.add(
+                    "search-confirmed"
+                );
+
+
+                searchButton.textContent =
+                    "Results Updated ✓";
+
+
+                searchButton.disabled = false;
+
+
+
+                // RETURN TO NORMAL LABEL
+
+                setTimeout(
+                    () => {
+
+
+                        searchButton.textContent =
+                            "Search Matches";
+
+
+                        searchButton.classList.remove(
+                            "search-confirmed"
+                        );
+
+
+                    },
+                    900
+                );
+
+
+            },
+            175
+        );
+
+
+    }
+);
 
 
 
