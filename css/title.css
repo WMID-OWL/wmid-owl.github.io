@@ -1,0 +1,429 @@
+.title-page {
+
+    width:
+        min(
+            1200px,
+            calc(100% - 48px)
+        );
+
+    margin:
+        0 auto;
+
+}
+
+
+.title-header {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        420px 1fr;
+
+    gap:
+        4rem;
+
+    align-items:
+        center;
+
+    padding:
+        5rem 0;
+
+}
+
+
+.title-image-box {
+
+    aspect-ratio:
+        1 / 1;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    overflow:
+        hidden;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.title-image-box img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
+
+}
+
+
+#title-image-placeholder {
+
+    font-size:
+        4rem;
+
+    font-weight:
+        900;
+
+    opacity:
+        0.15;
+
+}
+
+
+.title-identity h1 {
+
+    margin:
+        0;
+
+    font-size:
+        clamp(
+            3rem,
+            7vw,
+            6rem
+        );
+
+    line-height:
+        0.92;
+
+    letter-spacing:
+        -0.06em;
+
+}
+
+
+.title-brand {
+
+    margin-top:
+        1.5rem;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        1.1rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.title-meta {
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.95rem;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+.title-section {
+
+    padding:
+        4rem 0;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.title-section h2 {
+
+    margin:
+        0 0 1.5rem;
+
+    font-size:
+        clamp(
+            2.2rem,
+            5vw,
+            3.8rem
+        );
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+.current-holder-card {
+
+    max-width:
+        760px;
+
+    padding:
+        2rem;
+
+    background:
+        #111517;
+
+    border-left:
+        4px solid
+        #c6a15b;
+
+}
+
+
+#current-holder-name {
+
+    display:
+        inline-block;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        clamp(
+            2rem,
+            5vw,
+            3.5rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        1;
+
+}
+
+
+#current-holder-name:hover {
+
+    color:
+        #c6a15b;
+
+}
+
+
+#current-holder-won {
+
+    margin:
+        0.75rem 0 0;
+
+    color:
+        #a7b0b3;
+
+}
+
+
+.current-reign-stats {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(120px, 180px)
+        );
+
+    gap:
+        1rem;
+
+    margin-top:
+        2rem;
+
+}
+
+
+.current-reign-stats div {
+
+    padding:
+        1rem;
+
+    background:
+        #080a0b;
+
+}
+
+
+.current-reign-stats span {
+
+    display:
+        block;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+.current-reign-stats strong {
+
+    display:
+        block;
+
+    margin-top:
+        0.25rem;
+
+    font-size:
+        2rem;
+
+}
+
+
+.lineage-table-wrapper {
+
+    overflow-x:
+        auto;
+
+}
+
+
+.lineage-table {
+
+    width:
+        100%;
+
+    border-collapse:
+        collapse;
+
+    background:
+        #111517;
+
+}
+
+
+.lineage-table th,
+.lineage-table td {
+
+    text-align:
+        left;
+
+    padding:
+        1rem;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.lineage-table th {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.7rem;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+.lineage-holder-link {
+
+    color:
+        #f5f5f2;
+
+    font-weight:
+        900;
+
+}
+
+
+.lineage-holder-link:hover {
+
+    color:
+        #c6a15b;
+
+}
+
+
+.lineage-event {
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.82rem;
+
+}
+
+
+.empty-message {
+
+    color:
+        #a7b0b3;
+
+}
+
+
+@media (max-width: 800px) {
+
+    .title-header {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            2rem;
+
+    }
+
+
+    .title-image-column {
+
+        max-width:
+            480px;
+
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .current-reign-stats {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
