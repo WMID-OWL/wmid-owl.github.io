@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Zee Allmighty",
+    "origin": "Trinidad & Tobago",
+    "team": "",
+    "record": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  {
+    "name": "Levi Martín",
+    "origin": "Canada",
+    "team": "True North Elite",
+    "record": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  {
+    "name": "Connor Canada",
+    "origin": "Canada",
+    "team": "True North Elite",
+    "record": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  {
+    "name": "Will Komplane",
+    "origin": "",
+    "team": "The IWC",
+    "record": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  {
+    "name": "Buzz Kihl",
+    "origin": "",
+    "team": "The IWC",
+    "record": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    }
+  }
+]
