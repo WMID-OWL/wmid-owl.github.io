@@ -102,7 +102,22 @@ async function loadMatchDatabase() {
             document.getElementById(
                 "no-results"
             );
+const summarySection =
+    document.getElementById(
+        "search-summary-section"
+    );
 
+
+const summaryTitle =
+    document.getElementById(
+        "search-summary-title"
+    );
+
+
+const summaryGrid =
+    document.getElementById(
+        "search-summary"
+    );
 
 
         // CREATE WRESTLER NAME LOOKUP
@@ -316,7 +331,633 @@ async function loadMatchDatabase() {
             );
 
         }
+// HEAD-TO-HEAD HELPERS
 
+
+function getOutcomeForSide(
+    match,
+    sideIndex
+) {
+
+
+    if (
+        match.winnerSide === null ||
+        match.winnerSide === undefined
+    ) {
+
+        return "draw";
+
+    }
+
+
+    if (
+        match.winnerSide === sideIndex
+    ) {
+
+        return "win";
+
+    }
+
+
+    return "loss";
+
+}
+
+
+
+function calculatePerspectiveRecord(
+    matchList,
+    wrestlerId
+) {
+
+
+    let wins = 0;
+
+    let losses = 0;
+
+    let draws = 0;
+
+
+    matchList.forEach(match => {
+
+
+        const wrestlerSide =
+            findWrestlerSide(
+                match,
+                wrestlerId
+            );
+
+
+        const outcome =
+            getOutcomeForSide(
+                match,
+                wrestlerSide
+            );
+
+
+        if (outcome === "win") {
+
+            wins++;
+
+        }
+
+        else if (outcome === "loss") {
+
+            losses++;
+
+        }
+
+        else {
+
+            draws++;
+
+        }
+
+
+    });
+
+
+    return {
+        wins,
+        losses,
+        draws,
+        text:
+            `${wins}-${losses}-${draws}`
+    };
+
+}
+
+
+
+function isOneOnOneMatch(
+    match,
+    wrestlerA,
+    wrestlerB
+) {
+
+
+    const sideA =
+        findWrestlerSide(
+            match,
+            wrestlerA
+        );
+
+
+    const sideB =
+        findWrestlerSide(
+            match,
+            wrestlerB
+        );
+
+
+    if (
+        sideA === -1 ||
+        sideB === -1 ||
+        sideA === sideB
+    ) {
+
+        return false;
+
+    }
+
+
+    if (
+        match.sides.length !== 2
+    ) {
+
+        return false;
+
+    }
+
+
+    return (
+        match.sides[sideA]
+            .wrestlers.length === 1
+        &&
+        match.sides[sideB]
+            .wrestlers.length === 1
+    );
+
+}
+
+
+
+function averageField(
+    matchList,
+    fieldName
+) {
+
+
+    const values =
+        matchList
+            .map(match =>
+                Number(
+                    match[fieldName]
+                )
+            )
+            .filter(value =>
+                Number.isFinite(value)
+            );
+
+
+    if (values.length === 0) {
+
+        return null;
+
+    }
+
+
+    const total =
+        values.reduce(
+            (sum, value) =>
+                sum + value,
+            0
+        );
+
+
+    return total / values.length;
+
+}
+
+
+
+function addSummaryCard(
+    label,
+    value,
+    detail = ""
+) {
+
+
+    const card =
+        document.createElement(
+            "article"
+        );
+
+
+    card.className =
+        "summary-card";
+
+
+    const labelElement =
+        document.createElement(
+            "span"
+        );
+
+
+    labelElement.textContent =
+        label;
+
+
+    const valueElement =
+        document.createElement(
+            "strong"
+        );
+
+
+    valueElement.textContent =
+        value;
+
+
+    card.appendChild(
+        labelElement
+    );
+
+
+    card.appendChild(
+        valueElement
+    );
+
+
+    if (detail) {
+
+
+        const detailElement =
+            document.createElement(
+                "small"
+            );
+
+
+        detailElement.textContent =
+            detail;
+
+
+        card.appendChild(
+            detailElement
+        );
+
+    }
+
+
+    summaryGrid.appendChild(
+        card
+    );
+
+}
+
+
+
+function renderHeadToHeadSummary(
+    wrestlerAId,
+    wrestlerBId
+) {
+
+
+    // ONLY SHOW WHEN TWO DIFFERENT
+    // WRESTLERS ARE SELECTED
+
+
+    if (
+        !wrestlerAId ||
+        !wrestlerBId ||
+        wrestlerAId === wrestlerBId
+    ) {
+
+
+        summarySection.hidden = true;
+
+        summaryGrid.innerHTML = "";
+
+        return;
+
+    }
+
+
+
+    const wrestlerAName =
+        wrestlerNameMap[wrestlerAId]
+        || wrestlerAId;
+
+
+    const wrestlerBName =
+        wrestlerNameMap[wrestlerBId]
+        || wrestlerBId;
+
+
+
+    // EVERY MATCH CONTAINING BOTH
+
+
+    const sharedMatches =
+        matches.filter(match =>
+
+            matchIncludesWrestler(
+                match,
+                wrestlerAId
+            )
+
+            &&
+
+            matchIncludesWrestler(
+                match,
+                wrestlerBId
+            )
+
+        );
+
+
+
+    // ONE-ON-ONE MATCHES
+
+
+    const singlesMatches =
+        sharedMatches.filter(match =>
+
+            isOneOnOneMatch(
+                match,
+                wrestlerAId,
+                wrestlerBId
+            )
+
+        );
+
+
+
+    // OPPOSING SIDES,
+    // BUT NOT ONE-ON-ONE
+
+
+    const opposingMultiMatches =
+        sharedMatches.filter(match => {
+
+
+            const sideA =
+                findWrestlerSide(
+                    match,
+                    wrestlerAId
+                );
+
+
+            const sideB =
+                findWrestlerSide(
+                    match,
+                    wrestlerBId
+                );
+
+
+            return (
+                sideA !== sideB
+                &&
+                !isOneOnOneMatch(
+                    match,
+                    wrestlerAId,
+                    wrestlerBId
+                )
+            );
+
+
+        });
+
+
+
+    // TEAMMATE MATCHES
+
+
+    const teammateMatches =
+        sharedMatches.filter(match => {
+
+
+            const sideA =
+                findWrestlerSide(
+                    match,
+                    wrestlerAId
+                );
+
+
+            const sideB =
+                findWrestlerSide(
+                    match,
+                    wrestlerBId
+                );
+
+
+            return sideA === sideB;
+
+
+        });
+
+
+
+    // RECORDS FROM WRESTLER A'S PERSPECTIVE
+
+
+    const singlesRecord =
+        calculatePerspectiveRecord(
+            singlesMatches,
+            wrestlerAId
+        );
+
+
+    const opposingRecord =
+        calculatePerspectiveRecord(
+            opposingMultiMatches,
+            wrestlerAId
+        );
+
+
+    const teammateRecord =
+        calculatePerspectiveRecord(
+            teammateMatches,
+            wrestlerAId
+        );
+
+
+
+    // AVERAGES
+
+
+    const averageRating =
+        averageField(
+            sharedMatches,
+            "rating"
+        );
+
+
+    const averageStars =
+        averageField(
+            sharedMatches,
+            "starRating"
+        );
+
+
+
+    // HIGHEST PERCENTAGE-RATED
+    // SHARED MATCH
+
+
+    const ratedSharedMatches =
+        sharedMatches.filter(match =>
+
+            Number.isFinite(
+                Number(match.rating)
+            )
+
+        );
+
+
+    const highestRatedMatch =
+        [...ratedSharedMatches]
+            .sort((a, b) => {
+
+
+                const ratingDifference =
+                    Number(b.rating)
+                    -
+                    Number(a.rating);
+
+
+                if (
+                    ratingDifference !== 0
+                ) {
+
+                    return ratingDifference;
+
+                }
+
+
+                return (
+                    Number(
+                        b.starRating || 0
+                    )
+                    -
+                    Number(
+                        a.starRating || 0
+                    )
+                );
+
+
+            })[0];
+
+
+
+    // BUILD SUMMARY
+
+
+    summaryGrid.innerHTML = "";
+
+
+    summaryTitle.textContent =
+        `${wrestlerAName} vs. ${wrestlerBName}`;
+
+
+
+    addSummaryCard(
+
+        "SHARED MATCHES",
+
+        String(
+            sharedMatches.length
+        ),
+
+        "All matches involving both wrestlers"
+
+    );
+
+
+
+    addSummaryCard(
+
+        "ONE-ON-ONE",
+
+        String(
+            singlesMatches.length
+        ),
+
+        `${wrestlerAName}: ${singlesRecord.text}`
+
+    );
+
+
+
+    addSummaryCard(
+
+        "OPPOSING TAG / MULTI",
+
+        String(
+            opposingMultiMatches.length
+        ),
+
+        `${wrestlerAName}'s side: ${opposingRecord.text}`
+
+    );
+
+
+
+    addSummaryCard(
+
+        "AS TEAMMATES",
+
+        String(
+            teammateMatches.length
+        ),
+
+        `Record together: ${teammateRecord.text}`
+
+    );
+
+
+
+    addSummaryCard(
+
+        "AVERAGE MATCH %",
+
+        averageRating !== null
+
+            ? `${averageRating.toFixed(1)}%`
+
+            : "—",
+
+        "Across all shared matches"
+
+    );
+
+
+
+    addSummaryCard(
+
+        "AVERAGE STARS",
+
+        averageStars !== null
+
+            ? `${averageStars.toFixed(2)} ★`
+
+            : "—",
+
+        "Across all shared matches"
+
+    );
+
+
+
+    if (highestRatedMatch) {
+
+
+        const highestStarText =
+
+            highestRatedMatch.starRating !== null &&
+            highestRatedMatch.starRating !== undefined
+
+                ? ` | ${highestRatedMatch.starRating} ★`
+
+                : "";
+
+
+        addSummaryCard(
+
+            "HIGHEST RATED",
+
+            `${highestRatedMatch.rating}%${highestStarText}`,
+
+            highestRatedMatch.event
+
+        );
+
+    }
+
+
+
+    summarySection.hidden = false;
+
+}
 
 
         function renderResults(
@@ -663,7 +1304,10 @@ async function loadMatchDatabase() {
             renderResults(
                 filteredMatches
             );
-
+renderHeadToHeadSummary(
+    wrestlerId,
+    opponentId
+);
 
         }
 
@@ -786,7 +1430,9 @@ searchButton.addEventListener(
                 renderResults(
                     matches
                 );
+summarySection.hidden = true;
 
+summaryGrid.innerHTML = "";
 
             }
         );
