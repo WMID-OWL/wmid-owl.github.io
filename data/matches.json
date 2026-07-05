@@ -56,5 +56,38 @@
     },
     "rating": 89,
     "starRating": 4
+  },
+  {
+    "id": "match-0003",
+    "date": "2026-07-15",
+    "event": "Ascension",
+    "eventType": "weekly",
+    "matchType": "Triple Threat",
+    "sides": [
+      {
+        "wrestlers": [
+          "zee-allmighty"
+        ]
+      },
+      {
+        "wrestlers": [
+          "dorian-atlas"
+        ]
+      },
+      {
+        "wrestlers": [
+          "levi-martin"
+        ]
+      }
+    ],
+    "winnerSide": 0,
+    "resultType": "win",
+    "finish": {
+      "winner": "zee-allmighty",
+      "loser": "levi-martin",
+      "method": "Pinfall"
+    },
+    "rating": 94,
+    "starRating": 4.75
   }
 ]
