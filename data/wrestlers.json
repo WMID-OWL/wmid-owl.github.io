@@ -15,7 +15,8 @@
   "signatureMoves": [],
   "whyImHere": "",
   "team": "",
-  "faction": "",
+"teamId": "",
+"faction": "",
   "championshipsHeld": [],
   "awards": []
 },
@@ -34,7 +35,8 @@
     "signatureMoves": [],
     "whyImHere": "",
     "team": "",
-    "faction": "",
+"teamId": "",
+"faction": "",
     "championshipsHeld": [],
     "awards": []
   },
@@ -53,7 +55,8 @@
     "signatureMoves": [],
     "whyImHere": "",
     "team": "True North Elite",
-    "faction": "",
+"teamId": "true-north-elite",
+"faction": "",
     "championshipsHeld": [],
     "awards": []
   },
@@ -71,8 +74,9 @@
     "finisher": "",
     "signatureMoves": [],
     "whyImHere": "",
-    "team": "True North Elite",
-    "faction": "",
+   "team": "True North Elite",
+"teamId": "true-north-elite",
+"faction": "",
     "championshipsHeld": [],
     "awards": []
   }
