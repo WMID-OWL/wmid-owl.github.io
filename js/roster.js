@@ -26,6 +26,15 @@ async function loadRoster() {
             );
 
 
+        const factionResponse =
+            await fetch(
+                "data/factions.json",
+                {
+                    cache: "no-store"
+                }
+            );
+
+
         const matchResponse =
             await fetch(
                 "data/matches.json",
@@ -38,6 +47,7 @@ async function loadRoster() {
         if (
             !wrestlerResponse.ok ||
             !teamResponse.ok ||
+            !factionResponse.ok ||
             !matchResponse.ok
         ) {
 
@@ -54,6 +64,10 @@ async function loadRoster() {
 
         const teams =
             await teamResponse.json();
+
+
+        const factions =
+            await factionResponse.json();
 
 
         const matches =
@@ -266,6 +280,81 @@ async function loadRoster() {
 
 
         // =================================
+        // CREATE FACTION SECTION
+        // =================================
+
+
+        const factionSection =
+            document.createElement(
+                "section"
+            );
+
+
+        factionSection.id =
+            "roster-faction-section";
+
+
+        factionSection.className =
+            "roster-team-section";
+
+
+        factionSection.hidden =
+            true;
+
+
+        factionSection.innerHTML = `
+
+            <div class="roster-section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        POWER IN NUMBERS
+                    </p>
+
+                    <h2>
+                        Factions
+                    </h2>
+
+                </div>
+
+
+                <span id="roster-faction-count">
+                    0 Factions
+                </span>
+
+            </div>
+
+
+            <div
+                id="roster-faction-grid"
+                class="roster-team-grid"
+            >
+            </div>
+
+        `;
+
+
+        ascensionSection.parentNode.insertBefore(
+            factionSection,
+            ascensionSection
+        );
+
+
+        const factionGrid =
+            document.getElementById(
+                "roster-faction-grid"
+            );
+
+
+        const factionCount =
+            document.getElementById(
+                "roster-faction-count"
+            );
+
+
+
+        // =================================
         // CREATE WRESTLER CARD
         // =================================
 
@@ -273,9 +362,6 @@ async function loadRoster() {
         function createWrestlerCard(
             wrestler
         ) {
-
-
-            // PROFILE LINK
 
 
             const link =
@@ -291,9 +377,6 @@ async function loadRoster() {
             link.className =
                 "roster-card-link";
 
-
-
-            // FILTER DATA
 
 
             link.dataset.brand =
@@ -321,9 +404,6 @@ async function loadRoster() {
 
 
 
-            // SEARCH DATA
-
-
             link.dataset.search = [
 
                 wrestler.name,
@@ -340,9 +420,6 @@ async function loadRoster() {
 
 
 
-            // CARD
-
-
             const card =
                 document.createElement(
                     "article"
@@ -352,9 +429,6 @@ async function loadRoster() {
             card.className =
                 "wrestler-card roster-wrestler-card";
 
-
-
-            // PORTRAIT
 
 
             const portrait =
@@ -405,9 +479,6 @@ async function loadRoster() {
 
 
 
-            // INFORMATION
-
-
             const info =
                 document.createElement(
                     "div"
@@ -417,9 +488,6 @@ async function loadRoster() {
             info.className =
                 "roster-card-info";
 
-
-
-            // BRAND
 
 
             const brand =
@@ -442,9 +510,6 @@ async function loadRoster() {
 
 
 
-            // NAME
-
-
             const name =
                 document.createElement(
                     "h3"
@@ -459,9 +524,6 @@ async function loadRoster() {
                 name
             );
 
-
-
-            // NICKNAME
 
 
             if (
@@ -489,9 +551,6 @@ async function loadRoster() {
 
             }
 
-
-
-            // HOMETOWN
 
 
             const hometownParts =
@@ -545,9 +604,6 @@ async function loadRoster() {
 
             }
 
-
-
-            // BUILD CARD
 
 
             card.appendChild(
@@ -862,6 +918,341 @@ async function loadRoster() {
 
 
         // =================================
+        // FACTION HELPERS
+        // =================================
+
+
+        function getFactionMemberIds(
+            faction
+        ) {
+
+
+            const officialTeam =
+                teams.find(
+                    team =>
+                        team.id ===
+                        faction.tagTeamId
+                );
+
+
+            return Array.from(
+                new Set(
+                    [
+
+                        ...(faction.members || []),
+
+                        ...(
+                            faction.singlesMembers ||
+                            []
+                        ),
+
+                        ...(
+                            officialTeam
+                                ? officialTeam.members
+                                : []
+                        ),
+
+                        ...(
+                            faction.leader
+                                ? [faction.leader]
+                                : []
+                        )
+
+                    ]
+                )
+            );
+
+        }
+
+
+
+        function getFactionMemberNames(
+            faction
+        ) {
+
+
+            return getFactionMemberIds(
+                faction
+            )
+
+                .map(
+                    memberId => {
+
+
+                        const wrestler =
+                            wrestlerMap[
+                                memberId
+                            ];
+
+
+                        return wrestler
+                            ? wrestler.name
+                            : memberId;
+
+                    }
+                )
+
+                .join(" & ");
+
+        }
+
+
+
+        function getFactionSide(
+            match,
+            faction
+        ) {
+
+
+            const memberSet =
+                new Set(
+                    getFactionMemberIds(
+                        faction
+                    )
+                );
+
+
+            const sidesWithFactionMembers =
+                match.sides
+
+                    .map(
+                        (side, index) => {
+
+
+                            const count =
+                                side.wrestlers.filter(
+                                    wrestlerId =>
+
+                                        memberSet.has(
+                                            wrestlerId
+                                        )
+                                ).length;
+
+
+                            return {
+                                index:
+                                    index,
+
+                                count:
+                                    count
+                            };
+
+                        }
+                    )
+
+                    .filter(
+                        item =>
+                            item.count > 0
+                    );
+
+
+            if (
+                sidesWithFactionMembers.length !== 1
+            ) {
+
+                return -1;
+
+            }
+
+
+            return sidesWithFactionMembers[0]
+                .index;
+
+        }
+
+
+
+        function calculateFactionRecord(
+            faction
+        ) {
+
+
+            let wins = 0;
+
+            let losses = 0;
+
+            let draws = 0;
+
+
+            matches.forEach(
+                match => {
+
+
+                    const factionSide =
+                        getFactionSide(
+                            match,
+                            faction
+                        );
+
+
+                    if (
+                        factionSide === -1
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const resultType =
+                        getResultType(
+                            match
+                        );
+
+
+                    if (
+                        resultType === "no-contest"
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    if (
+                        resultType === "draw"
+                    ) {
+
+                        draws++;
+
+                        return;
+
+                    }
+
+
+                    if (
+                        factionSide ===
+                        match.winnerSide
+                    ) {
+
+                        wins++;
+
+                    }
+
+                    else {
+
+                        losses++;
+
+                    }
+
+                }
+            );
+
+
+            return `${wins}-${losses}-${draws}`;
+
+        }
+
+
+
+        // =================================
+        // CREATE FACTION CARD
+        // =================================
+
+
+        function createFactionCard(
+            faction
+        ) {
+
+
+            const link =
+                document.createElement(
+                    "a"
+                );
+
+
+            link.href =
+                `faction.html?id=${encodeURIComponent(faction.id)}`;
+
+
+            link.className =
+                "roster-team-card";
+
+
+            const memberIds =
+                getFactionMemberIds(
+                    faction
+                );
+
+
+            const record =
+                calculateFactionRecord(
+                    faction
+                );
+
+
+            link.innerHTML = `
+
+                <div class="roster-team-image">
+
+                    ${
+                        faction.logo
+
+                            ? `
+                                <img
+                                    src="${faction.logo}"
+                                    alt="${faction.name}"
+                                >
+                            `
+
+                            : `
+                                <span>
+                                    OWL
+                                </span>
+                            `
+                    }
+
+                </div>
+
+
+                <div class="roster-team-body">
+
+
+                    <div class="roster-team-topline">
+
+                        <span>
+                            ${faction.brand || "OWL"}
+                        </span>
+
+
+                        <strong>
+                            ${record}
+                        </strong>
+
+                    </div>
+
+
+                    <h3>
+                        ${faction.name}
+                    </h3>
+
+
+                    <p>
+                        ${memberIds.length} ${
+                            memberIds.length === 1
+                                ? "Member"
+                                : "Members"
+                        }
+                    </p>
+
+
+                    <span class="roster-view-team">
+                        View Faction →
+                    </span>
+
+
+                </div>
+
+            `;
+
+
+            return link;
+
+        }
+
+
+
+        // =================================
         // BUILD WRESTLER ROSTER
         // =================================
 
@@ -935,7 +1326,7 @@ async function loadRoster() {
 
 
         // =================================
-        // FILTER LOGIC
+        // WRESTLER FILTER LOGIC
         // =================================
 
 
@@ -987,15 +1378,6 @@ async function loadRoster() {
                     return (
                         card.dataset.division
                         === "women"
-                    );
-
-
-
-                case "factions":
-
-                    return (
-                        card.dataset.hasFaction
-                        === "true"
                     );
 
 
@@ -1101,13 +1483,11 @@ async function loadRoster() {
 
 
         // =================================
-        // TEAM MODE
+        // HIDE NORMAL ROSTER SECTIONS
         // =================================
 
 
-        function renderTeams(
-            searchText
-        ) {
+        function hideWrestlerSections() {
 
 
             ascensionSection.hidden =
@@ -1126,6 +1506,26 @@ async function loadRoster() {
                     true;
 
             }
+
+        }
+
+
+
+        // =================================
+        // TEAM MODE
+        // =================================
+
+
+        function renderTeams(
+            searchText
+        ) {
+
+
+            hideWrestlerSections();
+
+
+            factionSection.hidden =
+                true;
 
 
             teamSection.hidden =
@@ -1200,6 +1600,94 @@ async function loadRoster() {
 
 
         // =================================
+        // FACTION MODE
+        // =================================
+
+
+        function renderFactions(
+            searchText
+        ) {
+
+
+            hideWrestlerSections();
+
+
+            teamSection.hidden =
+                true;
+
+
+            factionSection.hidden =
+                false;
+
+
+            factionGrid.innerHTML =
+                "";
+
+
+            const visibleFactions =
+                factions.filter(
+                    faction => {
+
+
+                        const searchableText =
+                            normalize(
+
+                                [
+                                    faction.name,
+                                    faction.brand,
+                                    getFactionMemberNames(
+                                        faction
+                                    )
+                                ]
+
+                                    .filter(Boolean)
+
+                                    .join(" ")
+
+                            );
+
+
+                        return searchableText.includes(
+                            searchText
+                        );
+
+                    }
+                );
+
+
+            visibleFactions.forEach(
+                faction => {
+
+
+                    factionGrid.appendChild(
+                        createFactionCard(
+                            faction
+                        )
+                    );
+
+                }
+            );
+
+
+            factionCount.textContent =
+
+                `${visibleFactions.length} ${
+                    visibleFactions.length === 1
+
+                        ? "Faction"
+
+                        : "Factions"
+                }`;
+
+
+            emptyState.hidden =
+                visibleFactions.length !== 0;
+
+        }
+
+
+
+        // =================================
         // APPLY FILTERS
         // =================================
 
@@ -1233,10 +1721,33 @@ async function loadRoster() {
 
 
 
+            // FACTION MODE
+
+
+            if (
+                activeFilter === "factions"
+            ) {
+
+
+                renderFactions(
+                    searchText
+                );
+
+
+                return;
+
+            }
+
+
+
             // NORMAL WRESTLER MODE
 
 
             teamSection.hidden =
+                true;
+
+
+            factionSection.hidden =
                 true;
 
 
