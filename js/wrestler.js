@@ -375,24 +375,40 @@ async function loadWrestlerProfile() {
 
         if (wrestler.faction) {
 
-            affiliations.push(`
+    const factionContent =
+        wrestler.factionId
 
-                <div class="affiliation-item">
+            ? `
+                <a
+                    href="faction.html?id=${encodeURIComponent(wrestler.factionId)}"
+                    class="affiliation-link"
+                >
+                    ${wrestler.faction} →
+                </a>
+            `
 
-                    <span>
-                        FACTION
-                    </span>
+            : `
+                <strong>
+                    ${wrestler.faction}
+                </strong>
+            `;
 
-                    <strong>
-                        ${wrestler.faction}
-                    </strong>
 
-                </div>
+    affiliations.push(`
 
-            `);
+        <div class="affiliation-item">
 
-        }
+            <span>
+                FACTION
+            </span>
 
+            ${factionContent}
+
+        </div>
+
+    `);
+
+}
 
         if (affiliations.length > 0) {
 
