@@ -1718,7 +1718,7 @@ async function loadMatchDatabase() {
 
 
         // =================================
-        // INITIAL EMPTY PAGE LOAD
+        // INITIAL PAGE LOAD
         // =================================
 
 
