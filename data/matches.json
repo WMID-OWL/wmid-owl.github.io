@@ -1,9 +1,9 @@
 [
   {
-    "id": "match-001",
+    "id": "match-0001",
     "date": "2026-07-01",
     "event": "Ascension",
-    "eventType": "ppv",
+    "eventType": "weekly",
     "matchType": "Singles",
     "sides": [
       {
@@ -19,6 +19,7 @@
     ],
     "winnerSide": 0,
     "resultMethod": "Pinfall",
-    "rating": 91
+    "rating": 91,
+    "starRating": 4.5
   }
 ]
