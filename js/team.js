@@ -566,18 +566,38 @@ async function loadTeamProfile() {
         function formatMatch(match) {
 
 
-            return match.sides
+    const teamSideIndex =
+        findTeamSide(
+            match
+        );
 
-                .map(
-                    side =>
-                        formatSide(
-                            side
-                        )
-                )
 
-                .join(" vs. ");
+    return match.sides
 
-        }
+        .map(
+            (side, index) => {
+
+
+                if (
+                    index === teamSideIndex
+                ) {
+
+                    return team.name;
+
+                }
+
+
+                return formatSide(
+                    side
+                );
+
+            }
+        )
+
+        .join(" vs. ");
+
+}
+        
 function formatFinish(match) {
 
 
