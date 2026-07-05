@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Wrestler Profile | OWL Wrestling</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/wrestler.css"
+    >
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <a class="brand" href="index.html">
+        <span class="brand-mark">OWL</span>
+        <span class="brand-sub">WRESTLING</span>
+    </a>
+
+    <button
+        class="nav-toggle"
+        aria-label="Toggle navigation"
+    >
+        ☰
+    </button>
+
+    <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="roster.html">Roster</a>
+        <a href="champions.html">Champions</a>
+        <a href="events.html">Events</a>
+        <a href="records.html">Records</a>
+    </nav>
+
+</header>
+
+
+<main class="profile-page">
+
+    <!-- PROFILE HEADER -->
+
+    <section class="profile-header">
+
+        <div class="profile-photo-column">
+
+            <div id="photo-container" class="profile-photo">
+
+                <div id="photo-placeholder">
+                    OWL
+                </div>
+
+                <img
+                    id="wrestler-photo"
+                    src=""
+                    alt=""
+                    hidden
+                >
+
+            </div>
+
+            <!-- Only appears if wrestler has a current championship -->
+
+            <div
+                id="current-title"
+                class="current-title"
+                hidden
+            >
+            </div>
+
+        </div>
+
+
+        <div class="profile-identity">
+
+            <p class="eyebrow">
+                OWL WRESTLER PROFILE
+            </p>
+
+            <h1 id="wrestler-name">
+                Loading...
+            </h1>
+
+            <p
+                id="wrestler-nickname"
+                class="nickname"
+                hidden
+            >
+            </p>
+
+            <p
+                id="wrestler-hometown"
+                class="hometown"
+            >
+            </p>
+
+
+            <div class="record-grid">
+
+                <div class="record-box">
+                    <span>OVERALL RECORD</span>
+                    <strong id="overall-record">
+                        0-0-0
+                    </strong>
+                </div>
+
+                <div class="record-box">
+                    <span>PPV RECORD</span>
+                    <strong id="ppv-record">
+                        0-0-0
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AFFILIATION -->
+
+    <section
+        id="affiliation-section"
+        class="profile-section"
+        hidden
+    >
+
+        <p class="eyebrow">
+            AFFILIATION
+        </p>
+
+        <h2>Current Team / Faction</h2>
+
+        <div id="affiliation-content"></div>
+
+    </section>
+
+
+    <!-- MOVESET -->
+
+    <section class="profile-section">
+
+        <p class="eyebrow">
+            ARSENAL
+        </p>
+
+        <h2>Finisher</h2>
+
+        <p id="finisher">
+            Not entered yet.
+        </p>
+
+
+        <h2 class="subheading">
+            Signature Moves
+        </h2>
+
+        <ul id="signature-moves">
+        </ul>
+
+    </section>
+
+
+    <!-- STORY -->
+
+    <section class="profile-section">
+
+        <p class="eyebrow">
+            THE STORY
+        </p>
+
+        <h2>Why I'm Here</h2>
+
+        <p id="why-im-here">
+            Story coming soon.
+        </p>
+
+    </section>
+
+
+    <!-- CHAMPIONSHIPS -->
+
+    <section
+        id="championship-history-section"
+        class="profile-section"
+        hidden
+    >
+
+        <p class="eyebrow">
+            CAREER ACCOMPLISHMENTS
+        </p>
+
+        <h2>Championships Held</h2>
+
+        <div id="championship-history"></div>
+
+    </section>
+
+
+    <!-- AWARDS -->
+
+    <section
+        id="awards-section"
+        class="profile-section"
+        hidden
+    >
+
+        <p class="eyebrow">
+            YEAR-END HONORS
+        </p>
+
+        <h2>End of the Year Awards</h2>
+
+        <div id="awards-list"></div>
+
+    </section>
+
+
+    <!-- MATCH HISTORY -->
+
+    <section class="profile-section">
+
+        <p class="eyebrow">
+            CAREER DATABASE
+        </p>
+
+        <h2>Match History</h2>
+
+        <div class="match-table-wrapper">
+
+            <table class="match-table">
+
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Event</th>
+                        <th>Match</th>
+                        <th>Result</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+
+                <tbody id="match-history">
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p
+            id="no-matches"
+            class="empty-message"
+            hidden
+        >
+            No matches recorded yet.
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div>
+        <strong>OWL Wrestling</strong>
+        <p>Ascension. Revolt. One world.</p>
+    </div>
+
+</footer>
+
+
+<script src="js/app.js"></script>
+<script src="js/wrestler.js"></script>
+
+</body>
+</html>
