@@ -332,3 +332,45 @@
         wait;
 
 }
+/* HEAD-TO-HEAD SUMMARY */
+
+
+.search-summary-grid {
+
+    margin-top:
+        2rem;
+
+}
+
+
+.summary-card {
+
+    min-height:
+        150px;
+
+}
+
+
+.summary-card small {
+
+    display:
+        block;
+
+    margin-top:
+        0.6rem;
+
+    color:
+        #a7b0b3;
+
+    line-height:
+        1.4;
+
+}
+
+
+#search-summary-title {
+
+    text-transform:
+        uppercase;
+
+}
