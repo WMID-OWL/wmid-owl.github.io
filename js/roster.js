@@ -1,3 +1,4 @@
+(async function () {
 const wrestlers = await response.json();
 
 
@@ -625,3 +626,4 @@ error
 
 
 loadRoster();
+})();
