@@ -1,1 +1,21 @@
-[]
+[
+  {
+    "id": "pwo",
+    "name": "PWO",
+    "brand": "",
+    "logo": "",
+    "leader": "",
+    "tagTeamId": "pwo",
+    "members": [
+      "shayna-baszler",
+      "marina-shafir",
+      "jordynne-grace"
+    ],
+    "singlesMembers": [
+      "jordynne-grace"
+    ],
+    "whyWereHere": "",
+    "championshipsHeld": [],
+    "awards": []
+  }
+]
