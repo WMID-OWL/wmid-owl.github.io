@@ -59,11 +59,25 @@ async function loadWrestlerProfile() {
         }
 
 
-        // HOMETOWN
-        document.getElementById(
-            "wrestler-hometown"
-        ).textContent = wrestler.hometown;
+        // HOMETOWN + COUNTRY FLAG
 
+const hometownElement =
+    document.getElementById(
+        "wrestler-hometown"
+    );
+
+
+if (wrestler.flag) {
+
+    hometownElement.textContent =
+        `${wrestler.hometown} ${wrestler.flag}`;
+
+} else {
+
+    hometownElement.textContent =
+        wrestler.hometown;
+
+}
 
         // PHOTO
         if (wrestler.photo) {
