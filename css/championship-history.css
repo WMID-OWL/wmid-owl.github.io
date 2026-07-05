@@ -1,0 +1,318 @@
+.automatic-championship-history {
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.championship-history-grid {
+
+    display:
+        grid;
+
+    gap:
+        1.5rem;
+
+}
+
+
+.championship-history-card {
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    overflow:
+        hidden;
+
+}
+
+
+.championship-history-header {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        start;
+
+    gap:
+        2rem;
+
+    padding:
+        1.5rem;
+
+    background:
+        #080a0b;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.championship-history-count {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.7rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+.championship-history-header h3 {
+
+    margin:
+        0.5rem 0 0;
+
+    font-size:
+        clamp(
+            1.5rem,
+            4vw,
+            2.5rem
+        );
+
+    line-height:
+        1;
+
+}
+
+
+.championship-history-header h3 a {
+
+    color:
+        #f5f5f2;
+
+}
+
+
+.championship-history-header h3 a:hover {
+
+    color:
+        #c6a15b;
+
+}
+
+
+.current-champion-badge {
+
+    flex-shrink:
+        0;
+
+    padding:
+        0.55rem 0.75rem;
+
+    color:
+        #080a0b;
+
+    background:
+        #c6a15b;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+.championship-reign-list {
+
+    display:
+        grid;
+
+}
+
+
+.championship-reign-item {
+
+    padding:
+        1.5rem;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.championship-reign-item:last-child {
+
+    border-bottom:
+        0;
+
+}
+
+
+.championship-reign-topline {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    gap:
+        1rem;
+
+}
+
+
+.championship-reign-topline strong {
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        1rem;
+
+}
+
+
+.championship-reign-topline span {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.75rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.championship-reign-dates {
+
+    margin:
+        0.75rem 0 0;
+
+    color:
+        #f5f5f2;
+
+    font-weight:
+        700;
+
+}
+
+
+.championship-reign-event {
+
+    margin:
+        0.35rem 0 0;
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.85rem;
+
+}
+
+
+.championship-reign-stats {
+
+    display:
+        flex;
+
+    gap:
+        2rem;
+
+    margin-top:
+        1.25rem;
+
+}
+
+
+.championship-reign-stats span {
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.7rem;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+.championship-reign-stats strong {
+
+    display:
+        block;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        1.4rem;
+
+    line-height:
+        1;
+
+}
+
+
+@media (max-width: 600px) {
+
+    .championship-history-header {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .championship-reign-topline {
+
+        align-items:
+            start;
+
+        flex-direction:
+            column;
+
+        gap:
+            0.35rem;
+
+    }
+
+} 
