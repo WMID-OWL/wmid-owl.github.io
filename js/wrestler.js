@@ -417,12 +417,22 @@ async function loadWrestlerProfile() {
                 </td>
 
                 <td>
-                    ${
-                        match.rating
-                            ? match.rating + "%"
-                            : "—"
-                    }
-                </td>
+    ${
+        match.rating !== null &&
+        match.rating !== undefined
+            ? match.rating + "%"
+            : "—"
+    }
+</td>
+
+<td>
+    ${
+        match.starRating !== null &&
+        match.starRating !== undefined
+            ? match.starRating + " ★"
+            : "—"
+    }
+</td>
             `;
 
 
