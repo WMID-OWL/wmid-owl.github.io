@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "id": "match-001",
+    "date": "2026-07-01",
+    "event": "Ascension",
+    "eventType": "weekly",
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "zee-allmighty"
+        ]
+      },
+      {
+        "wrestlers": [
+          "dorian-atlas"
+        ]
+      }
+    ],
+    "winnerSide": 0,
+    "resultMethod": "Pinfall",
+    "rating": 91
+  }
+]]
