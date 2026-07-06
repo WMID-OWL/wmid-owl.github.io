@@ -10,7 +10,6 @@
     "wonEventId": "",
     "lostAt": "Ascension",
     "lostEventId": "ascension-2026-07-01",
-    "defenses": 2,
     "notes": "Temporary lineage test."
   },
   {
@@ -24,7 +23,6 @@
     "wonEventId": "ascension-2026-07-01",
     "lostAt": "",
     "lostEventId": "",
-    "defenses": 1,
     "notes": "Temporary current champion test."
   },
   {
@@ -38,7 +36,6 @@
     "wonEventId": "ascension-2026-07-01",
     "lostAt": "",
     "lostEventId": "",
-    "defenses": 0,
     "notes": "Temporary tag champion test."
   }
 ]
