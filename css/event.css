@@ -1,0 +1,574 @@
+.event-page {
+
+    width:
+        min(
+            1300px,
+            calc(100% - 48px)
+        );
+
+    margin:
+        0 auto;
+
+}
+
+
+/* =================================
+   EVENT HEADER
+================================= */
+
+
+.event-header {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        420px 1fr;
+
+    gap:
+        4rem;
+
+    align-items:
+        center;
+
+    padding:
+        5rem 0;
+
+}
+
+
+.event-image-box {
+
+    aspect-ratio:
+        4 / 5;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    overflow:
+        hidden;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.event-image-box img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+}
+
+
+#event-image-placeholder {
+
+    font-size:
+        4rem;
+
+    font-weight:
+        900;
+
+    opacity:
+        0.15;
+
+}
+
+
+.event-identity h1 {
+
+    margin:
+        0;
+
+    font-size:
+        clamp(
+            3.5rem,
+            8vw,
+            7rem
+        );
+
+    line-height:
+        0.9;
+
+    letter-spacing:
+        -0.06em;
+
+}
+
+
+.event-tagline {
+
+    margin:
+        1.5rem 0 0;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        1.25rem;
+
+    font-style:
+        italic;
+
+}
+
+
+.event-meta {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        0.75rem;
+
+    margin-top:
+        2rem;
+
+}
+
+
+.event-meta span {
+
+    padding:
+        0.6rem 0.8rem;
+
+    background:
+        #111517;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+/* =================================
+   PAGE SECTIONS
+================================= */
+
+
+.event-section {
+
+    padding:
+        4rem 0;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.event-section h2 {
+
+    margin:
+        0 0 2rem;
+
+    font-size:
+        clamp(
+            2.5rem,
+            6vw,
+            4.5rem
+        );
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+.event-description {
+
+    max-width:
+        850px;
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        1.05rem;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =================================
+   EVENT STATS
+================================= */
+
+
+.event-stat-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        1rem;
+
+}
+
+
+.event-stat-card {
+
+    padding:
+        1.5rem;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.event-stat-card span {
+
+    display:
+        block;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.event-stat-card strong {
+
+    display:
+        block;
+
+    margin-top:
+        0.4rem;
+
+    font-size:
+        clamp(
+            1.8rem,
+            4vw,
+            3rem
+        );
+
+}
+
+
+/* =================================
+   MATCH CARD
+================================= */
+
+
+.event-match-list {
+
+    display:
+        grid;
+
+    gap:
+        1rem;
+
+}
+
+
+.event-match-card {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        100px minmax(0, 1fr) 220px 190px;
+
+    gap:
+        1.5rem;
+
+    align-items:
+        center;
+
+    padding:
+        1.5rem;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.event-match-order {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.event-match-type {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.event-match-content h3 {
+
+    margin:
+        0.4rem 0 0;
+
+    font-size:
+        1.3rem;
+
+    line-height:
+        1.3;
+
+}
+
+
+.event-match-finish {
+
+    margin:
+        0.55rem 0 0;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.82rem;
+
+    font-style:
+        italic;
+
+}
+
+
+.event-match-winner span,
+.event-match-rating-grid span {
+
+    display:
+        block;
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.event-match-winner strong {
+
+    display:
+        block;
+
+    margin-top:
+        0.35rem;
+
+    font-size:
+        1rem;
+
+}
+
+
+.event-match-rating-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        1rem;
+
+}
+
+
+.event-match-rating-grid strong {
+
+    display:
+        block;
+
+    margin-top:
+        0.3rem;
+
+    font-size:
+        1.25rem;
+
+}
+
+
+.empty-message {
+
+    color:
+        #a7b0b3;
+
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+
+@media (max-width: 1000px) {
+
+    .event-match-card {
+
+        grid-template-columns:
+            80px 1fr;
+
+    }
+
+
+    .event-match-winner,
+    .event-match-rating-grid {
+
+        grid-column:
+            2;
+
+    }
+
+
+    .event-stat-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .event-header {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            2rem;
+
+    }
+
+
+    .event-image-column {
+
+        max-width:
+            480px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .event-match-card {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .event-match-winner,
+    .event-match-rating-grid {
+
+        grid-column:
+            auto;
+
+    }
+
+
+    .event-stat-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
