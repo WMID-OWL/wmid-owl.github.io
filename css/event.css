@@ -572,3 +572,227 @@
     }
 
 }
+/* =================================
+   EVENT CHAMPIONSHIP CHANGES
+================================= */
+
+
+.event-title-change-grid {
+
+    display:
+        grid;
+
+    gap:
+        1rem;
+
+}
+
+
+.event-title-change-card {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(260px, 1fr)
+        minmax(300px, 1.2fr)
+        minmax(220px, 0.8fr);
+
+    gap:
+        2rem;
+
+    align-items:
+        center;
+
+    padding:
+        1.5rem;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    border-left:
+        4px solid
+        #c6a15b;
+
+}
+
+
+.event-title-change-heading > span {
+
+    display:
+        block;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.event-title-change-heading h3 {
+
+    margin:
+        0.5rem 0 0;
+
+    font-size:
+        1.5rem;
+
+    line-height:
+        1.1;
+
+}
+
+
+.event-title-change-heading h3 a {
+
+    color:
+        #f5f5f2;
+
+}
+
+
+.event-title-change-heading h3 a:hover {
+
+    color:
+        #c6a15b;
+
+}
+
+
+.event-title-change-transition {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        1rem;
+
+    flex-wrap:
+        wrap;
+
+}
+
+
+.event-title-change-transition a {
+
+    color:
+        #f5f5f2;
+
+    font-weight:
+        900;
+
+}
+
+
+.event-title-change-transition a:hover {
+
+    color:
+        #c6a15b;
+
+}
+
+
+.title-change-arrow {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        1.4rem;
+
+    font-weight:
+        900;
+
+}
+
+
+.vacant-holder {
+
+    color:
+        #a7b0b3;
+
+    font-weight:
+        900;
+
+}
+
+
+.event-new-champion {
+
+    padding:
+        1rem;
+
+    background:
+        #080a0b;
+
+}
+
+
+.event-new-champion span {
+
+    display:
+        block;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.event-new-champion strong {
+
+    display:
+        block;
+
+    margin-top:
+        0.35rem;
+
+    font-size:
+        1.2rem;
+
+}
+
+
+@media (max-width: 950px) {
+
+    .event-title-change-card {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            1.25rem;
+
+    }
+
+}
