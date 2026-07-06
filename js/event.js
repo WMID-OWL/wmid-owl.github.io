@@ -361,7 +361,111 @@ async function loadEventPage() {
                 : wrestlerId;
 
         }
+// =================================
+// OFFICIAL TEAM DETECTION
+// =================================
 
+
+function createMemberSignature(
+    memberIds
+) {
+
+
+    return [...memberIds]
+        .sort()
+        .join("|");
+
+}
+
+
+
+const officialTeamMap = {};
+
+
+teams.forEach(
+    team => {
+
+
+        if (
+            Array.isArray(
+                team.members
+            )
+
+            &&
+
+            team.members.length === 2
+        ) {
+
+
+            const signature =
+                createMemberSignature(
+                    team.members
+                );
+
+
+            officialTeamMap[
+                signature
+            ] = team;
+
+        }
+
+    }
+);
+
+
+
+function getOfficialTeam(
+    wrestlerIds
+) {
+
+
+    if (
+        !Array.isArray(
+            wrestlerIds
+        )
+
+        ||
+
+        wrestlerIds.length !== 2
+    ) {
+
+        return null;
+
+    }
+
+
+    const signature =
+        createMemberSignature(
+            wrestlerIds
+        );
+
+
+    return officialTeamMap[
+        signature
+    ] || null;
+
+}
+
+
+
+function createWrestlerLink(
+    wrestlerId
+) {
+
+
+    return `
+
+        <a
+            href="wrestler.html?id=${encodeURIComponent(wrestlerId)}"
+            class="event-competitor-link"
+        >
+            ${getWrestlerName(wrestlerId)}
+        </a>
+
+    `;
+
+}
+        
 
 
         // =================================
@@ -982,22 +1086,61 @@ async function loadEventPage() {
 
 
         function formatSide(
-            side
-        ) {
+    side
+) {
 
 
-            return side.wrestlers
+    const wrestlerIds =
+        Array.isArray(
+            side.wrestlers
+        )
 
-                .map(
-                    wrestlerId =>
-                        getWrestlerName(
-                            wrestlerId
-                        )
+            ? side.wrestlers
+
+            : [];
+
+
+
+    const officialTeam =
+        getOfficialTeam(
+            wrestlerIds
+        );
+
+
+
+    if (officialTeam) {
+
+
+        return `
+
+            <a
+                href="team.html?id=${encodeURIComponent(officialTeam.id)}"
+                class="event-team-link"
+            >
+                ${officialTeam.name}
+            </a>
+
+        `;
+
+    }
+
+
+
+    return wrestlerIds
+
+        .map(
+            wrestlerId =>
+
+                createWrestlerLink(
+                    wrestlerId
                 )
+        )
 
-                .join(" & ");
+        .join(
+            ` <span class="event-member-divider">&amp;</span> `
+        );
 
-        }
+}
 
 
 
