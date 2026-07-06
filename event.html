@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Event | OWL Wrestling</title>
+
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="css/event.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+
+    <a
+        class="brand"
+        href="index.html"
+    >
+
+        <span class="brand-mark">
+            OWL
+        </span>
+
+        <span class="brand-sub">
+            WRESTLING
+        </span>
+
+    </a>
+
+
+    <button
+        class="nav-toggle"
+        aria-label="Toggle navigation"
+    >
+        ☰
+    </button>
+
+
+    <nav class="site-nav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="roster.html">
+            Roster
+        </a>
+
+        <a href="groups.html">
+            Teams
+        </a>
+
+        <a href="champions.html">
+            Champions
+        </a>
+
+        <a href="events.html">
+            Events
+        </a>
+
+        <a href="records.html">
+            Records
+        </a>
+
+    </nav>
+
+
+</header>
+
+
+
+<main class="event-page">
+
+
+    <!-- =================================
+         EVENT HEADER
+    ================================== -->
+
+
+    <section class="event-header">
+
+
+        <div class="event-image-column">
+
+
+            <div class="event-image-box">
+
+
+                <div id="event-image-placeholder">
+
+                    OWL
+
+                </div>
+
+
+                <img
+                    id="event-image"
+                    src=""
+                    alt=""
+                    hidden
+                >
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="event-identity">
+
+
+            <p
+                id="event-type"
+                class="eyebrow"
+            >
+                OWL EVENT
+            </p>
+
+
+            <h1 id="event-name">
+
+                Loading...
+
+            </h1>
+
+
+            <p
+                id="event-tagline"
+                class="event-tagline"
+                hidden
+            >
+            </p>
+
+
+            <div class="event-meta">
+
+
+                <span id="event-date">
+                </span>
+
+
+                <span id="event-brand">
+                </span>
+
+
+                <span
+                    id="event-location"
+                    hidden
+                >
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         EVENT DESCRIPTION
+    ================================== -->
+
+
+    <section
+        id="event-description-section"
+        class="event-section"
+        hidden
+    >
+
+
+        <p class="eyebrow">
+            THE NIGHT
+        </p>
+
+
+        <h2>
+            Event Overview
+        </h2>
+
+
+        <p
+            id="event-description"
+            class="event-description"
+        >
+        </p>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         EVENT SUMMARY
+    ================================== -->
+
+
+    <section class="event-section">
+
+
+        <p class="eyebrow">
+            EVENT DATA
+        </p>
+
+
+        <h2>
+            By the Numbers
+        </h2>
+
+
+        <div class="event-stat-grid">
+
+
+            <div class="event-stat-card">
+
+                <span>
+                    MATCHES
+                </span>
+
+                <strong id="event-match-count">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="event-stat-card">
+
+                <span>
+                    AVG. MATCH %
+                </span>
+
+                <strong id="event-average-rating">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="event-stat-card">
+
+                <span>
+                    AVG. STARS
+                </span>
+
+                <strong id="event-average-stars">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="event-stat-card">
+
+                <span>
+                    BEST MATCH %
+                </span>
+
+                <strong id="event-best-rating">
+                    —
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         MATCH CARD
+    ================================== -->
+
+
+    <section class="event-section">
+
+
+        <p class="eyebrow">
+            OFFICIAL RESULTS
+        </p>
+
+
+        <h2>
+            Match Card
+        </h2>
+
+
+        <div
+            id="event-match-list"
+            class="event-match-list"
+        >
+        </div>
+
+
+        <p
+            id="event-no-matches"
+            class="empty-message"
+            hidden
+        >
+
+            No matches have been recorded for this event.
+
+        </p>
+
+
+    </section>
+
+
+</main>
+
+
+
+<footer class="site-footer">
+
+    <div>
+
+        <strong>
+            OWL Wrestling
+        </strong>
+
+        <p>
+            Ascension. Revolt. One world.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<script src="js/app.js"></script>
+
+<script src="js/event.js"></script>
+
+
+</body>
+
+</html>
