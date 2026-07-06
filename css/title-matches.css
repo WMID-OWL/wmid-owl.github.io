@@ -349,3 +349,100 @@
     }
 
 }
+/* =================================
+   AUTOMATIC TITLE MATCH STATS
+================================= */
+
+
+.title-match-summary-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:
+        1rem;
+
+    margin-bottom:
+        2rem;
+
+}
+
+
+.title-match-summary-card {
+
+    min-height:
+        150px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    padding:
+        1.5rem;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.title-match-summary-card span {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.title-match-summary-card strong {
+
+    font-size:
+        clamp(
+            3rem,
+            6vw,
+            5rem
+        );
+
+    line-height:
+        0.9;
+
+}
+
+
+@media (max-width: 700px) {
+
+    .title-match-summary-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
