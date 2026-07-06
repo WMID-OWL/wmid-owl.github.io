@@ -427,3 +427,33 @@
     }
 
 }
+/* =================================
+   TITLE EVENT LINKS
+================================= */
+
+
+.title-event-link {
+
+    color:
+        #a7b0b3;
+
+    font-weight:
+        700;
+
+}
+
+
+.title-event-link:hover {
+
+    color:
+        #c6a15b;
+
+}
+
+
+.title-event-text {
+
+    color:
+        #a7b0b3;
+
+}
