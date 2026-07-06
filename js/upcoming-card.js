@@ -34,6 +34,7 @@ async function loadUpcomingMatchCard() {
         const [
             announcedResponse,
             wrestlerResponse,
+            teamResponse,
             championshipResponse
         ] = await Promise.all([
 
@@ -52,6 +53,13 @@ async function loadUpcomingMatchCard() {
             ),
 
             fetch(
+                "data/teams.json",
+                {
+                    cache: "no-store"
+                }
+            ),
+
+            fetch(
                 "data/championships.json",
                 {
                     cache: "no-store"
@@ -64,6 +72,7 @@ async function loadUpcomingMatchCard() {
         if (
             !announcedResponse.ok ||
             !wrestlerResponse.ok ||
+            !teamResponse.ok ||
             !championshipResponse.ok
         ) {
 
@@ -83,8 +92,43 @@ async function loadUpcomingMatchCard() {
             await wrestlerResponse.json();
 
 
+        const teams =
+            await teamResponse.json();
+
+
         const championships =
             await championshipResponse.json();
+
+
+
+        // =================================
+        // BASIC HELPERS
+        // =================================
+
+
+        function normalize(
+            value
+        ) {
+
+            return String(
+                value || ""
+            )
+                .trim()
+                .toLowerCase();
+
+        }
+
+
+
+        function createMemberSignature(
+            memberIds
+        ) {
+
+            return [...memberIds]
+                .sort()
+                .join("|");
+
+        }
 
 
 
@@ -124,22 +168,48 @@ async function loadUpcomingMatchCard() {
 
 
         // =================================
-        // BASIC HELPERS
+        // OFFICIAL TEAM LOOKUP
         // =================================
 
 
-        function normalize(
-            value
-        ) {
+        const officialTeamMap = {};
 
-            return String(
-                value || ""
-            )
-                .trim()
-                .toLowerCase();
 
-        }
+        teams.forEach(
+            team => {
 
+
+                if (
+                    Array.isArray(
+                        team.members
+                    )
+
+                    &&
+
+                    team.members.length === 2
+                ) {
+
+
+                    const signature =
+                        createMemberSignature(
+                            team.members
+                        );
+
+
+                    officialTeamMap[
+                        signature
+                    ] = team;
+
+                }
+
+            }
+        );
+
+
+
+        // =================================
+        // WRESTLER HELPERS
+        // =================================
 
 
         function getWrestlerName(
@@ -161,22 +231,124 @@ async function loadUpcomingMatchCard() {
 
 
 
+        function createWrestlerLink(
+            wrestlerId
+        ) {
+
+
+            return `
+
+                <a
+                    href="wrestler.html?id=${encodeURIComponent(wrestlerId)}"
+                    class="announced-competitor-link"
+                >
+                    ${getWrestlerName(wrestlerId)}
+                </a>
+
+            `;
+
+        }
+
+
+
+        // =================================
+        // OFFICIAL TEAM DETECTION
+        // =================================
+
+
+        function getOfficialTeam(
+            wrestlerIds
+        ) {
+
+
+            if (
+                !Array.isArray(
+                    wrestlerIds
+                )
+
+                ||
+
+                wrestlerIds.length !== 2
+            ) {
+
+                return null;
+
+            }
+
+
+            const signature =
+                createMemberSignature(
+                    wrestlerIds
+                );
+
+
+            return officialTeamMap[
+                signature
+            ] || null;
+
+        }
+
+
+
+        // =================================
+        // FORMAT MATCH SIDE
+        // =================================
+
+
         function formatSide(
             side
         ) {
 
 
-            return side.wrestlers
+            const wrestlerIds =
+                Array.isArray(
+                    side.wrestlers
+                )
+
+                    ? side.wrestlers
+
+                    : [];
+
+
+
+            const officialTeam =
+                getOfficialTeam(
+                    wrestlerIds
+                );
+
+
+
+            if (officialTeam) {
+
+
+                return `
+
+                    <a
+                        href="team.html?id=${encodeURIComponent(officialTeam.id)}"
+                        class="announced-team-link"
+                    >
+                        ${officialTeam.name}
+                    </a>
+
+                `;
+
+            }
+
+
+
+            return wrestlerIds
 
                 .map(
                     wrestlerId =>
 
-                        getWrestlerName(
+                        createWrestlerLink(
                             wrestlerId
                         )
                 )
 
-                .join(" & ");
+                .join(
+                    ` <span class="announced-member-divider">&amp;</span> `
+                );
 
         }
 
@@ -197,7 +369,9 @@ async function loadUpcomingMatchCard() {
                         )
                 )
 
-                .join(" vs. ");
+                .join(
+                    ` <span class="announced-vs">vs.</span> `
+                );
 
         }
 
@@ -487,7 +661,7 @@ async function loadUpcomingMatchCard() {
                         </span>
 
 
-                        <h3>
+                        <h3 class="announced-match-fixture">
 
                             ${formatMatch(match)}
 
