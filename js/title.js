@@ -341,7 +341,48 @@ async function loadTitleProfile() {
             return `wrestler.html?id=${encodeURIComponent(reign.holderId)}`;
 
         }
+function formatEventLink(
+    eventId,
+    eventName
+) {
 
+
+    if (
+        !eventName
+    ) {
+
+        return "";
+
+    }
+
+
+    if (
+        eventId
+    ) {
+
+        return `
+
+            <a
+                href="event.html?id=${encodeURIComponent(eventId)}"
+                class="title-event-link"
+            >
+                ${eventName} →
+            </a>
+
+        `;
+
+    }
+
+
+    return `
+
+        <span class="title-event-text">
+            ${eventName}
+        </span>
+
+    `;
+
+}
 
 
         // =================================
@@ -498,14 +539,19 @@ async function loadTitleProfile() {
 
 
             document.getElementById(
-                "current-holder-won"
-            ).textContent =
+    "current-holder-won"
+).innerHTML =
 
-                `Won ${formatDate(currentReign.wonDate)}${
-                    currentReign.wonAt
-                        ? ` at ${currentReign.wonAt}`
-                        : ""
-                }`;
+    `Won ${formatDate(currentReign.wonDate)}${
+        currentReign.wonAt
+
+            ? ` at ${formatEventLink(
+                currentReign.wonEventId,
+                currentReign.wonAt
+            )}`
+
+            : ""
+    }`;
 
 
             document.getElementById(
@@ -628,18 +674,23 @@ async function loadTitleProfile() {
                         ${formatDate(reign.wonDate)}
 
                         ${
-                            reign.wonAt
+    reign.wonAt
 
-                                ? `
-                                    <br>
+        ? `
+            <br>
 
-                                    <span class="lineage-event">
-                                        ${reign.wonAt}
-                                    </span>
-                                `
+            <span class="lineage-event">
 
-                                : ""
-                        }
+                ${formatEventLink(
+                    reign.wonEventId,
+                    reign.wonAt
+                )}
+
+            </span>
+        `
+
+        : ""
+}
 
                     </td>
 
@@ -653,18 +704,23 @@ async function loadTitleProfile() {
                         }
 
                         ${
-                            reign.lostAt
+    reign.lostAt
 
-                                ? `
-                                    <br>
+        ? `
+            <br>
 
-                                    <span class="lineage-event">
-                                        ${reign.lostAt}
-                                    </span>
-                                `
+            <span class="lineage-event">
 
-                                : ""
-                        }
+                ${formatEventLink(
+                    reign.lostEventId,
+                    reign.lostAt
+                )}
+
+            </span>
+        `
+
+        : ""
+}
 
                     </td>
 
