@@ -5,6 +5,7 @@
     "event": "Ascension",
     "eventType": "weekly",
     "matchType": "Singles",
+    "championshipId": "owl-world-championship",
     "sides": [
       {
         "wrestlers": [
