@@ -516,7 +516,173 @@
         </section>
 
 
+<!-- =================================
+     WRESTLER MANAGER
+================================= -->
 
+
+<section class="control-room-panel">
+
+
+    <div class="control-room-panel-heading">
+
+
+        <div>
+
+            <p class="eyebrow">
+                ROSTER MANAGEMENT
+            </p>
+
+            <h2>
+                Wrestler Show Manager
+            </h2>
+
+        </div>
+
+
+        <span
+            id="cr-wrestler-manager-status"
+            class="control-room-health-summary"
+        >
+            READY
+        </span>
+
+
+    </div>
+
+
+
+    <div class="cr-manager-grid">
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-wrestler-select">
+
+                WRESTLER
+
+            </label>
+
+
+            <select id="cr-wrestler-select">
+
+                <option value="">
+                    Select Wrestler
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label>
+
+                CURRENT SHOW
+
+            </label>
+
+
+            <div
+                id="cr-current-brand"
+                class="cr-current-value"
+            >
+                —
+            </div>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-new-brand">
+
+                NEW SHOW
+
+            </label>
+
+
+            <select
+                id="cr-new-brand"
+                disabled
+            >
+
+                <option value="">
+                    Unassigned
+                </option>
+
+                <option value="Ascension">
+                    Ascension
+                </option>
+
+                <option value="Revolt">
+                    Revolt
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div
+        id="cr-brand-change-preview"
+        class="cr-change-preview"
+        hidden
+    >
+
+
+        <span>
+            REVIEW CHANGE
+        </span>
+
+
+        <p id="cr-brand-change-text">
+        </p>
+
+
+    </div>
+
+
+
+    <div class="cr-manager-actions">
+
+
+        <button
+            id="cr-save-brand-change"
+            class="control-room-button control-room-button-primary"
+            type="button"
+            disabled
+        >
+            Save Show Change
+        </button>
+
+
+    </div>
+
+
+
+    <p
+        id="cr-brand-save-message"
+        class="cr-save-message"
+        hidden
+    >
+    </p>
+
+
+</section>
         <!-- =================================
              DATA HEALTH
         ================================== -->
