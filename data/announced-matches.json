@@ -1,0 +1,23 @@
+[
+  {
+    "id": "announced-0001",
+    "eventId": "blood-on-the-sand-2026",
+    "order": 1,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "zee-allmighty"
+        ]
+      },
+      {
+        "wrestlers": [
+          "dorian-atlas"
+        ]
+      }
+    ],
+    "championshipId": "owl-world-championship",
+    "stipulation": "",
+    "status": "announced"
+  }
+]
