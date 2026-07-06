@@ -36,7 +36,10 @@ async function loadEventPage() {
         const [
             eventResponse,
             matchResponse,
-            wrestlerResponse
+            wrestlerResponse,
+            teamResponse,
+            championshipResponse,
+            reignResponse
         ] = await Promise.all([
 
             fetch(
@@ -58,6 +61,27 @@ async function loadEventPage() {
                 {
                     cache: "no-store"
                 }
+            ),
+
+            fetch(
+                "data/teams.json",
+                {
+                    cache: "no-store"
+                }
+            ),
+
+            fetch(
+                "data/championships.json",
+                {
+                    cache: "no-store"
+                }
+            ),
+
+            fetch(
+                "data/title-reigns.json",
+                {
+                    cache: "no-store"
+                }
             )
 
         ]);
@@ -66,7 +90,10 @@ async function loadEventPage() {
         if (
             !eventResponse.ok ||
             !matchResponse.ok ||
-            !wrestlerResponse.ok
+            !wrestlerResponse.ok ||
+            !teamResponse.ok ||
+            !championshipResponse.ok ||
+            !reignResponse.ok
         ) {
 
             throw new Error(
@@ -86,6 +113,18 @@ async function loadEventPage() {
 
         const wrestlers =
             await wrestlerResponse.json();
+
+
+        const teams =
+            await teamResponse.json();
+
+
+        const championships =
+            await championshipResponse.json();
+
+
+        const reigns =
+            await reignResponse.json();
 
 
 
@@ -178,7 +217,7 @@ async function loadEventPage() {
 
 
         // =================================
-        // WRESTLER LOOKUP
+        // LOOKUP MAPS
         // =================================
 
 
@@ -195,6 +234,114 @@ async function loadEventPage() {
 
             }
         );
+
+
+
+        const teamMap = {};
+
+
+        teams.forEach(
+            team => {
+
+
+                teamMap[
+                    team.id
+                ] = team;
+
+            }
+        );
+
+
+
+        const championshipMap = {};
+
+
+        championships.forEach(
+            championship => {
+
+
+                championshipMap[
+                    championship.id
+                ] = championship;
+
+            }
+        );
+
+
+
+        // =================================
+        // HOLDER HELPERS
+        // =================================
+
+
+        function getHolderName(
+            reign
+        ) {
+
+
+            if (!reign) {
+
+                return "VACANT";
+
+            }
+
+
+            if (
+                reign.holderType === "team"
+            ) {
+
+
+                const team =
+                    teamMap[
+                        reign.holderId
+                    ];
+
+
+                return team
+                    ? team.name
+                    : reign.holderId;
+
+            }
+
+
+            const wrestler =
+                wrestlerMap[
+                    reign.holderId
+                ];
+
+
+            return wrestler
+                ? wrestler.name
+                : reign.holderId;
+
+        }
+
+
+
+        function getHolderUrl(
+            reign
+        ) {
+
+
+            if (!reign) {
+
+                return "";
+
+            }
+
+
+            if (
+                reign.holderType === "team"
+            ) {
+
+                return `team.html?id=${encodeURIComponent(reign.holderId)}`;
+
+            }
+
+
+            return `wrestler.html?id=${encodeURIComponent(reign.holderId)}`;
+
+        }
 
 
 
@@ -369,6 +516,284 @@ async function loadEventPage() {
 
 
         // =================================
+        // CHAMPIONSHIP CHANGE HELPERS
+        // =================================
+
+
+        function getIncomingReign(
+            championshipId
+        ) {
+
+
+            return reigns.find(
+                reign =>
+
+                    reign.championshipId ===
+                        championshipId
+
+                    &&
+
+                    reign.wonEventId ===
+                        event.id
+            ) || null;
+
+        }
+
+
+
+        function getOutgoingReign(
+            championshipId
+        ) {
+
+
+            return reigns.find(
+                reign =>
+
+                    reign.championshipId ===
+                        championshipId
+
+                    &&
+
+                    reign.lostEventId ===
+                        event.id
+            ) || null;
+
+        }
+
+
+
+        // =================================
+        // FIND CHAMPIONSHIP CHANGES
+        // =================================
+
+
+        const changedChampionshipIds =
+            Array.from(
+                new Set(
+
+                    reigns
+
+                        .filter(
+                            reign =>
+
+                                reign.wonEventId ===
+                                    event.id
+
+                                ||
+
+                                reign.lostEventId ===
+                                    event.id
+                        )
+
+                        .map(
+                            reign =>
+                                reign.championshipId
+                        )
+
+                )
+            );
+
+
+
+        // =================================
+        // RENDER CHAMPIONSHIP CHANGES
+        // =================================
+
+
+        if (
+            changedChampionshipIds.length > 0
+        ) {
+
+
+            const titleChangeSection =
+                document.getElementById(
+                    "event-title-changes-section"
+                );
+
+
+            const titleChangeGrid =
+                document.getElementById(
+                    "event-title-change-grid"
+                );
+
+
+            titleChangeSection.hidden =
+                false;
+
+
+
+            changedChampionshipIds.forEach(
+                championshipId => {
+
+
+                    const championship =
+                        championshipMap[
+                            championshipId
+                        ];
+
+
+                    const championshipName =
+                        championship
+                            ? championship.name
+                            : championshipId;
+
+
+                    const incomingReign =
+                        getIncomingReign(
+                            championshipId
+                        );
+
+
+                    const outgoingReign =
+                        getOutgoingReign(
+                            championshipId
+                        );
+
+
+                    const previousHolderName =
+                        getHolderName(
+                            outgoingReign
+                        );
+
+
+                    const newHolderName =
+                        getHolderName(
+                            incomingReign
+                        );
+
+
+                    const changeCard =
+                        document.createElement(
+                            "article"
+                        );
+
+
+                    changeCard.className =
+                        "event-title-change-card";
+
+
+                    changeCard.innerHTML = `
+
+                        <div class="event-title-change-heading">
+
+
+                            <span>
+                                CHAMPIONSHIP CHANGE
+                            </span>
+
+
+                            <h3>
+
+                                <a
+                                    href="title.html?id=${encodeURIComponent(championshipId)}"
+                                >
+                                    ${championshipName}
+                                </a>
+
+                            </h3>
+
+
+                        </div>
+
+
+                        <div class="event-title-change-transition">
+
+
+                            ${
+                                outgoingReign
+
+                                    ? `
+                                        <a
+                                            href="${getHolderUrl(outgoingReign)}"
+                                        >
+                                            ${previousHolderName}
+                                        </a>
+                                    `
+
+                                    : `
+                                        <span class="vacant-holder">
+                                            VACANT
+                                        </span>
+                                    `
+                            }
+
+
+                            <span class="title-change-arrow">
+                                →
+                            </span>
+
+
+                            ${
+                                incomingReign
+
+                                    ? `
+                                        <a
+                                            href="${getHolderUrl(incomingReign)}"
+                                        >
+                                            ${newHolderName}
+                                        </a>
+                                    `
+
+                                    : `
+                                        <span class="vacant-holder">
+                                            VACANT
+                                        </span>
+                                    `
+                            }
+
+
+                        </div>
+
+
+                        <div class="event-new-champion">
+
+
+                            <span>
+
+                                ${
+                                    incomingReign &&
+                                    incomingReign.holderType === "team"
+
+                                        ? "NEW CHAMPIONS"
+
+                                        : incomingReign
+
+                                            ? "NEW CHAMPION"
+
+                                            : "STATUS"
+                                }
+
+                            </span>
+
+
+                            <strong>
+
+                                ${
+                                    incomingReign
+                                        ? newHolderName
+                                        : "VACANT"
+                                }
+
+                            </strong>
+
+
+                        </div>
+
+                    `;
+
+
+                    titleChangeGrid.appendChild(
+                        changeCard
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        // =================================
         // FIND EVENT MATCHES
         // =================================
 
@@ -376,10 +801,6 @@ async function loadEventPage() {
         const eventMatches =
             matches.filter(
                 match => {
-
-
-                    // Preferred method:
-                    // exact event ID match
 
 
                     if (
@@ -390,10 +811,6 @@ async function loadEventPage() {
                         return true;
 
                     }
-
-
-                    // Fallback method:
-                    // date and event name match
 
 
                     return (
