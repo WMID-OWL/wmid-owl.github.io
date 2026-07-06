@@ -65,6 +65,8 @@
     "event": "Ascension",
     "eventType": "weekly",
     "matchType": "Triple Threat",
+    "championshipId": "owl-world-championship",
+"titleOutcome": "retained",
     "sides": [
       {
         "wrestlers": [
