@@ -1264,3 +1264,35 @@
         #a7b0b3;
 
 }
+/* =================================
+   COMPLETED MATCH COMPETITOR LINKS
+================================= */
+
+
+.event-team-link,
+.event-competitor-link {
+
+    color:
+        #f5f5f2;
+
+    font-weight:
+        900;
+
+}
+
+
+.event-team-link:hover,
+.event-competitor-link:hover {
+
+    color:
+        #c6a15b;
+
+}
+
+
+.event-member-divider {
+
+    color:
+        #a7b0b3;
+
+}
