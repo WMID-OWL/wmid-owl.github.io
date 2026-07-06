@@ -74,6 +74,7 @@ async function loadUpcomingMatchCard() {
         }
 
 
+
         const announcedMatches =
             await announcedResponse.json();
 
@@ -106,6 +107,7 @@ async function loadUpcomingMatchCard() {
         );
 
 
+
         const championshipMap = {};
 
 
@@ -122,8 +124,22 @@ async function loadUpcomingMatchCard() {
 
 
         // =================================
-        // HELPERS
+        // BASIC HELPERS
         // =================================
+
+
+        function normalize(
+            value
+        ) {
+
+            return String(
+                value || ""
+            )
+                .trim()
+                .toLowerCase();
+
+        }
+
 
 
         function getWrestlerName(
@@ -188,7 +204,82 @@ async function loadUpcomingMatchCard() {
 
 
         // =================================
-        // FIND ANNOUNCED MATCHES
+        // STATUS HELPERS
+        // =================================
+
+
+        function getStatusLabel(
+            match
+        ) {
+
+
+            const status =
+                normalize(
+                    match.status
+                );
+
+
+            if (
+                status === "postponed"
+            ) {
+
+                return "POSTPONED";
+
+            }
+
+
+            if (
+                status === "cancelled"
+            ) {
+
+                return "CANCELLED";
+
+            }
+
+
+            return "ANNOUNCED";
+
+        }
+
+
+
+        function getStatusClass(
+            match
+        ) {
+
+
+            const status =
+                normalize(
+                    match.status
+                );
+
+
+            if (
+                status === "postponed"
+            ) {
+
+                return "status-postponed";
+
+            }
+
+
+            if (
+                status === "cancelled"
+            ) {
+
+                return "status-cancelled";
+
+            }
+
+
+            return "status-announced";
+
+        }
+
+
+
+        // =================================
+        // FIND DISPLAYABLE MATCHES
         // =================================
 
 
@@ -196,26 +287,44 @@ async function loadUpcomingMatchCard() {
             announcedMatches
 
                 .filter(
-                    match =>
+                    match => {
 
-                        match.eventId ===
-                            eventId
 
-                        &&
+                        const status =
+                            normalize(
+                                match.status
+                            );
 
-                        String(
-                            match.status || ""
-                        ).toLowerCase()
-                        !== "cancelled"
+
+                        return (
+
+                            match.eventId ===
+                                eventId
+
+                            &&
+
+                            status !==
+                                "completed"
+
+                        );
+
+                    }
                 )
 
                 .sort(
                     (a, b) =>
 
-                        Number(a.order || 0)
+                        Number(
+                            a.order || 0
+                        )
+
                         -
-                        Number(b.order || 0)
+
+                        Number(
+                            b.order || 0
+                        )
                 );
+
 
 
         if (
@@ -283,12 +392,15 @@ async function loadUpcomingMatchCard() {
             </span>
 
             <strong>
+
                 ${eventMatches.length}
+
                 ${
                     eventMatches.length === 1
                         ? "MATCH"
                         : "MATCHES"
                 }
+
             </strong>
 
         `;
@@ -301,7 +413,7 @@ async function loadUpcomingMatchCard() {
 
 
         // =================================
-        // RENDER ANNOUNCED MATCHES
+        // RENDER MATCHES
         // =================================
 
 
@@ -318,8 +430,22 @@ async function loadUpcomingMatchCard() {
                     );
 
 
+                const statusClass =
+                    getStatusClass(
+                        match
+                    );
+
+
+                const statusLabel =
+                    getStatusLabel(
+                        match
+                    );
+
+
                 card.className =
-                    "event-match-card event-announced-match";
+
+                    `event-match-card event-announced-match ${statusClass}`;
+
 
 
                 const championship =
@@ -332,12 +458,14 @@ async function loadUpcomingMatchCard() {
                         : null;
 
 
+
                 const championshipName =
                     championship
 
                         ? championship.name
 
                         : "";
+
 
 
                 card.innerHTML = `
@@ -400,18 +528,38 @@ async function loadUpcomingMatchCard() {
                         }
 
 
+                        ${
+                            match.statusNote
+
+                                ? `
+                                    <p class="announced-status-note">
+
+                                        ${match.statusNote}
+
+                                    </p>
+                                `
+
+                                : ""
+                        }
+
+
                     </div>
 
 
                     <div class="announced-match-status">
 
+
                         <span>
                             STATUS
                         </span>
 
+
                         <strong>
-                            ANNOUNCED
+
+                            ${statusLabel}
+
                         </strong>
+
 
                     </div>
 
