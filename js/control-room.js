@@ -794,7 +794,16 @@ async function loadRepositoryData(
 
 
         dashboard.hidden =
-            false;
+    false;
+
+
+window.dispatchEvent(
+
+    new CustomEvent(
+        "owl-control-room-data-loaded"
+    )
+
+);
 
 
     }
