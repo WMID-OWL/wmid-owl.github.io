@@ -1221,3 +1221,46 @@
     }
 
 }
+/* =================================
+   ANNOUNCED CARD COMPETITOR LINKS
+================================= */
+
+
+.announced-team-link,
+.announced-competitor-link {
+
+    color:
+        #f5f5f2;
+
+    font-weight:
+        900;
+
+}
+
+
+.announced-team-link:hover,
+.announced-competitor-link:hover {
+
+    color:
+        #c6a15b;
+
+}
+
+
+.announced-vs {
+
+    color:
+        #a7b0b3;
+
+    font-weight:
+        700;
+
+}
+
+
+.announced-member-divider {
+
+    color:
+        #a7b0b3;
+
+}
