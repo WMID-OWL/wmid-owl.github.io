@@ -1,93 +1,6 @@
-async function loadAutomaticChampionshipHistory() {
+async function loadChampionsPage() {
 
     try {
-
-
-        // =================================
-        // DETERMINE PROFILE TYPE
-        // =================================
-
-
-        const currentPage =
-            window.location.pathname
-                .split("/")
-                .pop()
-                .toLowerCase();
-
-
-        let holderType = "";
-
-        let matchHistoryId = "";
-
-        let sectionClass = "";
-
-
-
-        if (
-            currentPage === "wrestler.html"
-        ) {
-
-            holderType =
-                "wrestler";
-
-
-            matchHistoryId =
-                "match-history";
-
-
-            sectionClass =
-                "profile-section";
-
-        }
-
-
-        else if (
-            currentPage === "team.html"
-        ) {
-
-            holderType =
-                "team";
-
-
-            matchHistoryId =
-                "team-match-history";
-
-
-            sectionClass =
-                "team-section";
-
-        }
-
-
-        else {
-
-            return;
-
-        }
-
-
-
-        // =================================
-        // GET PROFILE ID
-        // =================================
-
-
-        const params =
-            new URLSearchParams(
-                window.location.search
-            );
-
-
-        const holderId =
-            params.get("id");
-
-
-        if (!holderId) {
-
-            return;
-
-        }
-
 
 
         // =================================
@@ -97,7 +10,9 @@ async function loadAutomaticChampionshipHistory() {
 
         const [
             championshipResponse,
-            reignResponse
+            reignResponse,
+            wrestlerResponse,
+            teamResponse
         ] = await Promise.all([
 
             fetch(
@@ -112,6 +27,20 @@ async function loadAutomaticChampionshipHistory() {
                 {
                     cache: "no-store"
                 }
+            ),
+
+            fetch(
+                "data/wrestlers.json",
+                {
+                    cache: "no-store"
+                }
+            ),
+
+            fetch(
+                "data/teams.json",
+                {
+                    cache: "no-store"
+                }
             )
 
         ]);
@@ -119,11 +48,13 @@ async function loadAutomaticChampionshipHistory() {
 
         if (
             !championshipResponse.ok ||
-            !reignResponse.ok
+            !reignResponse.ok ||
+            !wrestlerResponse.ok ||
+            !teamResponse.ok
         ) {
 
             throw new Error(
-                "Could not load championship history databases."
+                "Could not load championship databases."
             );
 
         }
@@ -137,355 +68,94 @@ async function loadAutomaticChampionshipHistory() {
             await reignResponse.json();
 
 
-
-        // =================================
-        // CHAMPIONSHIP LOOKUP
-        // =================================
+        const wrestlers =
+            await wrestlerResponse.json();
 
 
-        const championshipMap = {};
-
-
-        championships.forEach(
-            championship => {
-
-                championshipMap[
-                    championship.id
-                ] = championship;
-
-            }
-        );
+        const teams =
+            await teamResponse.json();
 
 
 
         // =================================
-        // FIND THIS PROFILE'S REIGNS
+        // PAGE ELEMENTS
         // =================================
 
 
-        const holderReigns =
-            reigns.filter(
-                reign =>
+        const ascensionGrid =
+            document.getElementById(
+                "ascension-title-grid"
+            );
 
-                    reign.holderType ===
-                        holderType
 
-                    &&
+        const revoltGrid =
+            document.getElementById(
+                "revolt-title-grid"
+            );
 
-                    reign.holderId ===
-                        holderId
+
+        const owlGrid =
+            document.getElementById(
+                "owl-title-grid"
+            );
+
+
+        const ascensionCount =
+            document.getElementById(
+                "ascension-title-count"
+            );
+
+
+        const revoltCount =
+            document.getElementById(
+                "revolt-title-count"
+            );
+
+
+        const owlCount =
+            document.getElementById(
+                "owl-title-count"
+            );
+
+
+        const emptyState =
+            document.getElementById(
+                "championship-empty-state"
             );
 
 
 
         // =================================
-        // ACTIVE REIGNS
+        // LOOKUP MAPS
         // =================================
 
 
-        const activeReigns =
-            holderReigns
+        const wrestlerMap = {};
 
-                .filter(
-                    reign =>
-                        !reign.lostDate
-                )
 
-                .filter(
-                    (
-                        reign,
-                        index,
-                        array
-                    ) =>
+        wrestlers.forEach(
+            wrestler => {
 
-                        array.findIndex(
-                            item =>
-
-                                item.championshipId ===
-                                reign.championshipId
-                        )
-                        === index
-                )
-
-                .sort(
-                    (a, b) => {
-
-
-                        const aTitle =
-                            championshipMap[
-                                a.championshipId
-                            ];
-
-
-                        const bTitle =
-                            championshipMap[
-                                b.championshipId
-                            ];
-
-
-                        const aName =
-                            aTitle
-                                ? aTitle.name
-                                : a.championshipId;
-
-
-                        const bName =
-                            bTitle
-                                ? bTitle.name
-                                : b.championshipId;
-
-
-                        return aName.localeCompare(
-                            bName
-                        );
-
-                    }
-                );
-
-
-
-        // =================================
-        // CURRENT TITLE HELPERS
-        // =================================
-
-
-        function getChampionshipName(
-            championshipId
-        ) {
-
-
-            const championship =
-                championshipMap[
-                    championshipId
-                ];
-
-
-            return championship
-
-                ? championship.name
-
-                : championshipId;
-
-        }
-
-
-
-        function createCurrentTitleLinks() {
-
-
-            return activeReigns
-
-                .map(
-                    reign => `
-
-                        <a
-                            href="title.html?id=${encodeURIComponent(reign.championshipId)}"
-                            class="automatic-current-title-link"
-                        >
-                            ${getChampionshipName(reign.championshipId)}
-                        </a>
-
-                    `
-                )
-
-                .join(
-
-                    activeReigns.length > 1
-
-                        ? `
-                            <span class="automatic-current-title-divider">
-                                •
-                            </span>
-                        `
-
-                        : ""
-
-                );
-
-        }
-
-
-
-        // =================================
-        // WRESTLER CURRENT TITLE DISPLAY
-        // =================================
-
-
-        if (
-            holderType === "wrestler"
-        ) {
-
-
-            const currentTitleElement =
-                document.getElementById(
-                    "current-title"
-                );
-
-
-            if (
-                currentTitleElement
-            ) {
-
-
-                if (
-                    activeReigns.length > 0
-                ) {
-
-
-                    currentTitleElement.innerHTML =
-                        createCurrentTitleLinks();
-
-
-                    currentTitleElement.classList.add(
-                        "automatic-current-title-list"
-                    );
-
-
-                    currentTitleElement.hidden =
-                        false;
-
-                }
-
-
-                else {
-
-
-                    currentTitleElement.innerHTML =
-                        "";
-
-
-                    currentTitleElement.hidden =
-                        true;
-
-                }
+                wrestlerMap[
+                    wrestler.id
+                ] = wrestler;
 
             }
-
-        }
-
+        );
 
 
-        // =================================
-        // TEAM CURRENT TITLE DISPLAY
-        // =================================
+        const teamMap = {};
 
 
-        if (
-            holderType === "team"
-        ) {
+        teams.forEach(
+            team => {
 
-
-            const teamIdentity =
-                document.querySelector(
-                    ".team-identity"
-                );
-
-
-            const existingDisplay =
-                document.getElementById(
-                    "automatic-team-title-display"
-                );
-
-
-            if (
-                existingDisplay
-            ) {
-
-                existingDisplay.remove();
+                teamMap[
+                    team.id
+                ] = team;
 
             }
-
-
-            if (
-                teamIdentity &&
-                activeReigns.length > 0
-            ) {
-
-
-                const titleDisplay =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                titleDisplay.id =
-                    "automatic-team-title-display";
-
-
-                titleDisplay.className =
-                    "automatic-team-title-display";
-
-
-                titleDisplay.innerHTML = `
-
-                    <span class="automatic-team-title-label">
-
-                        ${
-                            activeReigns.length === 1
-
-                                ? "CURRENT CHAMPIONS"
-
-                                : "CURRENT CHAMPIONSHIPS"
-                        }
-
-                    </span>
-
-
-                    <div class="automatic-team-title-links">
-
-                        ${createCurrentTitleLinks()}
-
-                    </div>
-
-                `;
-
-
-                const recordGrid =
-                    teamIdentity.querySelector(
-                        ".record-grid"
-                    );
-
-
-                if (
-                    recordGrid
-                ) {
-
-
-                    teamIdentity.insertBefore(
-                        titleDisplay,
-                        recordGrid
-                    );
-
-                }
-
-
-                else {
-
-
-                    teamIdentity.appendChild(
-                        titleDisplay
-                    );
-
-                }
-
-            }
-
-        }
-
-
-
-        // =================================
-        // STOP IF NO TITLE HISTORY
-        // =================================
-
-
-        if (
-            holderReigns.length === 0
-        ) {
-
-            return;
-
-        }
+        );
 
 
 
@@ -514,7 +184,7 @@ async function loadAutomaticChampionshipHistory() {
 
             if (!dateString) {
 
-                return "Current";
+                return "";
 
             }
 
@@ -545,6 +215,7 @@ async function loadAutomaticChampionshipHistory() {
 
 
             if (
+                !reign ||
                 !reign.wonDate
             ) {
 
@@ -597,461 +268,482 @@ async function loadAutomaticChampionshipHistory() {
 
 
         // =================================
-        // GROUP REIGNS BY CHAMPIONSHIP
+        // CURRENT REIGN
         // =================================
 
 
-        const reignGroups = {};
-
-
-        holderReigns.forEach(
-            reign => {
-
-
-                if (
-                    !reignGroups[
-                        reign.championshipId
-                    ]
-                ) {
-
-
-                    reignGroups[
-                        reign.championshipId
-                    ] = [];
-
-                }
-
-
-                reignGroups[
-                    reign.championshipId
-                ].push(
-                    reign
-                );
-
-            }
-        );
-
-
-
-        // =================================
-        // PREVENT DUPLICATE SECTION
-        // =================================
-
-
-        if (
-            document.getElementById(
-                "automatic-championship-history"
-            )
+        function getCurrentReign(
+            championshipId
         ) {
 
-            return;
 
-        }
+            return reigns
 
+                .filter(
+                    reign =>
 
+                        reign.championshipId ===
+                            championshipId
 
-        // =================================
-        // CREATE HISTORY SECTION
-        // =================================
+                        &&
 
+                        !reign.lostDate
+                )
 
-        const section =
-            document.createElement(
-                "section"
-            );
-
-
-        section.id =
-            "automatic-championship-history";
-
-
-        section.className =
-            `${sectionClass} automatic-championship-history`;
-
-
-        section.innerHTML = `
-
-            <p class="eyebrow">
-                TITLE DATABASE
-            </p>
-
-            <h2>
-                Championship History
-            </h2>
-
-            <div
-                id="championship-history-grid"
-                class="championship-history-grid"
-            >
-            </div>
-
-        `;
-
-
-
-        // =================================
-        // INSERT BEFORE MATCH HISTORY
-        // =================================
-
-
-        const matchHistory =
-            document.getElementById(
-                matchHistoryId
-            );
-
-
-        if (
-            !matchHistory
-        ) {
-
-            return;
-
-        }
-
-
-        const matchHistorySection =
-            matchHistory.closest(
-                "section"
-            );
-
-
-        if (
-            !matchHistorySection
-        ) {
-
-            return;
-
-        }
-
-
-        matchHistorySection.parentNode.insertBefore(
-            section,
-            matchHistorySection
-        );
-
-
-
-        // =================================
-        // RENDER CHAMPIONSHIP GROUPS
-        // =================================
-
-
-        const historyGrid =
-            document.getElementById(
-                "championship-history-grid"
-            );
-
-
-        const championshipIds =
-            Object.keys(
-                reignGroups
-            );
-
-
-        championshipIds.sort(
-            (a, b) => {
-
-
-                const aHasCurrent =
-                    reignGroups[a].some(
-                        reign =>
-                            !reign.lostDate
-                    );
-
-
-                const bHasCurrent =
-                    reignGroups[b].some(
-                        reign =>
-                            !reign.lostDate
-                    );
-
-
-                if (
-                    aHasCurrent !==
-                    bHasCurrent
-                ) {
-
-                    return (
-                        Number(bHasCurrent)
-                        -
-                        Number(aHasCurrent)
-                    );
-
-                }
-
-
-                const aName =
-                    getChampionshipName(
-                        a
-                    );
-
-
-                const bName =
-                    getChampionshipName(
-                        b
-                    );
-
-
-                return aName.localeCompare(
-                    bName
-                );
-
-            }
-        );
-
-
-
-        championshipIds.forEach(
-            championshipId => {
-
-
-                const championshipName =
-                    getChampionshipName(
-                        championshipId
-                    );
-
-
-                const titleReigns =
-                    reignGroups[
-                        championshipId
-                    ];
-
-
-                titleReigns.sort(
+                .sort(
                     (a, b) =>
 
                         new Date(b.wonDate)
                         -
                         new Date(a.wonDate)
+                )[0]
+
+                || null;
+
+        }
+
+
+
+        // =================================
+        // HOLDER HELPERS
+        // =================================
+
+
+        function getHolderName(
+            reign
+        ) {
+
+
+            if (!reign) {
+
+                return "VACANT";
+
+            }
+
+
+            if (
+                reign.holderType === "team"
+            ) {
+
+
+                const team =
+                    teamMap[
+                        reign.holderId
+                    ];
+
+
+                return team
+                    ? team.name
+                    : reign.holderId;
+
+            }
+
+
+            const wrestler =
+                wrestlerMap[
+                    reign.holderId
+                ];
+
+
+            return wrestler
+                ? wrestler.name
+                : reign.holderId;
+
+        }
+
+
+
+        function getHolderUrl(
+            reign
+        ) {
+
+
+            if (!reign) {
+
+                return "";
+
+            }
+
+
+            if (
+                reign.holderType === "team"
+            ) {
+
+
+                return `team.html?id=${encodeURIComponent(reign.holderId)}`;
+
+            }
+
+
+            return `wrestler.html?id=${encodeURIComponent(reign.holderId)}`;
+
+        }
+
+
+
+        // =================================
+        // CREATE CHAMPIONSHIP CARD
+        // =================================
+
+
+        function createChampionshipCard(
+            championship
+        ) {
+
+
+            const currentReign =
+                getCurrentReign(
+                    championship.id
                 );
 
 
-                const hasCurrentReign =
-                    titleReigns.some(
-                        reign =>
-                            !reign.lostDate
-                    );
+            const card =
+                document.createElement(
+                    "article"
+                );
 
 
-                const card =
-                    document.createElement(
-                        "article"
-                    );
+            card.className =
+                "championship-card";
 
 
-                card.className =
-                    "championship-history-card";
+
+            const holderName =
+                getHolderName(
+                    currentReign
+                );
 
 
-                card.innerHTML = `
-
-                    <div class="championship-history-header">
-
-
-                        <div>
-
-                            <span class="championship-history-count">
-
-                                ${titleReigns.length}
-                                ${
-                                    titleReigns.length === 1
-
-                                        ? "Reign"
-
-                                        : "Reigns"
-                                }
-
-                            </span>
+            const holderUrl =
+                getHolderUrl(
+                    currentReign
+                );
 
 
-                            <h3>
+            card.innerHTML = `
 
-                                <a
-                                    href="title.html?id=${encodeURIComponent(championshipId)}"
-                                >
-                                    ${championshipName}
-                                </a>
+                <a
+                    href="title.html?id=${encodeURIComponent(championship.id)}"
+                    class="championship-image-link"
+                >
 
-                            </h3>
+                    <div class="championship-card-image">
 
-                        </div>
+                        ${
+                            championship.image
+
+                                ? `
+                                    <img
+                                        src="${championship.image}"
+                                        alt="${championship.name}"
+                                    >
+                                `
+
+                                : `
+                                    <span>
+                                        OWL
+                                    </span>
+                                `
+                        }
+
+                    </div>
+
+                </a>
+
+
+                <div class="championship-card-body">
+
+
+                    <div class="championship-card-meta">
+
+                        <span>
+                            ${championship.division}
+                        </span>
+
+                        <span>
+                            ${championship.type}
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+
+                        <a
+                            href="title.html?id=${encodeURIComponent(championship.id)}"
+                        >
+                            ${championship.name}
+                        </a>
+
+                    </h3>
+
+
+
+                    <div class="champion-display">
+
+
+                        <span class="champion-label">
+
+                            ${
+                                currentReign
+                                    ? "CURRENT CHAMPION"
+                                    : "STATUS"
+                            }
+
+                        </span>
 
 
                         ${
-                            hasCurrentReign
+                            currentReign
 
                                 ? `
-                                    <span class="current-champion-badge">
-
-                                        ${
-                                            holderType === "team"
-
-                                                ? "CURRENT CHAMPIONS"
-
-                                                : "CURRENT CHAMPION"
-                                        }
-
-                                    </span>
+                                    <a
+                                        href="${holderUrl}"
+                                        class="champion-name"
+                                    >
+                                        ${holderName}
+                                    </a>
                                 `
 
-                                : ""
+                                : `
+                                    <strong class="champion-name vacant">
+                                        VACANT
+                                    </strong>
+                                `
+                        }
+
+
+                        ${
+                            currentReign
+
+                                ? `
+                                    <p class="champion-won">
+
+                                        Won
+                                        ${formatDate(currentReign.wonDate)}
+
+                                        ${
+                                            currentReign.wonAt
+
+                                                ? `
+                                                    at
+                                                    ${currentReign.wonAt}
+                                                `
+
+                                                : ""
+                                        }
+
+                                    </p>
+
+
+                                    <div class="champion-stat-row">
+
+                                        <span>
+
+                                            <strong>
+                                                ${calculateReignDays(currentReign)}
+                                            </strong>
+
+                                            Days
+
+                                        </span>
+
+
+                                        <span>
+
+                                            <strong>
+
+                                                ${
+                                                    currentReign.defenses !== null &&
+                                                    currentReign.defenses !== undefined
+
+                                                        ? currentReign.defenses
+
+                                                        : 0
+                                                }
+
+                                            </strong>
+
+                                            Defenses
+
+                                        </span>
+
+                                    </div>
+                                `
+
+                                : `
+                                    <p class="champion-won">
+                                        No active reign.
+                                    </p>
+                                `
                         }
 
 
                     </div>
 
 
-                    <div class="championship-reign-list">
-                    </div>
+                    <a
+                        href="title.html?id=${encodeURIComponent(championship.id)}"
+                        class="view-title-link"
+                    >
+                        View Championship →
+                    </a>
 
-                `;
+
+                </div>
+
+            `;
 
 
-                const reignList =
-                    card.querySelector(
-                        ".championship-reign-list"
+            return card;
+
+        }
+
+
+
+        // =================================
+        // SPLIT CHAMPIONSHIPS BY BRAND
+        // =================================
+
+
+        const ascensionTitles =
+            championships.filter(
+                championship =>
+
+                    String(
+                        championship.brand || ""
+                    ).toLowerCase()
+                    === "ascension"
+            );
+
+
+        const revoltTitles =
+            championships.filter(
+                championship =>
+
+                    String(
+                        championship.brand || ""
+                    ).toLowerCase()
+                    === "revolt"
+            );
+
+
+        const owlTitles =
+            championships.filter(
+                championship => {
+
+
+                    const brand =
+                        String(
+                            championship.brand || ""
+                        ).toLowerCase();
+
+
+                    return (
+                        brand !== "ascension" &&
+                        brand !== "revolt"
                     );
 
+                }
+            );
 
 
-                titleReigns.forEach(
-                    (
-                        reign,
-                        index
-                    ) => {
+
+        // =================================
+        // RENDER COUNTS
+        // =================================
 
 
-                        const reignItem =
-                            document.createElement(
-                                "div"
-                            );
+        function formatCount(
+            count
+        ) {
 
 
-                        reignItem.className =
-                            "championship-reign-item";
+            return `${count} ${
+                count === 1
+
+                    ? "Championship"
+
+                    : "Championships"
+            }`;
+
+        }
 
 
-                        const defenseCount =
-
-                            reign.defenses !== null &&
-                            reign.defenses !== undefined
-
-                                ? reign.defenses
-
-                                : 0;
+        ascensionCount.textContent =
+            formatCount(
+                ascensionTitles.length
+            );
 
 
-                        reignItem.innerHTML = `
-
-                            <div class="championship-reign-topline">
-
-                                <strong>
-
-                                    ${
-                                        titleReigns.length > 1
-
-                                            ? `Reign ${titleReigns.length - index}`
-
-                                            : "Reign"
-                                    }
-
-                                </strong>
+        revoltCount.textContent =
+            formatCount(
+                revoltTitles.length
+            );
 
 
-                                <span>
-
-                                    ${
-                                        !reign.lostDate
-
-                                            ? "Current"
-
-                                            : `${calculateReignDays(reign)} Days`
-                                    }
-
-                                </span>
-
-                            </div>
+        owlCount.textContent =
+            formatCount(
+                owlTitles.length
+            );
 
 
-                            <p class="championship-reign-dates">
 
-                                ${formatDate(reign.wonDate)}
-                                –
-
-                                ${
-                                    reign.lostDate
-
-                                        ? formatDate(
-                                            reign.lostDate
-                                        )
-
-                                        : "Current"
-                                }
-
-                            </p>
+        // =================================
+        // RENDER CARDS
+        // =================================
 
 
-                            ${
-                                reign.wonAt
-
-                                    ? `
-                                        <p class="championship-reign-event">
-                                            Won at ${reign.wonAt}
-                                        </p>
-                                    `
-
-                                    : ""
-                            }
+        ascensionTitles.forEach(
+            championship => {
 
 
-                            <div class="championship-reign-stats">
-
-                                <span>
-
-                                    <strong>
-                                        ${calculateReignDays(reign)}
-                                    </strong>
-
-                                    Days
-
-                                </span>
-
-
-                                <span>
-
-                                    <strong>
-                                        ${defenseCount}
-                                    </strong>
-
-                                    ${
-                                        defenseCount === 1
-
-                                            ? "Defense"
-
-                                            : "Defenses"
-                                    }
-
-                                </span>
-
-                            </div>
-
-                        `;
-
-
-                        reignList.appendChild(
-                            reignItem
-                        );
-
-                    }
-                );
-
-
-                historyGrid.appendChild(
-                    card
+                ascensionGrid.appendChild(
+                    createChampionshipCard(
+                        championship
+                    )
                 );
 
             }
         );
+
+
+        revoltTitles.forEach(
+            championship => {
+
+
+                revoltGrid.appendChild(
+                    createChampionshipCard(
+                        championship
+                    )
+                );
+
+            }
+        );
+
+
+        owlTitles.forEach(
+            championship => {
+
+
+                owlGrid.appendChild(
+                    createChampionshipCard(
+                        championship
+                    )
+                );
+
+            }
+        );
+
+
+
+        // =================================
+        // EMPTY STATE
+        // =================================
+
+
+        emptyState.hidden =
+            championships.length !== 0;
 
 
     }
@@ -1061,9 +753,29 @@ async function loadAutomaticChampionshipHistory() {
 
 
         console.error(
-            "Could not load automatic championship history:",
+            "Could not load Champions page:",
             error
         );
+
+
+        document.querySelector(
+            ".champions-page"
+        ).innerHTML = `
+
+            <section class="championship-brand-section">
+
+                <h1>
+                    Champions Page Could Not Load
+                </h1>
+
+                <p>
+                    There was a problem loading
+                    the OWL championship database.
+                </p>
+
+            </section>
+
+        `;
 
     }
 
@@ -1071,4 +783,4 @@ async function loadAutomaticChampionshipHistory() {
 
 
 
-loadAutomaticChampionshipHistory();
+loadChampionsPage();
