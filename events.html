@@ -1,64 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/style.css">
 
-  <title>Events | OWL Wrestling</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Events | OWL Wrestling</title>
+
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="css/events.css"
+    >
+
 </head>
+
+
 <body>
 
+
 <header class="site-header">
-  <a class="brand" href="index.html" aria-label="OWL Wrestling Home">
-    <span class="brand-mark">OWL</span>
-    <span class="brand-sub">WRESTLING</span>
-  </a>
-  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
-  <nav class="site-nav">
-    <a href="index.html">Home</a>
-    <a href="roster.html">Roster</a>
-    <a href="champions.html">Champions</a>
-    <a href="events.html">Events</a>
-    <a href="records.html">Records</a>
-  </nav>
+
+
+    <a
+        class="brand"
+        href="index.html"
+    >
+
+        <span class="brand-mark">
+            OWL
+        </span>
+
+        <span class="brand-sub">
+            WRESTLING
+        </span>
+
+    </a>
+
+
+    <button
+        class="nav-toggle"
+        aria-label="Toggle navigation"
+    >
+        ☰
+    </button>
+
+
+    <nav class="site-nav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="roster.html">
+            Roster
+        </a>
+
+        <a href="groups.html">
+            Teams
+        </a>
+
+        <a href="champions.html">
+            Champions
+        </a>
+
+        <a
+            href="events.html"
+            class="active"
+        >
+            Events
+        </a>
+
+        <a href="records.html">
+            Records
+        </a>
+
+    </nav>
+
+
 </header>
 
-<main>
-  <section class="page-hero">
-    <p class="eyebrow">THE OWL CALENDAR</p>
-    <h1>Events</h1>
-    <p>Every major event in the OWL year, from Zero Hour to December to Remember.</p>
-  </section>
-  
-<section class="section">
-  <div class="event-list">
-    <article class="event-row"><span class="month">JAN</span><div><h3>Zero Hour</h3><p>OWL PPV</p></div></article>
-    <article class="event-row"><span class="month">FEB</span><div><h3>All Love Lost</h3><p>Wargames</p></div></article>
-    <article class="event-row"><span class="month">MAR</span><div><h3>Overthrow</h3><p>Rumble event</p></div></article>
-    <article class="event-row"><span class="month">APR</span><div><h3>No Escape</h3><p>Chamber event</p></div></article>
-    <article class="event-row"><span class="month">MAY</span><div><h3>Fight to Survive</h3><p>Flagship event</p></div></article>
-    <article class="event-row"><span class="month">JUN</span><div><h3>Survivors Remorse</h3><p>Feast-or-fired style event</p></div></article>
-    <article class="event-row"><span class="month">JUL</span><div><h3>Proving Ground</h3><p>Round-robin tournament</p></div></article>
-    <article class="event-row featured-row"><span class="month">AUG</span><div><h3>Blood on the Sand</h3><p>Upcoming PPV</p></div></article>
-    <article class="event-row"><span class="month">SEP</span><div><h3>Global Warfare: Japan</h3><p>International event</p></div></article>
-    <article class="event-row"><span class="month">OCT</span><div><h3>Deal with the Devil</h3><p>Contract opportunity event</p></div></article>
-    <article class="event-row"><span class="month">NOV</span><div><h3>Game Over</h3><p>OWL PPV</p></div></article>
-    <article class="event-row"><span class="month">DEC</span><div><h3>December to Remember</h3><p>Year-end event</p></div></article>
-  </div>
-</section>
+
+
+<main class="events-page">
+
+
+    <!-- PAGE HERO -->
+
+
+    <section class="events-hero">
+
+
+        <p class="eyebrow">
+            THE OWL CALENDAR
+        </p>
+
+
+        <h1>
+            Events
+        </h1>
+
+
+        <p class="events-intro">
+
+            Weekly shows, special events, and the biggest
+            nights in OWL Wrestling.
+
+        </p>
+
+
+    </section>
+
+
+
+    <!-- UPCOMING EVENTS -->
+
+
+    <section
+        id="upcoming-events-section"
+        class="events-section"
+        hidden
+    >
+
+
+        <div class="events-section-heading">
+
+
+            <div>
+
+                <p class="eyebrow">
+                    COMING NEXT
+                </p>
+
+                <h2>
+                    Upcoming Events
+                </h2>
+
+            </div>
+
+
+            <span id="upcoming-event-count">
+                0 Events
+            </span>
+
+
+        </div>
+
+
+        <div
+            id="upcoming-event-grid"
+            class="event-grid"
+        >
+        </div>
+
+
+    </section>
+
+
+
+    <!-- EVENT HISTORY -->
+
+
+    <section
+        id="completed-events-section"
+        class="events-section"
+    >
+
+
+        <div class="events-section-heading">
+
+
+            <div>
+
+                <p class="eyebrow">
+                    THE ARCHIVE
+                </p>
+
+                <h2>
+                    Event History
+                </h2>
+
+            </div>
+
+
+            <span id="completed-event-count">
+                0 Events
+            </span>
+
+
+        </div>
+
+
+        <div
+            id="completed-event-grid"
+            class="event-grid"
+        >
+        </div>
+
+
+    </section>
+
+
+
+    <!-- EMPTY STATE -->
+
+
+    <p
+        id="events-empty-state"
+        class="empty-message"
+        hidden
+    >
+
+        No events are currently listed.
+
+    </p>
+
 
 </main>
 
+
+
 <footer class="site-footer">
-  <div>
-    <strong>OWL Wrestling</strong>
-    <p>Ascension. Revolt. One world.</p>
-  </div>
-  <p class="footer-note">A fan-made efed universe.</p>
+
+    <div>
+
+        <strong>
+            OWL Wrestling
+        </strong>
+
+        <p>
+            Ascension. Revolt. One world.
+        </p>
+
+    </div>
+
 </footer>
+
+
+
 <script src="js/app.js"></script>
 
+<script src="js/events.js"></script>
+
+
 </body>
+
 </html>
