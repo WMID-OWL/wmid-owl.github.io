@@ -7,7 +7,9 @@
     "wonDate": "2026-06-01",
     "lostDate": "2026-07-01",
     "wonAt": "Ascension",
+    "wonEventId": "",
     "lostAt": "Ascension",
+    "lostEventId": "ascension-2026-07-01",
     "defenses": 2,
     "notes": "Temporary lineage test."
   },
@@ -19,7 +21,9 @@
     "wonDate": "2026-07-01",
     "lostDate": "",
     "wonAt": "Ascension",
+    "wonEventId": "ascension-2026-07-01",
     "lostAt": "",
+    "lostEventId": "",
     "defenses": 1,
     "notes": "Temporary current champion test."
   },
@@ -31,7 +35,9 @@
     "wonDate": "2026-07-01",
     "lostDate": "",
     "wonAt": "Ascension",
+    "wonEventId": "ascension-2026-07-01",
     "lostAt": "",
+    "lostEventId": "",
     "defenses": 0,
     "notes": "Temporary tag champion test."
   }
