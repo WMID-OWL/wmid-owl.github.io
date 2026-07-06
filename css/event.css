@@ -969,3 +969,69 @@
     }
 
 }
+/* =================================
+   ANNOUNCED MATCH STATUS
+================================= */
+
+
+.status-postponed {
+
+    opacity:
+        0.8;
+
+}
+
+
+.status-postponed
+.announced-match-status strong {
+
+    color:
+        #f0c674;
+
+}
+
+
+.status-cancelled {
+
+    opacity:
+        0.55;
+
+}
+
+
+.status-cancelled
+.event-match-content h3 {
+
+    text-decoration:
+        line-through;
+
+}
+
+
+.status-cancelled
+.announced-match-status strong {
+
+    color:
+        #a7b0b3;
+
+}
+
+
+.announced-status-note {
+
+    margin:
+        0.65rem 0 0;
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.82rem;
+
+    font-style:
+        italic;
+
+    line-height:
+        1.5;
+
+}
