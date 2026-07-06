@@ -1210,59 +1210,27 @@ async function loadEventHighlights() {
 
             performerCard.innerHTML = `
 
-                <span class="event-highlight-label">
+    <span class="event-highlight-label">
 
-                    PERFORMER OF THE NIGHT
+        PERFORMER OF THE NIGHT
 
-                </span>
-
-
-                <strong class="event-highlight-match">
-
-                    <a
-                        href="wrestler.html?id=${encodeURIComponent(performerId)}"
-                        class="event-highlight-wrestler-link"
-                    >
-
-                        ${getWrestlerName(performerId)}
-
-                    </a>
-
-                </strong>
+    </span>
 
 
-                <div class="event-highlight-rating">
+    <strong class="event-highlight-match">
 
+        <a
+            href="wrestler.html?id=${encodeURIComponent(performerId)}"
+            class="event-highlight-wrestler-link"
+        >
 
-                    <span>
+            ${getWrestlerName(performerId)}
 
-                        ${performerOfTheNight.wins}
+        </a>
 
-                        ${
-                            performerOfTheNight.wins === 1
-                                ? "WIN"
-                                : "WINS"
-                        }
+    </strong>
 
-                    </span>
-
-
-                    <span>
-
-                        ${performerOfTheNight.finishes}
-
-                        ${
-                            performerOfTheNight.finishes === 1
-                                ? "FINISH"
-                                : "FINISHES"
-                        }
-
-                    </span>
-
-
-                </div>
-
-            `;
+`;
 
         }
 
