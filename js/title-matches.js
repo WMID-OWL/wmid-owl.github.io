@@ -34,7 +34,8 @@ async function loadTitleMatchHistory() {
         const [
             matchesResponse,
             wrestlersResponse,
-            eventsResponse
+            eventsResponse,
+            reignsResponse
         ] = await Promise.all([
 
             fetch(
@@ -56,6 +57,13 @@ async function loadTitleMatchHistory() {
                 {
                     cache: "no-store"
                 }
+            ),
+
+            fetch(
+                "data/title-reigns.json",
+                {
+                    cache: "no-store"
+                }
             )
 
         ]);
@@ -64,7 +72,8 @@ async function loadTitleMatchHistory() {
         if (
             !matchesResponse.ok ||
             !wrestlersResponse.ok ||
-            !eventsResponse.ok
+            !eventsResponse.ok ||
+            !reignsResponse.ok
         ) {
 
             throw new Error(
@@ -85,6 +94,10 @@ async function loadTitleMatchHistory() {
 
         const events =
             await eventsResponse.json();
+
+
+        const reigns =
+            await reignsResponse.json();
 
 
 
@@ -124,8 +137,22 @@ async function loadTitleMatchHistory() {
 
 
         // =================================
-        // HELPERS
+        // BASIC HELPERS
         // =================================
+
+
+        function normalize(
+            value
+        ) {
+
+            return String(
+                value || ""
+            )
+                .trim()
+                .toLowerCase();
+
+        }
+
 
 
         function getWrestlerName(
@@ -234,13 +261,20 @@ async function loadTitleMatchHistory() {
 
 
             return winnerSide
+
                 ? formatSide(
                     winnerSide
                 )
+
                 : "—";
 
         }
 
+
+
+        // =================================
+        // TITLE OUTCOME HELPERS
+        // =================================
 
 
         function getOutcomeLabel(
@@ -249,11 +283,9 @@ async function loadTitleMatchHistory() {
 
 
             const outcome =
-                String(
-                    match.titleOutcome || ""
-                )
-                    .trim()
-                    .toLowerCase();
+                normalize(
+                    match.titleOutcome
+                );
 
 
             if (
@@ -295,11 +327,9 @@ async function loadTitleMatchHistory() {
 
 
             const outcome =
-                String(
-                    match.titleOutcome || ""
-                )
-                    .trim()
-                    .toLowerCase();
+                normalize(
+                    match.titleOutcome
+                );
 
 
             if (
@@ -368,6 +398,108 @@ async function loadTitleMatchHistory() {
 
 
         // =================================
+        // FIND CURRENT REIGN
+        // =================================
+
+
+        const currentReign =
+            reigns.find(
+                reign =>
+
+                    reign.championshipId ===
+                        championshipId
+
+                    &&
+
+                    !reign.lostDate
+            ) || null;
+
+
+
+        // =================================
+        // MATCH WITHIN REIGN
+        // =================================
+
+
+        function matchFallsWithinReign(
+            match,
+            reign
+        ) {
+
+
+            if (!reign) {
+
+                return false;
+
+            }
+
+
+            if (
+                match.date <
+                reign.wonDate
+            ) {
+
+                return false;
+
+            }
+
+
+            if (
+                reign.lostDate &&
+                match.date >
+                reign.lostDate
+            ) {
+
+                return false;
+
+            }
+
+
+            return true;
+
+        }
+
+
+
+        // =================================
+        // AUTOMATIC DEFENSE COUNTS
+        // =================================
+
+
+        const currentReignDefenses =
+            currentReign
+
+                ? titleMatches.filter(
+                    match =>
+
+                        normalize(
+                            match.titleOutcome
+                        ) === "retained"
+
+                        &&
+
+                        matchFallsWithinReign(
+                            match,
+                            currentReign
+                        )
+                ).length
+
+                : 0;
+
+
+
+        const titleChanges =
+            titleMatches.filter(
+                match =>
+
+                    normalize(
+                        match.titleOutcome
+                    ) === "changed"
+            ).length;
+
+
+
+        // =================================
         // PAGE ELEMENTS
         // =================================
 
@@ -396,6 +528,104 @@ async function loadTitleMatchHistory() {
 
         section.hidden =
             false;
+
+
+
+        // =================================
+        // UPDATE EXISTING DEFENSE DISPLAY
+        // =================================
+
+
+        const currentDefenseElement =
+            document.getElementById(
+                "current-reign-defenses"
+            );
+
+
+        if (
+            currentDefenseElement &&
+            currentReign
+        ) {
+
+            currentDefenseElement.textContent =
+                currentReignDefenses;
+
+        }
+
+
+
+        // =================================
+        // CREATE AUTOMATIC STATS BAR
+        // =================================
+
+
+        const summaryGrid =
+            document.createElement(
+                "div"
+            );
+
+
+        summaryGrid.className =
+            "title-match-summary-grid";
+
+
+        summaryGrid.innerHTML = `
+
+            <div class="title-match-summary-card">
+
+                <span>
+                    CURRENT REIGN DEFENSES
+                </span>
+
+                <strong>
+
+                    ${
+                        currentReign
+                            ? currentReignDefenses
+                            : "—"
+                    }
+
+                </strong>
+
+            </div>
+
+
+            <div class="title-match-summary-card">
+
+                <span>
+                    TOTAL TITLE MATCHES
+                </span>
+
+                <strong>
+
+                    ${titleMatches.length}
+
+                </strong>
+
+            </div>
+
+
+            <div class="title-match-summary-card">
+
+                <span>
+                    TITLE CHANGES
+                </span>
+
+                <strong>
+
+                    ${titleChanges}
+
+                </strong>
+
+            </div>
+
+        `;
+
+
+        section.insertBefore(
+            summaryGrid,
+            list
+        );
 
 
 
@@ -441,6 +671,7 @@ async function loadTitleMatchHistory() {
                                 ${eventName}
                             </span>
                         `;
+
 
 
                 const card =
@@ -494,8 +725,11 @@ async function loadTitleMatchHistory() {
                             <p>
 
                                 Winner:
+
                                 <strong>
+
                                     ${getWinnerText(match)}
+
                                 </strong>
 
                             </p>
