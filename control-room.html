@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>OWL Control Room</title>
+
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="css/control-room.css"
+    >
+
+</head>
+
+
+<body class="control-room-body">
+
+
+<header class="control-room-header">
+
+
+    <a
+        class="control-room-brand"
+        href="index.html"
+    >
+
+        <span class="control-room-brand-mark">
+            OWL
+        </span>
+
+        <span class="control-room-brand-copy">
+
+            <strong>
+                CONTROL ROOM
+            </strong>
+
+            <small>
+                UNIVERSE MANAGEMENT
+            </small>
+
+        </span>
+
+    </a>
+
+
+    <a
+        class="control-room-site-link"
+        href="index.html"
+    >
+        View Website →
+    </a>
+
+
+</header>
+
+
+
+<main class="control-room-page">
+
+
+    <!-- =================================
+         HERO
+    ================================== -->
+
+
+    <section class="control-room-hero">
+
+
+        <div>
+
+
+            <p class="eyebrow">
+                OWL OPERATIONS
+            </p>
+
+
+            <h1>
+                Control Room
+            </h1>
+
+
+            <p class="control-room-intro">
+
+                Manage the OWL universe without manually digging
+                through JSON files.
+
+            </p>
+
+
+        </div>
+
+
+        <div class="control-room-actions">
+
+
+            <button
+                id="cr-connect-folder"
+                class="control-room-button control-room-button-primary"
+                type="button"
+            >
+                Connect OWL Folder
+            </button>
+
+
+            <button
+                id="cr-reconnect-folder"
+                class="control-room-button control-room-button-secondary"
+                type="button"
+                hidden
+            >
+                Reconnect Saved Folder
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         BROWSER WARNING
+    ================================== -->
+
+
+    <section
+        id="cr-browser-warning"
+        class="control-room-message control-room-message-error"
+        hidden
+    >
+
+
+        <strong>
+            Browser not supported
+        </strong>
+
+
+        <p>
+
+            Open the OWL Control Room in desktop Google Chrome.
+
+        </p>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         CONNECTION STATUS
+    ================================== -->
+
+
+    <section class="control-room-panel">
+
+
+        <div class="control-room-panel-heading">
+
+
+            <div>
+
+                <p class="eyebrow">
+                    CONNECTION
+                </p>
+
+                <h2>
+                    Repository Status
+                </h2>
+
+            </div>
+
+
+            <span
+                id="cr-status-badge"
+                class="control-room-status status-disconnected"
+            >
+                DISCONNECTED
+            </span>
+
+
+        </div>
+
+
+
+        <div class="control-room-repo-grid">
+
+
+            <div class="control-room-repo-item">
+
+                <span>
+                    FOLDER
+                </span>
+
+                <strong id="cr-repo-name">
+                    Not connected
+                </strong>
+
+            </div>
+
+
+            <div class="control-room-repo-item">
+
+                <span>
+                    DATA FILES
+                </span>
+
+                <strong id="cr-file-summary">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="control-room-repo-item">
+
+                <span>
+                    LAST CHECK
+                </span>
+
+                <strong id="cr-last-check">
+                    —
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <p
+            id="cr-connection-message"
+            class="control-room-connection-message"
+        >
+
+            Select the local folder containing your OWL website repository.
+
+        </p>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         LOADING
+    ================================== -->
+
+
+    <section
+        id="cr-loading"
+        class="control-room-loading"
+        hidden
+    >
+
+
+        <span class="control-room-spinner">
+        </span>
+
+
+        <strong>
+            Reading OWL databases...
+        </strong>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         DASHBOARD
+    ================================== -->
+
+
+    <section
+        id="cr-dashboard"
+        hidden
+    >
+
+
+        <section class="control-room-panel">
+
+
+            <div class="control-room-panel-heading">
+
+
+                <div>
+
+                    <p class="eyebrow">
+                        UNIVERSE DATABASE
+                    </p>
+
+                    <h2>
+                        OWL at a Glance
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="control-room-stat-grid">
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        WRESTLERS
+                    </span>
+
+                    <strong id="cr-count-wrestlers">
+                        0
+                    </strong>
+
+                </article>
+
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        TEAMS
+                    </span>
+
+                    <strong id="cr-count-teams">
+                        0
+                    </strong>
+
+                </article>
+
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        FACTIONS
+                    </span>
+
+                    <strong id="cr-count-factions">
+                        0
+                    </strong>
+
+                </article>
+
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        CHAMPIONSHIPS
+                    </span>
+
+                    <strong id="cr-count-championships">
+                        0
+                    </strong>
+
+                </article>
+
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        EVENTS
+                    </span>
+
+                    <strong id="cr-count-events">
+                        0
+                    </strong>
+
+                </article>
+
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        COMPLETED MATCHES
+                    </span>
+
+                    <strong id="cr-count-matches">
+                        0
+                    </strong>
+
+                </article>
+
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        ANNOUNCED MATCHES
+                    </span>
+
+                    <strong id="cr-count-announced">
+                        0
+                    </strong>
+
+                </article>
+
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        TITLE REIGNS
+                    </span>
+
+                    <strong id="cr-count-reigns">
+                        0
+                    </strong>
+
+                </article>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             EVENT SNAPSHOT
+        ================================== -->
+
+
+        <section class="control-room-panel">
+
+
+            <div class="control-room-panel-heading">
+
+
+                <div>
+
+                    <p class="eyebrow">
+                        SCHEDULE
+                    </p>
+
+                    <h2>
+                        Event Snapshot
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="control-room-snapshot-grid">
+
+
+                <article class="control-room-snapshot-card">
+
+
+                    <span>
+                        NEXT EVENT
+                    </span>
+
+
+                    <strong id="cr-next-event-name">
+                        —
+                    </strong>
+
+
+                    <p id="cr-next-event-date">
+                        —
+                    </p>
+
+
+                </article>
+
+
+
+                <article class="control-room-snapshot-card">
+
+
+                    <span>
+                        LATEST COMPLETED EVENT
+                    </span>
+
+
+                    <strong id="cr-latest-event-name">
+                        —
+                    </strong>
+
+
+                    <p id="cr-latest-event-date">
+                        —
+                    </p>
+
+
+                </article>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             DATA HEALTH
+        ================================== -->
+
+
+        <section class="control-room-panel">
+
+
+            <div class="control-room-panel-heading">
+
+
+                <div>
+
+                    <p class="eyebrow">
+                        SYSTEM CHECK
+                    </p>
+
+                    <h2>
+                        Data Health
+                    </h2>
+
+                </div>
+
+
+                <span
+                    id="cr-health-summary"
+                    class="control-room-health-summary"
+                >
+                    —
+                </span>
+
+
+            </div>
+
+
+
+            <div
+                id="cr-health-list"
+                class="control-room-health-list"
+            >
+            </div>
+
+
+        </section>
+
+
+    </section>
+
+
+</main>
+
+
+
+<footer class="control-room-footer">
+
+
+    <strong>
+        OWL Control Room
+    </strong>
+
+
+    <p>
+        Select. Edit. Review. Save. Push.
+    </p>
+
+
+</footer>
+
+
+
+<script src="js/control-room.js"></script>
+
+
+</body>
+
+</html>
