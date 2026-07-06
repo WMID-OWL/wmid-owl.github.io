@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ascension-2026-07-01",
+    "name": "Ascension",
+    "brand": "Ascension",
+    "eventType": "weekly",
+    "date": "2026-07-01",
+    "status": "completed",
+    "location": "",
+    "image": "",
+    "tagline": "",
+    "description": ""
+  },
+  {
+    "id": "ascension-2026-07-08",
+    "name": "Ascension",
+    "brand": "Ascension",
+    "eventType": "weekly",
+    "date": "2026-07-08",
+    "status": "completed",
+    "location": "",
+    "image": "",
+    "tagline": "",
+    "description": ""
+  },
+  {
+    "id": "ascension-2026-07-15",
+    "name": "Ascension",
+    "brand": "Ascension",
+    "eventType": "weekly",
+    "date": "2026-07-15",
+    "status": "completed",
+    "location": "",
+    "image": "",
+    "tagline": "",
+    "description": ""
+  }
+]
