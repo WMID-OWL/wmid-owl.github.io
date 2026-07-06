@@ -6,6 +6,7 @@
     "eventType": "weekly",
     "matchType": "Singles",
     "championshipId": "owl-world-championship",
+    "titleOutcome": "changed",
     "sides": [
       {
         "wrestlers": [
