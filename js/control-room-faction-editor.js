@@ -2845,14 +2845,21 @@ function crFactionRemoveWrestlerField(
         );
 
 
+
+    // Use horizontal whitespace only.
+    // This prevents the removal from eating
+    // indentation belonging to the next line.
+
+
     const linePattern =
         new RegExp(
 
-            `^\\s*"${escapedKey}"\\s*:\\s*"(?:\\\\.|[^"\\\\])*",?\\s*\\r?\\n?`,
+            `^[\\t ]*"${escapedKey}"[\\t ]*:[\\t ]*"(?:\\\\.|[^"\\\\])*",?[\\t ]*(?:\\r?\\n|$)`,
 
             "m"
 
         );
+
 
 
     return block.replace(
