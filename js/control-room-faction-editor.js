@@ -156,14 +156,13 @@ let crFactionPendingSelectionId =
 
 
 // =================================
-// BASIC HELPERS
+// BASIC UI HELPERS
 // =================================
 
 
 function crFactionSetStatus(
     text
 ) {
-
 
     crFactionStatus.textContent =
         text;
@@ -176,7 +175,6 @@ function crFactionShowMessage(
     message,
     type
 ) {
-
 
     crFactionMessage.textContent =
         message;
@@ -195,7 +193,6 @@ function crFactionShowMessage(
 
 function crFactionHideMessage() {
 
-
     crFactionMessage.textContent =
         "";
 
@@ -207,10 +204,14 @@ function crFactionHideMessage() {
 
 
 
+// =================================
+// DATA HELPERS
+// =================================
+
+
 function crFactionCreateSlug(
     name
 ) {
-
 
     return String(
         name || ""
@@ -251,7 +252,6 @@ function crFactionValuesMatch(
     second
 ) {
 
-
     return (
 
         JSON.stringify(
@@ -274,7 +274,6 @@ function crFactionGetWrestlerName(
     wrestlerId
 ) {
 
-
     const wrestler =
         owlControlRoomData.wrestlers.find(
             item =>
@@ -293,7 +292,6 @@ function crFactionGetWrestlerName(
 function crFactionGetTeamName(
     teamId
 ) {
-
 
     if (!teamId) {
 
@@ -320,7 +318,6 @@ function crFactionGetTeamName(
 function crFactionDisplayMembers(
     memberIds
 ) {
-
 
     if (
         !Array.isArray(
@@ -359,7 +356,6 @@ function crFactionDisplayMembers(
 
 
 function crFactionGetFormRecord() {
-
 
     return {
 
@@ -407,7 +403,6 @@ function crFactionGetEditableRecord(
     faction
 ) {
 
-
     return {
 
         name:
@@ -429,18 +424,14 @@ function crFactionGetEditableRecord(
             Array.isArray(
                 faction.members
             )
-
                 ? [...faction.members]
-
                 : [],
 
         singlesMembers:
             Array.isArray(
                 faction.singlesMembers
             )
-
                 ? [...faction.singlesMembers]
-
                 : [],
 
         whyWereHere:
@@ -460,7 +451,6 @@ function crFactionGetEditableRecord(
 function crFactionFillForm(
     record
 ) {
-
 
     crFactionFields.name.value =
         record.name || "";
@@ -483,32 +473,26 @@ function crFactionFillForm(
 
 
     crFactionFields.memberOne.value =
-
         record.members[0] || "";
 
 
     crFactionFields.memberTwo.value =
-
         record.members[1] || "";
 
 
     crFactionFields.memberThree.value =
-
         record.members[2] || "";
 
 
     crFactionFields.memberFour.value =
-
         record.members[3] || "";
 
 
     crFactionFields.singlesOne.value =
-
         record.singlesMembers[0] || "";
 
 
     crFactionFields.singlesTwo.value =
-
         record.singlesMembers[1] || "";
 
 
@@ -525,7 +509,6 @@ function crFactionFillForm(
 
 
 function crFactionClearForm() {
-
 
     crFactionFillForm({
 
@@ -589,7 +572,6 @@ function crFactionPopulateWrestlerSelect(
     emptyLabel
 ) {
 
-
     const oldValue =
         selectElement.value;
 
@@ -619,7 +601,6 @@ function crFactionPopulateWrestlerSelect(
 
 
     const sortedWrestlers =
-
         [...owlControlRoomData.wrestlers]
 
             .sort(
@@ -640,7 +621,6 @@ function crFactionPopulateWrestlerSelect(
 
     sortedWrestlers.forEach(
         wrestler => {
-
 
             const option =
                 document.createElement(
@@ -676,7 +656,6 @@ function crFactionPopulateWrestlerSelect(
         )
     ) {
 
-
         selectElement.value =
             oldValue;
 
@@ -693,7 +672,6 @@ function crFactionPopulateWrestlerSelect(
 
 function crFactionPopulateTeamSelect() {
 
-
     const oldValue =
         crFactionFields.tagTeamId.value;
 
@@ -709,7 +687,6 @@ function crFactionPopulateTeamSelect() {
 
 
     const sortedTeams =
-
         [...owlControlRoomData.teams]
 
             .sort(
@@ -730,7 +707,6 @@ function crFactionPopulateTeamSelect() {
 
     sortedTeams.forEach(
         team => {
-
 
             const option =
                 document.createElement(
@@ -766,7 +742,6 @@ function crFactionPopulateTeamSelect() {
         )
     ) {
 
-
         crFactionFields.tagTeamId.value =
             oldValue;
 
@@ -777,12 +752,11 @@ function crFactionPopulateTeamSelect() {
 
 
 // =================================
-// POPULATE ALL OPTIONS
+// POPULATE ALL FORM OPTIONS
 // =================================
 
 
 function crFactionPopulateOptions() {
-
 
     crFactionPopulateWrestlerSelect(
         crFactionFields.memberOne,
@@ -833,16 +807,27 @@ function crFactionPopulateOptions() {
 
 
 // =================================
-// POPULATE FACTIONS
+// POPULATE FACTION SELECT
 // =================================
 
 
 function crFactionPopulateFactions() {
 
-
     if (
         !Array.isArray(
             owlControlRoomData.factions
+        )
+
+        ||
+
+        !Array.isArray(
+            owlControlRoomData.wrestlers
+        )
+
+        ||
+
+        !Array.isArray(
+            owlControlRoomData.teams
         )
     ) {
 
@@ -877,7 +862,6 @@ function crFactionPopulateFactions() {
 
 
     const sortedFactions =
-
         [...owlControlRoomData.factions]
 
             .sort(
@@ -898,7 +882,6 @@ function crFactionPopulateFactions() {
 
     sortedFactions.forEach(
         faction => {
-
 
             const option =
                 document.createElement(
@@ -934,7 +917,6 @@ function crFactionPopulateFactions() {
         )
     ) {
 
-
         crFactionSelect.value =
             desiredSelection;
 
@@ -949,7 +931,6 @@ function crFactionPopulateFactions() {
 
 
     else {
-
 
         crFactionSetStatus(
             "READY"
@@ -968,7 +949,6 @@ function crFactionPopulateFactions() {
 
 function crFactionLoadSelected() {
 
-
     crFactionHideMessage();
 
 
@@ -979,7 +959,6 @@ function crFactionLoadSelected() {
 
 
     if (!factionId) {
-
 
         crFactionClearForm();
 
@@ -1003,7 +982,6 @@ function crFactionLoadSelected() {
 
 
     if (!faction) {
-
 
         crFactionShowMessage(
 
@@ -1062,7 +1040,6 @@ function crFactionLoadSelected() {
 
 function crFactionChangeMode() {
 
-
     crFactionHideMessage();
 
 
@@ -1082,7 +1059,6 @@ function crFactionChangeMode() {
     if (
         crFactionMode.value === "create"
     ) {
-
 
         crFactionSelectRow.hidden =
             true;
@@ -1136,7 +1112,6 @@ function crFactionChangeMode() {
 
 function crFactionGetChanges() {
 
-
     if (!crFactionOriginalRecord) {
 
         return {};
@@ -1158,7 +1133,6 @@ function crFactionGetChanges() {
     ).forEach(
         key => {
 
-
             if (
                 !crFactionValuesMatch(
 
@@ -1168,7 +1142,6 @@ function crFactionGetChanges() {
 
                 )
             ) {
-
 
                 changes[key] =
                     current[key];
@@ -1186,14 +1159,13 @@ function crFactionGetChanges() {
 
 
 // =================================
-// MEMBER CONFLICTS
+// MEMBER CONFLICT CHECK
 // =================================
 
 
 function crFactionFindMemberConflicts(
     memberIds
 ) {
-
 
     const currentFactionId =
 
@@ -1212,7 +1184,6 @@ function crFactionFindMemberConflicts(
 
     owlControlRoomData.factions.forEach(
         faction => {
-
 
             if (
                 faction.id === currentFactionId
@@ -1238,13 +1209,11 @@ function crFactionFindMemberConflicts(
             memberIds.forEach(
                 memberId => {
 
-
                     if (
                         faction.members.includes(
                             memberId
                         )
                     ) {
-
 
                         conflicts.push({
 
@@ -1280,7 +1249,6 @@ function crFactionValidate(
     record
 ) {
 
-
     const errors =
         [];
 
@@ -1296,9 +1264,20 @@ function crFactionValidate(
         record.members.length < 3
     ) {
 
-
         errors.push(
             "A faction must contain at least three members."
+        );
+
+    }
+
+
+
+    if (
+        record.members.length > 4
+    ) {
+
+        errors.push(
+            "A faction can contain no more than four members."
         );
 
     }
@@ -1309,7 +1288,6 @@ function crFactionValidate(
         uniqueMembers.size !==
         record.members.length
     ) {
-
 
         errors.push(
             "A wrestler cannot occupy more than one faction member slot."
@@ -1330,7 +1308,6 @@ function crFactionValidate(
         record.singlesMembers.length
     ) {
 
-
         errors.push(
             "The same wrestler cannot occupy both singles member slots."
         );
@@ -1342,16 +1319,18 @@ function crFactionValidate(
     record.singlesMembers.forEach(
         wrestlerId => {
 
-
             if (
                 !record.members.includes(
                     wrestlerId
                 )
             ) {
 
-
                 errors.push(
-                    `${crFactionGetWrestlerName(wrestlerId)} is selected as a singles member but is not in the faction lineup.`
+
+                    `${crFactionGetWrestlerName(
+                        wrestlerId
+                    )} is selected as a singles member but is not in the faction lineup.`
+
                 );
 
             }
@@ -1371,7 +1350,6 @@ function crFactionValidate(
         )
     ) {
 
-
         errors.push(
             "The faction leader must also be listed as a faction member."
         );
@@ -1382,7 +1360,6 @@ function crFactionValidate(
 
     if (record.tagTeamId) {
 
-
         const team =
             owlControlRoomData.teams.find(
                 item =>
@@ -1391,7 +1368,6 @@ function crFactionValidate(
 
 
         if (!team) {
-
 
             errors.push(
                 "The selected official tag team could not be found."
@@ -1402,20 +1378,16 @@ function crFactionValidate(
 
         else {
 
-
             const teamMembers =
                 Array.isArray(
                     team.members
                 )
-
                     ? team.members
-
                     : [];
 
 
             teamMembers.forEach(
                 wrestlerId => {
-
 
                     if (
                         !record.members.includes(
@@ -1423,9 +1395,12 @@ function crFactionValidate(
                         )
                     ) {
 
-
                         errors.push(
-                            `${crFactionGetWrestlerName(wrestlerId)} is a member of ${team.name} and must also be included in the faction lineup.`
+
+                            `${crFactionGetWrestlerName(
+                                wrestlerId
+                            )} is a member of ${team.name} and must also be included in the faction lineup.`
+
                         );
 
                     }
@@ -1448,7 +1423,6 @@ function crFactionValidate(
     conflicts.forEach(
         conflict => {
 
-
             errors.push(
 
                 `${crFactionGetWrestlerName(
@@ -1468,7 +1442,7 @@ function crFactionValidate(
 
 
 // =================================
-// REVIEW ROW
+// REVIEW DISPLAY HELPERS
 // =================================
 
 
@@ -1476,7 +1450,6 @@ function crFactionAddReviewRow(
     label,
     value
 ) {
-
 
     const row =
         document.createElement(
@@ -1526,22 +1499,15 @@ function crFactionAddReviewRow(
 
 
 
-// =================================
-// FIELD DISPLAY
-// =================================
-
-
 function crFactionFormatField(
     key,
     value
 ) {
 
-
     if (
         key === "members" ||
         key === "singlesMembers"
     ) {
-
 
         return crFactionDisplayMembers(
             value
@@ -1553,7 +1519,6 @@ function crFactionFormatField(
     if (
         key === "leader"
     ) {
-
 
         return value
 
@@ -1570,7 +1535,6 @@ function crFactionFormatField(
         key === "tagTeamId"
     ) {
 
-
         return crFactionGetTeamName(
             value
         );
@@ -1584,15 +1548,9 @@ function crFactionFormatField(
 
 
 
-// =================================
-// FIELD LABEL
-// =================================
-
-
 function crFactionFieldLabel(
     key
 ) {
-
 
     const labels = {
 
@@ -1636,7 +1594,6 @@ function crFactionFieldLabel(
 
 function crFactionReviewChanges() {
 
-
     crFactionHideMessage();
 
 
@@ -1666,10 +1623,14 @@ function crFactionReviewChanges() {
 
 
 
+    // =================================
+    // CREATE MODE
+    // =================================
+
+
     if (
         crFactionMode.value === "create"
     ) {
-
 
         crFactionIdPreview.textContent =
             newId || "—";
@@ -1677,7 +1638,6 @@ function crFactionReviewChanges() {
 
 
         if (!record.name) {
-
 
             crFactionPreview.hidden =
                 true;
@@ -1703,9 +1663,10 @@ function crFactionReviewChanges() {
 
         if (duplicateId) {
 
-
             errors.push(
+
                 `A faction with the database ID ${newId} already exists.`
+
             );
 
         }
@@ -1757,7 +1718,6 @@ function crFactionReviewChanges() {
             errors.length > 0
         ) {
 
-
             crFactionConflictMessage.textContent =
                 errors.join(" ");
 
@@ -1790,8 +1750,12 @@ function crFactionReviewChanges() {
 
 
 
-    if (!crFactionOriginalRecord) {
+    // =================================
+    // EDIT MODE
+    // =================================
 
+
+    if (!crFactionOriginalRecord) {
 
         crFactionPreview.hidden =
             true;
@@ -1822,7 +1786,6 @@ function crFactionReviewChanges() {
         changeKeys.length === 0
     ) {
 
-
         crFactionPreview.hidden =
             true;
 
@@ -1844,7 +1807,6 @@ function crFactionReviewChanges() {
 
     changeKeys.forEach(
         key => {
-
 
             crFactionAddReviewRow(
 
@@ -1875,7 +1837,6 @@ function crFactionReviewChanges() {
     if (
         errors.length > 0
     ) {
-
 
         crFactionConflictMessage.textContent =
             errors.join(" ");
@@ -1912,7 +1873,6 @@ function crFactionReviewChanges() {
 
 
 async function crFactionEnsureWritePermission() {
-
 
     if (!owlRepositoryHandle) {
 
@@ -1962,14 +1922,13 @@ async function crFactionEnsureWritePermission() {
 
 
 // =================================
-// READ TEXT FILE
+// FILE HELPERS
 // =================================
 
 
 async function crFactionReadTextFile(
     fileName
 ) {
-
 
     const dataDirectory =
         await owlRepositoryHandle.getDirectoryHandle(
@@ -2000,16 +1959,10 @@ async function crFactionReadTextFile(
 
 
 
-// =================================
-// WRITE TEXT FILE
-// =================================
-
-
 async function crFactionWriteTextFile(
     fileHandle,
     text
 ) {
-
 
     const writable =
         await fileHandle.createWritable();
@@ -2027,7 +1980,7 @@ async function crFactionWriteTextFile(
 
 
 // =================================
-// FIND OBJECT BOUNDS
+// FIND RECORD OBJECT
 // =================================
 
 
@@ -2035,7 +1988,6 @@ function crFactionFindObjectBounds(
     text,
     recordId
 ) {
-
 
     const escapedId =
         recordId.replace(
@@ -2060,9 +2012,10 @@ function crFactionFindObjectBounds(
 
     if (!match) {
 
-
         throw new Error(
+
             `Could not find record ${recordId}.`
+
         );
 
     }
@@ -2098,13 +2051,11 @@ function crFactionFindObjectBounds(
         index += 1
     ) {
 
-
         const character =
             text[index];
 
 
         if (escaped) {
-
 
             escaped =
                 false;
@@ -2123,7 +2074,6 @@ function crFactionFindObjectBounds(
             inString
         ) {
 
-
             escaped =
                 true;
 
@@ -2136,7 +2086,6 @@ function crFactionFindObjectBounds(
         if (
             character === "\""
         ) {
-
 
             inString =
                 !inString;
@@ -2158,7 +2107,6 @@ function crFactionFindObjectBounds(
             character === "{"
         ) {
 
-
             depth +=
                 1;
 
@@ -2169,7 +2117,6 @@ function crFactionFindObjectBounds(
             character === "}"
         ) {
 
-
             depth -=
                 1;
 
@@ -2177,7 +2124,6 @@ function crFactionFindObjectBounds(
             if (
                 depth === 0
             ) {
-
 
                 end =
                     index;
@@ -2198,9 +2144,10 @@ function crFactionFindObjectBounds(
         end === -1
     ) {
 
-
         throw new Error(
+
             `Could not locate record ${recordId}.`
+
         );
 
     }
@@ -2218,7 +2165,7 @@ function crFactionFindObjectBounds(
 
 
 // =================================
-// REPLACE STRING
+// REPLACE STRING FIELD
 // =================================
 
 
@@ -2227,7 +2174,6 @@ function crFactionReplaceStringField(
     key,
     value
 ) {
-
 
     const escapedKey =
         key.replace(
@@ -2250,9 +2196,10 @@ function crFactionReplaceStringField(
         )
     ) {
 
-
         throw new Error(
+
             `Could not find field ${key}.`
+
         );
 
     }
@@ -2282,8 +2229,8 @@ function crFactionReplaceStringField(
 
 
 // =================================
-// REPLACE ARRAY
-// PRESERVE FORMATTING
+// REPLACE ARRAY FIELD
+// PRESERVE PRETTY FORMATTING
 // =================================
 
 
@@ -2292,7 +2239,6 @@ function crFactionReplaceArrayField(
     key,
     value
 ) {
-
 
     const escapedKey =
         key.replace(
@@ -2317,9 +2263,10 @@ function crFactionReplaceArrayField(
         )
     ) {
 
-
         throw new Error(
+
             `Could not find field ${key}.`
+
         );
 
     }
@@ -2336,7 +2283,6 @@ function crFactionReplaceArrayField(
             prefix
         ) => {
 
-
             const formattedArray =
                 JSON.stringify(
                     value,
@@ -2351,7 +2297,6 @@ function crFactionReplaceArrayField(
                             line,
                             index
                         ) => {
-
 
                             if (
                                 index === 0
@@ -2398,7 +2343,7 @@ function crFactionReplaceArrayField(
 
 
 // =================================
-// UPDATE RECORD
+// UPDATE RECORD TEXT
 // =================================
 
 
@@ -2407,7 +2352,6 @@ function crFactionUpdateRecordText(
     recordId,
     changes
 ) {
-
 
     const bounds =
         crFactionFindObjectBounds(
@@ -2437,13 +2381,11 @@ function crFactionUpdateRecordText(
             ]
         ) => {
 
-
             if (
                 Array.isArray(
                     value
                 )
             ) {
-
 
                 block =
                     crFactionReplaceArrayField(
@@ -2502,7 +2444,7 @@ function crFactionUpdateRecordText(
 
 
 // =================================
-// APPEND RECORD
+// APPEND NEW RECORD
 // =================================
 
 
@@ -2510,7 +2452,6 @@ function crFactionAppendRecordText(
     text,
     record
 ) {
-
 
     const closingIndex =
         text.lastIndexOf(
@@ -2521,7 +2462,6 @@ function crFactionAppendRecordText(
     if (
         closingIndex === -1
     ) {
-
 
         throw new Error(
             "Could not find database array ending."
@@ -2579,9 +2519,7 @@ function crFactionAppendRecordText(
 
         (
             hasRecords
-
                 ? ",\n"
-
                 : "\n"
         )
 
@@ -2609,7 +2547,6 @@ function crFactionAppendRecordText(
 
 
 function crFactionBuildNewRecord() {
-
 
     const form =
         crFactionGetFormRecord();
@@ -2659,7 +2596,7 @@ function crFactionBuildNewRecord() {
 
 
 // =================================
-// APPLY WRESTLER ASSIGNMENTS
+// APPLY WRESTLER FACTION ASSIGNMENTS
 // =================================
 
 
@@ -2670,7 +2607,6 @@ function crFactionApplyWrestlerAssignments(
     oldMembers,
     newMembers
 ) {
-
 
     const affectedMembers =
         Array.from(
@@ -2693,7 +2629,6 @@ function crFactionApplyWrestlerAssignments(
 
     affectedMembers.forEach(
         wrestlerId => {
-
 
             const wrestler =
                 owlControlRoomData.wrestlers.find(
@@ -2777,12 +2712,11 @@ function crFactionApplyWrestlerAssignments(
 
 
 // =================================
-// SAVE EXISTING
+// SAVE EXISTING FACTION
 // =================================
 
 
 async function crFactionSaveExisting() {
-
 
     const factionId =
         crFactionSelect.value;
@@ -2909,12 +2843,11 @@ async function crFactionSaveExisting() {
 
 
 // =================================
-// SAVE NEW
+// SAVE NEW FACTION
 // =================================
 
 
 async function crFactionSaveNew() {
-
 
     const faction =
         crFactionBuildNewRecord();
@@ -3028,7 +2961,6 @@ async function crFactionSaveNew() {
 
 async function crFactionSave() {
 
-
     crFactionSaveButton.disabled =
         true;
 
@@ -3044,13 +2976,11 @@ async function crFactionSave() {
 
     try {
 
-
         const permission =
             await crFactionEnsureWritePermission();
 
 
         if (!permission) {
-
 
             throw new Error(
                 "Write permission was not granted."
@@ -3074,7 +3004,6 @@ async function crFactionSave() {
             errors.length > 0
         ) {
 
-
             throw new Error(
                 errors.join(" ")
             );
@@ -3087,7 +3016,6 @@ async function crFactionSave() {
             crFactionMode.value === "create"
         ) {
 
-
             await crFactionSaveNew();
 
         }
@@ -3095,45 +3023,42 @@ async function crFactionSave() {
 
         else {
 
-
             await crFactionSaveExisting();
 
         }
-
 
     }
 
 
     catch (error) {
 
-
-    console.error(
-        "Could not save faction:",
-        error
-    );
-
-
-    // Rebuild the review area first.
-    // This function hides old messages,
-    // so it must run BEFORE showing the error.
+        console.error(
+            "Could not save faction:",
+            error
+        );
 
 
-    crFactionReviewChanges();
+        // Rebuild review first because that function
+        // clears existing messages.
+
+        crFactionReviewChanges();
 
 
-    crFactionSetStatus(
-        "SAVE FAILED"
-    );
+        crFactionSetStatus(
+            "SAVE FAILED"
+        );
 
 
-    crFactionShowMessage(
+        crFactionShowMessage(
 
-        error.message ||
-        "The faction could not be saved.",
+            error.message ||
+            "The faction could not be saved.",
 
-        "save-error"
+            "save-error"
 
-    );
+        );
+
+    }
 
 }
 
@@ -3146,7 +3071,6 @@ async function crFactionSave() {
 
 function crFactionHandleDataLoaded() {
 
-
     crFactionPopulateFactions();
 
 }
@@ -3154,7 +3078,7 @@ function crFactionHandleDataLoaded() {
 
 
 // =================================
-// EVENTS
+// EVENT LISTENERS
 // =================================
 
 
@@ -3175,7 +3099,6 @@ Object.values(
     crFactionFields
 ).forEach(
     field => {
-
 
         field.addEventListener(
             "input",
@@ -3217,7 +3140,6 @@ window.addEventListener(
 
 try {
 
-
     if (
         typeof owlControlRoomData !==
             "undefined"
@@ -3241,19 +3163,18 @@ try {
         )
     ) {
 
-
         crFactionPopulateFactions();
 
     }
 
-
 }
+
 
 catch (error) {
 
-
     console.warn(
-        "Faction Manager waiting for repository data."
+        "Faction Manager waiting for repository data.",
+        error
     );
 
 }
