@@ -534,14 +534,14 @@
             </p>
 
             <h2>
-                Wrestler Show Manager
+                Wrestler Manager
             </h2>
 
         </div>
 
 
         <span
-            id="cr-wrestler-manager-status"
+            id="cr-wrestler-editor-status"
             class="control-room-health-summary"
         >
             READY
@@ -552,20 +552,53 @@
 
 
 
-    <div class="cr-manager-grid">
+    <!-- MODE -->
+
+
+    <div class="cr-editor-top-grid">
 
 
         <div class="cr-form-group">
 
 
-            <label for="cr-wrestler-select">
+            <label for="cr-wrestler-editor-mode">
+
+                ACTION
+
+            </label>
+
+
+            <select id="cr-wrestler-editor-mode">
+
+                <option value="edit">
+                    Edit Existing Wrestler
+                </option>
+
+                <option value="create">
+                    Add New Wrestler
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <div
+            id="cr-wrestler-editor-select-row"
+            class="cr-form-group"
+        >
+
+
+            <label for="cr-wrestler-editor-select">
 
                 WRESTLER
 
             </label>
 
 
-            <select id="cr-wrestler-select">
+            <select id="cr-wrestler-editor-select">
 
                 <option value="">
                     Select Wrestler
@@ -583,13 +616,13 @@
 
             <label>
 
-                CURRENT SHOW
+                DATABASE ID
 
             </label>
 
 
             <div
-                id="cr-current-brand"
+                id="cr-wrestler-id-preview"
                 class="cr-current-value"
             >
                 —
@@ -599,35 +632,158 @@
         </div>
 
 
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-new-brand">
-
-                NEW SHOW
-
-            </label>
+    </div>
 
 
-            <select
-                id="cr-new-brand"
-                disabled
-            >
 
-                <option value="">
-                    Unassigned
-                </option>
+    <!-- BASIC INFORMATION -->
 
-                <option value="Ascension">
-                    Ascension
-                </option>
 
-                <option value="Revolt">
-                    Revolt
-                </option>
+    <div class="cr-editor-section">
 
-            </select>
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                PROFILE
+            </span>
+
+            <h3>
+                Basic Information
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-editor-form-grid">
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-edit-name">
+
+                    NAME
+
+                </label>
+
+
+                <input
+                    id="cr-edit-name"
+                    type="text"
+                    autocomplete="off"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-edit-nickname">
+
+                    NICKNAME
+
+                </label>
+
+
+                <input
+                    id="cr-edit-nickname"
+                    type="text"
+                    autocomplete="off"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-edit-hometown">
+
+                    HOMETOWN
+
+                </label>
+
+
+                <input
+                    id="cr-edit-hometown"
+                    type="text"
+                    autocomplete="off"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-edit-country">
+
+                    COUNTRY
+
+                </label>
+
+
+                <input
+                    id="cr-edit-country"
+                    type="text"
+                    autocomplete="off"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-edit-country-code">
+
+                    COUNTRY CODE
+
+                </label>
+
+
+                <input
+                    id="cr-edit-country-code"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="Example: TT"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-edit-flag">
+
+                    FLAG
+
+                </label>
+
+
+                <input
+                    id="cr-edit-flag"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="Optional"
+                >
+
+
+            </div>
 
 
         </div>
@@ -637,36 +793,326 @@
 
 
 
-    <div
-        id="cr-brand-change-preview"
-        class="cr-change-preview"
-        hidden
-    >
+    <!-- ROSTER STATUS -->
 
 
-        <span>
-            REVIEW CHANGE
-        </span>
+    <div class="cr-editor-section">
 
 
-        <p id="cr-brand-change-text">
-        </p>
+        <div class="cr-editor-section-heading">
+
+            <span>
+                ROSTER STATUS
+            </span>
+
+            <h3>
+                Show and Division
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-editor-form-grid">
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-edit-brand">
+
+                    SHOW
+
+                </label>
+
+
+                <select id="cr-edit-brand">
+
+                    <option value="">
+                        Unassigned
+                    </option>
+
+                    <option value="Ascension">
+                        Ascension
+                    </option>
+
+                    <option value="Revolt">
+                        Revolt
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-edit-division">
+
+                    DIVISION
+
+                </label>
+
+
+                <select id="cr-edit-division">
+
+                    <option value="">
+                        Unassigned
+                    </option>
+
+                    <option value="Men">
+                        Men
+                    </option>
+
+                    <option value="Women">
+                        Women
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div
+            id="cr-existing-affiliations"
+            class="cr-affiliation-readout"
+            hidden
+        >
+
+
+            <div>
+
+                <span>
+                    CURRENT TEAM
+                </span>
+
+                <strong id="cr-editor-current-team">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    CURRENT FACTION
+                </span>
+
+                <strong id="cr-editor-current-faction">
+                    —
+                </strong>
+
+            </div>
+
+
+            <p>
+
+                Team and faction membership will be managed
+                through the dedicated Teams &amp; Factions Manager.
+
+            </p>
+
+
+        </div>
 
 
     </div>
 
 
 
+    <!-- WRESTLING INFORMATION -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                WRESTLING PROFILE
+            </span>
+
+            <h3>
+                Moves and Story
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-edit-finisher">
+
+                FINISHER
+
+            </label>
+
+
+            <input
+                id="cr-edit-finisher"
+                type="text"
+                autocomplete="off"
+            >
+
+
+        </div>
+
+
+
+        <div class="cr-form-group cr-editor-spaced-field">
+
+
+            <label for="cr-edit-signatures">
+
+                SIGNATURE MOVES
+
+            </label>
+
+
+            <textarea
+                id="cr-edit-signatures"
+                rows="5"
+                placeholder="Enter one move per line"
+            ></textarea>
+
+
+            <small class="cr-field-help">
+
+                One move per line.
+
+            </small>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group cr-editor-spaced-field">
+
+
+            <label for="cr-edit-story">
+
+                WHY I'M HERE
+
+            </label>
+
+
+            <textarea
+                id="cr-edit-story"
+                rows="7"
+            ></textarea>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- MEDIA -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                MEDIA
+            </span>
+
+            <h3>
+                Wrestler Photo
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-edit-photo">
+
+                PHOTO PATH
+
+            </label>
+
+
+            <input
+                id="cr-edit-photo"
+                type="text"
+                autocomplete="off"
+                placeholder="assets/images/wrestlers/example.png"
+            >
+
+
+            <small class="cr-field-help">
+
+                Direct file selection and image importing will be added
+                in the Media Manager.
+
+            </small>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- REVIEW CHANGES -->
+
+
+    <div
+        id="cr-wrestler-change-preview"
+        class="cr-change-preview"
+        hidden
+    >
+
+
+        <span>
+            REVIEW CHANGES
+        </span>
+
+
+        <div
+            id="cr-wrestler-change-list"
+            class="cr-editor-change-list"
+        >
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ACTIONS -->
+
+
     <div class="cr-manager-actions">
 
 
         <button
-            id="cr-save-brand-change"
+            id="cr-save-wrestler"
             class="control-room-button control-room-button-primary"
             type="button"
             disabled
         >
-            Save Show Change
+            Save Wrestler Changes
         </button>
 
 
@@ -675,12 +1121,14 @@
 
 
     <p
-        id="cr-brand-save-message"
+        id="cr-wrestler-editor-message"
         class="cr-save-message"
         hidden
     >
     </p>
 
+
+</section>
 
 </section>
         <!-- =================================
