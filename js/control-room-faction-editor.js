@@ -3107,30 +3107,33 @@ async function crFactionSave() {
     catch (error) {
 
 
-        console.error(
-            "Could not save faction:",
-            error
-        );
+    console.error(
+        "Could not save faction:",
+        error
+    );
 
 
-        crFactionSetStatus(
-            "SAVE FAILED"
-        );
+    // Rebuild the review area first.
+    // This function hides old messages,
+    // so it must run BEFORE showing the error.
 
 
-        crFactionShowMessage(
-
-            error.message ||
-            "The faction could not be saved.",
-
-            "save-error"
-
-        );
+    crFactionReviewChanges();
 
 
-        crFactionReviewChanges();
+    crFactionSetStatus(
+        "SAVE FAILED"
+    );
 
-    }
+
+    crFactionShowMessage(
+
+        error.message ||
+        "The faction could not be saved.",
+
+        "save-error"
+
+    );
 
 }
 
