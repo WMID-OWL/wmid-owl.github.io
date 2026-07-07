@@ -2724,6 +2724,780 @@
 
 
 </section>
+    <!-- =================================
+     MATCH BOOKER
+================================= -->
+
+
+<section class="control-room-panel">
+
+
+    <div class="control-room-panel-heading">
+
+
+        <div>
+
+            <p class="eyebrow">
+                CARD MANAGEMENT
+            </p>
+
+            <h2>
+                Match Booker
+            </h2>
+
+        </div>
+
+
+        <span
+            id="cr-booker-status"
+            class="control-room-health-summary"
+        >
+            READY
+        </span>
+
+
+    </div>
+
+
+
+    <!-- MODE -->
+
+
+    <div class="cr-editor-top-grid">
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-booker-mode">
+
+                ACTION
+
+            </label>
+
+
+            <select id="cr-booker-mode">
+
+                <option value="create">
+                    Add Match to Card
+                </option>
+
+                <option value="edit">
+                    Edit Booked Match
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-booker-event">
+
+                EVENT
+
+            </label>
+
+
+            <select id="cr-booker-event">
+
+                <option value="">
+                    Select Event
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <div
+            id="cr-booker-match-select-row"
+            class="cr-form-group"
+            hidden
+        >
+
+
+            <label for="cr-booker-match-select">
+
+                BOOKED MATCH
+
+            </label>
+
+
+            <select id="cr-booker-match-select">
+
+                <option value="">
+                    Select Match
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- MATCH INFORMATION -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                MATCH SETUP
+            </span>
+
+            <h3>
+                Match Information
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-editor-form-grid">
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-booker-match-type">
+
+                    MATCH TYPE
+
+                </label>
+
+
+                <select id="cr-booker-match-type">
+
+                    <option value="Singles">
+                        Singles
+                    </option>
+
+                    <option value="Tag Team">
+                        Tag Team
+                    </option>
+
+                    <option value="Triple Threat">
+                        Triple Threat
+                    </option>
+
+                    <option value="Fatal 4-Way">
+                        Fatal 4-Way
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-booker-order">
+
+                    CARD ORDER
+
+                </label>
+
+
+                <input
+                    id="cr-booker-order"
+                    type="number"
+                    min="1"
+                    step="1"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-booker-championship">
+
+                    CHAMPIONSHIP
+
+                </label>
+
+
+                <select id="cr-booker-championship">
+
+                    <option value="">
+                        Non-Title Match
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-booker-status-field">
+
+                    STATUS
+
+                </label>
+
+
+                <select id="cr-booker-status-field">
+
+                    <option value="announced">
+                        Announced
+                    </option>
+
+                    <option value="postponed">
+                        Postponed
+                    </option>
+
+                    <option value="cancelled">
+                        Cancelled
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group cr-editor-spaced-field">
+
+
+            <label for="cr-booker-stipulation">
+
+                STIPULATION
+
+            </label>
+
+
+            <input
+                id="cr-booker-stipulation"
+                type="text"
+                autocomplete="off"
+                placeholder="Optional"
+            >
+
+
+        </div>
+
+
+
+        <div class="cr-form-group cr-editor-spaced-field">
+
+
+            <label for="cr-booker-status-note">
+
+                STATUS NOTE
+
+            </label>
+
+
+            <input
+                id="cr-booker-status-note"
+                type="text"
+                autocomplete="off"
+                placeholder="Optional note for postponed or cancelled matches"
+            >
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- COMPETITORS -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                COMPETITORS
+            </span>
+
+            <h3>
+                Match Sides
+            </h3>
+
+        </div>
+
+
+
+        <!-- SIDE 1 -->
+
+
+        <div
+            id="cr-booker-side-one"
+            class="cr-booker-side-card"
+        >
+
+
+            <div class="cr-booker-side-heading">
+
+                <span>
+                    SIDE 1
+                </span>
+
+            </div>
+
+
+
+            <div
+                id="cr-booker-side-one-tag-controls"
+                class="cr-booker-tag-controls"
+                hidden
+            >
+
+
+                <div class="cr-form-group">
+
+
+                    <label for="cr-booker-side-one-mode">
+
+                        SIDE TYPE
+
+                    </label>
+
+
+                    <select id="cr-booker-side-one-mode">
+
+                        <option value="team">
+                            Official Team
+                        </option>
+
+                        <option value="custom">
+                            Custom Pair
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div
+                id="cr-booker-side-one-team-row"
+                class="cr-form-group"
+                hidden
+            >
+
+
+                <label for="cr-booker-side-one-team">
+
+                    TEAM
+
+                </label>
+
+
+                <select id="cr-booker-side-one-team">
+
+                    <option value="">
+                        Select Team
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div
+                id="cr-booker-side-one-wrestlers"
+                class="cr-booker-wrestler-grid"
+            >
+
+
+                <div class="cr-form-group">
+
+
+                    <label for="cr-booker-side-one-wrestler-one">
+
+                        WRESTLER 1
+
+                    </label>
+
+
+                    <select id="cr-booker-side-one-wrestler-one">
+
+                        <option value="">
+                            Select Wrestler
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <div
+                    id="cr-booker-side-one-wrestler-two-row"
+                    class="cr-form-group"
+                    hidden
+                >
+
+
+                    <label for="cr-booker-side-one-wrestler-two">
+
+                        WRESTLER 2
+
+                    </label>
+
+
+                    <select id="cr-booker-side-one-wrestler-two">
+
+                        <option value="">
+                            Select Wrestler
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- SIDE 2 -->
+
+
+        <div
+            id="cr-booker-side-two"
+            class="cr-booker-side-card"
+        >
+
+
+            <div class="cr-booker-side-heading">
+
+                <span>
+                    SIDE 2
+                </span>
+
+            </div>
+
+
+
+            <div
+                id="cr-booker-side-two-tag-controls"
+                class="cr-booker-tag-controls"
+                hidden
+            >
+
+
+                <div class="cr-form-group">
+
+
+                    <label for="cr-booker-side-two-mode">
+
+                        SIDE TYPE
+
+                    </label>
+
+
+                    <select id="cr-booker-side-two-mode">
+
+                        <option value="team">
+                            Official Team
+                        </option>
+
+                        <option value="custom">
+                            Custom Pair
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div
+                id="cr-booker-side-two-team-row"
+                class="cr-form-group"
+                hidden
+            >
+
+
+                <label for="cr-booker-side-two-team">
+
+                    TEAM
+
+                </label>
+
+
+                <select id="cr-booker-side-two-team">
+
+                    <option value="">
+                        Select Team
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div
+                id="cr-booker-side-two-wrestlers"
+                class="cr-booker-wrestler-grid"
+            >
+
+
+                <div class="cr-form-group">
+
+
+                    <label for="cr-booker-side-two-wrestler-one">
+
+                        WRESTLER 1
+
+                    </label>
+
+
+                    <select id="cr-booker-side-two-wrestler-one">
+
+                        <option value="">
+                            Select Wrestler
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <div
+                    id="cr-booker-side-two-wrestler-two-row"
+                    class="cr-form-group"
+                    hidden
+                >
+
+
+                    <label for="cr-booker-side-two-wrestler-two">
+
+                        WRESTLER 2
+
+                    </label>
+
+
+                    <select id="cr-booker-side-two-wrestler-two">
+
+                        <option value="">
+                            Select Wrestler
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- SIDE 3 -->
+
+
+        <div
+            id="cr-booker-side-three"
+            class="cr-booker-side-card"
+            hidden
+        >
+
+
+            <div class="cr-booker-side-heading">
+
+                <span>
+                    SIDE 3
+                </span>
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-booker-side-three-wrestler">
+
+                    WRESTLER
+
+                </label>
+
+
+                <select id="cr-booker-side-three-wrestler">
+
+                    <option value="">
+                        Select Wrestler
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- SIDE 4 -->
+
+
+        <div
+            id="cr-booker-side-four"
+            class="cr-booker-side-card"
+            hidden
+        >
+
+
+            <div class="cr-booker-side-heading">
+
+                <span>
+                    SIDE 4
+                </span>
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-booker-side-four-wrestler">
+
+                    WRESTLER
+
+                </label>
+
+
+                <select id="cr-booker-side-four-wrestler">
+
+                    <option value="">
+                        Select Wrestler
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- REVIEW -->
+
+
+    <div
+        id="cr-booker-preview"
+        class="cr-change-preview"
+        hidden
+    >
+
+
+        <span>
+            REVIEW MATCH
+        </span>
+
+
+        <div
+            id="cr-booker-review-list"
+            class="cr-editor-change-list"
+        >
+        </div>
+
+
+        <p
+            id="cr-booker-error"
+            class="cr-change-error"
+            hidden
+        >
+        </p>
+
+
+    </div>
+
+
+
+    <!-- ACTIONS -->
+
+
+    <div class="cr-manager-actions">
+
+
+        <button
+            id="cr-booker-save"
+            class="control-room-button control-room-button-primary"
+            type="button"
+            disabled
+        >
+            Add Match to Card
+        </button>
+
+
+    </div>
+
+
+
+    <p
+        id="cr-booker-message"
+        class="cr-save-message"
+        hidden
+    >
+    </p>
+
+
+</section>
         <!-- =================================
              DATA HEALTH
         ================================== -->
