@@ -310,6 +310,8 @@ let crBookerOriginalRecord =
 let crBookerPendingMatchId =
     "";
 
+
+
 // =================================
 // MATCH STRUCTURE MODES
 // =================================
@@ -333,6 +335,221 @@ const CR_BOOKER_STRUCTURE_MODES = {
         "specialField"
 
 };
+
+
+
+// =================================
+// SPECIALTY MATCH PROFILES
+// =================================
+
+
+const CR_BOOKER_SPECIALTY_PROFILES = {
+
+
+    "Battle Royal": {
+
+        mode:
+            CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+
+        minParticipants:
+            3,
+
+        maxParticipants:
+            8,
+
+        defaultParticipants:
+            6,
+
+        allowParticipantCountChange:
+            true,
+
+        requiresEliminationRule:
+            true
+
+    },
+
+
+
+    "Hex-Cell Eliminator": {
+
+        mode:
+            CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+
+        minParticipants:
+            6,
+
+        maxParticipants:
+            6,
+
+        defaultParticipants:
+            6,
+
+        allowParticipantCountChange:
+            false
+
+    },
+
+
+
+    "The Devil's Contract": {
+
+        mode:
+            CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+
+        minParticipants:
+            6,
+
+        maxParticipants:
+            6,
+
+        defaultParticipants:
+            6,
+
+        allowParticipantCountChange:
+            false
+
+    },
+
+
+
+    "Fate's Wheel": {
+
+        mode:
+            CR_BOOKER_STRUCTURE_MODES.SPECIAL_FIELD,
+
+        minParticipants:
+            10,
+
+        maxParticipants:
+            10,
+
+        defaultParticipants:
+            10,
+
+        allowParticipantCountChange:
+            false
+
+    },
+
+
+
+    "Love and War": {
+
+        mode:
+            CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
+
+    },
+
+
+
+    "Overthrow Rumble": {
+
+        mode:
+            CR_BOOKER_STRUCTURE_MODES.DEFERRED_ROSTER,
+
+        participantCount:
+            30,
+
+        requiresParticipantSelection:
+            false
+
+    },
+
+
+
+    "Elimination Match": {
+
+        mode:
+            null,
+
+        requiresStructureChoice:
+            true,
+
+        allowedModes: [
+
+            CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+
+            CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
+
+        ]
+
+    }
+
+};
+
+
+
+// =================================
+// BATTLE ROYAL RULES
+// =================================
+
+
+const CR_BOOKER_BATTLE_ROYAL_RULES = [
+
+    "Over the Top Rope",
+
+    "Pinfall or Submission",
+
+    "All Three (Over the Top Rope, Pinfall, or Submission)"
+
+];
+
+
+
+// =================================
+// SPECIALTY PROFILE HELPERS
+// =================================
+
+
+function crBookerGetSpecialtyProfile(
+    stipulation
+) {
+
+    if (!stipulation) {
+
+        return null;
+
+    }
+
+
+    return (
+
+        CR_BOOKER_SPECIALTY_PROFILES[
+            stipulation
+        ]
+
+        ||
+
+        null
+
+    );
+
+}
+
+
+
+function crBookerGetStructureMode(
+    stipulation
+) {
+
+    const profile =
+        crBookerGetSpecialtyProfile(
+            stipulation
+        );
+
+
+    if (!profile) {
+
+        return CR_BOOKER_STRUCTURE_MODES.STANDARD;
+
+    }
+
+
+    return profile.mode;
+
+}
+
+
 
 // =================================
 // BASIC HELPERS
@@ -796,6 +1013,7 @@ function crBookerPopulateChampionships() {
 }
 
 
+
 // =================================
 // ADVANCED PARTICIPANT HELPERS
 // =================================
@@ -834,7 +1052,7 @@ function crBookerBuildAdvancedIndividualSides() {
 
 
 // =================================
-// BATTLE ROYAL PARTICIPANTS
+// ADVANCED PARTICIPANTS
 // =================================
 
 
@@ -1068,6 +1286,8 @@ function crBookerRefreshAdvancedMatchLayout() {
     crBookerReview();
 
 }
+
+
 
 // =================================
 // POPULATE EVENTS
@@ -1445,7 +1665,7 @@ function crBookerRefreshSideLayout() {
     }
 
 
-        crBookerRefreshAdvancedMatchLayout();
+    crBookerRefreshAdvancedMatchLayout();
 
 }
 
@@ -1763,7 +1983,7 @@ function crBookerBuildSides() {
         crBookerStipulation.value;
 
 
-        if (
+    if (
         stipulation === "Battle Royal"
 
         ||
@@ -1954,76 +2174,6 @@ function crBookerGetFormRecord() {
 
 }
 
-    const stipulation =
-        crBookerStipulation.value.trim();
-
-
-    const isBattleRoyal =
-        stipulation === "Battle Royal";
-
-
-    return {
-
-        eventId:
-            crBookerEvent.value,
-
-        order:
-            Number(
-                crBookerOrder.value
-            ),
-
-        matchType:
-            crBookerMatchType.value,
-
-        sides:
-            crBookerBuildSides(),
-
-        championshipId:
-            crBookerChampionship.value,
-
-        stipulation:
-            stipulation,
-
-        structure:
-
-            isBattleRoyal
-
-                ? {
-
-                    mode:
-                        CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
-
-                    participantCount:
-                        Number(
-                            crBookerParticipantCount.value
-                        )
-
-                }
-
-                : null,
-
-        specialty:
-
-            isBattleRoyal
-
-                ? {
-
-                    eliminationRule:
-                        crBookerEliminationRule.value
-
-                }
-
-                : null,
-
-        status:
-            crBookerStatusField.value,
-
-        statusNote:
-            crBookerStatusNote.value.trim()
-
-    };
-
-}
 
 
 // =================================
@@ -2290,18 +2440,18 @@ function crBookerReview() {
 
 
     if (
-    record.stipulation
-) {
-
-    crBookerAddReviewRow(
-
-        "Specialty Match",
-
         record.stipulation
+    ) {
 
-    );
+        crBookerAddReviewRow(
 
-}
+            "Specialty Match",
+
+            record.stipulation
+
+        );
+
+    }
 
 
     if (
@@ -2516,11 +2666,72 @@ function crBookerLoadSelectedMatch() {
         match.statusNote || "";
 
 
+    if (
+        match.stipulation === "Battle Royal"
+    ) {
+
+        crBookerParticipantCount.value =
+            String(
+                match.structure?.participantCount || 6
+            );
+
+
+        crBookerEliminationRule.value =
+            match.specialty?.eliminationRule ||
+            "Over the Top Rope";
+
+    }
+
+
     crBookerRefreshSideLayout();
 
 
 
     if (
+        match.stipulation === "Battle Royal"
+
+        ||
+
+        match.stipulation === "Hex-Cell Eliminator"
+    ) {
+
+        const participantIds =
+            Array.isArray(
+                match.sides
+            )
+
+                ? match.sides.map(
+                    side =>
+                        side.wrestlers?.[0] || ""
+                )
+
+                : [];
+
+
+        const participantCount =
+
+            match.stipulation ===
+                "Hex-Cell Eliminator"
+
+                ? 6
+
+                : Number(
+                    match.structure?.participantCount
+                ) || 6;
+
+
+        crBookerRenderAdvancedParticipants(
+
+            participantCount,
+
+            participantIds
+
+        );
+
+    }
+
+
+    else if (
         match.matchType === "Tag Team"
     ) {
 
@@ -3107,7 +3318,7 @@ function crBookerBuildSavedRecord() {
             };
 
 
-        const record = {
+    const record = {
 
         ...baseRecord,
 
@@ -3172,7 +3383,7 @@ function crBookerBuildSavedRecord() {
     if (
         form.statusNote
     ) {
-        
+
         record.statusNote =
             form.statusNote;
 
@@ -3289,54 +3500,46 @@ async function crBookerSaveMatch() {
 
         crBookerPendingMatchId =
 
-    crBookerMode.value === "edit"
+            crBookerMode.value === "edit"
 
-        ? record.id
+                ? record.id
 
-        : "";
-
-
-
-await loadRepositoryData(
-    owlRepositoryHandle
-);
-
-
-        // Refresh the selected match first.
-//
-// Edit mode automatically reloads the saved match,
-// and that reload clears old messages.
-// Therefore the success confirmation must be shown
-// AFTER the refresh finishes.
-
-
-crBookerRefreshMatchList();
+                : "";
 
 
 
-crBookerShowMessage(
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
 
-    crBookerMode.value === "edit"
 
-        ? "Booked match changes were saved locally. Review announced-matches.json in GitHub Desktop."
-
-        : "Match was added to the event card. Review announced-matches.json in GitHub Desktop.",
-
-    "save-success"
-
-);
+        crBookerRefreshMatchList();
 
 
 
-crBookerSetStatus(
+        crBookerShowMessage(
 
-    crBookerMode.value === "edit"
+            crBookerMode.value === "edit"
 
-        ? "SAVED"
+                ? "Booked match changes were saved locally. Review announced-matches.json in GitHub Desktop."
 
-        : "BOOKED"
+                : "Match was added to the event card. Review announced-matches.json in GitHub Desktop.",
 
-);
+            "save-success"
+
+        );
+
+
+
+        crBookerSetStatus(
+
+            crBookerMode.value === "edit"
+
+                ? "SAVED"
+
+                : "BOOKED"
+
+        );
 
     }
 
@@ -3441,6 +3644,8 @@ crBookerMatchType.addEventListener(
     "change",
     crBookerRefreshSideLayout
 );
+
+
 crBookerStipulation.addEventListener(
     "change",
     crBookerRefreshAdvancedMatchLayout
@@ -3470,6 +3675,7 @@ crBookerEliminationRule.addEventListener(
     "change",
     crBookerReview
 );
+
 
 crBookerSideOneMode.addEventListener(
     "change",
