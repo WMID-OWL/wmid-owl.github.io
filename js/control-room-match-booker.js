@@ -61,6 +61,14 @@ const crBookerDivisionRow = document.getElementById("cr-booker-division-row");
 
 const crBookerDivision = document.getElementById("cr-booker-division");
 
+const crBookerStructureChoiceRow = document.getElementById(
+  "cr-booker-structure-choice-row",
+);
+
+const crBookerStructureChoice = document.getElementById(
+  "cr-booker-structure-choice",
+);
+
 const crBookerAdvancedParticipants = document.getElementById(
   "cr-booker-advanced-participants",
 );
@@ -505,6 +513,70 @@ function crBookerPopulateChampionships() {
     crBookerChampionship.value = oldValue;
   }
 }
+// =================================
+// STRUCTURE CONTROL HELPERS
+// =================================
+
+function crBookerConfigureStructureChoice() {
+  const oldValue = crBookerStructureChoice.value;
+
+  crBookerStructureChoice.innerHTML = `
+    <option value="">
+      Select Structure
+    </option>
+
+    <option value="freeForAll">
+      Individual Elimination
+    </option>
+
+    <option value="teamBattle">
+      Team Elimination
+    </option>
+  `;
+
+  if (
+    oldValue === CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL ||
+    oldValue === CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
+  ) {
+    crBookerStructureChoice.value = oldValue;
+  }
+}
+
+function crBookerSetCountControl(
+  labelText,
+  values,
+  defaultValue,
+) {
+  const label = crBookerParticipantCountRow.querySelector(
+    'label[for="cr-booker-participant-count"]',
+  );
+
+  if (label) {
+    label.textContent = labelText;
+  }
+
+  const currentValue = Number(
+    crBookerParticipantCount.value,
+  );
+
+  crBookerParticipantCount.innerHTML = "";
+
+  values.forEach((value) => {
+    const option = document.createElement("option");
+
+    option.value = String(value);
+
+    option.textContent = String(value);
+
+    crBookerParticipantCount.appendChild(option);
+  });
+
+  crBookerParticipantCount.value = values.includes(
+    currentValue,
+  )
+    ? String(currentValue)
+    : String(defaultValue);
+}
 
 // =================================
 // ADVANCED PARTICIPANT HELPERS
@@ -548,10 +620,17 @@ function crBookerBuildTeamBattleSides() {
   }));
 }
 
-function crBookerRenderTeamBattleSides(sideWrestlers = [[], []]) {
+function crBookerRenderTeamBattleSides(
+  sideWrestlers = [[], []],
+  teamSize = 5,
+) {
   crBookerTeamBattleSides.innerHTML = "";
 
-  for (let sideNumber = 1; sideNumber <= 2; sideNumber += 1) {
+  for (
+    let sideNumber = 1;
+    sideNumber <= 2;
+    sideNumber += 1
+  ) {
     const sideCard = document.createElement("div");
 
     sideCard.className = "cr-booker-side-card";
@@ -572,7 +651,11 @@ function crBookerRenderTeamBattleSides(sideWrestlers = [[], []]) {
 
     grid.className = "cr-booker-wrestler-grid";
 
-    for (let memberIndex = 0; memberIndex < 5; memberIndex += 1) {
+    for (
+      let memberIndex = 0;
+      memberIndex < teamSize;
+      memberIndex += 1
+    ) {
       const group = document.createElement("div");
 
       group.className = "cr-form-group";
@@ -590,22 +673,32 @@ function crBookerRenderTeamBattleSides(sideWrestlers = [[], []]) {
 
       select.id = selectId;
 
-      select.dataset.crBookerTeamBattleParticipant = "true";
+      select.dataset.crBookerTeamBattleParticipant =
+        "true";
 
-      select.dataset.crBookerTeamBattleSide = String(sideNumber);
+      select.dataset.crBookerTeamBattleSide =
+        String(sideNumber);
 
       crBookerPopulateWrestlerSelect(select);
 
       const savedWrestlerId =
-        sideWrestlers[sideNumber - 1]?.[memberIndex] || "";
+        sideWrestlers[sideNumber - 1]?.[
+          memberIndex
+        ] || "";
 
       if (savedWrestlerId) {
         select.value = savedWrestlerId;
       }
 
-      select.addEventListener("input", crBookerReview);
+      select.addEventListener(
+        "input",
+        crBookerReview,
+      );
 
-      select.addEventListener("change", crBookerReview);
+      select.addEventListener(
+        "change",
+        crBookerReview,
+      );
 
       group.appendChild(label);
 
@@ -695,73 +788,187 @@ function crBookerRenderAdvancedParticipants(
 function crBookerRefreshAdvancedMatchLayout() {
   const stipulation = crBookerStipulation.value;
 
-  const isBattleRoyal = stipulation === "Battle Royal";
+  const isBattleRoyal =
+    stipulation === "Battle Royal";
 
-  const isHexCell = stipulation === "Hex-Cell Eliminator";
+  const isHexCell =
+    stipulation === "Hex-Cell Eliminator";
 
-  const isDevilsContract = stipulation === "The Devil's Contract";
+  const isDevilsContract =
+    stipulation === "The Devil's Contract";
 
-  const isFatesWheel = stipulation === "Fate's Wheel";
+  const isFatesWheel =
+    stipulation === "Fate's Wheel";
 
-  const isOverthrowRumble = stipulation === "Overthrow Rumble";
+  const isOverthrowRumble =
+    stipulation === "Overthrow Rumble";
 
-  const isLoveAndWar = stipulation === "Love and War";
+  const isLoveAndWar =
+    stipulation === "Love and War";
+
+  const isEliminationMatch =
+    stipulation === "Elimination Match";
+
+  const eliminationMode =
+    isEliminationMatch
+      ? crBookerStructureChoice.value
+      : "";
+
+  const isIndividualElimination =
+    isEliminationMatch &&
+    eliminationMode ===
+      CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL;
+
+  const isTeamElimination =
+    isEliminationMatch &&
+    eliminationMode ===
+      CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE;
 
   const usesAdvancedParticipants =
-    isBattleRoyal || isHexCell || isDevilsContract || isFatesWheel;
+    isBattleRoyal ||
+    isHexCell ||
+    isDevilsContract ||
+    isFatesWheel ||
+    isIndividualElimination;
+
+  const usesTeamBattleSides =
+    isLoveAndWar ||
+    isTeamElimination;
 
   const usesAdvancedLayout =
     usesAdvancedParticipants ||
+    usesTeamBattleSides ||
     isOverthrowRumble ||
-    isLoveAndWar;
+    isEliminationMatch;
 
-  crBookerAdvancedMatch.hidden = !usesAdvancedLayout;
+  crBookerAdvancedMatch.hidden =
+    !usesAdvancedLayout;
 
-  crBookerParticipantCountRow.hidden = !isBattleRoyal;
+  crBookerStructureChoiceRow.hidden =
+    !isEliminationMatch;
 
-  crBookerParticipantCountRow.style.display = isBattleRoyal ? "" : "none";
+  crBookerStructureChoiceRow.style.display =
+    isEliminationMatch
+      ? ""
+      : "none";
 
-  crBookerEliminationRuleRow.hidden = !isBattleRoyal;
+  const showsCountControl =
+    isBattleRoyal ||
+    isIndividualElimination ||
+    isTeamElimination;
 
-  crBookerEliminationRuleRow.style.display = isBattleRoyal ? "" : "none";
+  crBookerParticipantCountRow.hidden =
+    !showsCountControl;
 
-  crBookerDivisionRow.hidden = !isOverthrowRumble;
+  crBookerParticipantCountRow.style.display =
+    showsCountControl
+      ? ""
+      : "none";
 
-  crBookerDivisionRow.style.display = isOverthrowRumble ? "" : "none";
+  crBookerEliminationRuleRow.hidden =
+    !isBattleRoyal;
 
-  crBookerAdvancedParticipants.hidden = !usesAdvancedParticipants;
+  crBookerEliminationRuleRow.style.display =
+    isBattleRoyal
+      ? ""
+      : "none";
+
+  crBookerDivisionRow.hidden =
+    !isOverthrowRumble;
+
+  crBookerDivisionRow.style.display =
+    isOverthrowRumble
+      ? ""
+      : "none";
+
+  if (isBattleRoyal) {
+    crBookerSetCountControl(
+      "PARTICIPANT COUNT",
+      [3, 4, 5, 6, 7, 8],
+      6,
+    );
+  }
+
+  if (isIndividualElimination) {
+    crBookerSetCountControl(
+      "PARTICIPANT COUNT",
+      [3, 4, 5, 6, 7, 8],
+      6,
+    );
+  }
+
+  if (isTeamElimination) {
+    crBookerSetCountControl(
+      "TEAM SIZE",
+      [2, 3, 4],
+      2,
+    );
+  }
+
+  crBookerAdvancedParticipants.hidden =
+    !usesAdvancedParticipants;
 
   crBookerAdvancedParticipants.style.display =
-    usesAdvancedParticipants ? "" : "none";
+    usesAdvancedParticipants
+      ? ""
+      : "none";
 
-  crBookerTeamBattleSides.hidden = !isLoveAndWar;
+  crBookerTeamBattleSides.hidden =
+    !usesTeamBattleSides;
 
-  crBookerTeamBattleSides.style.display = isLoveAndWar ? "" : "none";
+  crBookerTeamBattleSides.style.display =
+    usesTeamBattleSides
+      ? ""
+      : "none";
 
-  crBookerStandardCompetitors.hidden = usesAdvancedLayout;
+  crBookerStandardCompetitors.hidden =
+    usesAdvancedLayout;
 
   if (usesAdvancedParticipants) {
-    const currentSelects = crBookerGetAdvancedParticipantSelects();
+    const currentSelects =
+      crBookerGetAdvancedParticipantSelects();
 
-    const desiredCount = isFatesWheel
-      ? 8
-      : isHexCell || isDevilsContract
-        ? 6
-        : Number(crBookerParticipantCount.value) || 6;
+    const desiredCount =
+      isFatesWheel
+        ? 8
+        : isHexCell ||
+            isDevilsContract
+          ? 6
+          : Number(
+              crBookerParticipantCount.value,
+            ) || 6;
 
-    if (currentSelects.length !== desiredCount) {
-      crBookerRenderAdvancedParticipants(desiredCount);
+    if (
+      currentSelects.length !==
+      desiredCount
+    ) {
+      crBookerRenderAdvancedParticipants(
+        desiredCount,
+      );
     }
   } else {
     crBookerAdvancedParticipants.innerHTML = "";
   }
 
-  if (isLoveAndWar) {
+  if (usesTeamBattleSides) {
+    const desiredTeamSize =
+      isLoveAndWar
+        ? 5
+        : Number(
+            crBookerParticipantCount.value,
+          ) || 2;
+
     const currentTeamBattleSelects =
       crBookerGetTeamBattleParticipantSelects();
 
-    if (currentTeamBattleSelects.length !== 10) {
-      crBookerRenderTeamBattleSides();
+    if (
+      currentTeamBattleSelects.length !==
+      desiredTeamSize * 2
+    ) {
+      crBookerRenderTeamBattleSides(
+        [[], []],
+        desiredTeamSize,
+      );
     }
   } else {
     crBookerTeamBattleSides.innerHTML = "";
@@ -814,6 +1021,8 @@ function crBookerPopulateOptions() {
   crBookerPopulateEvents();
 
   crBookerPopulateChampionships();
+
+  crBookerConfigureStructureChoice();
 
   [
     crBookerSideOneWrestlerOne,
@@ -1103,6 +1312,24 @@ function crBookerBuildSides() {
     return crBookerBuildTeamBattleSides();
   }
 
+  if (stipulation === "Elimination Match") {
+    if (
+      crBookerStructureChoice.value ===
+      CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL
+    ) {
+      return crBookerBuildAdvancedIndividualSides();
+    }
+
+    if (
+      crBookerStructureChoice.value ===
+      CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
+    ) {
+      return crBookerBuildTeamBattleSides();
+    }
+
+    return [];
+  }
+
   if (
     stipulation === "Battle Royal" ||
     stipulation === "Hex-Cell Eliminator" ||
@@ -1113,28 +1340,42 @@ function crBookerBuildSides() {
   }
 
   if (matchType === "Tag Team") {
-    return [crBookerGetTagSide(1), crBookerGetTagSide(2)];
+    return [
+      crBookerGetTagSide(1),
+      crBookerGetTagSide(2),
+    ];
   }
 
   const sides = [
     {
-      wrestlers: [crBookerSideOneWrestlerOne.value].filter(Boolean),
+      wrestlers: [
+        crBookerSideOneWrestlerOne.value,
+      ].filter(Boolean),
     },
 
     {
-      wrestlers: [crBookerSideTwoWrestlerOne.value].filter(Boolean),
+      wrestlers: [
+        crBookerSideTwoWrestlerOne.value,
+      ].filter(Boolean),
     },
   ];
 
-  if (matchType === "Triple Threat" || matchType === "Fatal 4-Way") {
+  if (
+    matchType === "Triple Threat" ||
+    matchType === "Fatal 4-Way"
+  ) {
     sides.push({
-      wrestlers: [crBookerSideThreeWrestler.value].filter(Boolean),
+      wrestlers: [
+        crBookerSideThreeWrestler.value,
+      ].filter(Boolean),
     });
   }
 
   if (matchType === "Fatal 4-Way") {
     sides.push({
-      wrestlers: [crBookerSideFourWrestler.value].filter(Boolean),
+      wrestlers: [
+        crBookerSideFourWrestler.value,
+      ].filter(Boolean),
     });
   }
 
@@ -1146,79 +1387,143 @@ function crBookerBuildSides() {
 // =================================
 
 function crBookerGetFormRecord() {
-  const stipulation = crBookerStipulation.value.trim();
+  const stipulation =
+    crBookerStipulation.value.trim();
 
-  const isBattleRoyal = stipulation === "Battle Royal";
+  const isBattleRoyal =
+    stipulation === "Battle Royal";
 
-  const isHexCell = stipulation === "Hex-Cell Eliminator";
+  const isHexCell =
+    stipulation === "Hex-Cell Eliminator";
 
-  const isDevilsContract = stipulation === "The Devil's Contract";
+  const isDevilsContract =
+    stipulation === "The Devil's Contract";
 
-  const isFatesWheel = stipulation === "Fate's Wheel";
+  const isFatesWheel =
+    stipulation === "Fate's Wheel";
 
-  const isOverthrowRumble = stipulation === "Overthrow Rumble";
+  const isOverthrowRumble =
+    stipulation === "Overthrow Rumble";
 
-  const isLoveAndWar = stipulation === "Love and War";
+  const isLoveAndWar =
+    stipulation === "Love and War";
+
+  const isEliminationMatch =
+    stipulation === "Elimination Match";
+
+  const eliminationMode =
+    isEliminationMatch
+      ? crBookerStructureChoice.value
+      : "";
 
   const usesAdvancedParticipants =
-    isBattleRoyal || isHexCell || isDevilsContract || isFatesWheel;
+    isBattleRoyal ||
+    isHexCell ||
+    isDevilsContract ||
+    isFatesWheel;
 
-  const participantCount = isFatesWheel
-    ? 8
-    : isHexCell || isDevilsContract
-      ? 6
-      : Number(crBookerParticipantCount.value);
+  const participantCount =
+    isFatesWheel
+      ? 8
+      : isHexCell ||
+          isDevilsContract
+        ? 6
+        : Number(
+            crBookerParticipantCount.value,
+          );
+
+  const resolvedMatchType =
+    isEliminationMatch
+      ? eliminationMode ===
+        CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
+        ? "Tag Team"
+        : "Singles"
+      : crBookerMatchType.value;
 
   return {
     eventId: crBookerEvent.value,
 
-    order: Number(crBookerOrder.value),
+    order: Number(
+      crBookerOrder.value,
+    ),
 
-    matchType: crBookerMatchType.value,
+    matchType: resolvedMatchType,
 
     sides: crBookerBuildSides(),
 
-    championshipId: crBookerChampionship.value,
+    championshipId:
+      crBookerChampionship.value,
 
     stipulation: stipulation,
 
     structure: isOverthrowRumble
       ? {
-          mode: CR_BOOKER_STRUCTURE_MODES.DEFERRED_ROSTER,
+          mode:
+            CR_BOOKER_STRUCTURE_MODES.DEFERRED_ROSTER,
 
           participantCount: 30,
         }
       : isLoveAndWar
         ? {
-            mode: CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE,
+            mode:
+              CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE,
 
             teamCount: 2,
 
             teamSize: 5,
           }
-        : usesAdvancedParticipants
+        : isEliminationMatch &&
+            eliminationMode ===
+              CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL
           ? {
-              mode: isFatesWheel
-                ? CR_BOOKER_STRUCTURE_MODES.SPECIAL_FIELD
-                : CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+              mode:
+                CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
 
-              participantCount: participantCount,
+              participantCount: Number(
+                crBookerParticipantCount.value,
+              ),
             }
-          : null,
+          : isEliminationMatch &&
+              eliminationMode ===
+                CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
+            ? {
+                mode:
+                  CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE,
+
+                teamCount: 2,
+
+                teamSize: Number(
+                  crBookerParticipantCount.value,
+                ),
+              }
+            : usesAdvancedParticipants
+              ? {
+                  mode: isFatesWheel
+                    ? CR_BOOKER_STRUCTURE_MODES.SPECIAL_FIELD
+                    : CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+
+                  participantCount:
+                    participantCount,
+                }
+              : null,
 
     specialty: isBattleRoyal
       ? {
-          eliminationRule: crBookerEliminationRule.value,
+          eliminationRule:
+            crBookerEliminationRule.value,
         }
       : isOverthrowRumble
         ? {
-            division: crBookerDivision.value,
+            division:
+              crBookerDivision.value,
           }
         : null,
 
-    status: crBookerStatusField.value,
+    status:
+      crBookerStatusField.value,
 
-    statusNote: crBookerStatusNote.value.trim(),
+    statusNote:
+      crBookerStatusNote.value.trim(),
   };
 }
 
@@ -1243,13 +1548,28 @@ function crBookerValidate(record) {
   ) {
     errors.push("Select a division for the Overthrow Rumble.");
   }
-
-    const expectedSideSize =
+  
+  if (
+    record.stipulation === "Elimination Match" &&
+    !record.structure?.mode
+  ) {
+    errors.push(
+      "Select an Elimination Match structure.",
+    );
+  }
+      const expectedSideSize =
     record.stipulation === "Love and War"
       ? 5
-      : record.matchType === "Tag Team"
-        ? 2
-        : 1;
+      : record.stipulation ===
+            "Elimination Match" &&
+          record.structure?.mode ===
+            CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
+        ? Number(
+            record.structure.teamSize,
+          )
+        : record.matchType === "Tag Team"
+          ? 2
+          : 1;
 
   record.sides.forEach((side, index) => {
     if (
