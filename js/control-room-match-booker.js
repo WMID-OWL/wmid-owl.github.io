@@ -71,6 +71,54 @@ const crBookerMessage =
 
 
 // =================================
+// ADVANCED MATCH ELEMENTS
+// =================================
+
+
+const crBookerStandardCompetitors =
+    document.getElementById(
+        "cr-booker-standard-competitors"
+    );
+
+
+const crBookerAdvancedMatch =
+    document.getElementById(
+        "cr-booker-advanced-match"
+    );
+
+
+const crBookerParticipantCountRow =
+    document.getElementById(
+        "cr-booker-participant-count-row"
+    );
+
+
+const crBookerParticipantCount =
+    document.getElementById(
+        "cr-booker-participant-count"
+    );
+
+
+const crBookerEliminationRuleRow =
+    document.getElementById(
+        "cr-booker-elimination-rule-row"
+    );
+
+
+const crBookerEliminationRule =
+    document.getElementById(
+        "cr-booker-elimination-rule"
+    );
+
+
+const crBookerAdvancedParticipants =
+    document.getElementById(
+        "cr-booker-advanced-participants"
+    );
+
+
+
+// =================================
 // MATCH FIELDS
 // =================================
 
