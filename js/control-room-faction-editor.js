@@ -2596,6 +2596,304 @@ function crFactionBuildNewRecord() {
 
 
 // =================================
+// WRESTLER FACTION FIELD HELPERS
+// =================================
+
+
+function crFactionSetOrInsertWrestlerField(
+    block,
+    key,
+    value
+) {
+
+
+    const escapedKey =
+        key.replace(
+            /[.*+?^${}()|[\]\\]/g,
+            "\\$&"
+        );
+
+
+    const existingPattern =
+        new RegExp(
+
+            `("${escapedKey}"\\s*:\\s*)("(?:\\\\.|[^"\\\\])*")`
+
+        );
+
+
+
+    // =================================
+    // FIELD ALREADY EXISTS
+    // =================================
+
+
+    if (
+        existingPattern.test(
+            block
+        )
+    ) {
+
+
+        return block.replace(
+
+            existingPattern,
+
+            (
+                match,
+                prefix
+            ) => {
+
+
+                return (
+
+                    prefix
+
+                    +
+
+                    JSON.stringify(
+                        value
+                    )
+
+                );
+
+            }
+
+        );
+
+    }
+
+
+
+    // =================================
+    // FIELD IS MISSING
+    // INSERT BEFORE championshipsHeld
+    // =================================
+
+
+    const insertionPointPattern =
+        /^(\s*)"championshipsHeld"\s*:/m;
+
+
+    const insertionMatch =
+        insertionPointPattern.exec(
+            block
+        );
+
+
+
+    if (!insertionMatch) {
+
+
+        throw new Error(
+
+            `Could not insert missing field ${key} for wrestler.`
+
+        );
+
+    }
+
+
+
+    const indentation =
+        insertionMatch[1];
+
+
+    const insertionText =
+
+        `${indentation}"${key}": ${JSON.stringify(value)},\n`;
+
+
+
+    return (
+
+        block.slice(
+            0,
+            insertionMatch.index
+        )
+
+        +
+
+        insertionText
+
+        +
+
+        block.slice(
+            insertionMatch.index
+        )
+
+    );
+
+}
+
+
+
+// =================================
+// REMOVE WRESTLER STRING FIELD
+// =================================
+
+
+function crFactionRemoveWrestlerField(
+    block,
+    key
+) {
+
+
+    const escapedKey =
+        key.replace(
+            /[.*+?^${}()|[\]\\]/g,
+            "\\$&"
+        );
+
+
+    const linePattern =
+        new RegExp(
+
+            `^\\s*"${escapedKey}"\\s*:\\s*"(?:\\\\.|[^"\\\\])*",?\\s*\\r?\\n?`,
+
+            "m"
+
+        );
+
+
+    return block.replace(
+        linePattern,
+        ""
+    );
+
+}
+
+
+
+// =================================
+// UPDATE ONE WRESTLER'S
+// FACTION ASSIGNMENT
+// =================================
+
+
+function crFactionUpdateWrestlerAssignment(
+    wrestlerText,
+    wrestlerId,
+    isFactionMember,
+    factionId,
+    factionName
+) {
+
+
+    const bounds =
+        crFactionFindObjectBounds(
+
+            wrestlerText,
+
+            wrestlerId
+
+        );
+
+
+
+    let wrestlerBlock =
+        wrestlerText.slice(
+
+            bounds.start,
+
+            bounds.end + 1
+
+        );
+
+
+
+    // =================================
+    // WRESTLER IS IN FACTION
+    // SET OR ADD BOTH FIELDS
+    // =================================
+
+
+    if (isFactionMember) {
+
+
+        wrestlerBlock =
+            crFactionSetOrInsertWrestlerField(
+
+                wrestlerBlock,
+
+                "faction",
+
+                factionName
+
+            );
+
+
+        wrestlerBlock =
+            crFactionSetOrInsertWrestlerField(
+
+                wrestlerBlock,
+
+                "factionId",
+
+                factionId
+
+            );
+
+    }
+
+
+
+    // =================================
+    // WRESTLER LEFT FACTION
+    // REMOVE BOTH FIELDS CLEANLY
+    // =================================
+
+
+    else {
+
+
+        wrestlerBlock =
+            crFactionRemoveWrestlerField(
+
+                wrestlerBlock,
+
+                "faction"
+
+            );
+
+
+        wrestlerBlock =
+            crFactionRemoveWrestlerField(
+
+                wrestlerBlock,
+
+                "factionId"
+
+            );
+
+    }
+
+
+
+    return (
+
+        wrestlerText.slice(
+            0,
+            bounds.start
+        )
+
+        +
+
+        wrestlerBlock
+
+        +
+
+        wrestlerText.slice(
+            bounds.end + 1
+        )
+
+    );
+
+}
+
+
+
+// =================================
 // APPLY WRESTLER FACTION ASSIGNMENTS
 // =================================
 
@@ -2607,6 +2905,7 @@ function crFactionApplyWrestlerAssignments(
     oldMembers,
     newMembers
 ) {
+
 
     const affectedMembers =
         Array.from(
@@ -2630,6 +2929,7 @@ function crFactionApplyWrestlerAssignments(
     affectedMembers.forEach(
         wrestlerId => {
 
+
             const wrestler =
                 owlControlRoomData.wrestlers.find(
                     item =>
@@ -2651,7 +2951,7 @@ function crFactionApplyWrestlerAssignments(
                 );
 
 
-            const belongedToFaction =
+            const wasFactionMember =
 
                 oldMembers.includes(
                     wrestlerId
@@ -2669,7 +2969,7 @@ function crFactionApplyWrestlerAssignments(
 
                 &&
 
-                !belongedToFaction
+                !wasFactionMember
             ) {
 
                 return;
@@ -2679,25 +2979,17 @@ function crFactionApplyWrestlerAssignments(
 
 
             updatedText =
-                crFactionUpdateRecordText(
+                crFactionUpdateWrestlerAssignment(
 
                     updatedText,
 
                     wrestlerId,
 
-                    {
+                    isNewMember,
 
-                        faction:
-                            isNewMember
-                                ? factionName
-                                : "",
+                    factionId,
 
-                        factionId:
-                            isNewMember
-                                ? factionId
-                                : ""
-
-                    }
+                    factionName
 
                 );
 
@@ -2708,9 +3000,6 @@ function crFactionApplyWrestlerAssignments(
     return updatedText;
 
 }
-
-
-
 // =================================
 // SAVE EXISTING FACTION
 // =================================
