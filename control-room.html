@@ -4006,6 +4006,519 @@
 
 
 </section>
+
+
+
+<!-- =================================
+     RESULTS WIZARD
+================================= -->
+
+
+<section class="control-room-panel">
+
+
+    <div class="control-room-panel-heading">
+
+
+        <div>
+
+            <p class="eyebrow">
+                MATCH RESULTS
+            </p>
+
+            <h2>
+                Results Wizard
+            </h2>
+
+        </div>
+
+
+        <span
+            id="cr-results-status"
+            class="control-room-health-summary"
+        >
+            READY
+        </span>
+
+
+    </div>
+
+
+
+    <!-- MATCH SELECTION -->
+
+
+    <div class="cr-editor-top-grid">
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-results-event">
+
+                EVENT
+
+            </label>
+
+
+            <select id="cr-results-event">
+
+                <option value="">
+                    Select Event
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-results-match">
+
+                MATCH
+
+            </label>
+
+
+            <select
+                id="cr-results-match"
+                disabled
+            >
+
+                <option value="">
+                    Select Match
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- SELECTED MATCH -->
+
+
+    <div
+        id="cr-results-match-preview"
+        class="cr-change-preview"
+        hidden
+    >
+
+
+        <span>
+            SELECTED MATCH
+        </span>
+
+
+        <div
+            id="cr-results-match-summary"
+            class="cr-editor-change-list"
+        >
+        </div>
+
+
+    </div>
+
+
+
+    <!-- BASIC RESULT -->
+
+
+    <div
+        id="cr-results-basic-fields"
+        class="cr-editor-section"
+        hidden
+    >
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                MATCH RESULT
+            </span>
+
+            <h3>
+                Outcome
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-editor-form-grid">
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-results-result-type">
+
+                    RESULT TYPE
+
+                </label>
+
+
+                <select id="cr-results-result-type">
+
+                    <option value="win">
+                        Win
+                    </option>
+
+                    <option value="draw">
+                        Draw
+                    </option>
+
+                    <option value="no-contest">
+                        No Contest
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div
+                id="cr-results-winner-side-row"
+                class="cr-form-group"
+            >
+
+
+                <label for="cr-results-winner-side">
+
+                    WINNING SIDE
+
+                </label>
+
+
+                <select id="cr-results-winner-side">
+
+                    <option value="">
+                        Select Winning Side
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div
+                id="cr-results-finish-winner-row"
+                class="cr-form-group"
+            >
+
+
+                <label for="cr-results-finish-winner">
+
+                    WINNING WRESTLER
+
+                </label>
+
+
+                <select id="cr-results-finish-winner">
+
+                    <option value="">
+                        Select Wrestler
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div
+                id="cr-results-finish-loser-row"
+                class="cr-form-group"
+            >
+
+
+                <label for="cr-results-finish-loser">
+
+                    LOSING WRESTLER
+
+                </label>
+
+
+                <select id="cr-results-finish-loser">
+
+                    <option value="">
+                        Select Wrestler
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div
+                id="cr-results-method-row"
+                class="cr-form-group"
+            >
+
+
+                <label for="cr-results-method">
+
+                    FINISH METHOD
+
+                </label>
+
+
+                <select id="cr-results-method">
+
+                    <option value="">
+                        Select Method
+                    </option>
+
+                    <option value="Pinfall">
+                        Pinfall
+                    </option>
+
+                    <option value="Submission">
+                        Submission
+                    </option>
+
+                    <option value="KO">
+                        KO
+                    </option>
+
+                    <option value="Count Out">
+                        Count Out
+                    </option>
+
+                    <option value="Disqualification">
+                        Disqualification
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- MATCH PERFORMANCE -->
+
+
+    <div
+        id="cr-results-performance-fields"
+        class="cr-editor-section"
+        hidden
+    >
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                PERFORMANCE
+            </span>
+
+            <h3>
+                Match Rating
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-editor-form-grid">
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-results-rating">
+
+                    MATCH %
+
+                </label>
+
+
+                <input
+                    id="cr-results-rating"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="1"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-results-stars">
+
+                    STAR RATING
+
+                </label>
+
+
+                <input
+                    id="cr-results-stars"
+                    type="number"
+                    min="0"
+                    max="5"
+                    step="0.25"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-results-time">
+
+                    MATCH TIME
+
+                </label>
+
+
+                <input
+                    id="cr-results-time"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="18:42"
+                >
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- SPECIALTY RESULT FIELDS -->
+
+
+    <div
+        id="cr-results-specialty-fields"
+        class="cr-editor-section"
+        hidden
+    >
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                SPECIALTY RESULTS
+            </span>
+
+            <h3>
+                Match-Specific Details
+            </h3>
+
+        </div>
+
+
+        <div id="cr-results-specialty-content">
+        </div>
+
+
+    </div>
+
+
+
+    <!-- REVIEW -->
+
+
+    <div
+        id="cr-results-review"
+        class="cr-change-preview"
+        hidden
+    >
+
+
+        <span>
+            REVIEW RESULT
+        </span>
+
+
+        <div
+            id="cr-results-review-list"
+            class="cr-editor-change-list"
+        >
+        </div>
+
+
+        <p
+            id="cr-results-error"
+            class="cr-change-error"
+            hidden
+        >
+        </p>
+
+
+    </div>
+
+
+
+    <!-- ACTIONS -->
+
+
+    <div class="cr-manager-actions">
+
+
+        <button
+            id="cr-results-save"
+            class="control-room-button control-room-button-primary"
+            type="button"
+            disabled
+        >
+            Save Match Result
+        </button>
+
+
+    </div>
+
+
+
+    <p
+        id="cr-results-message"
+        class="cr-save-message"
+        hidden
+    >
+    </p>
+
+
+</section>
+
+
+
         <!-- =================================
              DATA HEALTH
         ================================== -->
@@ -4087,6 +4600,8 @@
 <script src="js/control-room-event-editor.js"></script>
     
 <script src="js/control-room-match-booker.js"></script>
+
+<script src="js/control-room-results-wizard.js"></script>
     
 </body>
 
