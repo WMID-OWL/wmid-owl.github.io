@@ -2596,7 +2596,105 @@ function crFactionBuildNewRecord() {
 
 
 // =================================
-// WRESTLER FACTION FIELD HELPERS
+// ORIGINAL WRESTLER FIELD SHAPE
+// =================================
+
+
+const crFactionWrestlerFieldShape =
+    {};
+
+
+
+function crFactionCaptureWrestlerFieldShape() {
+
+
+    owlControlRoomData.wrestlers.forEach(
+        wrestler => {
+
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+
+                    crFactionWrestlerFieldShape,
+
+                    wrestler.id
+
+                )
+            ) {
+
+                return;
+
+            }
+
+
+
+            crFactionWrestlerFieldShape[
+                wrestler.id
+            ] = {
+
+                faction:
+                    Object.prototype.hasOwnProperty.call(
+
+                        wrestler,
+
+                        "faction"
+
+                    ),
+
+                factionId:
+                    Object.prototype.hasOwnProperty.call(
+
+                        wrestler,
+
+                        "factionId"
+
+                    )
+
+            };
+
+        }
+    );
+
+}
+
+
+
+// =================================
+// STRING FIELD EXISTS
+// =================================
+
+
+function crFactionWrestlerFieldExists(
+    block,
+    key
+) {
+
+
+    const escapedKey =
+        key.replace(
+            /[.*+?^${}()|[\]\\]/g,
+            "\\$&"
+        );
+
+
+    const pattern =
+        new RegExp(
+
+            `"${escapedKey}"\\s*:`
+
+        );
+
+
+    return pattern.test(
+        block
+    );
+
+}
+
+
+
+// =================================
+// SET OR INSERT WRESTLER FIELD
 // =================================
 
 
@@ -2624,7 +2722,8 @@ function crFactionSetOrInsertWrestlerField(
 
 
     // =================================
-    // FIELD ALREADY EXISTS
+    // FIELD EXISTS
+    // CHANGE VALUE ONLY
     // =================================
 
 
@@ -2729,7 +2828,7 @@ function crFactionSetOrInsertWrestlerField(
 
 
 // =================================
-// REMOVE WRESTLER STRING FIELD
+// REMOVE WRESTLER FIELD
 // =================================
 
 
@@ -2766,8 +2865,82 @@ function crFactionRemoveWrestlerField(
 
 
 // =================================
-// UPDATE ONE WRESTLER'S
-// FACTION ASSIGNMENT
+// RESTORE EMPTY FIELD STATE
+// =================================
+
+
+function crFactionRestoreEmptyWrestlerField(
+    block,
+    wrestlerId,
+    key
+) {
+
+
+    const originalShape =
+        crFactionWrestlerFieldShape[
+            wrestlerId
+        ];
+
+
+
+    const originallyHadField =
+
+        originalShape
+
+            ? Boolean(
+                originalShape[key]
+            )
+
+            : crFactionWrestlerFieldExists(
+                block,
+                key
+            );
+
+
+
+    // =================================
+    // FIELD EXISTED BEFORE EDIT
+    // KEEP IT AND SET EMPTY
+    // =================================
+
+
+    if (originallyHadField) {
+
+
+        return crFactionSetOrInsertWrestlerField(
+
+            block,
+
+            key,
+
+            ""
+
+        );
+
+    }
+
+
+
+    // =================================
+    // FIELD DID NOT EXIST BEFORE EDIT
+    // REMOVE TEMPORARY FIELD
+    // =================================
+
+
+    return crFactionRemoveWrestlerField(
+
+        block,
+
+        key
+
+    );
+
+}
+
+
+
+// =================================
+// UPDATE ONE WRESTLER ASSIGNMENT
 // =================================
 
 
@@ -2803,8 +2976,7 @@ function crFactionUpdateWrestlerAssignment(
 
 
     // =================================
-    // WRESTLER IS IN FACTION
-    // SET OR ADD BOTH FIELDS
+    // WRESTLER IS JOINING / IN FACTION
     // =================================
 
 
@@ -2839,8 +3011,7 @@ function crFactionUpdateWrestlerAssignment(
 
 
     // =================================
-    // WRESTLER LEFT FACTION
-    // REMOVE BOTH FIELDS CLEANLY
+    // WRESTLER IS LEAVING FACTION
     // =================================
 
 
@@ -2848,9 +3019,11 @@ function crFactionUpdateWrestlerAssignment(
 
 
         wrestlerBlock =
-            crFactionRemoveWrestlerField(
+            crFactionRestoreEmptyWrestlerField(
 
                 wrestlerBlock,
+
+                wrestlerId,
 
                 "faction"
 
@@ -2858,9 +3031,11 @@ function crFactionUpdateWrestlerAssignment(
 
 
         wrestlerBlock =
-            crFactionRemoveWrestlerField(
+            crFactionRestoreEmptyWrestlerField(
 
                 wrestlerBlock,
+
+                wrestlerId,
 
                 "factionId"
 
@@ -2905,6 +3080,14 @@ function crFactionApplyWrestlerAssignments(
     oldMembers,
     newMembers
 ) {
+
+
+    // Capture the original database field structure
+    // before any faction assignment is written.
+
+
+    crFactionCaptureWrestlerFieldShape();
+
 
 
     const affectedMembers =
