@@ -516,8 +516,9 @@ async function crEnsureWritePermission() {
 // =================================
 
 
-async function crWriteWrestlersDatabase(
-    wrestlers
+async function crWriteWrestlerBrandChange(
+    wrestlerId,
+    newBrand
 ) {
 
 
@@ -533,26 +534,311 @@ async function crWriteWrestlersDatabase(
         );
 
 
-    const writable =
-        await fileHandle.createWritable();
+    const file =
+        await fileHandle.getFile();
 
 
-    const formattedJson =
+    const originalText =
+        await file.text();
 
-        JSON.stringify(
-            wrestlers,
-            null,
-            2
+
+
+    // =================================
+    // FIND THE WRESTLER RECORD
+    // =================================
+
+
+    const escapedWrestlerId =
+        wrestlerId.replace(
+            /[.*+?^${}()|[\]\\]/g,
+            "\\$&"
+        );
+
+
+    const idPattern =
+        new RegExp(
+
+            `"id"\\s*:\\s*"${escapedWrestlerId}"`
+
+        );
+
+
+    const idMatch =
+        idPattern.exec(
+            originalText
+        );
+
+
+    if (!idMatch) {
+
+
+        throw new Error(
+            `Could not find wrestler ${wrestlerId}.`
+        );
+
+    }
+
+
+
+    // =================================
+    // FIND START OF OBJECT
+    // =================================
+
+
+    const objectStart =
+        originalText.lastIndexOf(
+            "{",
+            idMatch.index
+        );
+
+
+    if (
+        objectStart === -1
+    ) {
+
+
+        throw new Error(
+            "Could not find the wrestler record start."
+        );
+
+    }
+
+
+
+    // =================================
+    // FIND END OF OBJECT
+    // =================================
+
+
+    let objectEnd =
+        -1;
+
+
+    let braceDepth =
+        0;
+
+
+    let insideString =
+        false;
+
+
+    let escapedCharacter =
+        false;
+
+
+
+    for (
+        let index = objectStart;
+        index < originalText.length;
+        index += 1
+    ) {
+
+
+        const character =
+            originalText[index];
+
+
+
+        if (escapedCharacter) {
+
+
+            escapedCharacter =
+                false;
+
+
+            continue;
+
+        }
+
+
+
+        if (
+            character === "\\"
+
+            &&
+
+            insideString
+        ) {
+
+
+            escapedCharacter =
+                true;
+
+
+            continue;
+
+        }
+
+
+
+        if (
+            character === "\""
+        ) {
+
+
+            insideString =
+                !insideString;
+
+
+            continue;
+
+        }
+
+
+
+        if (insideString) {
+
+            continue;
+
+        }
+
+
+
+        if (
+            character === "{"
+        ) {
+
+
+            braceDepth +=
+                1;
+
+        }
+
+
+
+        if (
+            character === "}"
+        ) {
+
+
+            braceDepth -=
+                1;
+
+
+
+            if (
+                braceDepth === 0
+            ) {
+
+
+                objectEnd =
+                    index;
+
+
+                break;
+
+            }
+
+        }
+
+    }
+
+
+
+    if (
+        objectEnd === -1
+    ) {
+
+
+        throw new Error(
+            "Could not find the wrestler record end."
+        );
+
+    }
+
+
+
+    // =================================
+    // CHANGE ONLY THE BRAND FIELD
+    // =================================
+
+
+    const wrestlerBlock =
+        originalText.slice(
+
+            objectStart,
+
+            objectEnd + 1
+
+        );
+
+
+    const brandPattern =
+        /("brand"\s*:\s*")[^"]*(")/;
+
+
+
+    if (
+        !brandPattern.test(
+            wrestlerBlock
+        )
+    ) {
+
+
+        throw new Error(
+            "The selected wrestler does not have a brand field."
+        );
+
+    }
+
+
+
+    const updatedWrestlerBlock =
+        wrestlerBlock.replace(
+
+            brandPattern,
+
+            (
+                match,
+                opening,
+                closing
+            ) => {
+
+
+                return (
+                    opening
+                    +
+                    newBrand
+                    +
+                    closing
+                );
+
+            }
+
+        );
+
+
+
+    const updatedText =
+
+        originalText.slice(
+            0,
+            objectStart
         )
 
         +
 
-        "\n";
+        updatedWrestlerBlock
 
+        +
+
+        originalText.slice(
+            objectEnd + 1
+        );
+
+
+
+    // =================================
+    // WRITE EXACTLY ONE TARGETED EDIT
+    // =================================
+
+
+    const writable =
+        await fileHandle.createWritable();
 
 
     await writable.write(
-        formattedJson
+        updatedText
     );
 
 
