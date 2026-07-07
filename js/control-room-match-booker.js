@@ -15,19 +15,34 @@ const crBookerMatchSelectRow = document.getElementById(
   "cr-booker-match-select-row",
 );
 
-const crBookerMatchSelect = document.getElementById("cr-booker-match-select");
+const crBookerMatchSelect = document.getElementById(
+  "cr-booker-match-select",
+);
 
-const crBookerStatus = document.getElementById("cr-booker-status");
+const crBookerStatus = document.getElementById(
+  "cr-booker-status",
+);
 
-const crBookerPreview = document.getElementById("cr-booker-preview");
+const crBookerPreview = document.getElementById(
+  "cr-booker-preview",
+);
 
-const crBookerReviewList = document.getElementById("cr-booker-review-list");
+const crBookerReviewList = document.getElementById(
+  "cr-booker-review-list",
+);
 
-const crBookerError = document.getElementById("cr-booker-error");
+const crBookerError = document.getElementById(
+  "cr-booker-error",
+);
 
-const crBookerSave = document.getElementById("cr-booker-save");
+const crBookerSave = document.getElementById(
+  "cr-booker-save",
+);
 
-const crBookerMessage = document.getElementById("cr-booker-message");
+const crBookerMessage = document.getElementById(
+  "cr-booker-message",
+);
+
 
 // =================================
 // ADVANCED MATCH ELEMENTS
@@ -57,9 +72,13 @@ const crBookerEliminationRule = document.getElementById(
   "cr-booker-elimination-rule",
 );
 
-const crBookerDivisionRow = document.getElementById("cr-booker-division-row");
+const crBookerDivisionRow = document.getElementById(
+  "cr-booker-division-row",
+);
 
-const crBookerDivision = document.getElementById("cr-booker-division");
+const crBookerDivision = document.getElementById(
+  "cr-booker-division",
+);
 
 const crBookerStructureChoiceRow = document.getElementById(
   "cr-booker-structure-choice-row",
@@ -77,21 +96,35 @@ const crBookerTeamBattleSides = document.getElementById(
   "cr-booker-team-battle-sides",
 );
 
+
 // =================================
 // MATCH FIELDS
 // =================================
 
-const crBookerMatchType = document.getElementById("cr-booker-match-type");
+const crBookerMatchType = document.getElementById(
+  "cr-booker-match-type",
+);
 
-const crBookerOrder = document.getElementById("cr-booker-order");
+const crBookerOrder = document.getElementById(
+  "cr-booker-order",
+);
 
-const crBookerChampionship = document.getElementById("cr-booker-championship");
+const crBookerChampionship = document.getElementById(
+  "cr-booker-championship",
+);
 
-const crBookerStatusField = document.getElementById("cr-booker-status-field");
+const crBookerStatusField = document.getElementById(
+  "cr-booker-status-field",
+);
 
-const crBookerStipulation = document.getElementById("cr-booker-stipulation");
+const crBookerStipulation = document.getElementById(
+  "cr-booker-stipulation",
+);
 
-const crBookerStatusNote = document.getElementById("cr-booker-status-note");
+const crBookerStatusNote = document.getElementById(
+  "cr-booker-status-note",
+);
+
 
 // =================================
 // SIDE 1
@@ -101,13 +134,17 @@ const crBookerSideOneTagControls = document.getElementById(
   "cr-booker-side-one-tag-controls",
 );
 
-const crBookerSideOneMode = document.getElementById("cr-booker-side-one-mode");
+const crBookerSideOneMode = document.getElementById(
+  "cr-booker-side-one-mode",
+);
 
 const crBookerSideOneTeamRow = document.getElementById(
   "cr-booker-side-one-team-row",
 );
 
-const crBookerSideOneTeam = document.getElementById("cr-booker-side-one-team");
+const crBookerSideOneTeam = document.getElementById(
+  "cr-booker-side-one-team",
+);
 
 const crBookerSideOneWrestlers = document.getElementById(
   "cr-booker-side-one-wrestlers",
@@ -125,6 +162,7 @@ const crBookerSideOneWrestlerTwo = document.getElementById(
   "cr-booker-side-one-wrestler-two",
 );
 
+
 // =================================
 // SIDE 2
 // =================================
@@ -133,13 +171,17 @@ const crBookerSideTwoTagControls = document.getElementById(
   "cr-booker-side-two-tag-controls",
 );
 
-const crBookerSideTwoMode = document.getElementById("cr-booker-side-two-mode");
+const crBookerSideTwoMode = document.getElementById(
+  "cr-booker-side-two-mode",
+);
 
 const crBookerSideTwoTeamRow = document.getElementById(
   "cr-booker-side-two-team-row",
 );
 
-const crBookerSideTwoTeam = document.getElementById("cr-booker-side-two-team");
+const crBookerSideTwoTeam = document.getElementById(
+  "cr-booker-side-two-team",
+);
 
 const crBookerSideTwoWrestlers = document.getElementById(
   "cr-booker-side-two-wrestlers",
@@ -157,21 +199,27 @@ const crBookerSideTwoWrestlerTwo = document.getElementById(
   "cr-booker-side-two-wrestler-two",
 );
 
+
 // =================================
 // EXTRA SIDES
 // =================================
 
-const crBookerSideThree = document.getElementById("cr-booker-side-three");
+const crBookerSideThree = document.getElementById(
+  "cr-booker-side-three",
+);
 
 const crBookerSideThreeWrestler = document.getElementById(
   "cr-booker-side-three-wrestler",
 );
 
-const crBookerSideFour = document.getElementById("cr-booker-side-four");
+const crBookerSideFour = document.getElementById(
+  "cr-booker-side-four",
+);
 
 const crBookerSideFourWrestler = document.getElementById(
   "cr-booker-side-four-wrestler",
 );
+
 
 // =================================
 // STATE
@@ -181,21 +229,28 @@ let crBookerOriginalRecord = null;
 
 let crBookerPendingMatchId = "";
 
+
 // =================================
 // MATCH STRUCTURE MODES
 // =================================
 
 const CR_BOOKER_STRUCTURE_MODES = {
-  STANDARD: "standard",
+  STANDARD:
+    "standard",
 
-  FREE_FOR_ALL: "freeForAll",
+  FREE_FOR_ALL:
+    "freeForAll",
 
-  TEAM_BATTLE: "teamBattle",
+  TEAM_BATTLE:
+    "teamBattle",
 
-  DEFERRED_ROSTER: "deferredRoster",
+  DEFERRED_ROSTER:
+    "deferredRoster",
 
-  SPECIAL_FIELD: "specialField",
+  SPECIAL_FIELD:
+    "specialField",
 };
+
 
 // =================================
 // SPECIALTY MATCH PROFILES
@@ -203,65 +258,95 @@ const CR_BOOKER_STRUCTURE_MODES = {
 
 const CR_BOOKER_SPECIALTY_PROFILES = {
   "Battle Royal": {
-    mode: CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+    mode:
+      CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
 
-    minParticipants: 3,
+    minParticipants:
+      3,
 
-    maxParticipants: 8,
+    maxParticipants:
+      8,
 
-    defaultParticipants: 6,
+    defaultParticipants:
+      6,
 
-    allowParticipantCountChange: true,
+    allowParticipantCountChange:
+      true,
 
-    requiresEliminationRule: true,
+    requiresEliminationRule:
+      true,
   },
+
 
   "Hex-Cell Eliminator": {
-    mode: CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+    mode:
+      CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
 
-    minParticipants: 6,
+    minParticipants:
+      6,
 
-    maxParticipants: 6,
+    maxParticipants:
+      6,
 
-    defaultParticipants: 6,
+    defaultParticipants:
+      6,
 
-    allowParticipantCountChange: false,
+    allowParticipantCountChange:
+      false,
   },
+
 
   "The Devil's Contract": {
-    mode: CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+    mode:
+      CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
 
-    minParticipants: 6,
+    minParticipants:
+      6,
 
-    maxParticipants: 6,
+    maxParticipants:
+      6,
 
-    defaultParticipants: 6,
+    defaultParticipants:
+      6,
 
-    allowParticipantCountChange: false,
+    allowParticipantCountChange:
+      false,
   },
+
 
   "Fate's Wheel": {
-    mode: CR_BOOKER_STRUCTURE_MODES.SPECIAL_FIELD,
+    mode:
+      CR_BOOKER_STRUCTURE_MODES.SPECIAL_FIELD,
 
-    minParticipants: 8,
+    minParticipants:
+      8,
 
-    maxParticipants: 8,
+    maxParticipants:
+      8,
 
-    defaultParticipants: 8,
+    defaultParticipants:
+      8,
 
-    allowParticipantCountChange: false,
+    allowParticipantCountChange:
+      false,
   },
 
-     "Love and War": {
-    mode: CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE,
 
-    teamCount: 2,
+  "Love and War": {
+    mode:
+      CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE,
 
-    teamSize: 5,
+    teamCount:
+      2,
+
+    teamSize:
+      5,
   },
+
 
   "Handicap Match": {
-    mode: CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE,
+    mode:
+      CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE,
 
     allowedSideSizes: [
       [2, 1],
@@ -275,26 +360,33 @@ const CR_BOOKER_SPECIALTY_PROFILES = {
     ],
   },
 
+
   "Overthrow Rumble": {
-    mode: CR_BOOKER_STRUCTURE_MODES.DEFERRED_ROSTER,
+    mode:
+      CR_BOOKER_STRUCTURE_MODES.DEFERRED_ROSTER,
 
-    participantCount: 30,
+    participantCount:
+      30,
 
-    requiresParticipantSelection: false,
+    requiresParticipantSelection:
+      false,
   },
 
-  "Elimination Match": {
-    mode: null,
 
-    requiresStructureChoice: true,
+  "Elimination Match": {
+    mode:
+      null,
+
+    requiresStructureChoice:
+      true,
 
     allowedModes: [
       CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
-
       CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE,
     ],
   },
 };
+
 
 // =================================
 // BATTLE ROYAL RULES
@@ -308,20 +400,35 @@ const CR_BOOKER_BATTLE_ROYAL_RULES = [
   "All Three (Over the Top Rope, Pinfall, or Submission)",
 ];
 
+
 // =================================
 // SPECIALTY PROFILE HELPERS
 // =================================
 
-function crBookerGetSpecialtyProfile(stipulation) {
+function crBookerGetSpecialtyProfile(
+  stipulation,
+) {
   if (!stipulation) {
     return null;
   }
 
-  return CR_BOOKER_SPECIALTY_PROFILES[stipulation] || null;
+  return (
+    CR_BOOKER_SPECIALTY_PROFILES[
+      stipulation
+    ]
+    ||
+    null
+  );
 }
 
-function crBookerGetStructureMode(stipulation) {
-  const profile = crBookerGetSpecialtyProfile(stipulation);
+
+function crBookerGetStructureMode(
+  stipulation,
+) {
+  const profile =
+    crBookerGetSpecialtyProfile(
+      stipulation,
+    );
 
   if (!profile) {
     return CR_BOOKER_STRUCTURE_MODES.STANDARD;
@@ -330,204 +437,380 @@ function crBookerGetStructureMode(stipulation) {
   return profile.mode;
 }
 
+
 // =================================
 // BASIC HELPERS
 // =================================
 
-function crBookerSetStatus(text) {
-  crBookerStatus.textContent = text;
+function crBookerSetStatus(
+  text,
+) {
+  crBookerStatus.textContent =
+    text;
 }
 
-function crBookerShowMessage(message, type) {
-  crBookerMessage.textContent = message;
 
-  crBookerMessage.className = `cr-save-message ${type}`;
+function crBookerShowMessage(
+  message,
+  type,
+) {
+  crBookerMessage.textContent =
+    message;
 
-  crBookerMessage.hidden = false;
+  crBookerMessage.className =
+    `cr-save-message ${type}`;
+
+  crBookerMessage.hidden =
+    false;
 }
+
 
 function crBookerHideMessage() {
-  crBookerMessage.textContent = "";
+  crBookerMessage.textContent =
+    "";
 
-  crBookerMessage.hidden = true;
+  crBookerMessage.hidden =
+    true;
 }
 
-function crBookerGetWrestler(wrestlerId) {
+
+function crBookerGetWrestler(
+  wrestlerId,
+) {
   return (
     owlControlRoomData.wrestlers.find(
-      (wrestler) => wrestler.id === wrestlerId,
-    ) || null
+      (wrestler) =>
+        wrestler.id === wrestlerId,
+    )
+    ||
+    null
   );
 }
 
-function crBookerGetWrestlerName(wrestlerId) {
-  const wrestler = crBookerGetWrestler(wrestlerId);
 
-  return wrestler ? wrestler.name : wrestlerId;
+function crBookerGetWrestlerName(
+  wrestlerId,
+) {
+  const wrestler =
+    crBookerGetWrestler(
+      wrestlerId,
+    );
+
+  return wrestler
+    ? wrestler.name
+    : wrestlerId;
 }
 
-function crBookerGetTeam(teamId) {
-  return owlControlRoomData.teams.find((team) => team.id === teamId) || null;
+
+function crBookerGetTeam(
+  teamId,
+) {
+  return (
+    owlControlRoomData.teams.find(
+      (team) =>
+        team.id === teamId,
+    )
+    ||
+    null
+  );
 }
 
-function crBookerGetChampionshipName(championshipId) {
+
+function crBookerGetChampionshipName(
+  championshipId,
+) {
   if (!championshipId) {
     return "Non-Title Match";
   }
 
-  const championship = owlControlRoomData.championships.find(
-    (item) => item.id === championshipId,
-  );
+  const championship =
+    owlControlRoomData.championships.find(
+      (item) =>
+        item.id === championshipId,
+    );
 
-  return championship ? championship.name : championshipId;
+  return championship
+    ? championship.name
+    : championshipId;
 }
 
-function crBookerSignature(wrestlerIds) {
-  return [...wrestlerIds].sort().join("|");
+
+function crBookerSignature(
+  wrestlerIds,
+) {
+  return [...wrestlerIds]
+    .sort()
+    .join("|");
 }
 
-function crBookerGetOfficialTeamByMembers(wrestlerIds) {
-  const signature = crBookerSignature(wrestlerIds);
+
+function crBookerGetOfficialTeamByMembers(
+  wrestlerIds,
+) {
+  const signature =
+    crBookerSignature(
+      wrestlerIds,
+    );
 
   return (
     owlControlRoomData.teams.find(
       (team) =>
-        Array.isArray(team.members) &&
-        team.members.length === 2 &&
-        crBookerSignature(team.members) === signature,
-    ) || null
+        Array.isArray(
+          team.members,
+        )
+        &&
+        team.members.length === 2
+        &&
+        crBookerSignature(
+          team.members,
+        ) === signature,
+    )
+    ||
+    null
   );
 }
 
-function crBookerFormatSide(side) {
-  const wrestlerIds = Array.isArray(side.wrestlers) ? side.wrestlers : [];
+
+function crBookerFormatSide(
+  side,
+) {
+  const wrestlerIds =
+    Array.isArray(
+      side.wrestlers,
+    )
+      ? side.wrestlers
+      : [];
 
   const officialTeam =
     wrestlerIds.length === 2
-      ? crBookerGetOfficialTeamByMembers(wrestlerIds)
+      ? crBookerGetOfficialTeamByMembers(
+          wrestlerIds,
+        )
       : null;
 
   if (officialTeam) {
     return officialTeam.name;
   }
 
-  return wrestlerIds.map(crBookerGetWrestlerName).join(" & ");
+  return wrestlerIds
+    .map(
+      crBookerGetWrestlerName,
+    )
+    .join(" & ");
 }
 
-function crBookerFormatMatch(match) {
+
+function crBookerFormatMatch(
+  match,
+) {
   if (!match) {
     return "Unknown Match";
   }
 
-  if (match.stipulation === "Overthrow Rumble") {
-    const division = match.specialty?.division;
+  if (
+    match.stipulation ===
+    "Overthrow Rumble"
+  ) {
+    const division =
+      match.specialty?.division;
 
-    return division ? `${division}'s Overthrow Rumble` : "Overthrow Rumble";
+    return division
+      ? `${division}'s Overthrow Rumble`
+      : "Overthrow Rumble";
   }
 
-  if (!Array.isArray(match.sides)) {
+  if (
+    !Array.isArray(
+      match.sides,
+    )
+  ) {
     return "Unknown Match";
   }
 
-  return match.sides.map(crBookerFormatSide).join(" vs. ");
+  return match.sides
+    .map(
+      crBookerFormatSide,
+    )
+    .join(" vs. ");
 }
+
 
 // =================================
 // POPULATE SELECT HELPERS
 // =================================
 
-function crBookerPopulateWrestlerSelect(selectElement) {
-  const oldValue = selectElement.value;
+function crBookerPopulateWrestlerSelect(
+  selectElement,
+) {
+  const oldValue =
+    selectElement.value;
 
   selectElement.innerHTML = `
+    <option value="">
+      Select Wrestler
+    </option>
+  `;
 
-        <option value="">
-            Select Wrestler
-        </option>
+  const wrestlers =
+    [...owlControlRoomData.wrestlers]
+      .sort(
+        (a, b) =>
+          String(
+            a.name || "",
+          ).localeCompare(
+            String(
+              b.name || "",
+            ),
+          ),
+      );
 
-    `;
+  wrestlers.forEach(
+    (wrestler) => {
+      const option =
+        document.createElement(
+          "option",
+        );
 
-  const wrestlers = [...owlControlRoomData.wrestlers].sort((a, b) =>
-    String(a.name || "").localeCompare(String(b.name || "")),
+      option.value =
+        wrestler.id;
+
+      option.textContent =
+        wrestler.name;
+
+      selectElement.appendChild(
+        option,
+      );
+    },
   );
-
-  wrestlers.forEach((wrestler) => {
-    const option = document.createElement("option");
-
-    option.value = wrestler.id;
-
-    option.textContent = wrestler.name;
-
-    selectElement.appendChild(option);
-  });
-
-  if (oldValue && wrestlers.some((wrestler) => wrestler.id === oldValue)) {
-    selectElement.value = oldValue;
-  }
-}
-
-function crBookerPopulateTeamSelect(selectElement) {
-  const oldValue = selectElement.value;
-
-  selectElement.innerHTML = `
-
-        <option value="">
-            Select Team
-        </option>
-
-    `;
-
-  const teams = [...owlControlRoomData.teams].sort((a, b) =>
-    String(a.name || "").localeCompare(String(b.name || "")),
-  );
-
-  teams.forEach((team) => {
-    const option = document.createElement("option");
-
-    option.value = team.id;
-
-    option.textContent = team.name;
-
-    selectElement.appendChild(option);
-  });
-
-  if (oldValue && teams.some((team) => team.id === oldValue)) {
-    selectElement.value = oldValue;
-  }
-}
-
-function crBookerPopulateChampionships() {
-  const oldValue = crBookerChampionship.value;
-
-  crBookerChampionship.innerHTML = `
-
-        <option value="">
-            Non-Title Match
-        </option>
-
-    `;
-
-  const championships = [...owlControlRoomData.championships].sort((a, b) =>
-    String(a.name || "").localeCompare(String(b.name || "")),
-  );
-
-  championships.forEach((championship) => {
-    const option = document.createElement("option");
-
-    option.value = championship.id;
-
-    option.textContent = championship.name;
-
-    crBookerChampionship.appendChild(option);
-  });
 
   if (
-    oldValue &&
-    championships.some((championship) => championship.id === oldValue)
+    oldValue
+    &&
+    wrestlers.some(
+      (wrestler) =>
+        wrestler.id === oldValue,
+    )
   ) {
-    crBookerChampionship.value = oldValue;
+    selectElement.value =
+      oldValue;
   }
 }
+
+
+function crBookerPopulateTeamSelect(
+  selectElement,
+) {
+  const oldValue =
+    selectElement.value;
+
+  selectElement.innerHTML = `
+    <option value="">
+      Select Team
+    </option>
+  `;
+
+  const teams =
+    [...owlControlRoomData.teams]
+      .sort(
+        (a, b) =>
+          String(
+            a.name || "",
+          ).localeCompare(
+            String(
+              b.name || "",
+            ),
+          ),
+      );
+
+  teams.forEach(
+    (team) => {
+      const option =
+        document.createElement(
+          "option",
+        );
+
+      option.value =
+        team.id;
+
+      option.textContent =
+        team.name;
+
+      selectElement.appendChild(
+        option,
+      );
+    },
+  );
+
+  if (
+    oldValue
+    &&
+    teams.some(
+      (team) =>
+        team.id === oldValue,
+    )
+  ) {
+    selectElement.value =
+      oldValue;
+  }
+}
+
+
+function crBookerPopulateChampionships() {
+  const oldValue =
+    crBookerChampionship.value;
+
+  crBookerChampionship.innerHTML = `
+    <option value="">
+      Non-Title Match
+    </option>
+  `;
+
+  const championships =
+    [...owlControlRoomData.championships]
+      .sort(
+        (a, b) =>
+          String(
+            a.name || "",
+          ).localeCompare(
+            String(
+              b.name || "",
+            ),
+          ),
+      );
+
+  championships.forEach(
+    (championship) => {
+      const option =
+        document.createElement(
+          "option",
+        );
+
+      option.value =
+        championship.id;
+
+      option.textContent =
+        championship.name;
+
+      crBookerChampionship.appendChild(
+        option,
+      );
+    },
+  );
+
+  if (
+    oldValue
+    &&
+    championships.some(
+      (championship) =>
+        championship.id === oldValue,
+    )
+  ) {
+    crBookerChampionship.value =
+      oldValue;
+  }
+}
+
+
 // =================================
 // STRUCTURE CONTROL HELPERS
 // =================================
@@ -536,24 +819,41 @@ function crBookerGetHandicapSideSizes(
   structureValue,
 ) {
   const structureMap = {
-    "2v1": [2, 1],
-    "2v3": [2, 3],
-    "3v1": [3, 1],
+    "2v1":
+      [2, 1],
+
+    "2v3":
+      [2, 3],
+
+    "3v1":
+      [3, 1],
   };
 
-  return structureMap[structureValue]
-    ? [...structureMap[structureValue]]
+  return structureMap[
+    structureValue
+  ]
+    ? [
+        ...structureMap[
+          structureValue
+        ],
+      ]
     : null;
 }
+
 
 function crBookerGetHandicapStructureValue(
   sideSizes,
 ) {
-  if (!Array.isArray(sideSizes)) {
+  if (
+    !Array.isArray(
+      sideSizes,
+    )
+  ) {
     return "";
   }
 
-  const signature = sideSizes.join("v");
+  const signature =
+    sideSizes.join("v");
 
   const validStructures = [
     "2v1",
@@ -561,13 +861,17 @@ function crBookerGetHandicapStructureValue(
     "3v1",
   ];
 
-  return validStructures.includes(signature)
+  return validStructures.includes(
+    signature,
+  )
     ? signature
     : "";
 }
 
+
 function crBookerConfigureStructureChoice(
-  stipulation = crBookerStipulation.value,
+  stipulation =
+    crBookerStipulation.value,
 ) {
   const oldValue =
     crBookerStructureChoice.value;
@@ -577,9 +881,13 @@ function crBookerConfigureStructureChoice(
       'label[for="cr-booker-structure-choice"]',
     );
 
-  crBookerStructureChoice.innerHTML = "";
+  crBookerStructureChoice.innerHTML =
+    "";
 
-  if (stipulation === "Handicap Match") {
+  if (
+    stipulation ===
+    "Handicap Match"
+  ) {
     if (label) {
       label.textContent =
         "HANDICAP STRUCTURE";
@@ -604,7 +912,11 @@ function crBookerConfigureStructureChoice(
     `;
 
     if (
-      ["2v1", "2v3", "3v1"].includes(
+      [
+        "2v1",
+        "2v3",
+        "3v1",
+      ].includes(
         oldValue,
       )
     ) {
@@ -636,7 +948,8 @@ function crBookerConfigureStructureChoice(
 
   if (
     oldValue ===
-      CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL ||
+      CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL
+    ||
     oldValue ===
       CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
   ) {
@@ -645,8 +958,10 @@ function crBookerConfigureStructureChoice(
   }
 }
 
+
 function crBookerConfigureRuleChoice(
-  stipulation = crBookerStipulation.value,
+  stipulation =
+    crBookerStipulation.value,
 ) {
   const oldValue =
     crBookerEliminationRule.value;
@@ -656,9 +971,13 @@ function crBookerConfigureRuleChoice(
       'label[for="cr-booker-elimination-rule"]',
     );
 
-  crBookerEliminationRule.innerHTML = "";
+  crBookerEliminationRule.innerHTML =
+    "";
 
-  if (stipulation === "Handicap Match") {
+  if (
+    stipulation ===
+    "Handicap Match"
+  ) {
     if (label) {
       label.textContent =
         "VICTORY RULE";
@@ -680,7 +999,8 @@ function crBookerConfigureRuleChoice(
 
     if (
       oldValue ===
-        "Pinfall or Submission" ||
+        "Pinfall or Submission"
+      ||
       oldValue ===
         "Elimination"
     ) {
@@ -722,40 +1042,66 @@ function crBookerConfigureRuleChoice(
       "Over the Top Rope";
   }
 }
+
+
+function crBookerSetCountControl(
   labelText,
   values,
   defaultValue,
 ) {
-  const label = crBookerParticipantCountRow.querySelector(
-    'label[for="cr-booker-participant-count"]',
-  );
+  const label =
+    crBookerParticipantCountRow.querySelector(
+      'label[for="cr-booker-participant-count"]',
+    );
 
   if (label) {
-    label.textContent = labelText;
+    label.textContent =
+      labelText;
   }
 
-  const currentValue = Number(
-    crBookerParticipantCount.value,
+  const currentValue =
+    Number(
+      crBookerParticipantCount.value,
+    );
+
+  crBookerParticipantCount.innerHTML =
+    "";
+
+  values.forEach(
+    (value) => {
+      const option =
+        document.createElement(
+          "option",
+        );
+
+      option.value =
+        String(
+          value,
+        );
+
+      option.textContent =
+        String(
+          value,
+        );
+
+      crBookerParticipantCount.appendChild(
+        option,
+      );
+    },
   );
 
-  crBookerParticipantCount.innerHTML = "";
-
-  values.forEach((value) => {
-    const option = document.createElement("option");
-
-    option.value = String(value);
-
-    option.textContent = String(value);
-
-    crBookerParticipantCount.appendChild(option);
-  });
-
-  crBookerParticipantCount.value = values.includes(
-    currentValue,
-  )
-    ? String(currentValue)
-    : String(defaultValue);
+  crBookerParticipantCount.value =
+    values.includes(
+      currentValue,
+    )
+      ? String(
+          currentValue,
+        )
+      : String(
+          defaultValue,
+        );
 }
+
 
 // =================================
 // ADVANCED PARTICIPANT HELPERS
@@ -769,49 +1115,89 @@ function crBookerGetAdvancedParticipantSelects() {
   ];
 }
 
+
 function crBookerBuildAdvancedIndividualSides() {
-  return crBookerGetAdvancedParticipantSelects().map((selectElement) => ({
-    wrestlers: [selectElement.value].filter(Boolean),
-  }));
+  return crBookerGetAdvancedParticipantSelects()
+    .map(
+      (selectElement) => ({
+        wrestlers: [
+          selectElement.value,
+        ].filter(
+          Boolean,
+        ),
+      }),
+    );
 }
-function crBookerGetTeamBattleParticipantSelects(sideNumber = null) {
+
+
+function crBookerGetTeamBattleParticipantSelects(
+  sideNumber = null,
+) {
   const selects = [
     ...crBookerTeamBattleSides.querySelectorAll(
       "[data-cr-booker-team-battle-participant='true']",
     ),
   ];
 
-  if (sideNumber === null) {
+  if (
+    sideNumber === null
+  ) {
     return selects;
   }
 
   return selects.filter(
     (selectElement) =>
-      Number(selectElement.dataset.crBookerTeamBattleSide) === sideNumber,
+      Number(
+        selectElement.dataset.crBookerTeamBattleSide,
+      ) === sideNumber,
   );
 }
 
+
 function crBookerBuildTeamBattleSides() {
-  return [1, 2].map((sideNumber) => ({
-    wrestlers: crBookerGetTeamBattleParticipantSelects(sideNumber)
-      .map((selectElement) => selectElement.value)
-      .filter(Boolean),
-  }));
+  return [1, 2]
+    .map(
+      (sideNumber) => ({
+        wrestlers:
+          crBookerGetTeamBattleParticipantSelects(
+            sideNumber,
+          )
+            .map(
+              (selectElement) =>
+                selectElement.value,
+            )
+            .filter(
+              Boolean,
+            ),
+      }),
+    );
 }
 
+
 function crBookerRenderTeamBattleSides(
-  sideWrestlers = [[], []],
-  teamSizeOrSideSizes = 5,
+  sideWrestlers =
+    [[], []],
+  teamSizeOrSideSizes =
+    5,
 ) {
   const sideSizes =
-    Array.isArray(teamSizeOrSideSizes)
-      ? [...teamSizeOrSideSizes]
+    Array.isArray(
+      teamSizeOrSideSizes,
+    )
+      ? [
+          ...teamSizeOrSideSizes,
+        ]
       : [
-          Number(teamSizeOrSideSizes),
-          Number(teamSizeOrSideSizes),
+          Number(
+            teamSizeOrSideSizes,
+          ),
+          Number(
+            teamSizeOrSideSizes,
+          ),
         ];
 
-  crBookerTeamBattleSides.innerHTML = "";
+  crBookerTeamBattleSides.innerHTML =
+    "";
 
   for (
     let sideNumber = 1;
@@ -819,19 +1205,25 @@ function crBookerRenderTeamBattleSides(
     sideNumber += 1
   ) {
     const sideCard =
-      document.createElement("div");
+      document.createElement(
+        "div",
+      );
 
     sideCard.className =
       "cr-booker-side-card";
 
     const heading =
-      document.createElement("div");
+      document.createElement(
+        "div",
+      );
 
     heading.className =
       "cr-booker-side-heading";
 
     const headingText =
-      document.createElement("span");
+      document.createElement(
+        "span",
+      );
 
     headingText.textContent =
       `TEAM ${sideNumber}`;
@@ -845,15 +1237,21 @@ function crBookerRenderTeamBattleSides(
     );
 
     const grid =
-      document.createElement("div");
+      document.createElement(
+        "div",
+      );
 
     grid.className =
       "cr-booker-wrestler-grid";
 
     const currentSideSize =
       Number(
-        sideSizes[sideNumber - 1],
-      ) || 1;
+        sideSizes[
+          sideNumber - 1
+        ],
+      )
+      ||
+      1;
 
     for (
       let memberIndex = 0;
@@ -861,16 +1259,22 @@ function crBookerRenderTeamBattleSides(
       memberIndex += 1
     ) {
       const group =
-        document.createElement("div");
+        document.createElement(
+          "div",
+        );
 
       group.className =
         "cr-form-group";
 
       const label =
-        document.createElement("label");
+        document.createElement(
+          "label",
+        );
 
       const select =
-        document.createElement("select");
+        document.createElement(
+          "select",
+        );
 
       const selectId =
         `cr-booker-team-${sideNumber}-member-${memberIndex + 1}`;
@@ -888,7 +1292,9 @@ function crBookerRenderTeamBattleSides(
         "true";
 
       select.dataset.crBookerTeamBattleSide =
-        String(sideNumber);
+        String(
+          sideNumber,
+        );
 
       crBookerPopulateWrestlerSelect(
         select,
@@ -897,9 +1303,15 @@ function crBookerRenderTeamBattleSides(
       const savedWrestlerId =
         sideWrestlers[
           sideNumber - 1
-        ]?.[memberIndex] || "";
+        ]?.[
+          memberIndex
+        ]
+        ||
+        "";
 
-      if (savedWrestlerId) {
+      if (
+        savedWrestlerId
+      ) {
         select.value =
           savedWrestlerId;
       }
@@ -943,6 +1355,7 @@ function crBookerRenderTeamBattleSides(
     "";
 }
 
+
 // =================================
 // ADVANCED PARTICIPANTS
 // =================================
@@ -954,58 +1367,114 @@ function crBookerRenderAdvancedParticipants(
   const existingValues =
     wrestlerIds.length > 0
       ? wrestlerIds
-      : crBookerGetAdvancedParticipantSelects().map(
-          (selectElement) => selectElement.value,
-        );
+      : crBookerGetAdvancedParticipantSelects()
+          .map(
+            (selectElement) =>
+              selectElement.value,
+          );
 
-  const count = Number(participantCount) || 6;
+  const count =
+    Number(
+      participantCount,
+    )
+    ||
+    6;
 
-  crBookerAdvancedParticipants.innerHTML = "";
+  crBookerAdvancedParticipants.innerHTML =
+    "";
 
-  const grid = document.createElement("div");
+  const grid =
+    document.createElement(
+      "div",
+    );
 
-  grid.className = "cr-booker-wrestler-grid";
+  grid.className =
+    "cr-booker-wrestler-grid";
 
-  for (let index = 0; index < count; index += 1) {
-    const group = document.createElement("div");
+  for (
+    let index = 0;
+    index < count;
+    index += 1
+  ) {
+    const group =
+      document.createElement(
+        "div",
+      );
 
-    group.className = "cr-form-group";
+    group.className =
+      "cr-form-group";
 
-    const label = document.createElement("label");
+    const label =
+      document.createElement(
+        "label",
+      );
 
-    const select = document.createElement("select");
+    const select =
+      document.createElement(
+        "select",
+      );
 
-    const selectId = `cr-booker-advanced-participant-${index + 1}`;
+    const selectId =
+      `cr-booker-advanced-participant-${index + 1}`;
 
-    label.htmlFor = selectId;
+    label.htmlFor =
+      selectId;
 
-    label.textContent = `PARTICIPANT ${index + 1}`;
+    label.textContent =
+      `PARTICIPANT ${index + 1}`;
 
-    select.id = selectId;
+    select.id =
+      selectId;
 
-    select.dataset.crBookerParticipant = "true";
+    select.dataset.crBookerParticipant =
+      "true";
 
-    crBookerPopulateWrestlerSelect(select);
+    crBookerPopulateWrestlerSelect(
+      select,
+    );
 
-    if (existingValues[index]) {
-      select.value = existingValues[index];
+    if (
+      existingValues[
+        index
+      ]
+    ) {
+      select.value =
+        existingValues[
+          index
+        ];
     }
 
-    select.addEventListener("input", crBookerReview);
+    select.addEventListener(
+      "input",
+      crBookerReview,
+    );
 
-    select.addEventListener("change", crBookerReview);
+    select.addEventListener(
+      "change",
+      crBookerReview,
+    );
 
-    group.appendChild(label);
+    group.appendChild(
+      label,
+    );
 
-    group.appendChild(select);
+    group.appendChild(
+      select,
+    );
 
-    grid.appendChild(group);
+    grid.appendChild(
+      group,
+    );
   }
 
-  crBookerAdvancedParticipants.appendChild(grid);
+  crBookerAdvancedParticipants.appendChild(
+    grid,
+  );
 
-  crBookerAdvancedParticipants.hidden = false;
+  crBookerAdvancedParticipants.hidden =
+    false;
 }
+
 
 // =================================
 // ADVANCED MATCH LAYOUT
@@ -1016,7 +1485,8 @@ function crBookerRefreshAdvancedMatchLayout() {
     crBookerStipulation.value;
 
   const isBattleRoyal =
-    stipulation === "Battle Royal";
+    stipulation ===
+    "Battle Royal";
 
   const isHexCell =
     stipulation ===
@@ -1052,12 +1522,14 @@ function crBookerRefreshAdvancedMatchLayout() {
       : "";
 
   const isIndividualElimination =
-    isEliminationMatch &&
+    isEliminationMatch
+    &&
     eliminationMode ===
       CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL;
 
   const isTeamElimination =
-    isEliminationMatch &&
+    isEliminationMatch
+    &&
     eliminationMode ===
       CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE;
 
@@ -1069,33 +1541,47 @@ function crBookerRefreshAdvancedMatchLayout() {
       : null;
 
   const isConfiguredHandicap =
-    isHandicapMatch &&
-    Array.isArray(handicapSideSizes);
+    isHandicapMatch
+    &&
+    Array.isArray(
+      handicapSideSizes,
+    );
 
   const usesAdvancedParticipants =
-    isBattleRoyal ||
-    isHexCell ||
-    isDevilsContract ||
-    isFatesWheel ||
+    isBattleRoyal
+    ||
+    isHexCell
+    ||
+    isDevilsContract
+    ||
+    isFatesWheel
+    ||
     isIndividualElimination;
 
   const usesTeamBattleSides =
-    isLoveAndWar ||
-    isTeamElimination ||
+    isLoveAndWar
+    ||
+    isTeamElimination
+    ||
     isConfiguredHandicap;
 
   const usesAdvancedLayout =
-    usesAdvancedParticipants ||
-    usesTeamBattleSides ||
-    isOverthrowRumble ||
-    isEliminationMatch ||
+    usesAdvancedParticipants
+    ||
+    usesTeamBattleSides
+    ||
+    isOverthrowRumble
+    ||
+    isEliminationMatch
+    ||
     isHandicapMatch;
 
   crBookerAdvancedMatch.hidden =
     !usesAdvancedLayout;
 
   const showsStructureChoice =
-    isEliminationMatch ||
+    isEliminationMatch
+    ||
     isHandicapMatch;
 
   crBookerStructureChoiceRow.hidden =
@@ -1107,8 +1593,10 @@ function crBookerRefreshAdvancedMatchLayout() {
       : "none";
 
   const showsCountControl =
-    isBattleRoyal ||
-    isIndividualElimination ||
+    isBattleRoyal
+    ||
+    isIndividualElimination
+    ||
     isTeamElimination;
 
   crBookerParticipantCountRow.hidden =
@@ -1120,7 +1608,8 @@ function crBookerRefreshAdvancedMatchLayout() {
       : "none";
 
   const showsRuleChoice =
-    isBattleRoyal ||
+    isBattleRoyal
+    ||
     isHandicapMatch;
 
   crBookerEliminationRuleRow.hidden =
@@ -1139,7 +1628,9 @@ function crBookerRefreshAdvancedMatchLayout() {
       ? ""
       : "none";
 
-  if (isBattleRoyal) {
+  if (
+    isBattleRoyal
+  ) {
     crBookerSetCountControl(
       "PARTICIPANT COUNT",
       [3, 4, 5, 6, 7, 8],
@@ -1147,7 +1638,9 @@ function crBookerRefreshAdvancedMatchLayout() {
     );
   }
 
-  if (isIndividualElimination) {
+  if (
+    isIndividualElimination
+  ) {
     crBookerSetCountControl(
       "PARTICIPANT COUNT",
       [3, 4, 5, 6, 7, 8],
@@ -1155,7 +1648,9 @@ function crBookerRefreshAdvancedMatchLayout() {
     );
   }
 
-  if (isTeamElimination) {
+  if (
+    isTeamElimination
+  ) {
     crBookerSetCountControl(
       "TEAM SIZE",
       [2, 3, 4],
@@ -1182,19 +1677,24 @@ function crBookerRefreshAdvancedMatchLayout() {
   crBookerStandardCompetitors.hidden =
     usesAdvancedLayout;
 
-  if (usesAdvancedParticipants) {
+  if (
+    usesAdvancedParticipants
+  ) {
     const currentSelects =
       crBookerGetAdvancedParticipantSelects();
 
     const desiredCount =
       isFatesWheel
         ? 8
-        : isHexCell ||
-            isDevilsContract
+        : isHexCell
+          ||
+          isDevilsContract
           ? 6
           : Number(
               crBookerParticipantCount.value,
-            ) || 6;
+            )
+            ||
+            6;
 
     if (
       currentSelects.length !==
@@ -1209,43 +1709,60 @@ function crBookerRefreshAdvancedMatchLayout() {
       "";
   }
 
-  if (usesTeamBattleSides) {
+  if (
+    usesTeamBattleSides
+  ) {
     let desiredSideSizes;
 
-    if (isLoveAndWar) {
+    if (
+      isLoveAndWar
+    ) {
       desiredSideSizes =
         [5, 5];
-    } else if (isTeamElimination) {
+    } else if (
+      isTeamElimination
+    ) {
       const teamSize =
         Number(
           crBookerParticipantCount.value,
-        ) || 2;
+        )
+        ||
+        2;
 
       desiredSideSizes =
-        [teamSize, teamSize];
+        [
+          teamSize,
+          teamSize,
+        ];
     } else {
       desiredSideSizes =
         handicapSideSizes;
     }
 
     const currentSideSizes =
-      [1, 2].map(
-        (sideNumber) =>
-          crBookerGetTeamBattleParticipantSelects(
-            sideNumber,
-          ).length,
-      );
+      [1, 2]
+        .map(
+          (sideNumber) =>
+            crBookerGetTeamBattleParticipantSelects(
+              sideNumber,
+            ).length,
+        );
 
     const sideSizesMatch =
       currentSideSizes.length ===
-        desiredSideSizes.length &&
+        desiredSideSizes.length
+      &&
       currentSideSizes.every(
         (size, index) =>
           size ===
-          desiredSideSizes[index],
+          desiredSideSizes[
+            index
+          ],
       );
 
-    if (!sideSizesMatch) {
+    if (
+      !sideSizesMatch
+    ) {
       crBookerRenderTeamBattleSides(
         [[], []],
         desiredSideSizes,
@@ -1259,41 +1776,73 @@ function crBookerRefreshAdvancedMatchLayout() {
   crBookerReview();
 }
 
+
 // =================================
 // POPULATE EVENTS
 // =================================
 
 function crBookerPopulateEvents() {
-  const oldValue = crBookerEvent.value;
+  const oldValue =
+    crBookerEvent.value;
 
   crBookerEvent.innerHTML = `
+    <option value="">
+      Select Event
+    </option>
+  `;
 
-        <option value="">
-            Select Event
-        </option>
+  const events =
+    [...owlControlRoomData.events]
+      .filter(
+        (event) =>
+          String(
+            event.status || "",
+          ).toLowerCase() !==
+          "completed",
+      )
+      .sort(
+        (a, b) =>
+          new Date(
+            `${a.date}T00:00:00`,
+          )
+          -
+          new Date(
+            `${b.date}T00:00:00`,
+          ),
+      );
 
-    `;
+  events.forEach(
+    (event) => {
+      const option =
+        document.createElement(
+          "option",
+        );
 
-  const events = [...owlControlRoomData.events]
-    .filter((event) => String(event.status || "").toLowerCase() !== "completed")
-    .sort(
-      (a, b) => new Date(`${a.date}T00:00:00`) - new Date(`${b.date}T00:00:00`),
-    );
+      option.value =
+        event.id;
 
-  events.forEach((event) => {
-    const option = document.createElement("option");
+      option.textContent =
+        `${event.date} — ${event.name}`;
 
-    option.value = event.id;
+      crBookerEvent.appendChild(
+        option,
+      );
+    },
+  );
 
-    option.textContent = `${event.date} — ${event.name}`;
-
-    crBookerEvent.appendChild(option);
-  });
-
-  if (oldValue && events.some((event) => event.id === oldValue)) {
-    crBookerEvent.value = oldValue;
+  if (
+    oldValue
+    &&
+    events.some(
+      (event) =>
+        event.id === oldValue,
+    )
+  ) {
+    crBookerEvent.value =
+      oldValue;
   }
 }
+
 
 // =================================
 // POPULATE ALL OPTIONS
@@ -1304,7 +1853,7 @@ function crBookerPopulateOptions() {
 
   crBookerPopulateChampionships();
 
-    crBookerConfigureStructureChoice();
+  crBookerConfigureStructureChoice();
 
   crBookerConfigureRuleChoice();
 
@@ -1315,296 +1864,484 @@ function crBookerPopulateOptions() {
     crBookerSideTwoWrestlerTwo,
     crBookerSideThreeWrestler,
     crBookerSideFourWrestler,
-  ].forEach(crBookerPopulateWrestlerSelect);
+  ].forEach(
+    crBookerPopulateWrestlerSelect,
+  );
 
-  [crBookerSideOneTeam, crBookerSideTwoTeam].forEach(
+  [
+    crBookerSideOneTeam,
+    crBookerSideTwoTeam,
+  ].forEach(
     crBookerPopulateTeamSelect,
   );
 
   crBookerRefreshMatchList();
 }
 
+
 // =================================
 // NEXT MATCH ID
 // =================================
 
 function crBookerGetNextMatchId() {
-  let highestNumber = 0;
+  let highestNumber =
+    0;
 
-  owlControlRoomData.announcedMatches.forEach((match) => {
-    const idMatch = /^announced-(\d+)$/.exec(match.id || "");
+  owlControlRoomData.announcedMatches.forEach(
+    (match) => {
+      const idMatch =
+        /^announced-(\d+)$/.exec(
+          match.id || "",
+        );
 
-    if (!idMatch) {
-      return;
-    }
+      if (
+        !idMatch
+      ) {
+        return;
+      }
 
-    highestNumber = Math.max(highestNumber, Number(idMatch[1]));
-  });
+      highestNumber =
+        Math.max(
+          highestNumber,
+          Number(
+            idMatch[
+              1
+            ],
+          ),
+        );
+    },
+  );
 
-  return `announced-${String(highestNumber + 1).padStart(4, "0")}`;
+  return `announced-${String(
+    highestNumber + 1,
+  ).padStart(
+    4,
+    "0",
+  )}`;
 }
+
 
 // =================================
 // EVENT MATCHES
 // =================================
 
 function crBookerGetEventMatches() {
-  const eventId = crBookerEvent.value;
+  const eventId =
+    crBookerEvent.value;
 
-  if (!eventId) {
+  if (
+    !eventId
+  ) {
     return [];
   }
 
   return owlControlRoomData.announcedMatches
-    .filter((match) => match.eventId === eventId)
-    .sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+    .filter(
+      (match) =>
+        match.eventId ===
+        eventId,
+    )
+    .sort(
+      (a, b) =>
+        Number(
+          a.order || 0,
+        )
+        -
+        Number(
+          b.order || 0,
+        ),
+    );
 }
+
 
 // =================================
 // REFRESH MATCH SELECT
 // =================================
 
 function crBookerRefreshMatchList() {
-  const desiredMatchId = crBookerPendingMatchId || crBookerMatchSelect.value;
+  const desiredMatchId =
+    crBookerPendingMatchId
+    ||
+    crBookerMatchSelect.value;
 
   crBookerMatchSelect.innerHTML = `
+    <option value="">
+      Select Match
+    </option>
+  `;
 
-        <option value="">
-            Select Match
-        </option>
+  const eventMatches =
+    crBookerGetEventMatches();
 
-    `;
+  eventMatches.forEach(
+    (match) => {
+      const option =
+        document.createElement(
+          "option",
+        );
 
-  const eventMatches = crBookerGetEventMatches();
+      option.value =
+        match.id;
 
-  eventMatches.forEach((match) => {
-    const option = document.createElement("option");
+      option.textContent =
+        `Match ${match.order} — ${crBookerFormatMatch(match)}`;
 
-    option.value = match.id;
-
-    option.textContent = `Match ${match.order} — ${crBookerFormatMatch(match)}`;
-
-    crBookerMatchSelect.appendChild(option);
-  });
+      crBookerMatchSelect.appendChild(
+        option,
+      );
+    },
+  );
 
   if (
-    desiredMatchId &&
-    eventMatches.some((match) => match.id === desiredMatchId)
+    desiredMatchId
+    &&
+    eventMatches.some(
+      (match) =>
+        match.id ===
+        desiredMatchId,
+    )
   ) {
-    crBookerMatchSelect.value = desiredMatchId;
+    crBookerMatchSelect.value =
+      desiredMatchId;
 
-    crBookerPendingMatchId = "";
+    crBookerPendingMatchId =
+      "";
 
     crBookerLoadSelectedMatch();
   }
 }
+
 
 // =================================
 // SIDE DISPLAY MODE
 // =================================
 
 function crBookerRefreshSideLayout() {
-  const matchType = crBookerMatchType.value;
+  const matchType =
+    crBookerMatchType.value;
 
-  const isTag = matchType === "Tag Team";
+  const isTag =
+    matchType ===
+    "Tag Team";
 
-  const isTriple = matchType === "Triple Threat";
+  const isTriple =
+    matchType ===
+    "Triple Threat";
 
-  const isFourWay = matchType === "Fatal 4-Way";
+  const isFourWay =
+    matchType ===
+    "Fatal 4-Way";
 
-  crBookerSideOneTagControls.hidden = !isTag;
+  crBookerSideOneTagControls.hidden =
+    !isTag;
 
-  crBookerSideTwoTagControls.hidden = !isTag;
+  crBookerSideTwoTagControls.hidden =
+    !isTag;
 
-  crBookerSideThree.hidden = !isTriple && !isFourWay;
+  crBookerSideThree.hidden =
+    !isTriple
+    &&
+    !isFourWay;
 
-  crBookerSideFour.hidden = !isFourWay;
+  crBookerSideFour.hidden =
+    !isFourWay;
 
-  if (isTag) {
-    crBookerRefreshTagSide(1);
+  if (
+    isTag
+  ) {
+    crBookerRefreshTagSide(
+      1,
+    );
 
-    crBookerRefreshTagSide(2);
+    crBookerRefreshTagSide(
+      2,
+    );
   } else {
-    crBookerSideOneTeamRow.hidden = true;
+    crBookerSideOneTeamRow.hidden =
+      true;
 
-    crBookerSideTwoTeamRow.hidden = true;
+    crBookerSideTwoTeamRow.hidden =
+      true;
 
-    crBookerSideOneWrestlers.hidden = false;
+    crBookerSideOneWrestlers.hidden =
+      false;
 
-    crBookerSideTwoWrestlers.hidden = false;
+    crBookerSideTwoWrestlers.hidden =
+      false;
 
-    crBookerSideOneWrestlerTwoRow.hidden = true;
+    crBookerSideOneWrestlerTwoRow.hidden =
+      true;
 
-    crBookerSideTwoWrestlerTwoRow.hidden = true;
+    crBookerSideTwoWrestlerTwoRow.hidden =
+      true;
   }
 
   crBookerRefreshAdvancedMatchLayout();
 }
 
+
 // =================================
 // TAG SIDE DISPLAY
 // =================================
 
-function crBookerRefreshTagSide(sideNumber) {
-  const isSideOne = sideNumber === 1;
+function crBookerRefreshTagSide(
+  sideNumber,
+) {
+  const isSideOne =
+    sideNumber ===
+    1;
 
-  const mode = isSideOne
-    ? crBookerSideOneMode.value
-    : crBookerSideTwoMode.value;
+  const mode =
+    isSideOne
+      ? crBookerSideOneMode.value
+      : crBookerSideTwoMode.value;
 
-  const teamRow = isSideOne ? crBookerSideOneTeamRow : crBookerSideTwoTeamRow;
+  const teamRow =
+    isSideOne
+      ? crBookerSideOneTeamRow
+      : crBookerSideTwoTeamRow;
 
-  const wrestlerGrid = isSideOne
-    ? crBookerSideOneWrestlers
-    : crBookerSideTwoWrestlers;
+  const wrestlerGrid =
+    isSideOne
+      ? crBookerSideOneWrestlers
+      : crBookerSideTwoWrestlers;
 
-  const wrestlerTwoRow = isSideOne
-    ? crBookerSideOneWrestlerTwoRow
-    : crBookerSideTwoWrestlerTwoRow;
+  const wrestlerTwoRow =
+    isSideOne
+      ? crBookerSideOneWrestlerTwoRow
+      : crBookerSideTwoWrestlerTwoRow;
 
-  if (mode === "team") {
-    teamRow.hidden = false;
+  if (
+    mode ===
+    "team"
+  ) {
+    teamRow.hidden =
+      false;
 
-    wrestlerGrid.hidden = true;
+    wrestlerGrid.hidden =
+      true;
   } else {
-    teamRow.hidden = true;
+    teamRow.hidden =
+      true;
 
-    wrestlerGrid.hidden = false;
+    wrestlerGrid.hidden =
+      false;
 
-    wrestlerTwoRow.hidden = false;
+    wrestlerTwoRow.hidden =
+      false;
   }
 
   crBookerReview();
 }
+
 
 // =================================
 // CLEAR FORM
 // =================================
 
 function crBookerClearForm() {
-  crBookerMatchType.value = "Singles";
+  crBookerMatchType.value =
+    "Singles";
 
-  crBookerOrder.value = "";
+  crBookerOrder.value =
+    "";
 
-  crBookerChampionship.value = "";
+  crBookerChampionship.value =
+    "";
 
-  crBookerStatusField.value = "announced";
+  crBookerStatusField.value =
+    "announced";
 
-  crBookerStipulation.value = "";
+  crBookerStipulation.value =
+    "";
 
-  crBookerDivision.value = "";
+  crBookerDivision.value =
+    "";
 
-  crBookerStructureChoice.value = "";
+  crBookerStructureChoice.value =
+    "";
 
-  crBookerEliminationRule.value = "";
+  crBookerEliminationRule.value =
+    "";
 
-  crBookerStatusNote.value = "";
+  crBookerStatusNote.value =
+    "";
 
-  crBookerSideOneMode.value = "team";
+  crBookerSideOneMode.value =
+    "team";
 
-  crBookerSideTwoMode.value = "team";
+  crBookerSideTwoMode.value =
+    "team";
 
-  crBookerSideOneTeam.value = "";
+  crBookerSideOneTeam.value =
+    "";
 
-  crBookerSideTwoTeam.value = "";
+  crBookerSideTwoTeam.value =
+    "";
 
-  crBookerSideOneWrestlerOne.value = "";
+  crBookerSideOneWrestlerOne.value =
+    "";
 
-  crBookerSideOneWrestlerTwo.value = "";
+  crBookerSideOneWrestlerTwo.value =
+    "";
 
-  crBookerSideTwoWrestlerOne.value = "";
+  crBookerSideTwoWrestlerOne.value =
+    "";
 
-  crBookerSideTwoWrestlerTwo.value = "";
+  crBookerSideTwoWrestlerTwo.value =
+    "";
 
-  crBookerSideThreeWrestler.value = "";
+  crBookerSideThreeWrestler.value =
+    "";
 
-  crBookerSideFourWrestler.value = "";
+  crBookerSideFourWrestler.value =
+    "";
 
-  crBookerOriginalRecord = null;
+  crBookerOriginalRecord =
+    null;
 
-  crBookerPreview.hidden = true;
+  crBookerPreview.hidden =
+    true;
 
-  crBookerError.hidden = true;
+  crBookerError.hidden =
+    true;
 
-  crBookerSave.disabled = true;
+  crBookerSave.disabled =
+    true;
 
   crBookerRefreshSideLayout();
 }
+
 
 // =================================
 // DEFAULT ORDER
 // =================================
 
 function crBookerSetDefaultOrder() {
-  const eventMatches = crBookerGetEventMatches();
+  const eventMatches =
+    crBookerGetEventMatches();
 
-  const highestOrder = eventMatches.reduce(
-    (highest, match) => Math.max(highest, Number(match.order || 0)),
+  const highestOrder =
+    eventMatches.reduce(
+      (
+        highest,
+        match,
+      ) =>
+        Math.max(
+          highest,
+          Number(
+            match.order || 0,
+          ),
+        ),
+      0,
+    );
 
-    0,
-  );
-
-  crBookerOrder.value = highestOrder + 1;
+  crBookerOrder.value =
+    highestOrder + 1;
 }
+
 
 // =================================
 // SIDE DATA
 // =================================
 
-function crBookerGetTagSide(sideNumber) {
-  const isSideOne = sideNumber === 1;
+function crBookerGetTagSide(
+  sideNumber,
+) {
+  const isSideOne =
+    sideNumber ===
+    1;
 
-  const mode = isSideOne
-    ? crBookerSideOneMode.value
-    : crBookerSideTwoMode.value;
+  const mode =
+    isSideOne
+      ? crBookerSideOneMode.value
+      : crBookerSideTwoMode.value;
 
-  if (mode === "team") {
-    const teamId = isSideOne
-      ? crBookerSideOneTeam.value
-      : crBookerSideTwoTeam.value;
+  if (
+    mode ===
+    "team"
+  ) {
+    const teamId =
+      isSideOne
+        ? crBookerSideOneTeam.value
+        : crBookerSideTwoTeam.value;
 
-    const team = crBookerGetTeam(teamId);
+    const team =
+      crBookerGetTeam(
+        teamId,
+      );
 
     return {
-      wrestlers: team && Array.isArray(team.members) ? [...team.members] : [],
+      wrestlers:
+        team
+        &&
+        Array.isArray(
+          team.members,
+        )
+          ? [
+              ...team.members,
+            ]
+          : [],
     };
   }
 
-  const wrestlerOne = isSideOne
-    ? crBookerSideOneWrestlerOne.value
-    : crBookerSideTwoWrestlerOne.value;
+  const wrestlerOne =
+    isSideOne
+      ? crBookerSideOneWrestlerOne.value
+      : crBookerSideTwoWrestlerOne.value;
 
-  const wrestlerTwo = isSideOne
-    ? crBookerSideOneWrestlerTwo.value
-    : crBookerSideTwoWrestlerTwo.value;
+  const wrestlerTwo =
+    isSideOne
+      ? crBookerSideOneWrestlerTwo.value
+      : crBookerSideTwoWrestlerTwo.value;
 
   return {
-    wrestlers: [wrestlerOne, wrestlerTwo].filter(Boolean),
+    wrestlers: [
+      wrestlerOne,
+      wrestlerTwo,
+    ].filter(
+      Boolean,
+    ),
   };
 }
+
 
 // =================================
 // BUILD SIDES
 // =================================
 
 function crBookerBuildSides() {
-  const matchType = crBookerMatchType.value;
+  const matchType =
+    crBookerMatchType.value;
 
-  const stipulation = crBookerStipulation.value;
+  const stipulation =
+    crBookerStipulation.value;
 
-  if (stipulation === "Overthrow Rumble") {
+  if (
+    stipulation ===
+    "Overthrow Rumble"
+  ) {
     return [];
   }
 
-    if (stipulation === "Love and War") {
+  if (
+    stipulation ===
+    "Love and War"
+  ) {
     return crBookerBuildTeamBattleSides();
   }
 
-  if (stipulation === "Handicap Match") {
+  if (
+    stipulation ===
+    "Handicap Match"
+  ) {
     return crBookerBuildTeamBattleSides();
   }
 
-  if (stipulation === "Elimination Match") {
+  if (
+    stipulation ===
+    "Elimination Match"
+  ) {
     if (
       crBookerStructureChoice.value ===
       CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL
@@ -1623,18 +2360,32 @@ function crBookerBuildSides() {
   }
 
   if (
-    stipulation === "Battle Royal" ||
-    stipulation === "Hex-Cell Eliminator" ||
-    stipulation === "The Devil's Contract" ||
-    stipulation === "Fate's Wheel"
+    stipulation ===
+      "Battle Royal"
+    ||
+    stipulation ===
+      "Hex-Cell Eliminator"
+    ||
+    stipulation ===
+      "The Devil's Contract"
+    ||
+    stipulation ===
+      "Fate's Wheel"
   ) {
     return crBookerBuildAdvancedIndividualSides();
   }
 
-  if (matchType === "Tag Team") {
+  if (
+    matchType ===
+    "Tag Team"
+  ) {
     return [
-      crBookerGetTagSide(1),
-      crBookerGetTagSide(2),
+      crBookerGetTagSide(
+        1,
+      ),
+      crBookerGetTagSide(
+        2,
+      ),
     ];
   }
 
@@ -1642,37 +2393,52 @@ function crBookerBuildSides() {
     {
       wrestlers: [
         crBookerSideOneWrestlerOne.value,
-      ].filter(Boolean),
+      ].filter(
+        Boolean,
+      ),
     },
 
     {
       wrestlers: [
         crBookerSideTwoWrestlerOne.value,
-      ].filter(Boolean),
+      ].filter(
+        Boolean,
+      ),
     },
   ];
 
   if (
-    matchType === "Triple Threat" ||
-    matchType === "Fatal 4-Way"
+    matchType ===
+      "Triple Threat"
+    ||
+    matchType ===
+      "Fatal 4-Way"
   ) {
     sides.push({
       wrestlers: [
         crBookerSideThreeWrestler.value,
-      ].filter(Boolean),
+      ].filter(
+        Boolean,
+      ),
     });
   }
 
-  if (matchType === "Fatal 4-Way") {
+  if (
+    matchType ===
+    "Fatal 4-Way"
+  ) {
     sides.push({
       wrestlers: [
         crBookerSideFourWrestler.value,
-      ].filter(Boolean),
+      ].filter(
+        Boolean,
+      ),
     });
   }
 
   return sides;
 }
+
 
 // =================================
 // FORM RECORD
@@ -1683,7 +2449,8 @@ function crBookerGetFormRecord() {
     crBookerStipulation.value.trim();
 
   const isBattleRoyal =
-    stipulation === "Battle Royal";
+    stipulation ===
+    "Battle Royal";
 
   const isHexCell =
     stipulation ===
@@ -1726,16 +2493,20 @@ function crBookerGetFormRecord() {
       : null;
 
   const usesAdvancedParticipants =
-    isBattleRoyal ||
-    isHexCell ||
-    isDevilsContract ||
+    isBattleRoyal
+    ||
+    isHexCell
+    ||
+    isDevilsContract
+    ||
     isFatesWheel;
 
   const participantCount =
     isFatesWheel
       ? 8
-      : isHexCell ||
-          isDevilsContract
+      : isHexCell
+        ||
+        isDevilsContract
         ? 6
         : Number(
             crBookerParticipantCount.value,
@@ -1792,10 +2563,11 @@ function crBookerGetFormRecord() {
               teamSize:
                 5,
             }
-          : isHandicapMatch &&
-              Array.isArray(
-                handicapSideSizes,
-              )
+          : isHandicapMatch
+            &&
+            Array.isArray(
+              handicapSideSizes,
+            )
             ? {
                 mode:
                   CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE,
@@ -1803,9 +2575,10 @@ function crBookerGetFormRecord() {
                 sideSizes:
                   handicapSideSizes,
               }
-            : isEliminationMatch &&
-                eliminationMode ===
-                  CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL
+            : isEliminationMatch
+              &&
+              eliminationMode ===
+                CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL
               ? {
                   mode:
                     CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
@@ -1815,9 +2588,10 @@ function crBookerGetFormRecord() {
                       crBookerParticipantCount.value,
                     ),
                 }
-              : isEliminationMatch &&
-                  eliminationMode ===
-                    CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
+              : isEliminationMatch
+                &&
+                eliminationMode ===
+                  CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
                 ? {
                     mode:
                       CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE,
@@ -1868,38 +2642,63 @@ function crBookerGetFormRecord() {
   };
 }
 
+
 // =================================
 // VALIDATION
 // =================================
 
-function crBookerValidate(record) {
-  const errors = [];
+function crBookerValidate(
+  record,
+) {
+  const errors =
+    [];
 
-  if (!record.eventId) {
-    errors.push("Select an event.");
-  }
-
-  if (!Number.isInteger(record.order) || record.order < 1) {
-    errors.push("Card order must be a whole number greater than zero.");
+  if (
+    !record.eventId
+  ) {
+    errors.push(
+      "Select an event.",
+    );
   }
 
   if (
-    record.stipulation === "Overthrow Rumble" &&
+    !Number.isInteger(
+      record.order,
+    )
+    ||
+    record.order < 1
+  ) {
+    errors.push(
+      "Card order must be a whole number greater than zero.",
+    );
+  }
+
+  if (
+    record.stipulation ===
+      "Overthrow Rumble"
+    &&
     !record.specialty?.division
   ) {
-    errors.push("Select a division for the Overthrow Rumble.");
+    errors.push(
+      "Select a division for the Overthrow Rumble.",
+    );
   }
-  
+
   if (
-    record.stipulation === "Elimination Match" &&
+    record.stipulation ===
+      "Elimination Match"
+    &&
     !record.structure?.mode
   ) {
     errors.push(
       "Select an Elimination Match structure.",
     );
   }
-    if (
-    record.stipulation === "Handicap Match" &&
+
+  if (
+    record.stipulation ===
+      "Handicap Match"
+    &&
     !Array.isArray(
       record.structure?.sideSizes,
     )
@@ -1910,28 +2709,32 @@ function crBookerValidate(record) {
   }
 
   if (
-    record.stipulation === "Handicap Match" &&
+    record.stipulation ===
+      "Handicap Match"
+    &&
     !record.specialty?.victoryRule
   ) {
     errors.push(
       "Select a Handicap Match victory rule.",
     );
   }
-        const expectedSideSizes =
-    record.stipulation === "Handicap Match"
-      ? (
-          Array.isArray(
-            record.structure?.sideSizes,
-          )
-            ? record.structure.sideSizes
-            : []
+
+  const expectedSideSizes =
+    record.stipulation ===
+      "Handicap Match"
+      ? Array.isArray(
+          record.structure?.sideSizes,
         )
-      : record.stipulation === "Love and War"
+        ? record.structure.sideSizes
+        : []
+      : record.stipulation ===
+          "Love and War"
         ? [5, 5]
         : record.stipulation ===
-              "Elimination Match" &&
-            record.structure?.mode ===
-              CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
+            "Elimination Match"
+          &&
+          record.structure?.mode ===
+            CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
           ? [
               Number(
                 record.structure.teamSize,
@@ -1940,56 +2743,105 @@ function crBookerValidate(record) {
                 record.structure.teamSize,
               ),
             ]
-          : record.matchType === "Tag Team"
+          : record.matchType ===
+              "Tag Team"
             ? [2, 2]
             : record.sides.map(
-                () => 1,
+                () =>
+                  1,
               );
 
-  record.sides.forEach((side, index) => {
-    if (
-      !Array.isArray(side.wrestlers) ||
-            side.wrestlers.length !==
-        expectedSideSizes[index]
-    ) {
-      errors.push(`Side ${index + 1} is incomplete.`);
-    }
-  });
+  record.sides.forEach(
+    (
+      side,
+      index,
+    ) => {
+      if (
+        !Array.isArray(
+          side.wrestlers,
+        )
+        ||
+        side.wrestlers.length !==
+          expectedSideSizes[
+            index
+          ]
+      ) {
+        errors.push(
+          `Side ${index + 1} is incomplete.`,
+        );
+      }
+    },
+  );
 
-  const allWrestlers = record.sides.flatMap((side) => side.wrestlers);
+  const allWrestlers =
+    record.sides.flatMap(
+      (side) =>
+        side.wrestlers,
+    );
 
-  const uniqueWrestlers = new Set(allWrestlers);
+  const uniqueWrestlers =
+    new Set(
+      allWrestlers,
+    );
 
-  if (uniqueWrestlers.size !== allWrestlers.length) {
-    errors.push("The same wrestler cannot appear on more than one side.");
+  if (
+    uniqueWrestlers.size !==
+    allWrestlers.length
+  ) {
+    errors.push(
+      "The same wrestler cannot appear on more than one side.",
+    );
   }
 
   return errors;
 }
 
+
 // =================================
 // REVIEW ROW
 // =================================
 
-function crBookerAddReviewRow(label, value) {
-  const row = document.createElement("div");
+function crBookerAddReviewRow(
+  label,
+  value,
+) {
+  const row =
+    document.createElement(
+      "div",
+    );
 
-  row.className = "cr-editor-change-row";
+  row.className =
+    "cr-editor-change-row";
 
-  const labelElement = document.createElement("strong");
+  const labelElement =
+    document.createElement(
+      "strong",
+    );
 
-  labelElement.textContent = label;
+  labelElement.textContent =
+    label;
 
-  const valueElement = document.createElement("span");
+  const valueElement =
+    document.createElement(
+      "span",
+    );
 
-  valueElement.textContent = value;
+  valueElement.textContent =
+    value;
 
-  row.appendChild(labelElement);
+  row.appendChild(
+    labelElement,
+  );
 
-  row.appendChild(valueElement);
+  row.appendChild(
+    valueElement,
+  );
 
-  crBookerReviewList.appendChild(row);
+  crBookerReviewList.appendChild(
+    row,
+  );
 }
+
 
 // =================================
 // REVIEW
@@ -1998,78 +2850,98 @@ function crBookerAddReviewRow(label, value) {
 function crBookerReview() {
   crBookerHideMessage();
 
-  crBookerReviewList.innerHTML = "";
+  crBookerReviewList.innerHTML =
+    "";
 
-  crBookerError.hidden = true;
+  crBookerError.hidden =
+    true;
 
-  const record = crBookerGetFormRecord();
+  const record =
+    crBookerGetFormRecord();
 
-  const errors = crBookerValidate(record);
+  const errors =
+    crBookerValidate(
+      record,
+    );
 
-  if (!record.eventId) {
-    crBookerPreview.hidden = true;
+  if (
+    !record.eventId
+  ) {
+    crBookerPreview.hidden =
+      true;
 
-    crBookerSave.disabled = true;
+    crBookerSave.disabled =
+      true;
 
     return;
   }
 
-  crBookerPreview.hidden = false;
+  crBookerPreview.hidden =
+    false;
 
   crBookerAddReviewRow(
     "Match",
-
-    crBookerFormatMatch(record),
+    crBookerFormatMatch(
+      record,
+    ),
   );
 
   crBookerAddReviewRow(
     "Match Type",
-
     record.matchType,
   );
 
   crBookerAddReviewRow(
     "Card Order",
-
-    String(record.order || "—"),
+    String(
+      record.order || "—",
+    ),
   );
 
   crBookerAddReviewRow(
     "Championship",
-
-    crBookerGetChampionshipName(record.championshipId),
+    crBookerGetChampionshipName(
+      record.championshipId,
+    ),
   );
 
   crBookerAddReviewRow(
     "Status",
-
     record.status,
   );
 
-  if (record.stipulation) {
+  if (
+    record.stipulation
+  ) {
     crBookerAddReviewRow(
       "Specialty Match",
-
       record.stipulation,
     );
   }
 
-  if (errors.length > 0) {
-    crBookerError.textContent = errors.join(" ");
+  if (
+    errors.length > 0
+  ) {
+    crBookerError.textContent =
+      errors.join(" ");
 
-    crBookerError.hidden = false;
+    crBookerError.hidden =
+      false;
   }
 
-  crBookerSave.disabled = errors.length > 0;
+  crBookerSave.disabled =
+    errors.length > 0;
 
   crBookerSetStatus(
     errors.length > 0
       ? "CHECK FORM"
-      : crBookerMode.value === "create"
+      : crBookerMode.value ===
+          "create"
         ? "READY TO BOOK"
         : "CHANGES READY",
   );
 }
+
 
 // =================================
 // EVENT CHANGE
@@ -2082,12 +2954,18 @@ function crBookerHandleEventChange() {
 
   crBookerRefreshMatchList();
 
-  if (crBookerMode.value === "create" && crBookerEvent.value) {
+  if (
+    crBookerMode.value ===
+      "create"
+    &&
+    crBookerEvent.value
+  ) {
     crBookerSetDefaultOrder();
   }
 
   crBookerReview();
 }
+
 
 // =================================
 // MODE CHANGE
@@ -2098,22 +2976,36 @@ function crBookerHandleModeChange() {
 
   crBookerClearForm();
 
-  if (crBookerMode.value === "edit") {
-    crBookerMatchSelectRow.hidden = false;
+  if (
+    crBookerMode.value ===
+    "edit"
+  ) {
+    crBookerMatchSelectRow.hidden =
+      false;
 
-    crBookerSave.textContent = "Save Match Changes";
+    crBookerSave.textContent =
+      "Save Match Changes";
 
-    crBookerSetStatus("SELECT MATCH");
+    crBookerSetStatus(
+      "SELECT MATCH",
+    );
   } else {
-    crBookerMatchSelectRow.hidden = true;
+    crBookerMatchSelectRow.hidden =
+      true;
 
-    crBookerMatchSelect.value = "";
+    crBookerMatchSelect.value =
+      "";
 
-    crBookerSave.textContent = "Add Match to Card";
+    crBookerSave.textContent =
+      "Add Match to Card";
 
-    crBookerSetStatus("READY");
+    crBookerSetStatus(
+      "READY",
+    );
 
-    if (crBookerEvent.value) {
+    if (
+      crBookerEvent.value
+    ) {
       crBookerSetDefaultOrder();
     }
   }
@@ -2123,41 +3015,69 @@ function crBookerHandleModeChange() {
   crBookerReview();
 }
 
+
 // =================================
 // LOAD EXISTING MATCH
 // =================================
 
 function crBookerLoadSelectedMatch() {
-  const matchId = crBookerMatchSelect.value;
+  const matchId =
+    crBookerMatchSelect.value;
 
-  if (!matchId) {
+  if (
+    !matchId
+  ) {
     crBookerClearForm();
 
-    crBookerSetStatus("SELECT MATCH");
+    crBookerSetStatus(
+      "SELECT MATCH",
+    );
 
     return;
   }
 
-  const match = owlControlRoomData.announcedMatches.find(
-    (item) => item.id === matchId,
-  );
+  const match =
+    owlControlRoomData.announcedMatches.find(
+      (item) =>
+        item.id ===
+        matchId,
+    );
 
-  if (!match) {
+  if (
+    !match
+  ) {
     return;
   }
 
-  crBookerOriginalRecord = structuredClone(match);
+  crBookerOriginalRecord =
+    structuredClone(
+      match,
+    );
 
-  crBookerMatchType.value = match.matchType || "Singles";
+  crBookerMatchType.value =
+    match.matchType
+    ||
+    "Singles";
 
-  crBookerOrder.value = match.order || 1;
+  crBookerOrder.value =
+    match.order
+    ||
+    1;
 
-  crBookerChampionship.value = match.championshipId || "";
+  crBookerChampionship.value =
+    match.championshipId
+    ||
+    "";
 
-  crBookerStatusField.value = match.status || "announced";
+  crBookerStatusField.value =
+    match.status
+    ||
+    "announced";
 
-    crBookerStipulation.value =
-    match.stipulation || "";
+  crBookerStipulation.value =
+    match.stipulation
+    ||
+    "";
 
   crBookerConfigureStructureChoice(
     match.stipulation,
@@ -2168,25 +3088,45 @@ function crBookerLoadSelectedMatch() {
   );
 
   crBookerStatusNote.value =
-    match.statusNote || "";
+    match.statusNote
+    ||
+    "";
 
-  if (match.stipulation === "Battle Royal") {
-    crBookerParticipantCount.value = String(
-      match.structure?.participantCount || 6,
-    );
+  if (
+    match.stipulation ===
+    "Battle Royal"
+  ) {
+    crBookerParticipantCount.value =
+      String(
+        match.structure?.participantCount
+        ||
+        6,
+      );
 
     crBookerEliminationRule.value =
-      match.specialty?.eliminationRule || "Over the Top Rope";
+      match.specialty?.eliminationRule
+      ||
+      "Over the Top Rope";
   }
 
-    if (match.stipulation === "Overthrow Rumble") {
+  if (
+    match.stipulation ===
+    "Overthrow Rumble"
+  ) {
     crBookerDivision.value =
-      match.specialty?.division || "";
+      match.specialty?.division
+      ||
+      "";
   }
 
-    if (match.stipulation === "Elimination Match") {
+  if (
+    match.stipulation ===
+    "Elimination Match"
+  ) {
     crBookerStructureChoice.value =
-      match.structure?.mode || "";
+      match.structure?.mode
+      ||
+      "";
 
     if (
       match.structure?.mode ===
@@ -2194,7 +3134,9 @@ function crBookerLoadSelectedMatch() {
     ) {
       crBookerParticipantCount.value =
         String(
-          match.structure?.participantCount || 3,
+          match.structure?.participantCount
+          ||
+          3,
         );
     }
 
@@ -2204,419 +3146,779 @@ function crBookerLoadSelectedMatch() {
     ) {
       crBookerParticipantCount.value =
         String(
-          match.structure?.teamSize || 2,
+          match.structure?.teamSize
+          ||
+          2,
         );
     }
   }
 
-  if (match.stipulation === "Handicap Match") {
+  if (
+    match.stipulation ===
+    "Handicap Match"
+  ) {
     crBookerStructureChoice.value =
       crBookerGetHandicapStructureValue(
         match.structure?.sideSizes,
       );
 
     crBookerEliminationRule.value =
-      match.specialty?.victoryRule || "";
+      match.specialty?.victoryRule
+      ||
+      "";
   }
 
   crBookerRefreshSideLayout();
 
   if (
-    match.stipulation === "Battle Royal" ||
-    match.stipulation === "Hex-Cell Eliminator" ||
-       match.stipulation === "The Devil's Contract" ||
-    match.stipulation === "Fate's Wheel" ||
+    match.stipulation ===
+      "Battle Royal"
+    ||
+    match.stipulation ===
+      "Hex-Cell Eliminator"
+    ||
+    match.stipulation ===
+      "The Devil's Contract"
+    ||
+    match.stipulation ===
+      "Fate's Wheel"
+    ||
     (
-      match.stipulation === "Elimination Match" &&
+      match.stipulation ===
+        "Elimination Match"
+      &&
       match.structure?.mode ===
         CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL
     )
   ) {
-    const participantIds = Array.isArray(match.sides)
-      ? match.sides.map((side) => side.wrestlers?.[0] || "")
-      : [];
+    const participantIds =
+      Array.isArray(
+        match.sides,
+      )
+        ? match.sides.map(
+            (side) =>
+              side.wrestlers?.[
+                0
+              ]
+              ||
+              "",
+          )
+        : [];
 
-    let participantCount = Number(match.structure?.participantCount) || 6;
+    let participantCount =
+      Number(
+        match.structure?.participantCount,
+      )
+      ||
+      6;
 
     if (
-      match.stipulation === "Hex-Cell Eliminator" ||
-      match.stipulation === "The Devil's Contract"
+      match.stipulation ===
+        "Hex-Cell Eliminator"
+      ||
+      match.stipulation ===
+        "The Devil's Contract"
     ) {
-      participantCount = 6;
-    }
-
-        if (match.stipulation === "Fate's Wheel") {
-      participantCount = 8;
+      participantCount =
+        6;
     }
 
     if (
-      match.stipulation === "Elimination Match" &&
+      match.stipulation ===
+      "Fate's Wheel"
+    ) {
+      participantCount =
+        8;
+    }
+
+    if (
+      match.stipulation ===
+        "Elimination Match"
+      &&
       match.structure?.mode ===
         CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL
     ) {
       participantCount =
         Number(
           match.structure?.participantCount,
-        ) || 3;
+        )
+        ||
+        3;
     }
 
     crBookerRenderAdvancedParticipants(
       participantCount,
-
       participantIds,
     );
-      } else if (
-    match.stipulation === "Handicap Match"
+  } else if (
+    match.stipulation ===
+    "Handicap Match"
   ) {
     const sideWrestlers =
-      Array.isArray(match.sides)
+      Array.isArray(
+        match.sides,
+      )
         ? match.sides
-            .slice(0, 2)
-            .map((side) =>
-              Array.isArray(side.wrestlers)
-                ? [...side.wrestlers]
-                : [],
+            .slice(
+              0,
+              2,
+            )
+            .map(
+              (side) =>
+                Array.isArray(
+                  side.wrestlers,
+                )
+                  ? [
+                      ...side.wrestlers,
+                    ]
+                  : [],
             )
         : [[], []];
 
-    while (sideWrestlers.length < 2) {
-      sideWrestlers.push([]);
+    while (
+      sideWrestlers.length <
+      2
+    ) {
+      sideWrestlers.push(
+        [],
+      );
     }
 
     crBookerRenderTeamBattleSides(
       sideWrestlers,
-      match.structure?.sideSizes || [2, 1],
+      match.structure?.sideSizes
+      ||
+      [2, 1],
     );
-    } else if (
-    match.stipulation === "Elimination Match" &&
+  } else if (
+    match.stipulation ===
+      "Elimination Match"
+    &&
     match.structure?.mode ===
       CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
   ) {
     const sideWrestlers =
-      Array.isArray(match.sides)
+      Array.isArray(
+        match.sides,
+      )
         ? match.sides
-            .slice(0, 2)
-            .map((side) =>
-              Array.isArray(side.wrestlers)
-                ? [...side.wrestlers]
-                : [],
+            .slice(
+              0,
+              2,
+            )
+            .map(
+              (side) =>
+                Array.isArray(
+                  side.wrestlers,
+                )
+                  ? [
+                      ...side.wrestlers,
+                    ]
+                  : [],
             )
         : [[], []];
 
-    while (sideWrestlers.length < 2) {
-      sideWrestlers.push([]);
+    while (
+      sideWrestlers.length <
+      2
+    ) {
+      sideWrestlers.push(
+        [],
+      );
     }
 
     crBookerRenderTeamBattleSides(
       sideWrestlers,
-      Number(match.structure?.teamSize) || 2,
+      Number(
+        match.structure?.teamSize,
+      )
+      ||
+      2,
     );
-  } else if (match.stipulation === "Love and War") {
-    const sideWrestlers = Array.isArray(match.sides)
-      ? match.sides
-          .slice(0, 2)
-          .map((side) =>
-            Array.isArray(side.wrestlers) ? [...side.wrestlers] : [],
-          )
-      : [[], []];
+  } else if (
+    match.stipulation ===
+    "Love and War"
+  ) {
+    const sideWrestlers =
+      Array.isArray(
+        match.sides,
+      )
+        ? match.sides
+            .slice(
+              0,
+              2,
+            )
+            .map(
+              (side) =>
+                Array.isArray(
+                  side.wrestlers,
+                )
+                  ? [
+                      ...side.wrestlers,
+                    ]
+                  : [],
+            )
+        : [[], []];
 
-    while (sideWrestlers.length < 2) {
-      sideWrestlers.push([]);
+    while (
+      sideWrestlers.length <
+      2
+    ) {
+      sideWrestlers.push(
+        [],
+      );
     }
 
-    crBookerRenderTeamBattleSides(sideWrestlers);
-  } else if (match.matchType === "Tag Team") {
+    crBookerRenderTeamBattleSides(
+      sideWrestlers,
+      5,
+    );
+  } else if (
+    match.matchType ===
+    "Tag Team"
+  ) {
     [
       {
-        side: match.sides[0],
+        side:
+          match.sides[
+            0
+          ],
 
-        modeElement: crBookerSideOneMode,
+        modeElement:
+          crBookerSideOneMode,
 
-        teamElement: crBookerSideOneTeam,
+        teamElement:
+          crBookerSideOneTeam,
 
-        wrestlerOne: crBookerSideOneWrestlerOne,
+        wrestlerOne:
+          crBookerSideOneWrestlerOne,
 
-        wrestlerTwo: crBookerSideOneWrestlerTwo,
+        wrestlerTwo:
+          crBookerSideOneWrestlerTwo,
       },
 
       {
-        side: match.sides[1],
+        side:
+          match.sides[
+            1
+          ],
 
-        modeElement: crBookerSideTwoMode,
+        modeElement:
+          crBookerSideTwoMode,
 
-        teamElement: crBookerSideTwoTeam,
+        teamElement:
+          crBookerSideTwoTeam,
 
-        wrestlerOne: crBookerSideTwoWrestlerOne,
+        wrestlerOne:
+          crBookerSideTwoWrestlerOne,
 
-        wrestlerTwo: crBookerSideTwoWrestlerTwo,
+        wrestlerTwo:
+          crBookerSideTwoWrestlerTwo,
       },
-    ].forEach((configuration) => {
-      const officialTeam = crBookerGetOfficialTeamByMembers(
-        configuration.side.wrestlers,
-      );
+    ].forEach(
+      (configuration) => {
+        const officialTeam =
+          crBookerGetOfficialTeamByMembers(
+            configuration.side.wrestlers,
+          );
 
-      if (officialTeam) {
-        configuration.modeElement.value = "team";
+        if (
+          officialTeam
+        ) {
+          configuration.modeElement.value =
+            "team";
 
-        configuration.teamElement.value = officialTeam.id;
-      } else {
-        configuration.modeElement.value = "custom";
+          configuration.teamElement.value =
+            officialTeam.id;
+        } else {
+          configuration.modeElement.value =
+            "custom";
 
-        configuration.wrestlerOne.value = configuration.side.wrestlers[0] || "";
+          configuration.wrestlerOne.value =
+            configuration.side.wrestlers[
+              0
+            ]
+            ||
+            "";
 
-        configuration.wrestlerTwo.value = configuration.side.wrestlers[1] || "";
-      }
-    });
+          configuration.wrestlerTwo.value =
+            configuration.side.wrestlers[
+              1
+            ]
+            ||
+            "";
+        }
+      },
+    );
 
-    crBookerRefreshTagSide(1);
+    crBookerRefreshTagSide(
+      1,
+    );
 
-    crBookerRefreshTagSide(2);
-  } else if (match.stipulation !== "Overthrow Rumble") {
-    crBookerSideOneWrestlerOne.value = match.sides[0]?.wrestlers[0] || "";
+    crBookerRefreshTagSide(
+      2,
+    );
+  } else if (
+    match.stipulation !==
+    "Overthrow Rumble"
+  ) {
+    crBookerSideOneWrestlerOne.value =
+      match.sides[
+        0
+      ]?.wrestlers[
+        0
+      ]
+      ||
+      "";
 
-    crBookerSideTwoWrestlerOne.value = match.sides[1]?.wrestlers[0] || "";
+    crBookerSideTwoWrestlerOne.value =
+      match.sides[
+        1
+      ]?.wrestlers[
+        0
+      ]
+      ||
+      "";
 
-    crBookerSideThreeWrestler.value = match.sides[2]?.wrestlers[0] || "";
+    crBookerSideThreeWrestler.value =
+      match.sides[
+        2
+      ]?.wrestlers[
+        0
+      ]
+      ||
+      "";
 
-    crBookerSideFourWrestler.value = match.sides[3]?.wrestlers[0] || "";
+    crBookerSideFourWrestler.value =
+      match.sides[
+        3
+      ]?.wrestlers[
+        0
+      ]
+      ||
+      "";
   }
 
-  crBookerSetStatus("EDITING");
+  crBookerSetStatus(
+    "EDITING",
+  );
 
   crBookerReview();
 }
+
 
 // =================================
 // WRITE PERMISSION
 // =================================
 
 async function crBookerEnsureWritePermission() {
-  if (!owlRepositoryHandle) {
+  if (
+    !owlRepositoryHandle
+  ) {
     return false;
   }
 
   const options = {
-    mode: "readwrite",
+    mode:
+      "readwrite",
   };
 
-  if ((await owlRepositoryHandle.queryPermission(options)) === "granted") {
+  if (
+    await owlRepositoryHandle.queryPermission(
+      options,
+    )
+    ===
+    "granted"
+  ) {
     return true;
   }
 
-  return (await owlRepositoryHandle.requestPermission(options)) === "granted";
+  return (
+    await owlRepositoryHandle.requestPermission(
+      options,
+    )
+  )
+  ===
+  "granted";
 }
+
 
 // =================================
 // READ FILE
 // =================================
 
 async function crBookerReadFile() {
-  const dataDirectory = await owlRepositoryHandle.getDirectoryHandle("data");
+  const dataDirectory =
+    await owlRepositoryHandle.getDirectoryHandle(
+      "data",
+    );
 
-  const fileHandle = await dataDirectory.getFileHandle(
-    "announced-matches.json",
-  );
+  const fileHandle =
+    await dataDirectory.getFileHandle(
+      "announced-matches.json",
+    );
 
-  const file = await fileHandle.getFile();
+  const file =
+    await fileHandle.getFile();
 
   return {
-    fileHandle,
+    fileHandle:
 
-    text: await file.text(),
+      fileHandle,
+
+    text:
+
+      await file.text(),
   };
 }
+
 
 // =================================
 // WRITE FILE
 // =================================
 
-async function crBookerWriteFile(fileHandle, text) {
-  const writable = await fileHandle.createWritable();
+async function crBookerWriteFile(
+  fileHandle,
+  text,
+) {
+  const writable =
+    await fileHandle.createWritable();
 
-  await writable.write(text);
+  await writable.write(
+    text,
+  );
 
   await writable.close();
 }
+
 
 // =================================
 // FIND OBJECT BOUNDS
 // =================================
 
-function crBookerFindObjectBounds(text, recordId) {
-  const escapedId = recordId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function crBookerFindObjectBounds(
+  text,
+  recordId,
+) {
+  const escapedId =
+    recordId.replace(
+      /[.*+?^${}()|[\]\\]/g,
+      "\\$&",
+    );
 
-  const pattern = new RegExp(`"id"\\s*:\\s*"${escapedId}"`);
+  const pattern =
+    new RegExp(
+      `"id"\\s*:\\s*"${escapedId}"`,
+    );
 
-  const match = pattern.exec(text);
+  const match =
+    pattern.exec(
+      text,
+    );
 
-  if (!match) {
-    throw new Error(`Could not find booked match ${recordId}.`);
+  if (
+    !match
+  ) {
+    throw new Error(
+      `Could not find booked match ${recordId}.`,
+    );
   }
 
-  const start = text.lastIndexOf("{", match.index);
+  const start =
+    text.lastIndexOf(
+      "{",
+      match.index,
+    );
 
-  let end = -1;
+  let end =
+    -1;
 
-  let depth = 0;
+  let depth =
+    0;
 
-  let inString = false;
+  let inString =
+    false;
 
-  let escaped = false;
+  let escaped =
+    false;
 
-  for (let index = start; index < text.length; index += 1) {
-    const character = text[index];
+  for (
+    let index = start;
+    index < text.length;
+    index += 1
+  ) {
+    const character =
+      text[
+        index
+      ];
 
-    if (escaped) {
-      escaped = false;
+    if (
+      escaped
+    ) {
+      escaped =
+        false;
 
       continue;
     }
 
-    if (character === "\\" && inString) {
-      escaped = true;
+    if (
+      character === "\\"
+      &&
+      inString
+    ) {
+      escaped =
+        true;
 
       continue;
     }
 
-    if (character === '"') {
-      inString = !inString;
+    if (
+      character === '"'
+    ) {
+      inString =
+        !inString;
 
       continue;
     }
 
-    if (inString) {
+    if (
+      inString
+    ) {
       continue;
     }
 
-    if (character === "{") {
-      depth += 1;
+    if (
+      character === "{"
+    ) {
+      depth +=
+        1;
     }
 
-    if (character === "}") {
-      depth -= 1;
+    if (
+      character === "}"
+    ) {
+      depth -=
+        1;
 
-      if (depth === 0) {
-        end = index;
+      if (
+        depth ===
+        0
+      ) {
+        end =
+          index;
 
         break;
       }
     }
   }
 
-  if (start === -1 || end === -1) {
-    throw new Error(`Could not locate booked match ${recordId}.`);
+  if (
+    start === -1
+    ||
+    end === -1
+  ) {
+    throw new Error(
+      `Could not locate booked match ${recordId}.`,
+    );
   }
 
   return {
-    start,
-    end,
+    start:
+      start,
+
+    end:
+      end,
   };
 }
+
 
 // =================================
 // FORMAT OBJECT FOR ARRAY
 // =================================
 
-function crBookerFormatObject(record) {
-  return JSON.stringify(record, null, 2)
-
-    .split("\n")
-
-    .map((line) => `  ${line}`)
-
-    .join("\n");
+function crBookerFormatObject(
+  record,
+) {
+  return JSON.stringify(
+    record,
+    null,
+    2,
+  )
+    .split(
+      "\n",
+    )
+    .map(
+      (line) =>
+        `  ${line}`,
+    )
+    .join(
+      "\n",
+    );
 }
+
 
 // =================================
 // APPEND RECORD
 // =================================
 
-function crBookerAppendRecordText(text, record) {
-  const closingIndex = text.lastIndexOf("]");
+function crBookerAppendRecordText(
+  text,
+  record,
+) {
+  const closingIndex =
+    text.lastIndexOf(
+      "]",
+    );
 
-  if (closingIndex === -1) {
-    throw new Error("Could not find the end of announced-matches.json.");
+  if (
+    closingIndex ===
+    -1
+  ) {
+    throw new Error(
+      "Could not find the end of announced-matches.json.",
+    );
   }
 
-  const before = text.slice(0, closingIndex);
+  const before =
+    text.slice(
+      0,
+      closingIndex,
+    );
 
-  const after = text.slice(closingIndex);
+  const after =
+    text.slice(
+      closingIndex,
+    );
 
-  const trimmedBefore = before.trimEnd();
+  const trimmedBefore =
+    before.trimEnd();
 
-  const hasRecords = !trimmedBefore.endsWith("[");
+  const hasRecords =
+    !trimmedBefore.endsWith(
+      "[",
+    );
 
   return (
-    trimmedBefore +
-    (hasRecords ? ",\n" : "\n") +
-    crBookerFormatObject(record) +
-    "\n" +
+    trimmedBefore
+    +
+    (
+      hasRecords
+        ? ",\n"
+        : "\n"
+    )
+    +
+    crBookerFormatObject(
+      record,
+    )
+    +
+    "\n"
+    +
     after
   );
 }
+
 
 // =================================
 // REPLACE RECORD
 // =================================
 
-function crBookerReplaceRecordText(text, recordId, record) {
-  const bounds = crBookerFindObjectBounds(text, recordId);
+function crBookerReplaceRecordText(
+  text,
+  recordId,
+  record,
+) {
+  const bounds =
+    crBookerFindObjectBounds(
+      text,
+      recordId,
+    );
 
   return (
-    text.slice(0, bounds.start) +
-    crBookerFormatObject(record).slice(2) +
-    text.slice(bounds.end + 1)
+    text.slice(
+      0,
+      bounds.start,
+    )
+    +
+    crBookerFormatObject(
+      record,
+    ).slice(
+      2,
+    )
+    +
+    text.slice(
+      bounds.end + 1,
+    )
   );
 }
+
 
 // =================================
 // BUILD SAVED RECORD
 // =================================
 
 function crBookerBuildSavedRecord() {
-  const form = crBookerGetFormRecord();
+  const form =
+    crBookerGetFormRecord();
 
   const baseRecord =
-    crBookerMode.value === "edit"
+    crBookerMode.value ===
+      "edit"
       ? {
           ...crBookerOriginalRecord,
         }
       : {
-          id: crBookerGetNextMatchId(),
+          id:
+            crBookerGetNextMatchId(),
         };
 
   const record = {
     ...baseRecord,
 
-    eventId: form.eventId,
+    eventId:
+      form.eventId,
 
-    order: form.order,
+    order:
+      form.order,
 
-    matchType: form.matchType,
+    matchType:
+      form.matchType,
 
-    sides: form.sides,
+    sides:
+      form.sides,
 
-    championshipId: form.championshipId,
+    championshipId:
+      form.championshipId,
 
-    stipulation: form.stipulation,
+    stipulation:
+      form.stipulation,
 
-    status: form.status,
+    status:
+      form.status,
   };
 
-  if (form.structure) {
-    record.structure = form.structure;
+  if (
+    form.structure
+  ) {
+    record.structure =
+      form.structure;
   } else {
     delete record.structure;
   }
 
-  if (form.specialty) {
-    record.specialty = form.specialty;
+  if (
+    form.specialty
+  ) {
+    record.specialty =
+      form.specialty;
   } else {
     delete record.specialty;
   }
 
-  if (form.statusNote) {
-    record.statusNote = form.statusNote;
+  if (
+    form.statusNote
+  ) {
+    record.statusNote =
+      form.statusNote;
   } else {
     delete record.statusNote;
   }
@@ -2624,93 +3926,124 @@ function crBookerBuildSavedRecord() {
   return record;
 }
 
+
 // =================================
 // SAVE MATCH
 // =================================
 
 async function crBookerSaveMatch() {
-  crBookerSave.disabled = true;
+  crBookerSave.disabled =
+    true;
 
-  crBookerSetStatus("SAVING...");
+  crBookerSetStatus(
+    "SAVING...",
+  );
 
   crBookerHideMessage();
 
   try {
-    const permission = await crBookerEnsureWritePermission();
+    const permission =
+      await crBookerEnsureWritePermission();
 
-    if (!permission) {
-      throw new Error("Write permission was not granted.");
+    if (
+      !permission
+    ) {
+      throw new Error(
+        "Write permission was not granted.",
+      );
     }
 
-    const form = crBookerGetFormRecord();
+    const form =
+      crBookerGetFormRecord();
 
-    const errors = crBookerValidate(form);
+    const errors =
+      crBookerValidate(
+        form,
+      );
 
-    if (errors.length > 0) {
-      throw new Error(errors.join(" "));
+    if (
+      errors.length > 0
+    ) {
+      throw new Error(
+        errors.join(" "),
+      );
     }
 
-    const record = crBookerBuildSavedRecord();
+    const record =
+      crBookerBuildSavedRecord();
 
-    const matchFile = await crBookerReadFile();
+    const matchFile =
+      await crBookerReadFile();
 
     const updatedText =
-      crBookerMode.value === "edit"
+      crBookerMode.value ===
+        "edit"
         ? crBookerReplaceRecordText(
             matchFile.text,
-
             crBookerOriginalRecord.id,
-
             record,
           )
         : crBookerAppendRecordText(
             matchFile.text,
-
             record,
           );
 
     await crBookerWriteFile(
       matchFile.fileHandle,
-
       updatedText,
     );
 
-    crBookerPendingMatchId = crBookerMode.value === "edit" ? record.id : "";
+    crBookerPendingMatchId =
+      crBookerMode.value ===
+        "edit"
+        ? record.id
+        : "";
 
-    await loadRepositoryData(owlRepositoryHandle);
-
-    // Refresh the selected match first.
-    //
-    // Edit mode automatically reloads the saved match,
-    // and that reload clears old messages.
-    // Therefore the success confirmation must be shown
-    // AFTER the refresh finishes.
+    await loadRepositoryData(
+      owlRepositoryHandle,
+    );
 
     crBookerRefreshMatchList();
 
     crBookerShowMessage(
-      crBookerMode.value === "edit"
+      crBookerMode.value ===
+        "edit"
         ? "Booked match changes were saved locally. Review announced-matches.json in GitHub Desktop."
         : "Match was added to the event card. Review announced-matches.json in GitHub Desktop.",
 
       "save-success",
     );
 
-    crBookerSetStatus(crBookerMode.value === "edit" ? "SAVED" : "BOOKED");
-  } catch (error) {
-    console.error("Could not save booked match:", error);
+    crBookerSetStatus(
+      crBookerMode.value ===
+        "edit"
+        ? "SAVED"
+        : "BOOKED",
+    );
+  } catch (
+    error
+  ) {
+    console.error(
+      "Could not save booked match:",
+      error,
+    );
 
     crBookerReview();
 
-    crBookerSetStatus("SAVE FAILED");
+    crBookerSetStatus(
+      "SAVE FAILED",
+    );
 
     crBookerShowMessage(
-      error.message || "The booked match could not be saved.",
+      error.message
+      ||
+      "The booked match could not be saved.",
 
       "save-error",
     );
   }
 }
+
 
 // =================================
 // INPUT EVENTS
@@ -2737,24 +4070,51 @@ const crBookerReviewFields = [
   crBookerSideFourWrestler,
 ];
 
-crBookerReviewFields.forEach((field) => {
-  field.addEventListener("input", crBookerReview);
 
-  field.addEventListener("change", crBookerReview);
-});
+crBookerReviewFields.forEach(
+  (field) => {
+    field.addEventListener(
+      "input",
+      crBookerReview,
+    );
 
-crBookerMode.addEventListener("change", crBookerHandleModeChange);
+    field.addEventListener(
+      "change",
+      crBookerReview,
+    );
+  },
+);
 
-crBookerEvent.addEventListener("change", crBookerHandleEventChange);
 
-crBookerMatchSelect.addEventListener("change", crBookerLoadSelectedMatch);
+crBookerMode.addEventListener(
+  "change",
+  crBookerHandleModeChange,
+);
 
-crBookerMatchType.addEventListener("change", crBookerRefreshSideLayout);
+
+crBookerEvent.addEventListener(
+  "change",
+  crBookerHandleEventChange,
+);
+
+
+crBookerMatchSelect.addEventListener(
+  "change",
+  crBookerLoadSelectedMatch,
+);
+
+
+crBookerMatchType.addEventListener(
+  "change",
+  crBookerRefreshSideLayout,
+);
+
 
 crBookerStipulation.addEventListener(
   "change",
   () => {
-    crBookerStructureChoice.value = "";
+    crBookerStructureChoice.value =
+      "";
 
     crBookerConfigureStructureChoice(
       crBookerStipulation.value,
@@ -2767,6 +4127,8 @@ crBookerStipulation.addEventListener(
     crBookerRefreshAdvancedMatchLayout();
   },
 );
+
+
 crBookerStructureChoice.addEventListener(
   "change",
   () => {
@@ -2802,37 +4164,48 @@ crBookerStructureChoice.addEventListener(
     crBookerRefreshSideLayout();
   },
 );
+
+
 crBookerParticipantCount.addEventListener(
   "change",
   () => {
     const isTeamElimination =
       crBookerStipulation.value ===
-        "Elimination Match" &&
+        "Elimination Match"
+      &&
       crBookerStructureChoice.value ===
         CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE;
 
-    if (isTeamElimination) {
+    if (
+      isTeamElimination
+    ) {
       const existingSideWrestlers =
-        [1, 2].map((sideNumber) =>
-          crBookerGetTeamBattleParticipantSelects(
-            sideNumber,
-          ).map(
-            (selectElement) =>
-              selectElement.value,
-          ),
-        );
+        [1, 2]
+          .map(
+            (sideNumber) =>
+              crBookerGetTeamBattleParticipantSelects(
+                sideNumber,
+              ).map(
+                (selectElement) =>
+                  selectElement.value,
+              ),
+          );
 
       crBookerRenderTeamBattleSides(
         existingSideWrestlers,
         Number(
           crBookerParticipantCount.value,
-        ) || 2,
+        )
+        ||
+        2,
       );
     } else {
       crBookerRenderAdvancedParticipants(
         Number(
           crBookerParticipantCount.value,
-        ) || 6,
+        )
+        ||
+        6,
       );
     }
 
@@ -2840,25 +4213,53 @@ crBookerParticipantCount.addEventListener(
   },
 );
 
-crBookerEliminationRule.addEventListener("change", crBookerReview);
 
-crBookerSideOneMode.addEventListener("change", () => crBookerRefreshTagSide(1));
+crBookerEliminationRule.addEventListener(
+  "change",
+  crBookerReview,
+);
 
-crBookerSideTwoMode.addEventListener("change", () => crBookerRefreshTagSide(2));
 
-crBookerSave.addEventListener("click", crBookerSaveMatch);
+crBookerSideOneMode.addEventListener(
+  "change",
+  () =>
+    crBookerRefreshTagSide(
+      1,
+    ),
+);
+
+
+crBookerSideTwoMode.addEventListener(
+  "change",
+  () =>
+    crBookerRefreshTagSide(
+      2,
+    ),
+);
+
+
+crBookerSave.addEventListener(
+  "click",
+  crBookerSaveMatch,
+);
+
 
 window.addEventListener(
   "owl-control-room-data-loaded",
-
   () => {
     crBookerPopulateOptions();
 
-    if (crBookerMode.value === "create" && crBookerEvent.value) {
+    if (
+      crBookerMode.value ===
+        "create"
+      &&
+      crBookerEvent.value
+    ) {
       crBookerSetDefaultOrder();
     }
   },
 );
+
 
 // =================================
 // SAFETY INITIALIZATION
@@ -2866,15 +4267,36 @@ window.addEventListener(
 
 try {
   if (
-    typeof owlControlRoomData !== "undefined" &&
-    Array.isArray(owlControlRoomData.wrestlers) &&
-    Array.isArray(owlControlRoomData.teams) &&
-    Array.isArray(owlControlRoomData.events) &&
-    Array.isArray(owlControlRoomData.championships) &&
-    Array.isArray(owlControlRoomData.announcedMatches)
+    typeof owlControlRoomData !==
+      "undefined"
+    &&
+    Array.isArray(
+      owlControlRoomData.wrestlers,
+    )
+    &&
+    Array.isArray(
+      owlControlRoomData.teams,
+    )
+    &&
+    Array.isArray(
+      owlControlRoomData.events,
+    )
+    &&
+    Array.isArray(
+      owlControlRoomData.championships,
+    )
+    &&
+    Array.isArray(
+      owlControlRoomData.announcedMatches,
+    )
   ) {
     crBookerPopulateOptions();
   }
-} catch (error) {
-  console.warn("Match Booker waiting for repository data.", error);
+} catch (
+  error
+) {
+  console.warn(
+    "Match Booker waiting for repository data.",
+    error,
+  );
 }
