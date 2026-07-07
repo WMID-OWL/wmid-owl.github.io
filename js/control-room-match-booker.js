@@ -262,7 +262,29 @@ let crBookerOriginalRecord =
 let crBookerPendingMatchId =
     "";
 
+// =================================
+// MATCH STRUCTURE MODES
+// =================================
 
+
+const CR_BOOKER_STRUCTURE_MODES = {
+
+    STANDARD:
+        "standard",
+
+    FREE_FOR_ALL:
+        "freeForAll",
+
+    TEAM_BATTLE:
+        "teamBattle",
+
+    DEFERRED_ROSTER:
+        "deferredRoster",
+
+    SPECIAL_FIELD:
+        "specialField"
+
+};
 
 // =================================
 // BASIC HELPERS
