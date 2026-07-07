@@ -681,8 +681,10 @@ function crResultsRefreshResultTypeLayout() {
         isWin
             ? ""
             : "none";
-}
 
+
+    crResultsReviewResult();
+}
 
 // =================================
 // SELECTED MATCH LOAD
@@ -811,12 +813,12 @@ function crResultsLoadSelectedMatch() {
         false;
 
 
-    crResultsSpecialtyFields.hidden =
+        crResultsSpecialtyFields.hidden =
         true;
 
 
     crResultsReview.hidden =
-        true;
+        false;
 
 
     crResultsSave.disabled =
@@ -824,10 +826,513 @@ function crResultsLoadSelectedMatch() {
 
 
     crResultsRefreshResultTypeLayout();
+}
+// =================================
+// RESULT FORM RECORD
+// =================================
+
+
+function crResultsGetFormRecord() {
+    const match =
+        crResultsSelectedMatch;
+
+
+    const resultType =
+        crResultsResultType.value;
+
+
+    const isWin =
+        resultType === "win";
+
+
+    return {
+        matchId:
+            match?.id || "",
+
+        eventId:
+            match?.eventId || "",
+
+        resultType:
+            resultType,
+
+        winningSideIndex:
+
+            isWin &&
+            crResultsWinnerSide.value !== ""
+
+                ? Number(
+                    crResultsWinnerSide.value,
+                )
+
+                : null,
+
+        winningWrestlerId:
+
+            isWin
+
+                ? crResultsFinishWinner.value
+
+                : "",
+
+        losingWrestlerId:
+
+            isWin
+
+                ? crResultsFinishLoser.value
+
+                : "",
+
+        finishMethod:
+
+            isWin
+
+                ? crResultsMethod.value
+
+                : "",
+
+        rating:
+            crResultsRating.value === ""
+
+                ? null
+
+                : Number(
+                    crResultsRating.value,
+                ),
+
+        stars:
+            crResultsStars.value === ""
+
+                ? null
+
+                : Number(
+                    crResultsStars.value,
+                ),
+
+        matchTime:
+            crResultsTime.value.trim(),
+    };
+}
+// =================================
+// RESULT VALIDATION
+// =================================
+
+
+function crResultsValidate(
+    record,
+) {
+    const errors = [];
+
+
+    if (!record.matchId) {
+        errors.push(
+            "Select a match.",
+        );
+
+        return errors;
+    }
+
+
+    if (
+        record.resultType === "win"
+    ) {
+        if (
+            !Number.isInteger(
+                record.winningSideIndex,
+            )
+        ) {
+            errors.push(
+                "Select the winning side.",
+            );
+        }
+
+
+        if (
+            !record.winningWrestlerId
+        ) {
+            errors.push(
+                "Select the winning wrestler.",
+            );
+        }
+
+
+        if (
+            !record.losingWrestlerId
+        ) {
+            errors.push(
+                "Select the losing wrestler.",
+            );
+        }
+
+
+        if (
+            !record.finishMethod
+        ) {
+            errors.push(
+                "Select the finish method.",
+            );
+        }
+
+
+        if (
+            record.winningWrestlerId
+            &&
+            record.losingWrestlerId
+            &&
+            record.winningWrestlerId ===
+                record.losingWrestlerId
+        ) {
+            errors.push(
+                "Winning and losing wrestler cannot be the same person.",
+            );
+        }
+
+
+        const sides =
+            Array.isArray(
+                crResultsSelectedMatch?.sides,
+            )
+                ? crResultsSelectedMatch.sides
+                : [];
+
+
+        const winningSide =
+            Number.isInteger(
+                record.winningSideIndex,
+            )
+                ? sides[
+                    record.winningSideIndex
+                ]
+                : null;
+
+
+        const winningSideWrestlers =
+            Array.isArray(
+                winningSide?.wrestlers,
+            )
+                ? winningSide.wrestlers
+                : [];
+
+
+        if (
+            record.winningWrestlerId
+            &&
+            winningSide
+            &&
+            !winningSideWrestlers.includes(
+                record.winningWrestlerId,
+            )
+        ) {
+            errors.push(
+                "Winning wrestler must belong to the winning side.",
+            );
+        }
+
+
+        if (
+            record.losingWrestlerId
+            &&
+            winningSide
+            &&
+            winningSideWrestlers.includes(
+                record.losingWrestlerId,
+            )
+        ) {
+            errors.push(
+                "Losing wrestler cannot belong to the winning side.",
+            );
+        }
+    }
+
+
+    if (
+        record.rating === null
+        ||
+        !Number.isInteger(
+            record.rating,
+        )
+        ||
+        record.rating < 0
+        ||
+        record.rating > 100
+    ) {
+        errors.push(
+            "Match % must be a whole number from 0 to 100.",
+        );
+    }
+
+
+    if (
+        record.stars === null
+        ||
+        Number.isNaN(
+            record.stars,
+        )
+        ||
+        record.stars < 0
+        ||
+        record.stars > 5
+        ||
+        Math.round(
+            record.stars * 4,
+        ) !==
+        record.stars * 4
+    ) {
+        errors.push(
+            "Star Rating must be from 0 to 5 in 0.25 increments.",
+        );
+    }
+
+
+    if (
+        !/^(?:\d+):[0-5]\d$/.test(
+            record.matchTime,
+        )
+    ) {
+        errors.push(
+            "Match Time must use minutes and seconds, such as 18:42.",
+        );
+    }
+
+
+    return errors;
+}
+// =================================
+// REVIEW HELPERS
+// =================================
+
+
+function crResultsAddReviewRow(
+    label,
+    value,
+) {
+    const row =
+        document.createElement(
+            "div",
+        );
+
+
+    row.className =
+        "cr-editor-change-row";
+
+
+    const labelElement =
+        document.createElement(
+            "strong",
+        );
+
+
+    labelElement.textContent =
+        label;
+
+
+    const valueElement =
+        document.createElement(
+            "span",
+        );
+
+
+    valueElement.textContent =
+        value;
+
+
+    row.appendChild(
+        labelElement,
+    );
+
+
+    row.appendChild(
+        valueElement,
+    );
+
+
+    crResultsReviewList.appendChild(
+        row,
+    );
+}
+
+
+function crResultsGetSideLabel(
+    sideIndex,
+) {
+    const side =
+        crResultsSelectedMatch?.sides?.[
+            sideIndex
+        ];
+
+
+    if (!side) {
+        return "—";
+    }
+
+
+    return crResultsFormatSide(
+        side,
+    );
+}
+
+
+// =================================
+// REVIEW RESULT
+// =================================
+
+
+function crResultsReviewResult() {
+    if (
+        !crResultsSelectedMatch
+    ) {
+        crResultsReview.hidden =
+            true;
+
+        crResultsSave.disabled =
+            true;
+
+        return;
+    }
+
+
+    const record =
+        crResultsGetFormRecord();
+
+
+    const errors =
+        crResultsValidate(
+            record,
+        );
+
+
+    crResultsReviewList.innerHTML =
+        "";
+
+
+    crResultsError.hidden =
+        true;
+
+
+    crResultsReview.hidden =
+        false;
+
+
+    crResultsAddReviewRow(
+        "Result Type",
+
+        record.resultType === "win"
+
+            ? "Win"
+
+            : record.resultType === "draw"
+
+                ? "Draw"
+
+                : "No Contest",
+    );
+
+
+    if (
+        record.resultType === "win"
+    ) {
+        crResultsAddReviewRow(
+            "Winning Side",
+
+            Number.isInteger(
+                record.winningSideIndex,
+            )
+
+                ? crResultsGetSideLabel(
+                    record.winningSideIndex,
+                )
+
+                : "—",
+        );
+
+
+        crResultsAddReviewRow(
+            "Winning Wrestler",
+
+            record.winningWrestlerId
+
+                ? crResultsGetWrestlerName(
+                    record.winningWrestlerId,
+                )
+
+                : "—",
+        );
+
+
+        crResultsAddReviewRow(
+            "Losing Wrestler",
+
+            record.losingWrestlerId
+
+                ? crResultsGetWrestlerName(
+                    record.losingWrestlerId,
+                )
+
+                : "—",
+        );
+
+
+        crResultsAddReviewRow(
+            "Finish Method",
+
+            record.finishMethod || "—",
+        );
+    }
+
+
+    crResultsAddReviewRow(
+        "Match %",
+
+        record.rating === null
+
+            ? "—"
+
+            : `${record.rating}%`,
+    );
+
+
+    crResultsAddReviewRow(
+        "Star Rating",
+
+        record.stars === null
+
+            ? "—"
+
+            : String(
+                record.stars,
+            ),
+    );
+
+
+    crResultsAddReviewRow(
+        "Match Time",
+
+        record.matchTime || "—",
+    );
+
+
+    if (
+        errors.length > 0
+    ) {
+        crResultsError.textContent =
+            errors.join(" ");
+
+
+        crResultsError.hidden =
+            false;
+    }
+
+
+    crResultsSave.disabled =
+        errors.length > 0;
 
 
     crResultsSetStatus(
-        "ENTER RESULT",
+
+        errors.length > 0
+
+            ? "CHECK RESULT"
+
+            : "READY TO SAVE",
     );
 }
 
@@ -883,7 +1388,28 @@ crResultsResultType.addEventListener(
     "change",
     crResultsRefreshResultTypeLayout,
 );
+[
+    crResultsWinnerSide,
+    crResultsFinishWinner,
+    crResultsFinishLoser,
+    crResultsMethod,
+    crResultsRating,
+    crResultsStars,
+    crResultsTime,
+].forEach(
+    (field) => {
+        field.addEventListener(
+            "input",
+            crResultsReviewResult,
+        );
 
+
+        field.addEventListener(
+            "change",
+            crResultsReviewResult,
+        );
+    },
+);
 window.addEventListener(
     "owl-control-room-data-loaded",
     () => {
