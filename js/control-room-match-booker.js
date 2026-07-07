@@ -1210,6 +1210,8 @@ function crBookerClearForm() {
 
   crBookerDivision.value = "";
 
+  crBookerStructureChoice.value = "";
+
   crBookerStatusNote.value = "";
 
   crBookerSideOneMode.value = "team";
@@ -1793,8 +1795,34 @@ function crBookerLoadSelectedMatch() {
       match.specialty?.eliminationRule || "Over the Top Rope";
   }
 
-  if (match.stipulation === "Overthrow Rumble") {
-    crBookerDivision.value = match.specialty?.division || "";
+    if (match.stipulation === "Overthrow Rumble") {
+    crBookerDivision.value =
+      match.specialty?.division || "";
+  }
+
+  if (match.stipulation === "Elimination Match") {
+    crBookerStructureChoice.value =
+      match.structure?.mode || "";
+
+    if (
+      match.structure?.mode ===
+      CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL
+    ) {
+      crBookerParticipantCount.value =
+        String(
+          match.structure?.participantCount || 3,
+        );
+    }
+
+    if (
+      match.structure?.mode ===
+      CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
+    ) {
+      crBookerParticipantCount.value =
+        String(
+          match.structure?.teamSize || 2,
+        );
+    }
   }
 
   crBookerRefreshSideLayout();
@@ -1802,8 +1830,13 @@ function crBookerLoadSelectedMatch() {
   if (
     match.stipulation === "Battle Royal" ||
     match.stipulation === "Hex-Cell Eliminator" ||
-    match.stipulation === "The Devil's Contract" ||
-    match.stipulation === "Fate's Wheel"
+       match.stipulation === "The Devil's Contract" ||
+    match.stipulation === "Fate's Wheel" ||
+    (
+      match.stipulation === "Elimination Match" &&
+      match.structure?.mode ===
+        CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL
+    )
   ) {
     const participantIds = Array.isArray(match.sides)
       ? match.sides.map((side) => side.wrestlers?.[0] || "")
@@ -1818,14 +1851,49 @@ function crBookerLoadSelectedMatch() {
       participantCount = 6;
     }
 
-    if (match.stipulation === "Fate's Wheel") {
+        if (match.stipulation === "Fate's Wheel") {
       participantCount = 8;
     }
 
-        crBookerRenderAdvancedParticipants(
+    if (
+      match.stipulation === "Elimination Match" &&
+      match.structure?.mode ===
+        CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL
+    ) {
+      participantCount =
+        Number(
+          match.structure?.participantCount,
+        ) || 3;
+    }
+
+    crBookerRenderAdvancedParticipants(
       participantCount,
 
       participantIds,
+    );
+    } else if (
+    match.stipulation === "Elimination Match" &&
+    match.structure?.mode ===
+      CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
+  ) {
+    const sideWrestlers =
+      Array.isArray(match.sides)
+        ? match.sides
+            .slice(0, 2)
+            .map((side) =>
+              Array.isArray(side.wrestlers)
+                ? [...side.wrestlers]
+                : [],
+            )
+        : [[], []];
+
+    while (sideWrestlers.length < 2) {
+      sideWrestlers.push([]);
+    }
+
+    crBookerRenderTeamBattleSides(
+      sideWrestlers,
+      Number(match.structure?.teamSize) || 2,
     );
   } else if (match.stipulation === "Love and War") {
     const sideWrestlers = Array.isArray(match.sides)
@@ -2269,16 +2337,74 @@ crBookerMatchType.addEventListener("change", crBookerRefreshSideLayout);
 
 crBookerStipulation.addEventListener(
   "change",
-  crBookerRefreshAdvancedMatchLayout,
+  () => {
+    if (
+      crBookerStipulation.value !==
+      "Elimination Match"
+    ) {
+      crBookerStructureChoice.value = "";
+    }
+
+    crBookerRefreshAdvancedMatchLayout();
+  },
 );
+crBookerStructureChoice.addEventListener(
+  "change",
+  () => {
+    if (
+      crBookerStructureChoice.value ===
+      CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL
+    ) {
+      crBookerMatchType.value = "Singles";
+    }
 
-crBookerParticipantCount.addEventListener("change", () => {
-  crBookerRenderAdvancedParticipants(
-    Number(crBookerParticipantCount.value) || 6,
-  );
+    if (
+      crBookerStructureChoice.value ===
+      CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE
+    ) {
+      crBookerMatchType.value = "Tag Team";
+    }
 
-  crBookerReview();
-});
+    crBookerRefreshSideLayout();
+  },
+);
+crBookerParticipantCount.addEventListener(
+  "change",
+  () => {
+    const isTeamElimination =
+      crBookerStipulation.value ===
+        "Elimination Match" &&
+      crBookerStructureChoice.value ===
+        CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE;
+
+    if (isTeamElimination) {
+      const existingSideWrestlers =
+        [1, 2].map((sideNumber) =>
+          crBookerGetTeamBattleParticipantSelects(
+            sideNumber,
+          ).map(
+            (selectElement) =>
+              selectElement.value,
+          ),
+        );
+
+      crBookerRenderTeamBattleSides(
+        existingSideWrestlers,
+        Number(
+          crBookerParticipantCount.value,
+        ) || 2,
+      );
+    } else {
+      crBookerRenderAdvancedParticipants(
+        Number(
+          crBookerParticipantCount.value,
+        ) || 6,
+      );
+    }
+
+    crBookerReview();
+  },
+);
 
 crBookerEliminationRule.addEventListener("change", crBookerReview);
 
