@@ -838,7 +838,8 @@ function crBookerBuildAdvancedIndividualSides() {
 // =================================
 
 
-function crBookerRenderBattleRoyalParticipants(
+function crBookerRenderAdvancedParticipants(
+    participantCount,
     wrestlerIds = []
 ) {
 
@@ -855,9 +856,9 @@ function crBookerRenderBattleRoyalParticipants(
                 );
 
 
-    const participantCount =
+    const count =
         Number(
-            crBookerParticipantCount.value
+            participantCount
         ) || 6;
 
 
@@ -877,7 +878,7 @@ function crBookerRenderBattleRoyalParticipants(
 
     for (
         let index = 0;
-        index < participantCount;
+        index < count;
         index += 1
     ) {
 
@@ -986,13 +987,27 @@ function crBookerRenderBattleRoyalParticipants(
 
 function crBookerRefreshAdvancedMatchLayout() {
 
+    const stipulation =
+        crBookerStipulation.value;
+
+
     const isBattleRoyal =
-        crBookerStipulation.value ===
+        stipulation ===
             "Battle Royal";
 
 
+    const isHexCell =
+        stipulation ===
+            "Hex-Cell Eliminator";
+
+
+    const usesAdvancedParticipants =
+        isBattleRoyal ||
+        isHexCell;
+
+
     crBookerAdvancedMatch.hidden =
-        !isBattleRoyal;
+        !usesAdvancedParticipants;
 
 
     crBookerParticipantCountRow.hidden =
@@ -1004,23 +1019,28 @@ function crBookerRefreshAdvancedMatchLayout() {
 
 
     crBookerAdvancedParticipants.hidden =
-        !isBattleRoyal;
+        !usesAdvancedParticipants;
 
 
     crBookerStandardCompetitors.hidden =
-        isBattleRoyal;
+        usesAdvancedParticipants;
 
 
-    if (isBattleRoyal) {
+    if (usesAdvancedParticipants) {
 
         const currentSelects =
             crBookerGetAdvancedParticipantSelects();
 
 
         const desiredCount =
-            Number(
-                crBookerParticipantCount.value
-            ) || 6;
+
+            isHexCell
+
+                ? 6
+
+                : Number(
+                    crBookerParticipantCount.value
+                ) || 6;
 
 
         if (
@@ -1028,7 +1048,9 @@ function crBookerRefreshAdvancedMatchLayout() {
                 desiredCount
         ) {
 
-            crBookerRenderBattleRoyalParticipants();
+            crBookerRenderAdvancedParticipants(
+                desiredCount
+            );
 
         }
 
@@ -1741,8 +1763,12 @@ function crBookerBuildSides() {
         crBookerStipulation.value;
 
 
-    if (
+        if (
         stipulation === "Battle Royal"
+
+        ||
+
+        stipulation === "Hex-Cell Eliminator"
     ) {
 
         return crBookerBuildAdvancedIndividualSides();
@@ -1836,6 +1862,97 @@ function crBookerBuildSides() {
 
 
 function crBookerGetFormRecord() {
+
+    const stipulation =
+        crBookerStipulation.value.trim();
+
+
+    const isBattleRoyal =
+        stipulation ===
+            "Battle Royal";
+
+
+    const isHexCell =
+        stipulation ===
+            "Hex-Cell Eliminator";
+
+
+    const usesAdvancedParticipants =
+        isBattleRoyal ||
+        isHexCell;
+
+
+    const participantCount =
+
+        isHexCell
+
+            ? 6
+
+            : Number(
+                crBookerParticipantCount.value
+            );
+
+
+    return {
+
+        eventId:
+            crBookerEvent.value,
+
+        order:
+            Number(
+                crBookerOrder.value
+            ),
+
+        matchType:
+            crBookerMatchType.value,
+
+        sides:
+            crBookerBuildSides(),
+
+        championshipId:
+            crBookerChampionship.value,
+
+        stipulation:
+            stipulation,
+
+        structure:
+
+            usesAdvancedParticipants
+
+                ? {
+
+                    mode:
+                        CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+
+                    participantCount:
+                        participantCount
+
+                }
+
+                : null,
+
+        specialty:
+
+            isBattleRoyal
+
+                ? {
+
+                    eliminationRule:
+                        crBookerEliminationRule.value
+
+                }
+
+                : null,
+
+        status:
+            crBookerStatusField.value,
+
+        statusNote:
+            crBookerStatusNote.value.trim()
+
+    };
+
+}
 
     const stipulation =
         crBookerStipulation.value.trim();
@@ -3334,7 +3451,13 @@ crBookerParticipantCount.addEventListener(
     "change",
     () => {
 
-        crBookerRenderBattleRoyalParticipants();
+        crBookerRenderAdvancedParticipants(
+
+            Number(
+                crBookerParticipantCount.value
+            ) || 6
+
+        );
 
 
         crBookerReview();
