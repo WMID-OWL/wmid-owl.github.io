@@ -950,9 +950,13 @@ async function crSaveBrandChange() {
 
 
 
-        await crWriteWrestlersDatabase(
-            updatedWrestlers
-        );
+       await crWriteWrestlerBrandChange(
+
+    crSelectedWrestlerId,
+
+    newBrand
+
+);
 
 
 
