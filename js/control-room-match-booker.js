@@ -1214,14 +1214,20 @@ function crBookerRefreshAdvancedMatchLayout() {
             "Battle Royal";
 
 
-    const isHexCell =
+        const isHexCell =
         stipulation ===
             "Hex-Cell Eliminator";
 
 
+    const isDevilsContract =
+        stipulation ===
+            "The Devil's Contract";
+
+
     const usesAdvancedParticipants =
         isBattleRoyal ||
-        isHexCell;
+        isHexCell ||
+        isDevilsContract;
 
 
     crBookerAdvancedMatch.hidden =
@@ -1268,9 +1274,10 @@ function crBookerRefreshAdvancedMatchLayout() {
             crBookerGetAdvancedParticipantSelects();
 
 
-        const desiredCount =
+                const desiredCount =
 
-            isHexCell
+            isHexCell ||
+            isDevilsContract
 
                 ? 6
 
@@ -2001,12 +2008,16 @@ function crBookerBuildSides() {
         crBookerStipulation.value;
 
 
-    if (
+        if (
         stipulation === "Battle Royal"
 
         ||
 
         stipulation === "Hex-Cell Eliminator"
+
+        ||
+
+        stipulation === "The Devil's Contract"
     ) {
 
         return crBookerBuildAdvancedIndividualSides();
@@ -2110,19 +2121,26 @@ function crBookerGetFormRecord() {
             "Battle Royal";
 
 
-    const isHexCell =
+        const isHexCell =
         stipulation ===
             "Hex-Cell Eliminator";
 
 
+    const isDevilsContract =
+        stipulation ===
+            "The Devil's Contract";
+
+
     const usesAdvancedParticipants =
         isBattleRoyal ||
-        isHexCell;
+        isHexCell ||
+        isDevilsContract;
 
 
     const participantCount =
 
-        isHexCell
+        isHexCell ||
+        isDevilsContract
 
             ? 6
 
