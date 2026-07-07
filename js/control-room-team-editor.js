@@ -1813,7 +1813,9 @@ function crTeamReplaceArrayField(
     const pattern =
         new RegExp(
 
-            `("${escapedKey}"\\s*:\\s*)(\\[[\\s\\S]*?\\])`
+            `^(\\s*)("${escapedKey}"\\s*:\\s*)(\\[[\\s\\S]*?\\])`,
+
+            "m"
 
         );
 
@@ -1832,27 +1834,75 @@ function crTeamReplaceArrayField(
     }
 
 
+
     return block.replace(
 
         pattern,
 
         (
             match,
+            indentation,
             prefix
-        ) =>
+        ) => {
 
-            prefix
 
-            +
+            const formattedArray =
+                JSON.stringify(
+                    value,
+                    null,
+                    2
+                )
 
-            JSON.stringify(
-                value
-            )
+                    .split("\n")
+
+                    .map(
+                        (
+                            line,
+                            index
+                        ) => {
+
+
+                            if (
+                                index === 0
+                            ) {
+
+                                return line;
+
+                            }
+
+
+                            return (
+                                indentation
+                                +
+                                line
+                            );
+
+                        }
+                    )
+
+                    .join("\n");
+
+
+
+            return (
+
+                indentation
+
+                +
+
+                prefix
+
+                +
+
+                formattedArray
+
+            );
+
+        }
 
     );
 
 }
-
 
 
 // =================================
