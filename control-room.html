@@ -1131,6 +1131,473 @@
 </section>
 
 </section>
+
+    <!-- =================================
+     TEAM MANAGER
+================================= -->
+
+
+<section class="control-room-panel">
+
+
+    <div class="control-room-panel-heading">
+
+
+        <div>
+
+            <p class="eyebrow">
+                TAG TEAM MANAGEMENT
+            </p>
+
+            <h2>
+                Team Manager
+            </h2>
+
+        </div>
+
+
+        <span
+            id="cr-team-editor-status"
+            class="control-room-health-summary"
+        >
+            READY
+        </span>
+
+
+    </div>
+
+
+
+    <!-- MODE -->
+
+
+    <div class="cr-editor-top-grid">
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-team-editor-mode">
+
+                ACTION
+
+            </label>
+
+
+            <select id="cr-team-editor-mode">
+
+                <option value="edit">
+                    Edit Existing Team
+                </option>
+
+                <option value="create">
+                    Add New Team
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <div
+            id="cr-team-editor-select-row"
+            class="cr-form-group"
+        >
+
+
+            <label for="cr-team-editor-select">
+
+                TEAM
+
+            </label>
+
+
+            <select id="cr-team-editor-select">
+
+                <option value="">
+                    Select Team
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label>
+                DATABASE ID
+            </label>
+
+
+            <div
+                id="cr-team-id-preview"
+                class="cr-current-value"
+            >
+                —
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- IDENTITY -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                TEAM IDENTITY
+            </span>
+
+            <h3>
+                Basic Information
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-editor-form-grid">
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-team-name">
+
+                    TEAM NAME
+
+                </label>
+
+
+                <input
+                    id="cr-team-name"
+                    type="text"
+                    autocomplete="off"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-team-brand">
+
+                    SHOW
+
+                </label>
+
+
+                <select id="cr-team-brand">
+
+                    <option value="">
+                        Unassigned
+                    </option>
+
+                    <option value="Ascension">
+                        Ascension
+                    </option>
+
+                    <option value="Revolt">
+                        Revolt
+                    </option>
+
+                    <option value="OWL">
+                        Shared OWL Division
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- MEMBERS -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                OFFICIAL MEMBERS
+            </span>
+
+            <h3>
+                Tag Team Lineup
+            </h3>
+
+        </div>
+
+
+        <p class="cr-editor-note">
+
+            OWL official tag teams contain exactly two members.
+            The Control Room will synchronize their wrestler profiles automatically.
+
+        </p>
+
+
+
+        <div class="cr-team-member-grid">
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-team-member-one">
+
+                    MEMBER 1
+
+                </label>
+
+
+                <select id="cr-team-member-one">
+
+                    <option value="">
+                        Select Wrestler
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-team-member-two">
+
+                    MEMBER 2
+
+                </label>
+
+
+                <select id="cr-team-member-two">
+
+                    <option value="">
+                        Select Wrestler
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- TEAM DETAILS -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                TEAM PROFILE
+            </span>
+
+            <h3>
+                Wrestling Information
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-team-finisher">
+
+                TEAM FINISHER
+
+            </label>
+
+
+            <input
+                id="cr-team-finisher"
+                type="text"
+                autocomplete="off"
+            >
+
+
+        </div>
+
+
+
+        <div class="cr-form-group cr-editor-spaced-field">
+
+
+            <label for="cr-team-story">
+
+                WHY WE'RE HERE
+
+            </label>
+
+
+            <textarea
+                id="cr-team-story"
+                rows="7"
+            ></textarea>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- MEDIA -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                MEDIA
+            </span>
+
+            <h3>
+                Team Logo
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-team-logo">
+
+                LOGO PATH
+
+            </label>
+
+
+            <input
+                id="cr-team-logo"
+                type="text"
+                autocomplete="off"
+                placeholder="assets/images/teams/example.png"
+            >
+
+
+            <small class="cr-field-help">
+
+                Direct image importing will be handled by the Media Manager.
+
+            </small>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- REVIEW -->
+
+
+    <div
+        id="cr-team-change-preview"
+        class="cr-change-preview"
+        hidden
+    >
+
+
+        <span>
+            REVIEW CHANGES
+        </span>
+
+
+        <div
+            id="cr-team-change-list"
+            class="cr-editor-change-list"
+        >
+        </div>
+
+
+        <p
+            id="cr-team-conflict-message"
+            class="cr-change-error"
+            hidden
+        >
+        </p>
+
+
+    </div>
+
+
+
+    <!-- ACTIONS -->
+
+
+    <div class="cr-manager-actions">
+
+
+        <button
+            id="cr-save-team"
+            class="control-room-button control-room-button-primary"
+            type="button"
+            disabled
+        >
+            Save Team Changes
+        </button>
+
+
+    </div>
+
+
+
+    <p
+        id="cr-team-editor-message"
+        class="cr-save-message"
+        hidden
+    >
+    </p>
+
+
+</section>
+    
         <!-- =================================
              DATA HEALTH
         ================================== -->
