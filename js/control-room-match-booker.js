@@ -1802,18 +1802,18 @@ function crBookerReview() {
 
 
     if (
+    record.stipulation
+) {
+
+    crBookerAddReviewRow(
+
+        "Specialty Match",
+
         record.stipulation
-    ) {
 
-        crBookerAddReviewRow(
+    );
 
-            "Stipulation",
-
-            record.stipulation
-
-        );
-
-    }
+}
 
 
     if (
