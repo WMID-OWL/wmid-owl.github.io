@@ -2990,7 +2990,7 @@ function crBookerBuildSavedRecord() {
             };
 
 
-    const record = {
+        const record = {
 
         ...baseRecord,
 
@@ -3019,9 +3019,43 @@ function crBookerBuildSavedRecord() {
 
 
     if (
-        form.statusNote
+        form.structure
     ) {
 
+        record.structure =
+            form.structure;
+
+    }
+
+
+    else {
+
+        delete record.structure;
+
+    }
+
+
+    if (
+        form.specialty
+    ) {
+
+        record.specialty =
+            form.specialty;
+
+    }
+
+
+    else {
+
+        delete record.specialty;
+
+    }
+
+
+    if (
+        form.statusNote
+    ) {
+        
         record.statusNote =
             form.statusNote;
 
