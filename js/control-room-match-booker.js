@@ -65,6 +65,10 @@ const crBookerAdvancedParticipants = document.getElementById(
   "cr-booker-advanced-participants",
 );
 
+const crBookerTeamBattleSides = document.getElementById(
+  "cr-booker-team-battle-sides",
+);
+
 // =================================
 // MATCH FIELDS
 // =================================
@@ -240,8 +244,12 @@ const CR_BOOKER_SPECIALTY_PROFILES = {
     allowParticipantCountChange: false,
   },
 
-  "Love and War": {
+    "Love and War": {
     mode: CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE,
+
+    teamCount: 2,
+
+    teamSize: 5,
   },
 
   "Overthrow Rumble": {
@@ -515,6 +523,106 @@ function crBookerBuildAdvancedIndividualSides() {
     wrestlers: [selectElement.value].filter(Boolean),
   }));
 }
+function crBookerGetTeamBattleParticipantSelects(sideNumber = null) {
+  const selects = [
+    ...crBookerTeamBattleSides.querySelectorAll(
+      "[data-cr-booker-team-battle-participant='true']",
+    ),
+  ];
+
+  if (sideNumber === null) {
+    return selects;
+  }
+
+  return selects.filter(
+    (selectElement) =>
+      Number(selectElement.dataset.crBookerTeamBattleSide) === sideNumber,
+  );
+}
+
+function crBookerBuildTeamBattleSides() {
+  return [1, 2].map((sideNumber) => ({
+    wrestlers: crBookerGetTeamBattleParticipantSelects(sideNumber)
+      .map((selectElement) => selectElement.value)
+      .filter(Boolean),
+  }));
+}
+
+function crBookerRenderTeamBattleSides(sideWrestlers = [[], []]) {
+  crBookerTeamBattleSides.innerHTML = "";
+
+  for (let sideNumber = 1; sideNumber <= 2; sideNumber += 1) {
+    const sideCard = document.createElement("div");
+
+    sideCard.className = "cr-booker-side-card";
+
+    const heading = document.createElement("div");
+
+    heading.className = "cr-booker-side-heading";
+
+    const headingText = document.createElement("span");
+
+    headingText.textContent = `TEAM ${sideNumber}`;
+
+    heading.appendChild(headingText);
+
+    sideCard.appendChild(heading);
+
+    const grid = document.createElement("div");
+
+    grid.className = "cr-booker-wrestler-grid";
+
+    for (let memberIndex = 0; memberIndex < 5; memberIndex += 1) {
+      const group = document.createElement("div");
+
+      group.className = "cr-form-group";
+
+      const label = document.createElement("label");
+
+      const select = document.createElement("select");
+
+      const selectId =
+        `cr-booker-team-${sideNumber}-member-${memberIndex + 1}`;
+
+      label.htmlFor = selectId;
+
+      label.textContent = `WRESTLER ${memberIndex + 1}`;
+
+      select.id = selectId;
+
+      select.dataset.crBookerTeamBattleParticipant = "true";
+
+      select.dataset.crBookerTeamBattleSide = String(sideNumber);
+
+      crBookerPopulateWrestlerSelect(select);
+
+      const savedWrestlerId =
+        sideWrestlers[sideNumber - 1]?.[memberIndex] || "";
+
+      if (savedWrestlerId) {
+        select.value = savedWrestlerId;
+      }
+
+      select.addEventListener("input", crBookerReview);
+
+      select.addEventListener("change", crBookerReview);
+
+      group.appendChild(label);
+
+      group.appendChild(select);
+
+      grid.appendChild(group);
+    }
+
+    sideCard.appendChild(grid);
+
+    crBookerTeamBattleSides.appendChild(sideCard);
+  }
+
+  crBookerTeamBattleSides.hidden = false;
+
+  crBookerTeamBattleSides.style.display = "";
+}
 
 // =================================
 // ADVANCED PARTICIPANTS
@@ -597,10 +705,15 @@ function crBookerRefreshAdvancedMatchLayout() {
 
   const isOverthrowRumble = stipulation === "Overthrow Rumble";
 
+  const isLoveAndWar = stipulation === "Love and War";
+
   const usesAdvancedParticipants =
     isBattleRoyal || isHexCell || isDevilsContract || isFatesWheel;
 
-  const usesAdvancedLayout = usesAdvancedParticipants || isOverthrowRumble;
+  const usesAdvancedLayout =
+    usesAdvancedParticipants ||
+    isOverthrowRumble ||
+    isLoveAndWar;
 
   crBookerAdvancedMatch.hidden = !usesAdvancedLayout;
 
@@ -618,6 +731,13 @@ function crBookerRefreshAdvancedMatchLayout() {
 
   crBookerAdvancedParticipants.hidden = !usesAdvancedParticipants;
 
+  crBookerAdvancedParticipants.style.display =
+    usesAdvancedParticipants ? "" : "none";
+
+  crBookerTeamBattleSides.hidden = !isLoveAndWar;
+
+  crBookerTeamBattleSides.style.display = isLoveAndWar ? "" : "none";
+
   crBookerStandardCompetitors.hidden = usesAdvancedLayout;
 
   if (usesAdvancedParticipants) {
@@ -634,6 +754,17 @@ function crBookerRefreshAdvancedMatchLayout() {
     }
   } else {
     crBookerAdvancedParticipants.innerHTML = "";
+  }
+
+  if (isLoveAndWar) {
+    const currentTeamBattleSelects =
+      crBookerGetTeamBattleParticipantSelects();
+
+    if (currentTeamBattleSelects.length !== 10) {
+      crBookerRenderTeamBattleSides();
+    }
+  } else {
+    crBookerTeamBattleSides.innerHTML = "";
   }
 
   crBookerReview();
@@ -968,6 +1099,10 @@ function crBookerBuildSides() {
     return [];
   }
 
+  if (stipulation === "Love and War") {
+    return crBookerBuildTeamBattleSides();
+  }
+
   if (
     stipulation === "Battle Royal" ||
     stipulation === "Hex-Cell Eliminator" ||
@@ -1023,6 +1158,8 @@ function crBookerGetFormRecord() {
 
   const isOverthrowRumble = stipulation === "Overthrow Rumble";
 
+  const isLoveAndWar = stipulation === "Love and War";
+
   const usesAdvancedParticipants =
     isBattleRoyal || isHexCell || isDevilsContract || isFatesWheel;
 
@@ -1051,15 +1188,23 @@ function crBookerGetFormRecord() {
 
           participantCount: 30,
         }
-      : usesAdvancedParticipants
+      : isLoveAndWar
         ? {
-            mode: isFatesWheel
-              ? CR_BOOKER_STRUCTURE_MODES.SPECIAL_FIELD
-              : CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+            mode: CR_BOOKER_STRUCTURE_MODES.TEAM_BATTLE,
 
-            participantCount: participantCount,
+            teamCount: 2,
+
+            teamSize: 5,
           }
-        : null,
+        : usesAdvancedParticipants
+          ? {
+              mode: isFatesWheel
+                ? CR_BOOKER_STRUCTURE_MODES.SPECIAL_FIELD
+                : CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+
+              participantCount: participantCount,
+            }
+          : null,
 
     specialty: isBattleRoyal
       ? {
@@ -1099,7 +1244,12 @@ function crBookerValidate(record) {
     errors.push("Select a division for the Overthrow Rumble.");
   }
 
-  const expectedSideSize = record.matchType === "Tag Team" ? 2 : 1;
+    const expectedSideSize =
+    record.stipulation === "Love and War"
+      ? 5
+      : record.matchType === "Tag Team"
+        ? 2
+        : 1;
 
   record.sides.forEach((side, index) => {
     if (
@@ -1352,11 +1502,25 @@ function crBookerLoadSelectedMatch() {
       participantCount = 8;
     }
 
-    crBookerRenderAdvancedParticipants(
+        crBookerRenderAdvancedParticipants(
       participantCount,
 
       participantIds,
     );
+  } else if (match.stipulation === "Love and War") {
+    const sideWrestlers = Array.isArray(match.sides)
+      ? match.sides
+          .slice(0, 2)
+          .map((side) =>
+            Array.isArray(side.wrestlers) ? [...side.wrestlers] : [],
+          )
+      : [[], []];
+
+    while (sideWrestlers.length < 2) {
+      sideWrestlers.push([]);
+    }
+
+    crBookerRenderTeamBattleSides(sideWrestlers);
   } else if (match.matchType === "Tag Team") {
     [
       {
