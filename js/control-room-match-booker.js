@@ -418,13 +418,13 @@ const CR_BOOKER_SPECIALTY_PROFILES = {
             CR_BOOKER_STRUCTURE_MODES.SPECIAL_FIELD,
 
         minParticipants:
-            10,
+            8,
 
         maxParticipants:
-            10,
+            8,
 
         defaultParticipants:
-            10,
+            8,
 
         allowParticipantCountChange:
             false
@@ -1219,15 +1219,21 @@ function crBookerRefreshAdvancedMatchLayout() {
             "Hex-Cell Eliminator";
 
 
-    const isDevilsContract =
+        const isDevilsContract =
         stipulation ===
             "The Devil's Contract";
+
+
+    const isFatesWheel =
+        stipulation ===
+            "Fate's Wheel";
 
 
     const usesAdvancedParticipants =
         isBattleRoyal ||
         isHexCell ||
-        isDevilsContract;
+        isDevilsContract ||
+        isFatesWheel;
 
 
     crBookerAdvancedMatch.hidden =
@@ -1274,16 +1280,20 @@ function crBookerRefreshAdvancedMatchLayout() {
             crBookerGetAdvancedParticipantSelects();
 
 
-        const desiredCount =
+                const desiredCount =
 
-            isHexCell ||
-            isDevilsContract
+            isFatesWheel
 
-                ? 6
+                ? 8
 
-                : Number(
-                    crBookerParticipantCount.value
-                ) || 6;
+                : isHexCell ||
+                  isDevilsContract
+
+                    ? 6
+
+                    : Number(
+                        crBookerParticipantCount.value
+                    ) || 6;
 
 
         if (
@@ -2008,7 +2018,7 @@ function crBookerBuildSides() {
         crBookerStipulation.value;
 
 
-    if (
+        if (
         stipulation === "Battle Royal"
 
         ||
@@ -2018,6 +2028,10 @@ function crBookerBuildSides() {
         ||
 
         stipulation === "The Devil's Contract"
+
+        ||
+
+        stipulation === "Fate's Wheel"
     ) {
 
         return crBookerBuildAdvancedIndividualSides();
@@ -2126,27 +2140,37 @@ function crBookerGetFormRecord() {
             "Hex-Cell Eliminator";
 
 
-    const isDevilsContract =
+        const isDevilsContract =
         stipulation ===
             "The Devil's Contract";
+
+
+    const isFatesWheel =
+        stipulation ===
+            "Fate's Wheel";
 
 
     const usesAdvancedParticipants =
         isBattleRoyal ||
         isHexCell ||
-        isDevilsContract;
+        isDevilsContract ||
+        isFatesWheel;
 
 
     const participantCount =
 
-        isHexCell ||
-        isDevilsContract
+        isFatesWheel
 
-            ? 6
+            ? 8
 
-            : Number(
-                crBookerParticipantCount.value
-            );
+            : isHexCell ||
+              isDevilsContract
+
+                ? 6
+
+                : Number(
+                    crBookerParticipantCount.value
+                );
 
 
     return {
@@ -2171,14 +2195,19 @@ function crBookerGetFormRecord() {
         stipulation:
             stipulation,
 
-        structure:
+                structure:
 
             usesAdvancedParticipants
 
                 ? {
 
                     mode:
-                        CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+
+                        isFatesWheel
+
+                            ? CR_BOOKER_STRUCTURE_MODES.SPECIAL_FIELD
+
+                            : CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
 
                     participantCount:
                         participantCount
@@ -2723,7 +2752,7 @@ function crBookerLoadSelectedMatch() {
 
 
 
-    if (
+        if (
         match.stipulation === "Battle Royal"
 
         ||
@@ -2733,6 +2762,10 @@ function crBookerLoadSelectedMatch() {
         ||
 
         match.stipulation === "The Devil's Contract"
+
+        ||
+
+        match.stipulation === "Fate's Wheel"
     ) {
 
         const participantIds =
@@ -2748,21 +2781,26 @@ function crBookerLoadSelectedMatch() {
                 : [];
 
 
-        const participantCount =
+                const participantCount =
 
             match.stipulation ===
-                "Hex-Cell Eliminator"
+                "Fate's Wheel"
 
-            ||
+                ? 8
 
-            match.stipulation ===
-                "The Devil's Contract"
+                : match.stipulation ===
+                    "Hex-Cell Eliminator"
 
-                ? 6
+                  ||
 
-                : Number(
-                    match.structure?.participantCount
-                ) || 6;
+                  match.stipulation ===
+                    "The Devil's Contract"
+
+                    ? 6
+
+                    : Number(
+                        match.structure?.participantCount
+                    ) || 6;
 
 
         crBookerRenderAdvancedParticipants(
