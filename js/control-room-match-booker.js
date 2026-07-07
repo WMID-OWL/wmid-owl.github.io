@@ -1423,7 +1423,7 @@ function crBookerRefreshSideLayout() {
     }
 
 
-    crBookerReview();
+        crBookerRefreshAdvancedMatchLayout();
 
 }
 
@@ -3324,7 +3324,29 @@ crBookerMatchType.addEventListener(
     "change",
     crBookerRefreshSideLayout
 );
+crBookerStipulation.addEventListener(
+    "change",
+    crBookerRefreshAdvancedMatchLayout
+);
 
+
+crBookerParticipantCount.addEventListener(
+    "change",
+    () => {
+
+        crBookerRenderBattleRoyalParticipants();
+
+
+        crBookerReview();
+
+    }
+);
+
+
+crBookerEliminationRule.addEventListener(
+    "change",
+    crBookerReview
+);
 
 crBookerSideOneMode.addEventListener(
     "change",
