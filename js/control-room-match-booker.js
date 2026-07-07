@@ -1228,12 +1228,30 @@ function crBookerRefreshAdvancedMatchLayout() {
         !usesAdvancedParticipants;
 
 
-    crBookerParticipantCountRow.hidden =
+        crBookerParticipantCountRow.hidden =
         !isBattleRoyal;
+
+
+    crBookerParticipantCountRow.style.display =
+
+        isBattleRoyal
+
+            ? ""
+
+            : "none";
 
 
     crBookerEliminationRuleRow.hidden =
         !isBattleRoyal;
+
+
+    crBookerEliminationRuleRow.style.display =
+
+        isBattleRoyal
+
+            ? ""
+
+            : "none";
 
 
     crBookerAdvancedParticipants.hidden =
