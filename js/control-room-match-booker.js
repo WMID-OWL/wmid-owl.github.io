@@ -1737,6 +1737,19 @@ function crBookerBuildSides() {
         crBookerMatchType.value;
 
 
+    const stipulation =
+        crBookerStipulation.value;
+
+
+    if (
+        stipulation === "Battle Royal"
+    ) {
+
+        return crBookerBuildAdvancedIndividualSides();
+
+    }
+
+
     if (
         matchType === "Tag Team"
     ) {
@@ -1824,6 +1837,14 @@ function crBookerBuildSides() {
 
 function crBookerGetFormRecord() {
 
+    const stipulation =
+        crBookerStipulation.value.trim();
+
+
+    const isBattleRoyal =
+        stipulation === "Battle Royal";
+
+
     return {
 
         eventId:
@@ -1844,7 +1865,38 @@ function crBookerGetFormRecord() {
             crBookerChampionship.value,
 
         stipulation:
-            crBookerStipulation.value.trim(),
+            stipulation,
+
+        structure:
+
+            isBattleRoyal
+
+                ? {
+
+                    mode:
+                        CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+
+                    participantCount:
+                        Number(
+                            crBookerParticipantCount.value
+                        )
+
+                }
+
+                : null,
+
+        specialty:
+
+            isBattleRoyal
+
+                ? {
+
+                    eliminationRule:
+                        crBookerEliminationRule.value
+
+                }
+
+                : null,
 
         status:
             crBookerStatusField.value,
@@ -1855,7 +1907,6 @@ function crBookerGetFormRecord() {
     };
 
 }
-
 
 
 // =================================
