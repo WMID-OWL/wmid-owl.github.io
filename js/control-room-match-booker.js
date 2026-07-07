@@ -2766,12 +2766,18 @@ async function crBookerSaveMatch() {
 
 
         crBookerPendingMatchId =
-            record.id;
+
+    crBookerMode.value === "edit"
+
+        ? record.id
+
+        : "";
 
 
-        await loadRepositoryData(
-            owlRepositoryHandle
-        );
+
+await loadRepositoryData(
+    owlRepositoryHandle
+);
 
 
         crBookerShowMessage(
