@@ -2247,7 +2247,483 @@
 
 
 </section>
-    
+    <!-- =================================
+     EVENT MANAGER
+================================= -->
+
+
+<section class="control-room-panel">
+
+
+    <div class="control-room-panel-heading">
+
+
+        <div>
+
+            <p class="eyebrow">
+                EVENT MANAGEMENT
+            </p>
+
+            <h2>
+                Event Manager
+            </h2>
+
+        </div>
+
+
+        <span
+            id="cr-event-editor-status"
+            class="control-room-health-summary"
+        >
+            READY
+        </span>
+
+
+    </div>
+
+
+
+    <!-- MODE -->
+
+
+    <div class="cr-editor-top-grid">
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-event-editor-mode">
+
+                ACTION
+
+            </label>
+
+
+            <select id="cr-event-editor-mode">
+
+                <option value="edit">
+                    Edit Existing Event
+                </option>
+
+                <option value="create">
+                    Add New Event
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <div
+            id="cr-event-editor-select-row"
+            class="cr-form-group"
+        >
+
+
+            <label for="cr-event-editor-select">
+
+                EVENT
+
+            </label>
+
+
+            <select id="cr-event-editor-select">
+
+                <option value="">
+                    Select Event
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label>
+                DATABASE ID
+            </label>
+
+
+            <div
+                id="cr-event-id-preview"
+                class="cr-current-value"
+            >
+                —
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- EVENT IDENTITY -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                EVENT IDENTITY
+            </span>
+
+            <h3>
+                Basic Information
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-editor-form-grid">
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-event-name">
+
+                    EVENT NAME
+
+                </label>
+
+
+                <input
+                    id="cr-event-name"
+                    type="text"
+                    autocomplete="off"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-event-brand">
+
+                    SHOW / BRAND
+
+                </label>
+
+
+                <select id="cr-event-brand">
+
+                    <option value="">
+                        Unassigned
+                    </option>
+
+                    <option value="Ascension">
+                        Ascension
+                    </option>
+
+                    <option value="Revolt">
+                        Revolt
+                    </option>
+
+                    <option value="OWL">
+                        OWL
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-event-type">
+
+                    EVENT TYPE
+
+                </label>
+
+
+                <select id="cr-event-type">
+
+                    <option value="weekly">
+                        Weekly
+                    </option>
+
+                    <option value="ppv">
+                        PPV
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-event-date">
+
+                    DATE
+
+                </label>
+
+
+                <input
+                    id="cr-event-date"
+                    type="date"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-event-status">
+
+                    STATUS
+
+                </label>
+
+
+                <select id="cr-event-status">
+
+                    <option value="upcoming">
+                        Upcoming
+                    </option>
+
+                    <option value="completed">
+                        Completed
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-event-location">
+
+                    LOCATION
+
+                </label>
+
+
+                <input
+                    id="cr-event-location"
+                    type="text"
+                    autocomplete="off"
+                >
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- EVENT STORY -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                EVENT PROFILE
+            </span>
+
+            <h3>
+                Presentation
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-event-tagline">
+
+                TAGLINE
+
+            </label>
+
+
+            <input
+                id="cr-event-tagline"
+                type="text"
+                autocomplete="off"
+            >
+
+
+        </div>
+
+
+
+        <div class="cr-form-group cr-editor-spaced-field">
+
+
+            <label for="cr-event-description">
+
+                DESCRIPTION
+
+            </label>
+
+
+            <textarea
+                id="cr-event-description"
+                rows="7"
+            ></textarea>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- EVENT MEDIA -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                MEDIA
+            </span>
+
+            <h3>
+                Event Poster
+            </h3>
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-event-image">
+
+                POSTER PATH
+
+            </label>
+
+
+            <input
+                id="cr-event-image"
+                type="text"
+                autocomplete="off"
+                placeholder="assets/images/events/example.png"
+            >
+
+
+            <small class="cr-field-help">
+
+                Direct image importing will be handled by the Media Manager.
+
+            </small>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- REVIEW -->
+
+
+    <div
+        id="cr-event-change-preview"
+        class="cr-change-preview"
+        hidden
+    >
+
+
+        <span>
+            REVIEW CHANGES
+        </span>
+
+
+        <div
+            id="cr-event-change-list"
+            class="cr-editor-change-list"
+        >
+        </div>
+
+
+        <p
+            id="cr-event-conflict-message"
+            class="cr-change-error"
+            hidden
+        >
+        </p>
+
+
+    </div>
+
+
+
+    <!-- ACTIONS -->
+
+
+    <div class="cr-manager-actions">
+
+
+        <button
+            id="cr-save-event"
+            class="control-room-button control-room-button-primary"
+            type="button"
+            disabled
+        >
+            Save Event Changes
+        </button>
+
+
+    </div>
+
+
+
+    <p
+        id="cr-event-editor-message"
+        class="cr-save-message"
+        hidden
+    >
+    </p>
+
+
+</section>
         <!-- =================================
              DATA HEALTH
         ================================== -->
