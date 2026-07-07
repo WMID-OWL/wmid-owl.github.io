@@ -1335,6 +1335,822 @@ function crResultsReviewResult() {
             : "READY TO SAVE",
     );
 }
+// =================================
+// COMPLETED MATCH RECORD
+// =================================
+
+
+function crResultsBuildCompletedMatchRecord() {
+    if (
+        !crResultsSelectedMatch
+    ) {
+        throw new Error(
+            "Select a match before saving a result.",
+        );
+    }
+
+
+    const form =
+        crResultsGetFormRecord();
+
+
+    const record = {
+
+        ...structuredClone(
+            crResultsSelectedMatch,
+        ),
+
+        status:
+            "completed",
+
+        resultType:
+            form.resultType,
+
+        winnerSide:
+
+            form.resultType === "win"
+
+                ? form.winningSideIndex
+
+                : null,
+
+        rating:
+            form.rating,
+
+        starRating:
+            form.stars,
+
+        matchTime:
+            form.matchTime,
+    };
+
+
+    if (
+        form.resultType === "win"
+    ) {
+        record.finish = {
+
+            winner:
+                form.winningWrestlerId,
+
+            loser:
+                form.losingWrestlerId,
+
+            method:
+                form.finishMethod,
+        };
+    }
+
+
+    else {
+        delete record.finish;
+    }
+
+
+    return record;
+}
+// =================================
+// RESULT SAVE MESSAGES
+// =================================
+
+
+function crResultsShowMessage(
+    message,
+    type,
+) {
+    crResultsMessage.textContent =
+        message;
+
+
+    crResultsMessage.className =
+        `cr-save-message ${type}`;
+
+
+    crResultsMessage.hidden =
+        false;
+}
+
+
+function crResultsHideMessage() {
+    crResultsMessage.textContent =
+        "";
+
+
+    crResultsMessage.hidden =
+        true;
+}
+
+
+// =================================
+// WRITE PERMISSION
+// =================================
+
+
+async function crResultsEnsureWritePermission() {
+    if (
+        !owlRepositoryHandle
+    ) {
+        return false;
+    }
+
+
+    const options = {
+
+        mode:
+            "readwrite",
+    };
+
+
+    if (
+        await owlRepositoryHandle.queryPermission(
+            options,
+        )
+
+        === "granted"
+    ) {
+        return true;
+    }
+
+
+    return (
+
+        await owlRepositoryHandle.requestPermission(
+            options,
+        )
+
+        === "granted"
+    );
+}
+
+
+// =================================
+// DATA FILE ACCESS
+// =================================
+
+
+async function crResultsReadDataFile(
+    filename,
+) {
+    const dataDirectory =
+        await owlRepositoryHandle.getDirectoryHandle(
+            "data",
+        );
+
+
+    const fileHandle =
+        await dataDirectory.getFileHandle(
+            filename,
+        );
+
+
+    const file =
+        await fileHandle.getFile();
+
+
+    return {
+
+        fileHandle,
+
+        text:
+            await file.text(),
+    };
+}
+
+
+async function crResultsWriteFile(
+    fileHandle,
+    text,
+) {
+    const writable =
+        await fileHandle.createWritable();
+
+
+    await writable.write(
+        text,
+    );
+
+
+    await writable.close();
+}
+
+
+// =================================
+// FORMAT RESULT RECORD
+// =================================
+
+
+function crResultsFormatObject(
+    record,
+) {
+    return JSON.stringify(
+        record,
+        null,
+        2,
+    )
+
+        .split("\n")
+
+        .map(
+            line =>
+                `  ${line}`,
+        )
+
+        .join("\n");
+}
+
+
+// =================================
+// APPEND COMPLETED MATCH
+// =================================
+
+
+function crResultsAppendRecordText(
+    text,
+    record,
+) {
+    let existingRecords;
+
+
+    try {
+        existingRecords =
+            JSON.parse(
+                text,
+            );
+    }
+
+
+    catch {
+        throw new Error(
+            "matches.json is not valid JSON.",
+        );
+    }
+
+
+    if (
+        !Array.isArray(
+            existingRecords,
+        )
+    ) {
+        throw new Error(
+            "matches.json must contain a JSON array.",
+        );
+    }
+
+
+    if (
+        existingRecords.some(
+            match =>
+                match.id === record.id,
+        )
+    ) {
+        throw new Error(
+            `A completed match with ID ${record.id} already exists.`,
+        );
+    }
+
+
+    const closingIndex =
+        text.lastIndexOf(
+            "]",
+        );
+
+
+    if (
+        closingIndex === -1
+    ) {
+        throw new Error(
+            "Could not find the end of matches.json.",
+        );
+    }
+
+
+    const before =
+        text.slice(
+            0,
+            closingIndex,
+        );
+
+
+    const after =
+        text.slice(
+            closingIndex,
+        );
+
+
+    const trimmedBefore =
+        before.trimEnd();
+
+
+    const hasRecords =
+        !trimmedBefore.endsWith(
+            "[",
+        );
+
+
+    return (
+
+        trimmedBefore
+
+        +
+
+        (
+            hasRecords
+
+                ? ",\n"
+
+                : "\n"
+        )
+
+        +
+
+        crResultsFormatObject(
+            record,
+        )
+
+        +
+
+        "\n"
+
+        +
+
+        after
+    );
+}
+
+
+// =================================
+// FIND ANNOUNCED MATCH
+// =================================
+
+
+function crResultsFindObjectBounds(
+    text,
+    recordId,
+) {
+    const escapedId =
+        recordId.replace(
+            /[.*+?^${}()|[\]\\]/g,
+            "\\$&",
+        );
+
+
+    const pattern =
+        new RegExp(
+
+            `"id"\\s*:\\s*"${escapedId}"`,
+
+        );
+
+
+    const match =
+        pattern.exec(
+            text,
+        );
+
+
+    if (
+        !match
+    ) {
+        throw new Error(
+            `Could not find announced match ${recordId}.`,
+        );
+    }
+
+
+    const start =
+        text.lastIndexOf(
+            "{",
+            match.index,
+        );
+
+
+    let end =
+        -1;
+
+
+    let depth =
+        0;
+
+
+    let inString =
+        false;
+
+
+    let escaped =
+        false;
+
+
+    for (
+        let index = start;
+        index < text.length;
+        index += 1
+    ) {
+        const character =
+            text[index];
+
+
+        if (
+            escaped
+        ) {
+            escaped =
+                false;
+
+            continue;
+        }
+
+
+        if (
+            character === "\\"
+
+            &&
+
+            inString
+        ) {
+            escaped =
+                true;
+
+            continue;
+        }
+
+
+        if (
+            character === "\""
+        ) {
+            inString =
+                !inString;
+
+            continue;
+        }
+
+
+        if (
+            inString
+        ) {
+            continue;
+        }
+
+
+        if (
+            character === "{"
+        ) {
+            depth +=
+                1;
+        }
+
+
+        if (
+            character === "}"
+        ) {
+            depth -=
+                1;
+
+
+            if (
+                depth === 0
+            ) {
+                end =
+                    index;
+
+                break;
+            }
+        }
+    }
+
+
+    if (
+        start === -1
+
+        ||
+
+        end === -1
+    ) {
+        throw new Error(
+            `Could not locate announced match ${recordId}.`,
+        );
+    }
+
+
+    return {
+
+        start,
+        end,
+    };
+}
+
+
+// =================================
+// REMOVE ANNOUNCED MATCH
+// =================================
+
+
+function crResultsRemoveRecordText(
+    text,
+    recordId,
+) {
+    const bounds =
+        crResultsFindObjectBounds(
+            text,
+            recordId,
+        );
+
+
+    let removeStart =
+        bounds.start;
+
+
+    let removeEnd =
+        bounds.end + 1;
+
+
+    const lineStart =
+        text.lastIndexOf(
+            "\n",
+            removeStart - 1,
+        );
+
+
+    if (
+        lineStart !== -1
+
+        &&
+
+        text
+            .slice(
+                lineStart + 1,
+                removeStart,
+            )
+            .trim() === ""
+    ) {
+        removeStart =
+            lineStart + 1;
+    }
+
+
+    let cursor =
+        removeEnd;
+
+
+    while (
+        cursor < text.length
+
+        &&
+
+        /[ \t\r\n]/.test(
+            text[cursor],
+        )
+    ) {
+        cursor +=
+            1;
+    }
+
+
+    if (
+        text[cursor] === ","
+    ) {
+        removeEnd =
+            cursor + 1;
+
+
+        if (
+            text[removeEnd] === "\r"
+        ) {
+            removeEnd +=
+                1;
+        }
+
+
+        if (
+            text[removeEnd] === "\n"
+        ) {
+            removeEnd +=
+                1;
+        }
+    }
+
+
+    else {
+        cursor =
+            removeStart - 1;
+
+
+        while (
+            cursor >= 0
+
+            &&
+
+            /[ \t\r\n]/.test(
+                text[cursor],
+            )
+        ) {
+            cursor -=
+                1;
+        }
+
+
+        if (
+            text[cursor] === ","
+        ) {
+            removeStart =
+                cursor;
+        }
+    }
+
+
+    return (
+
+        text.slice(
+            0,
+            removeStart,
+        )
+
+        +
+
+        text.slice(
+            removeEnd,
+        )
+    );
+}
+// =================================
+// SAVE MATCH RESULT
+// =================================
+
+
+async function crResultsSaveResult() {
+    crResultsSave.disabled =
+        true;
+
+
+    crResultsSetStatus(
+        "SAVING...",
+    );
+
+
+    crResultsHideMessage();
+
+
+    try {
+        const permission =
+            await crResultsEnsureWritePermission();
+
+
+        if (
+            !permission
+        ) {
+            throw new Error(
+                "Write permission was not granted.",
+            );
+        }
+
+
+        const form =
+            crResultsGetFormRecord();
+
+
+        const errors =
+            crResultsValidate(
+                form,
+            );
+
+
+        if (
+            errors.length > 0
+        ) {
+            throw new Error(
+                errors.join(" "),
+            );
+        }
+
+
+        const completedRecord =
+            crResultsBuildCompletedMatchRecord();
+
+
+        const matchesFile =
+            await crResultsReadDataFile(
+                "matches.json",
+            );
+
+
+        const announcedFile =
+            await crResultsReadDataFile(
+                "announced-matches.json",
+            );
+
+
+        const updatedMatchesText =
+            crResultsAppendRecordText(
+
+                matchesFile.text,
+
+                completedRecord,
+
+            );
+
+
+        const updatedAnnouncedText =
+            crResultsRemoveRecordText(
+
+                announcedFile.text,
+
+                crResultsSelectedMatch.id,
+
+            );
+
+
+        await crResultsWriteFile(
+
+            matchesFile.fileHandle,
+
+            updatedMatchesText,
+
+        );
+
+
+        try {
+            await crResultsWriteFile(
+
+                announcedFile.fileHandle,
+
+                updatedAnnouncedText,
+
+            );
+        }
+
+
+        catch (error) {
+            await crResultsWriteFile(
+
+                matchesFile.fileHandle,
+
+                matchesFile.text,
+
+            );
+
+
+            throw error;
+        }
+
+
+        crResultsSelectedMatch =
+            null;
+
+
+        crResultsMatch.value =
+            "";
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle,
+        );
+
+
+        crResultsPopulateMatches();
+
+
+        crResultsHideMatchFields();
+
+
+        crResultsSetStatus(
+            "SAVED",
+        );
+
+
+        crResultsShowMessage(
+
+            "Match result was saved locally. Review matches.json and announced-matches.json in GitHub Desktop.",
+
+            "save-success",
+
+        );
+    }
+
+
+    catch (error) {
+        console.error(
+            "Could not save match result:",
+            error,
+        );
+
+
+        crResultsReviewResult();
+
+
+        crResultsSetStatus(
+            "SAVE FAILED",
+        );
+
+
+        crResultsShowMessage(
+
+            error.message
+            ||
+            "The match result could not be saved.",
+
+            "save-error",
+
+        );
+    }
+}
 
 // =================================
 // EVENT CHANGE
@@ -1417,6 +2233,10 @@ window.addEventListener(
     },
 );
 
+crResultsSave.addEventListener(
+    "click",
+    crResultsSaveResult,
+);
 
 // =================================
 // SAFETY INITIALIZATION
