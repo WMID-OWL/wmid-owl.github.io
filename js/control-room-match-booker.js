@@ -111,6 +111,18 @@ const crBookerEliminationRule =
     );
 
 
+const crBookerDivisionRow =
+    document.getElementById(
+        "cr-booker-division-row"
+    );
+
+
+const crBookerDivision =
+    document.getElementById(
+        "cr-booker-division"
+    );
+
+
 const crBookerAdvancedParticipants =
     document.getElementById(
         "cr-booker-advanced-participants"
@@ -1219,7 +1231,7 @@ function crBookerRefreshAdvancedMatchLayout() {
             "Hex-Cell Eliminator";
 
 
-        const isDevilsContract =
+    const isDevilsContract =
         stipulation ===
             "The Devil's Contract";
 
@@ -1229,6 +1241,11 @@ function crBookerRefreshAdvancedMatchLayout() {
             "Fate's Wheel";
 
 
+    const isOverthrowRumble =
+        stipulation ===
+            "Overthrow Rumble";
+
+
     const usesAdvancedParticipants =
         isBattleRoyal ||
         isHexCell ||
@@ -1236,8 +1253,13 @@ function crBookerRefreshAdvancedMatchLayout() {
         isFatesWheel;
 
 
+    const usesAdvancedLayout =
+        usesAdvancedParticipants ||
+        isOverthrowRumble;
+
+
     crBookerAdvancedMatch.hidden =
-        !usesAdvancedParticipants;
+        !usesAdvancedLayout;
 
 
     crBookerParticipantCountRow.hidden =
@@ -1266,12 +1288,25 @@ function crBookerRefreshAdvancedMatchLayout() {
             : "none";
 
 
+    crBookerDivisionRow.hidden =
+        !isOverthrowRumble;
+
+
+    crBookerDivisionRow.style.display =
+
+        isOverthrowRumble
+
+            ? ""
+
+            : "none";
+
+
     crBookerAdvancedParticipants.hidden =
         !usesAdvancedParticipants;
 
 
     crBookerStandardCompetitors.hidden =
-        usesAdvancedParticipants;
+        usesAdvancedLayout;
 
 
     if (usesAdvancedParticipants) {
@@ -1280,7 +1315,7 @@ function crBookerRefreshAdvancedMatchLayout() {
             crBookerGetAdvancedParticipantSelects();
 
 
-                const desiredCount =
+        const desiredCount =
 
             isFatesWheel
 
@@ -1321,8 +1356,6 @@ function crBookerRefreshAdvancedMatchLayout() {
     crBookerReview();
 
 }
-
-
 
 // =================================
 // POPULATE EVENTS
@@ -2014,11 +2047,20 @@ function crBookerBuildSides() {
         crBookerMatchType.value;
 
 
-    const stipulation =
+        const stipulation =
         crBookerStipulation.value;
 
 
-        if (
+    if (
+        stipulation === "Overthrow Rumble"
+    ) {
+
+        return [];
+
+    }
+
+
+    if (
         stipulation === "Battle Royal"
 
         ||
@@ -2140,7 +2182,7 @@ function crBookerGetFormRecord() {
             "Hex-Cell Eliminator";
 
 
-        const isDevilsContract =
+    const isDevilsContract =
         stipulation ===
             "The Devil's Contract";
 
@@ -2148,6 +2190,11 @@ function crBookerGetFormRecord() {
     const isFatesWheel =
         stipulation ===
             "Fate's Wheel";
+
+
+    const isOverthrowRumble =
+        stipulation ===
+            "Overthrow Rumble";
 
 
     const usesAdvancedParticipants =
@@ -2195,26 +2242,38 @@ function crBookerGetFormRecord() {
         stipulation:
             stipulation,
 
-                structure:
+        structure:
 
-            usesAdvancedParticipants
+            isOverthrowRumble
 
                 ? {
 
                     mode:
-
-                        isFatesWheel
-
-                            ? CR_BOOKER_STRUCTURE_MODES.SPECIAL_FIELD
-
-                            : CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+                        CR_BOOKER_STRUCTURE_MODES.DEFERRED_ROSTER,
 
                     participantCount:
-                        participantCount
+                        30
 
                 }
 
-                : null,
+                : usesAdvancedParticipants
+
+                    ? {
+
+                        mode:
+
+                            isFatesWheel
+
+                                ? CR_BOOKER_STRUCTURE_MODES.SPECIAL_FIELD
+
+                                : CR_BOOKER_STRUCTURE_MODES.FREE_FOR_ALL,
+
+                        participantCount:
+                            participantCount
+
+                    }
+
+                    : null,
 
         specialty:
 
@@ -2227,7 +2286,16 @@ function crBookerGetFormRecord() {
 
                 }
 
-                : null,
+                : isOverthrowRumble
+
+                    ? {
+
+                        division:
+                            crBookerDivision.value
+
+                    }
+
+                    : null,
 
         status:
             crBookerStatusField.value,
@@ -2239,16 +2307,26 @@ function crBookerGetFormRecord() {
 
 }
 
-
-
 // =================================
 // VALIDATION
 // =================================
 
 
-function crBookerValidate(
-    record
-) {
+    if (
+        !Number.isInteger(
+            record.order
+        )
+
+        ||
+
+        record.order < 1
+    ) {
+
+        errors.push(
+            "Card order must be a whole number greater than zero."
+        );
+
+    } {
 
     const errors = [];
 
@@ -2277,7 +2355,20 @@ function crBookerValidate(
         );
 
     }
+    if (
+        record.stipulation ===
+            "Overthrow Rumble"
 
+        &&
+
+        !record.specialty?.division
+    ) {
+
+        errors.push(
+            "Select a division for the Overthrow Rumble."
+        );
+
+    }
 
 
     const expectedSideSize =
