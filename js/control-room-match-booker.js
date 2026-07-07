@@ -2780,29 +2780,41 @@ await loadRepositoryData(
 );
 
 
-        crBookerShowMessage(
-
-            crBookerMode.value === "edit"
-
-                ? "Booked match changes were saved locally. Review announced-matches.json in GitHub Desktop."
-
-                : "Match was added to the event card. Review announced-matches.json in GitHub Desktop.",
-
-            "save-success"
-
-        );
+        // Refresh the selected match first.
+//
+// Edit mode automatically reloads the saved match,
+// and that reload clears old messages.
+// Therefore the success confirmation must be shown
+// AFTER the refresh finishes.
 
 
-        crBookerSetStatus(
-            crBookerMode.value === "edit"
-
-                ? "SAVED"
-
-                : "BOOKED"
-        );
+crBookerRefreshMatchList();
 
 
-        crBookerRefreshMatchList();
+
+crBookerShowMessage(
+
+    crBookerMode.value === "edit"
+
+        ? "Booked match changes were saved locally. Review announced-matches.json in GitHub Desktop."
+
+        : "Match was added to the event card. Review announced-matches.json in GitHub Desktop.",
+
+    "save-success"
+
+);
+
+
+
+crBookerSetStatus(
+
+    crBookerMode.value === "edit"
+
+        ? "SAVED"
+
+        : "BOOKED"
+
+);
 
     }
 
