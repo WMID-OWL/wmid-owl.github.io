@@ -1833,3 +1833,90 @@
     }
 
 }
+/* =================================
+   MATCH BOOKER
+================================= */
+
+
+.cr-booker-side-card {
+
+    margin-top:
+        1rem;
+
+    padding:
+        1.2rem;
+
+    background:
+        #171d20;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+}
+
+
+.cr-booker-side-heading {
+
+    margin-bottom:
+        1rem;
+
+    padding-bottom:
+        0.75rem;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+.cr-booker-side-heading span {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+}
+
+
+.cr-booker-tag-controls {
+
+    margin-bottom:
+        1rem;
+
+}
+
+
+.cr-booker-wrestler-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap:
+        1rem;
+
+}
+
+
+@media (max-width: 700px) {
+
+    .cr-booker-wrestler-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
