@@ -212,6 +212,183 @@ function crResultsHideMatchFields() {
         true;
 }
 
+// =================================
+// MATCH HELPERS
+// =================================
+
+
+function crResultsGetWrestlerName(
+    wrestlerId,
+) {
+    const wrestler =
+        owlControlRoomData.wrestlers.find(
+            (item) =>
+                item.id === wrestlerId,
+        );
+
+
+    return wrestler
+        ? wrestler.name
+        : wrestlerId;
+}
+
+
+function crResultsGetChampionshipName(
+    championshipId,
+) {
+    if (!championshipId) {
+        return "Non-Title Match";
+    }
+
+
+    const championship =
+        owlControlRoomData.championships.find(
+            (item) =>
+                item.id === championshipId,
+        );
+
+
+    return championship
+        ? championship.name
+        : championshipId;
+}
+
+
+function crResultsFormatSide(
+    side,
+) {
+    const wrestlerIds =
+        Array.isArray(
+            side?.wrestlers,
+        )
+            ? side.wrestlers
+            : [];
+
+
+    return wrestlerIds
+        .map(
+            crResultsGetWrestlerName,
+        )
+        .join(" & ");
+}
+
+
+function crResultsFormatMatch(
+    match,
+) {
+    if (!match) {
+        return "Unknown Match";
+    }
+
+
+    if (
+        match.stipulation ===
+        "Overthrow Rumble"
+    ) {
+        const division =
+            match.specialty?.division;
+
+
+        return division
+            ? `${division}'s Overthrow Rumble`
+            : "Overthrow Rumble";
+    }
+
+
+    if (
+        !Array.isArray(
+            match.sides,
+        )
+    ) {
+        return "Unknown Match";
+    }
+
+
+    return match.sides
+        .map(
+            crResultsFormatSide,
+        )
+        .filter(Boolean)
+        .join(" vs. ");
+}
+
+
+function crResultsAddSummaryRow(
+    label,
+    value,
+) {
+    const row =
+        document.createElement(
+            "div",
+        );
+
+
+    row.className =
+        "cr-editor-change-row";
+
+
+    const labelElement =
+        document.createElement(
+            "strong",
+        );
+
+
+    labelElement.textContent =
+        label;
+
+
+    const valueElement =
+        document.createElement(
+            "span",
+        );
+
+
+    valueElement.textContent =
+        value;
+
+
+    row.appendChild(
+        labelElement,
+    );
+
+
+    row.appendChild(
+        valueElement,
+    );
+
+
+    crResultsMatchSummary.appendChild(
+        row,
+    );
+}
+
+
+function crResultsGetEventMatches() {
+    const eventId =
+        crResultsEvent.value;
+
+
+    if (!eventId) {
+        return [];
+    }
+
+
+    return owlControlRoomData.announcedMatches
+        .filter(
+            (match) =>
+                match.eventId === eventId,
+        )
+        .sort(
+            (a, b) =>
+                Number(
+                    a.order || 0,
+                )
+                -
+                Number(
+                    b.order || 0,
+                ),
+        );
+}
 
 // =================================
 // EVENT POPULATION
@@ -273,6 +450,386 @@ function crResultsPopulateEvents() {
     }
 }
 
+// =================================
+// MATCH POPULATION
+// =================================
+
+
+function crResultsPopulateMatches() {
+    const oldValue =
+        crResultsMatch.value;
+
+
+    crResultsMatch.innerHTML = `
+        <option value="">
+            Select Match
+        </option>
+    `;
+
+
+    const eventMatches =
+        crResultsGetEventMatches();
+
+
+    eventMatches.forEach(
+        (match) => {
+            const option =
+                document.createElement(
+                    "option",
+                );
+
+
+            option.value =
+                match.id;
+
+
+            option.textContent =
+                `Match ${match.order} — ${crResultsFormatMatch(match)}`;
+
+
+            crResultsMatch.appendChild(
+                option,
+            );
+        },
+    );
+
+
+    crResultsMatch.disabled =
+        !crResultsEvent.value;
+
+
+    if (
+        oldValue
+        &&
+        eventMatches.some(
+            (match) =>
+                match.id === oldValue,
+        )
+    ) {
+        crResultsMatch.value =
+            oldValue;
+    }
+}
+// =================================
+// RESULT CONTROL POPULATION
+// =================================
+
+
+function crResultsPopulateWinnerControls(
+    match,
+) {
+    crResultsWinnerSide.innerHTML = `
+        <option value="">
+            Select Winning Side
+        </option>
+    `;
+
+
+    crResultsFinishWinner.innerHTML = `
+        <option value="">
+            Select Wrestler
+        </option>
+    `;
+
+
+    crResultsFinishLoser.innerHTML = `
+        <option value="">
+            Select Wrestler
+        </option>
+    `;
+
+
+    const sides =
+        Array.isArray(
+            match.sides,
+        )
+            ? match.sides
+            : [];
+
+
+    sides.forEach(
+        (side, index) => {
+            const option =
+                document.createElement(
+                    "option",
+                );
+
+
+            option.value =
+                String(index);
+
+
+            option.textContent =
+                `Side ${index + 1} — ${crResultsFormatSide(side)}`;
+
+
+            crResultsWinnerSide.appendChild(
+                option,
+            );
+        },
+    );
+
+
+    const wrestlerIds =
+        [
+            ...new Set(
+                sides.flatMap(
+                    (side) =>
+                        Array.isArray(
+                            side.wrestlers,
+                        )
+                            ? side.wrestlers
+                            : [],
+                ),
+            ),
+        ];
+
+
+    wrestlerIds.forEach(
+        (wrestlerId) => {
+            const winnerOption =
+                document.createElement(
+                    "option",
+                );
+
+
+            winnerOption.value =
+                wrestlerId;
+
+
+            winnerOption.textContent =
+                crResultsGetWrestlerName(
+                    wrestlerId,
+                );
+
+
+            crResultsFinishWinner.appendChild(
+                winnerOption,
+            );
+
+
+            const loserOption =
+                document.createElement(
+                    "option",
+                );
+
+
+            loserOption.value =
+                wrestlerId;
+
+
+            loserOption.textContent =
+                crResultsGetWrestlerName(
+                    wrestlerId,
+                );
+
+
+            crResultsFinishLoser.appendChild(
+                loserOption,
+            );
+        },
+    );
+}
+
+
+// =================================
+// RESULT TYPE LAYOUT
+// =================================
+
+
+function crResultsRefreshResultTypeLayout() {
+    const isWin =
+        crResultsResultType.value ===
+        "win";
+
+
+    crResultsWinnerSideRow.hidden =
+        !isWin;
+
+
+    crResultsWinnerSideRow.style.display =
+        isWin
+            ? ""
+            : "none";
+
+
+    crResultsFinishWinnerRow.hidden =
+        !isWin;
+
+
+    crResultsFinishWinnerRow.style.display =
+        isWin
+            ? ""
+            : "none";
+
+
+    crResultsFinishLoserRow.hidden =
+        !isWin;
+
+
+    crResultsFinishLoserRow.style.display =
+        isWin
+            ? ""
+            : "none";
+
+
+    crResultsMethodRow.hidden =
+        !isWin;
+
+
+    crResultsMethodRow.style.display =
+        isWin
+            ? ""
+            : "none";
+}
+
+
+// =================================
+// SELECTED MATCH LOAD
+// =================================
+
+
+function crResultsLoadSelectedMatch() {
+    const matchId =
+        crResultsMatch.value;
+
+
+    crResultsSelectedMatch =
+        null;
+
+
+    crResultsHideMatchFields();
+
+
+    if (!matchId) {
+        crResultsSetStatus(
+            "SELECT MATCH",
+        );
+
+        return;
+    }
+
+
+    const match =
+        owlControlRoomData.announcedMatches.find(
+            (item) =>
+                item.id === matchId,
+        );
+
+
+    if (!match) {
+        crResultsSetStatus(
+            "MATCH NOT FOUND",
+        );
+
+        return;
+    }
+
+
+    crResultsSelectedMatch =
+        match;
+
+
+    crResultsMatchSummary.innerHTML =
+        "";
+
+
+    crResultsAddSummaryRow(
+        "Match",
+        crResultsFormatMatch(
+            match,
+        ),
+    );
+
+
+    crResultsAddSummaryRow(
+        "Match Type",
+        match.matchType || "—",
+    );
+
+
+    crResultsAddSummaryRow(
+        "Specialty Match",
+        match.stipulation || "Standard Match",
+    );
+
+
+    crResultsAddSummaryRow(
+        "Championship",
+        crResultsGetChampionshipName(
+            match.championshipId,
+        ),
+    );
+
+
+    crResultsPopulateWinnerControls(
+        match,
+    );
+
+
+    crResultsResultType.value =
+        "win";
+
+
+    crResultsWinnerSide.value =
+        "";
+
+
+    crResultsFinishWinner.value =
+        "";
+
+
+    crResultsFinishLoser.value =
+        "";
+
+
+    crResultsMethod.value =
+        "";
+
+
+    crResultsRating.value =
+        "";
+
+
+    crResultsStars.value =
+        "";
+
+
+    crResultsTime.value =
+        "";
+
+
+    crResultsMatchPreview.hidden =
+        false;
+
+
+    crResultsBasicFields.hidden =
+        false;
+
+
+    crResultsPerformanceFields.hidden =
+        false;
+
+
+    crResultsSpecialtyFields.hidden =
+        true;
+
+
+    crResultsReview.hidden =
+        true;
+
+
+    crResultsSave.disabled =
+        true;
+
+
+    crResultsRefreshResultTypeLayout();
+
+
+    crResultsSetStatus(
+        "ENTER RESULT",
+    );
+}
 
 // =================================
 // EVENT CHANGE
@@ -283,16 +840,12 @@ function crResultsHandleEventChange() {
     crResultsSelectedMatch =
         null;
 
-    crResultsMatch.innerHTML = `
-        <option value="">
-            Select Match
-        </option>
-    `;
 
-    crResultsMatch.disabled =
-        !crResultsEvent.value;
+    crResultsPopulateMatches();
+
 
     crResultsHideMatchFields();
+
 
     crResultsSetStatus(
         crResultsEvent.value
@@ -301,23 +854,13 @@ function crResultsHandleEventChange() {
     );
 }
 
-
 // =================================
 // MATCH CHANGE
 // =================================
 
 
 function crResultsHandleMatchChange() {
-    crResultsSelectedMatch =
-        null;
-
-    crResultsHideMatchFields();
-
-    crResultsSetStatus(
-        crResultsMatch.value
-            ? "MATCH SELECTED"
-            : "SELECT MATCH",
-    );
+    crResultsLoadSelectedMatch();
 }
 
 
@@ -336,7 +879,10 @@ crResultsMatch.addEventListener(
     "change",
     crResultsHandleMatchChange,
 );
-
+crResultsResultType.addEventListener(
+    "change",
+    crResultsRefreshResultTypeLayout,
+);
 
 window.addEventListener(
     "owl-control-room-data-loaded",
