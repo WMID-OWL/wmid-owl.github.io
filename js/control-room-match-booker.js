@@ -796,6 +796,256 @@ function crBookerPopulateChampionships() {
 }
 
 
+// =================================
+// ADVANCED PARTICIPANT HELPERS
+// =================================
+
+
+function crBookerGetAdvancedParticipantSelects() {
+
+    return [
+
+        ...crBookerAdvancedParticipants.querySelectorAll(
+            "[data-cr-booker-participant='true']"
+        )
+
+    ];
+
+}
+
+
+
+function crBookerBuildAdvancedIndividualSides() {
+
+    return crBookerGetAdvancedParticipantSelects()
+        .map(
+            selectElement => ({
+
+                wrestlers:
+                    [
+                        selectElement.value
+                    ].filter(Boolean)
+
+            })
+        );
+
+}
+
+
+
+// =================================
+// BATTLE ROYAL PARTICIPANTS
+// =================================
+
+
+function crBookerRenderBattleRoyalParticipants(
+    wrestlerIds = []
+) {
+
+    const existingValues =
+
+        wrestlerIds.length > 0
+
+            ? wrestlerIds
+
+            : crBookerGetAdvancedParticipantSelects()
+                .map(
+                    selectElement =>
+                        selectElement.value
+                );
+
+
+    const participantCount =
+        Number(
+            crBookerParticipantCount.value
+        ) || 6;
+
+
+    crBookerAdvancedParticipants.innerHTML =
+        "";
+
+
+    const grid =
+        document.createElement(
+            "div"
+        );
+
+
+    grid.className =
+        "cr-booker-wrestler-grid";
+
+
+    for (
+        let index = 0;
+        index < participantCount;
+        index += 1
+    ) {
+
+        const group =
+            document.createElement(
+                "div"
+            );
+
+
+        group.className =
+            "cr-form-group";
+
+
+        const label =
+            document.createElement(
+                "label"
+            );
+
+
+        const select =
+            document.createElement(
+                "select"
+            );
+
+
+        const selectId =
+            `cr-booker-advanced-participant-${index + 1}`;
+
+
+        label.htmlFor =
+            selectId;
+
+
+        label.textContent =
+            `PARTICIPANT ${index + 1}`;
+
+
+        select.id =
+            selectId;
+
+
+        select.dataset.crBookerParticipant =
+            "true";
+
+
+        crBookerPopulateWrestlerSelect(
+            select
+        );
+
+
+        if (
+            existingValues[index]
+        ) {
+
+            select.value =
+                existingValues[index];
+
+        }
+
+
+        select.addEventListener(
+            "input",
+            crBookerReview
+        );
+
+
+        select.addEventListener(
+            "change",
+            crBookerReview
+        );
+
+
+        group.appendChild(
+            label
+        );
+
+
+        group.appendChild(
+            select
+        );
+
+
+        grid.appendChild(
+            group
+        );
+
+    }
+
+
+    crBookerAdvancedParticipants.appendChild(
+        grid
+    );
+
+
+    crBookerAdvancedParticipants.hidden =
+        false;
+
+}
+
+
+
+// =================================
+// ADVANCED MATCH LAYOUT
+// =================================
+
+
+function crBookerRefreshAdvancedMatchLayout() {
+
+    const isBattleRoyal =
+        crBookerStipulation.value ===
+            "Battle Royal";
+
+
+    crBookerAdvancedMatch.hidden =
+        !isBattleRoyal;
+
+
+    crBookerParticipantCountRow.hidden =
+        !isBattleRoyal;
+
+
+    crBookerEliminationRuleRow.hidden =
+        !isBattleRoyal;
+
+
+    crBookerAdvancedParticipants.hidden =
+        !isBattleRoyal;
+
+
+    crBookerStandardCompetitors.hidden =
+        isBattleRoyal;
+
+
+    if (isBattleRoyal) {
+
+        const currentSelects =
+            crBookerGetAdvancedParticipantSelects();
+
+
+        const desiredCount =
+            Number(
+                crBookerParticipantCount.value
+            ) || 6;
+
+
+        if (
+            currentSelects.length !==
+                desiredCount
+        ) {
+
+            crBookerRenderBattleRoyalParticipants();
+
+        }
+
+    }
+
+
+    else {
+
+        crBookerAdvancedParticipants.innerHTML =
+            "";
+
+    }
+
+
+    crBookerReview();
+
+}
 
 // =================================
 // POPULATE EVENTS
