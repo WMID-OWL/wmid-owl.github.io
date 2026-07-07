@@ -771,6 +771,52 @@ function crBookerFormatMatch(
 ) {
 
     if (
+        !match
+    ) {
+
+        return "Unknown Match";
+
+    }
+
+
+    if (
+        match.stipulation ===
+            "Overthrow Rumble"
+    ) {
+
+        const division =
+            match.specialty?.division;
+
+
+        return division
+
+            ? `${division}'s Overthrow Rumble`
+
+            : "Overthrow Rumble";
+
+    }
+
+
+    if (
+        !Array.isArray(
+            match.sides
+        )
+    ) {
+
+        return "Unknown Match";
+
+    }
+
+
+    return match.sides
+        .map(
+            crBookerFormatSide
+        )
+        .join(" vs. ");
+
+} {
+
+    if (
         !match ||
         !Array.isArray(
             match.sides
@@ -1844,7 +1890,11 @@ function crBookerClearForm() {
         "announced";
 
 
-    crBookerStipulation.value =
+        crBookerStipulation.value =
+        "";
+
+
+    crBookerDivision.value =
         "";
 
 
@@ -2823,7 +2873,34 @@ function crBookerLoadSelectedMatch() {
 
 
     if (
+            if (
         match.stipulation === "Battle Royal"
+    ) {
+
+        crBookerParticipantCount.value =
+            String(
+                match.structure?.participantCount || 6
+            );
+
+
+        crBookerEliminationRule.value =
+            match.specialty?.eliminationRule ||
+            "Over the Top Rope";
+
+    }
+
+
+    if (
+        match.stipulation === "Overthrow Rumble"
+    ) {
+
+        crBookerDivision.value =
+            match.specialty?.division || "";
+
+    }
+
+
+    crBookerRefreshSideLayout();
     ) {
 
         crBookerParticipantCount.value =
@@ -3760,6 +3837,7 @@ const crBookerReviewFields = [
     crBookerChampionship,
     crBookerStatusField,
     crBookerStipulation,
+    crBookerDivision,
     crBookerStatusNote,
 
     crBookerSideOneTeam,
