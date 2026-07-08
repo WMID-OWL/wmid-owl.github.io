@@ -1,5 +1,1783 @@
 {
-  "generatedAt": "",
-  "pendingEventCount": 0,
-  "pendingEvents": []
+  "generatedAt": "2026-07-08T08:17:38.478Z",
+  "pendingEventCount": 3,
+  "pendingEvents": [
+    {
+      "event": {
+        "id": "ascension-2026-07-01",
+        "name": "Ascension",
+        "brand": "Ascension",
+        "eventType": "weekly",
+        "date": "2026-07-01",
+        "location": "",
+        "tagline": ""
+      },
+      "rules": {
+        "canonBoundary": "Only structured database facts are canon. Analysis, opinion, jokes, criticism, and clearly labeled rumor are allowed. Do not invent matches, injuries, contracts, backstage incidents, title changes, alignments, or future booking as fact.",
+        "koMeaning": "In OWL, a recorded KO is rare and symbolically represents injury-level damage. Treat it as a major event without inventing a medical diagnosis or recovery timetable.",
+        "wrestlerPosting": "Wrestler posts should be occasional, not automatic. Use roster identity and actual results only. Do not make a wrestler announce unrecorded matches or storylines."
+      },
+      "matches": [
+        {
+          "order": 0,
+          "matchType": "Singles",
+          "stipulation": "",
+          "match": "Zee Allmighty vs. Dorian Atlas",
+          "sides": [
+            {
+              "label": "Zee Allmighty",
+              "wrestlers": [
+                "Zee Allmighty"
+              ]
+            },
+            {
+              "label": "Dorian Atlas",
+              "wrestlers": [
+                "Dorian Atlas"
+              ]
+            }
+          ],
+          "championship": "OWL World Championship",
+          "resultType": "win",
+          "winnerSide": "Zee Allmighty",
+          "finish": {
+            "winner": "Zee Allmighty",
+            "loser": "Dorian Atlas",
+            "method": "Pinfall"
+          },
+          "rating": 91,
+          "starRating": 4.5,
+          "matchTime": "",
+          "titleConsequence": "New champion: Zee Allmighty",
+          "specialtyResult": null
+        }
+      ],
+      "standoutFacts": {
+        "highestRatedMatch": {
+          "match": "Zee Allmighty vs. Dorian Atlas",
+          "rating": 91,
+          "stars": 4.5,
+          "winner": "Zee Allmighty"
+        },
+        "koFinishes": [],
+        "championshipMatches": [
+          {
+            "championship": "OWL World Championship",
+            "match": "Zee Allmighty vs. Dorian Atlas",
+            "winner": "Zee Allmighty",
+            "consequence": "New champion: Zee Allmighty"
+          }
+        ]
+      },
+      "wrestlerContext": [
+        {
+          "id": "zee-allmighty",
+          "name": "Zee Allmighty",
+          "brand": "Ascension",
+          "division": "Men",
+          "ytdRecord": {
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "text": "1-0-0"
+          },
+          "currentMonthRecord": {
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "text": "1-0-0"
+          },
+          "lastFive": {
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "text": "1-0-0"
+          },
+          "streak": {
+            "type": "winning",
+            "count": 1,
+            "label": "1-match winning streak"
+          },
+          "currentTitles": [
+            "OWL World Championship"
+          ],
+          "recentTitleHistory": [
+            {
+              "championship": "OWL World Championship",
+              "wonDate": "2026-07-01",
+              "lostDate": "",
+              "defenses": 0
+            }
+          ],
+          "koRecord": {
+            "wins": 0,
+            "losses": 0
+          },
+          "monthlyHistory": [
+            {
+              "month": "2026-04",
+              "label": "April 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-05",
+              "label": "May 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-06",
+              "label": "June 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-07",
+              "label": "July 2026",
+              "wins": 1,
+              "losses": 0,
+              "draws": 0,
+              "text": "1-0-0"
+            }
+          ]
+        },
+        {
+          "id": "dorian-atlas",
+          "name": "Dorian Atlas",
+          "brand": "Revolt",
+          "division": "Men",
+          "ytdRecord": {
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "text": "0-1-0"
+          },
+          "currentMonthRecord": {
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "text": "0-1-0"
+          },
+          "lastFive": {
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "text": "0-1-0"
+          },
+          "streak": {
+            "type": "losing",
+            "count": 1,
+            "label": "1-match losing streak"
+          },
+          "currentTitles": [],
+          "recentTitleHistory": [
+            {
+              "championship": "OWL World Championship",
+              "wonDate": "2026-06-01",
+              "lostDate": "2026-07-01",
+              "defenses": 0
+            }
+          ],
+          "koRecord": {
+            "wins": 0,
+            "losses": 0
+          },
+          "monthlyHistory": [
+            {
+              "month": "2026-04",
+              "label": "April 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-05",
+              "label": "May 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-06",
+              "label": "June 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-07",
+              "label": "July 2026",
+              "wins": 0,
+              "losses": 1,
+              "draws": 0,
+              "text": "0-1-0"
+            }
+          ]
+        }
+      ],
+      "teamContext": [],
+      "mediaMemory": {
+        "priorInnanetPosts": [],
+        "priorWwowArticles": []
+      },
+      "availableAccounts": [
+        {
+          "id": "assholefan32",
+          "accountName": "Asshole Fan 32",
+          "handle": "@assholefan32",
+          "archetype": "merciless hater",
+          "tone": "funny, blunt, disrespectful, meme-heavy",
+          "focus": [
+            "losing streaks",
+            "failed champions",
+            "bad performances",
+            "embarrassing reversals"
+          ],
+          "profanityLevel": "high",
+          "factDiscipline": "Can insult anyone and exaggerate opinions, but cannot invent results or backstage facts.",
+          "replyStyle": "short clapbacks and quote-post dunks",
+          "frequency": "frequent"
+        },
+        {
+          "id": "owlstats",
+          "accountName": "OWL Stats",
+          "handle": "@OWLStats",
+          "archetype": "statistics account",
+          "tone": "dry, precise, factual",
+          "focus": [
+            "records",
+            "streaks",
+            "ratings",
+            "title history",
+            "rare milestones"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Never invent a number. Only use numbers explicitly provided in the fact package.",
+          "replyStyle": "rare corrections with receipts",
+          "frequency": "frequent"
+        },
+        {
+          "id": "ascensionaddict",
+          "accountName": "Ascension Addict",
+          "handle": "@AscensionAddict",
+          "archetype": "Ascension superfan",
+          "tone": "excited, emotional, dramatic",
+          "focus": [
+            "Ascension wrestlers",
+            "big finishes",
+            "title races",
+            "brand pride"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "May be biased but cannot invent events.",
+          "replyStyle": "all caps excitement and defensive arguments",
+          "frequency": "frequent on Ascension, occasional elsewhere"
+        },
+        {
+          "id": "revoltburner",
+          "accountName": "Revolt Burner",
+          "handle": "@RevoltBurner",
+          "archetype": "Revolt tribalist",
+          "tone": "cocky, combative, sarcastic",
+          "focus": [
+            "Revolt supremacy",
+            "cross-brand comparisons",
+            "momentum",
+            "upsets"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "Can argue opinions aggressively but cannot invent results.",
+          "replyStyle": "quote-posts rival fan accounts",
+          "frequency": "frequent on Revolt, occasional elsewhere"
+        },
+        {
+          "id": "workratewonk",
+          "accountName": "Workrate Wonk",
+          "handle": "@WorkrateWonk",
+          "archetype": "match quality snob",
+          "tone": "analytical, smug, obsessive",
+          "focus": [
+            "match percentage",
+            "star ratings",
+            "match length",
+            "performance quality"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Only cite ratings and times from the fact package.",
+          "replyStyle": "longer arguments about quality versus booking",
+          "frequency": "regular"
+        },
+        {
+          "id": "oldschoolowl",
+          "accountName": "Old School OWL",
+          "handle": "@OldSchoolOWL",
+          "archetype": "old-head fan",
+          "tone": "grumpy, nostalgic, unintentionally funny",
+          "focus": [
+            "fundamentals",
+            "toughness",
+            "long matches",
+            "modern fan behavior"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Opinions can be cranky; facts must remain grounded.",
+          "replyStyle": "dismissive one-liners",
+          "frequency": "occasional"
+        },
+        {
+          "id": "bookthedamnmatch",
+          "accountName": "Book The Damn Match",
+          "handle": "@BookTheDamnMatch",
+          "archetype": "booking critic",
+          "tone": "impatient, sharp, skeptical",
+          "focus": [
+            "title opportunities",
+            "repeated losses",
+            "momentum",
+            "obvious future matchups"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "May demand hypothetical matches, but must phrase them as opinion or desire, never as announced fact.",
+          "replyStyle": "arguments with superfans",
+          "frequency": "regular"
+        },
+        {
+          "id": "ringsideriot",
+          "accountName": "Ringside Riot",
+          "handle": "@RingsideRiot",
+          "archetype": "meme reaction account",
+          "tone": "fast, chaotic, funny",
+          "focus": [
+            "shocking finishes",
+            "KOs",
+            "upsets",
+            "crowd-melting moments"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "Reaction can be exaggerated; event facts cannot be invented.",
+          "replyStyle": "memes, reaction language, short posts",
+          "frequency": "frequent"
+        },
+        {
+          "id": "grapevine",
+          "accountName": "The Grapevine",
+          "handle": "@TheGrapevine",
+          "archetype": "dirtsheet account",
+          "tone": "careful, suggestive, insider-ish",
+          "focus": [
+            "visible tension",
+            "title pictures",
+            "momentum",
+            "fan reaction"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Any non-database claim must be explicitly labeled rumor, speculation, or a question. Never invent contracts, injuries, firings, signings, or backstage incidents.",
+          "replyStyle": "clarifications and cautious follow-ups",
+          "frequency": "occasional"
+        },
+        {
+          "id": "tagteamtruther",
+          "accountName": "Tag Team Truther",
+          "handle": "@TagTeamTruther",
+          "archetype": "tag wrestling specialist",
+          "tone": "passionate, nerdy, territorial",
+          "focus": [
+            "official teams",
+            "team streaks",
+            "tag titles",
+            "team chemistry"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Only discuss official teams and recorded team results as facts.",
+          "replyStyle": "threads and rankings arguments",
+          "frequency": "regular when tag matches occur"
+        },
+        {
+          "id": "womenswrestlingwatch",
+          "accountName": "Women's Wrestling Watch",
+          "handle": "@WomensWrestlingWatch",
+          "archetype": "women's division analyst",
+          "tone": "informed, enthusiastic, critical when needed",
+          "focus": [
+            "women's divisions",
+            "title races",
+            "streaks",
+            "underrated performances"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Analysis must be grounded in actual results and records.",
+          "replyStyle": "thoughtful replies and receipts",
+          "frequency": "regular"
+        },
+        {
+          "id": "casualfan87",
+          "accountName": "Casual Fan 87",
+          "handle": "@CasualFan87",
+          "archetype": "casual viewer",
+          "tone": "confused, sincere, occasionally hilarious",
+          "focus": [
+            "big stars",
+            "champions",
+            "KOs",
+            "simple reactions"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "May misunderstand implications but cannot invent what happened.",
+          "replyStyle": "questions and accidental comedy",
+          "frequency": "occasional"
+        },
+        {
+          "id": "kayfabekilla",
+          "accountName": "Kayfabe Killa",
+          "handle": "@KayfabeKilla",
+          "archetype": "troll account",
+          "tone": "provocative, unserious, shameless",
+          "focus": [
+            "bait",
+            "contrarian takes",
+            "rival fanbases",
+            "overreactions"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "Can troll with opinions but cannot fabricate factual events.",
+          "replyStyle": "bait replies and ratio attempts",
+          "frequency": "regular"
+        },
+        {
+          "id": "owlnewsdesk",
+          "accountName": "OWL News Desk",
+          "handle": "@OWLNewsDesk",
+          "archetype": "straight news account",
+          "tone": "clean, concise, journalistic",
+          "focus": [
+            "results",
+            "title changes",
+            "KOs",
+            "event summaries"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Strict facts only. No rumors or invented quotes.",
+          "replyStyle": "rare factual updates",
+          "frequency": "regular"
+        }
+      ],
+      "entityDirectory": {
+        "wrestlers": {
+          "zee-allmighty": "Zee Allmighty",
+          "dorian-atlas": "Dorian Atlas",
+          "levi-martin": "Levi Martín",
+          "connor-canada": "Connor Canada",
+          "shayna-baszler": "Shayna Baszler",
+          "marina-shafir": "Marina Shafir",
+          "jordynne-grace": "Jordynne Grace"
+        },
+        "teams": {
+          "true-north-elite": "True North Elite",
+          "pwo": "PWO"
+        },
+        "championships": {
+          "owl-world-championship": "OWL World Championship",
+          "owl-womens-world-championship": "OWL Women's World Championship",
+          "ascension-championship": "Ascension Championship",
+          "womens-ascension-championship": "Women's Ascension Championship",
+          "owl-heavyweight-championship": "OWL Heavyweight Championship",
+          "owl-womens-heavyweight-championship": "OWL Women's Heavyweight Championship",
+          "revolt-championship": "Revolt Championship",
+          "womens-revolt-championship": "Women's Revolt Championship",
+          "twin-talon-tag-team-championship": "Twin Talon Tag Team Championship",
+          "womens-twin-talon-tag-team-championship": "Women's Twin Talon Tag Team Championship"
+        }
+      }
+    },
+    {
+      "event": {
+        "id": "ascension-2026-07-08",
+        "name": "Ascension",
+        "brand": "Ascension",
+        "eventType": "weekly",
+        "date": "2026-07-08",
+        "location": "",
+        "tagline": ""
+      },
+      "rules": {
+        "canonBoundary": "Only structured database facts are canon. Analysis, opinion, jokes, criticism, and clearly labeled rumor are allowed. Do not invent matches, injuries, contracts, backstage incidents, title changes, alignments, or future booking as fact.",
+        "koMeaning": "In OWL, a recorded KO is rare and symbolically represents injury-level damage. Treat it as a major event without inventing a medical diagnosis or recovery timetable.",
+        "wrestlerPosting": "Wrestler posts should be occasional, not automatic. Use roster identity and actual results only. Do not make a wrestler announce unrecorded matches or storylines."
+      },
+      "matches": [
+        {
+          "order": 0,
+          "matchType": "Tag Team",
+          "stipulation": "",
+          "match": "True North Elite vs. Zee Allmighty & Dorian Atlas",
+          "sides": [
+            {
+              "label": "True North Elite",
+              "wrestlers": [
+                "Levi Martín",
+                "Connor Canada"
+              ]
+            },
+            {
+              "label": "Zee Allmighty & Dorian Atlas",
+              "wrestlers": [
+                "Zee Allmighty",
+                "Dorian Atlas"
+              ]
+            }
+          ],
+          "championship": "",
+          "resultType": "win",
+          "winnerSide": "True North Elite",
+          "finish": {
+            "winner": "Levi Martín",
+            "loser": "Zee Allmighty",
+            "method": "Submission"
+          },
+          "rating": 89,
+          "starRating": 4,
+          "matchTime": "",
+          "titleConsequence": "",
+          "specialtyResult": null
+        }
+      ],
+      "standoutFacts": {
+        "highestRatedMatch": {
+          "match": "True North Elite vs. Zee Allmighty & Dorian Atlas",
+          "rating": 89,
+          "stars": 4,
+          "winner": "True North Elite"
+        },
+        "koFinishes": [],
+        "championshipMatches": []
+      },
+      "wrestlerContext": [
+        {
+          "id": "zee-allmighty",
+          "name": "Zee Allmighty",
+          "brand": "Ascension",
+          "division": "Men",
+          "ytdRecord": {
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "text": "1-1-0"
+          },
+          "currentMonthRecord": {
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "text": "1-1-0"
+          },
+          "lastFive": {
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "text": "1-1-0"
+          },
+          "streak": {
+            "type": "losing",
+            "count": 1,
+            "label": "1-match losing streak"
+          },
+          "currentTitles": [
+            "OWL World Championship"
+          ],
+          "recentTitleHistory": [
+            {
+              "championship": "OWL World Championship",
+              "wonDate": "2026-07-01",
+              "lostDate": "",
+              "defenses": 0
+            }
+          ],
+          "koRecord": {
+            "wins": 0,
+            "losses": 0
+          },
+          "monthlyHistory": [
+            {
+              "month": "2026-04",
+              "label": "April 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-05",
+              "label": "May 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-06",
+              "label": "June 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-07",
+              "label": "July 2026",
+              "wins": 1,
+              "losses": 1,
+              "draws": 0,
+              "text": "1-1-0"
+            }
+          ]
+        },
+        {
+          "id": "dorian-atlas",
+          "name": "Dorian Atlas",
+          "brand": "Revolt",
+          "division": "Men",
+          "ytdRecord": {
+            "wins": 0,
+            "losses": 2,
+            "draws": 0,
+            "text": "0-2-0"
+          },
+          "currentMonthRecord": {
+            "wins": 0,
+            "losses": 2,
+            "draws": 0,
+            "text": "0-2-0"
+          },
+          "lastFive": {
+            "wins": 0,
+            "losses": 2,
+            "draws": 0,
+            "text": "0-2-0"
+          },
+          "streak": {
+            "type": "losing",
+            "count": 2,
+            "label": "2-match losing streak"
+          },
+          "currentTitles": [],
+          "recentTitleHistory": [
+            {
+              "championship": "OWL World Championship",
+              "wonDate": "2026-06-01",
+              "lostDate": "2026-07-01",
+              "defenses": 0
+            }
+          ],
+          "koRecord": {
+            "wins": 0,
+            "losses": 0
+          },
+          "monthlyHistory": [
+            {
+              "month": "2026-04",
+              "label": "April 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-05",
+              "label": "May 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-06",
+              "label": "June 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-07",
+              "label": "July 2026",
+              "wins": 0,
+              "losses": 2,
+              "draws": 0,
+              "text": "0-2-0"
+            }
+          ]
+        },
+        {
+          "id": "levi-martin",
+          "name": "Levi Martín",
+          "brand": "OWL",
+          "division": "Men",
+          "ytdRecord": {
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "text": "1-0-0"
+          },
+          "currentMonthRecord": {
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "text": "1-0-0"
+          },
+          "lastFive": {
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "text": "1-0-0"
+          },
+          "streak": {
+            "type": "winning",
+            "count": 1,
+            "label": "1-match winning streak"
+          },
+          "currentTitles": [],
+          "recentTitleHistory": [],
+          "koRecord": {
+            "wins": 0,
+            "losses": 0
+          },
+          "monthlyHistory": [
+            {
+              "month": "2026-04",
+              "label": "April 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-05",
+              "label": "May 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-06",
+              "label": "June 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-07",
+              "label": "July 2026",
+              "wins": 1,
+              "losses": 0,
+              "draws": 0,
+              "text": "1-0-0"
+            }
+          ]
+        },
+        {
+          "id": "connor-canada",
+          "name": "Connor Canada",
+          "brand": "OWL",
+          "division": "Men",
+          "ytdRecord": {
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "text": "1-0-0"
+          },
+          "currentMonthRecord": {
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "text": "1-0-0"
+          },
+          "lastFive": {
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "text": "1-0-0"
+          },
+          "streak": {
+            "type": "winning",
+            "count": 1,
+            "label": "1-match winning streak"
+          },
+          "currentTitles": [],
+          "recentTitleHistory": [],
+          "koRecord": {
+            "wins": 0,
+            "losses": 0
+          },
+          "monthlyHistory": [
+            {
+              "month": "2026-04",
+              "label": "April 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-05",
+              "label": "May 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-06",
+              "label": "June 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-07",
+              "label": "July 2026",
+              "wins": 1,
+              "losses": 0,
+              "draws": 0,
+              "text": "1-0-0"
+            }
+          ]
+        }
+      ],
+      "teamContext": [
+        {
+          "id": "true-north-elite",
+          "name": "True North Elite",
+          "brand": "Ascension",
+          "members": [
+            "levi-martin",
+            "connor-canada"
+          ],
+          "ytdRecord": {
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "text": "1-0-0"
+          },
+          "currentMonthRecord": {
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "text": "1-0-0"
+          },
+          "lastFive": {
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "text": "1-0-0"
+          },
+          "streak": {
+            "type": "winning",
+            "count": 1,
+            "label": "1-match winning streak"
+          },
+          "currentTitles": [
+            "Twin Talon Tag Team Championship"
+          ],
+          "recentTitleHistory": [
+            {
+              "championship": "Twin Talon Tag Team Championship",
+              "wonDate": "2026-07-01",
+              "lostDate": "",
+              "defenses": 0
+            }
+          ],
+          "monthlyHistory": [
+            {
+              "month": "2026-04",
+              "label": "April 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-05",
+              "label": "May 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-06",
+              "label": "June 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-07",
+              "label": "July 2026",
+              "wins": 1,
+              "losses": 0,
+              "draws": 0,
+              "text": "1-0-0"
+            }
+          ]
+        }
+      ],
+      "mediaMemory": {
+        "priorInnanetPosts": [],
+        "priorWwowArticles": []
+      },
+      "availableAccounts": [
+        {
+          "id": "assholefan32",
+          "accountName": "Asshole Fan 32",
+          "handle": "@assholefan32",
+          "archetype": "merciless hater",
+          "tone": "funny, blunt, disrespectful, meme-heavy",
+          "focus": [
+            "losing streaks",
+            "failed champions",
+            "bad performances",
+            "embarrassing reversals"
+          ],
+          "profanityLevel": "high",
+          "factDiscipline": "Can insult anyone and exaggerate opinions, but cannot invent results or backstage facts.",
+          "replyStyle": "short clapbacks and quote-post dunks",
+          "frequency": "frequent"
+        },
+        {
+          "id": "owlstats",
+          "accountName": "OWL Stats",
+          "handle": "@OWLStats",
+          "archetype": "statistics account",
+          "tone": "dry, precise, factual",
+          "focus": [
+            "records",
+            "streaks",
+            "ratings",
+            "title history",
+            "rare milestones"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Never invent a number. Only use numbers explicitly provided in the fact package.",
+          "replyStyle": "rare corrections with receipts",
+          "frequency": "frequent"
+        },
+        {
+          "id": "ascensionaddict",
+          "accountName": "Ascension Addict",
+          "handle": "@AscensionAddict",
+          "archetype": "Ascension superfan",
+          "tone": "excited, emotional, dramatic",
+          "focus": [
+            "Ascension wrestlers",
+            "big finishes",
+            "title races",
+            "brand pride"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "May be biased but cannot invent events.",
+          "replyStyle": "all caps excitement and defensive arguments",
+          "frequency": "frequent on Ascension, occasional elsewhere"
+        },
+        {
+          "id": "revoltburner",
+          "accountName": "Revolt Burner",
+          "handle": "@RevoltBurner",
+          "archetype": "Revolt tribalist",
+          "tone": "cocky, combative, sarcastic",
+          "focus": [
+            "Revolt supremacy",
+            "cross-brand comparisons",
+            "momentum",
+            "upsets"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "Can argue opinions aggressively but cannot invent results.",
+          "replyStyle": "quote-posts rival fan accounts",
+          "frequency": "frequent on Revolt, occasional elsewhere"
+        },
+        {
+          "id": "workratewonk",
+          "accountName": "Workrate Wonk",
+          "handle": "@WorkrateWonk",
+          "archetype": "match quality snob",
+          "tone": "analytical, smug, obsessive",
+          "focus": [
+            "match percentage",
+            "star ratings",
+            "match length",
+            "performance quality"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Only cite ratings and times from the fact package.",
+          "replyStyle": "longer arguments about quality versus booking",
+          "frequency": "regular"
+        },
+        {
+          "id": "oldschoolowl",
+          "accountName": "Old School OWL",
+          "handle": "@OldSchoolOWL",
+          "archetype": "old-head fan",
+          "tone": "grumpy, nostalgic, unintentionally funny",
+          "focus": [
+            "fundamentals",
+            "toughness",
+            "long matches",
+            "modern fan behavior"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Opinions can be cranky; facts must remain grounded.",
+          "replyStyle": "dismissive one-liners",
+          "frequency": "occasional"
+        },
+        {
+          "id": "bookthedamnmatch",
+          "accountName": "Book The Damn Match",
+          "handle": "@BookTheDamnMatch",
+          "archetype": "booking critic",
+          "tone": "impatient, sharp, skeptical",
+          "focus": [
+            "title opportunities",
+            "repeated losses",
+            "momentum",
+            "obvious future matchups"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "May demand hypothetical matches, but must phrase them as opinion or desire, never as announced fact.",
+          "replyStyle": "arguments with superfans",
+          "frequency": "regular"
+        },
+        {
+          "id": "ringsideriot",
+          "accountName": "Ringside Riot",
+          "handle": "@RingsideRiot",
+          "archetype": "meme reaction account",
+          "tone": "fast, chaotic, funny",
+          "focus": [
+            "shocking finishes",
+            "KOs",
+            "upsets",
+            "crowd-melting moments"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "Reaction can be exaggerated; event facts cannot be invented.",
+          "replyStyle": "memes, reaction language, short posts",
+          "frequency": "frequent"
+        },
+        {
+          "id": "grapevine",
+          "accountName": "The Grapevine",
+          "handle": "@TheGrapevine",
+          "archetype": "dirtsheet account",
+          "tone": "careful, suggestive, insider-ish",
+          "focus": [
+            "visible tension",
+            "title pictures",
+            "momentum",
+            "fan reaction"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Any non-database claim must be explicitly labeled rumor, speculation, or a question. Never invent contracts, injuries, firings, signings, or backstage incidents.",
+          "replyStyle": "clarifications and cautious follow-ups",
+          "frequency": "occasional"
+        },
+        {
+          "id": "tagteamtruther",
+          "accountName": "Tag Team Truther",
+          "handle": "@TagTeamTruther",
+          "archetype": "tag wrestling specialist",
+          "tone": "passionate, nerdy, territorial",
+          "focus": [
+            "official teams",
+            "team streaks",
+            "tag titles",
+            "team chemistry"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Only discuss official teams and recorded team results as facts.",
+          "replyStyle": "threads and rankings arguments",
+          "frequency": "regular when tag matches occur"
+        },
+        {
+          "id": "womenswrestlingwatch",
+          "accountName": "Women's Wrestling Watch",
+          "handle": "@WomensWrestlingWatch",
+          "archetype": "women's division analyst",
+          "tone": "informed, enthusiastic, critical when needed",
+          "focus": [
+            "women's divisions",
+            "title races",
+            "streaks",
+            "underrated performances"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Analysis must be grounded in actual results and records.",
+          "replyStyle": "thoughtful replies and receipts",
+          "frequency": "regular"
+        },
+        {
+          "id": "casualfan87",
+          "accountName": "Casual Fan 87",
+          "handle": "@CasualFan87",
+          "archetype": "casual viewer",
+          "tone": "confused, sincere, occasionally hilarious",
+          "focus": [
+            "big stars",
+            "champions",
+            "KOs",
+            "simple reactions"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "May misunderstand implications but cannot invent what happened.",
+          "replyStyle": "questions and accidental comedy",
+          "frequency": "occasional"
+        },
+        {
+          "id": "kayfabekilla",
+          "accountName": "Kayfabe Killa",
+          "handle": "@KayfabeKilla",
+          "archetype": "troll account",
+          "tone": "provocative, unserious, shameless",
+          "focus": [
+            "bait",
+            "contrarian takes",
+            "rival fanbases",
+            "overreactions"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "Can troll with opinions but cannot fabricate factual events.",
+          "replyStyle": "bait replies and ratio attempts",
+          "frequency": "regular"
+        },
+        {
+          "id": "owlnewsdesk",
+          "accountName": "OWL News Desk",
+          "handle": "@OWLNewsDesk",
+          "archetype": "straight news account",
+          "tone": "clean, concise, journalistic",
+          "focus": [
+            "results",
+            "title changes",
+            "KOs",
+            "event summaries"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Strict facts only. No rumors or invented quotes.",
+          "replyStyle": "rare factual updates",
+          "frequency": "regular"
+        }
+      ],
+      "entityDirectory": {
+        "wrestlers": {
+          "zee-allmighty": "Zee Allmighty",
+          "dorian-atlas": "Dorian Atlas",
+          "levi-martin": "Levi Martín",
+          "connor-canada": "Connor Canada",
+          "shayna-baszler": "Shayna Baszler",
+          "marina-shafir": "Marina Shafir",
+          "jordynne-grace": "Jordynne Grace"
+        },
+        "teams": {
+          "true-north-elite": "True North Elite",
+          "pwo": "PWO"
+        },
+        "championships": {
+          "owl-world-championship": "OWL World Championship",
+          "owl-womens-world-championship": "OWL Women's World Championship",
+          "ascension-championship": "Ascension Championship",
+          "womens-ascension-championship": "Women's Ascension Championship",
+          "owl-heavyweight-championship": "OWL Heavyweight Championship",
+          "owl-womens-heavyweight-championship": "OWL Women's Heavyweight Championship",
+          "revolt-championship": "Revolt Championship",
+          "womens-revolt-championship": "Women's Revolt Championship",
+          "twin-talon-tag-team-championship": "Twin Talon Tag Team Championship",
+          "womens-twin-talon-tag-team-championship": "Women's Twin Talon Tag Team Championship"
+        }
+      }
+    },
+    {
+      "event": {
+        "id": "ascension-2026-07-15",
+        "name": "Ascension",
+        "brand": "Ascension",
+        "eventType": "weekly",
+        "date": "2026-07-15",
+        "location": "",
+        "tagline": ""
+      },
+      "rules": {
+        "canonBoundary": "Only structured database facts are canon. Analysis, opinion, jokes, criticism, and clearly labeled rumor are allowed. Do not invent matches, injuries, contracts, backstage incidents, title changes, alignments, or future booking as fact.",
+        "koMeaning": "In OWL, a recorded KO is rare and symbolically represents injury-level damage. Treat it as a major event without inventing a medical diagnosis or recovery timetable.",
+        "wrestlerPosting": "Wrestler posts should be occasional, not automatic. Use roster identity and actual results only. Do not make a wrestler announce unrecorded matches or storylines."
+      },
+      "matches": [
+        {
+          "order": 0,
+          "matchType": "Triple Threat",
+          "stipulation": "",
+          "match": "Zee Allmighty vs. Dorian Atlas vs. Levi Martín",
+          "sides": [
+            {
+              "label": "Zee Allmighty",
+              "wrestlers": [
+                "Zee Allmighty"
+              ]
+            },
+            {
+              "label": "Dorian Atlas",
+              "wrestlers": [
+                "Dorian Atlas"
+              ]
+            },
+            {
+              "label": "Levi Martín",
+              "wrestlers": [
+                "Levi Martín"
+              ]
+            }
+          ],
+          "championship": "OWL World Championship",
+          "resultType": "win",
+          "winnerSide": "Zee Allmighty",
+          "finish": {
+            "winner": "Zee Allmighty",
+            "loser": "Levi Martín",
+            "method": "Pinfall"
+          },
+          "rating": 94,
+          "starRating": 4.75,
+          "matchTime": "",
+          "titleConsequence": "Successful title defense",
+          "specialtyResult": null
+        }
+      ],
+      "standoutFacts": {
+        "highestRatedMatch": {
+          "match": "Zee Allmighty vs. Dorian Atlas vs. Levi Martín",
+          "rating": 94,
+          "stars": 4.75,
+          "winner": "Zee Allmighty"
+        },
+        "koFinishes": [],
+        "championshipMatches": [
+          {
+            "championship": "OWL World Championship",
+            "match": "Zee Allmighty vs. Dorian Atlas vs. Levi Martín",
+            "winner": "Zee Allmighty",
+            "consequence": "Successful title defense"
+          }
+        ]
+      },
+      "wrestlerContext": [
+        {
+          "id": "zee-allmighty",
+          "name": "Zee Allmighty",
+          "brand": "Ascension",
+          "division": "Men",
+          "ytdRecord": {
+            "wins": 2,
+            "losses": 1,
+            "draws": 0,
+            "text": "2-1-0"
+          },
+          "currentMonthRecord": {
+            "wins": 2,
+            "losses": 1,
+            "draws": 0,
+            "text": "2-1-0"
+          },
+          "lastFive": {
+            "wins": 2,
+            "losses": 1,
+            "draws": 0,
+            "text": "2-1-0"
+          },
+          "streak": {
+            "type": "winning",
+            "count": 1,
+            "label": "1-match winning streak"
+          },
+          "currentTitles": [
+            "OWL World Championship"
+          ],
+          "recentTitleHistory": [
+            {
+              "championship": "OWL World Championship",
+              "wonDate": "2026-07-01",
+              "lostDate": "",
+              "defenses": 0
+            }
+          ],
+          "koRecord": {
+            "wins": 0,
+            "losses": 0
+          },
+          "monthlyHistory": [
+            {
+              "month": "2026-04",
+              "label": "April 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-05",
+              "label": "May 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-06",
+              "label": "June 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-07",
+              "label": "July 2026",
+              "wins": 2,
+              "losses": 1,
+              "draws": 0,
+              "text": "2-1-0"
+            }
+          ]
+        },
+        {
+          "id": "dorian-atlas",
+          "name": "Dorian Atlas",
+          "brand": "Revolt",
+          "division": "Men",
+          "ytdRecord": {
+            "wins": 0,
+            "losses": 3,
+            "draws": 0,
+            "text": "0-3-0"
+          },
+          "currentMonthRecord": {
+            "wins": 0,
+            "losses": 3,
+            "draws": 0,
+            "text": "0-3-0"
+          },
+          "lastFive": {
+            "wins": 0,
+            "losses": 3,
+            "draws": 0,
+            "text": "0-3-0"
+          },
+          "streak": {
+            "type": "losing",
+            "count": 3,
+            "label": "3-match losing streak"
+          },
+          "currentTitles": [],
+          "recentTitleHistory": [
+            {
+              "championship": "OWL World Championship",
+              "wonDate": "2026-06-01",
+              "lostDate": "2026-07-01",
+              "defenses": 0
+            }
+          ],
+          "koRecord": {
+            "wins": 0,
+            "losses": 0
+          },
+          "monthlyHistory": [
+            {
+              "month": "2026-04",
+              "label": "April 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-05",
+              "label": "May 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-06",
+              "label": "June 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-07",
+              "label": "July 2026",
+              "wins": 0,
+              "losses": 3,
+              "draws": 0,
+              "text": "0-3-0"
+            }
+          ]
+        },
+        {
+          "id": "levi-martin",
+          "name": "Levi Martín",
+          "brand": "OWL",
+          "division": "Men",
+          "ytdRecord": {
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "text": "1-1-0"
+          },
+          "currentMonthRecord": {
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "text": "1-1-0"
+          },
+          "lastFive": {
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "text": "1-1-0"
+          },
+          "streak": {
+            "type": "losing",
+            "count": 1,
+            "label": "1-match losing streak"
+          },
+          "currentTitles": [],
+          "recentTitleHistory": [],
+          "koRecord": {
+            "wins": 0,
+            "losses": 0
+          },
+          "monthlyHistory": [
+            {
+              "month": "2026-04",
+              "label": "April 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-05",
+              "label": "May 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-06",
+              "label": "June 2026",
+              "wins": 0,
+              "losses": 0,
+              "draws": 0,
+              "text": "0-0-0"
+            },
+            {
+              "month": "2026-07",
+              "label": "July 2026",
+              "wins": 1,
+              "losses": 1,
+              "draws": 0,
+              "text": "1-1-0"
+            }
+          ]
+        }
+      ],
+      "teamContext": [],
+      "mediaMemory": {
+        "priorInnanetPosts": [],
+        "priorWwowArticles": []
+      },
+      "availableAccounts": [
+        {
+          "id": "assholefan32",
+          "accountName": "Asshole Fan 32",
+          "handle": "@assholefan32",
+          "archetype": "merciless hater",
+          "tone": "funny, blunt, disrespectful, meme-heavy",
+          "focus": [
+            "losing streaks",
+            "failed champions",
+            "bad performances",
+            "embarrassing reversals"
+          ],
+          "profanityLevel": "high",
+          "factDiscipline": "Can insult anyone and exaggerate opinions, but cannot invent results or backstage facts.",
+          "replyStyle": "short clapbacks and quote-post dunks",
+          "frequency": "frequent"
+        },
+        {
+          "id": "owlstats",
+          "accountName": "OWL Stats",
+          "handle": "@OWLStats",
+          "archetype": "statistics account",
+          "tone": "dry, precise, factual",
+          "focus": [
+            "records",
+            "streaks",
+            "ratings",
+            "title history",
+            "rare milestones"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Never invent a number. Only use numbers explicitly provided in the fact package.",
+          "replyStyle": "rare corrections with receipts",
+          "frequency": "frequent"
+        },
+        {
+          "id": "ascensionaddict",
+          "accountName": "Ascension Addict",
+          "handle": "@AscensionAddict",
+          "archetype": "Ascension superfan",
+          "tone": "excited, emotional, dramatic",
+          "focus": [
+            "Ascension wrestlers",
+            "big finishes",
+            "title races",
+            "brand pride"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "May be biased but cannot invent events.",
+          "replyStyle": "all caps excitement and defensive arguments",
+          "frequency": "frequent on Ascension, occasional elsewhere"
+        },
+        {
+          "id": "revoltburner",
+          "accountName": "Revolt Burner",
+          "handle": "@RevoltBurner",
+          "archetype": "Revolt tribalist",
+          "tone": "cocky, combative, sarcastic",
+          "focus": [
+            "Revolt supremacy",
+            "cross-brand comparisons",
+            "momentum",
+            "upsets"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "Can argue opinions aggressively but cannot invent results.",
+          "replyStyle": "quote-posts rival fan accounts",
+          "frequency": "frequent on Revolt, occasional elsewhere"
+        },
+        {
+          "id": "workratewonk",
+          "accountName": "Workrate Wonk",
+          "handle": "@WorkrateWonk",
+          "archetype": "match quality snob",
+          "tone": "analytical, smug, obsessive",
+          "focus": [
+            "match percentage",
+            "star ratings",
+            "match length",
+            "performance quality"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Only cite ratings and times from the fact package.",
+          "replyStyle": "longer arguments about quality versus booking",
+          "frequency": "regular"
+        },
+        {
+          "id": "oldschoolowl",
+          "accountName": "Old School OWL",
+          "handle": "@OldSchoolOWL",
+          "archetype": "old-head fan",
+          "tone": "grumpy, nostalgic, unintentionally funny",
+          "focus": [
+            "fundamentals",
+            "toughness",
+            "long matches",
+            "modern fan behavior"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Opinions can be cranky; facts must remain grounded.",
+          "replyStyle": "dismissive one-liners",
+          "frequency": "occasional"
+        },
+        {
+          "id": "bookthedamnmatch",
+          "accountName": "Book The Damn Match",
+          "handle": "@BookTheDamnMatch",
+          "archetype": "booking critic",
+          "tone": "impatient, sharp, skeptical",
+          "focus": [
+            "title opportunities",
+            "repeated losses",
+            "momentum",
+            "obvious future matchups"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "May demand hypothetical matches, but must phrase them as opinion or desire, never as announced fact.",
+          "replyStyle": "arguments with superfans",
+          "frequency": "regular"
+        },
+        {
+          "id": "ringsideriot",
+          "accountName": "Ringside Riot",
+          "handle": "@RingsideRiot",
+          "archetype": "meme reaction account",
+          "tone": "fast, chaotic, funny",
+          "focus": [
+            "shocking finishes",
+            "KOs",
+            "upsets",
+            "crowd-melting moments"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "Reaction can be exaggerated; event facts cannot be invented.",
+          "replyStyle": "memes, reaction language, short posts",
+          "frequency": "frequent"
+        },
+        {
+          "id": "grapevine",
+          "accountName": "The Grapevine",
+          "handle": "@TheGrapevine",
+          "archetype": "dirtsheet account",
+          "tone": "careful, suggestive, insider-ish",
+          "focus": [
+            "visible tension",
+            "title pictures",
+            "momentum",
+            "fan reaction"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Any non-database claim must be explicitly labeled rumor, speculation, or a question. Never invent contracts, injuries, firings, signings, or backstage incidents.",
+          "replyStyle": "clarifications and cautious follow-ups",
+          "frequency": "occasional"
+        },
+        {
+          "id": "tagteamtruther",
+          "accountName": "Tag Team Truther",
+          "handle": "@TagTeamTruther",
+          "archetype": "tag wrestling specialist",
+          "tone": "passionate, nerdy, territorial",
+          "focus": [
+            "official teams",
+            "team streaks",
+            "tag titles",
+            "team chemistry"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Only discuss official teams and recorded team results as facts.",
+          "replyStyle": "threads and rankings arguments",
+          "frequency": "regular when tag matches occur"
+        },
+        {
+          "id": "womenswrestlingwatch",
+          "accountName": "Women's Wrestling Watch",
+          "handle": "@WomensWrestlingWatch",
+          "archetype": "women's division analyst",
+          "tone": "informed, enthusiastic, critical when needed",
+          "focus": [
+            "women's divisions",
+            "title races",
+            "streaks",
+            "underrated performances"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Analysis must be grounded in actual results and records.",
+          "replyStyle": "thoughtful replies and receipts",
+          "frequency": "regular"
+        },
+        {
+          "id": "casualfan87",
+          "accountName": "Casual Fan 87",
+          "handle": "@CasualFan87",
+          "archetype": "casual viewer",
+          "tone": "confused, sincere, occasionally hilarious",
+          "focus": [
+            "big stars",
+            "champions",
+            "KOs",
+            "simple reactions"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "May misunderstand implications but cannot invent what happened.",
+          "replyStyle": "questions and accidental comedy",
+          "frequency": "occasional"
+        },
+        {
+          "id": "kayfabekilla",
+          "accountName": "Kayfabe Killa",
+          "handle": "@KayfabeKilla",
+          "archetype": "troll account",
+          "tone": "provocative, unserious, shameless",
+          "focus": [
+            "bait",
+            "contrarian takes",
+            "rival fanbases",
+            "overreactions"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "Can troll with opinions but cannot fabricate factual events.",
+          "replyStyle": "bait replies and ratio attempts",
+          "frequency": "regular"
+        },
+        {
+          "id": "owlnewsdesk",
+          "accountName": "OWL News Desk",
+          "handle": "@OWLNewsDesk",
+          "archetype": "straight news account",
+          "tone": "clean, concise, journalistic",
+          "focus": [
+            "results",
+            "title changes",
+            "KOs",
+            "event summaries"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Strict facts only. No rumors or invented quotes.",
+          "replyStyle": "rare factual updates",
+          "frequency": "regular"
+        }
+      ],
+      "entityDirectory": {
+        "wrestlers": {
+          "zee-allmighty": "Zee Allmighty",
+          "dorian-atlas": "Dorian Atlas",
+          "levi-martin": "Levi Martín",
+          "connor-canada": "Connor Canada",
+          "shayna-baszler": "Shayna Baszler",
+          "marina-shafir": "Marina Shafir",
+          "jordynne-grace": "Jordynne Grace"
+        },
+        "teams": {
+          "true-north-elite": "True North Elite",
+          "pwo": "PWO"
+        },
+        "championships": {
+          "owl-world-championship": "OWL World Championship",
+          "owl-womens-world-championship": "OWL Women's World Championship",
+          "ascension-championship": "Ascension Championship",
+          "womens-ascension-championship": "Women's Ascension Championship",
+          "owl-heavyweight-championship": "OWL Heavyweight Championship",
+          "owl-womens-heavyweight-championship": "OWL Women's Heavyweight Championship",
+          "revolt-championship": "Revolt Championship",
+          "womens-revolt-championship": "Women's Revolt Championship",
+          "twin-talon-tag-team-championship": "Twin Talon Tag Team Championship",
+          "womens-twin-talon-tag-team-championship": "Women's Twin Talon Tag Team Championship"
+        }
+      }
+    }
+  ]
 }
