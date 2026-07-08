@@ -432,7 +432,8 @@ ${JSON.stringify(
 
 
 async function callModel(
-    eventPackage
+    eventPackage,
+    retryInstruction = ""
 ) {
 
     const response =
@@ -488,9 +489,10 @@ async function callModel(
                                     "user",
 
                                 content:
-                                    buildUserPrompt(
-                                        eventPackage
-                                    )
+    buildUserPrompt(
+        eventPackage,
+        retryInstruction
+    )
 
                             }
 
