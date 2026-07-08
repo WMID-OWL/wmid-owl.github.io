@@ -1,0 +1,752 @@
+{
+  "generatedAt": "2026-07-08T19:45:22.693Z",
+  "month": {
+    "id": "2026-07",
+    "label": "July 2026"
+  },
+  "rules": {
+    "canonBoundary": "Structured database facts are canon. Analysis and opinion are allowed. Clearly labeled speculation is allowed. Never invent matches, title changes, contracts, backstage incidents, injuries, firings, signings, or future booking as fact.",
+    "historicalPerspective": "Use previous months and archived media to identify real arcs such as rises, collapses, streaks, recoveries, championship changes, and changing public perception.",
+    "innanetUse": "Innanet posts represent public reaction and opinion. They may be quoted or summarized as public sentiment but must never be treated as proof of factual backstage events.",
+    "koMeaning": "A recorded KO is rare and symbolically represents injury-level damage in OWL. Treat it as major without inventing medical details or recovery time."
+  },
+  "monthSummary": {
+    "eventCount": 3,
+    "matchCount": 3,
+    "titleChangeCount": 2,
+    "innanetPostCount": 13
+  },
+  "events": [
+    {
+      "id": "ascension-2026-07-01",
+      "name": "Ascension",
+      "brand": "Ascension",
+      "eventType": "weekly",
+      "date": "2026-07-01",
+      "location": "",
+      "matchCount": 1,
+      "bestMatch": {
+        "order": 0,
+        "matchType": "Singles",
+        "stipulation": "",
+        "match": "Zee Allmighty vs. Dorian Atlas",
+        "winner": "Zee Allmighty",
+        "finishWinner": "Zee Allmighty",
+        "finishLoser": "Dorian Atlas",
+        "finishMethod": "Pinfall",
+        "championship": "OWL World Championship",
+        "rating": 91,
+        "stars": 4.5,
+        "matchTime": "",
+        "specialtyResult": null
+      },
+      "matches": [
+        {
+          "order": 0,
+          "matchType": "Singles",
+          "stipulation": "",
+          "match": "Zee Allmighty vs. Dorian Atlas",
+          "winner": "Zee Allmighty",
+          "finishWinner": "Zee Allmighty",
+          "finishLoser": "Dorian Atlas",
+          "finishMethod": "Pinfall",
+          "championship": "OWL World Championship",
+          "rating": 91,
+          "stars": 4.5,
+          "matchTime": "",
+          "specialtyResult": null
+        }
+      ]
+    },
+    {
+      "id": "ascension-2026-07-08",
+      "name": "Ascension",
+      "brand": "Ascension",
+      "eventType": "weekly",
+      "date": "2026-07-08",
+      "location": "",
+      "matchCount": 1,
+      "bestMatch": {
+        "order": 0,
+        "matchType": "Tag Team",
+        "stipulation": "",
+        "match": "True North Elite vs. Zee Allmighty & Dorian Atlas",
+        "winner": "True North Elite",
+        "finishWinner": "Levi Martín",
+        "finishLoser": "Zee Allmighty",
+        "finishMethod": "Submission",
+        "championship": "",
+        "rating": 89,
+        "stars": 4,
+        "matchTime": "",
+        "specialtyResult": null
+      },
+      "matches": [
+        {
+          "order": 0,
+          "matchType": "Tag Team",
+          "stipulation": "",
+          "match": "True North Elite vs. Zee Allmighty & Dorian Atlas",
+          "winner": "True North Elite",
+          "finishWinner": "Levi Martín",
+          "finishLoser": "Zee Allmighty",
+          "finishMethod": "Submission",
+          "championship": "",
+          "rating": 89,
+          "stars": 4,
+          "matchTime": "",
+          "specialtyResult": null
+        }
+      ]
+    },
+    {
+      "id": "ascension-2026-07-15",
+      "name": "Ascension",
+      "brand": "Ascension",
+      "eventType": "weekly",
+      "date": "2026-07-15",
+      "location": "",
+      "matchCount": 1,
+      "bestMatch": {
+        "order": 0,
+        "matchType": "Triple Threat",
+        "stipulation": "",
+        "match": "Zee Allmighty vs. Dorian Atlas vs. Levi Martín",
+        "winner": "Zee Allmighty",
+        "finishWinner": "Zee Allmighty",
+        "finishLoser": "Levi Martín",
+        "finishMethod": "Pinfall",
+        "championship": "OWL World Championship",
+        "rating": 94,
+        "stars": 4.75,
+        "matchTime": "",
+        "specialtyResult": null
+      },
+      "matches": [
+        {
+          "order": 0,
+          "matchType": "Triple Threat",
+          "stipulation": "",
+          "match": "Zee Allmighty vs. Dorian Atlas vs. Levi Martín",
+          "winner": "Zee Allmighty",
+          "finishWinner": "Zee Allmighty",
+          "finishLoser": "Levi Martín",
+          "finishMethod": "Pinfall",
+          "championship": "OWL World Championship",
+          "rating": 94,
+          "stars": 4.75,
+          "matchTime": "",
+          "specialtyResult": null
+        }
+      ]
+    }
+  ],
+  "wrestlerContext": [
+    {
+      "id": "zee-allmighty",
+      "name": "Zee Allmighty",
+      "brand": "Ascension",
+      "division": "Men",
+      "monthRecord": {
+        "wins": 2,
+        "losses": 1,
+        "draws": 0,
+        "text": "2-1-0"
+      },
+      "ytdRecord": {
+        "wins": 2,
+        "losses": 1,
+        "draws": 0,
+        "text": "2-1-0"
+      },
+      "streak": {
+        "type": "winning",
+        "count": 1,
+        "label": "1-match winning streak"
+      },
+      "koRecord": {
+        "wins": 0,
+        "losses": 0
+      }
+    },
+    {
+      "id": "dorian-atlas",
+      "name": "Dorian Atlas",
+      "brand": "Revolt",
+      "division": "Men",
+      "monthRecord": {
+        "wins": 0,
+        "losses": 3,
+        "draws": 0,
+        "text": "0-3-0"
+      },
+      "ytdRecord": {
+        "wins": 0,
+        "losses": 3,
+        "draws": 0,
+        "text": "0-3-0"
+      },
+      "streak": {
+        "type": "losing",
+        "count": 3,
+        "label": "3-match losing streak"
+      },
+      "koRecord": {
+        "wins": 0,
+        "losses": 0
+      }
+    },
+    {
+      "id": "levi-martin",
+      "name": "Levi Martín",
+      "brand": "OWL",
+      "division": "Men",
+      "monthRecord": {
+        "wins": 1,
+        "losses": 1,
+        "draws": 0,
+        "text": "1-1-0"
+      },
+      "ytdRecord": {
+        "wins": 1,
+        "losses": 1,
+        "draws": 0,
+        "text": "1-1-0"
+      },
+      "streak": {
+        "type": "losing",
+        "count": 1,
+        "label": "1-match losing streak"
+      },
+      "koRecord": {
+        "wins": 0,
+        "losses": 0
+      }
+    },
+    {
+      "id": "connor-canada",
+      "name": "Connor Canada",
+      "brand": "OWL",
+      "division": "Men",
+      "monthRecord": {
+        "wins": 1,
+        "losses": 0,
+        "draws": 0,
+        "text": "1-0-0"
+      },
+      "ytdRecord": {
+        "wins": 1,
+        "losses": 0,
+        "draws": 0,
+        "text": "1-0-0"
+      },
+      "streak": {
+        "type": "winning",
+        "count": 1,
+        "label": "1-match winning streak"
+      },
+      "koRecord": {
+        "wins": 0,
+        "losses": 0
+      }
+    }
+  ],
+  "standouts": {
+    "highestRatedMatches": [
+      {
+        "eventName": "Ascension",
+        "eventDate": "2026-07-15",
+        "order": 0,
+        "matchType": "Triple Threat",
+        "stipulation": "",
+        "match": "Zee Allmighty vs. Dorian Atlas vs. Levi Martín",
+        "winner": "Zee Allmighty",
+        "finishWinner": "Zee Allmighty",
+        "finishLoser": "Levi Martín",
+        "finishMethod": "Pinfall",
+        "championship": "OWL World Championship",
+        "rating": 94,
+        "stars": 4.75,
+        "matchTime": "",
+        "specialtyResult": null
+      },
+      {
+        "eventName": "Ascension",
+        "eventDate": "2026-07-01",
+        "order": 0,
+        "matchType": "Singles",
+        "stipulation": "",
+        "match": "Zee Allmighty vs. Dorian Atlas",
+        "winner": "Zee Allmighty",
+        "finishWinner": "Zee Allmighty",
+        "finishLoser": "Dorian Atlas",
+        "finishMethod": "Pinfall",
+        "championship": "OWL World Championship",
+        "rating": 91,
+        "stars": 4.5,
+        "matchTime": "",
+        "specialtyResult": null
+      },
+      {
+        "eventName": "Ascension",
+        "eventDate": "2026-07-08",
+        "order": 0,
+        "matchType": "Tag Team",
+        "stipulation": "",
+        "match": "True North Elite vs. Zee Allmighty & Dorian Atlas",
+        "winner": "True North Elite",
+        "finishWinner": "Levi Martín",
+        "finishLoser": "Zee Allmighty",
+        "finishMethod": "Submission",
+        "championship": "",
+        "rating": 89,
+        "stars": 4,
+        "matchTime": "",
+        "specialtyResult": null
+      }
+    ],
+    "strongestMonthlyRecords": [
+      {
+        "id": "zee-allmighty",
+        "name": "Zee Allmighty",
+        "brand": "Ascension",
+        "division": "Men",
+        "monthRecord": {
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "text": "2-1-0"
+        },
+        "ytdRecord": {
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "text": "2-1-0"
+        },
+        "streak": {
+          "type": "winning",
+          "count": 1,
+          "label": "1-match winning streak"
+        },
+        "koRecord": {
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      {
+        "id": "connor-canada",
+        "name": "Connor Canada",
+        "brand": "OWL",
+        "division": "Men",
+        "monthRecord": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "text": "1-0-0"
+        },
+        "ytdRecord": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "text": "1-0-0"
+        },
+        "streak": {
+          "type": "winning",
+          "count": 1,
+          "label": "1-match winning streak"
+        },
+        "koRecord": {
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      {
+        "id": "levi-martin",
+        "name": "Levi Martín",
+        "brand": "OWL",
+        "division": "Men",
+        "monthRecord": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "text": "1-1-0"
+        },
+        "ytdRecord": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "text": "1-1-0"
+        },
+        "streak": {
+          "type": "losing",
+          "count": 1,
+          "label": "1-match losing streak"
+        },
+        "koRecord": {
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      {
+        "id": "dorian-atlas",
+        "name": "Dorian Atlas",
+        "brand": "Revolt",
+        "division": "Men",
+        "monthRecord": {
+          "wins": 0,
+          "losses": 3,
+          "draws": 0,
+          "text": "0-3-0"
+        },
+        "ytdRecord": {
+          "wins": 0,
+          "losses": 3,
+          "draws": 0,
+          "text": "0-3-0"
+        },
+        "streak": {
+          "type": "losing",
+          "count": 3,
+          "label": "3-match losing streak"
+        },
+        "koRecord": {
+          "wins": 0,
+          "losses": 0
+        }
+      }
+    ],
+    "weakestMonthlyRecords": [
+      {
+        "id": "dorian-atlas",
+        "name": "Dorian Atlas",
+        "brand": "Revolt",
+        "division": "Men",
+        "monthRecord": {
+          "wins": 0,
+          "losses": 3,
+          "draws": 0,
+          "text": "0-3-0"
+        },
+        "ytdRecord": {
+          "wins": 0,
+          "losses": 3,
+          "draws": 0,
+          "text": "0-3-0"
+        },
+        "streak": {
+          "type": "losing",
+          "count": 3,
+          "label": "3-match losing streak"
+        },
+        "koRecord": {
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      {
+        "id": "levi-martin",
+        "name": "Levi Martín",
+        "brand": "OWL",
+        "division": "Men",
+        "monthRecord": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "text": "1-1-0"
+        },
+        "ytdRecord": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "text": "1-1-0"
+        },
+        "streak": {
+          "type": "losing",
+          "count": 1,
+          "label": "1-match losing streak"
+        },
+        "koRecord": {
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      {
+        "id": "zee-allmighty",
+        "name": "Zee Allmighty",
+        "brand": "Ascension",
+        "division": "Men",
+        "monthRecord": {
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "text": "2-1-0"
+        },
+        "ytdRecord": {
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "text": "2-1-0"
+        },
+        "streak": {
+          "type": "winning",
+          "count": 1,
+          "label": "1-match winning streak"
+        },
+        "koRecord": {
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      {
+        "id": "connor-canada",
+        "name": "Connor Canada",
+        "brand": "OWL",
+        "division": "Men",
+        "monthRecord": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "text": "1-0-0"
+        },
+        "ytdRecord": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "text": "1-0-0"
+        },
+        "streak": {
+          "type": "winning",
+          "count": 1,
+          "label": "1-match winning streak"
+        },
+        "koRecord": {
+          "wins": 0,
+          "losses": 0
+        }
+      }
+    ],
+    "titleChanges": [
+      {
+        "championship": "OWL World Championship",
+        "holder": "Zee Allmighty",
+        "wonDate": "2026-07-01",
+        "wonAt": "Ascension",
+        "defenses": 0
+      },
+      {
+        "championship": "Twin Talon Tag Team Championship",
+        "holder": "True North Elite",
+        "wonDate": "2026-07-01",
+        "wonAt": "Ascension",
+        "defenses": 0
+      }
+    ]
+  },
+  "historicalRecords": [
+    {
+      "wrestlerId": "zee-allmighty",
+      "wrestlerName": "Zee Allmighty",
+      "months": [
+        {
+          "month": "2026-07",
+          "label": "July 2026",
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "text": "2-1-0"
+        }
+      ]
+    },
+    {
+      "wrestlerId": "dorian-atlas",
+      "wrestlerName": "Dorian Atlas",
+      "months": [
+        {
+          "month": "2026-07",
+          "label": "July 2026",
+          "wins": 0,
+          "losses": 3,
+          "draws": 0,
+          "text": "0-3-0"
+        }
+      ]
+    },
+    {
+      "wrestlerId": "levi-martin",
+      "wrestlerName": "Levi Martín",
+      "months": [
+        {
+          "month": "2026-07",
+          "label": "July 2026",
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "text": "1-1-0"
+        }
+      ]
+    },
+    {
+      "wrestlerId": "connor-canada",
+      "wrestlerName": "Connor Canada",
+      "months": [
+        {
+          "month": "2026-07",
+          "label": "July 2026",
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "text": "1-0-0"
+        }
+      ]
+    }
+  ],
+  "innanetMemory": {
+    "totalPosts": 13,
+    "highestEngagementPosts": [
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "OWL Stats",
+        "handle": "@OWLStats",
+        "type": "stats-post",
+        "body": "Zee Allmighty's title win at Ascension brings his career record to 1-0-0 and makes him the current OWL World Champion. This is the start of a potential new dynasty! #OWLStats #Championship",
+        "likes": 120,
+        "reposts": 45,
+        "replies": 3
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "OWL News Desk",
+        "handle": "@OWLNewsDesk",
+        "type": "news-report",
+        "body": "🚨ZEE ALLMIGHTY has officially dethroned Dorian Atlas to become the OWL World Champion! His title win marks a new chapter in the OWL saga. What's next for both men? #OWLNews #NewChampion",
+        "likes": 112,
+        "reposts": 45,
+        "replies": 3
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "OWL News Desk",
+        "handle": "@OWLNewsDesk",
+        "type": "news-report",
+        "body": "🚨BREAKING: Zee Allmighty has officially won the OWL World Championship after pinning Dorian Atlas at Ascension! This marks a new era in OWL with a fresh champion! #OWLEra #NewChampion",
+        "likes": 120,
+        "reposts": 30,
+        "replies": 5
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "The Grapevine",
+        "handle": "@TheGrapevine",
+        "type": "rumor",
+        "body": "Hearing whispers that Dorian Atlas is contemplating a major change post-title loss. Could he reinvent himself or is this the last we see of him in the main event scene? 🤔 #Speculation #DorianAtlasFuture",
+        "likes": 80,
+        "reposts": 30,
+        "replies": 3
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "Ascension Addict",
+        "handle": "@AscensionAddict",
+        "type": "fan-post",
+        "body": "ZEE ALLMIGHTY IS A LEGEND IN THE MAKING! 🙌🏆 He took down Dorian like it was nothing! Who’s ready for his reign? This is JUST the beginning! #AllmightyEra #ChampionsRise",
+        "likes": 82,
+        "reposts": 24,
+        "replies": 5
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "Ascension Addict",
+        "handle": "@AscensionAddict",
+        "type": "fan-post",
+        "body": "**ZEE ALLMIGHTY IS THE CHAMPION!**🎉 This guy is going to dominate Ascension, mark my words! The energy was electric tonight! #AscensionPride #NewChampion",
+        "likes": 80,
+        "reposts": 10,
+        "replies": 2
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "The Grapevine",
+        "handle": "@TheGrapevine",
+        "type": "rumor",
+        "body": "I’m hearing that there’s serious talk about Dorian Atlas possibly taking some time off after this devastating loss. Could he be looking to regroup and rethink his whole strategy? 🤔 #Speculation #DorianFuture",
+        "likes": 70,
+        "reposts": 15,
+        "replies": 2
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "Asshole Fan 32",
+        "handle": "@assholefan32",
+        "type": "fan-post",
+        "body": "Dorian Atlas just proved he's not cut out for the big leagues. Losing the OWL World Championship right after winning it? Classic choke job! 😂 #ForeverAJobber #DisappointedFan",
+        "likes": 60,
+        "reposts": 5,
+        "replies": 8
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "Zee Allmighty",
+        "handle": "@zeeallmighty",
+        "type": "wrestler-post",
+        "body": "Finally got that championship I've been working for! Excited to prove I'm not just this month's flavor. Let's keep this momentum going! 💪🏆",
+        "likes": 58,
+        "reposts": 9,
+        "replies": 4
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "OWL Stats",
+        "handle": "@OWLStats",
+        "type": "stats-post",
+        "body": "Zee Allmighty's victory over Dorian Atlas at Ascension marks a critical title change! Zee is now the OWL World Champion with a perfect record of 1-0-0. #OWLStats #Championship",
+        "likes": 45,
+        "reposts": 15,
+        "replies": 3
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "Workrate Wonk",
+        "handle": "@WorkrateWonk",
+        "type": "opinion",
+        "body": "The match between Zee Allmighty and Dorian Atlas was rated 91, but I can't help but feel it was more about Atlas's decline than Allmighty's rise. Was it really that great? 🤔 #WorkrateMatters #JustSaying",
+        "likes": 45,
+        "reposts": 12,
+        "replies": 2
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "The Grapevine",
+        "handle": "@TheGrapevine",
+        "type": "rumor",
+        "body": "Hearing some whispers that the pressure on Dorian Atlas is mounting after this shocking loss. Could we see him reassess his strategy moving forward? 🤔 #Speculation #DorianAtlasReturn",
+        "likes": 50,
+        "reposts": 10,
+        "replies": 0
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-01",
+        "accountName": "Workrate Wonk",
+        "handle": "@WorkrateWonk",
+        "type": "opinion",
+        "body": "The match with Zee Allmighty vs. Dorian Atlas got a rating of 91 and is being hyped everywhere, but let's be real: it's more about Atlas's downfall than Allmighty's skills. How did we get here? 🤷‍♂️ #MatchQualityMatters",
+        "likes": 40,
+        "reposts": 10,
+        "replies": 1
+      }
+    ]
+  },
+  "previousWwowIssues": []
+}

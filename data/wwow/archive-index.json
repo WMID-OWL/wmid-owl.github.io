@@ -1,3 +1,11 @@
 {
-  "issues": []
+  "issues": [
+    {
+      "id": "2026-07",
+      "label": "July 2026",
+      "coverTitle": "The Rise of Zee Allmighty: A New Era Begins",
+      "issue": 1,
+      "file": "data/wwow/2026-07.json"
+    }
+  ]
 }
