@@ -1,0 +1,114 @@
+name: Test GitHub Models
+
+
+on:
+
+  workflow_dispatch:
+
+
+permissions:
+
+  models: read
+
+
+jobs:
+
+  test-model:
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Call GitHub Model
+
+        env:
+
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+        run: |
+
+          RESPONSE=$(
+
+            curl \
+              --fail-with-body \
+              --silent \
+              --show-error \
+              --location \
+              --request POST \
+              --header "Accept: application/vnd.github+json" \
+              --header "Authorization: Bearer $GITHUB_TOKEN" \
+              --header "Content-Type: application/json" \
+              https://models.github.ai/inference/chat/completions \
+              --data '{
+                "model": "openai/gpt-4o-mini",
+                "messages": [
+                  {
+                    "role": "user",
+                    "content": "Reply with exactly: OWL MODEL TEST PASSED"
+                  }
+                ],
+                "temperature": 0
+              }'
+
+          )
+
+
+          echo "$RESPONSE" > model-response.json
+
+
+          node -e '
+
+            const fs =
+              require("fs");
+
+
+            const response =
+              JSON.parse(
+
+                fs.readFileSync(
+                  "model-response.json",
+                  "utf8"
+                )
+
+              );
+
+
+            const text =
+
+              response
+                ?.choices
+                ?.[0]
+                ?.message
+                ?.content;
+
+
+            console.log(
+              "MODEL RESPONSE:"
+            );
+
+
+            console.log(
+              text
+            );
+
+
+            if (
+              !text
+            ) {
+
+              console.error(
+                "GitHub Models did not return text."
+              );
+
+
+              process.exit(
+                1
+              );
+
+            }
+
+          '
