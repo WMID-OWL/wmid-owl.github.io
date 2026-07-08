@@ -1087,10 +1087,16 @@ function crResultsRefreshResultTypeLayout() {
         "Overthrow Rumble";
 
 
-    const isLoveAndWar =
+        const isLoveAndWar =
 
         stipulation ===
         "Love and War";
+
+
+    const isIronmanMatch =
+
+        stipulation ===
+        "Ironman Match";
 
 
     const showWinningSide =
@@ -1150,13 +1156,22 @@ function crResultsRefreshResultTypeLayout() {
             : "none";
 
 
+        const showFinishMethod =
+
+        showDetailedFinish
+
+        &&
+
+        !isIronmanMatch;
+
+
     crResultsMethodRow.hidden =
-        !showDetailedFinish;
+        !showFinishMethod;
 
 
     crResultsMethodRow.style.display =
 
-        showDetailedFinish
+        showFinishMethod
 
             ? ""
 
@@ -2276,6 +2291,802 @@ function crResultsBuildLoveAndWarResult() {
     };
 }
 
+// =================================
+// 2 OUT OF 3 FALLS RESULTS
+// =================================
+
+
+function crResultsGetTwoOutOfThreeRows() {
+    return [
+
+        ...crResultsSpecialtyContent.querySelectorAll(
+
+            "[data-cr-results-fall]",
+
+        ),
+
+    ];
+}
+
+
+function crResultsBuildTwoOutOfThreeResult() {
+    if (
+        crResultsSelectedMatch
+            ?.stipulation !==
+        "2 Out Of 3 Falls Match"
+    ) {
+        return null;
+    }
+
+
+    const rows =
+        crResultsGetTwoOutOfThreeRows();
+
+
+    const falls = [];
+
+
+    rows.forEach(
+
+        (row) => {
+
+            if (
+                row.hidden
+            ) {
+                return;
+            }
+
+
+            falls.push({
+
+                fallNumber:
+
+                    Number(
+                        row.dataset.crResultsFall,
+                    ),
+
+
+                winningSideIndex:
+
+                    row.querySelector(
+
+                        "[data-cr-results-fall-side]",
+
+                    )?.value === ""
+
+                        ? null
+
+                        : Number(
+
+                            row.querySelector(
+
+                                "[data-cr-results-fall-side]",
+
+                            )?.value,
+
+                        ),
+
+
+                winningWrestlerId:
+
+                    row.querySelector(
+
+                        "[data-cr-results-fall-winner]",
+
+                    )?.value || "",
+
+
+                losingWrestlerId:
+
+                    row.querySelector(
+
+                        "[data-cr-results-fall-loser]",
+
+                    )?.value || "",
+
+
+                method:
+
+                    row.querySelector(
+
+                        "[data-cr-results-fall-method]",
+
+                    )?.value || "",
+
+            });
+
+        },
+
+    );
+
+
+    return {
+
+        falls:
+            falls,
+
+    };
+}
+
+
+function crResultsRefreshTwoOutOfThreeLayout() {
+    const rows =
+        crResultsGetTwoOutOfThreeRows();
+
+
+    const fallOneSide =
+        rows[0]?.querySelector(
+
+            "[data-cr-results-fall-side]",
+
+        )?.value || "";
+
+
+    const fallTwoSide =
+        rows[1]?.querySelector(
+
+            "[data-cr-results-fall-side]",
+
+        )?.value || "";
+
+
+    const thirdFallRow =
+        rows.find(
+
+            (row) =>
+                Number(
+                    row.dataset.crResultsFall,
+                ) === 3,
+
+        );
+
+
+    const needsThirdFall =
+
+        fallOneSide !== ""
+
+        &&
+
+        fallTwoSide !== ""
+
+        &&
+
+        fallOneSide !==
+        fallTwoSide;
+
+
+    if (
+        thirdFallRow
+    ) {
+        thirdFallRow.hidden =
+            !needsThirdFall;
+
+
+        thirdFallRow.style.display =
+
+            needsThirdFall
+
+                ? ""
+
+                : "none";
+
+
+        if (
+            !needsThirdFall
+        ) {
+            thirdFallRow
+
+                .querySelectorAll(
+                    "select",
+                )
+
+                .forEach(
+
+                    (selectElement) => {
+
+                        selectElement.value =
+                            "";
+
+                    },
+
+                );
+        }
+    }
+
+
+    crResultsReviewResult();
+}
+
+
+function crResultsRenderTwoOutOfThreeFields(
+    match,
+) {
+    const participantIds =
+        crResultsGetMatchParticipantIds(
+            match,
+        );
+
+
+    const sides =
+        Array.isArray(
+            match.sides,
+        )
+
+            ? match.sides
+
+            : [];
+
+
+    crResultsSpecialtyContent.innerHTML =
+        "";
+
+
+    const intro =
+        document.createElement(
+            "div",
+        );
+
+
+    intro.className =
+        "cr-editor-section-heading";
+
+
+    intro.innerHTML = `
+        <span>
+            2 OUT OF 3 FALLS
+        </span>
+
+        <h3>
+            Fall Results
+        </h3>
+    `;
+
+
+    crResultsSpecialtyContent.appendChild(
+        intro,
+    );
+
+
+    for (
+
+        let fallNumber = 1;
+
+        fallNumber <= 3;
+
+        fallNumber += 1
+
+    ) {
+        const row =
+            document.createElement(
+                "div",
+            );
+
+
+        row.className =
+            "cr-editor-section";
+
+
+        row.dataset.crResultsFall =
+            String(
+                fallNumber,
+            );
+
+
+        if (
+            fallNumber === 3
+        ) {
+            row.hidden =
+                true;
+
+
+            row.style.display =
+                "none";
+        }
+
+
+        const heading =
+            document.createElement(
+                "div",
+            );
+
+
+        heading.className =
+            "cr-editor-section-heading";
+
+
+        heading.innerHTML = `
+            <span>
+                FALL
+            </span>
+
+            <h3>
+                Fall ${fallNumber}
+            </h3>
+        `;
+
+
+        const grid =
+            document.createElement(
+                "div",
+            );
+
+
+        grid.className =
+            "cr-editor-form-grid";
+
+
+        const sideGroup =
+            document.createElement(
+                "div",
+            );
+
+
+        sideGroup.className =
+            "cr-form-group";
+
+
+        const sideLabel =
+            document.createElement(
+                "label",
+            );
+
+
+        sideLabel.textContent =
+            "WINNING SIDE";
+
+
+        const sideSelect =
+            document.createElement(
+                "select",
+            );
+
+
+        sideSelect.dataset.crResultsFallSide =
+            "true";
+
+
+        sideSelect.innerHTML = `
+            <option value="">
+                Select Winning Side
+            </option>
+        `;
+
+
+        sides.forEach(
+
+            (side, index) => {
+
+                const option =
+                    document.createElement(
+                        "option",
+                    );
+
+
+                option.value =
+                    String(
+                        index,
+                    );
+
+
+                option.textContent =
+
+                    `Side ${index + 1} — ${crResultsFormatSide(
+                        side,
+                    )}`;
+
+
+                sideSelect.appendChild(
+                    option,
+                );
+
+            },
+
+        );
+
+
+        sideGroup.appendChild(
+            sideLabel,
+        );
+
+
+        sideGroup.appendChild(
+            sideSelect,
+        );
+
+
+        const winnerGroup =
+            document.createElement(
+                "div",
+            );
+
+
+        winnerGroup.className =
+            "cr-form-group";
+
+
+        const winnerLabel =
+            document.createElement(
+                "label",
+            );
+
+
+        winnerLabel.textContent =
+            "WINNING WRESTLER";
+
+
+        const winnerSelect =
+            document.createElement(
+                "select",
+            );
+
+
+        winnerSelect.dataset.crResultsFallWinner =
+            "true";
+
+
+        crResultsPopulateParticipantSelect(
+
+            winnerSelect,
+
+            participantIds,
+
+            "Select Wrestler",
+
+        );
+
+
+        winnerGroup.appendChild(
+            winnerLabel,
+        );
+
+
+        winnerGroup.appendChild(
+            winnerSelect,
+        );
+
+
+        const loserGroup =
+            document.createElement(
+                "div",
+            );
+
+
+        loserGroup.className =
+            "cr-form-group";
+
+
+        const loserLabel =
+            document.createElement(
+                "label",
+            );
+
+
+        loserLabel.textContent =
+            "LOSING WRESTLER";
+
+
+        const loserSelect =
+            document.createElement(
+                "select",
+            );
+
+
+        loserSelect.dataset.crResultsFallLoser =
+            "true";
+
+
+        crResultsPopulateParticipantSelect(
+
+            loserSelect,
+
+            participantIds,
+
+            "Select Wrestler",
+
+        );
+
+
+        loserGroup.appendChild(
+            loserLabel,
+        );
+
+
+        loserGroup.appendChild(
+            loserSelect,
+        );
+
+
+        const methodGroup =
+            document.createElement(
+                "div",
+            );
+
+
+        methodGroup.className =
+            "cr-form-group";
+
+
+        const methodLabel =
+            document.createElement(
+                "label",
+            );
+
+
+        methodLabel.textContent =
+            "METHOD";
+
+
+        const methodSelect =
+            crResultsCreateMethodSelect();
+
+
+        methodSelect.dataset.crResultsFallMethod =
+            "true";
+
+
+        methodGroup.appendChild(
+            methodLabel,
+        );
+
+
+        methodGroup.appendChild(
+            methodSelect,
+        );
+
+
+        grid.appendChild(
+            sideGroup,
+        );
+
+
+        grid.appendChild(
+            winnerGroup,
+        );
+
+
+        grid.appendChild(
+            loserGroup,
+        );
+
+
+        grid.appendChild(
+            methodGroup,
+        );
+
+
+        row.appendChild(
+            heading,
+        );
+
+
+        row.appendChild(
+            grid,
+        );
+
+
+        crResultsSpecialtyContent.appendChild(
+            row,
+        );
+
+
+        sideSelect.addEventListener(
+
+            "change",
+
+            crResultsRefreshTwoOutOfThreeLayout,
+
+        );
+
+
+        [
+
+            winnerSelect,
+
+            loserSelect,
+
+            methodSelect,
+
+        ].forEach(
+
+            (field) => {
+
+                field.addEventListener(
+
+                    "change",
+
+                    crResultsReviewResult,
+
+                );
+
+            },
+
+        );
+    }
+}
+// =================================
+// IRONMAN MATCH RESULTS
+// =================================
+
+
+function crResultsBuildIronmanResult() {
+    if (
+        crResultsSelectedMatch
+            ?.stipulation !==
+        "Ironman Match"
+    ) {
+        return null;
+    }
+
+
+    const scoreInputs = [
+
+        ...crResultsSpecialtyContent.querySelectorAll(
+
+            "[data-cr-results-ironman-score]",
+
+        ),
+
+    ];
+
+
+    return {
+
+        sideScores:
+
+            scoreInputs.map(
+
+                (input) =>
+
+                    input.value === ""
+
+                        ? null
+
+                        : Number(
+                            input.value,
+                        ),
+
+            ),
+
+    };
+}
+
+
+function crResultsRenderIronmanFields(
+    match,
+) {
+    const sides =
+        Array.isArray(
+            match.sides,
+        )
+
+            ? match.sides
+
+            : [];
+
+
+    crResultsSpecialtyContent.innerHTML =
+        "";
+
+
+    const intro =
+        document.createElement(
+            "div",
+        );
+
+
+    intro.className =
+        "cr-editor-section-heading";
+
+
+    intro.innerHTML = `
+        <span>
+            IRONMAN MATCH
+        </span>
+
+        <h3>
+            Final Score
+        </h3>
+    `;
+
+
+    crResultsSpecialtyContent.appendChild(
+        intro,
+    );
+
+
+    const grid =
+        document.createElement(
+            "div",
+        );
+
+
+    grid.className =
+        "cr-editor-form-grid";
+
+
+    sides.forEach(
+
+        (side, index) => {
+
+            const group =
+                document.createElement(
+                    "div",
+                );
+
+
+            group.className =
+                "cr-form-group";
+
+
+            const label =
+                document.createElement(
+                    "label",
+                );
+
+
+            label.textContent =
+
+                `SIDE ${index + 1} SCORE — ${crResultsFormatSide(
+                    side,
+                )}`;
+
+
+            const input =
+                document.createElement(
+                    "input",
+                );
+
+
+            input.type =
+                "number";
+
+
+            input.min =
+                "0";
+
+
+            input.step =
+                "1";
+
+
+            input.dataset.crResultsIronmanScore =
+                String(
+                    index,
+                );
+
+
+            group.appendChild(
+                label,
+            );
+
+
+            group.appendChild(
+                input,
+            );
+
+
+            grid.appendChild(
+                group,
+            );
+
+
+            input.addEventListener(
+
+                "input",
+
+                crResultsReviewResult,
+
+            );
+
+        },
+
+    );
+
+
+    crResultsSpecialtyContent.appendChild(
+        grid,
+    );
+}
 
 // =================================
 // OVERTHROW RUMBLE RESULTS
@@ -3518,6 +4329,40 @@ function crResultsRenderSpecialtyFields(
     }
 
 
+       if (
+        match.stipulation ===
+        "2 Out Of 3 Falls Match"
+    ) {
+        crResultsRenderTwoOutOfThreeFields(
+            match,
+        );
+
+
+        crResultsSpecialtyFields.hidden =
+            false;
+
+
+        return;
+    }
+
+
+    if (
+        match.stipulation ===
+        "Ironman Match"
+    ) {
+        crResultsRenderIronmanFields(
+            match,
+        );
+
+
+        crResultsSpecialtyFields.hidden =
+            false;
+
+
+        return;
+    }
+
+
     if (
         match.stipulation ===
         "Overthrow Rumble"
@@ -3587,12 +4432,30 @@ function crResultsGetFormRecord() {
     }
 
 
-    else if (
+        else if (
         match?.stipulation ===
         "Love and War"
     ) {
         specialtyResult =
             crResultsBuildLoveAndWarResult();
+    }
+
+
+    else if (
+        match?.stipulation ===
+        "2 Out Of 3 Falls Match"
+    ) {
+        specialtyResult =
+            crResultsBuildTwoOutOfThreeResult();
+    }
+
+
+    else if (
+        match?.stipulation ===
+        "Ironman Match"
+    ) {
+        specialtyResult =
+            crResultsBuildIronmanResult();
     }
 
 
@@ -4207,6 +5070,444 @@ function crResultsValidateLoveAndWar(
     }
 }
 
+// =================================
+// 2 OUT OF 3 FALLS VALIDATION
+// =================================
+
+
+function crResultsValidateTwoOutOfThree(
+    record,
+    errors,
+) {
+    if (
+        crResultsSelectedMatch
+            ?.stipulation !==
+        "2 Out Of 3 Falls Match"
+    ) {
+        return;
+    }
+
+
+    if (
+        record.resultType !==
+        "win"
+    ) {
+        errors.push(
+
+            "2 Out Of 3 Falls must have a winner.",
+
+        );
+
+
+        return;
+    }
+
+
+    const falls =
+
+        Array.isArray(
+            record.specialtyResult
+                ?.falls,
+        )
+
+            ? record.specialtyResult.falls
+
+            : [];
+
+
+    if (
+        falls.length < 2
+
+        ||
+
+        falls.length > 3
+    ) {
+        errors.push(
+
+            "2 Out Of 3 Falls must contain two or three fall records.",
+
+        );
+
+
+        return;
+    }
+
+
+    const sides =
+
+        Array.isArray(
+            crResultsSelectedMatch.sides,
+        )
+
+            ? crResultsSelectedMatch.sides
+
+            : [];
+
+
+    const fallWins =
+        new Map();
+
+
+    sides.forEach(
+
+        (side, index) => {
+
+            fallWins.set(
+                index,
+                0,
+            );
+
+        },
+
+    );
+
+
+    falls.forEach(
+
+        (fall) => {
+
+            if (
+                !Number.isInteger(
+                    fall.winningSideIndex,
+                )
+
+                ||
+
+                !fallWins.has(
+                    fall.winningSideIndex,
+                )
+            ) {
+                errors.push(
+
+                    `Fall ${fall.fallNumber} needs a valid winning side.`,
+
+                );
+
+
+                return;
+            }
+
+
+            fallWins.set(
+
+                fall.winningSideIndex,
+
+                fallWins.get(
+                    fall.winningSideIndex,
+                )
+
+                +
+
+                1,
+
+            );
+
+
+            const winningSideWrestlers =
+
+                sides[
+                    fall.winningSideIndex
+                ]?.wrestlers || [];
+
+
+            if (
+                !fall.winningWrestlerId
+
+                ||
+
+                !winningSideWrestlers.includes(
+                    fall.winningWrestlerId,
+                )
+            ) {
+                errors.push(
+
+                    `Fall ${fall.fallNumber} winning wrestler must belong to the winning side.`,
+
+                );
+            }
+
+
+            if (
+                !fall.losingWrestlerId
+            ) {
+                errors.push(
+
+                    `Fall ${fall.fallNumber} needs a losing wrestler.`,
+
+                );
+            }
+
+
+            if (
+                winningSideWrestlers.includes(
+                    fall.losingWrestlerId,
+                )
+            ) {
+                errors.push(
+
+                    `Fall ${fall.fallNumber} losing wrestler cannot belong to the winning side.`,
+
+                );
+            }
+
+
+            if (
+                fall.winningWrestlerId ===
+                fall.losingWrestlerId
+            ) {
+                errors.push(
+
+                    `Fall ${fall.fallNumber} cannot use the same wrestler as winner and loser.`,
+
+                );
+            }
+
+
+            if (
+                !CR_RESULTS_ELIMINATION_METHODS.includes(
+                    fall.method,
+                )
+            ) {
+                errors.push(
+
+                    `Fall ${fall.fallNumber} needs a valid method.`,
+
+                );
+            }
+
+        },
+
+    );
+
+
+    const firstTwoSplit =
+
+        falls.length >= 2
+
+        &&
+
+        falls[0].winningSideIndex !==
+        falls[1].winningSideIndex;
+
+
+    if (
+        firstTwoSplit
+
+        &&
+
+        falls.length !== 3
+    ) {
+        errors.push(
+
+            "Fall 3 is required when the first two falls are split 1–1.",
+
+        );
+    }
+
+
+    if (
+        !firstTwoSplit
+
+        &&
+
+        falls.length !== 2
+    ) {
+        errors.push(
+
+            "Fall 3 should only be used when the first two falls are split.",
+
+        );
+    }
+
+
+    const matchWinningSide =
+
+        [...fallWins.entries()]
+
+            .find(
+
+                ([, count]) =>
+                    count === 2,
+
+            )?.[0];
+
+
+    if (
+        !Number.isInteger(
+            matchWinningSide,
+        )
+    ) {
+        errors.push(
+
+            "One side must win exactly two falls.",
+
+        );
+    }
+
+
+    if (
+        Number.isInteger(
+            matchWinningSide,
+        )
+
+        &&
+
+        record.winningSideIndex !==
+        matchWinningSide
+    ) {
+        errors.push(
+
+            "Overall winning side must match the side that won two falls.",
+
+        );
+    }
+}
+// =================================
+// IRONMAN MATCH VALIDATION
+// =================================
+
+
+function crResultsValidateIronman(
+    record,
+    errors,
+) {
+    if (
+        crResultsSelectedMatch
+            ?.stipulation !==
+        "Ironman Match"
+    ) {
+        return;
+    }
+
+
+    if (
+        record.resultType !==
+        "win"
+    ) {
+        errors.push(
+
+            "Ironman Match must have a winner.",
+
+        );
+
+
+        return;
+    }
+
+
+    const sideScores =
+
+        Array.isArray(
+            record.specialtyResult
+                ?.sideScores,
+        )
+
+            ? record.specialtyResult.sideScores
+
+            : [];
+
+
+    if (
+        sideScores.length !== 2
+    ) {
+        errors.push(
+
+            "Ironman Match must contain exactly two final scores.",
+
+        );
+
+
+        return;
+    }
+
+
+    sideScores.forEach(
+
+        (score, index) => {
+
+            if (
+                !Number.isInteger(
+                    score,
+                )
+
+                ||
+
+                score < 0
+            ) {
+                errors.push(
+
+                    `Side ${index + 1} score must be a whole number of zero or greater.`,
+
+                );
+            }
+
+        },
+
+    );
+
+
+    if (
+        Number.isInteger(
+            sideScores[0],
+        )
+
+        &&
+
+        Number.isInteger(
+            sideScores[1],
+        )
+
+        &&
+
+        sideScores[0] ===
+        sideScores[1]
+    ) {
+        errors.push(
+
+            "Ironman Match final score cannot be tied.",
+
+        );
+    }
+
+
+    if (
+        Number.isInteger(
+            sideScores[0],
+        )
+
+        &&
+
+        Number.isInteger(
+            sideScores[1],
+        )
+
+        &&
+
+        sideScores[0] !==
+        sideScores[1]
+    ) {
+        const winningSideIndex =
+
+            sideScores[0] >
+            sideScores[1]
+
+                ? 0
+
+                : 1;
+
+
+        if (
+            record.winningSideIndex !==
+            winningSideIndex
+        ) {
+            errors.push(
+
+                "Ironman Match winning side must match the higher final score.",
+
+            );
+        }
+    }
+}
 
 // =================================
 // MAIN VALIDATION
@@ -4245,10 +5546,16 @@ function crResultsValidate(
         "Overthrow Rumble";
 
 
-    const isLoveAndWar =
+        const isLoveAndWar =
 
         stipulation ===
         "Love and War";
+
+
+    const isIronmanMatch =
+
+        stipulation ===
+        "Ironman Match";
 
 
     if (
@@ -4301,7 +5608,11 @@ function crResultsValidate(
             }
 
 
-            if (
+                        if (
+                !isIronmanMatch
+
+                &&
+
                 !record.finishMethod
             ) {
                 errors.push(
@@ -4608,7 +5919,19 @@ function crResultsValidate(
     );
 
 
-    crResultsValidateLoveAndWar(
+        crResultsValidateLoveAndWar(
+        record,
+        errors,
+    );
+
+
+    crResultsValidateTwoOutOfThree(
+        record,
+        errors,
+    );
+
+
+    crResultsValidateIronman(
         record,
         errors,
     );
@@ -5159,6 +6482,96 @@ function crResultsReviewLoveAndWar(
     );
 }
 
+function crResultsReviewTwoOutOfThree(
+    record,
+) {
+    const falls =
+
+        Array.isArray(
+            record.specialtyResult
+                ?.falls,
+        )
+
+            ? record.specialtyResult.falls
+
+            : [];
+
+
+    falls.forEach(
+
+        (fall) => {
+
+            crResultsAddRow(
+
+                crResultsReviewList,
+
+
+                `Fall ${fall.fallNumber}`,
+
+
+                `${Number.isInteger(
+                    fall.winningSideIndex,
+                )
+
+                    ? crResultsGetSideLabel(
+                        fall.winningSideIndex,
+                    )
+
+                    : "—"} — ${fall.winningWrestlerId
+
+                    ? crResultsGetWrestlerName(
+                        fall.winningWrestlerId,
+                    )
+
+                    : "—"} over ${fall.losingWrestlerId
+
+                    ? crResultsGetWrestlerName(
+                        fall.losingWrestlerId,
+                    )
+
+                    : "—"} by ${fall.method || "—"}`,
+
+            );
+
+        },
+
+    );
+}
+
+
+function crResultsReviewIronman(
+    record,
+) {
+    const scores =
+
+        Array.isArray(
+            record.specialtyResult
+                ?.sideScores,
+        )
+
+            ? record.specialtyResult.sideScores
+
+            : [];
+
+
+    crResultsAddRow(
+
+        crResultsReviewList,
+
+        "Final Score",
+
+        scores.length === 2
+
+            ? `${crResultsGetSideLabel(
+                0,
+            )} ${scores[0] ?? "—"} — ${scores[1] ?? "—"} ${crResultsGetSideLabel(
+                1,
+            )}`
+
+            : "—",
+
+    );
+}
 
 function crResultsReviewOverthrow(
     record,
@@ -5570,11 +6983,31 @@ function crResultsReviewResult() {
     }
 
 
-    if (
+        if (
         stipulation ===
         "Love and War"
     ) {
         crResultsReviewLoveAndWar(
+            record,
+        );
+    }
+
+
+    if (
+        stipulation ===
+        "2 Out Of 3 Falls Match"
+    ) {
+        crResultsReviewTwoOutOfThree(
+            record,
+        );
+    }
+
+
+    if (
+        stipulation ===
+        "Ironman Match"
+    ) {
+        crResultsReviewIronman(
             record,
         );
     }
@@ -5791,7 +7224,7 @@ function crResultsLoadSelectedMatch() {
         "win";
 
 
-    crResultsResultType.disabled =
+        crResultsResultType.disabled =
 
         match.stipulation ===
         "Overthrow Rumble"
@@ -5799,7 +7232,17 @@ function crResultsLoadSelectedMatch() {
         ||
 
         match.stipulation ===
-        "Love and War";
+        "Love and War"
+
+        ||
+
+        match.stipulation ===
+        "2 Out Of 3 Falls Match"
+
+        ||
+
+        match.stipulation ===
+        "Ironman Match";
 
 
     crResultsWinnerSide.value =
@@ -5950,8 +7393,14 @@ function crResultsBuildCompletedMatchRecord() {
                 form.losingWrestlerId,
 
 
-            method:
-                form.finishMethod,
+                        method:
+
+                crResultsSelectedMatch.stipulation ===
+                "Ironman Match"
+
+                    ? "Ironman Score"
+
+                    : form.finishMethod,
 
         };
     }
