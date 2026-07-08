@@ -333,7 +333,8 @@ CANON RULES:
 - Never turn an old opinion from media memory into a new fact.
 
 OUTPUT MIX:
-- Produce 18 to 24 posts.
+- Produce EXACTLY 20 posts. Do not return fewer than 20 posts.
+- Complete all 20 post objects before ending the JSON response.
 - Use recurring accounts from availableAccounts for most posts.
 - Include at least 2 factual posts from stats/news-style accounts when the facts support them.
 - Include multiple viewpoints. Do not make everyone agree.
