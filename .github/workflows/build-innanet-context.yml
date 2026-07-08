@@ -1,0 +1,60 @@
+name: Build Innanet Context
+
+on:
+  push:
+    paths:
+      - "data/matches.json"
+      - "data/announced-matches.json"
+      - "data/events.json"
+      - "data/title-reigns.json"
+      - "data/wrestlers.json"
+      - "data/teams.json"
+      - "data/championships.json"
+      - "data/innanet/accounts.json"
+      - "scripts/build-innanet-context.mjs"
+      - ".github/workflows/build-innanet-context.yml"
+  workflow_dispatch:
+    inputs:
+      event_id:
+        description: "Optional event ID to build"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: innanet-context
+  cancel-in-progress: false
+
+jobs:
+  build-context:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Build Innanet context
+        env:
+          EVENT_ID: ${{ inputs.event_id || '' }}
+        run: node scripts/build-innanet-context.mjs
+
+      - name: Commit generated queue
+        run: |
+          git config user.name "OWL Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/innanet/generation-queue.json
+
+          if git diff --cached --quiet; then
+            echo "No Innanet context changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update Innanet generation context"
+          git push
