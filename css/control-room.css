@@ -1920,3 +1920,298 @@
     }
 
 }
+/* =================================
+   CONTROL ROOM USABILITY LAYER
+================================= */
+
+
+/* =================================
+   TOOL JUMP NAVIGATION
+================================= */
+
+
+.cr-tool-jump-nav {
+
+    position:
+        sticky;
+
+    top:
+        12px;
+
+    z-index:
+        100;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    flex-wrap:
+        wrap;
+
+    padding:
+        12px;
+
+    margin:
+        0 0 24px;
+
+    background:
+        rgba(
+            15,
+            19,
+            20,
+            0.96
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    box-shadow:
+        0 12px 30px
+        rgba(
+            0,
+            0,
+            0,
+            0.28
+        );
+
+    backdrop-filter:
+        blur(
+            10px
+        );
+
+}
+
+
+.cr-tool-jump-label {
+
+    padding:
+        0 8px;
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.14em;
+
+    color:
+        #d5b267;
+
+    white-space:
+        nowrap;
+
+}
+
+
+.cr-tool-jump-link {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        36px;
+
+    padding:
+        8px 12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+
+    color:
+        #f4f4f4;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.04
+        );
+
+    font-size:
+        0.76rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.06em;
+
+    text-decoration:
+        none;
+
+    text-transform:
+        uppercase;
+
+    transition:
+        0.18s ease;
+
+}
+
+
+.cr-tool-jump-link:hover,
+.cr-tool-jump-link:focus {
+
+    color:
+        #111516;
+
+    background:
+        #d5b267;
+
+    border-color:
+        #d5b267;
+
+    outline:
+        none;
+
+}
+
+
+#cr-tool-wrestlers,
+#cr-tool-teams,
+#cr-tool-factions,
+#cr-tool-events,
+#cr-tool-match-booker,
+#cr-tool-results,
+#cr-tool-data-health {
+
+    scroll-margin-top:
+        100px;
+
+}
+
+
+
+/* =================================
+   READY SAVE BUTTONS
+================================= */
+
+
+#cr-save-wrestler:not(:disabled),
+
+#cr-save-team:not(:disabled),
+
+#cr-save-faction:not(:disabled),
+
+#cr-save-event:not(:disabled),
+
+#cr-booker-save:not(:disabled),
+
+#cr-results-save:not(:disabled) {
+
+    background:
+        #229c55;
+
+    border-color:
+        #4fd483;
+
+    color:
+        #ffffff;
+
+    box-shadow:
+        0 0 0 1px
+        rgba(
+            79,
+            212,
+            131,
+            0.2
+        ),
+
+        0 8px 24px
+        rgba(
+            34,
+            156,
+            85,
+            0.24
+        );
+
+}
+
+
+#cr-save-wrestler:not(:disabled):hover,
+
+#cr-save-team:not(:disabled):hover,
+
+#cr-save-faction:not(:disabled):hover,
+
+#cr-save-event:not(:disabled):hover,
+
+#cr-booker-save:not(:disabled):hover,
+
+#cr-results-save:not(:disabled):hover {
+
+    background:
+        #2bbf68;
+
+    border-color:
+        #75e5a1;
+
+}
+
+
+
+/* =================================
+   MOBILE JUMP NAVIGATION
+================================= */
+
+
+@media (
+    max-width:
+        760px
+) {
+
+    .cr-tool-jump-nav {
+
+        flex-wrap:
+            nowrap;
+
+        overflow-x:
+            auto;
+
+        top:
+            6px;
+
+    }
+
+
+    .cr-tool-jump-label {
+
+        display:
+            none;
+
+    }
+
+
+    .cr-tool-jump-link {
+
+        flex:
+            0 0 auto;
+
+    }
+
+}
