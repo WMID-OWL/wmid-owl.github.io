@@ -402,20 +402,44 @@ replyTo must be empty or match another postId in the same response.
 
 function buildUserPrompt(
     eventPackage,
+    batchNumber,
+    previousPosts = [],
     retryInstruction = ""
 ) {
 
-    return `Generate The Innanet conversation for this completed OWL event.
+    return `Generate batch ${batchNumber} of 4 for The Innanet conversation about this completed OWL event.
 
-You must return EXACTLY 20 posts.
+You must return EXACTLY 5 complete posts.
 
-Do not summarize the event instead of completing the post array.
+This is one part of a larger 20-post feed.
 
-Do not stop after 5, 6, or 10 posts.
+Do not summarize the event.
 
-The final JSON must contain 20 complete post objects.
+Do not repeat jokes, opinions, facts, or wording already used in PREVIOUS POSTS.
+
+Different batches should explore different parts of the show and different account personalities.
 
 ${retryInstruction}
+
+PREVIOUS POSTS:
+
+${JSON.stringify(
+    previousPosts.map(
+        post => ({
+            accountId:
+                post.accountId,
+
+            wrestlerId:
+                post.wrestlerId,
+
+            type:
+                post.type,
+
+            body:
+                post.body
+        })
+    )
+)}
 
 EVENT FACT PACKAGE:
 
