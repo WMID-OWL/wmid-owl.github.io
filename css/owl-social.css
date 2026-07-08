@@ -1188,3 +1188,68 @@
     }
 
 }
+/* =================================
+   INNANET REPLIES
+================================= */
+
+
+.innanet-post-reply {
+
+    margin-left:
+        42px;
+
+    border-left:
+
+        3px solid
+
+        rgba(
+            201,
+            164,
+            92,
+            0.42
+        );
+
+    background:
+        #111617;
+
+}
+
+
+
+.innanet-reply-context {
+
+    margin-top:
+        12px;
+
+    color:
+        #7f8785;
+
+    font-size:
+        0.74rem;
+
+}
+
+
+
+.innanet-reply-context strong {
+
+    color:
+        #c9a45c;
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+    .innanet-post-reply {
+
+        margin-left:
+            18px;
+
+    }
+
+}
