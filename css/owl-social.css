@@ -1,7 +1,19 @@
 /* =================================
    OWL SOCIAL
 ================================= */
+html,
+body {
 
+    min-height:
+        100%;
+
+    background:
+        #090c0d;
+
+    color:
+        #f4f4f0;
+
+}
 
 .social-hub-page,
 .social-app-page {
