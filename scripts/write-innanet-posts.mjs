@@ -635,16 +635,16 @@ function validatePosts(
 
 
     if (
-        rawPosts.length < 10
-    ) {
+    rawPosts.length < 18
+) {
 
-        throw new Error(
+    throw new Error(
 
-            `Model returned only ${rawPosts.length} posts; refusing to publish.`
+        `Model returned only ${rawPosts.length} posts after retry; refusing to publish.`
 
-        );
+    );
 
-    }
+}
 
 
 
