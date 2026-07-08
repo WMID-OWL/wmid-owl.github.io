@@ -813,8 +813,9 @@ function crResultsLoadSelectedMatch() {
         false;
 
 
-        crResultsSpecialtyFields.hidden =
-        true;
+            crResultsRenderSpecialtyFields(
+        match,
+    );
 
 
     crResultsReview.hidden =
@@ -827,6 +828,389 @@ function crResultsLoadSelectedMatch() {
 
     crResultsRefreshResultTypeLayout();
 }
+// =================================
+// BATTLE ROYAL RESULT HELPERS
+// =================================
+
+
+function crResultsGetBattleRoyalParticipants() {
+    if (
+        !crResultsSelectedMatch
+        ||
+        !Array.isArray(
+            crResultsSelectedMatch.sides,
+        )
+    ) {
+        return [];
+    }
+
+
+    return crResultsSelectedMatch.sides
+        .flatMap(
+            (side) =>
+                Array.isArray(
+                    side.wrestlers,
+                )
+                    ? side.wrestlers
+                    : [],
+        )
+        .filter(Boolean);
+}
+
+
+function crResultsBuildBattleRoyalResult() {
+    if (
+        crResultsSelectedMatch?.stipulation !==
+        "Battle Royal"
+    ) {
+        return null;
+    }
+
+
+    const rows = [
+        ...crResultsSpecialtyContent.querySelectorAll(
+            "[data-cr-results-br-participant]",
+        ),
+    ];
+
+
+    return {
+        participantResults:
+            rows.map(
+                (row) => {
+                    const wrestlerId =
+                        row.dataset.crResultsBrParticipant;
+
+
+                    const timeInput =
+                        row.querySelector(
+                            "[data-cr-results-br-time]",
+                        );
+
+
+                    const eliminatorSelect =
+                        row.querySelector(
+                            "[data-cr-results-br-eliminator]",
+                        );
+
+
+                    return {
+                        wrestlerId:
+                            wrestlerId,
+
+                        timeInMatch:
+                            timeInput?.value.trim() || "",
+
+                        eliminatedBy:
+                            eliminatorSelect?.value || null,
+                    };
+                },
+            ),
+    };
+}
+
+
+// =================================
+// SPECIALTY RESULT RENDERING
+// =================================
+
+
+function crResultsRenderBattleRoyalFields(
+    match,
+) {
+    const participantIds =
+        Array.isArray(
+            match.sides,
+        )
+            ? match.sides
+                .flatMap(
+                    (side) =>
+                        Array.isArray(
+                            side.wrestlers,
+                        )
+                            ? side.wrestlers
+                            : [],
+                )
+                .filter(Boolean)
+            : [];
+
+
+    crResultsSpecialtyContent.innerHTML =
+        "";
+
+
+    participantIds.forEach(
+        (wrestlerId) => {
+            const row =
+                document.createElement(
+                    "div",
+                );
+
+
+            row.className =
+                "cr-editor-section";
+
+
+            row.dataset.crResultsBrParticipant =
+                wrestlerId;
+
+
+            const heading =
+                document.createElement(
+                    "div",
+                );
+
+
+            heading.className =
+                "cr-editor-section-heading";
+
+
+            const eyebrow =
+                document.createElement(
+                    "span",
+                );
+
+
+            eyebrow.textContent =
+                "PARTICIPANT";
+
+
+            const name =
+                document.createElement(
+                    "h3",
+                );
+
+
+            name.textContent =
+                crResultsGetWrestlerName(
+                    wrestlerId,
+                );
+
+
+            heading.appendChild(
+                eyebrow,
+            );
+
+
+            heading.appendChild(
+                name,
+            );
+
+
+            const grid =
+                document.createElement(
+                    "div",
+                );
+
+
+            grid.className =
+                "cr-editor-form-grid";
+
+
+            const timeGroup =
+                document.createElement(
+                    "div",
+                );
+
+
+            timeGroup.className =
+                "cr-form-group";
+
+
+            const timeLabel =
+                document.createElement(
+                    "label",
+                );
+
+
+            timeLabel.textContent =
+                "TIME IN MATCH";
+
+
+            const timeInput =
+                document.createElement(
+                    "input",
+                );
+
+
+            timeInput.type =
+                "text";
+
+
+            timeInput.placeholder =
+                "12:34";
+
+
+            timeInput.autocomplete =
+                "off";
+
+
+            timeInput.dataset.crResultsBrTime =
+                "true";
+
+
+            timeGroup.appendChild(
+                timeLabel,
+            );
+
+
+            timeGroup.appendChild(
+                timeInput,
+            );
+
+
+            const eliminatorGroup =
+                document.createElement(
+                    "div",
+                );
+
+
+            eliminatorGroup.className =
+                "cr-form-group";
+
+
+            const eliminatorLabel =
+                document.createElement(
+                    "label",
+                );
+
+
+            eliminatorLabel.textContent =
+                "ELIMINATED BY";
+
+
+            const eliminatorSelect =
+                document.createElement(
+                    "select",
+                );
+
+
+            eliminatorSelect.dataset.crResultsBrEliminator =
+                "true";
+
+
+            eliminatorSelect.innerHTML = `
+                <option value="">
+                    Not Eliminated / Winner
+                </option>
+            `;
+
+
+            participantIds
+                .filter(
+                    (otherId) =>
+                        otherId !== wrestlerId,
+                )
+                .forEach(
+                    (otherId) => {
+                        const option =
+                            document.createElement(
+                                "option",
+                            );
+
+
+                        option.value =
+                            otherId;
+
+
+                        option.textContent =
+                            crResultsGetWrestlerName(
+                                otherId,
+                            );
+
+
+                        eliminatorSelect.appendChild(
+                            option,
+                        );
+                    },
+                );
+
+
+            eliminatorGroup.appendChild(
+                eliminatorLabel,
+            );
+
+
+            eliminatorGroup.appendChild(
+                eliminatorSelect,
+            );
+
+
+            grid.appendChild(
+                timeGroup,
+            );
+
+
+            grid.appendChild(
+                eliminatorGroup,
+            );
+
+
+            row.appendChild(
+                heading,
+            );
+
+
+            row.appendChild(
+                grid,
+            );
+
+
+            crResultsSpecialtyContent.appendChild(
+                row,
+            );
+
+
+            [
+                timeInput,
+                eliminatorSelect,
+            ].forEach(
+                (field) => {
+                    field.addEventListener(
+                        "input",
+                        crResultsReviewResult,
+                    );
+
+
+                    field.addEventListener(
+                        "change",
+                        crResultsReviewResult,
+                    );
+                },
+            );
+        },
+    );
+}
+
+
+function crResultsRenderSpecialtyFields(
+    match,
+) {
+    crResultsSpecialtyContent.innerHTML =
+        "";
+
+
+    if (
+        match.stipulation ===
+        "Battle Royal"
+    ) {
+        crResultsRenderBattleRoyalFields(
+            match,
+        );
+
+
+        crResultsSpecialtyFields.hidden =
+            false;
+
+
+        return;
+    }
+
+
+    crResultsSpecialtyFields.hidden =
+        true;
+}
+
 // =================================
 // RESULT FORM RECORD
 // =================================
@@ -908,10 +1292,19 @@ function crResultsGetFormRecord() {
                     crResultsStars.value,
                 ),
 
-        matchTime:
+                matchTime:
             crResultsTime.value.trim(),
+
+        specialtyResult:
+            crResultsSelectedMatch?.stipulation ===
+            "Battle Royal"
+
+                ? crResultsBuildBattleRoyalResult()
+
+                : null,
     };
 }
+
 // =================================
 // RESULT VALIDATION
 // =================================
@@ -1083,7 +1476,7 @@ function crResultsValidate(
     }
 
 
-    if (
+        if (
         !/^(?:\d+):[0-5]\d$/.test(
             record.matchTime,
         )
@@ -1094,8 +1487,94 @@ function crResultsValidate(
     }
 
 
+    if (
+        crResultsSelectedMatch?.stipulation ===
+        "Battle Royal"
+        &&
+        record.resultType === "win"
+    ) {
+        const participantResults =
+            Array.isArray(
+                record.specialtyResult?.participantResults,
+            )
+                ? record.specialtyResult.participantResults
+                : [];
+
+
+        const participantIds =
+            crResultsGetBattleRoyalParticipants();
+
+
+        if (
+            participantResults.length !==
+            participantIds.length
+        ) {
+            errors.push(
+                "Battle Royal participant results are incomplete.",
+            );
+        }
+
+
+        participantResults.forEach(
+            (participant) => {
+                if (
+                    !/^(?:\d+):[0-5]\d$/.test(
+                        participant.timeInMatch,
+                    )
+                ) {
+                    errors.push(
+                        `${crResultsGetWrestlerName(
+                            participant.wrestlerId,
+                        )} needs a valid Time in Match.`,
+                    );
+                }
+
+
+                const isWinner =
+                    participant.wrestlerId ===
+                    record.winningWrestlerId;
+
+
+                if (
+                    isWinner
+                    &&
+                    participant.eliminatedBy
+                ) {
+                    errors.push(
+                        "The Battle Royal winner cannot have an eliminator.",
+                    );
+                }
+
+
+                if (
+                    !isWinner
+                    &&
+                    !participant.eliminatedBy
+                ) {
+                    errors.push(
+                        `${crResultsGetWrestlerName(
+                            participant.wrestlerId,
+                        )} needs an eliminator.`,
+                    );
+                }
+
+
+                if (
+                    participant.eliminatedBy ===
+                    participant.wrestlerId
+                ) {
+                    errors.push(
+                        "A wrestler cannot eliminate themselves.",
+                    );
+                }
+            },
+        );
+    }
+
+
     return errors;
 }
+
 // =================================
 // REVIEW HELPERS
 // =================================
@@ -1385,7 +1864,7 @@ function crResultsBuildCompletedMatchRecord() {
     };
 
 
-    if (
+        if (
         form.resultType === "win"
     ) {
         record.finish = {
@@ -1407,8 +1886,22 @@ function crResultsBuildCompletedMatchRecord() {
     }
 
 
+    if (
+        form.specialtyResult
+    ) {
+        record.specialtyResult =
+            form.specialtyResult;
+    }
+
+
+    else {
+        delete record.specialtyResult;
+    }
+
+
     return record;
 }
+
 // =================================
 // RESULT SAVE MESSAGES
 // =================================
