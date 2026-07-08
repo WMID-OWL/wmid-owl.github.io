@@ -458,6 +458,8 @@ ${JSON.stringify(
 
 async function callModel(
     eventPackage,
+    batchNumber,
+    previousPosts = [],
     retryInstruction = ""
 ) {
 
@@ -516,6 +518,8 @@ async function callModel(
                                 content:
     buildUserPrompt(
         eventPackage,
+        batchNumber,
+        previousPosts,
         retryInstruction
     )
 
