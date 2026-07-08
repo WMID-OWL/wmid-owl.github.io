@@ -87,7 +87,12 @@ jobs:
         run: |
 
           node scripts/write-innanet-posts.mjs
+          
+      - name: Refresh Innanet generation queue
 
+        run: |
+
+          node scripts/build-innanet-context.mjs
 
 
       - name: Commit generated Innanet content
