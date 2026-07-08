@@ -1,504 +1,7 @@
 {
-  "generatedAt": "2026-07-08T08:17:38.478Z",
-  "pendingEventCount": 3,
+  "generatedAt": "2026-07-08T18:22:01.393Z",
+  "pendingEventCount": 2,
   "pendingEvents": [
-    {
-      "event": {
-        "id": "ascension-2026-07-01",
-        "name": "Ascension",
-        "brand": "Ascension",
-        "eventType": "weekly",
-        "date": "2026-07-01",
-        "location": "",
-        "tagline": ""
-      },
-      "rules": {
-        "canonBoundary": "Only structured database facts are canon. Analysis, opinion, jokes, criticism, and clearly labeled rumor are allowed. Do not invent matches, injuries, contracts, backstage incidents, title changes, alignments, or future booking as fact.",
-        "koMeaning": "In OWL, a recorded KO is rare and symbolically represents injury-level damage. Treat it as a major event without inventing a medical diagnosis or recovery timetable.",
-        "wrestlerPosting": "Wrestler posts should be occasional, not automatic. Use roster identity and actual results only. Do not make a wrestler announce unrecorded matches or storylines."
-      },
-      "matches": [
-        {
-          "order": 0,
-          "matchType": "Singles",
-          "stipulation": "",
-          "match": "Zee Allmighty vs. Dorian Atlas",
-          "sides": [
-            {
-              "label": "Zee Allmighty",
-              "wrestlers": [
-                "Zee Allmighty"
-              ]
-            },
-            {
-              "label": "Dorian Atlas",
-              "wrestlers": [
-                "Dorian Atlas"
-              ]
-            }
-          ],
-          "championship": "OWL World Championship",
-          "resultType": "win",
-          "winnerSide": "Zee Allmighty",
-          "finish": {
-            "winner": "Zee Allmighty",
-            "loser": "Dorian Atlas",
-            "method": "Pinfall"
-          },
-          "rating": 91,
-          "starRating": 4.5,
-          "matchTime": "",
-          "titleConsequence": "New champion: Zee Allmighty",
-          "specialtyResult": null
-        }
-      ],
-      "standoutFacts": {
-        "highestRatedMatch": {
-          "match": "Zee Allmighty vs. Dorian Atlas",
-          "rating": 91,
-          "stars": 4.5,
-          "winner": "Zee Allmighty"
-        },
-        "koFinishes": [],
-        "championshipMatches": [
-          {
-            "championship": "OWL World Championship",
-            "match": "Zee Allmighty vs. Dorian Atlas",
-            "winner": "Zee Allmighty",
-            "consequence": "New champion: Zee Allmighty"
-          }
-        ]
-      },
-      "wrestlerContext": [
-        {
-          "id": "zee-allmighty",
-          "name": "Zee Allmighty",
-          "brand": "Ascension",
-          "division": "Men",
-          "ytdRecord": {
-            "wins": 1,
-            "losses": 0,
-            "draws": 0,
-            "text": "1-0-0"
-          },
-          "currentMonthRecord": {
-            "wins": 1,
-            "losses": 0,
-            "draws": 0,
-            "text": "1-0-0"
-          },
-          "lastFive": {
-            "wins": 1,
-            "losses": 0,
-            "draws": 0,
-            "text": "1-0-0"
-          },
-          "streak": {
-            "type": "winning",
-            "count": 1,
-            "label": "1-match winning streak"
-          },
-          "currentTitles": [
-            "OWL World Championship"
-          ],
-          "recentTitleHistory": [
-            {
-              "championship": "OWL World Championship",
-              "wonDate": "2026-07-01",
-              "lostDate": "",
-              "defenses": 0
-            }
-          ],
-          "koRecord": {
-            "wins": 0,
-            "losses": 0
-          },
-          "monthlyHistory": [
-            {
-              "month": "2026-04",
-              "label": "April 2026",
-              "wins": 0,
-              "losses": 0,
-              "draws": 0,
-              "text": "0-0-0"
-            },
-            {
-              "month": "2026-05",
-              "label": "May 2026",
-              "wins": 0,
-              "losses": 0,
-              "draws": 0,
-              "text": "0-0-0"
-            },
-            {
-              "month": "2026-06",
-              "label": "June 2026",
-              "wins": 0,
-              "losses": 0,
-              "draws": 0,
-              "text": "0-0-0"
-            },
-            {
-              "month": "2026-07",
-              "label": "July 2026",
-              "wins": 1,
-              "losses": 0,
-              "draws": 0,
-              "text": "1-0-0"
-            }
-          ]
-        },
-        {
-          "id": "dorian-atlas",
-          "name": "Dorian Atlas",
-          "brand": "Revolt",
-          "division": "Men",
-          "ytdRecord": {
-            "wins": 0,
-            "losses": 1,
-            "draws": 0,
-            "text": "0-1-0"
-          },
-          "currentMonthRecord": {
-            "wins": 0,
-            "losses": 1,
-            "draws": 0,
-            "text": "0-1-0"
-          },
-          "lastFive": {
-            "wins": 0,
-            "losses": 1,
-            "draws": 0,
-            "text": "0-1-0"
-          },
-          "streak": {
-            "type": "losing",
-            "count": 1,
-            "label": "1-match losing streak"
-          },
-          "currentTitles": [],
-          "recentTitleHistory": [
-            {
-              "championship": "OWL World Championship",
-              "wonDate": "2026-06-01",
-              "lostDate": "2026-07-01",
-              "defenses": 0
-            }
-          ],
-          "koRecord": {
-            "wins": 0,
-            "losses": 0
-          },
-          "monthlyHistory": [
-            {
-              "month": "2026-04",
-              "label": "April 2026",
-              "wins": 0,
-              "losses": 0,
-              "draws": 0,
-              "text": "0-0-0"
-            },
-            {
-              "month": "2026-05",
-              "label": "May 2026",
-              "wins": 0,
-              "losses": 0,
-              "draws": 0,
-              "text": "0-0-0"
-            },
-            {
-              "month": "2026-06",
-              "label": "June 2026",
-              "wins": 0,
-              "losses": 0,
-              "draws": 0,
-              "text": "0-0-0"
-            },
-            {
-              "month": "2026-07",
-              "label": "July 2026",
-              "wins": 0,
-              "losses": 1,
-              "draws": 0,
-              "text": "0-1-0"
-            }
-          ]
-        }
-      ],
-      "teamContext": [],
-      "mediaMemory": {
-        "priorInnanetPosts": [],
-        "priorWwowArticles": []
-      },
-      "availableAccounts": [
-        {
-          "id": "assholefan32",
-          "accountName": "Asshole Fan 32",
-          "handle": "@assholefan32",
-          "archetype": "merciless hater",
-          "tone": "funny, blunt, disrespectful, meme-heavy",
-          "focus": [
-            "losing streaks",
-            "failed champions",
-            "bad performances",
-            "embarrassing reversals"
-          ],
-          "profanityLevel": "high",
-          "factDiscipline": "Can insult anyone and exaggerate opinions, but cannot invent results or backstage facts.",
-          "replyStyle": "short clapbacks and quote-post dunks",
-          "frequency": "frequent"
-        },
-        {
-          "id": "owlstats",
-          "accountName": "OWL Stats",
-          "handle": "@OWLStats",
-          "archetype": "statistics account",
-          "tone": "dry, precise, factual",
-          "focus": [
-            "records",
-            "streaks",
-            "ratings",
-            "title history",
-            "rare milestones"
-          ],
-          "profanityLevel": "none",
-          "factDiscipline": "Never invent a number. Only use numbers explicitly provided in the fact package.",
-          "replyStyle": "rare corrections with receipts",
-          "frequency": "frequent"
-        },
-        {
-          "id": "ascensionaddict",
-          "accountName": "Ascension Addict",
-          "handle": "@AscensionAddict",
-          "archetype": "Ascension superfan",
-          "tone": "excited, emotional, dramatic",
-          "focus": [
-            "Ascension wrestlers",
-            "big finishes",
-            "title races",
-            "brand pride"
-          ],
-          "profanityLevel": "medium",
-          "factDiscipline": "May be biased but cannot invent events.",
-          "replyStyle": "all caps excitement and defensive arguments",
-          "frequency": "frequent on Ascension, occasional elsewhere"
-        },
-        {
-          "id": "revoltburner",
-          "accountName": "Revolt Burner",
-          "handle": "@RevoltBurner",
-          "archetype": "Revolt tribalist",
-          "tone": "cocky, combative, sarcastic",
-          "focus": [
-            "Revolt supremacy",
-            "cross-brand comparisons",
-            "momentum",
-            "upsets"
-          ],
-          "profanityLevel": "medium",
-          "factDiscipline": "Can argue opinions aggressively but cannot invent results.",
-          "replyStyle": "quote-posts rival fan accounts",
-          "frequency": "frequent on Revolt, occasional elsewhere"
-        },
-        {
-          "id": "workratewonk",
-          "accountName": "Workrate Wonk",
-          "handle": "@WorkrateWonk",
-          "archetype": "match quality snob",
-          "tone": "analytical, smug, obsessive",
-          "focus": [
-            "match percentage",
-            "star ratings",
-            "match length",
-            "performance quality"
-          ],
-          "profanityLevel": "low",
-          "factDiscipline": "Only cite ratings and times from the fact package.",
-          "replyStyle": "longer arguments about quality versus booking",
-          "frequency": "regular"
-        },
-        {
-          "id": "oldschoolowl",
-          "accountName": "Old School OWL",
-          "handle": "@OldSchoolOWL",
-          "archetype": "old-head fan",
-          "tone": "grumpy, nostalgic, unintentionally funny",
-          "focus": [
-            "fundamentals",
-            "toughness",
-            "long matches",
-            "modern fan behavior"
-          ],
-          "profanityLevel": "low",
-          "factDiscipline": "Opinions can be cranky; facts must remain grounded.",
-          "replyStyle": "dismissive one-liners",
-          "frequency": "occasional"
-        },
-        {
-          "id": "bookthedamnmatch",
-          "accountName": "Book The Damn Match",
-          "handle": "@BookTheDamnMatch",
-          "archetype": "booking critic",
-          "tone": "impatient, sharp, skeptical",
-          "focus": [
-            "title opportunities",
-            "repeated losses",
-            "momentum",
-            "obvious future matchups"
-          ],
-          "profanityLevel": "medium",
-          "factDiscipline": "May demand hypothetical matches, but must phrase them as opinion or desire, never as announced fact.",
-          "replyStyle": "arguments with superfans",
-          "frequency": "regular"
-        },
-        {
-          "id": "ringsideriot",
-          "accountName": "Ringside Riot",
-          "handle": "@RingsideRiot",
-          "archetype": "meme reaction account",
-          "tone": "fast, chaotic, funny",
-          "focus": [
-            "shocking finishes",
-            "KOs",
-            "upsets",
-            "crowd-melting moments"
-          ],
-          "profanityLevel": "medium",
-          "factDiscipline": "Reaction can be exaggerated; event facts cannot be invented.",
-          "replyStyle": "memes, reaction language, short posts",
-          "frequency": "frequent"
-        },
-        {
-          "id": "grapevine",
-          "accountName": "The Grapevine",
-          "handle": "@TheGrapevine",
-          "archetype": "dirtsheet account",
-          "tone": "careful, suggestive, insider-ish",
-          "focus": [
-            "visible tension",
-            "title pictures",
-            "momentum",
-            "fan reaction"
-          ],
-          "profanityLevel": "none",
-          "factDiscipline": "Any non-database claim must be explicitly labeled rumor, speculation, or a question. Never invent contracts, injuries, firings, signings, or backstage incidents.",
-          "replyStyle": "clarifications and cautious follow-ups",
-          "frequency": "occasional"
-        },
-        {
-          "id": "tagteamtruther",
-          "accountName": "Tag Team Truther",
-          "handle": "@TagTeamTruther",
-          "archetype": "tag wrestling specialist",
-          "tone": "passionate, nerdy, territorial",
-          "focus": [
-            "official teams",
-            "team streaks",
-            "tag titles",
-            "team chemistry"
-          ],
-          "profanityLevel": "low",
-          "factDiscipline": "Only discuss official teams and recorded team results as facts.",
-          "replyStyle": "threads and rankings arguments",
-          "frequency": "regular when tag matches occur"
-        },
-        {
-          "id": "womenswrestlingwatch",
-          "accountName": "Women's Wrestling Watch",
-          "handle": "@WomensWrestlingWatch",
-          "archetype": "women's division analyst",
-          "tone": "informed, enthusiastic, critical when needed",
-          "focus": [
-            "women's divisions",
-            "title races",
-            "streaks",
-            "underrated performances"
-          ],
-          "profanityLevel": "low",
-          "factDiscipline": "Analysis must be grounded in actual results and records.",
-          "replyStyle": "thoughtful replies and receipts",
-          "frequency": "regular"
-        },
-        {
-          "id": "casualfan87",
-          "accountName": "Casual Fan 87",
-          "handle": "@CasualFan87",
-          "archetype": "casual viewer",
-          "tone": "confused, sincere, occasionally hilarious",
-          "focus": [
-            "big stars",
-            "champions",
-            "KOs",
-            "simple reactions"
-          ],
-          "profanityLevel": "low",
-          "factDiscipline": "May misunderstand implications but cannot invent what happened.",
-          "replyStyle": "questions and accidental comedy",
-          "frequency": "occasional"
-        },
-        {
-          "id": "kayfabekilla",
-          "accountName": "Kayfabe Killa",
-          "handle": "@KayfabeKilla",
-          "archetype": "troll account",
-          "tone": "provocative, unserious, shameless",
-          "focus": [
-            "bait",
-            "contrarian takes",
-            "rival fanbases",
-            "overreactions"
-          ],
-          "profanityLevel": "medium",
-          "factDiscipline": "Can troll with opinions but cannot fabricate factual events.",
-          "replyStyle": "bait replies and ratio attempts",
-          "frequency": "regular"
-        },
-        {
-          "id": "owlnewsdesk",
-          "accountName": "OWL News Desk",
-          "handle": "@OWLNewsDesk",
-          "archetype": "straight news account",
-          "tone": "clean, concise, journalistic",
-          "focus": [
-            "results",
-            "title changes",
-            "KOs",
-            "event summaries"
-          ],
-          "profanityLevel": "none",
-          "factDiscipline": "Strict facts only. No rumors or invented quotes.",
-          "replyStyle": "rare factual updates",
-          "frequency": "regular"
-        }
-      ],
-      "entityDirectory": {
-        "wrestlers": {
-          "zee-allmighty": "Zee Allmighty",
-          "dorian-atlas": "Dorian Atlas",
-          "levi-martin": "Levi Martín",
-          "connor-canada": "Connor Canada",
-          "shayna-baszler": "Shayna Baszler",
-          "marina-shafir": "Marina Shafir",
-          "jordynne-grace": "Jordynne Grace"
-        },
-        "teams": {
-          "true-north-elite": "True North Elite",
-          "pwo": "PWO"
-        },
-        "championships": {
-          "owl-world-championship": "OWL World Championship",
-          "owl-womens-world-championship": "OWL Women's World Championship",
-          "ascension-championship": "Ascension Championship",
-          "womens-ascension-championship": "Women's Ascension Championship",
-          "owl-heavyweight-championship": "OWL Heavyweight Championship",
-          "owl-womens-heavyweight-championship": "OWL Women's Heavyweight Championship",
-          "revolt-championship": "Revolt Championship",
-          "womens-revolt-championship": "Women's Revolt Championship",
-          "twin-talon-tag-team-championship": "Twin Talon Tag Team Championship",
-          "womens-twin-talon-tag-team-championship": "Women's Twin Talon Tag Team Championship"
-        }
-      }
-    },
     {
       "event": {
         "id": "ascension-2026-07-08",
@@ -935,7 +438,92 @@
         }
       ],
       "mediaMemory": {
-        "priorInnanetPosts": [],
+        "priorInnanetPosts": [
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@OWLStats",
+            "type": "stats-post",
+            "body": "Zee Allmighty's victory over Dorian Atlas at Ascension marks a critical title change! Zee is now the OWL World Champion with a perfect record of 1-0-0. #OWLStats #Championship"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@assholefan32",
+            "type": "fan-post",
+            "body": "Dorian Atlas just proved he's not cut out for the big leagues. Losing the OWL World Championship right after winning it? Classic choke job! 😂 #ForeverAJobber #DisappointedFan"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@AscensionAddict",
+            "type": "fan-post",
+            "body": "**ZEE ALLMIGHTY IS THE CHAMPION!**🎉 This guy is going to dominate Ascension, mark my words! The energy was electric tonight! #AscensionPride #NewChampion"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@OWLNewsDesk",
+            "type": "news-report",
+            "body": "🚨BREAKING: Zee Allmighty has officially won the OWL World Championship after pinning Dorian Atlas at Ascension! This marks a new era in OWL with a fresh champion! #OWLEra #NewChampion"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@WorkrateWonk",
+            "type": "opinion",
+            "body": "The match between Zee Allmighty and Dorian Atlas was rated 91, but I can't help but feel it was more about Atlas's decline than Allmighty's rise. Was it really that great? 🤔 #WorkrateMatters #JustSaying"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@TheGrapevine",
+            "type": "rumor",
+            "body": "Hearing some whispers that the pressure on Dorian Atlas is mounting after this shocking loss. Could we see him reassess his strategy moving forward? 🤔 #Speculation #DorianAtlasReturn"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@OWLStats",
+            "type": "stats-post",
+            "body": "Zee Allmighty's title win at Ascension brings his career record to 1-0-0 and makes him the current OWL World Champion. This is the start of a potential new dynasty! #OWLStats #Championship"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@TheGrapevine",
+            "type": "rumor",
+            "body": "Hearing whispers that Dorian Atlas is contemplating a major change post-title loss. Could he reinvent himself or is this the last we see of him in the main event scene? 🤔 #Speculation #DorianAtlasFuture"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@OWLNewsDesk",
+            "type": "news-report",
+            "body": "🚨ZEE ALLMIGHTY has officially dethroned Dorian Atlas to become the OWL World Champion! His title win marks a new chapter in the OWL saga. What's next for both men? #OWLNews #NewChampion"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@TheGrapevine",
+            "type": "rumor",
+            "body": "I’m hearing that there’s serious talk about Dorian Atlas possibly taking some time off after this devastating loss. Could he be looking to regroup and rethink his whole strategy? 🤔 #Speculation #DorianFuture"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@WorkrateWonk",
+            "type": "opinion",
+            "body": "The match with Zee Allmighty vs. Dorian Atlas got a rating of 91 and is being hyped everywhere, but let's be real: it's more about Atlas's downfall than Allmighty's skills. How did we get here? 🤷‍♂️ #MatchQualityMatters"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@AscensionAddict",
+            "type": "fan-post",
+            "body": "ZEE ALLMIGHTY IS A LEGEND IN THE MAKING! 🙌🏆 He took down Dorian like it was nothing! Who’s ready for his reign? This is JUST the beginning! #AllmightyEra #ChampionsRise"
+          }
+        ],
         "priorWwowArticles": []
       },
       "availableAccounts": [
@@ -1507,7 +1095,92 @@
       ],
       "teamContext": [],
       "mediaMemory": {
-        "priorInnanetPosts": [],
+        "priorInnanetPosts": [
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@OWLStats",
+            "type": "stats-post",
+            "body": "Zee Allmighty's victory over Dorian Atlas at Ascension marks a critical title change! Zee is now the OWL World Champion with a perfect record of 1-0-0. #OWLStats #Championship"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@assholefan32",
+            "type": "fan-post",
+            "body": "Dorian Atlas just proved he's not cut out for the big leagues. Losing the OWL World Championship right after winning it? Classic choke job! 😂 #ForeverAJobber #DisappointedFan"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@AscensionAddict",
+            "type": "fan-post",
+            "body": "**ZEE ALLMIGHTY IS THE CHAMPION!**🎉 This guy is going to dominate Ascension, mark my words! The energy was electric tonight! #AscensionPride #NewChampion"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@OWLNewsDesk",
+            "type": "news-report",
+            "body": "🚨BREAKING: Zee Allmighty has officially won the OWL World Championship after pinning Dorian Atlas at Ascension! This marks a new era in OWL with a fresh champion! #OWLEra #NewChampion"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@WorkrateWonk",
+            "type": "opinion",
+            "body": "The match between Zee Allmighty and Dorian Atlas was rated 91, but I can't help but feel it was more about Atlas's decline than Allmighty's rise. Was it really that great? 🤔 #WorkrateMatters #JustSaying"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@TheGrapevine",
+            "type": "rumor",
+            "body": "Hearing some whispers that the pressure on Dorian Atlas is mounting after this shocking loss. Could we see him reassess his strategy moving forward? 🤔 #Speculation #DorianAtlasReturn"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@OWLStats",
+            "type": "stats-post",
+            "body": "Zee Allmighty's title win at Ascension brings his career record to 1-0-0 and makes him the current OWL World Champion. This is the start of a potential new dynasty! #OWLStats #Championship"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@TheGrapevine",
+            "type": "rumor",
+            "body": "Hearing whispers that Dorian Atlas is contemplating a major change post-title loss. Could he reinvent himself or is this the last we see of him in the main event scene? 🤔 #Speculation #DorianAtlasFuture"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@OWLNewsDesk",
+            "type": "news-report",
+            "body": "🚨ZEE ALLMIGHTY has officially dethroned Dorian Atlas to become the OWL World Champion! His title win marks a new chapter in the OWL saga. What's next for both men? #OWLNews #NewChampion"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@TheGrapevine",
+            "type": "rumor",
+            "body": "I’m hearing that there’s serious talk about Dorian Atlas possibly taking some time off after this devastating loss. Could he be looking to regroup and rethink his whole strategy? 🤔 #Speculation #DorianFuture"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@WorkrateWonk",
+            "type": "opinion",
+            "body": "The match with Zee Allmighty vs. Dorian Atlas got a rating of 91 and is being hyped everywhere, but let's be real: it's more about Atlas's downfall than Allmighty's skills. How did we get here? 🤷‍♂️ #MatchQualityMatters"
+          },
+          {
+            "eventName": "Ascension",
+            "date": "2026-07-01",
+            "handle": "@AscensionAddict",
+            "type": "fan-post",
+            "body": "ZEE ALLMIGHTY IS A LEGEND IN THE MAKING! 🙌🏆 He took down Dorian like it was nothing! Who’s ready for his reign? This is JUST the beginning! #AllmightyEra #ChampionsRise"
+          }
+        ],
         "priorWwowArticles": []
       },
       "availableAccounts": [
