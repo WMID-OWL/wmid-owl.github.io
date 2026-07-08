@@ -1341,3 +1341,152 @@
         rgba(198, 161, 91, 0.7);
 
 }
+/* =================================
+   COMMENTARY TEAM
+================================= */
+
+
+.event-commentary-team {
+
+    margin-top:
+        18px;
+
+    padding:
+
+        14px
+        16px;
+
+    border-left:
+
+        3px solid
+        #c9a45c;
+
+    background:
+
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
+
+}
+
+
+.event-commentary-label {
+
+    display:
+        block;
+
+    margin-bottom:
+        9px;
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+.event-commentary-people {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+    flex-wrap:
+        wrap;
+
+}
+
+
+.event-commentator {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        3px;
+
+}
+
+
+.event-commentator strong {
+
+    color:
+        #ffffff;
+
+    font-size:
+        0.95rem;
+
+}
+
+
+.event-commentator span {
+
+    color:
+        #919896;
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        700;
+
+}
+
+
+.event-commentator-divider {
+
+    color:
+        #5f6664;
+
+    font-weight:
+        900;
+
+}
+
+
+@media (
+    max-width:
+        600px
+) {
+
+    .event-commentary-people {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            10px;
+
+    }
+
+
+    .event-commentator-divider {
+
+        display:
+            none;
+
+    }
+
+}
