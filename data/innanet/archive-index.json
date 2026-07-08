@@ -1,3 +1,11 @@
 {
-  "months": []
+  "months": [
+    {
+      "id": "2026-07",
+      "label": "July 2026",
+      "file": "data/innanet/2026-07.json",
+      "showCount": 1,
+      "postCount": 13
+    }
+  ]
 }
