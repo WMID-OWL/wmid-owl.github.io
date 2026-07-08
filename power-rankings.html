@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+
+    <title>
+        Power Rankings | OWL Wrestling
+    </title>
+
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="css/power-rankings.css?v=1"
+    >
+
+</head>
+
+
+
+<body class="power-page-body">
+
+
+<header class="power-site-header">
+
+
+    <a
+        href="index.html"
+        class="power-site-brand"
+    >
+
+        <strong>
+            OWL
+        </strong>
+
+        <span>
+            Power Rankings
+        </span>
+
+    </a>
+
+
+
+    <nav
+        class="power-site-nav"
+        aria-label="Main navigation"
+    >
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="roster.html">
+            Roster
+        </a>
+
+        <a href="champions.html">
+            Champions
+        </a>
+
+        <a href="events.html">
+            Events
+        </a>
+
+        <a
+            href="power-rankings.html"
+            class="active"
+        >
+            Power Rankings
+        </a>
+
+        <a href="records.html">
+            Records
+        </a>
+
+    </nav>
+
+
+</header>
+
+
+
+<main class="power-rankings-page">
+
+
+    <!-- =================================
+         HERO
+    ================================== -->
+
+
+    <section class="power-hero">
+
+
+        <p class="power-eyebrow">
+
+            OWL COMPETITIVE INDEX
+
+        </p>
+
+
+        <div>
+
+
+            <h1>
+
+                POWER
+                RANKINGS
+
+            </h1>
+
+
+            <p class="power-hero-copy">
+
+                Who is rising.
+                Who is falling.
+                Who is running OWL right now.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="power-update-card">
+
+
+            <span>
+
+                UPDATED AFTER
+
+            </span>
+
+
+            <strong id="power-updated-event">
+
+                —
+
+            </strong>
+
+
+            <small id="power-updated-date">
+
+                —
+
+            </small>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         FILTERS
+    ================================== -->
+
+
+    <section
+        class="power-controls"
+        aria-label="Ranking filters"
+    >
+
+
+        <!-- TIMEFRAME -->
+
+
+        <div class="power-control-group">
+
+
+            <span class="power-control-label">
+
+                TIMEFRAME
+
+            </span>
+
+
+            <div class="power-button-row">
+
+
+                <button
+                    type="button"
+                    class="power-filter-button active"
+                    data-power-scope="month"
+                >
+
+                    Current Month
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="power-filter-button"
+                    data-power-scope="ytd"
+                >
+
+                    Year-to-Date
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- DIVISION -->
+
+
+        <div class="power-control-group">
+
+
+            <span class="power-control-label">
+
+                DIVISION
+
+            </span>
+
+
+            <div class="power-button-row power-division-row">
+
+
+                <button
+                    type="button"
+                    class="power-filter-button active"
+                    data-power-division="men-singles"
+                >
+
+                    Men's Singles
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="power-filter-button"
+                    data-power-division="women-singles"
+                >
+
+                    Women's Singles
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="power-filter-button"
+                    data-power-division="men-tags"
+                >
+
+                    Men's Tag Teams
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="power-filter-button"
+                    data-power-division="women-tags"
+                >
+
+                    Women's Tag Teams
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <p
+            id="power-scope-copy"
+            class="power-scope-copy"
+        >
+
+            —
+
+        </p>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         LOADING STATE
+    ================================== -->
+
+
+    <section
+        id="power-loading"
+        class="power-state-card"
+    >
+
+
+        <strong>
+
+            CALCULATING POWER RANKINGS...
+
+        </strong>
+
+
+        <span>
+
+            Reviewing results, momentum, opponent strength,
+            titles, and specialty performances.
+
+        </span>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         EMPTY STATE
+    ================================== -->
+
+
+    <section
+        id="power-empty-state"
+        class="power-state-card"
+        hidden
+    >
+
+
+        <strong>
+
+            NO COMPLETED RESULTS YET
+
+        </strong>
+
+
+        <span>
+
+            The first rankings will appear after
+            completed matches are saved.
+
+        </span>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         ERROR STATE
+    ================================== -->
+
+
+    <section
+        id="power-error-state"
+        class="power-state-card power-state-error"
+        hidden
+    >
+
+
+        <strong>
+
+            POWER RANKINGS COULD NOT LOAD
+
+        </strong>
+
+
+        <span id="power-error-copy">
+
+            The rankings could not be calculated.
+
+        </span>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         RANKINGS
+    ================================== -->
+
+
+    <section
+        id="power-content"
+        class="power-rankings-grid"
+        hidden
+    >
+
+
+        <!-- TOP -->
+
+
+        <article class="power-table-card power-top-card">
+
+
+            <div class="power-table-heading">
+
+
+                <span>
+
+                    THE HOT LIST
+
+                </span>
+
+
+                <h2 id="power-top-title">
+
+                    POWER 10
+
+                </h2>
+
+
+            </div>
+
+
+            <div
+                id="power-top-list"
+                class="power-ranking-list"
+            >
+            </div>
+
+
+        </article>
+
+
+
+        <!-- BOTTOM -->
+
+
+        <article class="power-table-card power-bottom-card">
+
+
+            <div class="power-table-heading">
+
+
+                <span>
+
+                    THE DANGER ZONE
+
+                </span>
+
+
+                <h2 id="power-bottom-title">
+
+                    BOTTOM 10
+
+                </h2>
+
+
+            </div>
+
+
+            <div
+                id="power-bottom-list"
+                class="power-ranking-list"
+            >
+            </div>
+
+
+        </article>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         LEGEND
+    ================================== -->
+
+
+    <section class="power-legend">
+
+
+        <span>
+
+            <strong class="legend-up">
+                ▲
+            </strong>
+
+            Moved Up
+
+        </span>
+
+
+        <span>
+
+            <strong class="legend-down">
+                ▼
+            </strong>
+
+            Moved Down
+
+        </span>
+
+
+        <span>
+
+            <strong>
+                —
+            </strong>
+
+            Stayed Put
+
+        </span>
+
+
+        <span>
+
+            <strong>
+                NEW
+            </strong>
+
+            First Ranked Appearance
+
+        </span>
+
+
+    </section>
+
+
+</main>
+
+
+
+<footer class="power-site-footer">
+
+
+    <strong>
+
+        OWL Wrestling
+
+    </strong>
+
+
+    <span>
+
+        Power is earned.
+        Position is temporary.
+
+    </span>
+
+
+</footer>
+
+
+
+<script src="js/power-rankings.js?v=1"></script>
+
+
+</body>
+
+</html>
