@@ -192,8 +192,6 @@ const CR_RESULTS_METHODS = [
 
     "Over the Top Rope",
 
-    "Referee Stoppage",
-
     "Other"
 
 ];
