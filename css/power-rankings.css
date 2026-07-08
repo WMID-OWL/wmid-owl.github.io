@@ -1086,7 +1086,18 @@
 .movement-new {
 
     color:
-        #c9a45c;
+        #ffd66b;
+
+    text-shadow:
+
+        0 0 10px
+
+        rgba(
+            255,
+            214,
+            107,
+            0.35
+        );
 
 }
 
