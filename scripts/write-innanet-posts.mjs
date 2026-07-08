@@ -1465,74 +1465,235 @@ for (
     );
 
 
-    let result =
-    await callModel(
-        eventPackage
-    );
-
-
-let returnedPostCount =
-
-    Array.isArray(
-        result?.posts
-    )
-
-        ? result.posts.length
-
-        : 0;
+    const posts =
+    [];
 
 
 
 // =================================
-// RETRY INCOMPLETE BATCH
+// GENERATE FOUR SMALL BATCHES
 // =================================
 
 
-if (
-    returnedPostCount < 18
+for (
+    let batchNumber = 1;
+
+    batchNumber <= 4;
+
+    batchNumber += 1
 ) {
+
 
     console.log(
 
-        `Model returned only ${returnedPostCount} posts. Retrying with corrective instructions...`
+        `Generating batch ${batchNumber} of 4...`
 
     );
 
 
-    result =
-        await callModel(
+    let result;
 
-            eventPackage,
 
-            `IMPORTANT CORRECTION:
+    try {
 
-Your previous attempt returned only ${returnedPostCount} posts.
 
-That response was rejected.
+        result =
+            await callModel(
 
-Generate a completely new response containing EXACTLY 20 complete posts.
+                eventPackage,
 
-Do not abbreviate the array.
-Do not stop early.
-Do not explain anything outside the JSON.`
+                batchNumber,
+
+                posts
+
+            );
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        console.log(
+
+            `Batch ${batchNumber} returned malformed JSON. Retrying once...`
 
         );
 
 
-    returnedPostCount =
+        result =
+            await callModel(
+
+                eventPackage,
+
+                batchNumber,
+
+                posts,
+
+                `IMPORTANT CORRECTION:
+
+The previous response was malformed or incomplete JSON.
+
+Return one valid JSON object only.
+
+The object must contain exactly 5 complete post objects.
+
+Do not include markdown fences.
+Do not include explanations.
+Do not leave any string or object unfinished.`
+
+            );
+
+    }
+
+
+
+    let batchPosts =
 
         Array.isArray(
             result?.posts
         )
 
-            ? result.posts.length
+            ? result.posts
 
-            : 0;
+            : [];
+
+
+
+    // =================================
+    // RETRY SHORT BATCH
+    // =================================
+
+
+    if (
+        batchPosts.length < 5
+    ) {
+
+
+        console.log(
+
+            `Batch ${batchNumber} returned only ${batchPosts.length} posts. Retrying...`
+
+        );
+
+
+        result =
+            await callModel(
+
+                eventPackage,
+
+                batchNumber,
+
+                posts,
+
+                `IMPORTANT CORRECTION:
+
+Your previous response contained only ${batchPosts.length} posts.
+
+Return exactly 5 complete post objects.
+
+Do not stop early.
+Do not explain anything outside the JSON.`
+
+            );
+
+
+        batchPosts =
+
+            Array.isArray(
+                result?.posts
+            )
+
+                ? result.posts
+
+                : [];
+
+    }
+
+
+
+    if (
+        batchPosts.length < 5
+    ) {
+
+
+        throw new Error(
+
+            `Batch ${batchNumber} returned only ${batchPosts.length} posts after retry.`
+
+        );
+
+    }
+
+
+
+    // =================================
+    // GIVE BATCH UNIQUE POST IDS
+    // =================================
+
+
+    batchPosts =
+        batchPosts
+
+            .slice(
+                0,
+                5
+            )
+
+            .map(
+
+                (
+                    post,
+                    index
+                ) => ({
+
+
+                    ...post,
+
+
+                    postId:
+
+                        `p${String(
+
+                            (
+                                (
+                                    batchNumber - 1
+                                )
+
+                                *
+
+                                5
+                            )
+
+                            +
+
+                            index
+
+                            +
+
+                            1
+
+                        ).padStart(
+                            2,
+                            "0"
+                        )}`
+
+                })
+
+            );
+
+
+
+    posts.push(
+        ...batchPosts
+    );
 
 
     console.log(
 
-        `Retry returned ${returnedPostCount} posts.`
+        `Batch ${batchNumber} complete. Total raw posts: ${posts.length}.`
 
     );
 
@@ -1540,10 +1701,19 @@ Do not explain anything outside the JSON.`
 
 
 
-const posts =
+// =================================
+// VALIDATE FULL 20-POST FEED
+// =================================
+
+
+const validatedPosts =
     validatePosts(
 
-        result,
+        {
+
+            posts
+
+        },
 
         eventPackage
 
