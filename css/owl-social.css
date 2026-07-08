@@ -1,0 +1,1190 @@
+/* =================================
+   OWL SOCIAL
+================================= */
+
+
+.social-hub-page,
+.social-app-page {
+
+    width:
+
+        min(
+            1380px,
+            calc(
+                100% - 32px
+            )
+        );
+
+    margin:
+        0 auto;
+
+    padding:
+
+        48px
+        0
+        80px;
+
+}
+
+
+
+/* =================================
+   OWL SOCIAL HERO
+================================= */
+
+
+.social-hub-hero {
+
+    padding:
+
+        clamp(
+            32px,
+            6vw,
+            72px
+        );
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+
+        radial-gradient(
+
+            circle at 85% 20%,
+
+            rgba(
+                201,
+                164,
+                92,
+                0.12
+            ),
+
+            transparent 30%
+
+        ),
+
+        linear-gradient(
+
+            135deg,
+
+            #15191a,
+
+            #0e1112
+
+        );
+
+}
+
+
+.social-hub-hero h1 {
+
+    margin:
+
+        8px
+        0
+        0;
+
+    font-size:
+
+        clamp(
+            3.5rem,
+            9vw,
+            8rem
+        );
+
+    line-height:
+        0.9;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+.social-hub-intro {
+
+    max-width:
+        720px;
+
+    margin:
+
+        24px
+        0
+        0;
+
+    color:
+        #b7bcba;
+
+    font-size:
+
+        clamp(
+            1.05rem,
+            2vw,
+            1.4rem
+        );
+
+}
+
+
+
+/* =================================
+   DESTINATION CARDS
+================================= */
+
+
+.social-destination-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        24px;
+
+    margin-top:
+        24px;
+
+}
+
+
+.social-destination-card {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    min-height:
+        470px;
+
+    padding:
+
+        clamp(
+            26px,
+            4vw,
+            48px
+        );
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+}
+
+
+.innanet-card {
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(
+                75,
+                104,
+                154,
+                0.17
+            ),
+
+            transparent 45%
+
+        ),
+
+        #121617;
+
+}
+
+
+.wwow-card {
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(
+                201,
+                164,
+                92,
+                0.15
+            ),
+
+            transparent 45%
+
+        ),
+
+        #121617;
+
+}
+
+
+.social-destination-topline {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        16px;
+
+}
+
+
+.social-destination-tag,
+.social-destination-status {
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.social-destination-tag {
+
+    color:
+        #c9a45c;
+
+}
+
+
+.social-destination-status {
+
+    color:
+        #7f8785;
+
+}
+
+
+.social-destination-card h2 {
+
+    margin:
+
+        30px
+        0
+        0;
+
+    font-size:
+
+        clamp(
+            2.2rem,
+            4vw,
+            4.1rem
+        );
+
+    line-height:
+        0.98;
+
+}
+
+
+.social-destination-card p {
+
+    max-width:
+        620px;
+
+    margin:
+
+        20px
+        0
+        0;
+
+    color:
+        #aeb4b2;
+
+    font-size:
+        1.02rem;
+
+    line-height:
+        1.7;
+
+}
+
+
+.social-destination-features {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        8px;
+
+    margin:
+
+        24px
+        0
+        32px;
+
+}
+
+
+.social-destination-features span {
+
+    padding:
+        7px 10px;
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    color:
+        #b9bfbd;
+
+    font-size:
+        0.7rem;
+
+    font-weight:
+        800;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.05em;
+
+}
+
+
+.social-destination-card .button {
+
+    align-self:
+        flex-start;
+
+    margin-top:
+        auto;
+
+}
+
+
+
+/* =================================
+   MEMORY SECTION
+================================= */
+
+
+.social-memory-section {
+
+    margin-top:
+        24px;
+
+    padding:
+
+        clamp(
+            28px,
+            5vw,
+            56px
+        );
+
+    border-left:
+
+        4px solid
+        #c9a45c;
+
+    background:
+        #111516;
+
+}
+
+
+.social-memory-section h2 {
+
+    max-width:
+        850px;
+
+    margin:
+
+        8px
+        0
+        0;
+
+    font-size:
+
+        clamp(
+            1.8rem,
+            4vw,
+            3.5rem
+        );
+
+}
+
+
+.social-memory-section p:last-child {
+
+    max-width:
+        850px;
+
+    margin:
+
+        18px
+        0
+        0;
+
+    color:
+        #aab0ae;
+
+    line-height:
+        1.75;
+
+}
+
+
+
+/* =================================
+   SHARED APP HERO
+================================= */
+
+
+.social-app-hero {
+
+    padding:
+
+        clamp(
+            30px,
+            5vw,
+            58px
+        );
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        #111516;
+
+}
+
+
+.social-app-hero h1 {
+
+    margin:
+
+        8px
+        0
+        0;
+
+    font-size:
+
+        clamp(
+            3rem,
+            8vw,
+            7rem
+        );
+
+    line-height:
+        0.9;
+
+}
+
+
+.social-app-intro {
+
+    max-width:
+        760px;
+
+    margin:
+
+        20px
+        0
+        0;
+
+    color:
+        #aeb4b2;
+
+    font-size:
+        1.05rem;
+
+}
+
+
+
+/* =================================
+   SOCIAL SECTION
+================================= */
+
+
+.social-content-section {
+
+    margin-top:
+        24px;
+
+    padding:
+
+        clamp(
+            22px,
+            4vw,
+            40px
+        );
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        #111516;
+
+}
+
+
+.social-section-heading {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        end;
+
+    gap:
+        20px;
+
+    margin-bottom:
+        24px;
+
+}
+
+
+.social-section-heading h2 {
+
+    margin:
+
+        5px
+        0
+        0;
+
+}
+
+
+
+/* =================================
+   INNANET FEED
+================================= */
+
+
+.innanet-feed {
+
+    display:
+        grid;
+
+    gap:
+        18px;
+
+}
+
+
+.innanet-event-group {
+
+    display:
+        grid;
+
+    gap:
+        12px;
+
+}
+
+
+.innanet-event-heading {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        18px;
+
+    padding:
+
+        14px
+        16px;
+
+    background:
+
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
+
+    border-left:
+
+        3px solid
+        #c9a45c;
+
+}
+
+
+.innanet-event-heading strong {
+
+    color:
+        #ffffff;
+
+}
+
+
+.innanet-event-heading span {
+
+    color:
+        #8f9694;
+
+    font-size:
+        0.8rem;
+
+}
+
+
+.innanet-post {
+
+    padding:
+        20px;
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    background:
+        #0f1314;
+
+}
+
+
+.innanet-post-header {
+
+    display:
+        flex;
+
+    align-items:
+        baseline;
+
+    gap:
+        8px;
+
+    flex-wrap:
+        wrap;
+
+}
+
+
+.innanet-post-name {
+
+    color:
+        #ffffff;
+
+    font-weight:
+        900;
+
+}
+
+
+.innanet-post-handle {
+
+    color:
+        #77807d;
+
+    font-size:
+        0.82rem;
+
+}
+
+
+.innanet-post-role {
+
+    margin-left:
+        auto;
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.innanet-post-body {
+
+    margin:
+
+        15px
+        0
+        0;
+
+    color:
+        #d9dcdb;
+
+    line-height:
+        1.6;
+
+    white-space:
+        pre-wrap;
+
+}
+
+
+.innanet-post-stats {
+
+    display:
+        flex;
+
+    gap:
+        20px;
+
+    margin-top:
+        16px;
+
+    color:
+        #7f8785;
+
+    font-size:
+        0.76rem;
+
+}
+
+
+
+/* =================================
+   WWOW ISSUE
+================================= */
+
+
+.wwow-cover {
+
+    padding:
+
+        clamp(
+            28px,
+            5vw,
+            56px
+        );
+
+    border:
+
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.28
+        );
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(
+                201,
+                164,
+                92,
+                0.14
+            ),
+
+            transparent 50%
+
+        ),
+
+        #0f1314;
+
+}
+
+
+.wwow-cover-meta {
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.wwow-cover h2 {
+
+    max-width:
+        1000px;
+
+    margin:
+
+        18px
+        0
+        0;
+
+    font-size:
+
+        clamp(
+            2.4rem,
+            6vw,
+            5.5rem
+        );
+
+    line-height:
+        0.95;
+
+}
+
+
+.wwow-cover p {
+
+    max-width:
+        800px;
+
+    color:
+        #aeb4b2;
+
+    font-size:
+        1.05rem;
+
+    line-height:
+        1.7;
+
+}
+
+
+.wwow-article-section {
+
+    padding:
+
+        30px
+        0;
+
+    border-bottom:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+.wwow-article-section:last-child {
+
+    border-bottom:
+        0;
+
+}
+
+
+.wwow-article-kicker {
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.7rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.wwow-article-section h3 {
+
+    margin:
+
+        8px
+        0
+        0;
+
+    font-size:
+
+        clamp(
+            1.6rem,
+            3vw,
+            2.7rem
+        );
+
+}
+
+
+.wwow-article-section p {
+
+    max-width:
+        900px;
+
+    color:
+        #b5bab8;
+
+    line-height:
+        1.8;
+
+}
+
+
+
+/* =================================
+   ARCHIVE
+================================= */
+
+
+.social-archive-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            auto-fill,
+            minmax(
+                210px,
+                1fr
+            )
+        );
+
+    gap:
+        12px;
+
+}
+
+
+.social-archive-link {
+
+    display:
+        block;
+
+    padding:
+        18px;
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        #0f1314;
+
+    color:
+        #ffffff;
+
+    text-decoration:
+        none;
+
+}
+
+
+.social-archive-link:hover {
+
+    border-color:
+        #c9a45c;
+
+}
+
+
+.social-archive-link strong,
+.social-archive-link span {
+
+    display:
+        block;
+
+}
+
+
+.social-archive-link span {
+
+    margin-top:
+        6px;
+
+    color:
+        #858d8b;
+
+    font-size:
+        0.75rem;
+
+}
+
+
+.social-empty-state {
+
+    padding:
+        28px;
+
+    color:
+        #8e9694;
+
+    text-align:
+        center;
+
+    border:
+
+        1px dashed
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+
+}
+
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        900px
+) {
+
+    .social-destination-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        650px
+) {
+
+    .social-hub-page,
+    .social-app-page {
+
+        width:
+            calc(
+                100% - 20px
+            );
+
+        padding-top:
+            20px;
+
+    }
+
+
+    .social-section-heading {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .innanet-event-heading {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .innanet-post-role {
+
+        width:
+            100%;
+
+        margin-left:
+            0;
+
+    }
+
+}
