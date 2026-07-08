@@ -400,10 +400,21 @@ replyTo must be empty or match another postId in the same response.
 
 
 function buildUserPrompt(
-    eventPackage
+    eventPackage,
+    retryInstruction = ""
 ) {
 
     return `Generate The Innanet conversation for this completed OWL event.
+
+You must return EXACTLY 20 posts.
+
+Do not summarize the event instead of completing the post array.
+
+Do not stop after 5, 6, or 10 posts.
+
+The final JSON must contain 20 complete post objects.
+
+${retryInstruction}
 
 EVENT FACT PACKAGE:
 
