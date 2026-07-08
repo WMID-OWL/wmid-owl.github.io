@@ -1721,13 +1721,13 @@ const validatedPosts =
 
 
     const summary =
-        await saveEventToMonth(
+    await saveEventToMonth(
 
-            eventPackage,
+        eventPackage,
 
-            posts
+        validatedPosts
 
-        );
+    );
 
 
     monthSummaries.push(
@@ -1737,9 +1737,9 @@ const validatedPosts =
 
     console.log(
 
-        `Saved ${posts.length} posts for ${eventPackage.event.name}.`
+    `Saved ${validatedPosts.length} posts for ${eventPackage.event.name}.`
 
-    );
+);
 
 }
 
