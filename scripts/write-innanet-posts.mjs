@@ -1436,20 +1436,89 @@ for (
     );
 
 
-    const result =
+    let result =
+    await callModel(
+        eventPackage
+    );
+
+
+let returnedPostCount =
+
+    Array.isArray(
+        result?.posts
+    )
+
+        ? result.posts.length
+
+        : 0;
+
+
+
+// =================================
+// RETRY INCOMPLETE BATCH
+// =================================
+
+
+if (
+    returnedPostCount < 18
+) {
+
+    console.log(
+
+        `Model returned only ${returnedPostCount} posts. Retrying with corrective instructions...`
+
+    );
+
+
+    result =
         await callModel(
-            eventPackage
+
+            eventPackage,
+
+            `IMPORTANT CORRECTION:
+
+Your previous attempt returned only ${returnedPostCount} posts.
+
+That response was rejected.
+
+Generate a completely new response containing EXACTLY 20 complete posts.
+
+Do not abbreviate the array.
+Do not stop early.
+Do not explain anything outside the JSON.`
+
         );
 
 
-    const posts =
-        validatePosts(
+    returnedPostCount =
 
-            result,
+        Array.isArray(
+            result?.posts
+        )
 
-            eventPackage
+            ? result.posts.length
 
-        );
+            : 0;
+
+
+    console.log(
+
+        `Retry returned ${returnedPostCount} posts.`
+
+    );
+
+}
+
+
+
+const posts =
+    validatePosts(
+
+        result,
+
+        eventPackage
+
+    );
 
 
     const summary =
