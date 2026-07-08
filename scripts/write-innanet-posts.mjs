@@ -664,12 +664,12 @@ function validatePosts(
 
 
     if (
-    rawPosts.length < 18
+    rawPosts.length !== 20
 ) {
 
     throw new Error(
 
-        `Model returned only ${rawPosts.length} posts after retry; refusing to publish.`
+        `Writer assembled ${rawPosts.length} posts instead of 20; refusing to publish.`
 
     );
 
