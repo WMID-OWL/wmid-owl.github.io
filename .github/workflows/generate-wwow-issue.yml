@@ -1,0 +1,129 @@
+name: Generate WWoW Issue
+
+
+on:
+
+  workflow_dispatch:
+
+    inputs:
+
+      target_month:
+
+        description:
+          "Month to publish in YYYY-MM format"
+
+        required:
+          true
+
+        default:
+          "2026-07"
+
+
+
+permissions:
+
+  contents:
+    write
+
+  models:
+    read
+
+
+
+concurrency:
+
+  group:
+    wwow-writer
+
+  cancel-in-progress:
+    false
+
+
+
+jobs:
+
+  generate-issue:
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+
+      - name: Build WWoW monthly context
+
+        env:
+
+          TARGET_MONTH:
+            ${{ inputs.target_month }}
+
+
+        run: |
+
+          node scripts/build-wwow-context.mjs
+
+
+
+      - name: Generate WWoW issue
+
+        env:
+
+          GITHUB_TOKEN:
+            ${{ secrets.GITHUB_TOKEN }}
+
+          WWOW_MODEL:
+            openai/gpt-4o-mini
+
+
+        run: |
+
+          node scripts/write-wwow-issue.mjs
+
+
+
+      - name: Commit WWoW issue
+
+        run: |
+
+          if git diff --quiet; then
+
+            echo "No WWoW changes to commit."
+
+            exit 0
+
+          fi
+
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          git add data/wwow
+
+
+          git commit \
+            -m "Publish monthly WWoW issue"
+
+
+          git push
