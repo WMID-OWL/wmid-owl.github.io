@@ -643,6 +643,64 @@ function crResultsRefreshResultTypeLayout() {
         "win";
 
 
+    const isOverthrowRumble =
+        crResultsSelectedMatch?.stipulation ===
+        "Overthrow Rumble";
+
+
+    const showStandardWinFields =
+        isWin
+        &&
+        !isOverthrowRumble;
+
+
+    crResultsWinnerSideRow.hidden =
+        !showStandardWinFields;
+
+
+    crResultsWinnerSideRow.style.display =
+        showStandardWinFields
+            ? ""
+            : "none";
+
+
+    crResultsFinishWinnerRow.hidden =
+        !showStandardWinFields;
+
+
+    crResultsFinishWinnerRow.style.display =
+        showStandardWinFields
+            ? ""
+            : "none";
+
+
+    crResultsFinishLoserRow.hidden =
+        !showStandardWinFields;
+
+
+    crResultsFinishLoserRow.style.display =
+        showStandardWinFields
+            ? ""
+            : "none";
+
+
+    crResultsMethodRow.hidden =
+        !showStandardWinFields;
+
+
+    crResultsMethodRow.style.display =
+        showStandardWinFields
+            ? ""
+            : "none";
+
+
+    crResultsReviewResult();
+} {
+    const isWin =
+        crResultsResultType.value ===
+        "win";
+
+
     crResultsWinnerSideRow.hidden =
         !isWin;
 
@@ -1207,8 +1265,1121 @@ function crResultsRenderSpecialtyFields(
     }
 
 
+    if (
+        match.stipulation ===
+        "Overthrow Rumble"
+    ) {
+        crResultsRenderOverthrowFields(
+            match,
+        );
+
+
+        crResultsSpecialtyFields.hidden =
+            false;
+
+
+        return;
+    }
+
+
     crResultsSpecialtyFields.hidden =
         true;
+} {
+    crResultsSpecialtyContent.innerHTML =
+        "";
+
+
+    if (
+        match.stipulation ===
+        "Battle Royal"
+    ) {
+        crResultsRenderBattleRoyalFields(
+            match,
+        );
+
+
+        crResultsSpecialtyFields.hidden =
+            false;
+
+
+        return;
+    }
+
+
+    crResultsSpecialtyFields.hidden =
+        true;
+}
+// =================================
+// OVERTHROW RUMBLE RESULT HELPERS
+// =================================
+
+
+function crResultsGetOverthrowEntryRows() {
+    return [
+        ...crResultsSpecialtyContent.querySelectorAll(
+            "[data-cr-results-overthrow-entry]",
+        ),
+    ];
+}
+
+
+function crResultsGetOverthrowEntrantIds() {
+    return crResultsGetOverthrowEntryRows()
+        .map(
+            (row) =>
+                row.querySelector(
+                    "[data-cr-results-overthrow-wrestler]",
+                )?.value || "",
+        )
+        .filter(Boolean);
+}
+
+
+function crResultsPopulateOverthrowWrestlerSelect(
+    selectElement,
+    selectedValue = "",
+) {
+    selectElement.innerHTML = `
+        <option value="">
+            Select Wrestler
+        </option>
+    `;
+
+
+    const wrestlers =
+        [...owlControlRoomData.wrestlers]
+            .sort(
+                (a, b) =>
+                    String(
+                        a.name || "",
+                    ).localeCompare(
+                        String(
+                            b.name || "",
+                        ),
+                    ),
+            );
+
+
+    wrestlers.forEach(
+        (wrestler) => {
+            const option =
+                document.createElement(
+                    "option",
+                );
+
+
+            option.value =
+                wrestler.id;
+
+
+            option.textContent =
+                wrestler.name;
+
+
+            selectElement.appendChild(
+                option,
+            );
+        },
+    );
+
+
+    if (
+        selectedValue
+        &&
+        wrestlers.some(
+            (wrestler) =>
+                wrestler.id === selectedValue,
+        )
+    ) {
+        selectElement.value =
+            selectedValue;
+    }
+}
+
+
+function crResultsTimeToSeconds(
+    timeValue,
+) {
+    if (
+        !/^(?:\d+):[0-5]\d$/.test(
+            timeValue,
+        )
+    ) {
+        return null;
+    }
+
+
+    const [
+        minutes,
+        seconds,
+    ] =
+        timeValue
+            .split(":")
+            .map(Number);
+
+
+    return (
+        minutes * 60
+        +
+        seconds
+    );
+}
+
+
+function crResultsCalculateOverthrowStatistics(
+    overthrowResult,
+) {
+    const entries =
+        Array.isArray(
+            overthrowResult?.entries,
+        )
+            ? overthrowResult.entries
+            : [];
+
+
+    const validEntries =
+        entries.filter(
+            (entry) =>
+                entry.wrestlerId,
+        );
+
+
+    const eliminationCounts =
+        new Map();
+
+
+    validEntries.forEach(
+        (entry) => {
+            eliminationCounts.set(
+                entry.wrestlerId,
+                0,
+            );
+        },
+    );
+
+
+    validEntries.forEach(
+        (entry) => {
+            if (
+                entry.eliminatedBy
+                &&
+                eliminationCounts.has(
+                    entry.eliminatedBy,
+                )
+            ) {
+                eliminationCounts.set(
+                    entry.eliminatedBy,
+
+                    eliminationCounts.get(
+                        entry.eliminatedBy,
+                    )
+                    +
+                    1,
+                );
+            }
+        },
+    );
+
+
+    const highestEliminationCount =
+        eliminationCounts.size > 0
+
+            ? Math.max(
+                ...eliminationCounts.values(),
+            )
+
+            : 0;
+
+
+    const mostEliminations =
+        [...eliminationCounts.entries()]
+            .filter(
+                ([
+                    wrestlerId,
+                    count,
+                ]) =>
+                    wrestlerId
+                    &&
+                    count === highestEliminationCount,
+            )
+            .map(
+                ([
+                    wrestlerId,
+                ]) =>
+                    wrestlerId,
+            );
+
+
+    const timedEntries =
+        validEntries
+            .map(
+                (entry) => ({
+                    wrestlerId:
+                        entry.wrestlerId,
+
+                    timeInMatch:
+                        entry.timeInMatch,
+
+                    seconds:
+                        crResultsTimeToSeconds(
+                            entry.timeInMatch,
+                        ),
+                }),
+            )
+            .filter(
+                (entry) =>
+                    entry.seconds !== null,
+            );
+
+
+    let longestSeconds =
+        null;
+
+
+    let shortestSeconds =
+        null;
+
+
+    if (
+        timedEntries.length > 0
+    ) {
+        longestSeconds =
+            Math.max(
+                ...timedEntries.map(
+                    (entry) =>
+                        entry.seconds,
+                ),
+            );
+
+
+        shortestSeconds =
+            Math.min(
+                ...timedEntries.map(
+                    (entry) =>
+                        entry.seconds,
+                ),
+            );
+    }
+
+
+    const ironWrestlers =
+        longestSeconds === null
+
+            ? []
+
+            : timedEntries
+                .filter(
+                    (entry) =>
+                        entry.seconds ===
+                        longestSeconds,
+                )
+                .map(
+                    (entry) =>
+                        entry.wrestlerId,
+                );
+
+
+    const shortestTimeWrestlers =
+        shortestSeconds === null
+
+            ? []
+
+            : timedEntries
+                .filter(
+                    (entry) =>
+                        entry.seconds ===
+                        shortestSeconds,
+                )
+                .map(
+                    (entry) =>
+                        entry.wrestlerId,
+                );
+
+
+    const ironTime =
+        longestSeconds === null
+
+            ? ""
+
+            : timedEntries.find(
+                (entry) =>
+                    entry.seconds ===
+                    longestSeconds,
+            )?.timeInMatch || "";
+
+
+    const shortestTime =
+        shortestSeconds === null
+
+            ? ""
+
+            : timedEntries.find(
+                (entry) =>
+                    entry.seconds ===
+                    shortestSeconds,
+            )?.timeInMatch || "";
+
+
+    return {
+        mostEliminations: {
+            wrestlerIds:
+                mostEliminations,
+
+            count:
+                highestEliminationCount,
+        },
+
+        longestTime: {
+            wrestlerIds:
+                ironWrestlers,
+
+            timeInMatch:
+                ironTime,
+        },
+
+        shortestTime: {
+            wrestlerIds:
+                shortestTimeWrestlers,
+
+            timeInMatch:
+                shortestTime,
+        },
+    };
+}
+
+
+function crResultsBuildOverthrowResult() {
+    if (
+        crResultsSelectedMatch?.stipulation !==
+        "Overthrow Rumble"
+    ) {
+        return null;
+    }
+
+
+    const entries =
+        crResultsGetOverthrowEntryRows()
+            .map(
+                (row) => ({
+                    entryNumber:
+                        Number(
+                            row.dataset.crResultsOverthrowEntry,
+                        ),
+
+                    wrestlerId:
+                        row.querySelector(
+                            "[data-cr-results-overthrow-wrestler]",
+                        )?.value || "",
+
+                    timeInMatch:
+                        row.querySelector(
+                            "[data-cr-results-overthrow-time]",
+                        )?.value.trim() || "",
+
+                    eliminatedBy:
+                        row.querySelector(
+                            "[data-cr-results-overthrow-eliminator]",
+                        )?.value || null,
+                }),
+            );
+
+
+    const finalFour =
+        [4, 3, 2, 1]
+            .map(
+                (place) => {
+                    const wrestlerSelect =
+                        crResultsSpecialtyContent.querySelector(
+                            `[data-cr-results-overthrow-final-place="${place}"]`,
+                        );
+
+
+                    const methodSelect =
+                        crResultsSpecialtyContent.querySelector(
+                            `[data-cr-results-overthrow-final-method="${place}"]`,
+                        );
+
+
+                    return {
+                        place:
+                            place,
+
+                        wrestlerId:
+                            wrestlerSelect?.value || "",
+
+                        method:
+                            place === 1
+                                ? null
+                                : methodSelect?.value || "",
+                    };
+                },
+            );
+
+
+    const result = {
+        entries:
+            entries,
+
+        finalFour:
+            finalFour,
+
+        winner:
+            finalFour.find(
+                (entry) =>
+                    entry.place === 1,
+            )?.wrestlerId || "",
+    };
+
+
+    result.statistics =
+        crResultsCalculateOverthrowStatistics(
+            result,
+        );
+
+
+    return result;
+}
+
+
+// =================================
+// OVERTHROW DEPENDENT SELECTS
+// =================================
+
+
+function crResultsRefreshOverthrowChoices() {
+    const entrantIds =
+        crResultsGetOverthrowEntrantIds();
+
+
+    crResultsGetOverthrowEntryRows()
+        .forEach(
+            (row) => {
+                const wrestlerId =
+                    row.querySelector(
+                        "[data-cr-results-overthrow-wrestler]",
+                    )?.value || "";
+
+
+                const eliminatorSelect =
+                    row.querySelector(
+                        "[data-cr-results-overthrow-eliminator]",
+                    );
+
+
+                if (
+                    !eliminatorSelect
+                ) {
+                    return;
+                }
+
+
+                const oldValue =
+                    eliminatorSelect.value;
+
+
+                eliminatorSelect.innerHTML = `
+                    <option value="">
+                        Not Eliminated / Winner
+                    </option>
+                `;
+
+
+                entrantIds
+                    .filter(
+                        (otherId) =>
+                            otherId !== wrestlerId,
+                    )
+                    .forEach(
+                        (otherId) => {
+                            const option =
+                                document.createElement(
+                                    "option",
+                                );
+
+
+                            option.value =
+                                otherId;
+
+
+                            option.textContent =
+                                crResultsGetWrestlerName(
+                                    otherId,
+                                );
+
+
+                            eliminatorSelect.appendChild(
+                                option,
+                            );
+                        },
+                    );
+
+
+                if (
+                    entrantIds.includes(
+                        oldValue,
+                    )
+                    &&
+                    oldValue !== wrestlerId
+                ) {
+                    eliminatorSelect.value =
+                        oldValue;
+                }
+            },
+        );
+
+
+    [
+        ...crResultsSpecialtyContent.querySelectorAll(
+            "[data-cr-results-overthrow-final-place]",
+        ),
+    ].forEach(
+        (selectElement) => {
+            const oldValue =
+                selectElement.value;
+
+
+            selectElement.innerHTML = `
+                <option value="">
+                    Select Wrestler
+                </option>
+            `;
+
+
+            entrantIds.forEach(
+                (wrestlerId) => {
+                    const option =
+                        document.createElement(
+                            "option",
+                        );
+
+
+                    option.value =
+                        wrestlerId;
+
+
+                    option.textContent =
+                        crResultsGetWrestlerName(
+                            wrestlerId,
+                        );
+
+
+                    selectElement.appendChild(
+                        option,
+                    );
+                },
+            );
+
+
+            if (
+                entrantIds.includes(
+                    oldValue,
+                )
+            ) {
+                selectElement.value =
+                    oldValue;
+            }
+        },
+    );
+
+
+    crResultsReviewResult();
+}
+
+
+// =================================
+// OVERTHROW FIELD RENDERING
+// =================================
+
+
+function crResultsRenderOverthrowFields(
+    match,
+) {
+    crResultsSpecialtyContent.innerHTML =
+        "";
+
+
+    const entryHeading =
+        document.createElement(
+            "div",
+        );
+
+
+    entryHeading.className =
+        "cr-editor-section-heading";
+
+
+    entryHeading.innerHTML = `
+        <span>
+            OVERTHROW ENTRIES
+        </span>
+
+        <h3>
+            Entry Order and Eliminations
+        </h3>
+    `;
+
+
+    crResultsSpecialtyContent.appendChild(
+        entryHeading,
+    );
+
+
+    for (
+        let entryNumber = 1;
+        entryNumber <= 30;
+        entryNumber += 1
+    ) {
+        const row =
+            document.createElement(
+                "div",
+            );
+
+
+        row.className =
+            "cr-editor-section";
+
+
+        row.dataset.crResultsOverthrowEntry =
+            String(
+                entryNumber,
+            );
+
+
+        const heading =
+            document.createElement(
+                "div",
+            );
+
+
+        heading.className =
+            "cr-editor-section-heading";
+
+
+        heading.innerHTML = `
+            <span>
+                ENTRY NUMBER
+            </span>
+
+            <h3>
+                #${entryNumber}
+            </h3>
+        `;
+
+
+        const grid =
+            document.createElement(
+                "div",
+            );
+
+
+        grid.className =
+            "cr-editor-form-grid";
+
+
+        const wrestlerGroup =
+            document.createElement(
+                "div",
+            );
+
+
+        wrestlerGroup.className =
+            "cr-form-group";
+
+
+        const wrestlerLabel =
+            document.createElement(
+                "label",
+            );
+
+
+        wrestlerLabel.textContent =
+            "WRESTLER";
+
+
+        const wrestlerSelect =
+            document.createElement(
+                "select",
+            );
+
+
+        wrestlerSelect.dataset.crResultsOverthrowWrestler =
+            "true";
+
+
+        crResultsPopulateOverthrowWrestlerSelect(
+            wrestlerSelect,
+        );
+
+
+        wrestlerGroup.appendChild(
+            wrestlerLabel,
+        );
+
+
+        wrestlerGroup.appendChild(
+            wrestlerSelect,
+        );
+
+
+        const timeGroup =
+            document.createElement(
+                "div",
+            );
+
+
+        timeGroup.className =
+            "cr-form-group";
+
+
+        const timeLabel =
+            document.createElement(
+                "label",
+            );
+
+
+        timeLabel.textContent =
+            "TIME IN MATCH";
+
+
+        const timeInput =
+            document.createElement(
+                "input",
+            );
+
+
+        timeInput.type =
+            "text";
+
+
+        timeInput.placeholder =
+            "12:34";
+
+
+        timeInput.autocomplete =
+            "off";
+
+
+        timeInput.dataset.crResultsOverthrowTime =
+            "true";
+
+
+        timeGroup.appendChild(
+            timeLabel,
+        );
+
+
+        timeGroup.appendChild(
+            timeInput,
+        );
+
+
+        const eliminatorGroup =
+            document.createElement(
+                "div",
+            );
+
+
+        eliminatorGroup.className =
+            "cr-form-group";
+
+
+        const eliminatorLabel =
+            document.createElement(
+                "label",
+            );
+
+
+        eliminatorLabel.textContent =
+            "ELIMINATED BY";
+
+
+        const eliminatorSelect =
+            document.createElement(
+                "select",
+            );
+
+
+        eliminatorSelect.dataset.crResultsOverthrowEliminator =
+            "true";
+
+
+        eliminatorSelect.innerHTML = `
+            <option value="">
+                Not Eliminated / Winner
+            </option>
+        `;
+
+
+        eliminatorGroup.appendChild(
+            eliminatorLabel,
+        );
+
+
+        eliminatorGroup.appendChild(
+            eliminatorSelect,
+        );
+
+
+        grid.appendChild(
+            wrestlerGroup,
+        );
+
+
+        grid.appendChild(
+            timeGroup,
+        );
+
+
+        grid.appendChild(
+            eliminatorGroup,
+        );
+
+
+        row.appendChild(
+            heading,
+        );
+
+
+        row.appendChild(
+            grid,
+        );
+
+
+        crResultsSpecialtyContent.appendChild(
+            row,
+        );
+
+
+        wrestlerSelect.addEventListener(
+            "change",
+            crResultsRefreshOverthrowChoices,
+        );
+
+
+        timeInput.addEventListener(
+            "input",
+            crResultsReviewResult,
+        );
+
+
+        eliminatorSelect.addEventListener(
+            "change",
+            crResultsReviewResult,
+        );
+    }
+
+
+    const finalFourSection =
+        document.createElement(
+            "div",
+        );
+
+
+    finalFourSection.className =
+        "cr-editor-section";
+
+
+    const finalFourHeading =
+        document.createElement(
+            "div",
+        );
+
+
+    finalFourHeading.className =
+        "cr-editor-section-heading";
+
+
+    finalFourHeading.innerHTML = `
+        <span>
+            FINAL FOUR
+        </span>
+
+        <h3>
+            Final Finish Order
+        </h3>
+    `;
+
+
+    finalFourSection.appendChild(
+        finalFourHeading,
+    );
+
+
+    const finalFourGrid =
+        document.createElement(
+            "div",
+        );
+
+
+    finalFourGrid.className =
+        "cr-editor-form-grid";
+
+
+    const finalFourLabels = {
+        4:
+            "4TH PLACE",
+
+        3:
+            "3RD PLACE",
+
+        2:
+            "RUNNER-UP",
+
+        1:
+            "WINNER",
+    };
+
+
+    [4, 3, 2, 1].forEach(
+        (place) => {
+            const wrestlerGroup =
+                document.createElement(
+                    "div",
+                );
+
+
+            wrestlerGroup.className =
+                "cr-form-group";
+
+
+            const wrestlerLabel =
+                document.createElement(
+                    "label",
+                );
+
+
+            wrestlerLabel.textContent =
+                finalFourLabels[
+                    place
+                ];
+
+
+            const wrestlerSelect =
+                document.createElement(
+                    "select",
+                );
+
+
+            wrestlerSelect.dataset.crResultsOverthrowFinalPlace =
+                String(
+                    place,
+                );
+
+
+            wrestlerSelect.innerHTML = `
+                <option value="">
+                    Select Wrestler
+                </option>
+            `;
+
+
+            wrestlerGroup.appendChild(
+                wrestlerLabel,
+            );
+
+
+            wrestlerGroup.appendChild(
+                wrestlerSelect,
+            );
+
+
+            finalFourGrid.appendChild(
+                wrestlerGroup,
+            );
+
+
+            wrestlerSelect.addEventListener(
+                "change",
+                crResultsReviewResult,
+            );
+
+
+            if (
+                place !== 1
+            ) {
+                const methodGroup =
+                    document.createElement(
+                        "div",
+                    );
+
+
+                methodGroup.className =
+                    "cr-form-group";
+
+
+                const methodLabel =
+                    document.createElement(
+                        "label",
+                    );
+
+
+                methodLabel.textContent =
+                    `${finalFourLabels[place]} ELIMINATION METHOD`;
+
+
+                const methodSelect =
+                    document.createElement(
+                        "select",
+                    );
+
+
+                methodSelect.dataset.crResultsOverthrowFinalMethod =
+                    String(
+                        place,
+                    );
+
+
+                methodSelect.innerHTML = `
+                    <option value="">
+                        Select Method
+                    </option>
+
+                    <option value="Pinfall">
+                        Pinfall
+                    </option>
+
+                    <option value="Submission">
+                        Submission
+                    </option>
+
+                    <option value="KO">
+                        KO
+                    </option>
+                `;
+
+
+                methodGroup.appendChild(
+                    methodLabel,
+                );
+
+
+                methodGroup.appendChild(
+                    methodSelect,
+                );
+
+
+                finalFourGrid.appendChild(
+                    methodGroup,
+                );
+
+
+                methodSelect.addEventListener(
+                    "change",
+                    crResultsReviewResult,
+                );
+            }
+        },
+    );
+
+
+    finalFourSection.appendChild(
+        finalFourGrid,
+    );
+
+
+    crResultsSpecialtyContent.appendChild(
+        finalFourSection,
+    );
 }
 
 // =================================
@@ -1296,12 +2467,18 @@ function crResultsGetFormRecord() {
             crResultsTime.value.trim(),
 
         specialtyResult:
+                    specialtyResult:
             crResultsSelectedMatch?.stipulation ===
             "Battle Royal"
 
                 ? crResultsBuildBattleRoyalResult()
 
-                : null,
+                : crResultsSelectedMatch?.stipulation ===
+                  "Overthrow Rumble"
+
+                    ? crResultsBuildOverthrowResult()
+
+                    : null,
     };
 }
 
@@ -1325,8 +2502,15 @@ function crResultsValidate(
     }
 
 
+        const isOverthrowRumble =
+        crResultsSelectedMatch?.stipulation ===
+        "Overthrow Rumble";
+
+
     if (
         record.resultType === "win"
+        &&
+        !isOverthrowRumble
     ) {
         if (
             !Number.isInteger(
@@ -1571,7 +2755,280 @@ function crResultsValidate(
         );
     }
 
+    if (
+        isOverthrowRumble
+    ) {
+        if (
+            record.resultType !==
+            "win"
+        ) {
+            errors.push(
+                "Overthrow Rumble must have a winner.",
+            );
+        }
 
+
+        const overthrowResult =
+            record.specialtyResult;
+
+
+        const entries =
+            Array.isArray(
+                overthrowResult?.entries,
+            )
+                ? overthrowResult.entries
+                : [];
+
+
+        const finalFour =
+            Array.isArray(
+                overthrowResult?.finalFour,
+            )
+                ? overthrowResult.finalFour
+                : [];
+
+
+        if (
+            entries.length !== 30
+        ) {
+            errors.push(
+                "Overthrow Rumble must contain exactly 30 entries.",
+            );
+        }
+
+
+        const entrantIds =
+            entries
+                .map(
+                    (entry) =>
+                        entry.wrestlerId,
+                )
+                .filter(Boolean);
+
+
+        if (
+            entrantIds.length !== 30
+        ) {
+            errors.push(
+                "Select all 30 Overthrow Rumble entrants.",
+            );
+        }
+
+
+        if (
+            new Set(
+                entrantIds,
+            ).size !==
+            entrantIds.length
+        ) {
+            errors.push(
+                "The same wrestler cannot enter the Overthrow Rumble more than once.",
+            );
+        }
+
+
+        const winnerId =
+            overthrowResult?.winner || "";
+
+
+        entries.forEach(
+            (entry) => {
+                if (
+                    !/^(?:\d+):[0-5]\d$/.test(
+                        entry.timeInMatch,
+                    )
+                ) {
+                    errors.push(
+                        `Entry #${entry.entryNumber} needs a valid Time in Match.`,
+                    );
+                }
+
+
+                if (
+                    entry.wrestlerId ===
+                    winnerId
+                    &&
+                    entry.eliminatedBy
+                ) {
+                    errors.push(
+                        "The Overthrow Rumble winner cannot have an eliminator.",
+                    );
+                }
+
+
+                if (
+                    entry.wrestlerId
+                    &&
+                    entry.wrestlerId !==
+                    winnerId
+                    &&
+                    !entry.eliminatedBy
+                ) {
+                    errors.push(
+                        `${crResultsGetWrestlerName(
+                            entry.wrestlerId,
+                        )} needs an eliminator.`,
+                    );
+                }
+
+
+                if (
+                    entry.eliminatedBy ===
+                    entry.wrestlerId
+                ) {
+                    errors.push(
+                        "A wrestler cannot eliminate themselves.",
+                    );
+                }
+            },
+        );
+
+
+        const finalFourIds =
+            finalFour
+                .map(
+                    (entry) =>
+                        entry.wrestlerId,
+                )
+                .filter(Boolean);
+
+
+        if (
+            finalFourIds.length !== 4
+        ) {
+            errors.push(
+                "Select all four Final Four finishers.",
+            );
+        }
+
+
+        if (
+            new Set(
+                finalFourIds,
+            ).size !==
+            finalFourIds.length
+        ) {
+            errors.push(
+                "Each Final Four position must contain a different wrestler.",
+            );
+        }
+
+
+        finalFourIds.forEach(
+            (wrestlerId) => {
+                if (
+                    !entrantIds.includes(
+                        wrestlerId,
+                    )
+                ) {
+                    errors.push(
+                        "Every Final Four wrestler must be an Overthrow Rumble entrant.",
+                    );
+                }
+            },
+        );
+
+
+        const validFinalMethods = [
+            "Pinfall",
+            "Submission",
+            "KO",
+        ];
+
+
+        finalFour
+            .filter(
+                (entry) =>
+                    entry.place !== 1,
+            )
+            .forEach(
+                (entry) => {
+                    if (
+                        !validFinalMethods.includes(
+                            entry.method,
+                        )
+                    ) {
+                        errors.push(
+                            `Final Four place ${entry.place} needs an elimination method.`,
+                        );
+                    }
+                },
+            );
+
+
+        const winnerEntry =
+            entries.find(
+                (entry) =>
+                    entry.wrestlerId ===
+                    winnerId,
+            );
+
+
+        if (
+            winnerId
+            &&
+            !winnerEntry
+        ) {
+            errors.push(
+                "The Overthrow Rumble winner must be one of the 30 entrants.",
+            );
+        }
+
+
+        const finalPlaceByWrestler =
+            new Map(
+                finalFour
+                    .filter(
+                        (entry) =>
+                            entry.wrestlerId,
+                    )
+                    .map(
+                        (entry) => [
+                            entry.wrestlerId,
+                            entry.place,
+                        ],
+                    ),
+            );
+
+
+        finalFour
+            .filter(
+                (entry) =>
+                    entry.place !== 1
+                    &&
+                    entry.wrestlerId,
+            )
+            .forEach(
+                (finalEntry) => {
+                    const participantEntry =
+                        entries.find(
+                            (entry) =>
+                                entry.wrestlerId ===
+                                finalEntry.wrestlerId,
+                        );
+
+
+                    const eliminatorPlace =
+                        finalPlaceByWrestler.get(
+                            participantEntry?.eliminatedBy,
+                        );
+
+
+                    if (
+                        !eliminatorPlace
+                        ||
+                        eliminatorPlace >=
+                            finalEntry.place
+                    ) {
+                        errors.push(
+                            `${crResultsGetWrestlerName(
+                                finalEntry.wrestlerId,
+                            )} must be eliminated by a Final Four wrestler who finished higher.`,
+                        );
+                    }
+                },
+            );
+    }
     return errors;
 }
 
@@ -1864,8 +3321,11 @@ function crResultsBuildCompletedMatchRecord() {
     };
 
 
-        if (
+            if (
         form.resultType === "win"
+        &&
+        crResultsSelectedMatch?.stipulation !==
+            "Overthrow Rumble"
     ) {
         record.finish = {
 
