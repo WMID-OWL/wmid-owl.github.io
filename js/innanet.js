@@ -211,8 +211,20 @@ function innanetRenderArchive(
 
 
 function innanetCreatePost(
-    post
+    post,
+    postMap
 ) {
+
+    const parent =
+
+        post.replyTo
+
+            ? postMap[
+                post.replyTo
+            ]
+
+            : null;
+
 
     const article =
         document.createElement(
@@ -221,7 +233,41 @@ function innanetCreatePost(
 
 
     article.className =
-        "innanet-post";
+
+        parent
+
+            ? "innanet-post innanet-post-reply"
+
+            : "innanet-post";
+
+
+    const replyContext =
+
+        parent
+
+            ? `
+
+                <div class="innanet-reply-context">
+
+                    Replying to
+
+                    <strong>
+
+                        ${innanetEscape(
+                            parent.handle
+                            ||
+                            parent.accountName
+                            ||
+                            "post"
+                        )}
+
+                    </strong>
+
+                </div>
+
+            `
+
+            : "";
 
 
     article.innerHTML = `
@@ -261,6 +307,9 @@ function innanetCreatePost(
 
 
         </div>
+
+
+        ${replyContext}
 
 
         <p class="innanet-post-body">
@@ -310,7 +359,6 @@ ${innanetEscape(
     return article;
 
 }
-
 
 
 // =================================
@@ -462,21 +510,43 @@ function innanetRenderMonth(
             );
 
 
-            posts.forEach(
+            const postMap =
+    Object.fromEntries(
 
-                post => {
+        posts.map(
 
-                    group.appendChild(
+            post => [
 
-                        innanetCreatePost(
-                            post
-                        )
+                post.postId,
 
-                    );
+                post
 
-                }
+            ]
 
-            );
+        )
+
+    );
+
+
+posts.forEach(
+
+    post => {
+
+        group.appendChild(
+
+            innanetCreatePost(
+
+                post,
+
+                postMap
+
+            )
+
+        );
+
+    }
+
+);
 
 
             innanetEls.feed
