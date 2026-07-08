@@ -1,0 +1,118 @@
+name: Generate Innanet Posts
+
+
+on:
+
+  workflow_dispatch:
+
+    inputs:
+
+      max_events:
+
+        description:
+          "Number of pending shows to generate"
+
+        required:
+          true
+
+        default:
+          "1"
+
+
+
+permissions:
+
+  contents:
+    write
+
+  models:
+    read
+
+
+
+concurrency:
+
+  group:
+    innanet-writer
+
+  cancel-in-progress:
+    false
+
+
+
+jobs:
+
+  generate-posts:
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+
+      - name: Generate Innanet posts
+
+        env:
+
+          GITHUB_TOKEN:
+            ${{ secrets.GITHUB_TOKEN }}
+
+          MAX_EVENTS:
+            ${{ inputs.max_events }}
+
+          INNANET_MODEL:
+            openai/gpt-4o-mini
+
+
+        run: |
+
+          node scripts/write-innanet-posts.mjs
+
+
+
+      - name: Commit generated Innanet content
+
+        run: |
+
+          if git diff --quiet; then
+
+            echo "No Innanet content changes to commit."
+
+            exit 0
+
+          fi
+
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          git add data/innanet
+
+
+          git commit \
+            -m "Publish Innanet event reactions"
+
+
+          git push
