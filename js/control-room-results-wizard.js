@@ -1072,6 +1072,10 @@ function crResultsPopulateMatches() {
     );
 
 
+    crResultsMatch.disabled =
+        !eventId;
+
+
     if (!eventId) {
 
         return;
