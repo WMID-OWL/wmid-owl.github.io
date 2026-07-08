@@ -1,0 +1,1600 @@
+/* =================================
+   OWL POWER RANKINGS
+================================= */
+
+
+* {
+
+    box-sizing:
+        border-box;
+
+}
+
+
+
+.power-page-body {
+
+    margin:
+        0;
+
+    min-height:
+        100vh;
+
+    background:
+
+        radial-gradient(
+
+            circle at 20% 0%,
+
+            rgba(
+                197,
+                155,
+                67,
+                0.10
+            ),
+
+            transparent 32%
+
+        ),
+
+        linear-gradient(
+
+            180deg,
+
+            #0d1011 0%,
+
+            #15191a 45%,
+
+            #0c0e0f 100%
+
+        );
+
+    color:
+        #f4f4f0;
+
+}
+
+
+
+/* =================================
+   HEADER
+================================= */
+
+
+.power-site-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        24px;
+
+    padding:
+
+        18px
+
+        clamp(
+            20px,
+            4vw,
+            64px
+        );
+
+    border-bottom:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+
+        rgba(
+            10,
+            12,
+            13,
+            0.96
+        );
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    z-index:
+        50;
+
+}
+
+
+
+.power-site-brand {
+
+    display:
+        flex;
+
+    align-items:
+        baseline;
+
+    gap:
+        12px;
+
+    color:
+        #ffffff;
+
+    text-decoration:
+        none;
+
+}
+
+
+
+.power-site-brand strong {
+
+    font-size:
+        1.65rem;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.power-site-brand span {
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.power-site-nav {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    flex-wrap:
+        wrap;
+
+    justify-content:
+        flex-end;
+
+}
+
+
+
+.power-site-nav a {
+
+    padding:
+        8px 10px;
+
+    color:
+        #c8cbca;
+
+    text-decoration:
+        none;
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.05em;
+
+    text-transform:
+        uppercase;
+
+    border-bottom:
+
+        2px solid
+        transparent;
+
+}
+
+
+
+.power-site-nav a:hover,
+
+.power-site-nav a.active {
+
+    color:
+        #ffffff;
+
+    border-bottom-color:
+        #c9a45c;
+
+}
+
+
+
+/* =================================
+   PAGE
+================================= */
+
+
+.power-rankings-page {
+
+    width:
+
+        min(
+            1500px,
+            calc(
+                100% - 32px
+            )
+        );
+
+    margin:
+        0 auto;
+
+    padding:
+
+        48px
+        0
+        72px;
+
+}
+
+
+
+/* =================================
+   HERO
+================================= */
+
+
+.power-hero {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        auto;
+
+    gap:
+        28px;
+
+    align-items:
+        end;
+
+    padding:
+
+        clamp(
+            28px,
+            5vw,
+            64px
+        );
+
+    border:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            rgba(
+                255,
+                255,
+                255,
+                0.035
+            ),
+
+            rgba(
+                201,
+                164,
+                92,
+                0.05
+            )
+
+        ),
+
+        #121617;
+
+    box-shadow:
+
+        0
+        24px
+        70px
+
+        rgba(
+            0,
+            0,
+            0,
+            0.28
+        );
+
+}
+
+
+
+.power-eyebrow {
+
+    grid-column:
+        1 / -1;
+
+    margin:
+
+        0
+        0
+        -14px;
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.18em;
+
+}
+
+
+
+.power-hero h1 {
+
+    margin:
+        0;
+
+    font-size:
+
+        clamp(
+            3rem,
+            8vw,
+            7.2rem
+        );
+
+    line-height:
+        0.88;
+
+    letter-spacing:
+        -0.045em;
+
+}
+
+
+
+.power-hero-copy {
+
+    max-width:
+        720px;
+
+    margin:
+
+        18px
+        0
+        0;
+
+    color:
+        #b8bdbc;
+
+    font-size:
+
+        clamp(
+            1rem,
+            1.5vw,
+            1.25rem
+        );
+
+}
+
+
+
+.power-update-card {
+
+    min-width:
+        250px;
+
+    padding:
+        18px 20px;
+
+    border-left:
+
+        3px solid
+        #c9a45c;
+
+    background:
+
+        rgba(
+            255,
+            255,
+            255,
+            0.04
+        );
+
+}
+
+
+
+.power-update-card span,
+
+.power-update-card small {
+
+    display:
+        block;
+
+}
+
+
+
+.power-update-card span {
+
+    color:
+        #8f9694;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+
+.power-update-card strong {
+
+    display:
+        block;
+
+    margin-top:
+        6px;
+
+    font-size:
+        1.05rem;
+
+}
+
+
+
+.power-update-card small {
+
+    margin-top:
+        4px;
+
+    color:
+        #aeb3b1;
+
+}
+
+
+
+/* =================================
+   CONTROLS
+================================= */
+
+
+.power-controls {
+
+    margin-top:
+        22px;
+
+    padding:
+        22px;
+
+    border:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        #111516;
+
+}
+
+
+
+.power-control-group
++
+.power-control-group {
+
+    margin-top:
+        18px;
+
+}
+
+
+
+.power-control-label {
+
+    display:
+        block;
+
+    margin-bottom:
+        9px;
+
+    color:
+        #8e9694;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+
+.power-button-row {
+
+    display:
+        flex;
+
+    gap:
+        8px;
+
+    flex-wrap:
+        wrap;
+
+}
+
+
+
+.power-filter-button {
+
+    min-height:
+        42px;
+
+    padding:
+        9px 14px;
+
+    border:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+
+    background:
+
+        rgba(
+            255,
+            255,
+            255,
+            0.03
+        );
+
+    color:
+        #d4d7d6;
+
+    font:
+        inherit;
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        850;
+
+    letter-spacing:
+        0.04em;
+
+    text-transform:
+        uppercase;
+
+    cursor:
+        pointer;
+
+}
+
+
+
+.power-filter-button:hover {
+
+    border-color:
+
+        rgba(
+            201,
+            164,
+            92,
+            0.70
+        );
+
+    color:
+        #ffffff;
+
+}
+
+
+
+.power-filter-button.active {
+
+    background:
+        #c9a45c;
+
+    border-color:
+        #c9a45c;
+
+    color:
+        #101314;
+
+}
+
+
+
+.power-scope-copy {
+
+    margin:
+
+        18px
+        0
+        0;
+
+    color:
+        #9ea5a3;
+
+    font-size:
+        0.82rem;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+/* =================================
+   STATUS CARDS
+================================= */
+
+
+.power-state-card {
+
+    margin-top:
+        24px;
+
+    padding:
+        34px;
+
+    border:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        #111516;
+
+    text-align:
+        center;
+
+}
+
+
+
+.power-state-card strong,
+
+.power-state-card span {
+
+    display:
+        block;
+
+}
+
+
+
+.power-state-card strong {
+
+    color:
+        #c9a45c;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.power-state-card span {
+
+    margin-top:
+        8px;
+
+    color:
+        #9ea5a3;
+
+}
+
+
+
+.power-state-error strong {
+
+    color:
+        #df6868;
+
+}
+
+
+
+/* =================================
+   RANKING GRID
+================================= */
+
+
+.power-rankings-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        22px;
+
+    margin-top:
+        24px;
+
+}
+
+
+
+.power-table-card {
+
+    overflow:
+        hidden;
+
+    border:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        #111516;
+
+}
+
+
+
+.power-table-heading {
+
+    padding:
+        22px 24px;
+
+    border-bottom:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+}
+
+
+
+.power-top-card
+.power-table-heading {
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            rgba(
+                201,
+                164,
+                92,
+                0.18
+            ),
+
+            transparent
+
+        );
+
+}
+
+
+
+.power-bottom-card
+.power-table-heading {
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            rgba(
+                167,
+                65,
+                65,
+                0.16
+            ),
+
+            transparent
+
+        );
+
+}
+
+
+
+.power-table-heading span {
+
+    color:
+        #8e9694;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+
+.power-table-heading h2 {
+
+    margin:
+
+        5px
+        0
+        0;
+
+    font-size:
+
+        clamp(
+            1.7rem,
+            3vw,
+            2.6rem
+        );
+
+}
+
+
+
+/* =================================
+   RANKING ROWS
+================================= */
+
+
+.power-ranking-list {
+
+    display:
+        grid;
+
+}
+
+
+
+.power-ranking-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        58px
+        64px
+        minmax(
+            0,
+            1fr
+        )
+        92px;
+
+    gap:
+        12px;
+
+    align-items:
+        center;
+
+    min-height:
+        96px;
+
+    padding:
+        14px 18px;
+
+    border-bottom:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.075
+        );
+
+}
+
+
+
+.power-ranking-row:last-child {
+
+    border-bottom:
+        0;
+
+}
+
+
+
+.power-ranking-row:hover {
+
+    background:
+
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+}
+
+
+
+.power-rank-number {
+
+    color:
+        #ffffff;
+
+    font-size:
+        1.6rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -0.04em;
+
+}
+
+
+
+.power-rank-movement {
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        900;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+.movement-up,
+
+.legend-up {
+
+    color:
+        #4fd483;
+
+}
+
+
+
+.movement-down,
+
+.legend-down {
+
+    color:
+        #e66f6f;
+
+}
+
+
+
+.movement-same {
+
+    color:
+        #858d8b;
+
+}
+
+
+
+.movement-new {
+
+    color:
+        #c9a45c;
+
+}
+
+
+
+.power-rank-identity {
+
+    min-width:
+        0;
+
+}
+
+
+
+.power-rank-name {
+
+    display:
+        inline-block;
+
+    max-width:
+        100%;
+
+    overflow:
+        hidden;
+
+    color:
+        #ffffff;
+
+    font-size:
+        1.02rem;
+
+    font-weight:
+        900;
+
+    text-decoration:
+        none;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+.power-rank-name:hover {
+
+    color:
+        #d9bc7a;
+
+}
+
+
+
+.power-rank-meta {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    margin-top:
+        6px;
+
+    color:
+        #a7adab;
+
+    font-size:
+        0.74rem;
+
+    font-weight:
+        800;
+
+}
+
+
+
+.power-brand-badge {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    min-height:
+        22px;
+
+    padding:
+        3px 7px;
+
+    border:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+
+    color:
+        #d9bc7a;
+
+    font-size:
+        0.63rem;
+
+    letter-spacing:
+        0.06em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.power-rank-identity p {
+
+    margin:
+
+        7px
+        0
+        0;
+
+    color:
+        #8f9795;
+
+    font-size:
+        0.76rem;
+
+}
+
+
+
+.power-score-box {
+
+    text-align:
+        right;
+
+}
+
+
+
+.power-score-box span,
+
+.power-score-box strong {
+
+    display:
+        block;
+
+}
+
+
+
+.power-score-box span {
+
+    color:
+        #777f7d;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.power-score-box strong {
+
+    margin-top:
+        3px;
+
+    color:
+        #d9bc7a;
+
+    font-size:
+        1.55rem;
+
+}
+
+
+
+.power-empty-message {
+
+    margin:
+        0;
+
+    padding:
+        28px;
+
+    color:
+        #8e9694;
+
+    text-align:
+        center;
+
+}
+
+
+
+/* =================================
+   LEGEND
+================================= */
+
+
+.power-legend {
+
+    display:
+        flex;
+
+    gap:
+        18px;
+
+    flex-wrap:
+        wrap;
+
+    margin-top:
+        20px;
+
+    padding:
+        18px 20px;
+
+    border:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    color:
+        #9da4a2;
+
+    font-size:
+        0.74rem;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.05em;
+
+}
+
+
+
+/* =================================
+   FOOTER
+================================= */
+
+
+.power-site-footer {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    padding:
+
+        24px
+
+        clamp(
+            20px,
+            4vw,
+            64px
+        );
+
+    border-top:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    color:
+        #7f8785;
+
+    font-size:
+        0.8rem;
+
+}
+
+
+
+.power-site-footer strong {
+
+    color:
+        #c9a45c;
+
+}
+
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        1050px
+) {
+
+    .power-rankings-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .power-hero {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .power-update-card {
+
+        width:
+            100%;
+
+        min-width:
+            0;
+
+    }
+
+}
+
+
+
+@media (
+    max-width:
+        760px
+) {
+
+    .power-site-header {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .power-site-nav {
+
+        justify-content:
+            flex-start;
+
+    }
+
+
+    .power-rankings-page {
+
+        width:
+
+            min(
+                100% - 20px,
+                1500px
+            );
+
+        padding-top:
+            20px;
+
+    }
+
+
+    .power-hero {
+
+        padding:
+            28px 20px;
+
+    }
+
+
+    .power-ranking-row {
+
+        grid-template-columns:
+
+            48px
+            52px
+            minmax(
+                0,
+                1fr
+            );
+
+    }
+
+
+    .power-score-box {
+
+        grid-column:
+            3;
+
+        text-align:
+            left;
+
+        display:
+            flex;
+
+        align-items:
+            baseline;
+
+        gap:
+            8px;
+
+    }
+
+
+    .power-score-box span,
+
+    .power-score-box strong {
+
+        display:
+            inline;
+
+    }
+
+
+    .power-site-footer {
+
+        flex-direction:
+            column;
+
+    }
+
+}
+
+
+
+@media (
+    max-width:
+        520px
+) {
+
+    .power-ranking-row {
+
+        grid-template-columns:
+
+            44px
+            minmax(
+                0,
+                1fr
+            );
+
+        gap:
+            8px 10px;
+
+    }
+
+
+    .power-rank-movement {
+
+        grid-column:
+            1;
+
+        grid-row:
+            2;
+
+    }
+
+
+    .power-rank-identity {
+
+        grid-column:
+            2;
+
+        grid-row:
+            1 / span 2;
+
+    }
+
+
+    .power-score-box {
+
+        grid-column:
+            2;
+
+    }
+
+}
