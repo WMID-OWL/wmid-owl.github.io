@@ -1,0 +1,376 @@
+{
+  "version": 1,
+
+  "travelingCityPool": [
+    {
+      "city": "Atlanta",
+      "region": "Georgia",
+      "country": "United States"
+    },
+    {
+      "city": "Baltimore",
+      "region": "Maryland",
+      "country": "United States"
+    },
+    {
+      "city": "Boston",
+      "region": "Massachusetts",
+      "country": "United States"
+    },
+    {
+      "city": "Charlotte",
+      "region": "North Carolina",
+      "country": "United States"
+    },
+    {
+      "city": "Chicago",
+      "region": "Illinois",
+      "country": "United States"
+    },
+    {
+      "city": "Cincinnati",
+      "region": "Ohio",
+      "country": "United States"
+    },
+    {
+      "city": "Cleveland",
+      "region": "Ohio",
+      "country": "United States"
+    },
+    {
+      "city": "Columbus",
+      "region": "Ohio",
+      "country": "United States"
+    },
+    {
+      "city": "Dallas",
+      "region": "Texas",
+      "country": "United States"
+    },
+    {
+      "city": "Denver",
+      "region": "Colorado",
+      "country": "United States"
+    },
+    {
+      "city": "Detroit",
+      "region": "Michigan",
+      "country": "United States"
+    },
+    {
+      "city": "Dover",
+      "region": "Delaware",
+      "country": "United States"
+    },
+    {
+      "city": "Houston",
+      "region": "Texas",
+      "country": "United States"
+    },
+    {
+      "city": "Indianapolis",
+      "region": "Indiana",
+      "country": "United States"
+    },
+    {
+      "city": "Jacksonville",
+      "region": "Florida",
+      "country": "United States"
+    },
+    {
+      "city": "Kansas City",
+      "region": "Missouri",
+      "country": "United States"
+    },
+    {
+      "city": "Las Vegas",
+      "region": "Nevada",
+      "country": "United States"
+    },
+    {
+      "city": "Los Angeles",
+      "region": "California",
+      "country": "United States"
+    },
+    {
+      "city": "Louisville",
+      "region": "Kentucky",
+      "country": "United States"
+    },
+    {
+      "city": "Memphis",
+      "region": "Tennessee",
+      "country": "United States"
+    },
+    {
+      "city": "Miami",
+      "region": "Florida",
+      "country": "United States"
+    },
+    {
+      "city": "Milwaukee",
+      "region": "Wisconsin",
+      "country": "United States"
+    },
+    {
+      "city": "Minneapolis",
+      "region": "Minnesota",
+      "country": "United States"
+    },
+    {
+      "city": "Nashville",
+      "region": "Tennessee",
+      "country": "United States"
+    },
+    {
+      "city": "New Orleans",
+      "region": "Louisiana",
+      "country": "United States"
+    },
+    {
+      "city": "New York City",
+      "region": "New York",
+      "country": "United States"
+    },
+    {
+      "city": "Orlando",
+      "region": "Florida",
+      "country": "United States"
+    },
+    {
+      "city": "Philadelphia",
+      "region": "Pennsylvania",
+      "country": "United States"
+    },
+    {
+      "city": "Phoenix",
+      "region": "Arizona",
+      "country": "United States"
+    },
+    {
+      "city": "Pittsburgh",
+      "region": "Pennsylvania",
+      "country": "United States"
+    },
+    {
+      "city": "Portland",
+      "region": "Oregon",
+      "country": "United States"
+    },
+    {
+      "city": "Raleigh",
+      "region": "North Carolina",
+      "country": "United States"
+    },
+    {
+      "city": "Sacramento",
+      "region": "California",
+      "country": "United States"
+    },
+    {
+      "city": "San Antonio",
+      "region": "Texas",
+      "country": "United States"
+    },
+    {
+      "city": "San Diego",
+      "region": "California",
+      "country": "United States"
+    },
+    {
+      "city": "San Francisco",
+      "region": "California",
+      "country": "United States"
+    },
+    {
+      "city": "Seattle",
+      "region": "Washington",
+      "country": "United States"
+    },
+    {
+      "city": "St. Louis",
+      "region": "Missouri",
+      "country": "United States"
+    },
+    {
+      "city": "Tampa",
+      "region": "Florida",
+      "country": "United States"
+    },
+    {
+      "city": "Toronto",
+      "region": "Ontario",
+      "country": "Canada"
+    },
+    {
+      "city": "Vancouver",
+      "region": "British Columbia",
+      "country": "Canada"
+    },
+    {
+      "city": "Montreal",
+      "region": "Quebec",
+      "country": "Canada"
+    }
+  ],
+
+  "showRules": {
+    "wwe-raw": {
+      "mode": "traveling"
+    },
+
+    "wwe-smackdown": {
+      "mode": "traveling",
+      "weeklySiblingShowId": "wwe-raw",
+      "siblingCityReuseChance": 0.15
+    },
+
+    "nxt-on-cw": {
+      "mode": "fixed",
+      "venue": "WWE Performance Center",
+      "city": "Orlando",
+      "region": "Florida",
+      "country": "United States"
+    },
+
+    "aew-dynamite": {
+      "mode": "traveling"
+    },
+
+    "aew-collision": {
+      "mode": "traveling",
+      "weeklySiblingShowId": "aew-dynamite",
+      "siblingCityReuseChance": 0.1
+    },
+
+    "roh-on-honorclub": {
+      "mode": "fixed",
+      "venue": "WJCT Studios",
+      "city": "Jacksonville",
+      "region": "Florida",
+      "country": "United States"
+    },
+
+    "tna-impact": {
+      "mode": "traveling"
+    },
+
+    "cmll-super-viernes": {
+      "mode": "venue-pool",
+      "venues": [
+        {
+          "venue": "Arena México",
+          "city": "Mexico City",
+          "region": "Ciudad de México",
+          "country": "Mexico"
+        },
+        {
+          "venue": "Arena Coliseo",
+          "city": "Mexico City",
+          "region": "Ciudad de México",
+          "country": "Mexico"
+        },
+        {
+          "venue": "Arena Coliseo Guadalajara",
+          "city": "Guadalajara",
+          "region": "Jalisco",
+          "country": "Mexico"
+        },
+        {
+          "venue": "Arena Puebla",
+          "city": "Puebla",
+          "region": "Puebla",
+          "country": "Mexico"
+        }
+      ]
+    },
+
+    "aaa-lucha-libre": {
+      "mode": "venue-pool",
+      "venues": [
+        {
+          "venue": "Arena CDMX",
+          "city": "Mexico City",
+          "region": "Ciudad de México",
+          "country": "Mexico"
+        },
+        {
+          "venue": "Arena Monterrey",
+          "city": "Monterrey",
+          "region": "Nuevo León",
+          "country": "Mexico"
+        },
+        {
+          "venue": "Gimnasio Olímpico Juan de la Barrera",
+          "city": "Mexico City",
+          "region": "Ciudad de México",
+          "country": "Mexico"
+        },
+        {
+          "venue": "Auditorio Benito Juárez",
+          "city": "Guadalajara",
+          "region": "Jalisco",
+          "country": "Mexico"
+        }
+      ]
+    },
+
+    "owl-ascension": {
+      "mode": "owl-home"
+    },
+
+    "owl-revolt": {
+      "mode": "owl-home"
+    }
+  },
+
+  "majorEventRules": {
+    "wwe": {
+      "mode": "traveling"
+    },
+
+    "nxt": {
+      "mode": "traveling"
+    },
+
+    "aew": {
+      "mode": "traveling"
+    },
+
+    "roh": {
+      "mode": "fixed",
+      "venue": "WJCT Studios",
+      "city": "Jacksonville",
+      "region": "Florida",
+      "country": "United States"
+    },
+
+    "tna": {
+      "mode": "traveling"
+    },
+
+    "cmll": {
+      "mode": "venue-pool",
+      "flagshipVenue": {
+        "venue": "Arena México",
+        "city": "Mexico City",
+        "region": "Ciudad de México",
+        "country": "Mexico"
+      }
+    },
+
+    "aaa": {
+      "mode": "venue-pool",
+      "flagshipVenue": {
+        "venue": "Arena CDMX",
+        "city": "Mexico City",
+        "region": "Ciudad de México",
+        "country": "Mexico"
+      }
+    },
+
+    "owl": {
+      "mode": "traveling"
+    }
+  }
+}
