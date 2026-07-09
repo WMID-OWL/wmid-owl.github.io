@@ -1,0 +1,132 @@
+name: Build Monthly World Snapshot
+
+
+on:
+
+  workflow_dispatch:
+
+    inputs:
+
+      target_month:
+
+        description:
+          "Month to freeze in YYYY-MM format"
+
+        required:
+          true
+
+        default:
+          "2026-07"
+
+
+      allow_rebuild:
+
+        description:
+          "Allow replacing an existing snapshot"
+
+        required:
+          true
+
+        type:
+          boolean
+
+        default:
+          false
+
+
+
+permissions:
+
+  contents:
+    write
+
+
+
+concurrency:
+
+  group:
+    monthly-world-snapshot
+
+  cancel-in-progress:
+    false
+
+
+
+jobs:
+
+  build-snapshot:
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+        with:
+
+          ref:
+            main
+
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+
+      - name: Build monthly world snapshot
+
+        env:
+
+          TARGET_MONTH:
+            ${{ inputs.target_month }}
+
+          ALLOW_REBUILD:
+            ${{ inputs.allow_rebuild }}
+
+
+        run: |
+
+          node scripts/build-monthly-snapshot.mjs
+
+
+
+      - name: Commit monthly world snapshot
+
+        run: |
+
+          git add data/history
+
+
+          if git diff --cached --quiet; then
+
+            echo "No world snapshot changes to commit."
+
+            exit 0
+
+          fi
+
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          git commit \
+            -m "Freeze monthly OWL world snapshot"
+
+
+          git push
