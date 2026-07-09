@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "updatedPeriodId": "",
+  "companies": {
+    "wwe": {
+      "titles": []
+    },
+    "nxt": {
+      "titles": []
+    },
+    "aew": {
+      "titles": []
+    },
+    "roh": {
+      "titles": []
+    },
+    "tna": {
+      "titles": []
+    },
+    "cmll": {
+      "titles": []
+    },
+    "aaa": {
+      "titles": []
+    },
+    "owl": {
+      "titles": []
+    }
+  },
+  "history": []
+}
