@@ -1535,27 +1535,19 @@ for (
 
 
         result =
-            await callModel(
+    await callModel(
 
-                eventPackage,
+        eventPackage,
 
-                batchNumber,
+        batchNumber,
 
-                posts,
+        posts.slice(
+            -5
+        ),
 
-                `IMPORTANT CORRECTION:
+        `RETRY: Return valid JSON with exactly 5 complete posts. No markdown or explanation.`
 
-The previous response was malformed or incomplete JSON.
-
-Return one valid JSON object only.
-
-The object must contain exactly 5 complete post objects.
-
-Do not include markdown fences.
-Do not include explanations.
-Do not leave any string or object unfinished.`
-
-            );
+    );
 
     }
 
