@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "shows": [
+    {
+      "id": "wwe-raw",
+      "name": "WWE Raw",
+      "shortName": "Raw",
+      "companyId": "wwe",
+      "day": "Monday",
+      "dayOrder": 1,
+      "showOrder": 1,
+      "rankingEligible": true
+    },
+    {
+      "id": "aaa-lucha-libre",
+      "name": "AAA Lucha Libre",
+      "shortName": "AAA Lucha Libre",
+      "companyId": "aaa",
+      "day": "Monday",
+      "dayOrder": 1,
+      "showOrder": 2,
+      "rankingEligible": true
+    },
+    {
+      "id": "nxt-on-cw",
+      "name": "NXT on CW",
+      "shortName": "NXT on CW",
+      "companyId": "nxt",
+      "day": "Tuesday",
+      "dayOrder": 2,
+      "showOrder": 1,
+      "rankingEligible": true
+    },
+    {
+      "id": "owl-ascension",
+      "name": "OWL Ascension",
+      "shortName": "Ascension",
+      "companyId": "owl",
+      "day": "Tuesday",
+      "dayOrder": 2,
+      "showOrder": 2,
+      "rankingEligible": true
+    },
+    {
+      "id": "aew-dynamite",
+      "name": "AEW Dynamite",
+      "shortName": "Dynamite",
+      "companyId": "aew",
+      "day": "Wednesday",
+      "dayOrder": 3,
+      "showOrder": 1,
+      "rankingEligible": true
+    },
+    {
+      "id": "owl-revolt",
+      "name": "OWL Revolt",
+      "shortName": "Revolt",
+      "companyId": "owl",
+      "day": "Wednesday",
+      "dayOrder": 3,
+      "showOrder": 2,
+      "rankingEligible": true
+    },
+    {
+      "id": "tna-impact",
+      "name": "TNA Impact",
+      "shortName": "Impact",
+      "companyId": "tna",
+      "day": "Thursday",
+      "dayOrder": 4,
+      "showOrder": 1,
+      "rankingEligible": true
+    },
+    {
+      "id": "roh-on-honorclub",
+      "name": "ROH on HonorClub",
+      "shortName": "ROH on HonorClub",
+      "companyId": "roh",
+      "day": "Thursday",
+      "dayOrder": 4,
+      "showOrder": 2,
+      "rankingEligible": true
+    },
+    {
+      "id": "aew-collision",
+      "name": "AEW Collision",
+      "shortName": "Collision",
+      "companyId": "aew",
+      "day": "Thursday",
+      "dayOrder": 4,
+      "showOrder": 3,
+      "rankingEligible": true
+    },
+    {
+      "id": "wwe-smackdown",
+      "name": "WWE SmackDown",
+      "shortName": "SmackDown",
+      "companyId": "wwe",
+      "day": "Friday",
+      "dayOrder": 5,
+      "showOrder": 1,
+      "rankingEligible": true
+    },
+    {
+      "id": "cmll-super-viernes",
+      "name": "CMLL Super Viernes",
+      "shortName": "Super Viernes",
+      "companyId": "cmll",
+      "day": "Friday",
+      "dayOrder": 5,
+      "showOrder": 2,
+      "rankingEligible": true
+    }
+  ]
+}
