@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "configuration": {
+    "name": "Bragging Rights",
+    "menBracketSize": 16,
+    "womenBracketSize": 16,
+    "coreCompanyAllocation": {
+      "rank1": 3,
+      "rank2": 2,
+      "rank3": 1,
+      "rank4": 1,
+      "rank5": 1,
+      "rank6": 1,
+      "rank7": 1,
+      "rank8": 1
+    },
+    "guestSlotsPerDivision": 5,
+    "avoidSameCompanyRoundOne": true,
+    "championshipsInvolved": false
+  },
+  "currentHolders": {
+    "men": null,
+    "women": null
+  },
+  "editions": []
+}
