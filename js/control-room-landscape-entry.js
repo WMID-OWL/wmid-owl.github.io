@@ -898,6 +898,152 @@ function crLandscapeEntryOccupiedCities(
 }
 
 
+// =================================
+// RESERVED FIXED CITIES
+// =================================
+
+
+function crLandscapeEntryReservedFixedCities(
+    stageId,
+    selectedShow
+) {
+
+
+    const reserved =
+        new Set();
+
+
+    if (
+        stageId ===
+        "showdown-saturday"
+    ) {
+
+
+        Object
+            .values(
+
+                crLandscapeLocationRules
+                    ?.majorEventRules
+
+                ||
+
+                {}
+
+            )
+
+            .filter(
+
+                rule =>
+
+                    rule.mode ===
+                    "fixed"
+
+            )
+
+            .forEach(
+
+                rule => {
+
+
+                    reserved.add(
+
+                        crLandscapeEntryLocationKey({
+
+                            city:
+                                rule.city || "",
+
+                            region:
+                                rule.region || "",
+
+                            country:
+                                rule.country || ""
+
+                        })
+
+                    );
+
+                }
+
+            );
+
+
+        return reserved;
+
+    }
+
+
+    const selectedDayOrder =
+
+        Number(
+            selectedShow?.dayOrder || 0
+        );
+
+
+    crLandscapeEntryData
+        .shows
+
+        .filter(
+
+            show =>
+
+                Number(
+                    show.dayOrder || 0
+                )
+
+                ===
+
+                selectedDayOrder
+
+        )
+
+        .forEach(
+
+            show => {
+
+
+                const rule =
+
+                    crLandscapeLocationRules
+                        ?.showRules
+                        ?.[show.id];
+
+
+                if (
+                    rule?.mode !==
+                    "fixed"
+                ) {
+
+
+                    return;
+
+                }
+
+
+                reserved.add(
+
+                    crLandscapeEntryLocationKey({
+
+                        city:
+                            rule.city || "",
+
+                        region:
+                            rule.region || "",
+
+                        country:
+                            rule.country || ""
+
+                    })
+
+                );
+
+            }
+
+        );
+
+
+    return reserved;
+
+}
 
 // =================================
 // FORMAT LOCATION
