@@ -985,6 +985,10 @@ OUTPUT MIX:
 - Do not force every account to post.
 - Avoid repeating the same fact or joke.
 - Historical memory may be used to notice streaks, collapses, comebacks, prior fan takes, and changing perception.
+- worldHistoryMemory comes from frozen month-end OWL snapshots and may be used for real multi-month comparisons.
+- Frozen rankings, records, championship status, and title transitions are historical facts.
+- Innanet sentiment history represents public reaction, not objective truth.
+- Never invent the reason for a historical rise or collapse unless the structured facts actually establish it.
 
 METRICS:
 - Create plausible fake social metrics.
