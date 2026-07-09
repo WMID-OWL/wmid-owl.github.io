@@ -690,6 +690,792 @@ function crLandscapeEntryUpdateMode() {
 }
 
 
+// =================================
+// LOCATION HELPERS
+// =================================
+
+
+function crLandscapeEntryRandomItem(
+    items
+) {
+
+
+    if (
+        !Array.isArray(
+            items
+        )
+
+        ||
+
+        items.length === 0
+    ) {
+
+
+        return null;
+
+    }
+
+
+    return items[
+
+        Math.floor(
+
+            Math.random()
+            *
+            items.length
+
+        )
+
+    ];
+
+}
+
+
+
+// =================================
+// SAME SIMULATION DAY
+// =================================
+
+
+function crLandscapeEntrySameSimulationDay(
+    event,
+    periodId,
+    stageId,
+    selectedShow
+) {
+
+
+    if (
+        event.periodId !==
+        periodId
+
+        ||
+
+        event.stage !==
+        stageId
+    ) {
+
+
+        return false;
+
+    }
+
+
+    if (
+        stageId ===
+        "showdown-saturday"
+    ) {
+
+
+        return (
+            event.eventType ===
+            "major-event"
+        );
+
+    }
+
+
+    if (
+        event.eventType !==
+        "weekly"
+    ) {
+
+
+        return false;
+
+    }
+
+
+    const eventShow =
+
+        crLandscapeEntryData
+            .shows
+
+            .find(
+
+                show =>
+
+                    show.id ===
+                    event.showId
+
+            );
+
+
+    return (
+
+        Number(
+            eventShow?.dayOrder || 0
+        )
+
+        ===
+
+        Number(
+            selectedShow?.dayOrder || 0
+        )
+
+    );
+
+}
+
+
+
+// =================================
+// LOCATION KEY
+// =================================
+
+
+function crLandscapeEntryLocationKey(
+    location
+) {
+
+
+    return [
+
+        location?.city || "",
+        location?.region || "",
+        location?.country || ""
+
+    ]
+
+        .join(
+            "|"
+        )
+
+        .toLowerCase();
+
+}
+
+
+
+// =================================
+// GET OCCUPIED CITIES
+// =================================
+
+
+function crLandscapeEntryOccupiedCities(
+    events,
+    periodId,
+    stageId,
+    selectedShow
+) {
+
+
+    return new Set(
+
+        events
+
+            .filter(
+
+                event =>
+
+                    crLandscapeEntrySameSimulationDay(
+
+                        event,
+                        periodId,
+                        stageId,
+                        selectedShow
+
+                    )
+
+            )
+
+            .map(
+
+                event =>
+
+                    crLandscapeEntryLocationKey(
+                        event.location
+                    )
+
+            )
+
+            .filter(
+                Boolean
+            )
+
+    );
+
+}
+
+
+
+// =================================
+// FORMAT LOCATION
+// =================================
+
+
+function crLandscapeEntryFormatLocation(
+    location
+) {
+
+
+    if (
+        !location
+    ) {
+
+
+        return "Not generated";
+
+    }
+
+
+    return [
+
+        location.city,
+        location.region,
+        location.country
+
+    ]
+
+        .filter(
+            Boolean
+        )
+
+        .join(
+            ", "
+        );
+
+}
+
+
+
+// =================================
+// RENDER LOCATION
+// =================================
+
+
+function crLandscapeEntryRenderLocation() {
+
+
+    if (
+        !crLandscapeGeneratedLocation
+    ) {
+
+
+        crLandscapeEntryEls
+            .location
+            .textContent =
+                "Not generated";
+
+
+        crLandscapeEntryEls
+            .locationDetail
+            .textContent =
+
+                "Generate a canon location before saving.";
+
+
+        return;
+
+    }
+
+
+    crLandscapeEntryEls
+        .location
+        .textContent =
+
+            crLandscapeEntryFormatLocation(
+                crLandscapeGeneratedLocation
+            );
+
+
+    crLandscapeEntryEls
+        .locationDetail
+        .textContent =
+
+            crLandscapeGeneratedLocation.venue
+
+                ? crLandscapeGeneratedLocation.venue
+
+                : "City assignment";
+
+}
+
+
+
+// =================================
+// RESET GENERATED LOCATION
+// =================================
+
+
+function crLandscapeEntryResetLocation() {
+
+
+    crLandscapeGeneratedLocation =
+        null;
+
+
+    crLandscapeEntryRenderLocation();
+
+}
+
+
+
+// =================================
+// WEEKLY SIBLING CITY
+// =================================
+
+
+function crLandscapeEntrySiblingLocation(
+    events,
+    periodId,
+    stageId,
+    siblingShowId
+) {
+
+
+    return events
+
+        .find(
+
+            event =>
+
+                event.periodId ===
+                periodId
+
+                &&
+
+                event.stage ===
+                stageId
+
+                &&
+
+                event.showId ===
+                siblingShowId
+
+        )
+
+        ?.location
+
+        ||
+
+        null;
+
+}
+
+
+
+// =================================
+// GENERATE LOCATION
+// =================================
+
+
+async function crLandscapeEntryGenerateLocation() {
+
+
+    try {
+
+
+        crLandscapeEntrySetStatus(
+            "GENERATING LOCATION"
+        );
+
+
+        const stageId =
+
+            crLandscapeEntryEls
+                .stage
+                .value;
+
+
+        const eventType =
+
+            stageId ===
+            "showdown-saturday"
+
+                ? "major-event"
+
+                : "weekly";
+
+
+        const year =
+
+            String(
+                crLandscapeEntryEls
+                    .year
+                    .value
+            );
+
+
+        const monthId =
+
+            crLandscapeEntryEls
+                .month
+                .value;
+
+
+        const periodId =
+
+            `${year}-${monthId}`;
+
+
+        const companyId =
+
+            crLandscapeEntryEls
+                .company
+                .value;
+
+
+        const selectedShow =
+
+            crLandscapeEntryData
+                .shows
+
+                .find(
+
+                    show =>
+
+                        show.id ===
+                        crLandscapeEntryEls
+                            .show
+                            .value
+
+                );
+
+
+        const eventsData =
+
+            await crLandscapeEntryReadJson(
+                "events.json"
+            );
+
+
+        const events =
+
+            Array.isArray(
+                eventsData.events
+            )
+
+                ? eventsData.events
+
+                : [];
+
+
+        const occupiedCities =
+
+            crLandscapeEntryOccupiedCities(
+
+                events,
+                periodId,
+                stageId,
+                selectedShow
+
+            );
+
+
+        let rule =
+            null;
+
+
+        if (
+            eventType ===
+            "major-event"
+        ) {
+
+
+            rule =
+
+                crLandscapeLocationRules
+                    ?.majorEventRules
+                    ?.[companyId]
+
+                ||
+
+                null;
+
+        }
+
+
+        else {
+
+
+            rule =
+
+                crLandscapeLocationRules
+                    ?.showRules
+                    ?.[selectedShow?.id]
+
+                ||
+
+                null;
+
+        }
+
+
+        if (
+            !rule
+        ) {
+
+
+            throw new Error(
+                "No location rule exists for this show."
+            );
+
+        }
+
+
+        if (
+            rule.mode ===
+            "fixed"
+        ) {
+
+
+            crLandscapeGeneratedLocation = {
+
+                venue:
+                    rule.venue || "",
+
+                city:
+                    rule.city || "",
+
+                region:
+                    rule.region || "",
+
+                country:
+                    rule.country || ""
+
+            };
+
+
+            crLandscapeEntryRenderLocation();
+
+
+            crLandscapeEntrySetStatus(
+                "LOCATION READY"
+            );
+
+
+            return;
+
+        }
+
+
+        let candidatePool =
+            [];
+
+
+        if (
+            rule.mode ===
+            "traveling"
+        ) {
+
+
+            candidatePool =
+
+                [
+
+                    ...(
+                        crLandscapeLocationRules
+                            ?.travelingCityPool
+
+                        ||
+
+                        []
+                    )
+
+                ];
+
+
+            if (
+
+                eventType ===
+                "weekly"
+
+                &&
+
+                rule.weeklySiblingShowId
+
+            ) {
+
+
+                const siblingLocation =
+
+                    crLandscapeEntrySiblingLocation(
+
+                        events,
+                        periodId,
+                        stageId,
+                        rule.weeklySiblingShowId
+
+                    );
+
+
+                if (
+
+                    siblingLocation
+
+                    &&
+
+                    Math.random()
+
+                    <
+
+                    Number(
+                        rule.siblingCityReuseChance || 0
+                    )
+
+                ) {
+
+
+                    candidatePool.unshift(
+                        siblingLocation
+                    );
+
+                }
+
+
+                else {
+
+
+                    candidatePool =
+
+                        candidatePool.filter(
+
+                            location =>
+
+                                crLandscapeEntryLocationKey(
+                                    location
+                                )
+
+                                !==
+
+                                crLandscapeEntryLocationKey(
+                                    siblingLocation
+                                )
+
+                        );
+
+                }
+
+            }
+
+        }
+
+
+        if (
+            rule.mode ===
+            "venue-pool"
+        ) {
+
+
+            const showRule =
+
+                eventType ===
+                "major-event"
+
+                    ? crLandscapeLocationRules
+                        ?.showRules
+                        ?.[
+
+                            companyId === "cmll"
+
+                                ? "cmll-super-viernes"
+
+                                : "aaa-lucha-libre"
+
+                        ]
+
+                    : rule;
+
+
+            candidatePool =
+
+                [
+
+                    ...(
+                        showRule?.venues
+
+                        ||
+
+                        []
+                    )
+
+                ];
+
+        }
+
+
+        const availablePool =
+
+            candidatePool
+
+                .filter(
+
+                    location =>
+
+                        !occupiedCities.has(
+
+                            crLandscapeEntryLocationKey(
+                                location
+                            )
+
+                        )
+
+                );
+
+
+        if (
+            availablePool.length === 0
+        ) {
+
+
+            throw new Error(
+
+                "No valid unused city is available for this simulation day."
+
+            );
+
+        }
+
+
+        crLandscapeGeneratedLocation =
+
+            structuredClone(
+
+                crLandscapeEntryRandomItem(
+                    availablePool
+                )
+
+            );
+
+
+        crLandscapeEntryRenderLocation();
+
+
+        crLandscapeEntrySetStatus(
+            "LOCATION READY"
+        );
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        console.error(
+
+            "Could not generate Landscape location:",
+
+            error
+
+        );
+
+
+        crLandscapeEntrySetStatus(
+
+            error.message
+
+            ||
+
+            "LOCATION FAILED"
+
+        );
+
+    }
+
+}
 
 // =================================
 // REFRESH EMPTY STATE
