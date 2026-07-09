@@ -1,30 +1,98 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const ROOT = process.cwd();
+
+const ROOT =
+    process.cwd();
+
 
 const TOKEN =
     String(
         process.env.GITHUB_TOKEN || ""
     ).trim();
 
+
 const MAX_EVENTS =
     Math.max(
+
         1,
+
         Number(
             process.env.MAX_EVENTS || 1
         )
+
     );
+
 
 const MODEL =
     String(
+
         process.env.INNANET_MODEL
+
         ||
+
         "openai/gpt-4o-mini"
+
     ).trim();
 
+
 const ENDPOINT =
+
     "https://models.github.ai/inference/chat/completions";
+
+
+
+const REQUEST_GAP_MS =
+
+    Math.max(
+
+        5000,
+
+        Number(
+
+            process.env.INNANET_REQUEST_GAP_MS
+
+            ||
+
+            15000
+
+        )
+
+    );
+
+
+
+const EVENT_GAP_MS =
+
+    Math.max(
+
+        0,
+
+        Number(
+
+            process.env.INNANET_EVENT_GAP_MS
+
+            ||
+
+            20000
+
+        )
+
+    );
+
+
+
+const MAX_RATE_LIMIT_RETRIES =
+    4;
+
+
+const MAX_SERVER_RETRIES =
+    3;
+
+
+
+let lastModelRequestAt =
+    0;
 
 
 
@@ -33,7 +101,261 @@ if (
 ) {
 
     throw new Error(
+
         "GITHUB_TOKEN is missing."
+
+    );
+
+}
+
+
+
+// =================================
+// MODEL JSON ERROR
+// =================================
+
+
+class ModelJsonError extends Error {
+
+
+    constructor(
+        message
+    ) {
+
+
+        super(
+            message
+        );
+
+
+        this.name =
+            "ModelJsonError";
+
+    }
+
+
+}
+
+
+
+// =================================
+// WAIT HELPERS
+// =================================
+
+
+function sleep(
+    milliseconds
+) {
+
+
+    return new Promise(
+
+        resolve =>
+
+            setTimeout(
+
+                resolve,
+
+                milliseconds
+
+            )
+
+    );
+
+}
+
+
+
+async function waitForRequestSlot() {
+
+
+    const elapsed =
+
+        Date.now()
+
+        -
+
+        lastModelRequestAt;
+
+
+    const remaining =
+
+        REQUEST_GAP_MS
+
+        -
+
+        elapsed;
+
+
+
+    if (
+        remaining > 0
+    ) {
+
+
+        console.log(
+
+            `Waiting ${Math.ceil(
+
+                remaining / 1000
+
+            )}s before the next model request...`
+
+        );
+
+
+        await sleep(
+            remaining
+        );
+
+    }
+
+
+}
+
+
+
+// =================================
+// RATE LIMIT DELAY
+// =================================
+
+
+function retryDelayFromHeaders(
+    response,
+    attempt
+) {
+
+
+    const retryAfter =
+
+        response.headers.get(
+            "retry-after"
+        );
+
+
+
+    if (
+        retryAfter
+    ) {
+
+
+        const seconds =
+            Number(
+                retryAfter
+            );
+
+
+        if (
+            Number.isFinite(
+                seconds
+            )
+        ) {
+
+
+            return Math.max(
+
+                1000,
+
+                seconds * 1000
+
+            );
+
+        }
+
+
+
+        const dateValue =
+            Date.parse(
+                retryAfter
+            );
+
+
+        if (
+            Number.isFinite(
+                dateValue
+            )
+        ) {
+
+
+            return Math.max(
+
+                1000,
+
+                dateValue
+
+                -
+
+                Date.now()
+
+            );
+
+        }
+
+    }
+
+
+
+    const reset =
+
+        Number(
+
+            response.headers.get(
+                "x-ratelimit-reset"
+            )
+
+            ||
+
+            0
+
+        );
+
+
+
+    if (
+        Number.isFinite(
+            reset
+        )
+
+        &&
+
+        reset > 0
+    ) {
+
+
+        return Math.max(
+
+            1000,
+
+            (
+                reset * 1000
+            )
+
+            -
+
+            Date.now()
+
+            +
+
+            2000
+
+        );
+
+    }
+
+
+
+    return Math.min(
+
+        180000,
+
+        30000
+
+        *
+
+        (
+            2 ** attempt
+        )
+
     );
 
 }
@@ -50,20 +372,30 @@ async function readJson(
     fallback = undefined
 ) {
 
+
     const fullPath =
+
         path.join(
+
             ROOT,
+
             relativePath
+
         );
+
 
 
     try {
 
+
         return JSON.parse(
 
             await fs.readFile(
+
                 fullPath,
+
                 "utf8"
+
             )
 
         );
@@ -75,6 +407,7 @@ async function readJson(
         error
     ) {
 
+
         if (
             fallback !== undefined
 
@@ -83,9 +416,11 @@ async function readJson(
             error.code === "ENOENT"
         ) {
 
+
             return fallback;
 
         }
+
 
 
         throw new Error(
@@ -96,6 +431,7 @@ async function readJson(
 
     }
 
+
 }
 
 
@@ -105,11 +441,17 @@ async function writeJson(
     value
 ) {
 
+
     const fullPath =
+
         path.join(
+
             ROOT,
+
             relativePath
+
         );
+
 
 
     await fs.mkdir(
@@ -119,11 +461,14 @@ async function writeJson(
         ),
 
         {
+
             recursive:
                 true
+
         }
 
     );
+
 
 
     await fs.writeFile(
@@ -131,9 +476,13 @@ async function writeJson(
         fullPath,
 
         `${JSON.stringify(
+
             value,
+
             null,
+
             2
+
         )}\n`,
 
         "utf8"
@@ -153,8 +502,11 @@ function monthId(
     dateString
 ) {
 
+
     return String(
+
         dateString || ""
+
     ).slice(
         0,
         7
@@ -168,22 +520,35 @@ function monthLabel(
     id
 ) {
 
+
     const [
+
         year,
+
         month
+
     ] =
 
         id
+
             .split("-")
-            .map(Number);
+
+            .map(
+                Number
+            );
+
 
 
     return new Date(
 
         Date.UTC(
+
             year,
+
             month - 1,
+
             1
+
         )
 
     ).toLocaleDateString(
@@ -220,10 +585,12 @@ function clampInteger(
     max
 ) {
 
+
     const number =
         Number(
             value
         );
+
 
 
     if (
@@ -232,9 +599,11 @@ function clampInteger(
         )
     ) {
 
+
         return min;
 
     }
+
 
 
     return Math.max(
@@ -262,15 +631,21 @@ function cleanText(
     maxLength = 600
 ) {
 
+
     return String(
+
         value || ""
+
     )
 
         .trim()
 
         .slice(
+
             0,
+
             maxLength
+
         );
 
 }
@@ -281,23 +656,267 @@ function stableWrestlerHandle(
     wrestlerId
 ) {
 
+
     const slug =
+
         String(
-            wrestlerId || "wrestler"
+
+            wrestlerId
+
+            ||
+
+            "wrestler"
+
         )
 
             .replace(
+
                 /[^a-zA-Z0-9]/g,
+
                 ""
+
             )
 
             .slice(
+
                 0,
+
                 24
+
             );
 
 
+
     return `@${slug || "wrestler"}`;
+
+}
+
+
+
+// =================================
+// COMPACT MODEL FACT PACKAGE
+// =================================
+
+
+function buildPromptPackage(
+    eventPackage
+) {
+
+
+    const mediaMemory =
+
+        eventPackage.mediaMemory
+
+        ||
+
+        {};
+
+
+
+    return {
+
+
+        event:
+            eventPackage.event,
+
+
+        rules:
+            eventPackage.rules,
+
+
+        matches:
+            eventPackage.matches,
+
+
+        standoutFacts:
+            eventPackage.standoutFacts,
+
+
+        wrestlerContext:
+            eventPackage.wrestlerContext,
+
+
+        teamContext:
+            eventPackage.teamContext,
+
+
+        mediaMemory: {
+
+
+            priorInnanetPosts:
+
+                (
+                    mediaMemory
+                        .priorInnanetPosts
+
+                    ||
+
+                    []
+                )
+
+                    .slice(
+                        0,
+                        12
+                    )
+
+                    .map(
+
+                        post => ({
+
+
+                            date:
+                                post.date,
+
+
+                            eventName:
+                                post.eventName,
+
+
+                            accountName:
+                                post.accountName,
+
+
+                            handle:
+                                post.handle,
+
+
+                            type:
+                                post.type,
+
+
+                            body:
+
+                                cleanText(
+
+                                    post.body,
+
+                                    320
+
+                                )
+
+                        })
+
+                    ),
+
+
+
+            priorWwowArticles:
+
+                (
+                    mediaMemory
+                        .priorWwowArticles
+
+                    ||
+
+                    []
+                )
+
+                    .slice(
+                        0,
+                        6
+                    )
+
+                    .map(
+
+                        article => ({
+
+
+                            issue:
+                                article.issue,
+
+
+                            kicker:
+                                article.kicker,
+
+
+                            title:
+                                article.title,
+
+
+                            excerpt:
+
+                                cleanText(
+
+                                    article.excerpt,
+
+                                    360
+
+                                )
+
+                        })
+
+                    )
+
+        },
+
+
+
+        availableAccounts:
+
+            (
+                eventPackage
+                    .availableAccounts
+
+                ||
+
+                []
+            )
+
+                .map(
+
+                    account => ({
+
+
+                        id:
+                            account.id,
+
+
+                        accountName:
+                            account.accountName,
+
+
+                        handle:
+                            account.handle,
+
+
+                        archetype:
+                            account.archetype,
+
+
+                        tone:
+                            account.tone,
+
+
+                        focus:
+                            account.focus,
+
+
+                        profanityLevel:
+                            account.profanityLevel,
+
+
+                        factDiscipline:
+                            account.factDiscipline,
+
+
+                        replyStyle:
+                            account.replyStyle,
+
+
+                        frequency:
+                            account.frequency
+
+                    })
+
+                ),
+
+
+
+        entityDirectory:
+            eventPackage.entityDirectory
+
+    };
+
 
 }
 
@@ -309,6 +928,7 @@ function stableWrestlerHandle(
 
 
 function buildSystemPrompt() {
+
 
     return `
 
@@ -337,10 +957,10 @@ OUTPUT MIX:
 - Complete all 5 post objects before ending the JSON response.
 - Use recurring accounts from availableAccounts for most posts.
 - Make the 5 posts meaningfully different from one another.
-- Include at least 2 factual posts from stats/news-style accounts when the facts support them.
+- Include factual posts from stats/news-style accounts when the facts support them.
 - Include multiple viewpoints. Do not make everyone agree.
-- Include 3 to 6 replies by setting replyTo to another postId.
-- Use wrestler-posts sparingly: zero to three per event.
+- Use replies naturally when useful.
+- Use wrestler-posts sparingly: zero to three per full event.
 - A wrestler-post must use a wrestlerId from wrestlerContext and must fit actual results.
 - Do not force every account to post.
 - Avoid repeating the same fact or joke.
@@ -371,6 +991,7 @@ RETURN JSON ONLY with this exact top-level shape:
 }
 
 Allowed type values:
+
 fan-post
 stats-post
 news-report
@@ -401,11 +1022,25 @@ replyTo must be empty or match another postId in the same response.
 
 
 function buildUserPrompt(
+
     eventPackage,
+
     batchNumber,
+
     previousPosts = [],
+
     retryInstruction = ""
+
 ) {
+
+
+    const promptPackage =
+
+        buildPromptPackage(
+            eventPackage
+        );
+
+
 
     return `Generate batch ${batchNumber} of 4 for The Innanet conversation about this completed OWL event.
 
@@ -424,39 +1059,140 @@ ${retryInstruction}
 PREVIOUS POSTS:
 
 ${JSON.stringify(
+
     previousPosts
 
         .slice(
-            -8
+            -6
         )
 
         .map(
+
             post => ({
+
+
                 accountId:
                     post.accountId,
+
 
                 wrestlerId:
                     post.wrestlerId,
 
+
                 type:
                     post.type,
 
+
                 body:
-                    String(
-                        post.body || ""
-                    ).slice(
-                        0,
-                        240
+
+                    cleanText(
+
+                        post.body,
+
+                        220
+
                     )
+
             })
+
         )
+
 )}
 
 EVENT FACT PACKAGE:
 
 ${JSON.stringify(
-    eventPackage
+    promptPackage
 )}`;
+
+}
+
+
+
+// =================================
+// MODEL JSON PARSER
+// =================================
+
+
+function parseModelJson(
+    content
+) {
+
+
+    const cleaned =
+
+        String(
+
+            content || ""
+
+        )
+
+            .replace(
+
+                /^```json\s*/i,
+
+                ""
+
+            )
+
+            .replace(
+
+                /^```\s*/i,
+
+                ""
+
+            )
+
+            .replace(
+
+                /```\s*$/i,
+
+                ""
+
+            )
+
+            .trim();
+
+
+
+    if (
+        !cleaned
+    ) {
+
+
+        throw new ModelJsonError(
+
+            "GitHub Models returned no message content."
+
+        );
+
+    }
+
+
+
+    try {
+
+
+        return JSON.parse(
+            cleaned
+        );
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        throw new ModelJsonError(
+
+            `Model returned malformed JSON: ${error.message}`
+
+        );
+
+    }
+
 
 }
 
@@ -468,110 +1204,393 @@ ${JSON.stringify(
 
 
 async function callModel(
+
     eventPackage,
+
     batchNumber,
+
     previousPosts = [],
+
     retryInstruction = ""
+
 ) {
 
-    const response =
-        await fetch(
 
-            ENDPOINT,
+    const requestBody =
 
-            {
-
-                method:
-                    "POST",
+        JSON.stringify({
 
 
-                headers: {
+            model:
+                MODEL,
 
-                    Accept:
-                        "application/vnd.github+json",
 
-                    Authorization:
-                        `Bearer ${TOKEN}`,
+            messages: [
 
-                    "X-GitHub-Api-Version":
-                        "2022-11-28",
 
-                    "Content-Type":
-                        "application/json"
+                {
+
+                    role:
+                        "system",
+
+                    content:
+                        buildSystemPrompt()
 
                 },
 
 
-                body:
-                    JSON.stringify({
+                {
 
-                        model:
-                            MODEL,
+                    role:
+                        "user",
 
+                    content:
 
-                        messages: [
+                        buildUserPrompt(
 
-                            {
+                            eventPackage,
 
-                                role:
-                                    "system",
+                            batchNumber,
 
-                                content:
-                                    buildSystemPrompt()
+                            previousPosts,
 
-                            },
+                            retryInstruction
 
-                            {
+                        )
 
-                                role:
-                                    "user",
+                }
 
-                                content:
-    buildUserPrompt(
-        eventPackage,
-        batchNumber,
-        previousPosts,
-        retryInstruction
-    )
-
-                            }
-
-                        ],
+            ],
 
 
-                        response_format: {
+            response_format: {
 
-                            type:
-                                "json_object"
+                type:
+                    "json_object"
+
+            },
+
+
+            temperature:
+                0.9,
+
+
+            frequency_penalty:
+                0.35,
+
+
+            max_tokens:
+                2200
+
+        });
+
+
+
+    let rateLimitAttempt =
+        0;
+
+
+    let serverAttempt =
+        0;
+
+
+
+    while (
+        true
+    ) {
+
+
+        await waitForRequestSlot();
+
+
+
+        lastModelRequestAt =
+            Date.now();
+
+
+
+        let response;
+
+
+
+        try {
+
+
+            response =
+
+                await fetch(
+
+                    ENDPOINT,
+
+                    {
+
+
+                        method:
+                            "POST",
+
+
+                        headers: {
+
+
+                            Accept:
+                                "application/vnd.github+json",
+
+
+                            Authorization:
+                                `Bearer ${TOKEN}`,
+
+
+                            "X-GitHub-Api-Version":
+                                "2022-11-28",
+
+
+                            "Content-Type":
+                                "application/json"
 
                         },
 
 
-                        temperature:
-                            0.9,
+                        body:
+                            requestBody
+
+                    }
+
+                );
+
+        }
 
 
-                        frequency_penalty:
-                            0.35,
+        catch (
+            error
+        ) {
 
 
-                        max_tokens:
-    2200
+            if (
+                serverAttempt >=
+                    MAX_SERVER_RETRIES
+            ) {
 
-                    })
+
+                throw new Error(
+
+                    `GitHub Models network request failed: ${error.message}`
+
+                );
 
             }
 
-        );
 
 
-    const raw =
-        await response.text();
+            const delay =
+
+                Math.min(
+
+                    120000,
+
+                    15000
+
+                    *
+
+                    (
+                        2 ** serverAttempt
+                    )
+
+                );
 
 
-    if (
-        !response.ok
-    ) {
+
+            serverAttempt +=
+                1;
+
+
+
+            console.log(
+
+                `Model network error. Waiting ${Math.ceil(
+
+                    delay / 1000
+
+                )}s before retry ${serverAttempt} of ${MAX_SERVER_RETRIES}...`
+
+            );
+
+
+
+            await sleep(
+                delay
+            );
+
+
+            continue;
+
+        }
+
+
+
+        const raw =
+
+            await response.text();
+
+
+
+        if (
+            response.ok
+        ) {
+
+
+            let envelope;
+
+
+
+            try {
+
+
+                envelope =
+                    JSON.parse(
+                        raw
+                    );
+
+            }
+
+
+            catch (
+                error
+            ) {
+
+
+                throw new Error(
+
+                    `GitHub Models returned an invalid response envelope: ${error.message}`
+
+                );
+
+            }
+
+
+
+            const content =
+
+                envelope
+                    ?.choices
+                    ?.[0]
+                    ?.message
+                    ?.content;
+
+
+
+            return parseModelJson(
+                content
+            );
+
+        }
+
+
+
+        if (
+            response.status === 429
+
+            &&
+
+            rateLimitAttempt <
+                MAX_RATE_LIMIT_RETRIES
+        ) {
+
+
+            const delay =
+
+                retryDelayFromHeaders(
+
+                    response,
+
+                    rateLimitAttempt
+
+                );
+
+
+
+            rateLimitAttempt +=
+                1;
+
+
+
+            console.log(
+
+                `GitHub Models rate limit hit. Waiting ${Math.ceil(
+
+                    delay / 1000
+
+                )}s before retry ${rateLimitAttempt} of ${MAX_RATE_LIMIT_RETRIES}...`
+
+            );
+
+
+
+            await sleep(
+                delay
+            );
+
+
+            continue;
+
+        }
+
+
+
+        if (
+            response.status >= 500
+
+            &&
+
+            serverAttempt <
+                MAX_SERVER_RETRIES
+        ) {
+
+
+            const delay =
+
+                Math.min(
+
+                    120000,
+
+                    15000
+
+                    *
+
+                    (
+                        2 ** serverAttempt
+                    )
+
+                );
+
+
+
+            serverAttempt +=
+                1;
+
+
+
+            console.log(
+
+                `GitHub Models server error ${response.status}. Waiting ${Math.ceil(
+
+                    delay / 1000
+
+                )}s before retry ${serverAttempt} of ${MAX_SERVER_RETRIES}...`
+
+            );
+
+
+
+            await sleep(
+                delay
+            );
+
+
+            continue;
+
+        }
+
+
 
         throw new Error(
 
@@ -582,72 +1601,350 @@ async function callModel(
     }
 
 
-    const envelope =
-        JSON.parse(
-            raw
-        );
+}
 
 
-    const content =
 
-        envelope
-            ?.choices
-            ?.[0]
-            ?.message
-            ?.content;
+// =================================
+// GENERATE ONE BATCH
+// =================================
 
 
-    if (
-        !content
-    ) {
+async function generateBatch(
 
-        throw new Error(
+    eventPackage,
 
-            "GitHub Models returned no message content."
+    batchNumber,
 
-        );
+    previousPosts
 
-    }
+) {
+
+
+    let result;
+
 
 
     try {
 
-        return JSON.parse(
-            content
+
+        result =
+
+            await callModel(
+
+                eventPackage,
+
+                batchNumber,
+
+                previousPosts
+
+            );
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        if (
+            !(
+                error instanceof
+                    ModelJsonError
+            )
+        ) {
+
+
+            throw error;
+
+        }
+
+
+
+        console.log(
+
+            `Batch ${batchNumber} returned malformed JSON. Waiting before retry...`
+
+        );
+
+
+
+        await sleep(
+            15000
+        );
+
+
+
+        result =
+
+            await callModel(
+
+                eventPackage,
+
+                batchNumber,
+
+                previousPosts.slice(
+                    -5
+                ),
+
+                "RETRY: Return valid JSON with exactly 5 complete posts. No markdown or explanation."
+
+            );
+
+    }
+
+
+
+    let batchPosts =
+
+        Array.isArray(
+            result?.posts
+        )
+
+            ? result.posts
+
+            : [];
+
+
+
+    if (
+        batchPosts.length < 5
+    ) {
+
+
+        console.log(
+
+            `Batch ${batchNumber} returned only ${batchPosts.length} posts. Retrying after a pause...`
+
+        );
+
+
+
+        await sleep(
+            15000
+        );
+
+
+
+        result =
+
+            await callModel(
+
+                eventPackage,
+
+                batchNumber,
+
+                previousPosts.slice(
+                    -5
+                ),
+
+                `RETRY: Previous response had ${batchPosts.length} posts. Return exactly 5 complete posts as valid JSON only.`
+
+            );
+
+
+
+        batchPosts =
+
+            Array.isArray(
+                result?.posts
+            )
+
+                ? result.posts
+
+                : [];
+
+    }
+
+
+
+    if (
+        batchPosts.length < 5
+    ) {
+
+
+        throw new Error(
+
+            `Batch ${batchNumber} returned only ${batchPosts.length} posts after retry.`
+
         );
 
     }
 
 
-    catch {
 
-        const cleaned =
+    const selectedPosts =
 
-            content
-
-                .replace(
-                    /^```json\s*/i,
-                    ""
-                )
-
-                .replace(
-                    /^```\s*/i,
-                    ""
-                )
-
-                .replace(
-                    /```\s*$/i,
-                    ""
-                )
-
-                .trim();
-
-
-        return JSON.parse(
-            cleaned
+        batchPosts.slice(
+            0,
+            5
         );
 
-    }
+
+
+    const idMap =
+        new Map();
+
+
+
+    selectedPosts.forEach(
+
+        (
+            post,
+            index
+        ) => {
+
+
+            const originalId =
+
+                cleanText(
+
+                    post.postId,
+
+                    40
+
+                )
+
+                ||
+
+                `p${String(
+
+                    index + 1
+
+                ).padStart(
+
+                    2,
+
+                    "0"
+
+                )}`;
+
+
+
+            const globalId =
+
+                `p${String(
+
+                    (
+                        (
+                            batchNumber - 1
+                        )
+
+                        *
+
+                        5
+                    )
+
+                    +
+
+                    index
+
+                    +
+
+                    1
+
+                ).padStart(
+
+                    2,
+
+                    "0"
+
+                )}`;
+
+
+
+            idMap.set(
+
+                originalId,
+
+                globalId
+
+            );
+
+        }
+
+    );
+
+
+
+    return selectedPosts.map(
+
+        (
+            post,
+            index
+        ) => {
+
+
+            const globalId =
+
+                `p${String(
+
+                    (
+                        (
+                            batchNumber - 1
+                        )
+
+                        *
+
+                        5
+                    )
+
+                    +
+
+                    index
+
+                    +
+
+                    1
+
+                ).padStart(
+
+                    2,
+
+                    "0"
+
+                )}`;
+
+
+
+            const originalReplyTo =
+
+                cleanText(
+
+                    post.replyTo,
+
+                    40
+
+                );
+
+
+
+            return {
+
+
+                ...post,
+
+
+                postId:
+                    globalId,
+
+
+                replyTo:
+
+                    idMap.get(
+                        originalReplyTo
+                    )
+
+                    ||
+
+                    originalReplyTo
+
+            };
+
+        }
+
+    );
 
 }
 
@@ -659,9 +1956,13 @@ async function callModel(
 
 
 function validatePosts(
+
     result,
+
     eventPackage
+
 ) {
+
 
     const rawPosts =
 
@@ -674,26 +1975,32 @@ function validatePosts(
             : [];
 
 
+
     if (
-    rawPosts.length !== 20
-) {
+        rawPosts.length !== 20
+    ) {
 
-    throw new Error(
 
-        `Writer assembled ${rawPosts.length} posts instead of 20; refusing to publish.`
+        throw new Error(
 
-    );
+            `Writer assembled ${rawPosts.length} posts instead of 20; refusing to publish.`
 
-}
+        );
+
+    }
 
 
 
     const accountMap =
+
         Object.fromEntries(
 
             (
-                eventPackage.availableAccounts
+                eventPackage
+                    .availableAccounts
+
                 ||
+
                 []
             )
 
@@ -714,11 +2021,15 @@ function validatePosts(
 
 
     const wrestlerMap =
+
         Object.fromEntries(
 
             (
-                eventPackage.wrestlerContext
+                eventPackage
+                    .wrestlerContext
+
                 ||
+
                 []
             )
 
@@ -739,6 +2050,7 @@ function validatePosts(
 
 
     const allowedTypes =
+
         new Set([
 
             "fan-post",
@@ -767,6 +2079,7 @@ function validatePosts(
         [];
 
 
+
     rawPosts
 
         .slice(
@@ -785,18 +2098,27 @@ function validatePosts(
                 let postId =
 
                     cleanText(
+
                         post.postId,
+
                         40
+
                     )
 
                     ||
 
                     `p${String(
+
                         index + 1
+
                     ).padStart(
+
                         2,
+
                         "0"
+
                     )}`;
+
 
 
                 if (
@@ -805,21 +2127,29 @@ function validatePosts(
                     )
                 ) {
 
+
                     postId =
 
                         `p${String(
+
                             index + 1
+
                         ).padStart(
+
                             2,
+
                             "0"
+
                         )}`;
 
                 }
 
 
+
                 usedIds.add(
                     postId
                 );
+
 
 
                 const type =
@@ -833,29 +2163,40 @@ function validatePosts(
                         : "fan-post";
 
 
+
                 const body =
 
                     cleanText(
+
                         post.body,
+
                         600
+
                     );
+
 
 
                 if (
                     !body
                 ) {
 
+
                     return;
 
                 }
+
+
+
                 // =================================
                 // WRESTLER POST
                 // =================================
 
 
                 if (
-                    type === "wrestler-post"
+                    type ===
+                        "wrestler-post"
                 ) {
+
 
                     const wrestler =
 
@@ -864,65 +2205,100 @@ function validatePosts(
                         ];
 
 
+
                     if (
                         !wrestler
                     ) {
+
 
                         return;
 
                     }
 
 
+
                     normalized.push({
 
+
                         postId,
+
 
                         accountName:
                             wrestler.name,
 
+
                         handle:
+
                             stableWrestlerHandle(
                                 wrestler.id
                             ),
 
+
                         accountId:
                             "",
+
 
                         wrestlerId:
                             wrestler.id,
 
+
                         type,
+
 
                         body,
 
+
                         replyTo:
+
                             cleanText(
+
                                 post.replyTo,
+
                                 40
+
                             ),
+
 
                         likes:
+
                             clampInteger(
+
                                 post.likes,
+
                                 0,
+
                                 50000
+
                             ),
+
 
                         reposts:
+
                             clampInteger(
+
                                 post.reposts,
+
                                 0,
+
                                 20000
+
                             ),
 
+
                         replies:
+
                             clampInteger(
+
                                 post.replies,
+
                                 0,
+
                                 10000
+
                             )
 
                     });
+
 
 
                     return;
@@ -943,60 +2319,93 @@ function validatePosts(
                     ];
 
 
+
                 if (
                     !account
                 ) {
+
 
                     return;
 
                 }
 
 
+
                 normalized.push({
 
+
                     postId,
+
 
                     accountName:
                         account.accountName,
 
+
                     handle:
                         account.handle,
+
 
                     accountId:
                         account.id,
 
+
                     wrestlerId:
                         "",
 
+
                     type,
+
 
                     body,
 
+
                     replyTo:
+
                         cleanText(
+
                             post.replyTo,
+
                             40
+
                         ),
+
 
                     likes:
+
                         clampInteger(
+
                             post.likes,
+
                             0,
+
                             50000
+
                         ),
+
 
                     reposts:
+
                         clampInteger(
+
                             post.reposts,
+
                             0,
+
                             20000
+
                         ),
 
+
                     replies:
+
                         clampInteger(
+
                             post.replies,
+
                             0,
+
                             10000
+
                         )
 
                 });
@@ -1013,6 +2422,7 @@ function validatePosts(
 
 
     const finalIds =
+
         new Set(
 
             normalized.map(
@@ -1025,12 +2435,13 @@ function validatePosts(
         );
 
 
+
     normalized.forEach(
 
         post => {
 
-            if (
 
+            if (
                 post.replyTo ===
                     post.postId
 
@@ -1039,8 +2450,8 @@ function validatePosts(
                 !finalIds.has(
                     post.replyTo
                 )
-
             ) {
+
 
                 post.replyTo =
                     "";
@@ -1057,6 +2468,7 @@ function validatePosts(
         normalized.length < 10
     ) {
 
+
         throw new Error(
 
             `Only ${normalized.length} valid posts remained after validation; refusing to publish.`
@@ -1064,6 +2476,7 @@ function validatePosts(
         );
 
     }
+
 
 
     return normalized;
@@ -1078,14 +2491,24 @@ function validatePosts(
 
 
 async function saveEventToMonth(
+
     eventPackage,
+
     posts
+
 ) {
 
+
     const id =
+
         monthId(
-            eventPackage.event.date
+
+            eventPackage
+                .event
+                .date
+
         );
+
 
 
     const relativePath =
@@ -1093,7 +2516,9 @@ async function saveEventToMonth(
         `data/innanet/${id}.json`;
 
 
+
     const month =
+
         await readJson(
 
             relativePath,
@@ -1115,6 +2540,7 @@ async function saveEventToMonth(
         );
 
 
+
     month.events =
 
         Array.isArray(
@@ -1129,31 +2555,50 @@ async function saveEventToMonth(
 
     const eventEntry = {
 
+
         eventId:
             eventPackage.event.id,
+
 
         eventName:
             eventPackage.event.name,
 
+
         brand:
-            eventPackage.event.brand
+
+            eventPackage
+                .event
+                .brand
+
             ||
+
             "OWL",
 
+
         eventType:
-            eventPackage.event.eventType
+
+            eventPackage
+                .event
+                .eventType
+
             ||
+
             "",
+
 
         date:
             eventPackage.event.date,
 
+
         generatedAt:
+
             new Date()
                 .toISOString(),
 
+
         model:
             MODEL,
+
 
         posts
 
@@ -1178,16 +2623,17 @@ async function saveEventToMonth(
         existingIndex >= 0
     ) {
 
+
         month.events[
             existingIndex
         ] =
-
             eventEntry;
 
     }
 
 
     else {
+
 
         month.events.push(
             eventEntry
@@ -1232,18 +2678,24 @@ async function saveEventToMonth(
 
     return {
 
+
         id,
+
 
         label:
             month.label,
 
+
         file:
             relativePath,
+
 
         showCount:
             month.events.length,
 
+
         postCount:
+
             month.events.reduce(
 
                 (
@@ -1284,12 +2736,15 @@ async function updateArchiveIndex(
     monthSummaries
 ) {
 
+
     const relativePath =
 
         "data/innanet/archive-index.json";
 
 
+
     const index =
+
         await readJson(
 
             relativePath,
@@ -1306,6 +2761,7 @@ async function updateArchiveIndex(
 
 
     const byId =
+
         new Map(
 
             (
@@ -1337,6 +2793,7 @@ async function updateArchiveIndex(
     monthSummaries.forEach(
 
         summary => {
+
 
             byId.set(
 
@@ -1399,6 +2856,7 @@ async function updateArchiveIndex(
 
 
 const queue =
+
     await readJson(
 
         "data/innanet/generation-queue.json",
@@ -1439,6 +2897,7 @@ if (
     !pending.length
 ) {
 
+
     console.log(
 
         "No pending Innanet events to generate."
@@ -1459,14 +2918,33 @@ if (
 // =================================
 
 
-const monthSummaries =
+const failures =
     [];
 
 
+let successCount =
+    0;
+
+
+
 for (
-    const eventPackage
-    of pending
+
+    let eventIndex = 0;
+
+    eventIndex <
+        pending.length;
+
+    eventIndex += 1
+
 ) {
+
+
+    const eventPackage =
+
+        pending[
+            eventIndex
+        ];
+
 
 
     console.log(
@@ -1476,48 +2954,132 @@ for (
     );
 
 
-    const posts =
-    [];
-
-
-
-// =================================
-// GENERATE FOUR SMALL BATCHES
-// =================================
-
-
-for (
-    let batchNumber = 1;
-
-    batchNumber <= 4;
-
-    batchNumber += 1
-) {
-
-
-    console.log(
-
-        `Generating batch ${batchNumber} of 4...`
-
-    );
-
-
-    let result;
-
 
     try {
 
 
-        result =
-            await callModel(
+        const posts =
+            [];
+
+
+
+        // =================================
+        // GENERATE FOUR SMALL BATCHES
+        // =================================
+
+
+        for (
+
+            let batchNumber = 1;
+
+            batchNumber <= 4;
+
+            batchNumber += 1
+
+        ) {
+
+
+            console.log(
+
+                `Generating batch ${batchNumber} of 4...`
+
+            );
+
+
+
+            const batchPosts =
+
+                await generateBatch(
+
+                    eventPackage,
+
+                    batchNumber,
+
+                    posts
+
+                );
+
+
+
+            posts.push(
+                ...batchPosts
+            );
+
+
+
+            console.log(
+
+                `Batch ${batchNumber} complete. Total raw posts: ${posts.length}.`
+
+            );
+
+        }
+
+
+
+        // =================================
+        // VALIDATE FULL FEED
+        // =================================
+
+
+        const validatedPosts =
+
+            validatePosts(
+
+                {
+
+                    posts
+
+                },
+
+                eventPackage
+
+            );
+
+
+
+        // =================================
+        // SAVE EVENT IMMEDIATELY
+        // =================================
+
+
+        const summary =
+
+            await saveEventToMonth(
 
                 eventPackage,
 
-                batchNumber,
-
-                posts
+                validatedPosts
 
             );
+
+
+
+        // =================================
+        // UPDATE ARCHIVE IMMEDIATELY
+        // =================================
+
+
+        await updateArchiveIndex(
+
+            [
+                summary
+            ]
+
+        );
+
+
+
+        successCount +=
+            1;
+
+
+
+        console.log(
+
+            `Saved ${validatedPosts.length} posts for ${eventPackage.event.name}.`
+
+        );
 
     }
 
@@ -1527,229 +3089,93 @@ for (
     ) {
 
 
-        console.log(
+        failures.push({
 
-            `Batch ${batchNumber} returned malformed JSON. Retrying once...`
+
+            eventId:
+                eventPackage.event.id,
+
+
+            eventName:
+                eventPackage.event.name,
+
+
+            message:
+                error.message
+
+        });
+
+
+
+        console.error(
+
+            `Could not publish ${eventPackage.event.name}: ${error.message}`
 
         );
-
-
-        result =
-    await callModel(
-
-        eventPackage,
-
-        batchNumber,
-
-        posts.slice(
-            -5
-        ),
-
-        `RETRY: Return valid JSON with exactly 5 complete posts. No markdown or explanation.`
-
-    );
 
     }
 
 
 
-    let batchPosts =
-
-        Array.isArray(
-            result?.posts
-        )
-
-            ? result.posts
-
-            : [];
-
-
-
     // =================================
-    // RETRY SHORT BATCH
+    // SPACE OUT MULTIPLE EVENTS
     // =================================
 
 
     if (
-        batchPosts.length < 5
+        eventIndex <
+            pending.length - 1
     ) {
 
 
         console.log(
 
-            `Batch ${batchNumber} returned only ${batchPosts.length} posts. Retrying...`
+            `Waiting ${Math.ceil(
+
+                EVENT_GAP_MS / 1000
+
+            )}s before the next event...`
 
         );
 
 
-        result =
-    await callModel(
 
-        eventPackage,
-
-        batchNumber,
-
-        posts.slice(
-            -5
-        ),
-
-        `RETRY: Previous response had ${batchPosts.length} posts. Return exactly 5 complete posts as valid JSON only.`
-
-    );
-
-
-        batchPosts =
-
-            Array.isArray(
-                result?.posts
-            )
-
-                ? result.posts
-
-                : [];
-
-    }
-
-
-
-    if (
-        batchPosts.length < 5
-    ) {
-
-
-        throw new Error(
-
-            `Batch ${batchNumber} returned only ${batchPosts.length} posts after retry.`
-
+        await sleep(
+            EVENT_GAP_MS
         );
 
     }
 
-
-
-    // =================================
-    // GIVE BATCH UNIQUE POST IDS
-    // =================================
-
-
-    batchPosts =
-        batchPosts
-
-            .slice(
-                0,
-                5
-            )
-
-            .map(
-
-                (
-                    post,
-                    index
-                ) => ({
-
-
-                    ...post,
-
-
-                    postId:
-
-                        `p${String(
-
-                            (
-                                (
-                                    batchNumber - 1
-                                )
-
-                                *
-
-                                5
-                            )
-
-                            +
-
-                            index
-
-                            +
-
-                            1
-
-                        ).padStart(
-                            2,
-                            "0"
-                        )}`
-
-                })
-
-            );
-
-
-
-    posts.push(
-        ...batchPosts
-    );
-
-
-    console.log(
-
-        `Batch ${batchNumber} complete. Total raw posts: ${posts.length}.`
-
-    );
-
 }
 
-
-
-// =================================
-// VALIDATE FULL 20-POST FEED
-// =================================
-
-
-const validatedPosts =
-    validatePosts(
-
-        {
-
-            posts
-
-        },
-
-        eventPackage
-
-    );
-
-
-    const summary =
-    await saveEventToMonth(
-
-        eventPackage,
-
-        validatedPosts
-
-    );
-
-
-    monthSummaries.push(
-        summary
-    );
-
-
-    console.log(
-
-    `Saved ${validatedPosts.length} posts for ${eventPackage.event.name}.`
-
-);
-
-}
-
-
-
-await updateArchiveIndex(
-    monthSummaries
-);
 
 
 console.log(
 
-    `Published Innanet content for ${pending.length} event(s).`
+    `Published Innanet content for ${successCount} event(s).`
 
 );
+
+
+
+if (
+    failures.length > 0
+) {
+
+
+    console.error(
+
+        `Failed Innanet events: ${JSON.stringify(
+
+            failures
+
+        )}`
+
+    );
+
+
+
+    process.exitCode =
+        1;
+
+}
