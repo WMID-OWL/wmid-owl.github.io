@@ -3,6 +3,17 @@ name: Generate Innanet Posts
 
 on:
 
+  workflow_run:
+
+    workflows:
+
+      - Build Innanet Context
+
+    types:
+
+      - completed
+
+
   workflow_dispatch:
 
     inputs:
@@ -44,6 +55,15 @@ jobs:
 
   generate-posts:
 
+    if: >
+
+      github.event_name == 'workflow_dispatch'
+
+      ||
+
+      github.event.workflow_run.conclusion == 'success'
+
+
     runs-on:
       ubuntu-latest
 
@@ -70,7 +90,58 @@ jobs:
 
 
 
+      - name: Read Innanet generation queue
+
+        id:
+          queue
+
+        run: |
+
+          COUNT=$(node -e "
+
+          const fs = require('fs');
+
+          const queue = JSON.parse(
+
+              fs.readFileSync(
+
+                  'data/innanet/generation-queue.json',
+
+                  'utf8'
+
+              )
+
+          );
+
+          process.stdout.write(
+
+              String(
+
+                  Number(
+
+                      queue.pendingEventCount || 0
+
+                  )
+
+              )
+
+          );
+
+          ")
+
+
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+
+
+          echo "Pending Innanet events: $COUNT"
+
+
+
       - name: Generate Innanet posts
+
+        if: >
+
+          steps.queue.outputs.count != '0'
 
         env:
 
@@ -78,7 +149,7 @@ jobs:
             ${{ secrets.GITHUB_TOKEN }}
 
           MAX_EVENTS:
-            ${{ inputs.max_events }}
+            ${{ github.event_name == 'workflow_dispatch' && inputs.max_events || steps.queue.outputs.count }}
 
           INNANET_MODEL:
             openai/gpt-4o-mini
@@ -91,6 +162,10 @@ jobs:
 
 
       - name: Refresh Innanet generation queue
+
+        if: >
+
+          steps.queue.outputs.count != '0'
 
         run: |
 
