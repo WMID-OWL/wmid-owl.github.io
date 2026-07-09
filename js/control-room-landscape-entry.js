@@ -2896,11 +2896,12 @@ async function crLandscapeEntryLoad() {
         );
 
 
-        const [
+                const [
 
             companiesData,
             showsData,
-            calendarData
+            calendarData,
+            locationData
 
         ] =
 
@@ -2916,11 +2917,16 @@ async function crLandscapeEntryLoad() {
 
                 crLandscapeEntryReadJson(
                     "calendar-config.json"
+                ),
+
+                crLandscapeEntryReadJson(
+                    "location-pools.json"
                 )
 
             ]);
 
-
+        crLandscapeLocationRules =
+            locationData;
         crLandscapeEntryData = {
 
 
