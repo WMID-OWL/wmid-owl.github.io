@@ -1583,24 +1583,19 @@ for (
 
 
         result =
-            await callModel(
+    await callModel(
 
-                eventPackage,
+        eventPackage,
 
-                batchNumber,
+        batchNumber,
 
-                posts,
+        posts.slice(
+            -5
+        ),
 
-                `IMPORTANT CORRECTION:
+        `RETRY: Previous response had ${batchPosts.length} posts. Return exactly 5 complete posts as valid JSON only.`
 
-Your previous response contained only ${batchPosts.length} posts.
-
-Return exactly 5 complete post objects.
-
-Do not stop early.
-Do not explain anything outside the JSON.`
-
-            );
+    );
 
 
         batchPosts =
