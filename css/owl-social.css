@@ -1265,3 +1265,2203 @@ body {
     }
 
 }
+/* =================================
+   THE INNANET APP
+================================= */
+
+
+.innanet-app-body {
+
+    background:
+        #05090b;
+
+}
+
+
+
+.innanet-app-body
+.innanet-page {
+
+    width:
+        100%;
+
+    padding:
+        26px 0 70px;
+
+    font-family:
+
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(
+                79,
+                155,
+                255,
+                0.08
+            ),
+            transparent 34%
+        ),
+
+        #05090b;
+
+}
+
+
+
+/* =================================
+   APP FRAME
+================================= */
+
+
+.innanet-app-frame {
+
+    width:
+
+        min(
+            1320px,
+            calc(
+                100% - 28px
+            )
+        );
+
+    margin:
+        0 auto;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    border-radius:
+        20px;
+
+    background:
+        #091013;
+
+    box-shadow:
+
+        0
+        28px
+        80px
+        rgba(
+            0,
+            0,
+            0,
+            0.42
+        );
+
+}
+
+
+
+/* =================================
+   APP TOP BAR
+================================= */
+
+
+.innanet-app-topbar {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        230px
+        minmax(
+            280px,
+            1fr
+        )
+        230px;
+
+    align-items:
+        center;
+
+    min-height:
+        68px;
+
+    padding:
+        0 18px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    background:
+        rgba(
+            9,
+            16,
+            19,
+            0.96
+        );
+
+}
+
+
+
+.innanet-wordmark {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    color:
+        #f5f8fa;
+
+    font-size:
+        0.88rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    text-decoration:
+        none;
+
+}
+
+
+
+.innanet-signal-mark {
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    width:
+        31px;
+
+    height:
+        31px;
+
+    border-radius:
+        9px;
+
+    color:
+        #061014;
+
+    background:
+        #78b7ff;
+
+    font-size:
+        1.2rem;
+
+    font-weight:
+        1000;
+
+    font-style:
+        italic;
+
+    box-shadow:
+
+        0
+        0
+        24px
+        rgba(
+            120,
+            183,
+            255,
+            0.24
+        );
+
+}
+
+
+
+.innanet-search {
+
+    justify-self:
+        center;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    width:
+
+        min(
+            470px,
+            100%
+        );
+
+    min-height:
+        40px;
+
+    padding:
+        0 15px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    border-radius:
+        999px;
+
+    color:
+        #6f7d82;
+
+    background:
+        #10191d;
+
+    font-size:
+        0.82rem;
+
+}
+
+
+
+.innanet-search-icon {
+
+    color:
+        #8d9ba0;
+
+    font-size:
+        1.15rem;
+
+}
+
+
+
+.innanet-network-link {
+
+    justify-self:
+        end;
+
+    color:
+        #78b7ff;
+
+    font-size:
+        0.7rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    text-decoration:
+        none;
+
+}
+
+
+
+/* =================================
+   APP GRID
+================================= */
+
+
+.innanet-app-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        230px
+
+        minmax(
+            0,
+            690px
+        )
+
+        minmax(
+            280px,
+            1fr
+        );
+
+    align-items:
+        start;
+
+}
+
+
+
+/* =================================
+   LEFT RAIL
+================================= */
+
+
+.innanet-left-rail {
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    min-height:
+        760px;
+
+    padding:
+        22px 14px;
+
+    border-right:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+}
+
+
+
+.innanet-app-nav {
+
+    display:
+        grid;
+
+    gap:
+        4px;
+
+}
+
+
+
+.innanet-app-nav a {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        13px;
+
+    min-height:
+        48px;
+
+    padding:
+        0 14px;
+
+    border-radius:
+        12px;
+
+    color:
+        #aab5b9;
+
+    font-size:
+        0.88rem;
+
+    font-weight:
+        750;
+
+    text-decoration:
+        none;
+
+}
+
+
+
+.innanet-app-nav a span {
+
+    width:
+        20px;
+
+    color:
+        #7c8b90;
+
+    text-align:
+        center;
+
+}
+
+
+
+.innanet-app-nav a:hover {
+
+    color:
+        #ffffff;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.04
+        );
+
+}
+
+
+
+.innanet-app-nav a.active {
+
+    color:
+        #ffffff;
+
+    background:
+        rgba(
+            120,
+            183,
+            255,
+            0.11
+        );
+
+}
+
+
+
+.innanet-app-nav a.active span {
+
+    color:
+        #78b7ff;
+
+}
+
+
+
+.innanet-network-card {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    margin:
+        28px 8px 0;
+
+    padding:
+        15px 12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+}
+
+
+
+.innanet-network-card > div {
+
+    display:
+        grid;
+
+    gap:
+        3px;
+
+}
+
+
+
+.innanet-network-card strong {
+
+    color:
+        #dce3e5;
+
+    font-size:
+        0.69rem;
+
+    letter-spacing:
+        0.07em;
+
+}
+
+
+
+.innanet-network-card span:last-child {
+
+    color:
+        #65757a;
+
+    font-size:
+        0.58rem;
+
+    letter-spacing:
+        0.05em;
+
+}
+
+
+
+.innanet-live-dot {
+
+    flex:
+        0 0 auto;
+
+    width:
+        8px;
+
+    height:
+        8px;
+
+    border-radius:
+        50%;
+
+    background:
+        #55dc88;
+
+    box-shadow:
+
+        0
+        0
+        12px
+        rgba(
+            85,
+            220,
+            136,
+            0.6
+        );
+
+}
+
+
+
+/* =================================
+   TIMELINE COLUMN
+================================= */
+
+
+.innanet-timeline-column {
+
+    min-width:
+        0;
+
+    border-right:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    background:
+        #091013;
+
+}
+
+
+
+.innanet-feed-header {
+
+    display:
+        flex;
+
+    align-items:
+        end;
+
+    justify-content:
+        space-between;
+
+    gap:
+        18px;
+
+    min-height:
+        90px;
+
+    padding:
+        19px 20px 15px;
+
+}
+
+
+
+.innanet-feed-kicker {
+
+    display:
+        block;
+
+    margin-bottom:
+        5px;
+
+    color:
+        #718087;
+
+    font-size:
+        0.61rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.11em;
+
+}
+
+
+
+.innanet-feed-header h1 {
+
+    margin:
+        0;
+
+    color:
+        #f4f7f8;
+
+    font-size:
+        1.4rem;
+
+    letter-spacing:
+        -0.02em;
+
+}
+
+
+
+.innanet-post-count {
+
+    padding:
+        6px 9px;
+
+    border-radius:
+        999px;
+
+    color:
+        #78b7ff;
+
+    background:
+        rgba(
+            120,
+            183,
+            255,
+            0.08
+        );
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.05em;
+
+}
+
+
+
+/* =================================
+   FEED TABS
+================================= */
+
+
+.innanet-feed-tabs {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    height:
+        48px;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+}
+
+
+
+.innanet-feed-tabs span {
+
+    position:
+        relative;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    color:
+        #718087;
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        800;
+
+}
+
+
+
+.innanet-feed-tabs span.active {
+
+    color:
+        #f3f6f7;
+
+}
+
+
+
+.innanet-feed-tabs span.active::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    bottom:
+        0;
+
+    width:
+        56px;
+
+    height:
+        3px;
+
+    border-radius:
+        999px;
+
+    background:
+        #78b7ff;
+
+}
+
+
+
+/* =================================
+   FEED PULSE
+================================= */
+
+
+.innanet-feed-pulse {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        42px
+
+        minmax(
+            0,
+            1fr
+        )
+
+        auto;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    padding:
+        14px 18px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    background:
+        rgba(
+            120,
+            183,
+            255,
+            0.025
+        );
+
+}
+
+
+
+.innanet-pulse-avatar {
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    width:
+        40px;
+
+    height:
+        40px;
+
+    border-radius:
+        50%;
+
+    color:
+        #081014;
+
+    background:
+        #78b7ff;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        1000;
+
+}
+
+
+
+.innanet-feed-pulse > div {
+
+    display:
+        grid;
+
+    gap:
+        3px;
+
+}
+
+
+
+.innanet-feed-pulse strong {
+
+    color:
+        #e5eaec;
+
+    font-size:
+        0.84rem;
+
+}
+
+
+
+.innanet-feed-pulse span {
+
+    color:
+        #6f7f84;
+
+    font-size:
+        0.7rem;
+
+}
+
+
+
+.innanet-pulse-status {
+
+    color:
+        #55dc88 !important;
+
+    font-size:
+        0.59rem !important;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+/* =================================
+   FEED GROUPS
+================================= */
+
+
+.innanet-app-body
+.innanet-feed {
+
+    display:
+        block;
+
+}
+
+
+
+.innanet-app-body
+.innanet-event-group {
+
+    display:
+        block;
+
+}
+
+
+
+.innanet-app-body
+.innanet-event-heading {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        16px;
+
+    padding:
+        12px 18px;
+
+    border:
+        0;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    border-left:
+        0;
+
+    background:
+        #0d1518;
+
+}
+
+
+
+.innanet-event-heading > div {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+}
+
+
+
+.innanet-event-heading strong {
+
+    color:
+        #dfe5e7;
+
+    font-size:
+        0.8rem;
+
+}
+
+
+
+.innanet-event-heading > span {
+
+    color:
+        #617075;
+
+    font-size:
+        0.69rem;
+
+}
+
+
+
+.innanet-event-live {
+
+    color:
+        #78b7ff;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+/* =================================
+   POSTS
+================================= */
+
+
+.innanet-app-body
+.innanet-post {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        46px
+
+        minmax(
+            0,
+            1fr
+        );
+
+    gap:
+        12px;
+
+    margin:
+        0;
+
+    padding:
+        16px 18px;
+
+    border:
+        0;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    background:
+        transparent;
+
+    transition:
+        background 0.16s ease;
+
+}
+
+
+
+.innanet-app-body
+.innanet-post:hover {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.018
+        );
+
+}
+
+
+
+.innanet-avatar {
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    width:
+        44px;
+
+    height:
+        44px;
+
+    border-radius:
+        50%;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.95
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+
+            hsl(
+                var(
+                    --innanet-avatar-hue
+                ),
+                62%,
+                52%
+            ),
+
+            hsl(
+                calc(
+                    var(
+                        --innanet-avatar-hue
+                    )
+
+                    +
+
+                    42
+                ),
+                55%,
+                31%
+            )
+        );
+
+    font-size:
+        0.75rem;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.02em;
+
+    box-shadow:
+
+        inset
+        0
+        0
+        0
+        1px
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+}
+
+
+
+.innanet-post-content {
+
+    min-width:
+        0;
+
+}
+
+
+
+.innanet-app-body
+.innanet-post-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        5px;
+
+    min-width:
+        0;
+
+}
+
+
+
+.innanet-app-body
+.innanet-post-name {
+
+    overflow:
+        hidden;
+
+    color:
+        #f1f5f6;
+
+    font-size:
+        0.85rem;
+
+    font-weight:
+        850;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+.innanet-app-body
+.innanet-post-handle,
+.innanet-post-now,
+.innanet-post-dot {
+
+    color:
+        #637379;
+
+    font-size:
+        0.75rem;
+
+}
+
+
+
+.innanet-app-body
+.innanet-post-role {
+
+    margin-left:
+        auto;
+
+    padding:
+        4px 7px;
+
+    border:
+        1px solid
+        rgba(
+            120,
+            183,
+            255,
+            0.18
+        );
+
+    border-radius:
+        999px;
+
+    color:
+        #84bfff;
+
+    background:
+        rgba(
+            120,
+            183,
+            255,
+            0.055
+        );
+
+    font-size:
+        0.52rem;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.07em;
+
+}
+
+
+
+.innanet-role-rumor {
+
+    color:
+        #e2b76e !important;
+
+    border-color:
+        rgba(
+            226,
+            183,
+            110,
+            0.22
+        ) !important;
+
+    background:
+        rgba(
+            226,
+            183,
+            110,
+            0.06
+        ) !important;
+
+}
+
+
+
+.innanet-role-wrestler-post {
+
+    color:
+        #9fe0b4 !important;
+
+    border-color:
+        rgba(
+            95,
+            200,
+            130,
+            0.22
+        ) !important;
+
+    background:
+        rgba(
+            95,
+            200,
+            130,
+            0.06
+        ) !important;
+
+}
+
+
+
+.innanet-app-body
+.innanet-post-body {
+
+    margin:
+        8px 0 0;
+
+    color:
+        #d8dfe1;
+
+    font-size:
+        0.94rem;
+
+    line-height:
+        1.52;
+
+    white-space:
+        pre-wrap;
+
+}
+
+
+
+.innanet-app-body
+.innanet-post-stats {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            3,
+            minmax(
+                60px,
+                1fr
+            )
+        )
+
+        auto;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    max-width:
+        430px;
+
+    margin-top:
+        13px;
+
+    color:
+        #67767b;
+
+}
+
+
+
+.innanet-post-stats span {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        6px;
+
+    font-size:
+        0.7rem;
+
+}
+
+
+
+.innanet-post-stats i {
+
+    color:
+        #78888e;
+
+    font-size:
+        1rem;
+
+    font-style:
+        normal;
+
+}
+
+
+
+.innanet-post-stats strong {
+
+    font-weight:
+        650;
+
+}
+
+
+
+.innanet-post-stats span:hover,
+.innanet-post-stats span:hover i {
+
+    color:
+        #78b7ff;
+
+}
+
+
+
+.innanet-post-share {
+
+    justify-self:
+        end;
+
+}
+
+
+
+/* =================================
+   REPLIES
+================================= */
+
+
+.innanet-app-body
+.innanet-post-reply {
+
+    position:
+        relative;
+
+    margin-left:
+        42px;
+
+    border-left:
+        2px solid
+        rgba(
+            120,
+            183,
+            255,
+            0.28
+        );
+
+    background:
+        rgba(
+            120,
+            183,
+            255,
+            0.018
+        );
+
+}
+
+
+
+.innanet-app-body
+.innanet-reply-context {
+
+    margin:
+        6px 0 0;
+
+    color:
+        #65757a;
+
+    font-size:
+        0.7rem;
+
+}
+
+
+
+.innanet-app-body
+.innanet-reply-context strong {
+
+    color:
+        #78b7ff;
+
+}
+
+
+
+/* =================================
+   RIGHT RAIL
+================================= */
+
+
+.innanet-right-rail {
+
+    padding:
+        16px;
+
+}
+
+
+
+.innanet-side-panel {
+
+    overflow:
+        hidden;
+
+    margin-bottom:
+        16px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    border-radius:
+        15px;
+
+    background:
+        #0d1518;
+
+}
+
+
+
+.innanet-side-heading {
+
+    padding:
+        17px 17px 13px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+}
+
+
+
+.innanet-side-heading span {
+
+    display:
+        block;
+
+    margin-bottom:
+        4px;
+
+    color:
+        #627278;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+.innanet-side-heading h2 {
+
+    margin:
+        0;
+
+    color:
+        #eff4f5;
+
+    font-size:
+        1rem;
+
+}
+
+
+
+/* =================================
+   TRENDING
+================================= */
+
+
+.innanet-trending-list {
+
+    display:
+        grid;
+
+}
+
+
+
+.innanet-trending-item {
+
+    padding:
+        14px 16px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.055
+        );
+
+}
+
+
+
+.innanet-trending-item:last-child {
+
+    border-bottom:
+        0;
+
+}
+
+
+
+.innanet-trending-item > span {
+
+    display:
+        block;
+
+    color:
+        #607076;
+
+    font-size:
+        0.61rem;
+
+}
+
+
+
+.innanet-trending-item strong {
+
+    display:
+        block;
+
+    margin-top:
+        4px;
+
+    color:
+        #dce3e5;
+
+    font-size:
+        0.79rem;
+
+}
+
+
+
+.innanet-trending-item p {
+
+    margin:
+        6px 0 0;
+
+    color:
+        #9aa7ab;
+
+    font-size:
+        0.75rem;
+
+    line-height:
+        1.43;
+
+}
+
+
+
+.innanet-trending-item small {
+
+    display:
+        block;
+
+    margin-top:
+        7px;
+
+    color:
+        #78b7ff;
+
+    font-size:
+        0.61rem;
+
+}
+
+
+
+.innanet-trending-empty {
+
+    padding:
+        16px;
+
+    color:
+        #6f7c81;
+
+    font-size:
+        0.75rem;
+
+}
+
+
+
+/* =================================
+   INNANET ARCHIVE
+================================= */
+
+
+.innanet-app-body
+.social-archive-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr;
+
+    gap:
+        0;
+
+}
+
+
+
+.innanet-archive-chip {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        14px;
+
+    padding:
+        13px 16px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.055
+        );
+
+    color:
+        inherit;
+
+    text-decoration:
+        none;
+
+}
+
+
+
+.innanet-archive-chip:last-child {
+
+    border-bottom:
+        0;
+
+}
+
+
+
+.innanet-archive-chip:hover {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+}
+
+
+
+.innanet-archive-chip.active {
+
+    background:
+        rgba(
+            120,
+            183,
+            255,
+            0.065
+        );
+
+}
+
+
+
+.innanet-archive-chip > div {
+
+    display:
+        grid;
+
+    gap:
+        3px;
+
+}
+
+
+
+.innanet-archive-chip strong {
+
+    color:
+        #dde4e6;
+
+    font-size:
+        0.77rem;
+
+}
+
+
+
+.innanet-archive-chip span {
+
+    color:
+        #64747a;
+
+    font-size:
+        0.64rem;
+
+}
+
+
+
+.innanet-archive-chip b {
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    min-width:
+        30px;
+
+    height:
+        24px;
+
+    border-radius:
+        999px;
+
+    color:
+        #78b7ff;
+
+    background:
+        rgba(
+            120,
+            183,
+            255,
+            0.09
+        );
+
+    font-size:
+        0.65rem;
+
+}
+
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        1120px
+) {
+
+
+    .innanet-app-topbar {
+
+        grid-template-columns:
+
+            210px
+
+            minmax(
+                220px,
+                1fr
+            )
+
+            150px;
+
+    }
+
+
+    .innanet-app-grid {
+
+        grid-template-columns:
+
+            210px
+
+            minmax(
+                0,
+                1fr
+            );
+
+    }
+
+
+    .innanet-right-rail {
+
+        display:
+            none;
+
+    }
+
+
+    .innanet-timeline-column {
+
+        border-right:
+            0;
+
+    }
+
+}
+
+
+
+@media (
+    max-width:
+        760px
+) {
+
+
+    .innanet-page {
+
+        padding-top:
+            10px !important;
+
+    }
+
+
+    .innanet-app-frame {
+
+        width:
+            calc(
+                100% - 12px
+            );
+
+        border-radius:
+            14px;
+
+    }
+
+
+    .innanet-app-topbar {
+
+        grid-template-columns:
+            1fr auto;
+
+        min-height:
+            58px;
+
+    }
+
+
+    .innanet-search {
+
+        display:
+            none;
+
+    }
+
+
+    .innanet-app-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .innanet-left-rail {
+
+        display:
+            none;
+
+    }
+
+
+    .innanet-feed-header {
+
+        min-height:
+            78px;
+
+        padding:
+            16px;
+
+    }
+
+
+    .innanet-feed-header h1 {
+
+        font-size:
+            1.18rem;
+
+    }
+
+
+    .innanet-feed-pulse {
+
+        padding:
+            12px 14px;
+
+    }
+
+
+    .innanet-app-body
+    .innanet-post {
+
+        grid-template-columns:
+
+            40px
+
+            minmax(
+                0,
+                1fr
+            );
+
+        gap:
+            10px;
+
+        padding:
+            14px;
+
+    }
+
+
+    .innanet-avatar {
+
+        width:
+            39px;
+
+        height:
+            39px;
+
+        font-size:
+            0.67rem;
+
+    }
+
+
+    .innanet-app-body
+    .innanet-post-reply {
+
+        margin-left:
+            18px;
+
+    }
+
+
+    .innanet-app-body
+    .innanet-post-role {
+
+        display:
+            none;
+
+    }
+
+
+    .innanet-post-now,
+    .innanet-post-dot {
+
+        display:
+            none;
+
+    }
+
+
+    .innanet-app-body
+    .innanet-post-body {
+
+        font-size:
+            0.9rem;
+
+    }
+
+
+    .innanet-event-heading {
+
+        align-items:
+            flex-start !important;
+
+        flex-direction:
+            column;
+
+        gap:
+            5px !important;
+
+    }
+
+}
