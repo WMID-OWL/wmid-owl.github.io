@@ -737,10 +737,30 @@ function buildPromptPackage(
 
 
         teamContext:
-            eventPackage.teamContext,
+    eventPackage.teamContext,
 
 
-        mediaMemory: {
+worldHistoryMemory:
+
+    eventPackage.worldHistoryMemory
+
+    ||
+
+    {
+
+        months:
+            [],
+
+        entityHistories:
+            [],
+
+        companyHistory:
+            []
+
+    },
+
+
+mediaMemory: {
 
 
             priorInnanetPosts:
