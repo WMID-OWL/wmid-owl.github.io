@@ -2215,3 +2215,535 @@
     }
 
 }
+/* =================================
+   OWL SOCIAL SYSTEM STATUS
+================================= */
+
+
+.cr-social-status-actions {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+}
+
+
+
+.cr-social-system-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        18px;
+
+    margin-top:
+        24px;
+
+}
+
+
+
+.cr-social-system-card {
+
+    border:
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.22
+        );
+
+    background:
+        rgba(
+            7,
+            11,
+            12,
+            0.64
+        );
+
+    padding:
+        22px;
+
+}
+
+
+
+.cr-social-system-card-heading {
+
+    padding-bottom:
+        18px;
+
+    margin-bottom:
+        18px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+
+.cr-social-system-card-heading span {
+
+    display:
+        block;
+
+    margin-bottom:
+        6px;
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.cr-social-system-card-heading h3 {
+
+    margin:
+        0;
+
+    font-size:
+        1.35rem;
+
+}
+
+
+
+.cr-social-metric-list {
+
+    display:
+        grid;
+
+    gap:
+        12px;
+
+}
+
+
+
+.cr-social-metric-list > div {
+
+    display:
+        grid;
+
+    gap:
+        4px;
+
+    padding:
+        12px 0;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+}
+
+
+
+.cr-social-metric-list > div:last-child {
+
+    border-bottom:
+        0;
+
+}
+
+
+
+.cr-social-metric-list span {
+
+    color:
+        #858d8b;
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.09em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.cr-social-metric-list strong {
+
+    color:
+        #f4f4f0;
+
+    font-size:
+        1.05rem;
+
+}
+
+
+
+.cr-social-metric-list small {
+
+    color:
+        #9ba3a1;
+
+    line-height:
+        1.45;
+
+}
+
+
+
+/* =================================
+   SOCIAL HEALTH
+================================= */
+
+
+.cr-social-health-section {
+
+    margin-top:
+        28px;
+
+    padding-top:
+        26px;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+
+.cr-social-health-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        12px;
+
+    margin-top:
+        18px;
+
+}
+
+
+
+.cr-social-health-row {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        18px;
+
+    padding:
+        16px 18px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+}
+
+
+
+.cr-social-health-row > div {
+
+    display:
+        grid;
+
+    gap:
+        5px;
+
+}
+
+
+
+.cr-social-health-row strong {
+
+    color:
+        #f4f4f0;
+
+}
+
+
+
+.cr-social-health-row span {
+
+    color:
+        #858d8b;
+
+    font-size:
+        0.78rem;
+
+}
+
+
+
+.cr-social-health-badge {
+
+    flex:
+        0 0 auto;
+
+    padding:
+        7px 10px;
+
+    border-radius:
+        999px;
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.cr-social-good,
+.cr-social-overall-good {
+
+    color:
+        #9fe0b4;
+
+    border-color:
+        rgba(
+            80,
+            200,
+            120,
+            0.42
+        );
+
+    background:
+        rgba(
+            80,
+            200,
+            120,
+            0.1
+        );
+
+}
+
+
+
+.cr-social-warn,
+.cr-social-overall-warn {
+
+    color:
+        #e4c57c;
+
+    border-color:
+        rgba(
+            201,
+            164,
+            92,
+            0.45
+        );
+
+    background:
+        rgba(
+            201,
+            164,
+            92,
+            0.1
+        );
+
+}
+
+
+
+.cr-social-bad,
+.cr-social-overall-bad {
+
+    color:
+        #ef9999;
+
+    border-color:
+        rgba(
+            220,
+            80,
+            80,
+            0.45
+        );
+
+    background:
+        rgba(
+            220,
+            80,
+            80,
+            0.1
+        );
+
+}
+
+
+
+.cr-social-neutral,
+.cr-social-overall-neutral {
+
+    color:
+        #aeb5b3;
+
+    border-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.04
+        );
+
+}
+
+
+
+/* =================================
+   SOCIAL STATUS RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        1050px
+) {
+
+
+    .cr-social-system-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        720px
+) {
+
+
+    .cr-social-status-actions {
+
+        align-items:
+            stretch;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .cr-social-health-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-social-health-row {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+}
