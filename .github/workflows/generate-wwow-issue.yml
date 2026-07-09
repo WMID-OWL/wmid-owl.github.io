@@ -154,7 +154,28 @@ jobs:
 
 
 
-      - name: Commit WWoW issue
+      - name: Build frozen monthly world snapshot
+
+        if: >
+
+          steps.publication.outputs.should_publish == 'true'
+
+        env:
+
+          TARGET_MONTH:
+            ${{ steps.publication.outputs.target_month }}
+
+          ALLOW_REBUILD:
+            "false"
+
+
+        run: |
+
+          node scripts/build-monthly-snapshot.mjs
+
+
+
+      - name: Commit WWoW issue and world snapshot
 
         if: >
 
@@ -164,10 +185,12 @@ jobs:
 
           git add data/wwow
 
+          git add data/history
+
 
           if git diff --cached --quiet; then
 
-            echo "No WWoW content changes to commit."
+            echo "No WWoW or world snapshot changes to commit."
 
             exit 0
 
@@ -180,7 +203,7 @@ jobs:
 
 
           git commit \
-            -m "Publish monthly WWoW issue"
+            -m "Publish WWoW issue and monthly world snapshot"
 
 
           git push
