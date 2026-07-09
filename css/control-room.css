@@ -3239,3 +3239,631 @@
 
 
 }
+/* =================================
+   THE LANDSCAPE
+================================= */
+
+
+.cr-landscape-panel {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+}
+
+
+
+.cr-landscape-panel::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        4px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #d3a528,
+            #f0cf68,
+            #d3a528
+        );
+
+}
+
+
+
+.cr-landscape-intro {
+
+    max-width:
+        720px;
+
+    margin:
+        8px 0 0;
+
+    color:
+        var(
+            --cr-muted,
+            #9ca3af
+        );
+
+    line-height:
+        1.55;
+
+}
+
+
+
+/* =================================
+   WEEKLY SCHEDULE
+================================= */
+
+
+.cr-landscape-schedule-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            auto-fit,
+            minmax(
+                190px,
+                1fr
+            )
+        );
+
+    gap:
+        12px;
+
+}
+
+
+
+.cr-landscape-day-card {
+
+    min-height:
+        140px;
+
+    padding:
+        16px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+}
+
+
+
+.cr-landscape-day-name {
+
+    display:
+        block;
+
+    padding-bottom:
+        10px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    color:
+        #d9b74d;
+
+    font-size:
+        0.7rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.cr-landscape-show-list {
+
+    display:
+        grid;
+
+    gap:
+        8px;
+
+    margin-top:
+        12px;
+
+}
+
+
+
+.cr-landscape-show-list strong {
+
+    color:
+        #eef1f3;
+
+    font-size:
+        0.83rem;
+
+    line-height:
+        1.25;
+
+}
+
+
+
+/* =================================
+   MONTHLY CYCLE
+================================= */
+
+
+.cr-landscape-cycle-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            5,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        10px;
+
+}
+
+
+
+.cr-landscape-cycle-card {
+
+    display:
+        grid;
+
+    gap:
+        6px;
+
+    min-height:
+        112px;
+
+    padding:
+        15px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+}
+
+
+
+.cr-landscape-cycle-card span {
+
+    color:
+        #7e8991;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.cr-landscape-cycle-card strong {
+
+    align-self:
+        center;
+
+    color:
+        #eef1f3;
+
+    font-size:
+        1rem;
+
+}
+
+
+
+.cr-landscape-cycle-card small {
+
+    color:
+        #89949b;
+
+    font-size:
+        0.68rem;
+
+}
+
+
+
+.cr-landscape-cycle-finale {
+
+    border-color:
+        rgba(
+            211,
+            165,
+            40,
+            0.4
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                211,
+                165,
+                40,
+                0.13
+            ),
+            rgba(
+                255,
+                255,
+                255,
+                0.02
+            )
+        );
+
+}
+
+
+
+.cr-landscape-cycle-finale span,
+.cr-landscape-cycle-finale strong {
+
+    color:
+        #e4c35e;
+
+}
+
+
+
+/* =================================
+   ARCHIVE SUMMARY
+================================= */
+
+
+.cr-landscape-archive-summary {
+
+    display:
+        grid;
+
+    gap:
+        10px;
+
+}
+
+
+
+.cr-landscape-archive-empty {
+
+    padding:
+        22px;
+
+    border:
+        1px dashed
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+
+    border-radius:
+        10px;
+
+    text-align:
+        center;
+
+}
+
+
+
+.cr-landscape-archive-empty strong {
+
+    display:
+        block;
+
+    color:
+        #e4c35e;
+
+    font-size:
+        0.78rem;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.cr-landscape-archive-empty p {
+
+    max-width:
+        620px;
+
+    margin:
+        9px auto 0;
+
+    color:
+        #8f9aa1;
+
+    font-size:
+        0.78rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+
+.cr-landscape-period-row {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        18px;
+
+    padding:
+        14px 16px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.02
+        );
+
+}
+
+
+
+.cr-landscape-period-row > div:first-child {
+
+    display:
+        grid;
+
+    gap:
+        4px;
+
+}
+
+
+
+.cr-landscape-period-row span {
+
+    color:
+        #7f8b92;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+
+.cr-landscape-period-row strong {
+
+    color:
+        #edf1f2;
+
+    font-size:
+        0.88rem;
+
+}
+
+
+
+.cr-landscape-period-state {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    justify-content:
+        flex-end;
+
+    gap:
+        7px;
+
+}
+
+
+
+.cr-landscape-period-state span {
+
+    padding:
+        5px 8px;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(
+            211,
+            165,
+            40,
+            0.1
+        );
+
+    color:
+        #d9b74d;
+
+}
+
+
+
+.cr-landscape-empty {
+
+    color:
+        #8a959c;
+
+    font-size:
+        0.8rem;
+
+}
+
+
+
+/* =================================
+   LANDSCAPE RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        900px
+) {
+
+
+    .cr-landscape-cycle-grid {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        600px
+) {
+
+
+    .cr-landscape-cycle-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-landscape-period-row {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .cr-landscape-period-state {
+
+        justify-content:
+            flex-start;
+
+    }
+
+
+}
