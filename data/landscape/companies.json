@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "companies": [
+    {
+      "id": "wwe",
+      "name": "WWE",
+      "shortName": "WWE",
+      "type": "core",
+      "rankingEligible": true,
+      "braggingRightsEligible": true,
+      "shows": [
+        "wwe-raw",
+        "wwe-smackdown"
+      ],
+      "eventCalendar": [],
+      "flagshipEventId": "",
+      "majorEventIds": []
+    },
+    {
+      "id": "nxt",
+      "name": "NXT",
+      "shortName": "NXT",
+      "type": "core",
+      "rankingEligible": true,
+      "braggingRightsEligible": true,
+      "shows": [
+        "nxt-on-cw"
+      ],
+      "eventCalendar": [],
+      "flagshipEventId": "",
+      "majorEventIds": []
+    },
+    {
+      "id": "aew",
+      "name": "AEW",
+      "shortName": "AEW",
+      "type": "core",
+      "rankingEligible": true,
+      "braggingRightsEligible": true,
+      "shows": [
+        "aew-dynamite",
+        "aew-collision"
+      ],
+      "eventCalendar": [],
+      "flagshipEventId": "",
+      "majorEventIds": []
+    },
+    {
+      "id": "roh",
+      "name": "ROH",
+      "shortName": "ROH",
+      "type": "core",
+      "rankingEligible": true,
+      "braggingRightsEligible": true,
+      "shows": [
+        "roh-on-honorclub"
+      ],
+      "eventCalendar": [],
+      "flagshipEventId": "",
+      "majorEventIds": []
+    },
+    {
+      "id": "tna",
+      "name": "TNA",
+      "shortName": "TNA",
+      "type": "core",
+      "rankingEligible": true,
+      "braggingRightsEligible": true,
+      "shows": [
+        "tna-impact"
+      ],
+      "eventCalendar": [],
+      "flagshipEventId": "",
+      "majorEventIds": []
+    },
+    {
+      "id": "cmll",
+      "name": "CMLL",
+      "shortName": "CMLL",
+      "type": "core",
+      "rankingEligible": true,
+      "braggingRightsEligible": true,
+      "shows": [
+        "cmll-super-viernes"
+      ],
+      "eventCalendar": [],
+      "flagshipEventId": "",
+      "majorEventIds": []
+    },
+    {
+      "id": "aaa",
+      "name": "AAA",
+      "shortName": "AAA",
+      "type": "core",
+      "rankingEligible": true,
+      "braggingRightsEligible": true,
+      "shows": [
+        "aaa-lucha-libre"
+      ],
+      "eventCalendar": [],
+      "flagshipEventId": "",
+      "majorEventIds": []
+    },
+    {
+      "id": "owl",
+      "name": "OWL",
+      "shortName": "OWL",
+      "type": "core",
+      "rankingEligible": true,
+      "braggingRightsEligible": true,
+      "shows": [
+        "owl-ascension",
+        "owl-revolt"
+      ],
+      "eventCalendar": [],
+      "flagshipEventId": "",
+      "majorEventIds": []
+    }
+  ]
+}
