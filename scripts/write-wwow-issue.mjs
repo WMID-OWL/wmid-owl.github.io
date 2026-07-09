@@ -930,6 +930,10 @@ FACT RULES:
 - Public Innanet posts are public reaction, not factual proof.
 - Speculation must be clearly framed as speculation.
 - Archived WWoW history may be used to compare how expectations changed.
+- worldHistoryMemory contains frozen month-end OWL history from prior months.
+- Use real rankings movement, monthly records, streak changes, title transitions, and public sentiment shifts when they strengthen a story.
+- Do not force a historical comparison into every section.
+- Never invent an unrecorded explanation for why an athlete or team rose or declined.
 
 Your job in this call is editorial planning only.
 
