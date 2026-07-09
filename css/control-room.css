@@ -4559,3 +4559,580 @@
 
 
 }
+/* =================================
+   LANDSCAPE CHAMPIONSHIP DESK
+================================= */
+
+
+.cr-landscape-champion-section {
+
+    border-color:
+        rgba(
+            211,
+            165,
+            40,
+            0.2
+        );
+
+}
+
+
+
+.cr-landscape-champion-toolbar {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            220px,
+            360px
+        )
+
+        auto;
+
+    align-items:
+        end;
+
+    gap:
+        14px;
+
+}
+
+
+
+.cr-landscape-champion-toolbar label {
+
+    display:
+        grid;
+
+    gap:
+        7px;
+
+}
+
+
+
+.cr-landscape-champion-toolbar label > span {
+
+    color:
+        #8f9aa1;
+
+    font-size:
+        0.61rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.07em;
+
+}
+
+
+
+.cr-landscape-champion-toolbar select,
+.cr-landscape-title-card input,
+.cr-landscape-title-card select {
+
+    width:
+        100%;
+
+    padding:
+        11px 12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.11
+        );
+
+    border-radius:
+        8px;
+
+    color:
+        #f0f3f4;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.04
+        );
+
+    font:
+        inherit;
+
+}
+
+
+
+.cr-landscape-champion-note {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    margin-top:
+        15px;
+
+    padding:
+        11px 13px;
+
+    border-left:
+        3px solid
+        #6ca6d9;
+
+    background:
+        rgba(
+            108,
+            166,
+            217,
+            0.06
+        );
+
+}
+
+
+
+.cr-landscape-champion-note strong {
+
+    color:
+        #8fc3ee;
+
+    font-size:
+        0.63rem;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+
+.cr-landscape-champion-note span {
+
+    color:
+        #8f9aa1;
+
+    font-size:
+        0.72rem;
+
+}
+
+
+
+/* =================================
+   TITLE SLOTS
+================================= */
+
+
+.cr-landscape-title-slots {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        12px;
+
+    margin-top:
+        18px;
+
+}
+
+
+
+.cr-landscape-title-card {
+
+    display:
+        grid;
+
+    gap:
+        14px;
+
+    padding:
+        16px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    border-left:
+        3px solid
+        #d9b74d;
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+}
+
+
+
+.cr-landscape-title-card-heading {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        14px;
+
+}
+
+
+
+.cr-landscape-title-card-heading > div {
+
+    display:
+        grid;
+
+    gap:
+        4px;
+
+}
+
+
+
+.cr-landscape-title-card-heading span {
+
+    color:
+        #7f8b92;
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.cr-landscape-title-card-heading strong {
+
+    color:
+        #f0f3f4;
+
+    font-size:
+        0.88rem;
+
+}
+
+
+
+.cr-landscape-remove-new-title {
+
+    padding:
+        5px 8px;
+
+    border:
+        0;
+
+    color:
+        #d98888;
+
+    background:
+        transparent;
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+}
+
+
+
+.cr-landscape-title-fields {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        12px;
+
+}
+
+
+
+.cr-landscape-title-card label {
+
+    display:
+        grid;
+
+    gap:
+        7px;
+
+}
+
+
+
+.cr-landscape-title-card label > span {
+
+    color:
+        #8f9aa1;
+
+    font-size:
+        0.6rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+
+.cr-landscape-title-event-label small {
+
+    color:
+        #77838a;
+
+    font-size:
+        0.67rem;
+
+    line-height:
+        1.4;
+
+}
+
+
+
+/* =================================
+   TITLE HISTORY
+================================= */
+
+
+.cr-landscape-champion-history-block {
+
+    margin-top:
+        24px;
+
+}
+
+
+
+.cr-landscape-champion-history {
+
+    display:
+        grid;
+
+    gap:
+        8px;
+
+    margin-top:
+        12px;
+
+}
+
+
+
+.cr-landscape-title-history-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            220px,
+            0.7fr
+        )
+
+        minmax(
+            0,
+            1fr
+        );
+
+    gap:
+        18px;
+
+    padding:
+        12px 14px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.02
+        );
+
+}
+
+
+
+.cr-landscape-title-history-row > div {
+
+    display:
+        grid;
+
+    gap:
+        4px;
+
+}
+
+
+
+.cr-landscape-title-history-row span {
+
+    color:
+        #7f8b92;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+
+.cr-landscape-title-history-row strong {
+
+    color:
+        #e5c45e;
+
+    font-size:
+        0.84rem;
+
+}
+
+
+
+.cr-landscape-title-history-row small {
+
+    color:
+        #9aa4aa;
+
+    font-size:
+        0.7rem;
+
+}
+
+
+
+/* =================================
+   CHAMPIONSHIP RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        900px
+) {
+
+
+    .cr-landscape-title-slots {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        600px
+) {
+
+
+    .cr-landscape-champion-toolbar,
+    .cr-landscape-title-fields,
+    .cr-landscape-title-history-row {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-landscape-champion-note {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+}
