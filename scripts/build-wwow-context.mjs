@@ -2396,11 +2396,13 @@ const context = {
     },
 
 
-    historicalRecords,
+    worldHistoryMemory,
 
 
-    innanetMemory: {
+historicalRecords,
 
+
+innanetMemory: {
         totalPosts:
             innanetPosts.length,
 
