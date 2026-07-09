@@ -1332,8 +1332,20 @@ body {
             )
         );
 
+    height:
+        calc(100vh - 110px);
+
+    min-height:
+        760px;
+
     margin:
         0 auto;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
 
     overflow:
         hidden;
@@ -1376,6 +1388,12 @@ body {
 
 .innanet-app-topbar {
 
+    position:
+        relative;
+
+    z-index:
+        20;
+
     display:
         grid;
 
@@ -1412,6 +1430,9 @@ body {
             19,
             0.96
         );
+
+    flex:
+        0 0 auto;
 
 }
 
@@ -1590,6 +1611,12 @@ body {
 
 .innanet-app-grid {
 
+    flex:
+        1 1 auto;
+
+    min-height:
+        0;
+
     display:
         grid;
 
@@ -1608,7 +1635,10 @@ body {
         );
 
     align-items:
-        start;
+        stretch;
+
+    overflow:
+        hidden;
 
 }
 
@@ -1622,13 +1652,10 @@ body {
 .innanet-left-rail {
 
     position:
-        sticky;
+        relative;
 
-    top:
-        0;
-
-    min-height:
-        760px;
+    height:
+        100%;
 
     padding:
         22px 14px;
@@ -1641,6 +1668,9 @@ body {
             255,
             0.07
         );
+
+    overflow:
+        hidden;
 
 }
 
@@ -1878,6 +1908,18 @@ body {
     min-width:
         0;
 
+    min-height:
+        0;
+
+    height:
+        100%;
+
+    overflow-y:
+        auto;
+
+    overflow-x:
+        hidden;
+
     border-right:
         1px solid
         rgba(
@@ -1889,6 +1931,9 @@ body {
 
     background:
         #091013;
+
+    scrollbar-gutter:
+        stable;
 
 }
 
@@ -2850,8 +2895,14 @@ body {
 
 .innanet-right-rail {
 
+    height:
+        100%;
+
     padding:
         16px;
+
+    overflow:
+        hidden;
 
 }
 
@@ -3305,12 +3356,18 @@ body {
     }
 
 
-    .innanet-app-frame {
+        .innanet-app-frame {
 
         width:
             calc(
                 100% - 12px
             );
+
+        height:
+            auto;
+
+        min-height:
+            0;
 
         border-radius:
             14px;
@@ -3337,10 +3394,13 @@ body {
     }
 
 
-    .innanet-app-grid {
+        .innanet-app-grid {
 
         grid-template-columns:
             1fr;
+
+        overflow:
+            visible;
 
     }
 
@@ -3351,7 +3411,26 @@ body {
             none;
 
     }
+    .innanet-timeline-column {
 
+        height:
+            auto;
+
+        overflow:
+            visible;
+
+    }
+
+
+    .innanet-right-rail {
+
+        height:
+            auto;
+
+        overflow:
+            visible;
+
+    }
 
     .innanet-feed-header {
 
