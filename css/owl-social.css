@@ -3831,7 +3831,34 @@ body {
 }
 
 
+.wwow-masthead-main {
 
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        260px;
+
+    gap:
+        clamp(
+            18px,
+            3vw,
+            42px
+        );
+
+    align-items:
+        end;
+
+    padding:
+        17px 0 13px;
+
+}
 .wwow-masthead-name {
 
     display:
@@ -3859,8 +3886,8 @@ body {
     row-gap:
         0;
 
-    padding:
-        17px 0 13px;
+        padding:
+        0;
 
     color:
         #11110f;
@@ -3976,7 +4003,250 @@ body {
         #9f2025;
 
 }
+.wwow-masthead-mark {
 
+    display:
+        grid;
+
+    align-content:
+        end;
+
+    justify-items:
+        end;
+
+    gap:
+        10px;
+
+    min-height:
+        100%;
+
+    padding:
+        10px 0 10px 22px;
+
+    border-left:
+        1px solid
+        rgba(
+            17,
+            17,
+            15,
+            0.22
+        );
+
+    text-align:
+        right;
+
+}
+
+
+
+.wwow-masthead-mark-label {
+
+    color:
+        #9f2025;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.16em;
+
+}
+
+
+
+.wwow-masthead-mark-word {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        5px;
+
+    color:
+        #11110f;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            2rem,
+            2.5vw,
+            2.9rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        1;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+
+.wwow-masthead-mark-word span {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+}
+
+
+
+.wwow-globe-o {
+
+    position:
+        relative;
+
+    width:
+        0.95em;
+
+    height:
+        0.95em;
+
+    border:
+        2px solid
+        #9f2025;
+
+    border-radius:
+        50%;
+
+    transform:
+        translateY(0.04em);
+
+}
+
+
+
+.wwow-globe-o::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0.12em;
+
+    bottom:
+        0.12em;
+
+    left:
+        50%;
+
+    width:
+        0.28em;
+
+    border-left:
+        1.5px solid
+        #9f2025;
+
+    border-right:
+        1.5px solid
+        #9f2025;
+
+    border-radius:
+        50%;
+
+    transform:
+        translateX(-50%);
+
+}
+
+
+
+.wwow-globe-o::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0.12em;
+
+    right:
+        0.12em;
+
+    top:
+        50%;
+
+    height:
+        1.5px;
+
+    background:
+        #9f2025;
+
+    transform:
+        translateY(-50%);
+
+    box-shadow:
+
+        0
+        -0.22em
+        0
+        #9f2025,
+
+        0
+        0.22em
+        0
+        #9f2025;
+
+}
+
+
+
+.wwow-masthead-mark small {
+
+    color:
+        #6f695f;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.08em;
+
+    text-transform:
+        uppercase;
+
+}
 
 
 .wwow-masthead-bottomline {
