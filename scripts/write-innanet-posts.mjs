@@ -424,21 +424,32 @@ ${retryInstruction}
 PREVIOUS POSTS:
 
 ${JSON.stringify(
-    previousPosts.map(
-        post => ({
-            accountId:
-                post.accountId,
+    previousPosts
 
-            wrestlerId:
-                post.wrestlerId,
+        .slice(
+            -8
+        )
 
-            type:
-                post.type,
+        .map(
+            post => ({
+                accountId:
+                    post.accountId,
 
-            body:
-                post.body
-        })
-    )
+                wrestlerId:
+                    post.wrestlerId,
+
+                type:
+                    post.type,
+
+                body:
+                    String(
+                        post.body || ""
+                    ).slice(
+                        0,
+                        240
+                    )
+            })
+        )
 )}
 
 EVENT FACT PACKAGE:
