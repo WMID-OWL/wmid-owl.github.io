@@ -3028,7 +3028,14 @@ crLandscapeEntryEls
 
         "change",
 
-        crLandscapeEntryUpdateShows
+        () => {
+
+
+            crLandscapeEntryUpdateShows();
+
+            crLandscapeEntryResetLocation();
+
+        }
 
     );
 
@@ -3039,10 +3046,58 @@ crLandscapeEntryEls
 
         "change",
 
-        crLandscapeEntryUpdateMode
+        () => {
+
+
+            crLandscapeEntryUpdateMode();
+
+            crLandscapeEntryResetLocation();
+
+        }
+
+    );
+crLandscapeEntryEls
+    .show
+    .addEventListener(
+
+        "change",
+
+        crLandscapeEntryResetLocation
 
     );
 
+
+crLandscapeEntryEls
+    .month
+    .addEventListener(
+
+        "change",
+
+        crLandscapeEntryResetLocation
+
+    );
+
+
+crLandscapeEntryEls
+    .year
+    .addEventListener(
+
+        "change",
+
+        crLandscapeEntryResetLocation
+
+    );
+
+
+crLandscapeEntryEls
+    .generateLocation
+    .addEventListener(
+
+        "click",
+
+        crLandscapeEntryGenerateLocation
+
+    );
 
 crLandscapeEntryEls
     .addMatch
