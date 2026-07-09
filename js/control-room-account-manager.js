@@ -862,7 +862,7 @@ async function crAccountLoadRecords() {
             await crAccountReadFile();
 
 
-        crAccountRecords =
+                crAccountRecords =
 
             Array.isArray(
                 file.accounts
@@ -871,6 +871,21 @@ async function crAccountLoadRecords() {
                 ? file.accounts
 
                 : [];
+
+
+
+        crAccountBaselineRecords =
+
+            structuredClone(
+                crAccountRecords
+            );
+
+
+
+        crAccountBaselineText =
+
+            file.text;
+
 
 
         crAccountRenderAll();
