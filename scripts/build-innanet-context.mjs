@@ -2288,7 +2288,55 @@ for (
                 team.id
         )
     ];
+const worldHistoryMemory =
 
+    await loadWorldHistoryMemory({
+
+
+        root:
+            ROOT,
+
+
+        beforeMonth:
+
+            monthId(
+                event.date
+            ),
+
+
+        entityIds: [
+
+
+            ...participantWrestlers.map(
+
+                wrestler =>
+                    wrestler.id
+
+            ),
+
+
+            ...participantTeams.map(
+
+                team =>
+                    team.id
+
+            )
+
+        ],
+
+
+        maxMonths:
+            4,
+
+
+        maxEntities:
+            12,
+
+
+        includeCompanyHistory:
+            false
+
+    });
 
     const matchFacts =
         eventMatches.map(
@@ -2392,16 +2440,25 @@ for (
 
 
         mediaMemory:
-            relevantMediaMemory(
-                innanetArchives,
-                wwowArchives,
-                participantNames,
-                event.date
-            ),
+
+    relevantMediaMemory(
+
+        innanetArchives,
+
+        wwowArchives,
+
+        participantNames,
+
+        event.date
+
+    ),
 
 
-        availableAccounts:
-            accounts,
+worldHistoryMemory,
+
+
+availableAccounts:
+    accounts,
 
 
         entityDirectory:
