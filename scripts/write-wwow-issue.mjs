@@ -985,6 +985,10 @@ RULES:
 - Do not fabricate quotes.
 - Do not fabricate backstage sources.
 - Innanet posts may be described as fan reaction.
+- Frozen world-history snapshots may be used for factual multi-month comparisons.
+- Rankings movement, records, streaks, title changes, and championship status from those snapshots are historical fact.
+- Sentiment history represents public reaction and should be framed that way.
+- Never invent the cause of a rise, fall, collapse, or comeback when the data only proves that the trend occurred.
 - Rumor and speculation sections must remain clearly speculative.
 - Write with personality, analysis, and point of view.
 - Avoid repetitive phrases.
