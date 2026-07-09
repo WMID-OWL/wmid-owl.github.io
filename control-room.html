@@ -5139,6 +5139,661 @@
 
 
 </section>
+    <!-- =================================
+     INNANET ACCOUNT MANAGER
+================================= -->
+
+
+<section class="control-room-panel">
+
+
+    <div class="control-room-panel-heading">
+
+
+        <div>
+
+
+            <p class="eyebrow">
+                OWL SOCIAL
+            </p>
+
+
+            <h2>
+                Innanet Account Manager
+            </h2>
+
+
+        </div>
+
+
+
+        <span
+            id="cr-account-status"
+            class="control-room-health-summary"
+        >
+            READY
+        </span>
+
+
+    </div>
+
+
+
+    <p class="cr-account-manager-intro">
+
+        Shape the recurring voices of The Innanet.
+        Retired accounts remain in historical archives but are removed
+        from future AI generation.
+
+    </p>
+
+
+
+    <!-- =================================
+         ACCOUNT SUMMARY
+    ================================== -->
+
+
+    <div class="cr-account-summary-grid">
+
+
+        <article class="control-room-stat-card">
+
+
+            <span>
+                TOTAL ACCOUNTS
+            </span>
+
+
+            <strong id="cr-account-total-count">
+                0
+            </strong>
+
+
+        </article>
+
+
+
+        <article class="control-room-stat-card">
+
+
+            <span>
+                ACTIVE
+            </span>
+
+
+            <strong id="cr-account-active-count">
+                0
+            </strong>
+
+
+        </article>
+
+
+
+        <article class="control-room-stat-card">
+
+
+            <span>
+                RETIRED
+            </span>
+
+
+            <strong id="cr-account-retired-count">
+                0
+            </strong>
+
+
+        </article>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         ACCOUNT DIRECTORY
+    ================================== -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+
+            <span>
+                USER DIRECTORY
+            </span>
+
+
+            <h3>
+                Recurring Innanet Accounts
+            </h3>
+
+
+        </div>
+
+
+
+        <div
+            id="cr-account-directory"
+            class="cr-account-directory"
+        >
+
+
+            <p class="cr-account-directory-empty">
+
+                Connect the OWL folder to load accounts.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         EDITOR MODE
+    ================================== -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+
+            <span>
+                ACCOUNT EDITOR
+            </span>
+
+
+            <h3>
+                Personality Profile
+            </h3>
+
+
+        </div>
+
+
+
+        <div class="cr-editor-top-grid">
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-account-mode">
+
+                    ACTION
+
+                </label>
+
+
+                <select id="cr-account-mode">
+
+
+                    <option value="edit">
+                        Edit Existing Account
+                    </option>
+
+
+                    <option value="create">
+                        Add New Account
+                    </option>
+
+
+                </select>
+
+
+            </div>
+
+
+
+            <div
+                id="cr-account-select-row"
+                class="cr-form-group"
+            >
+
+
+                <label for="cr-account-select">
+
+                    ACCOUNT
+
+                </label>
+
+
+                <select id="cr-account-select">
+
+
+                    <option value="">
+                        Select Account
+                    </option>
+
+
+                </select>
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label>
+                    DATABASE ID
+                </label>
+
+
+                <div
+                    id="cr-account-id-preview"
+                    class="cr-current-value"
+                >
+                    —
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         IDENTITY
+    ================================== -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+
+            <span>
+                IDENTITY
+            </span>
+
+
+            <h3>
+                Account Information
+            </h3>
+
+
+        </div>
+
+
+
+        <div class="cr-editor-form-grid">
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-account-name">
+
+                    DISPLAY NAME
+
+                </label>
+
+
+                <input
+                    id="cr-account-name"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="OWL Tea Room"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-account-handle">
+
+                    HANDLE
+
+                </label>
+
+
+                <input
+                    id="cr-account-handle"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="@OWLTeaRoom"
+                >
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-account-account-status">
+
+                    ACCOUNT STATUS
+
+                </label>
+
+
+                <select id="cr-account-account-status">
+
+
+                    <option value="active">
+                        Active
+                    </option>
+
+
+                    <option value="retired">
+                        Retired
+                    </option>
+
+
+                </select>
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-account-archetype">
+
+                    ARCHETYPE
+
+                </label>
+
+
+                <input
+                    id="cr-account-archetype"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="gossip account"
+                >
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         PERSONALITY
+    ================================== -->
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+
+            <span>
+                PERSONALITY
+            </span>
+
+
+            <h3>
+                Voice and Behavior
+            </h3>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-account-tone">
+
+                TONE
+
+            </label>
+
+
+            <textarea
+                id="cr-account-tone"
+                rows="4"
+                placeholder="messy, dramatic, nosy, funny"
+            ></textarea>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group cr-editor-spaced-field">
+
+
+            <label for="cr-account-focus">
+
+                FOCUS AREAS
+            </label>
+
+
+            <textarea
+                id="cr-account-focus"
+                rows="4"
+                placeholder="title drama, fan arguments, momentum shifts, suspicious coincidences"
+            ></textarea>
+
+
+            <small class="cr-field-help">
+
+                Separate focus areas with commas or new lines.
+
+            </small>
+
+
+        </div>
+
+
+
+        <div class="cr-editor-form-grid cr-editor-spaced-field">
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-account-profanity">
+
+                    PROFANITY LEVEL
+
+                </label>
+
+
+                <select id="cr-account-profanity">
+
+
+                    <option value="none">
+                        None
+                    </option>
+
+
+                    <option value="low">
+                        Low
+                    </option>
+
+
+                    <option value="medium">
+                        Medium
+                    </option>
+
+
+                    <option value="high">
+                        High
+                    </option>
+
+
+                </select>
+
+
+            </div>
+
+
+
+            <div class="cr-form-group">
+
+
+                <label for="cr-account-frequency">
+
+                    POSTING FREQUENCY
+
+                </label>
+
+
+                <input
+                    id="cr-account-frequency"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="regular"
+                >
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group cr-editor-spaced-field">
+
+
+            <label for="cr-account-reply-style">
+
+                REPLY STYLE
+
+            </label>
+
+
+            <input
+                id="cr-account-reply-style"
+                type="text"
+                autocomplete="off"
+                placeholder="messy replies and quote-post speculation"
+            >
+
+
+        </div>
+
+
+
+        <div class="cr-form-group cr-editor-spaced-field">
+
+
+            <label for="cr-account-fact-discipline">
+
+                FACT DISCIPLINE
+
+            </label>
+
+
+            <textarea
+                id="cr-account-fact-discipline"
+                rows="5"
+                placeholder="May speculate, but all non-database claims must be clearly framed as rumor or opinion."
+            ></textarea>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         REVIEW
+    ================================== -->
+
+
+    <div
+        id="cr-account-change-preview"
+        class="cr-change-preview"
+        hidden
+    >
+
+
+        <span>
+            REVIEW ACCOUNT
+        </span>
+
+
+
+        <div
+            id="cr-account-change-list"
+            class="cr-editor-change-list"
+        >
+        </div>
+
+
+
+        <p
+            id="cr-account-error"
+            class="cr-change-error"
+            hidden
+        >
+        </p>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         ACTIONS
+    ================================== -->
+
+
+    <div class="cr-manager-actions">
+
+
+        <button
+            id="cr-account-save"
+            class="control-room-button control-room-button-primary"
+            type="button"
+            disabled
+        >
+            Save Account Changes
+        </button>
+
+
+    </div>
+
+
+
+    <p
+        id="cr-account-message"
+        class="cr-save-message"
+        hidden
+    >
+    </p>
+
+
+</section>
     
         <!-- =================================
              DATA HEALTH
