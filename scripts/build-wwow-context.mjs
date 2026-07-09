@@ -974,7 +974,31 @@ const selectedLabel =
     monthLabel(
         selectedMonth
     );
+const worldHistoryMemory =
 
+    await loadWorldHistoryMemory({
+
+
+        root:
+            ROOT,
+
+
+        beforeMonth:
+            selectedMonth,
+
+
+        maxMonths:
+            6,
+
+
+        maxEntities:
+            12,
+
+
+        includeCompanyHistory:
+            true
+
+    });
 
 
 // =================================
