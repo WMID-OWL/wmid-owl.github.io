@@ -1297,12 +1297,22 @@ async function crLandscapeEntryGenerateLocation() {
                 : [];
 
 
-        const occupiedCities =
+                const occupiedCities =
 
             crLandscapeEntryOccupiedCities(
 
                 events,
                 periodId,
+                stageId,
+                selectedShow
+
+            );
+
+
+        const reservedFixedCities =
+
+            crLandscapeEntryReservedFixedCities(
+
                 stageId,
                 selectedShow
 
@@ -1360,13 +1370,13 @@ async function crLandscapeEntryGenerateLocation() {
         }
 
 
-        if (
+                if (
             rule.mode ===
             "fixed"
         ) {
 
 
-            crLandscapeGeneratedLocation = {
+            const fixedLocation = {
 
                 venue:
                     rule.venue || "",
@@ -1383,6 +1393,32 @@ async function crLandscapeEntryGenerateLocation() {
             };
 
 
+            if (
+
+                occupiedCities.has(
+
+                    crLandscapeEntryLocationKey(
+                        fixedLocation
+                    )
+
+                )
+
+            ) {
+
+
+                throw new Error(
+
+                    "The fixed venue city is already occupied by another recorded show on this simulation day."
+
+                );
+
+            }
+
+
+            crLandscapeGeneratedLocation =
+                fixedLocation;
+
+
             crLandscapeEntryRenderLocation();
 
 
@@ -1394,7 +1430,6 @@ async function crLandscapeEntryGenerateLocation() {
             return;
 
         }
-
 
         let candidatePool =
             [];
@@ -1541,21 +1576,37 @@ async function crLandscapeEntryGenerateLocation() {
         }
 
 
-        const availablePool =
+                const availablePool =
 
             candidatePool
 
                 .filter(
 
-                    location =>
+                    location => {
 
-                        !occupiedCities.has(
+
+                        const locationKey =
 
                             crLandscapeEntryLocationKey(
                                 location
+                            );
+
+
+                        return (
+
+                            !occupiedCities.has(
+                                locationKey
                             )
 
-                        )
+                            &&
+
+                            !reservedFixedCities.has(
+                                locationKey
+                            )
+
+                        );
+
+                    }
 
                 );
 
