@@ -1,0 +1,240 @@
+name: Check OWL Social Memory
+
+
+on:
+
+  workflow_dispatch:
+
+    inputs:
+
+      before_month:
+
+        description:
+          "Load snapshots before this month"
+
+        required:
+          true
+
+        default:
+          "2026-08"
+
+
+
+permissions:
+
+  contents:
+    read
+
+
+
+jobs:
+
+  check-memory:
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+        with:
+
+          ref:
+            main
+
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+
+      - name: Validate frozen history loader
+
+        env:
+
+          BEFORE_MONTH:
+            ${{ inputs.before_month }}
+
+
+        run: |
+
+          node --input-type=module <<'NODE'
+
+          import {
+              loadWorldHistoryMemory
+          } from "./scripts/world-history-memory.mjs";
+
+
+          const memory =
+
+              await loadWorldHistoryMemory({
+
+                  beforeMonth:
+                      process.env.BEFORE_MONTH,
+
+                  maxMonths:
+                      6,
+
+                  maxEntities:
+                      12,
+
+                  includeCompanyHistory:
+                      true
+
+              });
+
+
+          console.log(
+
+              `Loaded ${memory.months.length} frozen month(s).`
+
+          );
+
+
+          console.log(
+
+              `Loaded ${memory.entityHistories.length} entity history timeline(s).`
+
+          );
+
+
+          console.log(
+
+              `Loaded ${memory.companyHistory.length} company history month(s).`
+
+          );
+
+
+          if (
+              memory.months.length === 0
+          ) {
+
+              throw new Error(
+
+                  "No frozen history months were loaded."
+
+              );
+
+          }
+
+
+          if (
+              memory.entityHistories.length === 0
+          ) {
+
+              throw new Error(
+
+                  "No entity histories were built."
+
+              );
+
+          }
+
+
+          console.log(
+
+              JSON.stringify(
+
+                  memory.entityHistories.slice(
+                      0,
+                      3
+                  ),
+
+                  null,
+
+                  2
+
+              )
+
+          );
+
+          NODE
+
+
+
+      - name: Validate Innanet context builder
+
+        run: |
+
+          node scripts/build-innanet-context.mjs
+
+
+
+      - name: Validate WWoW context builder
+
+        env:
+
+          TARGET_MONTH:
+            "2026-07"
+
+
+        run: |
+
+          node scripts/build-wwow-context.mjs
+
+
+
+      - name: Confirm WWoW memory field
+
+        run: |
+
+          node -e "
+
+          const fs = require('fs');
+
+
+          const context = JSON.parse(
+
+              fs.readFileSync(
+
+                  'data/wwow/generation-context.json',
+
+                  'utf8'
+
+              )
+
+          );
+
+
+          if (
+
+              !Object.prototype.hasOwnProperty.call(
+
+                  context,
+
+                  'worldHistoryMemory'
+
+              )
+
+          ) {
+
+              throw new Error(
+
+                  'WWoW context is missing worldHistoryMemory.'
+
+              );
+
+          }
+
+
+          console.log(
+
+              'WWoW context contains worldHistoryMemory.'
+
+          );
+
+          "
