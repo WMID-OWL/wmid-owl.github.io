@@ -2340,8 +2340,12 @@ const context = {
 
         historicalPerspective:
 
-            "Use previous months and archived media to identify real arcs such as rises, collapses, streaks, recoveries, championship changes, and changing public perception.",
+    "Use previous months, archived media, and frozen world snapshots to identify real arcs such as rises, collapses, streaks, recoveries, championship changes, rankings movement, and changing public perception.",
 
+
+snapshotUse:
+
+    "worldHistoryMemory contains frozen prior month-end facts. Rankings, records, title status, and title transitions may be treated as historical fact. Innanet sentiment is public reaction. Do not invent an unrecorded reason for why a rise or collapse happened.",
 
         innanetUse:
 
