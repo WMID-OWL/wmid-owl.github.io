@@ -239,6 +239,19 @@ let crAccountOriginalRecord =
     null;
 
 
+// EXACT FILE STATE WHEN THE MANAGER FIRST LOADS.
+// THIS LETS A FULL REVERT RESTORE THE ORIGINAL FILE
+// BYTE-FOR-BYTE INSTEAD OF LEAVING FORMATTING CHANGES.
+
+
+let crAccountBaselineRecords =
+    [];
+
+
+let crAccountBaselineText =
+    "";
+
+
 
 // =================================
 // BASIC HELPERS
