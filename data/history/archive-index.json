@@ -1,0 +1,12 @@
+{
+  "months": [
+    {
+      "id": "2026-07",
+      "label": "July 2026",
+      "file": "data/history/2026-07.json",
+      "asOfDate": "2026-07-15",
+      "eventCount": 3,
+      "matchCount": 3
+    }
+  ]
+}

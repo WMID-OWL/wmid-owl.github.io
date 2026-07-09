@@ -1,0 +1,1256 @@
+{
+  "id": "2026-07",
+  "label": "July 2026",
+  "generatedAt": "2026-07-09T04:50:45.732Z",
+  "frozen": true,
+  "period": {
+    "monthStart": "2026-07-01",
+    "calendarMonthEnd": "2026-07-31",
+    "asOfDate": "2026-07-15"
+  },
+  "source": {
+    "powerRankingsEngine": "js/power-rankings.js",
+    "innanetArchive": "data/innanet/2026-07.json",
+    "wwowIssue": "data/wwow/2026-07.json"
+  },
+  "summary": {
+    "eventCount": 3,
+    "matchCount": 3,
+    "titleChangeCount": 2,
+    "innanetPostCount": 37,
+    "wwowSectionCount": 8
+  },
+  "events": [
+    {
+      "id": "ascension-2026-07-01",
+      "name": "Ascension",
+      "brand": "Ascension",
+      "eventType": "weekly",
+      "date": "2026-07-01",
+      "matchCount": 1
+    },
+    {
+      "id": "ascension-2026-07-08",
+      "name": "Ascension",
+      "brand": "Ascension",
+      "eventType": "weekly",
+      "date": "2026-07-08",
+      "matchCount": 1
+    },
+    {
+      "id": "ascension-2026-07-15",
+      "name": "Ascension",
+      "brand": "Ascension",
+      "eventType": "weekly",
+      "date": "2026-07-15",
+      "matchCount": 1
+    }
+  ],
+  "rankings": {
+    "month": {
+      "men-singles": [
+        {
+          "rank": 1,
+          "id": "zee-allmighty",
+          "name": "Zee Allmighty",
+          "brand": "Ascension",
+          "type": "wrestler",
+          "powerScore": 57,
+          "wins": 2,
+          "losses": 0,
+          "draws": 0,
+          "matches": 2,
+          "winStreak": 2,
+          "currentChampion": true
+        },
+        {
+          "rank": 2,
+          "id": "connor-canada",
+          "name": "Connor Canada",
+          "brand": "OWL",
+          "type": "wrestler",
+          "powerScore": 0,
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "matches": 0,
+          "winStreak": 0,
+          "currentChampion": false
+        },
+        {
+          "rank": 3,
+          "id": "levi-martin",
+          "name": "Levi Martín",
+          "brand": "OWL",
+          "type": "wrestler",
+          "powerScore": -2,
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "matches": 1,
+          "winStreak": 0,
+          "currentChampion": false
+        },
+        {
+          "rank": 4,
+          "id": "dorian-atlas",
+          "name": "Dorian Atlas",
+          "brand": "Revolt",
+          "type": "wrestler",
+          "powerScore": -4,
+          "wins": 0,
+          "losses": 2,
+          "draws": 0,
+          "matches": 2,
+          "winStreak": 0,
+          "currentChampion": false
+        }
+      ],
+      "women-singles": [
+        {
+          "rank": 1,
+          "id": "jordynne-grace",
+          "name": "Jordynne Grace",
+          "brand": "OWL",
+          "type": "wrestler",
+          "powerScore": 0,
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "matches": 0,
+          "winStreak": 0,
+          "currentChampion": false
+        },
+        {
+          "rank": 2,
+          "id": "marina-shafir",
+          "name": "Marina Shafir",
+          "brand": "OWL",
+          "type": "wrestler",
+          "powerScore": 0,
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "matches": 0,
+          "winStreak": 0,
+          "currentChampion": false
+        },
+        {
+          "rank": 3,
+          "id": "shayna-baszler",
+          "name": "Shayna Baszler",
+          "brand": "OWL",
+          "type": "wrestler",
+          "powerScore": 0,
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "matches": 0,
+          "winStreak": 0,
+          "currentChampion": false
+        }
+      ],
+      "men-tags": [
+        {
+          "rank": 1,
+          "id": "true-north-elite",
+          "name": "True North Elite",
+          "brand": "Ascension",
+          "type": "team",
+          "powerScore": 17,
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "matches": 1,
+          "winStreak": 1,
+          "currentChampion": true
+        }
+      ],
+      "women-tags": [
+        {
+          "rank": 1,
+          "id": "pwo",
+          "name": "PWO",
+          "brand": "OWL",
+          "type": "team",
+          "powerScore": 0,
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "matches": 0,
+          "winStreak": 0,
+          "currentChampion": false
+        }
+      ]
+    },
+    "ytd": {
+      "men-singles": [
+        {
+          "rank": 1,
+          "id": "zee-allmighty",
+          "name": "Zee Allmighty",
+          "brand": "Ascension",
+          "type": "wrestler",
+          "powerScore": 57,
+          "wins": 2,
+          "losses": 0,
+          "draws": 0,
+          "matches": 2,
+          "winStreak": 2,
+          "currentChampion": true
+        },
+        {
+          "rank": 2,
+          "id": "connor-canada",
+          "name": "Connor Canada",
+          "brand": "OWL",
+          "type": "wrestler",
+          "powerScore": 0,
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "matches": 0,
+          "winStreak": 0,
+          "currentChampion": false
+        },
+        {
+          "rank": 3,
+          "id": "levi-martin",
+          "name": "Levi Martín",
+          "brand": "OWL",
+          "type": "wrestler",
+          "powerScore": -2,
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "matches": 1,
+          "winStreak": 0,
+          "currentChampion": false
+        },
+        {
+          "rank": 4,
+          "id": "dorian-atlas",
+          "name": "Dorian Atlas",
+          "brand": "Revolt",
+          "type": "wrestler",
+          "powerScore": -4,
+          "wins": 0,
+          "losses": 2,
+          "draws": 0,
+          "matches": 2,
+          "winStreak": 0,
+          "currentChampion": false
+        }
+      ],
+      "women-singles": [
+        {
+          "rank": 1,
+          "id": "jordynne-grace",
+          "name": "Jordynne Grace",
+          "brand": "OWL",
+          "type": "wrestler",
+          "powerScore": 0,
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "matches": 0,
+          "winStreak": 0,
+          "currentChampion": false
+        },
+        {
+          "rank": 2,
+          "id": "marina-shafir",
+          "name": "Marina Shafir",
+          "brand": "OWL",
+          "type": "wrestler",
+          "powerScore": 0,
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "matches": 0,
+          "winStreak": 0,
+          "currentChampion": false
+        },
+        {
+          "rank": 3,
+          "id": "shayna-baszler",
+          "name": "Shayna Baszler",
+          "brand": "OWL",
+          "type": "wrestler",
+          "powerScore": 0,
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "matches": 0,
+          "winStreak": 0,
+          "currentChampion": false
+        }
+      ],
+      "men-tags": [
+        {
+          "rank": 1,
+          "id": "true-north-elite",
+          "name": "True North Elite",
+          "brand": "Ascension",
+          "type": "team",
+          "powerScore": 17,
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "matches": 1,
+          "winStreak": 1,
+          "currentChampion": true
+        }
+      ],
+      "women-tags": [
+        {
+          "rank": 1,
+          "id": "pwo",
+          "name": "PWO",
+          "brand": "OWL",
+          "type": "team",
+          "powerScore": 0,
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "matches": 0,
+          "winStreak": 0,
+          "currentChampion": false
+        }
+      ]
+    },
+    "openingYtd": {
+      "men-singles": [],
+      "women-singles": [],
+      "men-tags": [],
+      "women-tags": []
+    }
+  },
+  "wrestlers": [
+    {
+      "id": "zee-allmighty",
+      "name": "Zee Allmighty",
+      "brand": "Ascension",
+      "division": "men-singles",
+      "monthRecord": {
+        "wins": 2,
+        "losses": 0,
+        "draws": 0,
+        "text": "2-0-0"
+      },
+      "ytdRecord": {
+        "wins": 2,
+        "losses": 0,
+        "draws": 0,
+        "text": "2-0-0"
+      },
+      "lastFive": {
+        "wins": 2,
+        "losses": 0,
+        "draws": 0,
+        "text": "2-0-0"
+      },
+      "streak": {
+        "type": "winning",
+        "count": 2,
+        "label": "2-match winning streak"
+      },
+      "rankings": {
+        "monthlyRank": 1,
+        "monthlyPowerScore": 57,
+        "openingYtdRank": null,
+        "closingYtdRank": 1,
+        "closingYtdPowerScore": 57,
+        "ytdRankMovement": null,
+        "ytdRankMovementLabel": "NEW"
+      },
+      "currentTitles": [
+        {
+          "championshipId": "owl-world-championship",
+          "championship": "OWL World Championship",
+          "wonDate": "2026-07-01",
+          "defenses": 0
+        }
+      ],
+      "koRecord": {
+        "wins": 0,
+        "losses": 0
+      },
+      "media": {
+        "innanet": {
+          "mentionCount": 19,
+          "sentiment": {
+            "label": "mostly positive",
+            "positiveSignals": 14,
+            "negativeSignals": 0,
+            "method": "keyword-heuristic"
+          },
+          "topPosts": [
+            {
+              "date": "2026-07-15",
+              "eventName": "Ascension",
+              "handle": "@AscensionAddict",
+              "type": "fan-post",
+              "body": "**ZEE ALLMIGHTY IS UNSTOPPABLE!**✨ What a display of talent tonight! Can't wait to see how he builds on this victory. Let's go, champ! #AllmightyEra #ChampionsRise",
+              "engagement": 370
+            },
+            {
+              "date": "2026-07-15",
+              "eventName": "Ascension",
+              "handle": "@OWLStats",
+              "type": "stats-post",
+              "body": "Zee Allmighty successfully defended the OWL World Championship tonight at Ascension, scored a pinfall victory against Levi Martín in a thrilling Triple Threat match rated 4.75 stars! #OWLStats #ChampionshipDefense",
+              "engagement": 264
+            },
+            {
+              "date": "2026-07-01",
+              "eventName": "Ascension",
+              "handle": "@OWLStats",
+              "type": "stats-post",
+              "body": "Zee Allmighty's title win at Ascension brings his career record to 1-0-0 and makes him the current OWL World Champion. This is the start of a potential new dynasty! #OWLStats #Championship",
+              "engagement": 216
+            },
+            {
+              "date": "2026-07-01",
+              "eventName": "Ascension",
+              "handle": "@OWLNewsDesk",
+              "type": "news-report",
+              "body": "🚨ZEE ALLMIGHTY has officially dethroned Dorian Atlas to become the OWL World Champion! His title win marks a new chapter in the OWL saga. What's next for both men? #OWLNews #NewChampion",
+              "engagement": 208
+            },
+            {
+              "date": "2026-07-01",
+              "eventName": "Ascension",
+              "handle": "@OWLNewsDesk",
+              "type": "news-report",
+              "body": "🚨BREAKING: Zee Allmighty has officially won the OWL World Championship after pinning Dorian Atlas at Ascension! This marks a new era in OWL with a fresh champion! #OWLEra #NewChampion",
+              "engagement": 190
+            }
+          ]
+        },
+        "wwow": {
+          "mentionCount": 8,
+          "articles": [
+            {
+              "kicker": "COVER STORY",
+              "title": "Zee Allmighty: From Contender to Champion",
+              "excerpt": "Zee Allmighty's ascent to the OWL World Championship marks a pivotal moment not just for him, but for the entire wrestling landscape. After defeating Dorian Atlas in a thrilling match at Ascension on July 1, Allmighty has solidified his status as one of the company's premier talents. His victory was not simply a case of luck; it demonstrated a combination of skill, timing, and an undeniable connection with the audience. Fans erupted on innanet platforms, celebrating his triumph and speculating o"
+            },
+            {
+              "kicker": "MONTH IN REVIEW",
+              "title": "July 2026: A Month of Shifts and Surprises",
+              "excerpt": "July 2026 was nothing short of electrifying for OWL fans, filled with dramatic shifts and unexpected turns that kept audiences on the edge of their seats. The month began with Zee Allmighty's stunning victory over Dorian Atlas at Ascension on July 1st, where he not only claimed the OWL World Championship but also announced his arrival as a major player in the company. Winning that match set off a chain reaction of events that would redefine the competitive landscape going forward. Meanwhile, Tru"
+            },
+            {
+              "kicker": "POWER SHIFT",
+              "title": "Dorian Atlas: The Fall from Grace",
+              "excerpt": "Once a shining star in the OWL universe, Dorian Atlas now finds himself trapped in a shadow of his former self. With a dismal record of 0-3 this month, including two losses to the newly crowned champion Zee Allmighty, Atlas's recent performances have raised alarms about his status in the main event scene. The once-dominant competitor who held the OWL World Championship earlier this year seems to be struggling with not just the physical demands of the ring, but also the mental pressure that comes"
+            },
+            {
+              "kicker": "MATCH OF THE MONTH",
+              "title": "Zee Allmighty vs. Levi Martín: A Triple Threat Showdown",
+              "excerpt": "In a thrilling culmination of tension and rivalry, Zee Allmighty defended his OWL World Championship against both Dorian Atlas and Levi Martín in what proved to be an electrifying triple threat match at Ascension on July 15. Rated an impressive 4.75 stars, the bout showcased not only Allmighty's skills but also highlighted the unique dynamics that come into play when multiple competitors vie for supremacy. The match was a masterclass in pacing and storytelling inside the squared circle. Zee Allm"
+            },
+            {
+              "kicker": "PERFORMER OF THE MONTH",
+              "title": "Zee Allmighty: Champion's Aura",
+              "excerpt": "Zee Allmighty has truly established himself as the standout performer of July 2026, transitioning from a hungry contender to the reigning OWL World Champion. His remarkable victory over Dorian Atlas during the Ascension event on July 1 showcased his potential, earning him a solid match rating of 91 and a star rating of 4.5. This victory not only crowned him champion but also signaled the dawn of a new era in OWL, with speculations running rampant about his future dominance. Following his title w"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dorian-atlas",
+      "name": "Dorian Atlas",
+      "brand": "Revolt",
+      "division": "men-singles",
+      "monthRecord": {
+        "wins": 0,
+        "losses": 2,
+        "draws": 0,
+        "text": "0-2-0"
+      },
+      "ytdRecord": {
+        "wins": 0,
+        "losses": 2,
+        "draws": 0,
+        "text": "0-2-0"
+      },
+      "lastFive": {
+        "wins": 0,
+        "losses": 2,
+        "draws": 0,
+        "text": "0-2-0"
+      },
+      "streak": {
+        "type": "losing",
+        "count": 2,
+        "label": "2-match losing streak"
+      },
+      "rankings": {
+        "monthlyRank": 4,
+        "monthlyPowerScore": -4,
+        "openingYtdRank": null,
+        "closingYtdRank": 4,
+        "closingYtdPowerScore": -4,
+        "ytdRankMovement": null,
+        "ytdRankMovementLabel": "NEW"
+      },
+      "currentTitles": [],
+      "koRecord": {
+        "wins": 0,
+        "losses": 0
+      },
+      "media": {
+        "innanet": {
+          "mentionCount": 18,
+          "sentiment": {
+            "label": "mixed",
+            "positiveSignals": 9,
+            "negativeSignals": 6,
+            "method": "keyword-heuristic"
+          },
+          "topPosts": [
+            {
+              "date": "2026-07-01",
+              "eventName": "Ascension",
+              "handle": "@OWLNewsDesk",
+              "type": "news-report",
+              "body": "🚨ZEE ALLMIGHTY has officially dethroned Dorian Atlas to become the OWL World Champion! His title win marks a new chapter in the OWL saga. What's next for both men? #OWLNews #NewChampion",
+              "engagement": 208
+            },
+            {
+              "date": "2026-07-01",
+              "eventName": "Ascension",
+              "handle": "@OWLNewsDesk",
+              "type": "news-report",
+              "body": "🚨BREAKING: Zee Allmighty has officially won the OWL World Championship after pinning Dorian Atlas at Ascension! This marks a new era in OWL with a fresh champion! #OWLEra #NewChampion",
+              "engagement": 190
+            },
+            {
+              "date": "2026-07-15",
+              "eventName": "Ascension",
+              "handle": "@WorkrateWonk",
+              "type": "opinion",
+              "body": "\"4.75 stars? For a match that had Dorian Atlas stumbling around like he forgot his lines? Come on! Zee Allmighty did his thing, but let’s be honest: Atlas's flops held the match back. #WorkrateMatters\"",
+              "engagement": 148
+            },
+            {
+              "date": "2026-07-01",
+              "eventName": "Ascension",
+              "handle": "@TheGrapevine",
+              "type": "rumor",
+              "body": "Hearing whispers that Dorian Atlas is contemplating a major change post-title loss. Could he reinvent himself or is this the last we see of him in the main event scene? 🤔 #Speculation #DorianAtlasFuture",
+              "engagement": 146
+            },
+            {
+              "date": "2026-07-15",
+              "eventName": "Ascension",
+              "handle": "@assholefan32",
+              "type": "fan-post",
+              "body": "LOL, Dorian Atlas is officially the king of jobbers now! You hold the title for a month and then lose it like that? What a choke! #JobberAtlas #AscensionSucks",
+              "engagement": 130
+            }
+          ]
+        },
+        "wwow": {
+          "mentionCount": 8,
+          "articles": [
+            {
+              "kicker": "COVER STORY",
+              "title": "Zee Allmighty: From Contender to Champion",
+              "excerpt": "Zee Allmighty's ascent to the OWL World Championship marks a pivotal moment not just for him, but for the entire wrestling landscape. After defeating Dorian Atlas in a thrilling match at Ascension on July 1, Allmighty has solidified his status as one of the company's premier talents. His victory was not simply a case of luck; it demonstrated a combination of skill, timing, and an undeniable connection with the audience. Fans erupted on innanet platforms, celebrating his triumph and speculating o"
+            },
+            {
+              "kicker": "MONTH IN REVIEW",
+              "title": "July 2026: A Month of Shifts and Surprises",
+              "excerpt": "July 2026 was nothing short of electrifying for OWL fans, filled with dramatic shifts and unexpected turns that kept audiences on the edge of their seats. The month began with Zee Allmighty's stunning victory over Dorian Atlas at Ascension on July 1st, where he not only claimed the OWL World Championship but also announced his arrival as a major player in the company. Winning that match set off a chain reaction of events that would redefine the competitive landscape going forward. Meanwhile, Tru"
+            },
+            {
+              "kicker": "POWER SHIFT",
+              "title": "Dorian Atlas: The Fall from Grace",
+              "excerpt": "Once a shining star in the OWL universe, Dorian Atlas now finds himself trapped in a shadow of his former self. With a dismal record of 0-3 this month, including two losses to the newly crowned champion Zee Allmighty, Atlas's recent performances have raised alarms about his status in the main event scene. The once-dominant competitor who held the OWL World Championship earlier this year seems to be struggling with not just the physical demands of the ring, but also the mental pressure that comes"
+            },
+            {
+              "kicker": "MATCH OF THE MONTH",
+              "title": "Zee Allmighty vs. Levi Martín: A Triple Threat Showdown",
+              "excerpt": "In a thrilling culmination of tension and rivalry, Zee Allmighty defended his OWL World Championship against both Dorian Atlas and Levi Martín in what proved to be an electrifying triple threat match at Ascension on July 15. Rated an impressive 4.75 stars, the bout showcased not only Allmighty's skills but also highlighted the unique dynamics that come into play when multiple competitors vie for supremacy. The match was a masterclass in pacing and storytelling inside the squared circle. Zee Allm"
+            },
+            {
+              "kicker": "PERFORMER OF THE MONTH",
+              "title": "Zee Allmighty: Champion's Aura",
+              "excerpt": "Zee Allmighty has truly established himself as the standout performer of July 2026, transitioning from a hungry contender to the reigning OWL World Champion. His remarkable victory over Dorian Atlas during the Ascension event on July 1 showcased his potential, earning him a solid match rating of 91 and a star rating of 4.5. This victory not only crowned him champion but also signaled the dawn of a new era in OWL, with speculations running rampant about his future dominance. Following his title w"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "levi-martin",
+      "name": "Levi Martín",
+      "brand": "OWL",
+      "division": "men-singles",
+      "monthRecord": {
+        "wins": 0,
+        "losses": 1,
+        "draws": 0,
+        "text": "0-1-0"
+      },
+      "ytdRecord": {
+        "wins": 0,
+        "losses": 1,
+        "draws": 0,
+        "text": "0-1-0"
+      },
+      "lastFive": {
+        "wins": 0,
+        "losses": 1,
+        "draws": 0,
+        "text": "0-1-0"
+      },
+      "streak": {
+        "type": "losing",
+        "count": 1,
+        "label": "1-match losing streak"
+      },
+      "rankings": {
+        "monthlyRank": 3,
+        "monthlyPowerScore": -2,
+        "openingYtdRank": null,
+        "closingYtdRank": 3,
+        "closingYtdPowerScore": -2,
+        "ytdRankMovement": null,
+        "ytdRankMovementLabel": "NEW"
+      },
+      "currentTitles": [],
+      "koRecord": {
+        "wins": 0,
+        "losses": 0
+      },
+      "media": {
+        "innanet": {
+          "mentionCount": 6,
+          "sentiment": {
+            "label": "mostly positive",
+            "positiveSignals": 7,
+            "negativeSignals": 0,
+            "method": "keyword-heuristic"
+          },
+          "topPosts": [
+            {
+              "date": "2026-07-15",
+              "eventName": "Ascension",
+              "handle": "@OWLStats",
+              "type": "stats-post",
+              "body": "Zee Allmighty successfully defended the OWL World Championship tonight at Ascension, scored a pinfall victory against Levi Martín in a thrilling Triple Threat match rated 4.75 stars! #OWLStats #ChampionshipDefense",
+              "engagement": 264
+            },
+            {
+              "date": "2026-07-08",
+              "eventName": "Ascension",
+              "handle": "@assholefan32",
+              "type": "fan-post",
+              "body": "Congrats to Levi Martín for choking out Zee Allmighty! Just kidding, that's how you get submitted in REAL wrestling 🤣 #NoGutsNoGlory #TrueNorthElite",
+              "engagement": 105
+            },
+            {
+              "date": "2026-07-15",
+              "eventName": "Ascension",
+              "handle": "@OWLStats",
+              "type": "stats-post",
+              "body": "Official records confirm: Zee Allmighty now holds a 2-1 record for July and maintains his OWL World Championship with a successful defense against Levi Martín and Dorian Atlas. #OWLStats #CurrentChampion",
+              "engagement": 104
+            },
+            {
+              "date": "2026-07-08",
+              "eventName": "Ascension",
+              "handle": "@AscensionAddict",
+              "type": "fan-post",
+              "body": "**TRUE NORTH ELITE IS A FORCE!!!** 🔥💥 Levi Martín and Connor Canada are crushing the competition! Can’t wait to see them defend their titles! #TrueNorthStrong #AscensionPride",
+              "engagement": 82
+            },
+            {
+              "date": "2026-07-15",
+              "eventName": "Ascension",
+              "handle": "@OWLStats",
+              "type": "stats-post",
+              "body": "In tonight's main event, Zee Allmighty successfully defended his OWL World Championship against both Dorian Atlas and Levi Martín, achieving an impressive star rating of **4.75**. This marks his first title defense since winning the championship on July 1st, bringing his record to **2-1-0** for July. #OWLStats",
+              "engagement": 70
+            }
+          ]
+        },
+        "wwow": {
+          "mentionCount": 4,
+          "articles": [
+            {
+              "kicker": "COVER STORY",
+              "title": "Zee Allmighty: From Contender to Champion",
+              "excerpt": "Zee Allmighty's ascent to the OWL World Championship marks a pivotal moment not just for him, but for the entire wrestling landscape. After defeating Dorian Atlas in a thrilling match at Ascension on July 1, Allmighty has solidified his status as one of the company's premier talents. His victory was not simply a case of luck; it demonstrated a combination of skill, timing, and an undeniable connection with the audience. Fans erupted on innanet platforms, celebrating his triumph and speculating o"
+            },
+            {
+              "kicker": "MONTH IN REVIEW",
+              "title": "July 2026: A Month of Shifts and Surprises",
+              "excerpt": "July 2026 was nothing short of electrifying for OWL fans, filled with dramatic shifts and unexpected turns that kept audiences on the edge of their seats. The month began with Zee Allmighty's stunning victory over Dorian Atlas at Ascension on July 1st, where he not only claimed the OWL World Championship but also announced his arrival as a major player in the company. Winning that match set off a chain reaction of events that would redefine the competitive landscape going forward. Meanwhile, Tru"
+            },
+            {
+              "kicker": "MATCH OF THE MONTH",
+              "title": "Zee Allmighty vs. Levi Martín: A Triple Threat Showdown",
+              "excerpt": "In a thrilling culmination of tension and rivalry, Zee Allmighty defended his OWL World Championship against both Dorian Atlas and Levi Martín in what proved to be an electrifying triple threat match at Ascension on July 15. Rated an impressive 4.75 stars, the bout showcased not only Allmighty's skills but also highlighted the unique dynamics that come into play when multiple competitors vie for supremacy. The match was a masterclass in pacing and storytelling inside the squared circle. Zee Allm"
+            },
+            {
+              "kicker": "PERFORMER OF THE MONTH",
+              "title": "Zee Allmighty: Champion's Aura",
+              "excerpt": "Zee Allmighty has truly established himself as the standout performer of July 2026, transitioning from a hungry contender to the reigning OWL World Champion. His remarkable victory over Dorian Atlas during the Ascension event on July 1 showcased his potential, earning him a solid match rating of 91 and a star rating of 4.5. This victory not only crowned him champion but also signaled the dawn of a new era in OWL, with speculations running rampant about his future dominance. Following his title w"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "connor-canada",
+      "name": "Connor Canada",
+      "brand": "OWL",
+      "division": "men-singles",
+      "monthRecord": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "ytdRecord": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "lastFive": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "streak": {
+        "type": "none",
+        "count": 0,
+        "label": "No active streak"
+      },
+      "rankings": {
+        "monthlyRank": 2,
+        "monthlyPowerScore": 0,
+        "openingYtdRank": null,
+        "closingYtdRank": 2,
+        "closingYtdPowerScore": 0,
+        "ytdRankMovement": null,
+        "ytdRankMovementLabel": "NEW"
+      },
+      "currentTitles": [],
+      "koRecord": {
+        "wins": 0,
+        "losses": 0
+      },
+      "media": {
+        "innanet": {
+          "mentionCount": 1,
+          "sentiment": {
+            "label": "neutral or unclear",
+            "positiveSignals": 1,
+            "negativeSignals": 0,
+            "method": "keyword-heuristic"
+          },
+          "topPosts": [
+            {
+              "date": "2026-07-08",
+              "eventName": "Ascension",
+              "handle": "@AscensionAddict",
+              "type": "fan-post",
+              "body": "**TRUE NORTH ELITE IS A FORCE!!!** 🔥💥 Levi Martín and Connor Canada are crushing the competition! Can’t wait to see them defend their titles! #TrueNorthStrong #AscensionPride",
+              "engagement": 82
+            }
+          ]
+        },
+        "wwow": {
+          "mentionCount": 0,
+          "articles": []
+        }
+      }
+    },
+    {
+      "id": "shayna-baszler",
+      "name": "Shayna Baszler",
+      "brand": "OWL",
+      "division": "women-singles",
+      "monthRecord": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "ytdRecord": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "lastFive": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "streak": {
+        "type": "none",
+        "count": 0,
+        "label": "No active streak"
+      },
+      "rankings": {
+        "monthlyRank": 3,
+        "monthlyPowerScore": 0,
+        "openingYtdRank": null,
+        "closingYtdRank": 3,
+        "closingYtdPowerScore": 0,
+        "ytdRankMovement": null,
+        "ytdRankMovementLabel": "NEW"
+      },
+      "currentTitles": [],
+      "koRecord": {
+        "wins": 0,
+        "losses": 0
+      },
+      "media": {
+        "innanet": {
+          "mentionCount": 0,
+          "sentiment": {
+            "label": "not discussed",
+            "positiveSignals": 0,
+            "negativeSignals": 0,
+            "method": "keyword-heuristic"
+          },
+          "topPosts": []
+        },
+        "wwow": {
+          "mentionCount": 0,
+          "articles": []
+        }
+      }
+    },
+    {
+      "id": "marina-shafir",
+      "name": "Marina Shafir",
+      "brand": "OWL",
+      "division": "women-singles",
+      "monthRecord": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "ytdRecord": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "lastFive": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "streak": {
+        "type": "none",
+        "count": 0,
+        "label": "No active streak"
+      },
+      "rankings": {
+        "monthlyRank": 2,
+        "monthlyPowerScore": 0,
+        "openingYtdRank": null,
+        "closingYtdRank": 2,
+        "closingYtdPowerScore": 0,
+        "ytdRankMovement": null,
+        "ytdRankMovementLabel": "NEW"
+      },
+      "currentTitles": [],
+      "koRecord": {
+        "wins": 0,
+        "losses": 0
+      },
+      "media": {
+        "innanet": {
+          "mentionCount": 0,
+          "sentiment": {
+            "label": "not discussed",
+            "positiveSignals": 0,
+            "negativeSignals": 0,
+            "method": "keyword-heuristic"
+          },
+          "topPosts": []
+        },
+        "wwow": {
+          "mentionCount": 0,
+          "articles": []
+        }
+      }
+    },
+    {
+      "id": "jordynne-grace",
+      "name": "Jordynne Grace",
+      "brand": "OWL",
+      "division": "women-singles",
+      "monthRecord": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "ytdRecord": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "lastFive": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "streak": {
+        "type": "none",
+        "count": 0,
+        "label": "No active streak"
+      },
+      "rankings": {
+        "monthlyRank": 1,
+        "monthlyPowerScore": 0,
+        "openingYtdRank": null,
+        "closingYtdRank": 1,
+        "closingYtdPowerScore": 0,
+        "ytdRankMovement": null,
+        "ytdRankMovementLabel": "NEW"
+      },
+      "currentTitles": [],
+      "koRecord": {
+        "wins": 0,
+        "losses": 0
+      },
+      "media": {
+        "innanet": {
+          "mentionCount": 0,
+          "sentiment": {
+            "label": "not discussed",
+            "positiveSignals": 0,
+            "negativeSignals": 0,
+            "method": "keyword-heuristic"
+          },
+          "topPosts": []
+        },
+        "wwow": {
+          "mentionCount": 0,
+          "articles": []
+        }
+      }
+    }
+  ],
+  "teams": [
+    {
+      "id": "true-north-elite",
+      "name": "True North Elite",
+      "brand": "Ascension",
+      "division": "men-tags",
+      "members": [
+        "levi-martin",
+        "connor-canada"
+      ],
+      "monthRecord": {
+        "wins": 1,
+        "losses": 0,
+        "draws": 0,
+        "text": "1-0-0"
+      },
+      "ytdRecord": {
+        "wins": 1,
+        "losses": 0,
+        "draws": 0,
+        "text": "1-0-0"
+      },
+      "lastFive": {
+        "wins": 1,
+        "losses": 0,
+        "draws": 0,
+        "text": "1-0-0"
+      },
+      "streak": {
+        "type": "winning",
+        "count": 1,
+        "label": "1-match winning streak"
+      },
+      "rankings": {
+        "monthlyRank": 1,
+        "monthlyPowerScore": 17,
+        "openingYtdRank": null,
+        "closingYtdRank": 1,
+        "closingYtdPowerScore": 17,
+        "ytdRankMovement": null,
+        "ytdRankMovementLabel": "NEW"
+      },
+      "currentTitles": [
+        {
+          "championshipId": "twin-talon-tag-team-championship",
+          "championship": "Twin Talon Tag Team Championship",
+          "wonDate": "2026-07-01",
+          "defenses": 0
+        }
+      ],
+      "media": {
+        "innanet": {
+          "mentionCount": 4,
+          "sentiment": {
+            "label": "mostly positive",
+            "positiveSignals": 6,
+            "negativeSignals": 0,
+            "method": "keyword-heuristic"
+          },
+          "topPosts": [
+            {
+              "date": "2026-07-08",
+              "eventName": "Ascension",
+              "handle": "@AscensionAddict",
+              "type": "fan-post",
+              "body": "**TRUE NORTH ELITE IS A FORCE!!!** 🔥💥 Levi Martín and Connor Canada are crushing the competition! Can’t wait to see them defend their titles! #TrueNorthStrong #AscensionPride",
+              "engagement": 82
+            },
+            {
+              "date": "2026-07-08",
+              "eventName": "Ascension",
+              "handle": "@AscensionAddict",
+              "type": "fan-post",
+              "body": "**TRUE NORTH ELITE IS UNSTOPPABLE!** 💪🔥 Levi and Connor are proving their worth in the ring! Can’t wait to see them dominate the competition! #AscensionStrong #OWLFamily",
+              "engagement": 76
+            },
+            {
+              "date": "2026-07-08",
+              "eventName": "Ascension",
+              "handle": "@OWLNewsDesk",
+              "type": "news-report",
+              "body": "**Match Results from Ascension:** True North Elite defeated Zee Allmighty & Dorian Atlas via submission. Match rating: 89, Star rating: 4. Levi Martín was the one to secure the victory for his team. #OWLResults #Ascension2026",
+              "engagement": 48
+            },
+            {
+              "date": "2026-07-08",
+              "eventName": "Ascension",
+              "handle": "@OWLStats",
+              "type": "stats-post",
+              "body": "In last night's match, True North Elite secured a victory over Zee Allmighty & Dorian Atlas with a submission finish. Match rating: 89, Star rating: 4. #OWLStats #MatchRatings",
+              "engagement": 39
+            }
+          ]
+        },
+        "wwow": {
+          "mentionCount": 3,
+          "articles": [
+            {
+              "kicker": "MONTH IN REVIEW",
+              "title": "July 2026: A Month of Shifts and Surprises",
+              "excerpt": "July 2026 was nothing short of electrifying for OWL fans, filled with dramatic shifts and unexpected turns that kept audiences on the edge of their seats. The month began with Zee Allmighty's stunning victory over Dorian Atlas at Ascension on July 1st, where he not only claimed the OWL World Championship but also announced his arrival as a major player in the company. Winning that match set off a chain reaction of events that would redefine the competitive landscape going forward. Meanwhile, Tru"
+            },
+            {
+              "kicker": "PERFORMER OF THE MONTH",
+              "title": "Zee Allmighty: Champion's Aura",
+              "excerpt": "Zee Allmighty has truly established himself as the standout performer of July 2026, transitioning from a hungry contender to the reigning OWL World Champion. His remarkable victory over Dorian Atlas during the Ascension event on July 1 showcased his potential, earning him a solid match rating of 91 and a star rating of 4.5. This victory not only crowned him champion but also signaled the dawn of a new era in OWL, with speculations running rampant about his future dominance. Following his title w"
+            },
+            {
+              "kicker": "TITLE PICTURE",
+              "title": "New Faces at the Top: Title Changes in July 2026",
+              "excerpt": "July 2026 has proven to be pivotal in shaping the landscape of OWL with significant title changes that have left fans buzzing and competitors strategizing for their next moves. The month kicked off with Zee Allmighty dethroning Dorian Atlas to capture the OWL World Championship at Ascension on July 1, marking a major shift in the championship scene. This title change not only highlights Zee's rise but also raises questions about Atlas's future after suffering consecutive defeats and grappling wi"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pwo",
+      "name": "PWO",
+      "brand": "OWL",
+      "division": "women-tags",
+      "members": [
+        "shayna-baszler",
+        "marina-shafir"
+      ],
+      "monthRecord": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "ytdRecord": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "lastFive": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "text": "0-0-0"
+      },
+      "streak": {
+        "type": "none",
+        "count": 0,
+        "label": "No active streak"
+      },
+      "rankings": {
+        "monthlyRank": 1,
+        "monthlyPowerScore": 0,
+        "openingYtdRank": null,
+        "closingYtdRank": 1,
+        "closingYtdPowerScore": 0,
+        "ytdRankMovement": null,
+        "ytdRankMovementLabel": "NEW"
+      },
+      "currentTitles": [],
+      "media": {
+        "innanet": {
+          "mentionCount": 0,
+          "sentiment": {
+            "label": "not discussed",
+            "positiveSignals": 0,
+            "negativeSignals": 0,
+            "method": "keyword-heuristic"
+          },
+          "topPosts": []
+        },
+        "wwow": {
+          "mentionCount": 0,
+          "articles": []
+        }
+      }
+    }
+  ],
+  "championships": [
+    {
+      "championshipId": "owl-world-championship",
+      "championship": "OWL World Championship",
+      "brand": "Ascension",
+      "holderType": "wrestler",
+      "holderId": "zee-allmighty",
+      "holderName": "Zee Allmighty",
+      "wonDate": "2026-07-01",
+      "defenses": 0
+    },
+    {
+      "championshipId": "owl-womens-world-championship",
+      "championship": "OWL Women's World Championship",
+      "brand": "Ascension",
+      "holderType": "",
+      "holderId": "",
+      "holderName": "",
+      "wonDate": "",
+      "defenses": 0
+    },
+    {
+      "championshipId": "ascension-championship",
+      "championship": "Ascension Championship",
+      "brand": "Ascension",
+      "holderType": "",
+      "holderId": "",
+      "holderName": "",
+      "wonDate": "",
+      "defenses": 0
+    },
+    {
+      "championshipId": "womens-ascension-championship",
+      "championship": "Women's Ascension Championship",
+      "brand": "Ascension",
+      "holderType": "",
+      "holderId": "",
+      "holderName": "",
+      "wonDate": "",
+      "defenses": 0
+    },
+    {
+      "championshipId": "owl-heavyweight-championship",
+      "championship": "OWL Heavyweight Championship",
+      "brand": "Revolt",
+      "holderType": "",
+      "holderId": "",
+      "holderName": "",
+      "wonDate": "",
+      "defenses": 0
+    },
+    {
+      "championshipId": "owl-womens-heavyweight-championship",
+      "championship": "OWL Women's Heavyweight Championship",
+      "brand": "Revolt",
+      "holderType": "",
+      "holderId": "",
+      "holderName": "",
+      "wonDate": "",
+      "defenses": 0
+    },
+    {
+      "championshipId": "revolt-championship",
+      "championship": "Revolt Championship",
+      "brand": "Revolt",
+      "holderType": "",
+      "holderId": "",
+      "holderName": "",
+      "wonDate": "",
+      "defenses": 0
+    },
+    {
+      "championshipId": "womens-revolt-championship",
+      "championship": "Women's Revolt Championship",
+      "brand": "Revolt",
+      "holderType": "",
+      "holderId": "",
+      "holderName": "",
+      "wonDate": "",
+      "defenses": 0
+    },
+    {
+      "championshipId": "twin-talon-tag-team-championship",
+      "championship": "Twin Talon Tag Team Championship",
+      "brand": "OWL",
+      "holderType": "team",
+      "holderId": "true-north-elite",
+      "holderName": "True North Elite",
+      "wonDate": "2026-07-01",
+      "defenses": 0
+    },
+    {
+      "championshipId": "womens-twin-talon-tag-team-championship",
+      "championship": "Women's Twin Talon Tag Team Championship",
+      "brand": "OWL",
+      "holderType": "",
+      "holderId": "",
+      "holderName": "",
+      "wonDate": "",
+      "defenses": 0
+    }
+  ],
+  "titleChanges": [
+    {
+      "championshipId": "owl-world-championship",
+      "championship": "OWL World Championship",
+      "holderType": "wrestler",
+      "holderId": "zee-allmighty",
+      "holderName": "Zee Allmighty",
+      "wonDate": "2026-07-01",
+      "wonAt": "Ascension",
+      "wonEventId": "ascension-2026-07-01"
+    },
+    {
+      "championshipId": "twin-talon-tag-team-championship",
+      "championship": "Twin Talon Tag Team Championship",
+      "holderType": "team",
+      "holderId": "true-north-elite",
+      "holderName": "True North Elite",
+      "wonDate": "2026-07-01",
+      "wonAt": "Ascension",
+      "wonEventId": "ascension-2026-07-01"
+    }
+  ]
+}
