@@ -2477,8 +2477,7 @@ const worldHistoryMemory =
 worldHistoryMemory,
 
 
-availableAccounts:
-    accounts,
+availableAccounts: activeAccounts,
 
 
         entityDirectory:
