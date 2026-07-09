@@ -6060,6 +6060,17 @@ body {
 ) {
 
 
+        .wwow-masthead-main {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            14px;
+
+    }
+
+
     .wwow-masthead-name {
 
         grid-template-columns:
@@ -6070,6 +6081,31 @@ body {
 
     }
 
+
+    .wwow-masthead-mark {
+
+        justify-items:
+            start;
+
+        padding:
+            12px 0 0;
+
+        border-left:
+            0;
+
+        border-top:
+            1px solid
+            rgba(
+                17,
+                17,
+                15,
+                0.18
+            );
+
+        text-align:
+            left;
+
+    }
 
     .wwow-masthead-of {
 
@@ -6184,7 +6220,12 @@ body {
             12px 16px 10px;
 
     }
+    .wwow-masthead-mark-word {
 
+        font-size:
+            1.7rem;
+
+    }
 
     .wwow-masthead-topline span:nth-child(
         2
