@@ -2160,7 +2160,7 @@ async function crAccountSaveRecord() {
         let updatedAccounts;
 
 
-        if (
+                if (
             crAccountMode.value === "create"
         ) {
 
@@ -2186,11 +2186,35 @@ async function crAccountSaveRecord() {
             }
 
 
+
+            const newAccount =
+
+                structuredClone(
+                    record
+                );
+
+
+
+            // ACTIVE IS THE DEFAULT STATE.
+            // ONLY RETIRED ACCOUNTS NEED A STORED STATUS FIELD.
+
+
+            if (
+                newAccount.status === "active"
+            ) {
+
+
+                delete newAccount.status;
+
+            }
+
+
+
             updatedAccounts = [
 
                 ...latestAccounts,
 
-                record
+                newAccount
 
             ];
 
@@ -2247,8 +2271,24 @@ async function crAccountSaveRecord() {
 
             };
 
-        }
 
+
+            // ACTIVE IS THE DEFAULT STATE.
+            // REMOVE THE STATUS FIELD WHEN AN ACCOUNT IS ACTIVE.
+
+
+            if (
+                record.status === "active"
+            ) {
+
+
+                delete updatedAccounts[
+                    existingIndex
+                ].status;
+
+            }
+
+        }
 
         await crAccountWriteFile(
 
