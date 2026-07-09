@@ -1,6 +1,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
+import {
+    loadWorldHistoryMemory
+} from "./world-history-memory.mjs";
+
 const ROOT = process.cwd();
 const EVENT_ID = String(process.env.EVENT_ID || "").trim();
 
