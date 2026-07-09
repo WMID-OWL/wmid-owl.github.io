@@ -82,10 +82,31 @@ const crLandscapeEntryEls = {
         ),
 
 
-    notes:
+        notes:
 
         document.getElementById(
             "cr-landscape-entry-notes"
+        ),
+
+
+    location:
+
+        document.getElementById(
+            "cr-landscape-entry-location"
+        ),
+
+
+    locationDetail:
+
+        document.getElementById(
+            "cr-landscape-entry-location-detail"
+        ),
+
+
+    generateLocation:
+
+        document.getElementById(
+            "cr-landscape-generate-location"
         ),
 
 
@@ -158,6 +179,14 @@ let crLandscapeEntryData = {
 
 let crLandscapeEntryItemCounter =
     0;
+
+
+let crLandscapeLocationRules =
+    null;
+
+
+let crLandscapeGeneratedLocation =
+    null;
 
 
 
