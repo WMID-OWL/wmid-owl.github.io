@@ -2130,7 +2130,17 @@ function crLandscapeEntryValidate(
 
     }
 
+    if (
+        !crLandscapeGeneratedLocation
+    ) {
 
+
+        throw new Error(
+            "Generate the event location before saving."
+        );
+
+    }
+    
     if (
         content.matches.length === 0
 
@@ -2451,7 +2461,7 @@ function crLandscapeEntryResetContent() {
         .eventName
         .value =
             "";
-
+    crLandscapeEntryResetLocation();
 
     crLandscapeEntryEls
         .items
@@ -2689,12 +2699,19 @@ async function crLandscapeEntrySave() {
                     .value,
 
 
-            overallRating:
+                        overallRating:
 
                 Number(
                     crLandscapeEntryEls
                         .rating
                         .value
+                ),
+
+
+            location:
+
+                structuredClone(
+                    crLandscapeGeneratedLocation
                 ),
 
 
