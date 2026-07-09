@@ -5136,3 +5136,361 @@
 
 
 }
+/* =================================
+   LANDSCAPE RANKING PREVIEW
+================================= */
+
+
+.cr-landscape-ranking-toolbar {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            200px,
+            1fr
+        )
+
+        minmax(
+            180px,
+            0.7fr
+        )
+
+        auto;
+
+    align-items:
+        end;
+
+    gap:
+        12px;
+
+}
+
+
+
+.cr-landscape-ranking-toolbar label {
+
+    display:
+        grid;
+
+    gap:
+        7px;
+
+}
+
+
+
+.cr-landscape-ranking-toolbar label > span {
+
+    color:
+        #8f9aa1;
+
+    font-size:
+        0.61rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.07em;
+
+}
+
+
+
+.cr-landscape-ranking-toolbar select {
+
+    width:
+        100%;
+
+    padding:
+        11px 12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.11
+        );
+
+    border-radius:
+        8px;
+
+    color:
+        #f0f3f4;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.04
+        );
+
+    font:
+        inherit;
+
+}
+
+
+
+/* =================================
+   RANKING COLUMNS
+================================= */
+
+
+.cr-landscape-ranking-columns {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        18px;
+
+    margin-top:
+        20px;
+
+}
+
+
+
+.cr-landscape-ranking-heading {
+
+    margin-bottom:
+        10px;
+
+}
+
+
+
+.cr-landscape-ranking-heading span {
+
+    color:
+        #d9b74d;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.cr-landscape-ranking-heading h4 {
+
+    margin:
+        4px 0 0;
+
+    color:
+        #eef1f2;
+
+    font-size:
+        0.95rem;
+
+}
+
+
+
+.cr-landscape-ranking-list {
+
+    display:
+        grid;
+
+    gap:
+        7px;
+
+}
+
+
+
+.cr-landscape-ranking-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        34px
+        minmax(
+            0,
+            1fr
+        )
+        58px;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    padding:
+        11px 12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.022
+        );
+
+}
+
+
+
+.cr-landscape-rank-number {
+
+    color:
+        #d9b74d;
+
+    font-size:
+        1rem;
+
+    text-align:
+        center;
+
+}
+
+
+
+.cr-landscape-ranking-name {
+
+    display:
+        grid;
+
+    gap:
+        3px;
+
+    min-width:
+        0;
+
+}
+
+
+
+.cr-landscape-ranking-name strong {
+
+    overflow:
+        hidden;
+
+    color:
+        #eef1f2;
+
+    font-size:
+        0.79rem;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+.cr-landscape-ranking-name small {
+
+    overflow:
+        hidden;
+
+    color:
+        #849097;
+
+    font-size:
+        0.65rem;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+.cr-landscape-ranking-score {
+
+    color:
+        #e5c45e;
+
+    font-size:
+        0.9rem;
+
+    text-align:
+        right;
+
+}
+
+
+
+/* =================================
+   RANKING RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        900px
+) {
+
+
+    .cr-landscape-ranking-columns {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        700px
+) {
+
+
+    .cr-landscape-ranking-toolbar {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
