@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "monthly": [],
+  "yearly": [],
+  "awardTypes": {
+    "companyOfMonth": {
+      "label": "Company of the Month",
+      "category": "objective"
+    },
+    "showOfMonth": {
+      "label": "Show of the Month",
+      "category": "objective"
+    },
+    "majorEventOfMonth": {
+      "label": "Major Event of the Month",
+      "category": "objective"
+    },
+    "matchOfMonth": {
+      "label": "Match of the Month",
+      "category": "objective"
+    },
+    "companyOfYear": {
+      "label": "Company of the Year",
+      "category": "objective"
+    },
+    "showOfYear": {
+      "label": "Show of the Year",
+      "category": "objective"
+    },
+    "majorEventOfYear": {
+      "label": "Major Event of the Year",
+      "category": "objective"
+    },
+    "matchOfYear": {
+      "label": "Match of the Year",
+      "category": "objective"
+    },
+    "mostConsistentShow": {
+      "label": "Most Consistent Show",
+      "category": "objective"
+    },
+    "biggestClimber": {
+      "label": "Biggest Climber",
+      "category": "objective"
+    }
+  }
+}
