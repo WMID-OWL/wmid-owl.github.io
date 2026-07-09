@@ -810,18 +810,45 @@ async function crAccountWriteFile(
             .createWritable();
 
 
+
+    const matchesOriginalState =
+
+        JSON.stringify(
+            accounts
+        )
+
+        ===
+
+        JSON.stringify(
+            crAccountBaselineRecords
+        );
+
+
+
+    const outputText =
+
+        matchesOriginalState
+
+        &&
+
+        crAccountBaselineText
+
+            ? crAccountBaselineText
+
+            : `${JSON.stringify(
+
+                accounts,
+
+                null,
+
+                2
+
+            )}\n`;
+
+
+
     await writable.write(
-
-        `${JSON.stringify(
-
-            accounts,
-
-            null,
-
-            2
-
-        )}\n`
-
+        outputText
     );
 
 
