@@ -2004,7 +2004,27 @@ const officialTeamBySignature =
             )
     );
 
+const activeAccounts =
 
+    accounts.filter(
+
+        account =>
+
+            normalize(
+
+                account.status
+
+                ||
+
+                "active"
+
+            )
+
+            !==
+
+            "retired"
+
+    );
 const directories = {
     wrestlers:
         Object.fromEntries(
