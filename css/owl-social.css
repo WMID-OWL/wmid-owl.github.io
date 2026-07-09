@@ -3465,3 +3465,2492 @@ body {
     }
 
 }
+/* =================================
+   WWOW DIGITAL MAGAZINE
+================================= */
+
+
+.wwow-magazine-body {
+
+    background:
+        #090908;
+
+}
+
+
+
+.wwow-page {
+
+    width:
+        100%;
+
+    padding:
+        34px 0 80px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(
+                159,
+                30,
+                32,
+                0.12
+            ),
+            transparent 32%
+        ),
+
+        #090908;
+
+}
+
+
+
+.wwow-publication-shell {
+
+    width:
+
+        min(
+            1440px,
+            calc(
+                100% - 30px
+            )
+        );
+
+    margin:
+        0 auto;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    background:
+        #e8e0d0;
+
+    box-shadow:
+
+        0
+        35px
+        100px
+        rgba(
+            0,
+            0,
+            0,
+            0.5
+        );
+
+}
+
+
+
+/* =================================
+   UTILITY BAR
+================================= */
+
+
+.wwow-utility-bar {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    min-height:
+        46px;
+
+    padding:
+        0 24px;
+
+    color:
+        #d9d3c7;
+
+    background:
+        #11110f;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+
+.wwow-utility-bar > div {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+}
+
+
+
+.wwow-edition-status {
+
+    color:
+        #c7473f;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+
+.wwow-current-edition {
+
+    color:
+        #9f9a90;
+
+    font-size:
+        0.66rem;
+
+}
+
+
+
+.wwow-utility-nav {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        18px;
+
+}
+
+
+
+.wwow-utility-nav a {
+
+    color:
+        #d7d1c6;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.06em;
+
+    text-decoration:
+        none;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.wwow-utility-nav a:hover {
+
+    color:
+        #ffffff;
+
+}
+
+
+
+/* =================================
+   MASTHEAD
+================================= */
+
+
+.wwow-masthead {
+
+    padding:
+        16px 30px 12px;
+
+    color:
+        #11110f;
+
+    background:
+        #f0e9da;
+
+    border-bottom:
+        6px solid
+        #11110f;
+
+}
+
+
+
+.wwow-masthead-topline {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            1fr
+        );
+
+    padding:
+        6px 0 9px;
+
+    border-top:
+        1px solid
+        #24231f;
+
+    border-bottom:
+        1px solid
+        #24231f;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.16em;
+
+    text-align:
+        center;
+
+}
+
+
+
+.wwow-masthead-name {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        auto
+
+        minmax(
+            0,
+            1fr
+        )
+
+        auto
+
+        minmax(
+            0,
+            0.68fr
+        );
+
+    align-items:
+        baseline;
+
+    gap:
+        clamp(
+            8px,
+            1.5vw,
+            22px
+        );
+
+    padding:
+        17px 0 13px;
+
+    color:
+        #11110f;
+
+    text-decoration:
+        none;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+.wwow-masthead-small,
+.wwow-masthead-of {
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            0.75rem,
+            1.4vw,
+            1.25rem
+        );
+
+    font-style:
+        italic;
+
+}
+
+
+
+.wwow-masthead-name strong {
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            2rem,
+            5.2vw,
+            5.3rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        0.8;
+
+    letter-spacing:
+        -0.065em;
+
+}
+
+
+
+.wwow-masthead-wrestling {
+
+    color:
+        #9f2025;
+
+}
+
+
+
+.wwow-masthead-bottomline {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    padding-top:
+        9px;
+
+    border-top:
+        1px solid
+        #24231f;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+/* =================================
+   ISSUE LAYOUT
+================================= */
+
+
+.wwow-issue-layout {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        260px
+
+        minmax(
+            0,
+            1fr
+        );
+
+    align-items:
+        start;
+
+    color:
+        #161512;
+
+    background:
+        #e8e0d0;
+
+}
+
+
+
+/* =================================
+   ISSUE SIDEBAR
+================================= */
+
+
+.wwow-issue-sidebar {
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    min-height:
+        720px;
+
+    border-right:
+        1px solid
+        rgba(
+            17,
+            17,
+            15,
+            0.18
+        );
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+
+.wwow-sidebar-block {
+
+    padding:
+        24px 20px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            17,
+            17,
+            15,
+            0.17
+        );
+
+}
+
+
+
+.wwow-sidebar-label {
+
+    display:
+        block;
+
+    margin-bottom:
+        10px;
+
+    color:
+        #9f2025;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+
+.wwow-sidebar-issue-name {
+
+    display:
+        block;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        1.3rem;
+
+    line-height:
+        1.1;
+
+}
+
+
+
+.wwow-sidebar-volume {
+
+    display:
+        block;
+
+    margin-top:
+        7px;
+
+    color:
+        #777166;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+
+/* =================================
+   TABLE OF CONTENTS
+================================= */
+
+
+.wwow-table-of-contents {
+
+    display:
+        grid;
+
+}
+
+
+
+.wwow-table-of-contents a {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        25px
+
+        minmax(
+            0,
+            1fr
+        );
+
+    gap:
+        8px;
+
+    padding:
+        9px 0;
+
+    border-bottom:
+        1px solid
+        rgba(
+            17,
+            17,
+            15,
+            0.1
+        );
+
+    color:
+        #2c2923;
+
+    text-decoration:
+        none;
+
+}
+
+
+
+.wwow-table-of-contents a:last-child {
+
+    border-bottom:
+        0;
+
+}
+
+
+
+.wwow-table-of-contents span {
+
+    color:
+        #a19a8e;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.wwow-table-of-contents strong {
+
+    font-size:
+        0.69rem;
+
+    line-height:
+        1.35;
+
+}
+
+
+
+.wwow-table-of-contents a:hover strong {
+
+    color:
+        #9f2025;
+
+}
+
+
+
+.wwow-sidebar-statement {
+
+    margin:
+        22px 18px;
+
+    padding:
+        18px;
+
+    color:
+        #ded7c9;
+
+    background:
+        #181714;
+
+}
+
+
+
+.wwow-sidebar-statement span {
+
+    color:
+        #d45a50;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+
+.wwow-sidebar-statement p {
+
+    margin:
+        10px 0 0;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        0.83rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+
+/* =================================
+   READING COLUMN
+================================= */
+
+
+.wwow-reading-column {
+
+    min-width:
+        0;
+
+}
+
+
+
+/* =================================
+   COVER PACKAGE
+================================= */
+
+
+.wwow-cover-package {
+
+    color:
+        #f2ecdf;
+
+    background:
+
+        linear-gradient(
+            125deg,
+            rgba(
+                159,
+                32,
+                37,
+                0.85
+            )
+            0%,
+            rgba(
+                159,
+                32,
+                37,
+                0.15
+            )
+            38%,
+            transparent
+            65%
+        ),
+
+        radial-gradient(
+            circle at 88% 10%,
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            ),
+            transparent 33%
+        ),
+
+        #151513;
+
+}
+
+
+
+.wwow-cover-eyebrow {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    padding:
+        13px 26px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.16
+        );
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+
+.wwow-cover-eyebrow span:first-child {
+
+    color:
+        #ffb1a7;
+
+}
+
+
+
+.wwow-cover-main {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        190px;
+
+    gap:
+        clamp(
+            30px,
+            5vw,
+            72px
+        );
+
+    align-items:
+        end;
+
+    min-height:
+        570px;
+
+    padding:
+
+        clamp(
+            42px,
+            7vw,
+            90px
+        )
+
+        clamp(
+            28px,
+            6vw,
+            80px
+        )
+
+        55px;
+
+}
+
+
+
+.wwow-cover-kicker {
+
+    color:
+        #efafa5;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.16em;
+
+}
+
+
+
+.wwow-cover-copy h1 {
+
+    max-width:
+        880px;
+
+    margin:
+        18px 0 0;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            3.2rem,
+            7vw,
+            7.8rem
+        );
+
+    line-height:
+        0.88;
+
+    letter-spacing:
+        -0.055em;
+
+}
+
+
+
+.wwow-cover-copy > p {
+
+    max-width:
+        740px;
+
+    margin:
+        28px 0 0;
+
+    color:
+        #d6cfc2;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            1rem,
+            1.6vw,
+            1.25rem
+        );
+
+    line-height:
+        1.65;
+
+}
+
+
+
+.wwow-cover-read-link {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    margin-top:
+        30px;
+
+    padding-bottom:
+        7px;
+
+    border-bottom:
+        2px solid
+        #d65a50;
+
+    color:
+        #f4eee1;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+    text-decoration:
+        none;
+
+}
+
+
+
+.wwow-cover-edition-card {
+
+    padding:
+        19px;
+
+    border-top:
+        5px solid
+        #c7473f;
+
+    color:
+        #1b1915;
+
+    background:
+        #e8e0d0;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+
+.wwow-cover-edition-card > span {
+
+    display:
+        block;
+
+    color:
+        #9f2025;
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+
+.wwow-cover-edition-card > strong {
+
+    display:
+        block;
+
+    margin-top:
+        8px;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        1.25rem;
+
+    line-height:
+        1.05;
+
+}
+
+
+
+.wwow-cover-edition-card > div {
+
+    display:
+        flex;
+
+    gap:
+        12px;
+
+    margin-top:
+        15px;
+
+    padding-top:
+        11px;
+
+    border-top:
+        1px solid
+        rgba(
+            17,
+            17,
+            15,
+            0.18
+        );
+
+    font-size:
+        0.61rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.wwow-cover-edition-card small {
+
+    display:
+        block;
+
+    margin-top:
+        9px;
+
+    color:
+        #777166;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+/* =================================
+   READING BANNER
+================================= */
+
+
+.wwow-reading-banner {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        auto
+
+        minmax(
+            0,
+            1fr
+        )
+
+        auto;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+    padding:
+        16px 28px;
+
+    color:
+        #d8d1c4;
+
+    background:
+        #11110f;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+
+.wwow-reading-banner span {
+
+    color:
+        #a39d92;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+
+.wwow-reading-banner strong {
+
+    text-align:
+        center;
+
+    font-size:
+        0.68rem;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+/* =================================
+   STORY
+================================= */
+
+
+.wwow-story {
+
+    padding:
+
+        clamp(
+            50px,
+            7vw,
+            90px
+        )
+
+        clamp(
+            30px,
+            7vw,
+            100px
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            17,
+            17,
+            15,
+            0.2
+        );
+
+    color:
+        #201e19;
+
+    background:
+        #eee7d9;
+
+}
+
+
+
+.wwow-story:nth-of-type(even) {
+
+    background:
+        #e8e0d0;
+
+}
+
+
+
+.wwow-story-header {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        64px
+
+        minmax(
+            0,
+            1fr
+        );
+
+    gap:
+        22px;
+
+    align-items:
+        start;
+
+}
+
+
+
+.wwow-story-number {
+
+    color:
+        #a7a093;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        2.2rem;
+
+    font-style:
+        italic;
+
+    line-height:
+        1;
+
+}
+
+
+
+.wwow-story-kicker {
+
+    color:
+        #9f2025;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.15em;
+
+}
+
+
+
+.wwow-story-header h2 {
+
+    max-width:
+        900px;
+
+    margin:
+        10px 0 0;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            2.4rem,
+            5.2vw,
+            5.5rem
+        );
+
+    line-height:
+        0.96;
+
+    letter-spacing:
+        -0.045em;
+
+}
+
+
+
+.wwow-story-meta {
+
+    display:
+        flex;
+
+    gap:
+        18px;
+
+    margin-top:
+        18px;
+
+    color:
+        #8a8378;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.wwow-story-rule {
+
+    width:
+        100%;
+
+    height:
+        1px;
+
+    margin:
+        30px 0 38px;
+
+    background:
+        rgba(
+            17,
+            17,
+            15,
+            0.24
+        );
+
+}
+
+
+
+.wwow-story-reading-layout {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            720px
+        )
+
+        minmax(
+            220px,
+            320px
+        );
+
+    justify-content:
+        space-between;
+
+    gap:
+        clamp(
+            35px,
+            7vw,
+            90px
+        );
+
+}
+
+
+
+.wwow-story-body {
+
+    min-width:
+        0;
+
+}
+
+
+
+.wwow-story-paragraph {
+
+    margin:
+        0 0 24px;
+
+    color:
+        #3b3730;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            1.03rem,
+            1.35vw,
+            1.18rem
+        );
+
+    line-height:
+        1.85;
+
+}
+
+
+
+.wwow-story-paragraph:last-child {
+
+    margin-bottom:
+        0;
+
+}
+
+
+
+.wwow-drop-cap::first-letter {
+
+    float:
+        left;
+
+    margin:
+
+        8px
+        10px
+        0
+        0;
+
+    color:
+        #9f2025;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        4.6rem;
+
+    font-weight:
+        900;
+
+    line-height:
+        0.72;
+
+}
+
+
+
+/* =================================
+   PULL QUOTE
+================================= */
+
+
+.wwow-pull-quote {
+
+    align-self:
+        start;
+
+    padding:
+        6px 0 0 23px;
+
+    border-left:
+        5px solid
+        #9f2025;
+
+}
+
+
+
+.wwow-pull-quote > span {
+
+    display:
+        block;
+
+    height:
+        38px;
+
+    color:
+        #9f2025;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        4.8rem;
+
+    line-height:
+        0.85;
+
+}
+
+
+
+.wwow-pull-quote blockquote {
+
+    margin:
+        0;
+
+    color:
+        #292620;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            1.2rem,
+            2vw,
+            1.65rem
+        );
+
+    font-style:
+        italic;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.4;
+
+}
+
+
+
+/* =================================
+   FEATURE STORY
+================================= */
+
+
+.wwow-story-feature {
+
+    background:
+        #f3ecdf !important;
+
+}
+
+
+
+.wwow-story-feature
+.wwow-story-header h2 {
+
+    max-width:
+        1050px;
+
+    font-size:
+        clamp(
+            3rem,
+            6vw,
+            6.5rem
+        );
+
+}
+
+
+
+/* =================================
+   ARCHIVE
+================================= */
+
+
+.wwow-archive-section {
+
+    padding:
+
+        clamp(
+            40px,
+            6vw,
+            80px
+        );
+
+    color:
+        #eee7db;
+
+    background:
+        #171613;
+
+}
+
+
+
+.wwow-archive-heading {
+
+    display:
+        flex;
+
+    align-items:
+        end;
+
+    justify-content:
+        space-between;
+
+    gap:
+        30px;
+
+    padding-bottom:
+        25px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+
+}
+
+
+
+.wwow-archive-heading span {
+
+    color:
+        #d65a50;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+
+.wwow-archive-heading h2 {
+
+    margin:
+        7px 0 0;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            2.4rem,
+            5vw,
+            5rem
+        );
+
+    letter-spacing:
+        -0.04em;
+
+}
+
+
+
+.wwow-archive-heading p {
+
+    max-width:
+        350px;
+
+    margin:
+        0;
+
+    color:
+        #999287;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style:
+        italic;
+
+}
+
+
+
+.wwow-archive-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            auto-fill,
+            minmax(
+                230px,
+                1fr
+            )
+        );
+
+    gap:
+        22px;
+
+    margin-top:
+        30px;
+
+}
+
+
+
+.wwow-archive-issue {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    min-height:
+        360px;
+
+    padding:
+        18px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    color:
+        #f1ecdf;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                159,
+                32,
+                37,
+                0.7
+            ),
+            transparent 55%
+        ),
+
+        #23211d;
+
+    text-decoration:
+        none;
+
+    transition:
+
+        transform 0.18s ease,
+        border-color 0.18s ease;
+
+}
+
+
+
+.wwow-archive-issue:hover {
+
+    transform:
+        translateY(
+            -5px
+        );
+
+    border-color:
+        #d65a50;
+
+}
+
+
+
+.wwow-archive-issue.active {
+
+    box-shadow:
+
+        inset
+        0
+        0
+        0
+        2px
+        #d65a50;
+
+}
+
+
+
+.wwow-archive-cover-top {
+
+    padding-bottom:
+        12px;
+
+    border-bottom:
+        3px solid
+        #f1ecdf;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+
+.wwow-archive-cover-top span {
+
+    display:
+        block;
+
+    font-size:
+        0.56rem;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.wwow-archive-cover-top strong {
+
+    display:
+        block;
+
+    margin-top:
+        2px;
+
+    font-size:
+        0.95rem;
+
+}
+
+
+
+.wwow-archive-cover-story {
+
+    margin-top:
+        auto;
+
+    padding:
+        35px 0;
+
+}
+
+
+
+.wwow-archive-cover-story span {
+
+    color:
+        #efada5;
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.6rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+.wwow-archive-cover-story h3 {
+
+    margin:
+        9px 0 0;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        1.7rem;
+
+    line-height:
+        1.04;
+
+}
+
+
+
+.wwow-archive-cover-bottom {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        12px;
+
+    padding-top:
+        11px;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.25
+        );
+
+    font-family:
+
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.wwow-archive-cover-bottom b {
+
+    color:
+        #efada5;
+
+}
+
+
+
+/* =================================
+   EMPTY STATE
+================================= */
+
+
+.wwow-empty-state {
+
+    margin:
+        30px;
+
+    padding:
+        40px;
+
+    border:
+        1px dashed
+        rgba(
+            17,
+            17,
+            15,
+            0.3
+        );
+
+    color:
+        #726b61;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style:
+        italic;
+
+    text-align:
+        center;
+
+}
+
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        1050px
+) {
+
+
+    .wwow-issue-layout {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .wwow-issue-sidebar {
+
+        position:
+            static;
+
+        min-height:
+            0;
+
+        display:
+            grid;
+
+        grid-template-columns:
+
+            minmax(
+                180px,
+                0.4fr
+            )
+
+            minmax(
+                0,
+                1fr
+            );
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            rgba(
+                17,
+                17,
+                15,
+                0.18
+            );
+
+    }
+
+
+    .wwow-sidebar-statement {
+
+        display:
+            none;
+
+    }
+
+
+    .wwow-table-of-contents {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+        gap:
+            0 18px;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        820px
+) {
+
+
+    .wwow-masthead-name {
+
+        grid-template-columns:
+            auto 1fr;
+
+        gap:
+            6px 10px;
+
+    }
+
+
+    .wwow-masthead-of {
+
+        display:
+            none;
+
+    }
+
+
+    .wwow-masthead-wrestling {
+
+        grid-column:
+            1 / -1;
+
+    }
+
+
+    .wwow-cover-main {
+
+        grid-template-columns:
+            1fr;
+
+        min-height:
+            500px;
+
+    }
+
+
+    .wwow-cover-edition-card {
+
+        max-width:
+            250px;
+
+    }
+
+
+    .wwow-story-reading-layout {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .wwow-pull-quote {
+
+        max-width:
+            600px;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .wwow-page {
+
+        padding-top:
+            12px;
+
+    }
+
+
+    .wwow-publication-shell {
+
+        width:
+            calc(
+                100% - 12px
+            );
+
+    }
+
+
+    .wwow-utility-bar {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        padding:
+            12px 16px;
+
+    }
+
+
+    .wwow-utility-nav {
+
+        width:
+            100%;
+
+        justify-content:
+            space-between;
+
+        gap:
+            8px;
+
+    }
+
+
+    .wwow-masthead {
+
+        padding:
+            12px 16px 10px;
+
+    }
+
+
+    .wwow-masthead-topline span:nth-child(
+        2
+    ),
+    .wwow-masthead-topline span:nth-child(
+        3
+    ) {
+
+        display:
+            none;
+
+    }
+
+
+    .wwow-masthead-topline {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+
+    .wwow-masthead-bottomline span:first-child {
+
+        max-width:
+            220px;
+
+    }
+
+
+    .wwow-issue-sidebar {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .wwow-table-of-contents {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .wwow-cover-eyebrow {
+
+        padding:
+            11px 16px;
+
+    }
+
+
+    .wwow-cover-main {
+
+        min-height:
+            460px;
+
+        padding:
+            40px 20px 32px;
+
+    }
+
+
+    .wwow-cover-copy h1 {
+
+        font-size:
+            clamp(
+                2.8rem,
+                15vw,
+                5rem
+            );
+
+    }
+
+
+    .wwow-reading-banner {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            5px;
+
+        text-align:
+            center;
+
+    }
+
+
+    .wwow-story {
+
+        padding:
+            48px 20px;
+
+    }
+
+
+    .wwow-story-header {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            10px;
+
+    }
+
+
+    .wwow-story-number {
+
+        font-size:
+            1.4rem;
+
+    }
+
+
+    .wwow-story-header h2 {
+
+        font-size:
+            clamp(
+                2.2rem,
+                12vw,
+                4rem
+            );
+
+    }
+
+
+    .wwow-story-meta {
+
+        flex-wrap:
+            wrap;
+
+    }
+
+
+    .wwow-archive-section {
+
+        padding:
+            40px 20px;
+
+    }
+
+
+    .wwow-archive-heading {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+}
