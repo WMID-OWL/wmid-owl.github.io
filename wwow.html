@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
 
     <meta charset="UTF-8">
@@ -10,24 +11,28 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>The Wonderful World of Wrestling | OWL Social</title>
 
-
-    <link
-    rel="stylesheet"
-    href="css/style.css?v=global-nav-1"
->
+    <title>
+        The Wonderful World of Wrestling | OWL Social
+    </title>
 
 
     <link
         rel="stylesheet"
-        href="css/owl-social.css?v=1"
+        href="css/style.css?v=global-nav-1"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="css/owl-social.css?v=wwow-magazine-1"
     >
 
 </head>
 
 
-<body>
+
+<body class="wwow-magazine-body">
 
 
 <header class="site-header">
@@ -49,6 +54,7 @@
     </a>
 
 
+
     <button
         class="nav-toggle"
         aria-label="Toggle navigation"
@@ -57,31 +63,39 @@
     </button>
 
 
+
     <nav class="site-nav">
+
 
         <a href="index.html">
             Home
         </a>
 
+
         <a href="roster.html">
             Roster
         </a>
+
 
         <a href="groups.html">
             Teams
         </a>
 
+
         <a href="champions.html">
             Champions
         </a>
+
 
         <a href="events.html">
             Events
         </a>
 
+
         <a href="power-rankings.html">
             Power Rankings
         </a>
+
 
         <a
             href="owl-social.html"
@@ -90,9 +104,11 @@
             OWL Social
         </a>
 
+
         <a href="records.html">
             Cagematch.owl
         </a>
+
 
     </nav>
 
@@ -101,109 +117,266 @@
 
 
 
-<main class="social-app-page">
+<main class="wwow-page">
 
 
-    <section class="social-app-hero">
+    <section class="wwow-publication-shell">
 
 
-        <p class="eyebrow">
-            MONTHLY WRESTLING JOURNALISM
-        </p>
+        <!-- =================================
+             PUBLICATION UTILITY BAR
+        ================================== -->
 
 
-        <h1>
-            The Wonderful World of Wrestling
-        </h1>
-
-
-        <p class="social-app-intro">
-
-            Reporting, analysis, rumors, columns,
-            retrospectives, and stories from across
-            the wrestling world.
-
-        </p>
-
-
-    </section>
-
-
-
-    <!-- ISSUE -->
-
-
-    <section class="social-content-section">
-
-
-        <div class="social-section-heading">
+        <header class="wwow-utility-bar">
 
 
             <div>
 
-                <p class="eyebrow">
-                    CURRENT EDITION
-                </p>
 
-                <h2 id="wwow-current-label">
+                <span class="wwow-edition-status">
+                    MONTHLY WRESTLING JOURNALISM
+                </span>
+
+
+                <span
+                    id="wwow-current-label"
+                    class="wwow-current-edition"
+                >
                     Latest Issue
-                </h2>
+                </span>
+
 
             </div>
+
+
+
+            <nav class="wwow-utility-nav">
+
+
+                <a href="#wwow-current-issue">
+                    Read Issue
+                </a>
+
+
+                <a href="#wwow-archive">
+                    Issue Archive
+                </a>
+
+
+                <a href="owl-social.html">
+                    OWL Social
+                </a>
+
+
+            </nav>
+
+
+        </header>
+
+
+
+        <!-- =================================
+             MASTHEAD
+        ================================== -->
+
+
+        <section class="wwow-masthead">
+
+
+            <div class="wwow-masthead-topline">
+
+
+                <span>
+                    REPORTING
+                </span>
+
+
+                <span>
+                    ANALYSIS
+                </span>
+
+
+                <span>
+                    CULTURE
+                </span>
+
+
+                <span>
+                    HISTORY
+                </span>
+
+
+            </div>
+
 
 
             <a
-                class="text-link"
-                href="#wwow-archive"
+                class="wwow-masthead-name"
+                href="wwow.html"
             >
-                Browse archive ↓
+
+                <span class="wwow-masthead-small">
+                    THE
+                </span>
+
+
+                <strong>
+                    WONDERFUL WORLD
+                </strong>
+
+
+                <span class="wwow-masthead-of">
+                    OF
+                </span>
+
+
+                <strong class="wwow-masthead-wrestling">
+                    WRESTLING
+                </strong>
+
+
             </a>
 
 
-        </div>
+
+            <div class="wwow-masthead-bottomline">
+
+
+                <span>
+                    STORIES FROM ACROSS THE OWL WRESTLING WORLD
+                </span>
+
+
+                <span>
+                    EST. 2026
+                </span>
+
+
+            </div>
+
+
+        </section>
 
 
 
-        <div id="wwow-issue">
-        </div>
+        <!-- =================================
+             ISSUE LAYOUT
+        ================================== -->
 
 
-        <p
-            id="wwow-empty-issue"
-            class="social-empty-state"
-            hidden
+        <div
+            id="wwow-current-issue"
+            class="wwow-issue-layout"
         >
 
-            The first issue has not been published yet.
 
-        </p>
-
-
-    </section>
+            <!-- =================================
+                 ISSUE SIDEBAR
+            ================================== -->
 
 
-
-    <!-- ARCHIVE -->
-
-
-    <section
-        id="wwow-archive"
-        class="social-content-section"
-    >
+            <aside class="wwow-issue-sidebar">
 
 
-        <div class="social-section-heading">
+                <section class="wwow-sidebar-block">
 
 
-            <div>
+                    <span class="wwow-sidebar-label">
+                        CURRENT EDITION
+                    </span>
 
-                <p class="eyebrow">
-                    THE LIBRARY
+
+                    <strong
+                        id="wwow-sidebar-issue-label"
+                        class="wwow-sidebar-issue-name"
+                    >
+                        —
+                    </strong>
+
+
+                    <span
+                        id="wwow-sidebar-volume"
+                        class="wwow-sidebar-volume"
+                    >
+                        —
+                    </span>
+
+
+                </section>
+
+
+
+                <section class="wwow-sidebar-block">
+
+
+                    <span class="wwow-sidebar-label">
+                        INSIDE THIS ISSUE
+                    </span>
+
+
+                    <nav
+                        id="wwow-table-of-contents"
+                        class="wwow-table-of-contents"
+                    >
+                    </nav>
+
+
+                </section>
+
+
+
+                <section class="wwow-sidebar-statement">
+
+
+                    <span>
+                        THE PUBLICATION
+                    </span>
+
+
+                    <p>
+
+                        Reporting, analysis, rumors,
+                        columns, retrospectives, and
+                        stories from across the wrestling
+                        world.
+
+                    </p>
+
+
+                </section>
+
+
+            </aside>
+
+
+
+            <!-- =================================
+                 ISSUE READER
+            ================================== -->
+
+
+            <div class="wwow-reading-column">
+
+
+                <div
+                    id="wwow-issue"
+                    class="wwow-issue"
+                >
+                </div>
+
+
+
+                <p
+                    id="wwow-empty-issue"
+                    class="wwow-empty-state"
+                    hidden
+                >
+
+                    The first issue has not been published yet.
+
                 </p>
 
-                <h2>
-                    Issue Archive
-                </h2>
 
             </div>
 
@@ -211,22 +384,69 @@
         </div>
 
 
-        <div
-            id="wwow-archive-grid"
-            class="social-archive-grid"
-        >
-        </div>
+
+        <!-- =================================
+             ISSUE ARCHIVE
+        ================================== -->
 
 
-        <p
-            id="wwow-empty-archive"
-            class="social-empty-state"
-            hidden
+        <section
+            id="wwow-archive"
+            class="wwow-archive-section"
         >
 
-            No archived issues are available yet.
 
-        </p>
+            <div class="wwow-archive-heading">
+
+
+                <div>
+
+
+                    <span>
+                        THE LIBRARY
+                    </span>
+
+
+                    <h2>
+                        Past Issues
+                    </h2>
+
+
+                </div>
+
+
+
+                <p>
+
+                    Every issue, preserved as it was published.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div
+                id="wwow-archive-grid"
+                class="wwow-archive-grid"
+            >
+            </div>
+
+
+
+            <p
+                id="wwow-empty-archive"
+                class="wwow-empty-state"
+                hidden
+            >
+
+                No archived issues are available yet.
+
+            </p>
+
+
+        </section>
 
 
     </section>
@@ -241,13 +461,16 @@
 
     <div>
 
+
         <strong>
             OWL Wrestling
         </strong>
 
+
         <p>
             Ascension. Revolt. One world.
         </p>
+
 
     </div>
 
@@ -258,7 +481,7 @@
 
 <script src="js/app.js"></script>
 
-<script src="js/wwow.js?v=1"></script>
+<script src="js/wwow.js?v=wwow-magazine-1"></script>
 
 
 </body>
