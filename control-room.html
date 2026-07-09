@@ -4612,7 +4612,534 @@
 </section>
 
 
+<!-- =================================
+     OWL SOCIAL SYSTEM STATUS
+================================= -->
 
+
+<section class="control-room-panel">
+
+
+    <div class="control-room-panel-heading">
+
+
+        <div>
+
+
+            <p class="eyebrow">
+                OWL SOCIAL
+            </p>
+
+
+            <h2>
+                Media System Status
+            </h2>
+
+
+        </div>
+
+
+
+        <div class="cr-social-status-actions">
+
+
+            <span
+                id="cr-social-overall-status"
+                class="control-room-health-summary"
+            >
+                CHECKING
+            </span>
+
+
+            <button
+                id="cr-social-refresh"
+                class="control-room-button control-room-button-secondary"
+                type="button"
+            >
+                Refresh Status
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         MEDIA SYSTEM CARDS
+    ================================== -->
+
+
+    <div class="cr-social-system-grid">
+
+
+        <!-- INNANET -->
+
+
+        <article class="cr-social-system-card">
+
+
+            <div class="cr-social-system-card-heading">
+
+
+                <span>
+                    SOCIAL NETWORK
+                </span>
+
+
+                <h3>
+                    The Innanet
+                </h3>
+
+
+            </div>
+
+
+
+            <div class="cr-social-metric-list">
+
+
+                <div>
+
+
+                    <span>
+                        LATEST PUBLISHED SHOW
+                    </span>
+
+
+                    <strong id="cr-social-latest-show">
+                        —
+                    </strong>
+
+
+                    <small id="cr-social-latest-show-date">
+                        —
+                    </small>
+
+
+                </div>
+
+
+
+                <div>
+
+
+                    <span>
+                        ARCHIVED MONTHS
+                    </span>
+
+
+                    <strong id="cr-social-innanet-months">
+                        0
+                    </strong>
+
+
+                </div>
+
+
+
+                <div>
+
+
+                    <span>
+                        PUBLISHED SHOWS
+                    </span>
+
+
+                    <strong id="cr-social-published-shows">
+                        0
+                    </strong>
+
+
+                </div>
+
+
+
+                <div>
+
+
+                    <span>
+                        TOTAL POSTS
+                    </span>
+
+
+                    <strong id="cr-social-total-posts">
+                        0
+                    </strong>
+
+
+                </div>
+
+
+
+                <div>
+
+
+                    <span>
+                        PENDING SHOWS
+                    </span>
+
+
+                    <strong id="cr-social-pending-shows">
+                        0
+                    </strong>
+
+
+                </div>
+
+
+            </div>
+
+
+        </article>
+
+
+
+        <!-- WWOW -->
+
+
+        <article class="cr-social-system-card">
+
+
+            <div class="cr-social-system-card-heading">
+
+
+                <span>
+                    MONTHLY PUBLICATION
+                </span>
+
+
+                <h3>
+                    WWoW
+                </h3>
+
+
+            </div>
+
+
+
+            <div class="cr-social-metric-list">
+
+
+                <div>
+
+
+                    <span>
+                        LATEST ISSUE
+                    </span>
+
+
+                    <strong id="cr-social-latest-issue">
+                        —
+                    </strong>
+
+
+                    <small id="cr-social-latest-issue-title">
+                        —
+                    </small>
+
+
+                </div>
+
+
+
+                <div>
+
+
+                    <span>
+                        ISSUES PUBLISHED
+                    </span>
+
+
+                    <strong id="cr-social-issue-count">
+                        0
+                    </strong>
+
+
+                </div>
+
+
+
+                <div>
+
+
+                    <span>
+                        NEXT PUBLICATION
+                    </span>
+
+
+                    <strong id="cr-social-next-issue">
+                        —
+                    </strong>
+
+
+                    <small id="cr-social-next-issue-note">
+                        —
+                    </small>
+
+
+                </div>
+
+
+            </div>
+
+
+        </article>
+
+
+
+        <!-- WORLD MEMORY -->
+
+
+        <article class="cr-social-system-card">
+
+
+            <div class="cr-social-system-card-heading">
+
+
+                <span>
+                    HISTORICAL INTELLIGENCE
+                </span>
+
+
+                <h3>
+                    World Memory
+                </h3>
+
+
+            </div>
+
+
+
+            <div class="cr-social-metric-list">
+
+
+                <div>
+
+
+                    <span>
+                        FROZEN SNAPSHOTS
+                    </span>
+
+
+                    <strong id="cr-social-snapshot-count">
+                        0
+                    </strong>
+
+
+                </div>
+
+
+
+                <div>
+
+
+                    <span>
+                        LATEST SNAPSHOT
+                    </span>
+
+
+                    <strong id="cr-social-latest-snapshot">
+                        —
+                    </strong>
+
+
+                    <small id="cr-social-latest-snapshot-date">
+                        —
+                    </small>
+
+
+                </div>
+
+
+
+                <div>
+
+
+                    <span>
+                        HISTORY SPAN
+                    </span>
+
+
+                    <strong id="cr-social-history-span">
+                        —
+                    </strong>
+
+
+                </div>
+
+
+            </div>
+
+
+        </article>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         SYSTEM HEALTH
+    ================================== -->
+
+
+    <div class="cr-social-health-section">
+
+
+        <div class="cr-editor-section-heading">
+
+
+            <span>
+                AUTOMATION HEALTH
+            </span>
+
+
+            <h3>
+                Media Pipeline
+            </h3>
+
+
+        </div>
+
+
+
+        <div class="cr-social-health-grid">
+
+
+            <article class="cr-social-health-row">
+
+
+                <div>
+
+
+                    <strong>
+                        Innanet Queue
+                    </strong>
+
+
+                    <span>
+                        Completed shows waiting for reactions
+                    </span>
+
+
+                </div>
+
+
+                <b
+                    id="cr-social-health-queue"
+                    class="cr-social-health-badge"
+                >
+                    CHECKING
+                </b>
+
+
+            </article>
+
+
+
+            <article class="cr-social-health-row">
+
+
+                <div>
+
+
+                    <strong>
+                        WWoW Publication
+                    </strong>
+
+
+                    <span>
+                        Monthly issue publication state
+                    </span>
+
+
+                </div>
+
+
+                <b
+                    id="cr-social-health-wwow"
+                    class="cr-social-health-badge"
+                >
+                    CHECKING
+                </b>
+
+
+            </article>
+
+
+
+            <article class="cr-social-health-row">
+
+
+                <div>
+
+
+                    <strong>
+                        History Snapshot
+                    </strong>
+
+
+                    <span>
+                        Frozen memory for published months
+                    </span>
+
+
+                </div>
+
+
+                <b
+                    id="cr-social-health-history"
+                    class="cr-social-health-badge"
+                >
+                    CHECKING
+                </b>
+
+
+            </article>
+
+
+
+            <article class="cr-social-health-row">
+
+
+                <div>
+
+
+                    <strong>
+                        Long-Term Memory
+                    </strong>
+
+
+                    <span>
+                        Historical context available to AI media
+                    </span>
+
+
+                </div>
+
+
+                <b
+                    id="cr-social-health-memory"
+                    class="cr-social-health-badge"
+                >
+                    CHECKING
+                </b>
+
+
+            </article>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+    
         <!-- =================================
              DATA HEALTH
         ================================== -->
