@@ -2747,3 +2747,495 @@
 
 
 }
+/* =================================
+   INNANET ACCOUNT MANAGER
+================================= */
+
+
+.cr-account-manager-intro {
+
+    max-width:
+        760px;
+
+    margin:
+        0;
+
+    color:
+        #9ba3a1;
+
+    line-height:
+        1.65;
+
+}
+
+
+
+.cr-account-summary-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        14px;
+
+    margin-top:
+        24px;
+
+}
+
+
+
+/* =================================
+   ACCOUNT DIRECTORY
+================================= */
+
+
+.cr-account-directory {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        14px;
+
+    margin-top:
+        18px;
+
+}
+
+
+
+.cr-account-directory-empty {
+
+    color:
+        #858d8b;
+
+}
+
+
+
+.cr-account-card {
+
+    display:
+        grid;
+
+    align-content:
+        start;
+
+    gap:
+        14px;
+
+    padding:
+        18px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+}
+
+
+
+.cr-account-card-active {
+
+    border-color:
+        rgba(
+            201,
+            164,
+            92,
+            0.22
+        );
+
+}
+
+
+
+.cr-account-card-retired {
+
+    opacity:
+        0.62;
+
+    border-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+}
+
+
+
+.cr-account-card-top {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    gap:
+        12px;
+
+}
+
+
+
+.cr-account-card-top > div {
+
+    display:
+        grid;
+
+    gap:
+        4px;
+
+}
+
+
+
+.cr-account-card-top strong {
+
+    color:
+        #f4f4f0;
+
+    font-size:
+        1rem;
+
+}
+
+
+
+.cr-account-card-top span {
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.78rem;
+
+}
+
+
+
+.cr-account-card-status {
+
+    padding:
+        5px 8px;
+
+    border-radius:
+        999px;
+
+    color:
+        #aeb5b3;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+    font-size:
+        0.58rem;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.cr-account-card-active
+.cr-account-card-status {
+
+    color:
+        #9fe0b4;
+
+    background:
+        rgba(
+            80,
+            200,
+            120,
+            0.1
+        );
+
+}
+
+
+
+.cr-account-card-archetype {
+
+    margin:
+        0;
+
+    color:
+        #d9dcda;
+
+    font-size:
+        0.86rem;
+
+    line-height:
+        1.45;
+
+}
+
+
+
+.cr-account-card-meta {
+
+    display:
+        grid;
+
+    gap:
+        5px;
+
+    color:
+        #858d8b;
+
+    font-size:
+        0.7rem;
+
+}
+
+
+
+.cr-account-edit-button {
+
+    width:
+        100%;
+
+    margin-top:
+        auto;
+
+    padding:
+        9px 12px;
+
+    border:
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.28
+        );
+
+    background:
+        transparent;
+
+    color:
+        #c9a45c;
+
+    font:
+        inherit;
+
+    font-size:
+        0.7rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.06em;
+
+    text-transform:
+        uppercase;
+
+    cursor:
+        pointer;
+
+}
+
+
+
+.cr-account-edit-button:hover {
+
+    background:
+        rgba(
+            201,
+            164,
+            92,
+            0.08
+        );
+
+}
+
+
+
+/* =================================
+   ACCOUNT CHANGE REVIEW
+================================= */
+
+
+.cr-account-change-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            130px,
+            0.7fr
+        )
+
+        minmax(
+            0,
+            1fr
+        )
+
+        auto
+
+        minmax(
+            0,
+            1fr
+        );
+
+    align-items:
+        start;
+
+    gap:
+        12px;
+
+    padding:
+        12px 0;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+}
+
+
+
+.cr-account-change-row strong {
+
+    color:
+        #c9a45c;
+
+}
+
+
+
+.cr-account-change-row span {
+
+    color:
+        #b7bcba;
+
+    overflow-wrap:
+        anywhere;
+
+}
+
+
+
+.cr-account-change-row b {
+
+    color:
+        #666e6c;
+
+}
+
+
+
+/* =================================
+   ACCOUNT MANAGER RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        1100px
+) {
+
+
+    .cr-account-directory {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        720px
+) {
+
+
+    .cr-account-summary-grid,
+    .cr-account-directory {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-account-change-row {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-account-change-row b {
+
+        display:
+            none;
+
+    }
+
+
+}
