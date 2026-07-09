@@ -25,14 +25,14 @@
 
     <link
         rel="stylesheet"
-        href="css/owl-social.css?v=2"
+        href="css/owl-social.css?v=innanet-app-1"
     >
 
 </head>
 
 
 
-<body>
+<body class="innanet-app-body">
 
 
 <header class="site-header">
@@ -117,156 +117,361 @@
 
 
 
-<main class="social-app-page">
+<main class="innanet-page">
 
 
-    <!-- =================================
-         HERO
-    ================================== -->
+    <section class="innanet-app-frame">
 
 
-    <section class="social-app-hero">
+        <!-- =================================
+             APP TOP BAR
+        ================================== -->
 
 
-        <p class="eyebrow">
-            OWL SOCIAL NETWORK
-        </p>
+        <header class="innanet-app-topbar">
 
 
-        <h1>
-            The Innanet
-        </h1>
+            <a
+                class="innanet-wordmark"
+                href="innanet.html"
+            >
+
+                <span class="innanet-signal-mark">
+                    i
+                </span>
 
 
-        <p class="social-app-intro">
+                <span>
+                    THE INNANET
+                </span>
 
-            Fans, wrestlers, trolls, analysts,
-            stans, haters, and people who should
-            probably put their phones down.
-
-        </p>
-
-
-    </section>
+            </a>
 
 
 
-    <!-- =================================
-         CURRENT FEED
-    ================================== -->
+            <div
+                class="innanet-search"
+                aria-hidden="true"
+            >
+
+                <span class="innanet-search-icon">
+                    ⌕
+                </span>
 
 
-    <section class="social-content-section">
-
-
-        <div class="social-section-heading">
-
-
-            <div>
-
-
-                <p class="eyebrow">
-                    THE TIMELINE
-                </p>
-
-
-                <h2 id="innanet-current-month">
-                    Current Feed
-                </h2>
-
+                <span>
+                    Search the innanet
+                </span>
 
             </div>
 
 
 
             <a
-                class="text-link"
-                href="#innanet-archive"
+                class="innanet-network-link"
+                href="owl-social.html"
             >
-                Browse archive ↓
+                OWL SOCIAL
             </a>
 
 
-        </div>
+        </header>
 
 
 
-        <div
-            id="innanet-feed"
-            class="innanet-feed"
-        >
-        </div>
+        <div class="innanet-app-grid">
+
+
+            <!-- =================================
+                 LEFT RAIL
+            ================================== -->
+
+
+            <aside class="innanet-left-rail">
+
+
+                <nav class="innanet-app-nav">
+
+
+                    <a
+                        class="active"
+                        href="#innanet-timeline"
+                    >
+
+                        <span>
+                            ◉
+                        </span>
+
+                        Timeline
+
+                    </a>
+
+
+                    <a href="#innanet-trending">
+
+                        <span>
+                            ↗
+                        </span>
+
+                        Trending
+
+                    </a>
+
+
+                    <a href="#innanet-archive">
+
+                        <span>
+                            ◫
+                        </span>
+
+                        Receipts
+
+                    </a>
+
+
+                </nav>
 
 
 
-        <p
-            id="innanet-empty-feed"
-            class="social-empty-state"
-            hidden
-        >
-
-            The Innanet is quiet right now.
-
-            That probably will not last.
-
-        </p>
+                <div class="innanet-network-card">
 
 
-    </section>
+                    <span class="innanet-live-dot">
+                    </span>
+
+
+                    <div>
+
+
+                        <strong>
+                            OWL NETWORK
+                        </strong>
+
+
+                        <span>
+                            LIVE CONVERSATION
+                        </span>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </aside>
 
 
 
-    <!-- =================================
-         MONTHLY ARCHIVE
-    ================================== -->
+            <!-- =================================
+                 CENTER TIMELINE
+            ================================== -->
 
 
-    <section
-        id="innanet-archive"
-        class="social-content-section"
-    >
+            <section
+                id="innanet-timeline"
+                class="innanet-timeline-column"
+            >
 
 
-        <div class="social-section-heading">
+                <header class="innanet-feed-header">
 
 
-            <div>
+                    <div>
 
 
-                <p class="eyebrow">
-                    THE RECEIPTS
+                        <span class="innanet-feed-kicker">
+                            THE TIMELINE
+                        </span>
+
+
+                        <h1 id="innanet-current-month">
+                            Current Feed
+                        </h1>
+
+
+                    </div>
+
+
+
+                    <span
+                        id="innanet-timeline-count"
+                        class="innanet-post-count"
+                    >
+                        —
+                    </span>
+
+
+                </header>
+
+
+
+                <div class="innanet-feed-tabs">
+
+
+                    <span class="active">
+                        For You
+                    </span>
+
+
+                    <span>
+                        Following
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="innanet-feed-pulse">
+
+
+                    <span class="innanet-pulse-avatar">
+                        OWL
+                    </span>
+
+
+                    <div>
+
+
+                        <strong>
+                            What are people saying?
+                        </strong>
+
+
+                        <span>
+                            Reactions update after completed OWL events.
+                        </span>
+
+
+                    </div>
+
+
+                    <span class="innanet-pulse-status">
+                        LIVE
+                    </span>
+
+
+                </div>
+
+
+
+                <div
+                    id="innanet-feed"
+                    class="innanet-feed"
+                >
+                </div>
+
+
+
+                <p
+                    id="innanet-empty-feed"
+                    class="social-empty-state"
+                    hidden
+                >
+
+                    The Innanet is quiet right now.
+
+                    That probably will not last.
+
                 </p>
 
 
-                <h2>
-                    Monthly Archive
-                </h2>
+            </section>
 
 
-            </div>
+
+            <!-- =================================
+                 RIGHT RAIL
+            ================================== -->
+
+
+            <aside class="innanet-right-rail">
+
+
+                <section
+                    id="innanet-trending"
+                    class="innanet-side-panel"
+                >
+
+
+                    <div class="innanet-side-heading">
+
+
+                        <span>
+                            LIVE DISCUSSION
+                        </span>
+
+
+                        <h2>
+                            What’s happening
+                        </h2>
+
+
+                    </div>
+
+
+
+                    <div
+                        id="innanet-trending-list"
+                        class="innanet-trending-list"
+                    >
+                    </div>
+
+
+                </section>
+
+
+
+                <section
+                    id="innanet-archive"
+                    class="innanet-side-panel"
+                >
+
+
+                    <div class="innanet-side-heading">
+
+
+                        <span>
+                            THE RECEIPTS
+                        </span>
+
+
+                        <h2>
+                            Archive
+                        </h2>
+
+
+                    </div>
+
+
+
+                    <div
+                        id="innanet-archive-grid"
+                        class="social-archive-grid"
+                    >
+                    </div>
+
+
+
+                    <p
+                        id="innanet-empty-archive"
+                        class="social-empty-state"
+                        hidden
+                    >
+
+                        No archived months are available yet.
+
+                    </p>
+
+
+                </section>
+
+
+            </aside>
 
 
         </div>
-
-
-
-        <div
-            id="innanet-archive-grid"
-            class="social-archive-grid"
-        >
-        </div>
-
-
-
-        <p
-            id="innanet-empty-archive"
-            class="social-empty-state"
-            hidden
-        >
-
-            No archived months are available yet.
-
-        </p>
 
 
     </section>
@@ -301,7 +506,7 @@
 
 <script src="js/app.js"></script>
 
-<script src="js/innanet.js?v=2"></script>
+<script src="js/innanet.js?v=innanet-app-1"></script>
 
 
 </body>
