@@ -5494,3 +5494,407 @@
 
 
 }
+/* =================================
+   LANDSCAPE RECORDED EVENTS
+================================= */
+
+
+.cr-landscape-recorded-events {
+
+    display:
+        grid;
+
+    gap:
+        10px;
+
+}
+
+
+
+.cr-landscape-recorded-event {
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    overflow:
+        hidden;
+
+}
+
+
+
+.cr-landscape-recorded-event summary {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        18px;
+
+    padding:
+        15px 16px;
+
+    cursor:
+        pointer;
+
+}
+
+
+
+.cr-landscape-recorded-event summary > div {
+
+    display:
+        grid;
+
+    gap:
+        4px;
+
+}
+
+
+
+.cr-landscape-recorded-event summary span {
+
+    color:
+        #d9b74d;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+
+.cr-landscape-recorded-event summary strong {
+
+    color:
+        #eef1f2;
+
+    font-size:
+        0.88rem;
+
+}
+
+
+
+.cr-landscape-recorded-event summary small {
+
+    color:
+        #839097;
+
+    font-size:
+        0.68rem;
+
+}
+
+
+
+.cr-landscape-event-rating {
+
+    color:
+        #e5c45e !important;
+
+    font-size:
+        1rem !important;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+.cr-landscape-recorded-event-body {
+
+    display:
+        grid;
+
+    gap:
+        14px;
+
+    padding:
+        0 16px 16px;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+}
+
+
+
+.cr-landscape-event-meta {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        8px;
+
+    padding-top:
+        14px;
+
+}
+
+
+
+.cr-landscape-event-meta span {
+
+    padding:
+        5px 8px;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(
+            211,
+            165,
+            40,
+            0.08
+        );
+
+    color:
+        #c7aa51;
+
+    font-size:
+        0.6rem;
+
+    font-weight:
+        800;
+
+}
+
+
+
+.cr-landscape-event-results {
+
+    display:
+        grid;
+
+    gap:
+        7px;
+
+}
+
+
+
+.cr-landscape-event-result-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        auto;
+
+    gap:
+        14px;
+
+    padding:
+        11px 12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.02
+        );
+
+}
+
+
+
+.cr-landscape-event-result-row > div {
+
+    display:
+        grid;
+
+    gap:
+        3px;
+
+}
+
+
+
+.cr-landscape-event-result-row span {
+
+    color:
+        #7f8b92;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.07em;
+
+}
+
+
+
+.cr-landscape-event-result-row strong {
+
+    color:
+        #edf1f2;
+
+    font-size:
+        0.78rem;
+
+}
+
+
+
+.cr-landscape-event-result-row small {
+
+    color:
+        #87939a;
+
+    font-size:
+        0.67rem;
+
+}
+
+
+
+.cr-landscape-event-notes {
+
+    padding:
+        12px;
+
+    border-left:
+        3px solid
+        #6ca6d9;
+
+    background:
+        rgba(
+            108,
+            166,
+            217,
+            0.05
+        );
+
+}
+
+
+
+.cr-landscape-event-notes span {
+
+    color:
+        #8fc3ee;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.07em;
+
+}
+
+
+
+.cr-landscape-event-notes p {
+
+    margin:
+        6px 0 0;
+
+    color:
+        #a4adb2;
+
+    font-size:
+        0.73rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+
+.cr-landscape-event-none {
+
+    color:
+        #7e8a91;
+
+    font-size:
+        0.72rem;
+
+}
+
+
+
+@media (
+    max-width:
+        600px
+) {
+
+
+    .cr-landscape-recorded-event summary {
+
+        align-items:
+            flex-start;
+
+    }
+
+
+}
