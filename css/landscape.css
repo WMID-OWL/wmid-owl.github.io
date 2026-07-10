@@ -3969,3 +3969,1400 @@ body.landscape-page {
 
 
 }
+/* =================================
+   BRAGGING RIGHTS
+================================= */
+
+
+.landscape-bragging-section {
+
+    position:
+        relative;
+
+}
+
+
+
+.landscape-bragging-section::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        -1;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(
+                201,
+                156,
+                47,
+                0.07
+            ),
+            transparent 34%
+        ),
+
+        radial-gradient(
+            circle at 85% 70%,
+            rgba(
+                143,
+                212,
+                255,
+                0.04
+            ),
+            transparent 35%
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+
+.landscape-bragging-heading-side {
+
+    display:
+        grid;
+
+    gap:
+        20px;
+
+}
+
+
+
+.landscape-bragging-heading-side p {
+
+    margin:
+        0;
+
+}
+
+
+
+.landscape-bragging-edition-control {
+
+    display:
+        grid;
+
+    gap:
+        7px;
+
+    max-width:
+        240px;
+
+}
+
+
+
+.landscape-bragging-edition-control span {
+
+    color:
+        var(
+            --ls-gold
+        );
+
+    font-size:
+        0.52rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.11em;
+
+}
+
+
+
+.landscape-bragging-edition-control select {
+
+    width:
+        100%;
+
+    padding:
+        11px 12px;
+
+    border:
+        1px solid
+        rgba(
+            243,
+            206,
+            97,
+            0.22
+        );
+
+    color:
+        var(
+            --ls-text
+        );
+
+    background:
+        #0c1012;
+
+    font:
+        inherit;
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.landscape-bragging-content {
+
+    display:
+        grid;
+
+    gap:
+        28px;
+
+}
+
+
+
+/* =================================
+   EDITION HEADER
+================================= */
+
+
+.landscape-br-edition-banner {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        auto;
+
+    align-items:
+        end;
+
+    gap:
+        30px;
+
+    min-height:
+        230px;
+
+    padding:
+        30px;
+
+    border:
+        1px solid
+        rgba(
+            243,
+            206,
+            97,
+            0.32
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 80% 0%,
+            rgba(
+                243,
+                206,
+                97,
+                0.15
+            ),
+            transparent 42%
+        ),
+
+        linear-gradient(
+            125deg,
+            #15150f,
+            #0b0f11 58%,
+            #0d1316
+        );
+
+}
+
+
+
+.landscape-br-edition-banner::after {
+
+    content:
+        attr(
+            data-year
+        );
+
+    position:
+        absolute;
+
+    right:
+        -18px;
+
+    bottom:
+        -70px;
+
+    color:
+        rgba(
+            243,
+            206,
+            97,
+            0.045
+        );
+
+    font-family:
+
+        Impact,
+        Haettenschweiler,
+        sans-serif;
+
+    font-size:
+        15rem;
+
+    line-height:
+        1;
+
+    pointer-events:
+        none;
+
+}
+
+
+
+.landscape-br-edition-label {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    gap:
+        8px;
+
+}
+
+
+
+.landscape-br-edition-label > span {
+
+    color:
+        var(
+            --ls-gold
+        );
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.15em;
+
+}
+
+
+
+.landscape-br-edition-label h3 {
+
+    margin:
+        0;
+
+    font-family:
+
+        Impact,
+        Haettenschweiler,
+        sans-serif;
+
+    font-size:
+        clamp(
+            4rem,
+            9vw,
+            8.5rem
+        );
+
+    line-height:
+        0.85;
+
+    letter-spacing:
+        -0.035em;
+
+}
+
+
+
+.landscape-br-edition-label small {
+
+    color:
+        #7d898f;
+
+    font-size:
+        0.63rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+
+.landscape-br-edition-status {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    align-self:
+        center;
+
+    padding:
+        12px 15px;
+
+    border:
+        1px solid
+        rgba(
+            243,
+            206,
+            97,
+            0.28
+        );
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+/* =================================
+   CHAMPION TROPHIES
+================================= */
+
+
+.landscape-br-champion-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        12px;
+
+}
+
+
+
+.landscape-br-champion-card {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    min-height:
+        280px;
+
+    padding:
+        26px;
+
+    border:
+        1px solid
+        rgba(
+            243,
+            206,
+            97,
+            0.27
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                201,
+                156,
+                47,
+                0.09
+            ),
+            var(
+                --ls-panel
+            )
+        );
+
+}
+
+
+
+.landscape-br-champion-card::after {
+
+    content:
+        attr(
+            data-division
+        );
+
+    position:
+        absolute;
+
+    right:
+        -5px;
+
+    bottom:
+        -28px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        8rem;
+
+    line-height:
+        1;
+
+}
+
+
+
+.landscape-br-champion-card > span {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    color:
+        var(
+            --ls-gold
+        );
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+
+.landscape-br-champion-card h3 {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    max-width:
+        80%;
+
+    margin:
+        62px 0 7px;
+
+    font-family:
+
+        Impact,
+        Haettenschweiler,
+        sans-serif;
+
+    font-size:
+        clamp(
+            2.5rem,
+            5vw,
+            5.2rem
+        );
+
+    line-height:
+        0.9;
+
+}
+
+
+
+.landscape-br-champion-company {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-size:
+        0.75rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+
+.landscape-br-finalist {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        block;
+
+    margin-top:
+        18px;
+
+    color:
+        #77848a;
+
+    font-size:
+        0.58rem;
+
+}
+
+
+
+/* =================================
+   QUALIFICATION ORDER
+================================= */
+
+
+.landscape-br-qualification-panel {
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        var(
+            --ls-panel
+        );
+
+}
+
+
+
+.landscape-br-subheading {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    padding:
+        17px 20px;
+
+    border-bottom:
+        1px solid
+        var(
+            --ls-line
+        );
+
+}
+
+
+
+.landscape-br-subheading span {
+
+    color:
+        var(
+            --ls-gold
+        );
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.11em;
+
+}
+
+
+
+.landscape-br-subheading small {
+
+    color:
+        #6f7c82;
+
+    font-size:
+        0.53rem;
+
+}
+
+
+
+.landscape-br-qualification-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+}
+
+
+
+.landscape-br-qualification-card {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        38px
+        minmax(
+            0,
+            1fr
+        )
+        auto;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    min-height:
+        76px;
+
+    padding:
+        12px;
+
+    border-right:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    border-bottom:
+        1px solid
+        var(
+            --ls-line
+        );
+
+}
+
+
+
+.landscape-br-qualification-rank {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        1.55rem;
+
+}
+
+
+
+.landscape-br-qualification-name {
+
+    display:
+        grid;
+
+    gap:
+        3px;
+
+}
+
+
+
+.landscape-br-qualification-name strong {
+
+    font-size:
+        0.72rem;
+
+}
+
+
+
+.landscape-br-qualification-name small {
+
+    color:
+        #6f7b81;
+
+    font-size:
+        0.52rem;
+
+}
+
+
+
+.landscape-br-allocation {
+
+    color:
+        #9caaaf;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+/* =================================
+   PUBLIC BRACKETS
+================================= */
+
+
+.landscape-br-division {
+
+    padding:
+        22px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        #090d0f;
+
+}
+
+
+
+.landscape-br-division-title {
+
+    display:
+        flex;
+
+    align-items:
+        end;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+
+.landscape-br-division-title span {
+
+    color:
+        var(
+            --ls-gold
+        );
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.11em;
+
+}
+
+
+
+.landscape-br-division-title h3 {
+
+    margin:
+        4px 0 0;
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        2.7rem;
+
+}
+
+
+
+.landscape-br-division-title small {
+
+    color:
+        #748087;
+
+    font-size:
+        0.55rem;
+
+}
+
+
+
+.landscape-br-bracket-scroll {
+
+    overflow-x:
+        auto;
+
+    padding-bottom:
+        8px;
+
+}
+
+
+
+.landscape-br-bracket {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            4,
+            minmax(
+                235px,
+                1fr
+            )
+        );
+
+    gap:
+        14px;
+
+    min-width:
+        1020px;
+
+}
+
+
+
+.landscape-br-round {
+
+    display:
+        grid;
+
+    align-content:
+        start;
+
+    gap:
+        8px;
+
+}
+
+
+
+.landscape-br-round-title {
+
+    padding:
+        8px 10px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            243,
+            206,
+            97,
+            0.23
+        );
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.landscape-br-match {
+
+    display:
+        grid;
+
+    gap:
+        1px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.04
+        );
+
+}
+
+
+
+.landscape-br-entrant {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+        auto;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    min-height:
+        48px;
+
+    padding:
+        9px 10px;
+
+    background:
+        #0e1315;
+
+}
+
+
+
+.landscape-br-entrant.is-winner {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(
+                201,
+                156,
+                47,
+                0.16
+            ),
+            #111517
+        );
+
+}
+
+
+
+.landscape-br-entrant-info {
+
+    display:
+        grid;
+
+    gap:
+        3px;
+
+}
+
+
+
+.landscape-br-entrant-info strong {
+
+    overflow:
+        hidden;
+
+    font-size:
+        0.68rem;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+.landscape-br-entrant-info small {
+
+    color:
+        #6f7c82;
+
+    font-size:
+        0.5rem;
+
+}
+
+
+
+.landscape-br-entrant.is-winner
+.landscape-br-entrant-info strong {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+}
+
+
+
+.landscape-br-winner-mark {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-size:
+        0.52rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.landscape-br-match-footer {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        10px;
+
+    padding:
+        7px 9px;
+
+    background:
+        #080b0d;
+
+    color:
+        #69767c;
+
+    font-size:
+        0.5rem;
+
+}
+
+
+
+.landscape-br-match-footer strong {
+
+    color:
+        var(
+            --ls-gold
+        );
+
+}
+
+
+
+/* =================================
+   BRAGGING RIGHTS HISTORY
+================================= */
+
+
+.landscape-br-history-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        10px;
+
+}
+
+
+
+.landscape-br-history-card {
+
+    min-height:
+        170px;
+
+    padding:
+        19px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        var(
+            --ls-panel
+        );
+
+}
+
+
+
+.landscape-br-history-card > span {
+
+    color:
+        var(
+            --ls-gold
+        );
+
+    font-size:
+        0.52rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+}
+
+
+
+.landscape-br-history-card strong {
+
+    display:
+        block;
+
+    margin-top:
+        45px;
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        1.65rem;
+
+    line-height:
+        1;
+
+}
+
+
+
+.landscape-br-history-card small {
+
+    display:
+        block;
+
+    margin-top:
+        7px;
+
+    color:
+        #738087;
+
+    font-size:
+        0.55rem;
+
+}
+
+
+
+/* =================================
+   BRAGGING RIGHTS RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        1000px
+) {
+
+
+    .landscape-br-qualification-grid {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+    .landscape-br-history-grid {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        720px
+) {
+
+
+    .landscape-br-edition-banner {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .landscape-br-champion-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .landscape-br-qualification-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .landscape-br-history-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
