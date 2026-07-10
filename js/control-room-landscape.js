@@ -2726,7 +2726,88 @@
               period.id ===
               periodId
           );
+      // =================================
+      // YEAR-END HONORS
+      // =================================
 
+      const year =
+        String(
+          periodId
+        )
+          .slice(
+            0,
+            4
+          );
+
+      const frozenYearPeriods =
+        rankingsData.periods.filter(
+          (period) =>
+            String(
+              period.periodId
+            )
+              .startsWith(
+                `${year}-`
+              )
+        );
+
+      if (
+        frozenYearPeriods.length ===
+        12
+      ) {
+
+        const firstPeriod =
+          frozenYearPeriods[0];
+
+        const finalPeriod =
+          frozenYearPeriods.at(
+            -1
+          );
+
+        const yearlyHonors =
+          window
+            .LandscapeAwardsEngine
+            .calculateYearlyHonors({
+
+              year:
+                year,
+
+              events:
+                state.events,
+
+              finalYtdRankings:
+                finalPeriod.ytd,
+
+              firstMonthlyRankings:
+                firstPeriod.monthly,
+
+              finalMonthlyRankings:
+                finalPeriod.monthly
+            });
+
+        awardsData.yearly =
+          awardsData.yearly.filter(
+            (record) =>
+              String(
+                record.year
+              ) !==
+              year
+          );
+
+        awardsData.yearly.push(
+          yearlyHonors
+        );
+
+        awardsData.yearly.sort(
+          (a, b) =>
+            String(
+              a.year
+            ).localeCompare(
+              String(
+                b.year
+              )
+            )
+        );
+      }
       if (archiveRecord) {
         archiveRecord
           .rankingsFinalized =
