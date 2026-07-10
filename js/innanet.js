@@ -541,10 +541,49 @@ function innanetRenderArchive(
                         )}
                     </strong>
 
-                    <span>
+                                        <span>
+
                         ${Number(
                             month.showCount || 0
-                        )} Shows
+                        )}
+
+                        ${
+
+                            Number(
+                                month.showCount || 0
+                            ) === 1
+
+                                ? "Show"
+
+                                : "Shows"
+
+                        }
+
+
+                        ${
+
+                            Number(
+                                month.pulseCount || 0
+                            ) > 0
+
+                                ? ` · ${Number(
+                                    month.pulseCount || 0
+                                )} ${
+
+                                    Number(
+                                        month.pulseCount || 0
+                                    ) === 1
+
+                                        ? "Pulse"
+
+                                        : "Pulses"
+
+                                }`
+
+                                : ""
+
+                        }
+
                     </span>
 
                 </div>
@@ -1219,8 +1258,18 @@ function innanetRenderMonth(
 
                 <div>
 
-                    <span class="innanet-event-live">
-                        LIVE REACTION
+                                        <span class="innanet-event-live">
+
+                        ${innanetEscape(
+
+                            event.sequenceLabel
+
+                            ||
+
+                            "LIVE REACTION"
+
+                        )}
+
                     </span>
 
 
