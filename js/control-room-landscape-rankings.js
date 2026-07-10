@@ -735,6 +735,11 @@ function crLandscapeRankingRefresh() {
         );
 
 
+        crLandscapeRankingSetStatus(
+            "NO PERIOD"
+        );
+
+
         return;
 
     }
@@ -747,63 +752,122 @@ function crLandscapeRankingRefresh() {
             .value;
 
 
-    const result =
+    const frozenPeriod =
 
-        mode ===
-        "ytd"
+        crLandscapeRankingData
+            .rankings
+            ?.periods
+            ?.find(
 
-            ? window
-                .LandscapeScoreEngine
-                .calculateYtdRankings({
+                period =>
 
-                    events:
+                    period.periodId ===
+                    periodId
 
-                        crLandscapeRankingData
-                            .events,
+            )
 
-                    shows:
+        ||
 
-                        crLandscapeRankingData
-                            .shows,
+        null;
 
-                    companies:
 
-                        crLandscapeRankingData
-                            .companies,
+    let result =
+        null;
 
-                    periodId:
-                        periodId
 
-                })
+    if (
+        frozenPeriod
+    ) {
 
-            : window
-                .LandscapeScoreEngine
-                .calculateMonthlyRankings({
 
-                    events:
+        result =
 
-                        crLandscapeRankingData
-                            .events,
+            mode ===
+            "ytd"
 
-                    shows:
+                ? frozenPeriod.ytd
 
-                        crLandscapeRankingData
-                            .shows,
+                : frozenPeriod.monthly;
 
-                    companies:
 
-                        crLandscapeRankingData
-                            .companies,
+        crLandscapeRankingSetStatus(
+            "FROZEN OFFICIAL"
+        );
 
-                    periodId:
-                        periodId
+    }
 
-                });
+
+    else {
+
+
+        result =
+
+            mode ===
+            "ytd"
+
+                ? window
+                    .LandscapeScoreEngine
+                    .calculateYtdRankings({
+
+                        events:
+
+                            crLandscapeRankingData
+                                .events,
+
+                        shows:
+
+                            crLandscapeRankingData
+                                .shows,
+
+                        companies:
+
+                            crLandscapeRankingData
+                                .companies,
+
+                        periodId:
+                            periodId
+
+                    })
+
+                : window
+                    .LandscapeScoreEngine
+                    .calculateMonthlyRankings({
+
+                        events:
+
+                            crLandscapeRankingData
+                                .events,
+
+                        shows:
+
+                            crLandscapeRankingData
+                                .shows,
+
+                        companies:
+
+                            crLandscapeRankingData
+                                .companies,
+
+                        periodId:
+                            periodId
+
+                    });
+
+
+        crLandscapeRankingSetStatus(
+            "LIVE PREVIEW"
+        );
+
+    }
 
 
     crLandscapeRankingRenderCompanies(
 
         result.companyRankings
+
+        ||
+
+        []
 
     );
 
@@ -811,6 +875,10 @@ function crLandscapeRankingRefresh() {
     crLandscapeRankingRenderShows(
 
         result.showRankings
+
+        ||
+
+        []
 
     );
 
