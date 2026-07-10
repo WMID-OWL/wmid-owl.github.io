@@ -1,14 +1,6 @@
 {
   "issues": [
     {
-      "id": "2099-09",
-      "label": "September 2099",
-      "coverTitle": "AEW Rises to the Top: A New Era in Wrestling",
-      "issue": 99,
-      "testMode": true,
-      "file": "data/wwow/2099-09.json"
-    },
-    {
       "id": "2026-07",
       "label": "July 2026",
       "coverTitle": "The Rise of Zee Allmighty: A New Era Begins",
