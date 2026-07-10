@@ -211,7 +211,6 @@
             .replace(
                 /^-+|-+$/g,
                 ""
-
             );
 
     }
@@ -228,9 +227,8 @@
         ) {
 
 
-            els.status
-                .textContent =
-                    value;
+            els.status.textContent =
+                value;
 
         }
 
@@ -248,9 +246,8 @@
         ) {
 
 
-            els.saveStatus
-                .textContent =
-                    value;
+            els.saveStatus.textContent =
+                value;
 
         }
 
@@ -441,11 +438,7 @@
 
         );
 
-    }
-
-
-
-    // =================================
+    }    // =================================
     // DEFAULT YEAR
     // =================================
 
@@ -465,6 +458,42 @@
             return;
 
         }
+
+
+        const editionYears =
+
+            (
+
+                state.data
+                    ?.editions
+
+                ||
+
+                []
+
+            )
+
+                .map(
+
+                    edition =>
+
+                        String(
+                            edition.year || ""
+                        )
+
+                )
+
+                .filter(
+
+                    value =>
+
+                        /^\d{4}$/.test(
+                            value
+                        )
+
+                )
+
+                .sort();
 
 
         const rankingYears =
@@ -509,6 +538,12 @@
 
         els.year.value =
 
+            editionYears.at(
+                -1
+            )
+
+            ||
+
             rankingYears.at(
                 -1
             )
@@ -543,29 +578,24 @@
         `;
 
 
-        els.qualification
-            .innerHTML =
-                emptyHtml;
+        els.qualification.innerHTML =
+            emptyHtml;
 
 
-        els.menCore
-            .innerHTML =
-                emptyHtml;
+        els.menCore.innerHTML =
+            emptyHtml;
 
 
-        els.menGuests
-            .innerHTML =
-                emptyHtml;
+        els.menGuests.innerHTML =
+            emptyHtml;
 
 
-        els.womenCore
-            .innerHTML =
-                emptyHtml;
+        els.womenCore.innerHTML =
+            emptyHtml;
 
 
-        els.womenGuests
-            .innerHTML =
-                emptyHtml;
+        els.womenGuests.innerHTML =
+            emptyHtml;
 
 
         els.brackets.hidden =
@@ -596,134 +626,114 @@
             [];
 
 
-        els.qualification
-            .innerHTML =
+        els.qualification.innerHTML =
 
-                companies
+            companies
 
-                    .map(
+                .map(
 
-                        company => `
+                    company => `
 
-                            <article class="cr-bragging-qualification-row">
-
-
-                                <strong>
-
-                                    #${company.rank}
-
-                                </strong>
+                        <article class="cr-bragging-qualification-row">
 
 
-
-                                <div>
-
-
-                                    <span>
-
-                                        ${escapeHtml(
-                                            company.companyName
-                                        )}
-
-                                    </span>
+                            <strong>
+                                #${company.rank}
+                            </strong>
 
 
-                                    <small>
+                            <div>
 
-                                        LANDSCAPE SCORE
-                                        ${
 
-                                            Number.isFinite(
-                                                Number(
-                                                    company.landscapeScore
-                                                )
+                                <span>
+
+                                    ${escapeHtml(
+                                        company.companyName
+                                    )}
+
+                                </span>
+
+
+                                <small>
+
+                                    LANDSCAPE SCORE
+                                    ${
+
+                                        Number.isFinite(
+                                            Number(
+                                                company.landscapeScore
                                             )
+                                        )
 
-                                                ? Number(
-                                                    company.landscapeScore
+                                            ? Number(
+                                                company.landscapeScore
+                                            )
+                                                .toFixed(
+                                                    1
                                                 )
-                                                    .toFixed(
-                                                        1
-                                                    )
 
-                                                : "—"
-
-                                        }
-
-                                    </small>
-
-
-                                </div>
-
-
-
-                                <strong>
-
-                                    ${company.allocation}
-
-                                    SLOT${
-
-                                        company.allocation === 1
-
-                                            ? ""
-
-                                            : "S"
+                                            : "—"
 
                                     }
 
-                                </strong>
+                                </small>
 
 
-                            </article>
+                            </div>
 
-                        `
 
-                    )
+                            <strong>
 
-                    .join(
-                        ""
-                    );
+                                ${company.allocation}
+
+                                SLOT${
+
+                                    company.allocation === 1
+
+                                        ? ""
+
+                                        : "S"
+
+                                }
+
+                            </strong>
+
+
+                        </article>
+
+                    `
+
+                )
+
+                .join(
+                    ""
+                );
 
     }
 
 
 
     // =================================
-    // CORE SLOT RENDER
+    // FIELD RENDER
     // =================================
 
 
     function renderCoreSlots(
         slots,
-        division
+        division,
+        locked
     ) {
 
 
-        if (
-            !Array.isArray(
-                slots
-            )
+        return (
+
+            slots
 
             ||
 
-            slots.length === 0
-        ) {
+            []
 
-
-            return `
-
-                <p class="cr-landscape-entry-empty">
-
-                    No qualification slots available.
-
-                </p>
-
-            `;
-
-        }
-
-
-        return slots
+        )
 
             .map(
 
@@ -763,7 +773,6 @@
                         </div>
 
 
-
                         <input
                             type="text"
                             value="${escapeHtml(
@@ -771,12 +780,11 @@
                             )}"
                             placeholder="Wrestler name"
                             data-br-slot
-                            data-division="${escapeHtml(
-                                division
-                            )}"
+                            data-division="${division}"
                             data-kind="core"
                             data-index="${index}"
                             data-field="wrestlerName"
+                            ${locked ? "disabled" : ""}
                         >
 
 
@@ -794,42 +802,22 @@
 
 
 
-    // =================================
-    // GUEST SLOT RENDER
-    // =================================
-
-
     function renderGuestSlots(
         slots,
-        division
+        division,
+        locked
     ) {
 
 
-        if (
-            !Array.isArray(
-                slots
-            )
+        return (
+
+            slots
 
             ||
 
-            slots.length === 0
-        ) {
+            []
 
-
-            return `
-
-                <p class="cr-landscape-entry-empty">
-
-                    No guest slots available.
-
-                </p>
-
-            `;
-
-        }
-
-
-        return slots
+        )
 
             .map(
 
@@ -848,7 +836,6 @@
                         </span>
 
 
-
                         <input
                             type="text"
                             value="${escapeHtml(
@@ -856,14 +843,12 @@
                             )}"
                             placeholder="Guest company"
                             data-br-slot
-                            data-division="${escapeHtml(
-                                division
-                            )}"
+                            data-division="${division}"
                             data-kind="guest"
                             data-index="${index}"
                             data-field="guestCompanyName"
+                            ${locked ? "disabled" : ""}
                         >
-
 
 
                         <input
@@ -873,12 +858,11 @@
                             )}"
                             placeholder="Wrestler name"
                             data-br-slot
-                            data-division="${escapeHtml(
-                                division
-                            )}"
+                            data-division="${division}"
                             data-kind="guest"
                             data-index="${index}"
                             data-field="wrestlerName"
+                            ${locked ? "disabled" : ""}
                         >
 
 
@@ -892,28 +876,314 @@
                 ""
             );
 
-    }
-
-
-
-    // =================================
+    }    // =================================
     // BRACKET RENDER
     // =================================
 
 
-    function renderRoundOne(
-        matches
+    function winnerOptions(
+        match
+    ) {
+
+
+        const entrants = [
+
+            match.entrantA,
+            match.entrantB
+
+        ];
+
+
+        return entrants
+
+            .map(
+
+                entrant => `
+
+                    <option
+                        value="${escapeHtml(
+                            entrant.entrantId
+                        )}"
+                        ${
+
+                            match.winnerEntrantId ===
+                            entrant.entrantId
+
+                                ? "selected"
+
+                                : ""
+
+                        }
+                    >
+
+                        ${escapeHtml(
+                            entrant.wrestlerName
+                        )}
+
+                    </option>
+
+                `
+
+            )
+
+            .join(
+                ""
+            );
+
+    }
+
+
+
+    function renderMatchCard({
+
+        match,
+        roundKey,
+        division,
+        matchNumber,
+        locked
+
+    }) {
+
+
+        const winner =
+
+            window
+                .LandscapeBraggingRightsEngine
+                .winnerFromMatch(
+                    match
+                );
+
+
+        return `
+
+            <article
+                class="cr-bragging-result-card ${
+
+                    winner
+
+                        ? "has-result"
+
+                        : ""
+
+                }"
+
+                data-br-match-card
+            >
+
+
+                <div class="cr-bragging-result-matchup">
+
+
+                    <span class="cr-bragging-result-number">
+
+                        MATCH ${matchNumber}
+
+                    </span>
+
+
+                    <div class="cr-bragging-result-team">
+
+
+                        <strong>
+
+                            ${escapeHtml(
+                                match.entrantA
+                                    ?.wrestlerName
+                            )}
+
+                        </strong>
+
+
+                        <small>
+
+                            ${escapeHtml(
+                                match.entrantA
+                                    ?.companyName
+                            )}
+
+                        </small>
+
+
+                    </div>
+
+
+                    <b>
+                        VS
+                    </b>
+
+
+                    <div class="cr-bragging-result-team">
+
+
+                        <strong>
+
+                            ${escapeHtml(
+                                match.entrantB
+                                    ?.wrestlerName
+                            )}
+
+                        </strong>
+
+
+                        <small>
+
+                            ${escapeHtml(
+                                match.entrantB
+                                    ?.companyName
+                            )}
+
+                        </small>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="cr-bragging-result-form">
+
+
+                    <label>
+
+
+                        <span>
+                            WINNER
+                        </span>
+
+
+                        <select
+                            data-br-result-winner
+                            ${locked ? "disabled" : ""}
+                        >
+
+
+                            <option value="">
+                                Select winner
+                            </option>
+
+
+                            ${winnerOptions(
+                                match
+                            )}
+
+
+                        </select>
+
+
+                    </label>
+
+
+
+                    <label>
+
+
+                        <span>
+                            MATCH RATING
+                        </span>
+
+
+                        <input
+                            type="number"
+                            min="0"
+                            max="5"
+                            step="0.25"
+                            value="${
+
+                                match.rating
+                                ??
+                                ""
+
+                            }"
+                            placeholder="0–5"
+                            data-br-result-rating
+                            ${locked ? "disabled" : ""}
+                        >
+
+
+                    </label>
+
+
+
+                    <label class="cr-bragging-result-text-label">
+
+
+                        <span>
+                            CANONICAL RESULT
+                        </span>
+
+
+                        <input
+                            type="text"
+                            value="${escapeHtml(
+                                match.resultText || ""
+                            )}"
+                            placeholder="Winner defeated opponent..."
+                            data-br-result-text
+                            ${locked ? "disabled" : ""}
+                        >
+
+
+                    </label>
+
+
+
+                    <button
+                        type="button"
+                        class="control-room-secondary-button"
+                        data-br-save-result
+                        data-division="${division}"
+                        data-round="${roundKey}"
+                        data-match-id="${escapeHtml(
+                            match.matchId
+                        )}"
+                        ${locked ? "disabled" : ""}
+                    >
+
+                        ${winner ? "Update Result" : "Save Result"}
+
+                    </button>
+
+
+                </div>
+
+
+                ${
+
+                    locked
+
+                        ? `
+
+                            <div class="cr-bragging-round-lock">
+
+                                ROUND LOCKED · TOURNAMENT ADVANCED
+
+                            </div>
+
+                        `
+
+                        : ""
+
+                }
+
+
+            </article>
+
+        `;
+
+    }
+
+
+
+    function renderDivisionBracket(
+        division,
+        bracket
     ) {
 
 
         if (
-            !Array.isArray(
-                matches
-            )
-
-            ||
-
-            matches.length === 0
+            !bracket
         ) {
 
 
@@ -930,138 +1200,240 @@
         }
 
 
-        return matches
+        const engine =
 
-            .map(
+            window
+                .LandscapeBraggingRightsEngine;
 
-                (
-                    match,
-                    index
-                ) => `
 
-                    <article class="cr-bragging-match-card">
+        const roundHtml =
+
+            engine
+                .ROUND_ORDER
+
+                .map(
+
+                    roundKey => {
+
+
+                        const matches =
+
+                            bracket
+                                .rounds
+                                ?.[roundKey]
+
+                            ||
+
+                            [];
+
+
+                        if (
+                            matches.length === 0
+                        ) {
+
+
+                            return "";
+
+                        }
+
+
+                        const locked =
+
+                            engine
+                                .roundIsLocked(
+
+                                    bracket,
+                                    roundKey
+
+                                );
+
+
+                        return `
+
+                            <section class="cr-bragging-round-block">
+
+
+                                <div class="cr-bragging-round-heading">
+
+
+                                    <span>
+
+                                        ${escapeHtml(
+                                            engine
+                                                .ROUND_LABELS[
+                                                    roundKey
+                                                ]
+                                        )}
+
+                                    </span>
+
+
+                                    <small>
+
+                                        ${
+
+                                            matches.filter(
+
+                                                match =>
+
+                                                    Boolean(
+                                                        engine
+                                                            .winnerFromMatch(
+                                                                match
+                                                            )
+                                                    )
+
+                                            ).length
+
+                                        }
+
+                                        /
+
+                                        ${matches.length}
+
+                                        COMPLETE
+
+                                    </small>
+
+
+                                </div>
+
+
+                                <div class="cr-bragging-result-match-list">
+
+
+                                    ${matches
+
+                                        .map(
+
+                                            (
+                                                match,
+                                                index
+                                            ) =>
+
+                                                renderMatchCard({
+
+
+                                                    match:
+                                                        match,
+
+
+                                                    roundKey:
+                                                        roundKey,
+
+
+                                                    division:
+                                                        division,
+
+
+                                                    matchNumber:
+                                                        index + 1,
+
+
+                                                    locked:
+                                                        locked
+
+                                                })
+
+                                        )
+
+                                        .join(
+                                            ""
+                                        )}
+
+
+                                </div>
+
+
+                            </section>
+
+                        `;
+
+                    }
+
+                )
+
+                .join(
+                    ""
+                );
+
+
+        const championHtml =
+
+            bracket.winner
+
+                ? `
+
+                    <article class="cr-bragging-champion-panel">
 
 
                         <span>
-
-                            MATCH ${index + 1}
-
+                            TOURNAMENT CHAMPION
                         </span>
 
 
+                        <strong>
 
-                        <div>
+                            ${escapeHtml(
+                                bracket.winner
+                                    .wrestlerName
+                            )}
 
-
-                            <strong>
-
-                                ${escapeHtml(
-                                    match.entrantA
-                                        ?.wrestlerName
-                                )}
-
-                            </strong>
+                        </strong>
 
 
-                            <small>
+                        <small>
 
-                                ${escapeHtml(
-                                    match.entrantA
-                                        ?.companyName
-                                )}
+                            ${escapeHtml(
+                                bracket.winner
+                                    .companyName
+                            )}
 
-                            </small>
-
-
-                        </div>
-
-
-
-                        <b>
-                            VS
-                        </b>
-
-
-
-                        <div>
-
-
-                            <strong>
-
-                                ${escapeHtml(
-                                    match.entrantB
-                                        ?.wrestlerName
-                                )}
-
-                            </strong>
-
-
-                            <small>
-
-                                ${escapeHtml(
-                                    match.entrantB
-                                        ?.companyName
-                                )}
-
-                            </small>
-
-
-                        </div>
+                        </small>
 
 
                     </article>
 
                 `
 
-            )
-
-            .join(
-                ""
-            );
-
-    }
+                : "";
 
 
+        return (
 
-    function renderBrackets(
+            roundHtml
+
+            +
+
+            championHtml
+
+        );
+
+    }    function renderBrackets(
         edition
     ) {
 
 
-        const menMatches =
+        const menBracket =
 
             edition
                 ?.men
-                ?.bracket
-                ?.rounds
-                ?.roundOf16
-
-            ||
-
-            [];
+                ?.bracket;
 
 
-        const womenMatches =
+        const womenBracket =
 
             edition
                 ?.women
-                ?.bracket
-                ?.rounds
-                ?.roundOf16
-
-            ||
-
-            [];
+                ?.bracket;
 
 
         if (
-
-            menMatches.length === 0
+            !menBracket
 
             &&
 
-            womenMatches.length === 0
-
+            !womenBracket
         ) {
 
 
@@ -1078,20 +1450,24 @@
             false;
 
 
-        els.menBracket
-            .innerHTML =
+        els.menBracket.innerHTML =
 
-                renderRoundOne(
-                    menMatches
-                );
+            renderDivisionBracket(
+
+                "men",
+                menBracket
+
+            );
 
 
-        els.womenBracket
-            .innerHTML =
+        els.womenBracket.innerHTML =
 
-                renderRoundOne(
-                    womenMatches
-                );
+            renderDivisionBracket(
+
+                "women",
+                womenBracket
+
+            );
 
     }
 
@@ -1148,56 +1524,108 @@
         );
 
 
-        els.menCore
-            .innerHTML =
+        const menLocked =
 
-                renderCoreSlots(
-
-                    edition.men
-                        ?.coreSlots,
-
-                    "men"
-
-                );
+            Boolean(
+                edition.men
+                    ?.bracket
+            );
 
 
-        els.menGuests
-            .innerHTML =
+        const womenLocked =
 
-                renderGuestSlots(
-
-                    edition.men
-                        ?.guestSlots,
-
-                    "men"
-
-                );
+            Boolean(
+                edition.women
+                    ?.bracket
+            );
 
 
-        els.womenCore
-            .innerHTML =
+        els.menCore.innerHTML =
 
-                renderCoreSlots(
+            renderCoreSlots(
 
-                    edition.women
-                        ?.coreSlots,
+                edition.men
+                    ?.coreSlots,
 
-                    "women"
+                "men",
 
-                );
+                menLocked
+
+            );
 
 
-        els.womenGuests
-            .innerHTML =
+        els.menGuests.innerHTML =
 
-                renderGuestSlots(
+            renderGuestSlots(
 
-                    edition.women
-                        ?.guestSlots,
+                edition.men
+                    ?.guestSlots,
 
-                    "women"
+                "men",
 
-                );
+                menLocked
+
+            );
+
+
+        els.womenCore.innerHTML =
+
+            renderCoreSlots(
+
+                edition.women
+                    ?.coreSlots,
+
+                "women",
+
+                womenLocked
+
+            );
+
+
+        els.womenGuests.innerHTML =
+
+            renderGuestSlots(
+
+                edition.women
+                    ?.guestSlots,
+
+                "women",
+
+                womenLocked
+
+            );
+
+
+        if (
+            els.saveField
+        ) {
+
+
+            els.saveField.disabled =
+
+                menLocked
+
+                ||
+
+                womenLocked;
+
+        }
+
+
+        if (
+            els.draw
+        ) {
+
+
+            els.draw.disabled =
+
+                menLocked
+
+                ||
+
+                womenLocked;
+
+        }
 
 
         renderBrackets(
@@ -1286,15 +1714,12 @@
             setDefaultYear();
 
 
-            const edition =
+            renderEdition(
 
                 findEdition(
                     els.year.value
-                );
+                )
 
-
-            renderEdition(
-                edition
             );
 
 
@@ -1352,26 +1777,15 @@
             );
 
 
-            if (
+            setSaveStatus(
+
                 edition
-            ) {
 
+                    ? "EDITION LOADED"
 
-                setSaveStatus(
-                    "EDITION LOADED"
-                );
+                    : "NO EDITION FOR THIS YEAR"
 
-            }
-
-
-            else {
-
-
-                setSaveStatus(
-                    "NO EDITION FOR THIS YEAR"
-                );
-
-            }
+            );
 
 
         }
@@ -1423,21 +1837,6 @@
                 throw new Error(
 
                     "A Bragging Rights edition already exists for this year."
-
-                );
-
-            }
-
-
-            if (
-                !window
-                    .LandscapeBraggingRightsEngine
-            ) {
-
-
-                throw new Error(
-
-                    "Bragging Rights engine is not loaded."
 
                 );
 
@@ -1523,10 +1922,6 @@
             );
 
 
-            state.currentEdition =
-                edition;
-
-
             renderEdition(
                 edition
             );
@@ -1546,11 +1941,7 @@
 
 
             console.error(
-
-                "Could not create Bragging Rights edition:",
-
                 error
-
             );
 
 
@@ -1566,11 +1957,7 @@
 
         }
 
-    }
-
-
-
-    // =================================
+    }    // =================================
     // COLLECT FIELD INPUTS
     // =================================
 
@@ -1698,6 +2085,70 @@
 
 
     // =================================
+    // SAVE EDITION
+    // =================================
+
+
+    async function persistCurrentEdition() {
+
+
+        const edition =
+            state.currentEdition;
+
+
+        const index =
+
+            state.data
+                .editions
+                .findIndex(
+
+                    item =>
+
+                        String(
+                            item.year
+                        )
+
+                        ===
+
+                        String(
+                            edition.year
+                        )
+
+                );
+
+
+        if (
+            index === -1
+        ) {
+
+
+            throw new Error(
+
+                "Current edition could not be found."
+
+            );
+
+        }
+
+
+        state.data.editions[
+            index
+        ] = edition;
+
+
+        await writeJson(
+
+            "bragging-rights.json",
+
+            state.data
+
+        );
+
+    }
+
+
+
+    // =================================
     // SAVE FIELD
     // =================================
 
@@ -1708,62 +2159,37 @@
         try {
 
 
-            setSaveStatus(
-                "SAVING FIELD"
-            );
-
-
-            const edition =
-
-                collectFieldInputs();
-
-
-            const index =
-
-                state.data
-                    .editions
-                    .findIndex(
-
-                        item =>
-
-                            String(
-                                item.year
-                            )
-
-                            ===
-
-                            String(
-                                edition.year
-                            )
-
-                    );
-
-
             if (
-                index === -1
+                state.currentEdition
+                    ?.men
+                    ?.bracket
+
+                ||
+
+                state.currentEdition
+                    ?.women
+                    ?.bracket
             ) {
 
 
                 throw new Error(
 
-                    "Current edition could not be found."
+                    "The tournament field is already locked."
 
                 );
 
             }
 
 
-            state.data.editions[index] =
-                edition;
-
-
-            await writeJson(
-
-                "bragging-rights.json",
-
-                state.data
-
+            setSaveStatus(
+                "SAVING FIELD"
             );
+
+
+            collectFieldInputs();
+
+
+            await persistCurrentEdition();
 
 
             setSaveStatus(
@@ -1780,11 +2206,7 @@
 
 
             console.error(
-
-                "Could not save Bragging Rights field:",
-
                 error
-
             );
 
 
@@ -1805,7 +2227,7 @@
 
 
     // =================================
-    // LOCK FIELD & DRAW
+    // DRAW BRACKETS
     // =================================
 
 
@@ -1813,21 +2235,6 @@
 
 
         try {
-
-
-            if (
-                !window
-                    .LandscapeBraggingRightsEngine
-            ) {
-
-
-                throw new Error(
-
-                    "Bragging Rights engine is not loaded."
-
-                );
-
-            }
 
 
             const edition =
@@ -1842,7 +2249,6 @@
                 ||
 
                 edition.women.bracket
-
             ) {
 
 
@@ -1860,7 +2266,7 @@
             );
 
 
-            const menBracket =
+            edition.men.bracket =
 
                 window
                     .LandscapeBraggingRightsEngine
@@ -1871,7 +2277,14 @@
                     );
 
 
-            const womenBracket =
+            edition.men.entrants =
+
+                edition.men
+                    .bracket
+                    .entrants;
+
+
+            edition.women.bracket =
 
                 window
                     .LandscapeBraggingRightsEngine
@@ -1882,66 +2295,49 @@
                     );
 
 
-            edition.men.entrants =
-                menBracket.entrants;
-
-
-            edition.men.bracket =
-                menBracket;
-
-
             edition.women.entrants =
-                womenBracket.entrants;
+
+                edition.women
+                    .bracket
+                    .entrants;
 
 
-            edition.women.bracket =
-                womenBracket;
+            [
 
+                edition.men,
+                edition.women
 
-            edition.men.coreSlots
-
-                .forEach(
-
-                    slot =>
-
-                        slot.affiliationFrozen =
-                            true
-
-                );
-
-
-            edition.men.guestSlots
+            ]
 
                 .forEach(
 
-                    slot =>
-
-                        slot.affiliationFrozen =
-                            true
-
-                );
+                    division => {
 
 
-            edition.women.coreSlots
+                        division.coreSlots
 
-                .forEach(
+                            .forEach(
 
-                    slot =>
+                                slot =>
 
-                        slot.affiliationFrozen =
-                            true
+                                    slot.affiliationFrozen =
+                                        true
 
-                );
+                            );
 
 
-            edition.women.guestSlots
+                        division.guestSlots
 
-                .forEach(
+                            .forEach(
 
-                    slot =>
+                                slot =>
 
-                        slot.affiliationFrozen =
-                            true
+                                    slot.affiliationFrozen =
+                                        true
+
+                            );
+
+                    }
 
                 );
 
@@ -1956,43 +2352,11 @@
                     .toISOString();
 
 
-            const editionIndex =
-
-                state.data
-                    .editions
-                    .findIndex(
-
-                        item =>
-
-                            String(
-                                item.year
-                            )
-
-                            ===
-
-                            String(
-                                edition.year
-                            )
-
-                    );
-
-
-            state.data.editions[
-                editionIndex
-            ] = edition;
-
-
-            await writeJson(
-
-                "bragging-rights.json",
-
-                state.data
-
-            );
-
-
             state.currentEdition =
                 edition;
+
+
+            await persistCurrentEdition();
 
 
             renderEdition(
@@ -2014,11 +2378,7 @@
 
 
             console.error(
-
-                "Could not draw Bragging Rights brackets:",
-
                 error
-
             );
 
 
@@ -2029,6 +2389,316 @@
                 ||
 
                 "DRAW FAILED"
+
+            );
+
+        }
+
+    }
+
+
+
+    // =================================
+    // RESULT RECORDING
+    // =================================
+
+
+    function syncEditionOutcome(
+        edition
+    ) {
+
+
+        const menWinner =
+
+            edition.men
+                ?.bracket
+                ?.winner
+
+            ||
+
+            null;
+
+
+        const womenWinner =
+
+            edition.women
+                ?.bracket
+                ?.winner
+
+            ||
+
+            null;
+
+
+
+        edition.men.champion =
+            menWinner;
+
+
+        edition.men.finalist =
+
+            edition.men
+                ?.bracket
+                ?.finalist
+
+            ||
+
+            null;
+
+
+        edition.women.champion =
+            womenWinner;
+
+
+        edition.women.finalist =
+
+            edition.women
+                ?.bracket
+                ?.finalist
+
+            ||
+
+            null;
+
+
+
+        edition.trophies =
+
+            edition.trophies
+
+            ||
+
+            {};
+
+
+        edition.trophies.menCompanyId =
+
+            menWinner
+                ?.companyId
+
+            ||
+
+            "";
+
+
+        edition.trophies.womenCompanyId =
+
+            womenWinner
+                ?.companyId
+
+            ||
+
+            "";
+
+
+
+        if (
+            menWinner
+
+            &&
+
+            womenWinner
+        ) {
+
+
+            edition.status =
+                "complete";
+
+
+            edition.completedAt =
+
+                edition.completedAt
+
+                ||
+
+                new Date()
+                    .toISOString();
+
+        }
+
+
+        else {
+
+
+            edition.status =
+                "tournament-in-progress";
+
+        }
+
+    }
+
+
+
+    async function saveMatchResult(
+        button
+    ) {
+
+
+        try {
+
+
+            const card =
+
+                button.closest(
+                    "[data-br-match-card]"
+                );
+
+
+            if (
+                !card
+            ) {
+
+
+                throw new Error(
+
+                    "Match result form could not be found."
+
+                );
+
+            }
+
+
+            const division =
+
+                button.dataset.division;
+
+
+            const roundKey =
+
+                button.dataset.round;
+
+
+            const matchId =
+
+                button.dataset.matchId;
+
+
+            const winnerEntrantId =
+
+                card
+                    .querySelector(
+                        "[data-br-result-winner]"
+                    )
+                    ?.value
+
+                ||
+
+                "";
+
+
+            const rating =
+
+                card
+                    .querySelector(
+                        "[data-br-result-rating]"
+                    )
+                    ?.value
+
+                ||
+
+                "";
+
+
+            const resultText =
+
+                card
+                    .querySelector(
+                        "[data-br-result-text]"
+                    )
+                    ?.value
+
+                ||
+
+                "";
+
+
+            const edition =
+                state.currentEdition;
+
+
+            const bracket =
+
+                edition[
+                    division
+                ]
+                    ?.bracket;
+
+
+            setSaveStatus(
+                "SAVING MATCH RESULT"
+            );
+
+
+            window
+                .LandscapeBraggingRightsEngine
+                .recordMatchResult({
+
+
+                    bracket:
+                        bracket,
+
+
+                    roundKey:
+                        roundKey,
+
+
+                    matchId:
+                        matchId,
+
+
+                    winnerEntrantId:
+                        winnerEntrantId,
+
+
+                    rating:
+                        rating,
+
+
+                    resultText:
+                        resultText
+
+
+                });
+
+
+            syncEditionOutcome(
+                edition
+            );
+
+
+            await persistCurrentEdition();
+
+
+            renderEdition(
+                edition
+            );
+
+
+            setSaveStatus(
+                "MATCH RESULT SAVED"
+            );
+
+
+        }
+
+
+        catch (
+            error
+        ) {
+
+
+            console.error(
+                error
+            );
+
+
+            setSaveStatus(
+
+                error.message
+
+                ||
+
+                "RESULT SAVE FAILED"
 
             );
 
@@ -2093,6 +2763,37 @@
         );
 
 
+    els.desk
+        ?.addEventListener(
+
+            "click",
+
+            event => {
+
+
+                const button =
+
+                    event.target.closest(
+                        "[data-br-save-result]"
+                    );
+
+
+                if (
+                    button
+                ) {
+
+
+                    saveMatchResult(
+                        button
+                    );
+
+                }
+
+            }
+
+        );
+
+
 
     // =================================
     // STARTUP
@@ -2120,7 +2821,6 @@
             &&
 
             owlRepositoryHandle
-
         ) {
 
 
