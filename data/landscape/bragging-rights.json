@@ -1,26 +1,27 @@
 {
   "version": 1,
-  "configuration": {
-    "name": "Bragging Rights",
+  "eventName": "BRAGGING RIGHTS",
+  "eventMonth": "11",
+  "qualificationCutoffMonth": "10",
+  "prestigeReward": {
+    "enabled": true,
+    "points": null
+  },
+  "allocationRules": {
+    "rank1": 3,
+    "rank2": 2,
+    "ranks3Through8": 1,
+    "coreEntrantsPerDivision": 11,
+    "guestEntrantsPerDivision": 5,
+    "totalEntrantsPerDivision": 16
+  },
+  "bracketRules": {
+    "format": "single-elimination",
     "menBracketSize": 16,
     "womenBracketSize": 16,
-    "coreCompanyAllocation": {
-      "rank1": 3,
-      "rank2": 2,
-      "rank3": 1,
-      "rank4": 1,
-      "rank5": 1,
-      "rank6": 1,
-      "rank7": 1,
-      "rank8": 1
-    },
-    "guestSlotsPerDivision": 5,
     "avoidSameCompanyRoundOne": true,
-    "championshipsInvolved": false
-  },
-  "currentHolders": {
-    "men": null,
-    "women": null
+    "allowSameCompanyLaterRounds": true,
+    "titlesAtStake": false
   },
   "editions": []
 }
