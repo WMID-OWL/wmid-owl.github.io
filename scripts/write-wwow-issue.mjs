@@ -971,7 +971,9 @@ Segments are not matches and cannot win Match of the Month.
 
 5. performers-month
 Analyze the strongest verified individual or team performances of the month.
-Use actual results, match quality, records, streaks, tournament performance, championship achievement, or other supplied evidence.
+Use direct current-month evidence such as actual results, match quality, records, streaks, tournament performance, title wins, successful title defenses, or other explicitly supplied achievement.
+Being listed as a current champion does not by itself prove that someone had one of the month's best performances.
+Do not name a wrestler or team as a standout performer unless the supplied package contains direct evidence supporting that conclusion.
 Do not invent a performance narrative unsupported by the facts.
 
 6. title-picture
@@ -982,8 +984,9 @@ Do not invent challengers or announced future matches.
 7. rumors-whispers
 Write a clearly labeled speculation section grounded only in visible verified developments.
 Questions, possibilities, and cautious interpretation are allowed.
+A confirmed signing, retirement, title change, ranking movement, or other supplied development may be discussed as fact, while speculation may explore only its possible competitive or storyline implications.
+Do not speculate about contract terms, negotiations, injuries, firings, additional signings, retirements, backstage heat, or relationships unless those subjects are explicitly supported by supplied facts.
 Do not turn speculation into fact.
-Do not invent contracts, negotiations, injuries, firings, signings, retirements, backstage heat, or relationships.
 
 8. editorial
 Write an opinionated closing column about the state of the wrestling world that month.
@@ -1098,13 +1101,19 @@ match-month:
 Center the verified winning match and explain its place in the month using supplied match quality evidence.
 
 performers-month:
-Focus on verified achievement and performance. Do not invent motivations, emotions, or backstage narratives.
+Focus on verified current-month achievement and performance.
+Current championship status alone does not prove that someone was a standout performer that month.
+Only feature wrestlers or teams when direct supplied evidence supports the performance claim.
+Do not invent motivations, emotions, or backstage narratives.
 
 title-picture:
-Analyze verified championship status and movement. Never invent future challengers.
+Analyze verified championship status and movement.
+Never invent future challengers, announced matches, or championship plans.
 
 rumors-whispers:
 Every speculative statement must be clearly framed as possibility, interpretation, or question.
+Confirmed developments may be stated as facts exactly as supplied, but speculation may address only their possible implications.
+Never invent or imply undisclosed contract terms, negotiations, injuries, firings, additional signings, retirements, backstage heat, or relationships.
 
 editorial:
 Take a position. Build an argument from the facts rather than recapping the issue.
