@@ -1,0 +1,221 @@
+name: Test WWoW World Issue
+
+
+on:
+
+  workflow_dispatch:
+
+
+permissions:
+
+  contents:
+    write
+
+  models:
+    read
+
+
+concurrency:
+
+  group: wwow-test-writer
+
+  cancel-in-progress: false
+
+
+jobs:
+
+  test-world-issue:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+      - name: Check out repository
+
+        uses: actions/checkout@v4
+
+        with:
+
+          ref: main
+
+
+      - name: Set up Node
+
+        uses: actions/setup-node@v4
+
+        with:
+
+          node-version: "20"
+
+
+      - name: Check full issue test syntax
+
+        run: |
+
+          node --check scripts/test-wwow-world-issue.mjs
+
+
+      - name: Generate full WWoW world test issue
+
+        env:
+
+          GITHUB_TOKEN:
+            ${{ secrets.GITHUB_TOKEN }}
+
+          WWOW_TEST_MODEL:
+            openai/gpt-4o-mini
+
+          WWOW_TEST_REQUEST_GAP_MS:
+            "15000"
+
+        run: |
+
+          node scripts/test-wwow-world-issue.mjs
+
+
+      - name: Validate generated test issue
+
+        run: |
+
+          node -e "
+
+            const fs = require('fs');
+
+
+            const issue = JSON.parse(
+
+              fs.readFileSync(
+
+                'data/wwow/2099-09.json',
+
+                'utf8'
+
+              )
+
+            );
+
+
+            if (issue.id !== '2099-09') {
+
+              throw new Error(
+
+                'Unexpected test issue id.'
+
+              );
+
+            }
+
+
+            if (
+
+              !Array.isArray(issue.sections)
+
+              ||
+
+              issue.sections.length !== 8
+
+            ) {
+
+              throw new Error(
+
+                'Test issue does not contain exactly 8 sections.'
+
+              );
+
+            }
+
+
+            const paragraphCount =
+
+              issue.sections.reduce(
+
+                (total, section) =>
+
+                  total
+
+                  +
+
+                  (
+
+                    Array.isArray(section.body)
+
+                      ? section.body.length
+
+                      : 0
+
+                  ),
+
+                0
+
+              );
+
+
+            if (paragraphCount !== 24) {
+
+              throw new Error(
+
+                'Test issue does not contain exactly 24 article paragraphs.'
+
+              );
+
+            }
+
+
+            console.log(
+
+              'WWoW test issue sections:',
+
+              issue.sections.length
+
+            );
+
+
+            console.log(
+
+              'WWoW test issue paragraphs:',
+
+              paragraphCount
+
+            );
+
+
+            console.log(
+
+              'WWoW test cover:',
+
+              issue.coverTitle
+
+            );
+
+          "
+
+
+      - name: Commit WWoW world test issue
+
+        run: |
+
+          git add data/wwow/2099-09.json
+
+          git add data/wwow/archive-index.json
+
+
+          if git diff --cached --quiet; then
+
+            echo "No WWoW world test issue changes to commit."
+
+            exit 0
+
+          fi
+
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          git commit \
+            -m "Publish WWoW world test issue"
+
+
+          git push
