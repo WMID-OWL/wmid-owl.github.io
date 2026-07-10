@@ -1626,25 +1626,22 @@ function batchValidationIssues(
             const accountId =
 
                 cleanText(
+
                     post?.accountId,
+
                     80
+
                 );
 
 
             const body =
 
                 cleanText(
-                    post?. (
-            post,
-            index
-        ) => {
 
+                    post?.body,
 
-            const accountId =
-
-                cleanText(
-                   body,
                     600
+
                 );
 
 
