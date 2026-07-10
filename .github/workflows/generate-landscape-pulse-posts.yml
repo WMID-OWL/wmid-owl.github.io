@@ -24,6 +24,8 @@ on:
 
         default: "1"
 
+        type: string
+
 
 permissions:
 
@@ -36,56 +38,46 @@ permissions:
 
 concurrency:
 
-  group:
-    innanet-writer
+  group: innanet-writer
 
-  cancel-in-progress:
-    false
+  cancel-in-progress: false
 
 
 jobs:
 
   generate-pulse-posts:
 
-    if: >
-
+    if: >-
       github.event_name == 'workflow_dispatch' ||
-
       github.event.workflow_run.conclusion == 'success'
 
 
-    runs-on:
-      ubuntu-latest
+    runs-on: ubuntu-latest
 
 
     steps:
 
       - name: Check out repository
 
-        uses:
-          actions/checkout@v4
+        uses: actions/checkout@v4
 
         with:
 
-          ref:
-            main
+          ref: main
 
 
       - name: Set up Node
 
-        uses:
-          actions/setup-node@v4
+        uses: actions/setup-node@v4
 
         with:
 
-          node-version:
-            "20"
+          node-version: "20"
 
 
       - name: Read Landscape Pulse queue
 
-        id:
-          queue
+        id: queue
 
         run: |
 
@@ -126,40 +118,32 @@ jobs:
           echo "Pending Landscape pulses: $COUNT"
 
 
-            - name: Generate Landscape Pulse posts
+      - name: Generate Landscape Pulse posts
 
-        id:
-          generate
+        id: generate
 
-        if: >
-
+        if: >-
           steps.queue.outputs.count != '0'
 
         env:
 
-          GITHUB_TOKEN:
-            ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-          MAX_PULSES:
-            ${{ github.event_name == 'workflow_dispatch' && inputs.max_pulses || steps.queue.outputs.count }}
+          MAX_PULSES: ${{ github.event_name == 'workflow_dispatch' && inputs.max_pulses || steps.queue.outputs.count }}
 
-          LANDSCAPE_PULSE_MODEL:
-            openai/gpt-4o-mini
+          LANDSCAPE_PULSE_MODEL: openai/gpt-4o-mini
 
-          LANDSCAPE_PULSE_REQUEST_GAP_MS:
-            "15000"
+          LANDSCAPE_PULSE_REQUEST_GAP_MS: "15000"
 
         run: |
 
           node scripts/write-landscape-pulse-posts.mjs
 
 
-            - name: Refresh Landscape Pulse queue
+      - name: Refresh Landscape Pulse queue
 
-        if: >
-
+        if: >-
           steps.queue.outputs.count != '0' &&
-
           steps.generate.outcome == 'success'
 
         run: |
@@ -169,8 +153,9 @@ jobs:
 
       - name: Commit generated Industry Pulse content
 
-        if:
-          always()
+        if: >-
+          steps.queue.outputs.count != '0' &&
+          steps.generate.outcome == 'success'
 
         run: |
 
