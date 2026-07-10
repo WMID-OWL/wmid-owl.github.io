@@ -1575,6 +1575,116 @@ async function callModel(
 }
 
 
+// =================================
+// BATCH VALIDATION
+// =================================
+
+
+function batchValidationIssues(
+    posts,
+    pulse
+) {
+
+
+    const allowedAccountIds =
+
+        new Set(
+
+            (
+
+                pulse.availableAccounts
+
+                ||
+
+                []
+
+            )
+
+                .map(
+
+                    account =>
+
+                        account.id
+
+                )
+
+        );
+
+
+    const issues =
+        [];
+
+
+    posts.forEach(
+
+        (
+            post,
+            index
+        ) => {
+
+
+            const accountId =
+
+                cleanText(
+                    post?.accountId,
+                    80
+                );
+
+
+            const body =
+
+                cleanText(
+                    post?. (
+            post,
+            index
+        ) => {
+
+
+            const accountId =
+
+                cleanText(
+                   body,
+                    600
+                );
+
+
+            if (
+                !allowedAccountIds.has(
+                    accountId
+                )
+            ) {
+
+
+                issues.push(
+
+                    `Post ${index + 1} used invalid accountId "${accountId}".`
+
+                );
+
+            }
+
+
+            if (
+                !body
+            ) {
+
+
+                issues.push(
+
+                    `Post ${index + 1} has an empty body.`
+
+                );
+
+            }
+
+        }
+
+    );
+
+
+    return issues;
+
+}
 
 // =================================
 // GENERATE BATCH
@@ -1720,12 +1830,145 @@ async function generateBatch(
 
 
 
-    const selectedPosts =
+        let selectedPosts =
 
         batchPosts.slice(
             0,
             4
         );
+
+
+    let validationIssues =
+
+        batchValidationIssues(
+
+            selectedPosts,
+            pulse
+
+        );
+
+
+    if (
+        validationIssues.length > 0
+    ) {
+
+
+        const allowedAccountIds =
+
+            (
+
+                pulse.availableAccounts
+
+                ||
+
+                []
+
+            )
+
+                .map(
+
+                    account =>
+
+                        account.id
+
+                )
+
+                .join(
+                    ", "
+                );
+
+
+        console.log(
+
+            `Batch ${batchNumber} needs repair: ${validationIssues.join(
+                " "
+            )}`
+
+        );
+
+
+        await sleep(
+            15000
+        );
+
+
+        result =
+
+            await callModel(
+
+                pulse,
+                batchNumber,
+                totalBatches,
+                previousPosts.slice(
+                    -4
+                ),
+
+                `RETRY: The previous batch contained invalid posts. Return exactly 4 complete posts. Every accountId MUST be one of these exact IDs: ${allowedAccountIds}. Every post must have a non-empty body. Problems found: ${validationIssues.join(
+                    " "
+                )}`
+
+            );
+
+
+        batchPosts =
+
+            Array.isArray(
+                result?.posts
+            )
+
+                ? result.posts
+
+                : [];
+
+
+        if (
+            batchPosts.length < 4
+        ) {
+
+
+            throw new Error(
+
+                `Batch ${batchNumber} repair returned only ${batchPosts.length} posts.`
+
+            );
+
+        }
+
+
+        selectedPosts =
+
+            batchPosts.slice(
+                0,
+                4
+            );
+
+
+        validationIssues =
+
+            batchValidationIssues(
+
+                selectedPosts,
+                pulse
+
+            );
+
+
+        if (
+            validationIssues.length > 0
+        ) {
+
+
+            throw new Error(
+
+                `Batch ${batchNumber} remained invalid after repair: ${validationIssues.join(
+                    " "
+                )}`
+
+            );
+
+        }
+
+    }
 
 
     const idMap =
