@@ -32,8 +32,11 @@
     <a class="cr-tool-jump-link" href="#cr-tool-factions">Factions</a>
     <a class="cr-tool-jump-link" href="#cr-tool-events">Events</a>
     <a class="cr-tool-jump-link" href="#cr-tool-booker">Match Booker</a>
-    <a class="cr-tool-jump-link" href="#cr-tool-results">Results</a>
-    <a class="cr-tool-jump-link" href="#cr-tool-landscape">Landscape</a>
+   <a class="cr-tool-jump-link" href="#cr-tool-results">Results</a>
+
+<a class="cr-tool-jump-link" href="#cr-tool-segments">Segments</a>
+
+<a class="cr-tool-jump-link" href="#cr-tool-landscape">Landscape</a>
     <a class="cr-tool-jump-link" href="#cr-tool-social-status">Social Status</a>
     <a class="cr-tool-jump-link" href="#cr-tool-innanet-accounts">Innanet Accounts</a>
     <a class="cr-tool-jump-link" href="#cr-tool-health">Data Health</a>
@@ -138,7 +141,10 @@
                 <article class="control-room-stat-card"><span>CHAMPIONSHIPS</span><strong id="cr-count-championships">0</strong></article>
                 <article class="control-room-stat-card"><span>EVENTS</span><strong id="cr-count-events">0</strong></article>
                 <article class="control-room-stat-card"><span>COMPLETED MATCHES</span><strong id="cr-count-matches">0</strong></article>
-                <article class="control-room-stat-card"><span>ANNOUNCED MATCHES</span><strong id="cr-count-announced">0</strong></article>
+
+<article class="control-room-stat-card"><span>SEGMENTS</span><strong id="cr-count-segments">0</strong></article>
+
+<article class="control-room-stat-card"><span>ANNOUNCED MATCHES</span><strong id="cr-count-announced">0</strong></article>
                 <article class="control-room-stat-card"><span>TITLE REIGNS</span><strong id="cr-count-reigns">0</strong></article>
             </div>
         </section>
@@ -550,8 +556,315 @@
             <div id="cr-results-review" class="cr-change-preview" hidden><span>REVIEW RESULT</span><div id="cr-results-review-list" class="cr-editor-change-list"></div><p id="cr-results-error" class="cr-change-error" hidden></p></div>
             <div class="cr-manager-actions"><button id="cr-results-save" class="control-room-button control-room-button-primary" type="button" disabled>Save Match Result</button></div>
             <p id="cr-results-message" class="cr-save-message" hidden></p>
-        </section><!-- =================================
+        </section>
+
+
+<!-- =================================
+     OWL SEGMENT RECORDER
+================================= -->
+
+
+<section
+    id="cr-tool-segments"
+    class="control-room-panel"
+>
+
+
+    <div class="control-room-panel-heading">
+
+
+        <div>
+
+
+            <p class="eyebrow">
+                STORY CANON
+            </p>
+
+
+            <h2>
+                Segment Recorder
+            </h2>
+
+
+            <p class="control-room-intro">
+
+                Record factual OWL story segments for media,
+                history, and long-term universe memory.
+
+            </p>
+
+
+        </div>
+
+
+        <span
+            id="cr-segment-status"
+            class="control-room-health-summary"
+        >
+            READY
+        </span>
+
+
+    </div>
+
+
+
+    <div class="cr-editor-top-grid">
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-segment-event">
+                EVENT
+            </label>
+
+
+            <select id="cr-segment-event">
+
+                <option value="">
+                    Select Completed Event
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-segment-title">
+                SEGMENT TITLE
+            </label>
+
+
+            <input
+                id="cr-segment-title"
+                type="text"
+                autocomplete="off"
+                placeholder="Example: The Champion Confronts the Challenger"
+            >
+
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-segment-importance">
+                IMPORTANCE
+            </label>
+
+
+            <select id="cr-segment-importance">
+
+                <option value="regular">
+                    Regular
+                </option>
+
+                <option value="featured">
+                    Featured
+                </option>
+
+                <option value="major">
+                    Major
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+
+            <span>
+                PARTICIPANTS
+            </span>
+
+
+            <h3>
+                Who Was Involved?
+            </h3>
+
+
+            <p>
+
+                Select only people who were explicitly involved
+                in the recorded segment.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-segment-participant-search">
+                SEARCH WRESTLERS
+            </label>
+
+
+            <input
+                id="cr-segment-participant-search"
+                type="search"
+                autocomplete="off"
+                placeholder="Search roster..."
+            >
+
+
+        </div>
+
+
+
+        <div
+            id="cr-segment-participant-list"
+            class="cr-segment-participant-list"
+        >
+
+            <p class="cr-landscape-entry-empty">
+                Connect the OWL folder to load wrestlers.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+
+            <span>
+                CANON NOTES
+            </span>
+
+
+            <h3>
+                Summary / Notes
+            </h3>
+
+
+            <p>
+
+                Record what actually happened. These notes become
+                factual source material for Innanet, WWoW, and
+                universe history.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="cr-form-group">
+
+
+            <label for="cr-segment-summary">
+                FACTUAL SUMMARY
+            </label>
+
+
+            <textarea
+                id="cr-segment-summary"
+                rows="10"
+                placeholder="- Person A entered the ring.&#10;- Person B interrupted.&#10;- A challenge was issued for a future match.&#10;- No physical fight occurred."
+            ></textarea>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+
+            <span>
+                EVENT HISTORY
+            </span>
+
+
+            <h3>
+                Recorded Segments
+            </h3>
+
+
+        </div>
+
+
+        <div
+            id="cr-segment-history"
+            class="cr-segment-history-list"
+        >
+
+            <p class="cr-landscape-entry-empty">
+                Select an event to view recorded segments.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="cr-manager-actions">
+
+
+        <button
+            id="cr-segment-save"
+            class="control-room-button control-room-button-primary"
+            type="button"
+            disabled
+        >
+            Save Segment
+        </button>
+
+
+    </div>
+
+
+    <p
+        id="cr-segment-message"
+        class="cr-save-message"
+        hidden
+    ></p>
+
+
+</section>
+
+
+
+<!-- =================================
      THE LANDSCAPE
+================================= -->
 ================================= -->
 
 <section
