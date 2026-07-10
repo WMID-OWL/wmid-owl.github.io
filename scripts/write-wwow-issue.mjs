@@ -933,6 +933,8 @@ FACT RULES:
 - Never fabricate quotes.
 - Never fabricate anonymous backstage sources.
 - Explicit JoW universe developments supplied in Landscape data are canon.
+- Recorded OWL segment summaries supplied in the fact package are canon.
+- A segment summary may be paraphrased and analyzed, but do not invent exact dialogue, additional physical actions, motivations, alliances, attacks, challenges, promises, future matches, or consequences that the recorded summary does not establish.
 - Landscape rankings, Landscape Scores, show rankings, major-event ratings, match ratings, Honors, champion records, and Bragging Rights results may be used exactly as supplied.
 - worldHistoryMemory contains frozen prior OWL month-end history.
 - landscapeWorld contains the wider wrestling industry's current competition, events, champions, developments, and recent ranking history.
@@ -1059,6 +1061,8 @@ DATA RULES:
 - Promotion Power Rankings and Show Power Rankings are separate competition layers.
 - Monthly Major Event Battle is separate from weekly Show Power Rankings.
 - Segments are story context and cannot be treated as matches.
+- Recorded OWL segment summaries are factual canon and may be summarized, analyzed, criticized, or connected to other verified facts.
+- Never expand a recorded segment with invented dialogue, actions, motivations, attacks, alliances, match announcements, or consequences.
 - Segment ratings do not qualify for Match of the Month.
 - Event prestige is editorial and historical context, not an automatic rating bonus.
 - Bragging Rights is a company-pride tournament with no championships at stake.
@@ -1297,7 +1301,31 @@ It may not claim:
 
 unless those facts are supplied.
 
-9. ANALYSIS VERSUS FACT
+9. RECORDED SEGMENTS
+
+Recorded OWL segment summaries are factual canon.
+
+You may:
+- paraphrase the recorded summary
+- analyze its significance
+- compare it with other verified facts
+- discuss possible implications when clearly framed as analysis
+
+You may not invent:
+- exact dialogue
+- additional physical actions
+- attacks
+- alliances
+- motivations
+- promises
+- challenges
+- match announcements
+- future booking
+- consequences
+
+unless they are explicitly supplied in the recorded segment summary.
+
+10. ANALYSIS VERSUS FACT
 
 You may explain why a verified result is significant.
 
