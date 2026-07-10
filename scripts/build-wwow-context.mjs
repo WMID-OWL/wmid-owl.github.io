@@ -662,23 +662,15 @@ function formatMatch(
 
 
 const [
-
     events,
-
     matches,
-
+    segments,
     wrestlers,
-
     teams,
-
     championships,
-
     reigns,
-
     innanetIndex,
-
     wwowIndex
-
 ] = await Promise.all([
 
     readJson(
@@ -686,8 +678,13 @@ const [
         []
     ),
 
-    readJson(
+        readJson(
         "data/matches.json",
+        []
+    ),
+
+    readJson(
+        "data/segments.json",
         []
     ),
 
@@ -992,7 +989,190 @@ const landscapeWorld = await buildWwowLandscapeContext({
         selectedMonth
 
 });
+// =================================
+// OWL SEGMENT CANON
+// =================================
 
+
+const monthSegments =
+
+    segments
+
+        .filter(
+
+            segment => {
+
+
+                const event =
+
+                    eventMap[
+                        segment.eventId
+                    ];
+
+
+                return (
+
+                    event?.date
+
+                    &&
+
+                    monthId(
+                        event.date
+                    )
+                    ===
+                    selectedMonth
+
+                );
+
+            }
+
+        )
+
+        .sort(
+
+            (
+                a,
+                b
+            ) => {
+
+
+                const eventA =
+
+                    eventMap[
+                        a.eventId
+                    ];
+
+
+                const eventB =
+
+                    eventMap[
+                        b.eventId
+                    ];
+
+
+                return String(
+                    eventA?.date || ""
+                )
+
+                    .localeCompare(
+
+                        String(
+                            eventB?.date || ""
+                        )
+
+                    )
+
+                    ||
+
+                    String(
+                        a.createdAt || ""
+                    )
+
+                        .localeCompare(
+
+                            String(
+                                b.createdAt || ""
+                            )
+
+                        );
+
+            }
+
+        )
+
+        .map(
+
+            segment => {
+
+
+                const event =
+
+                    eventMap[
+                        segment.eventId
+                    ];
+
+
+                const participantIds =
+
+                    Array.isArray(
+                        segment.participantIds
+                    )
+
+                        ? segment.participantIds
+
+                        : [];
+
+
+                return {
+
+
+                    id:
+                        segment.id,
+
+
+                    eventId:
+                        segment.eventId,
+
+
+                    eventName:
+                        event?.name || segment.eventId,
+
+
+                    eventDate:
+                        event?.date || "",
+
+
+                    brand:
+                        event?.brand || "OWL",
+
+
+                    title:
+                        segment.title || "",
+
+
+                    importance:
+
+                        segment.importance
+
+                        ||
+
+                        "regular",
+
+
+                    participantIds:
+                        participantIds,
+
+
+                    participants:
+
+                        participantIds.map(
+
+                            wrestlerId =>
+
+                                wrestlerMap[
+                                    wrestlerId
+                                ]
+                                    ?.name
+
+                                ||
+
+                                wrestlerId
+
+                        ),
+
+
+                    summary:
+
+                        String(
+                            segment.summary || ""
+                        )
+                            .trim()
+
+                };
+
+            }
+
+        );
 
 // =================================
 // MONTH MATCHES
@@ -2340,9 +2520,14 @@ snapshotUse:
 
     "worldHistoryMemory contains frozen prior month-end facts. Rankings, records, title status, and title transitions may be treated as historical fact. Innanet sentiment is public reaction. Do not invent an unrecorded reason for why a rise or collapse happened.",
 
-        innanetUse:
+                innanetUse:
 
             "Innanet posts represent public reaction and opinion. They may be quoted or summarized as public sentiment but must never be treated as proof of factual backstage events.",
+
+
+        segmentCanon:
+
+            "Recorded OWL segments are factual story canon. WWoW may summarize, analyze, criticize, praise, or discuss implications of the recorded facts, but may not invent dialogue, actions, motivations, attacks, alliances, match announcements, or consequences that are not explicitly supplied.",
 
 
         koMeaning:
@@ -2352,13 +2537,16 @@ snapshotUse:
     },
 
 
-    monthSummary: {
+        monthSummary: {
 
         eventCount:
             eventSummaries.length,
 
         matchCount:
             monthMatches.length,
+
+        segmentCount:
+            monthSegments.length,
 
         titleChangeCount:
             titleChanges.length,
@@ -2368,9 +2556,12 @@ snapshotUse:
 
     },
 
-
-    events:
+        events:
         eventSummaries,
+
+
+    segments:
+        monthSegments,
 
 
     wrestlerContext:
