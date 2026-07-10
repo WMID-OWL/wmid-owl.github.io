@@ -1,0 +1,483 @@
+name: Test Segment Media Integration
+
+
+on:
+
+  workflow_dispatch:
+
+
+permissions:
+
+  contents:
+    read
+
+
+jobs:
+
+  test-segment-integration:
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+      - name: Check integration script syntax
+
+        run: |
+
+          node --check scripts/build-innanet-context.mjs
+
+          node --check scripts/build-wwow-context.mjs
+
+          node --check scripts/build-monthly-snapshot.mjs
+
+          node --check scripts/write-innanet-posts.mjs
+
+          node --check scripts/write-wwow-issue.mjs
+
+
+      - name: Inject runner-only test segment
+
+        run: |
+
+          node <<'NODE'
+
+          const fs = require("fs");
+
+
+          const events = JSON.parse(
+
+            fs.readFileSync(
+              "data/events.json",
+              "utf8"
+            )
+
+          );
+
+
+          const wrestlers = JSON.parse(
+
+            fs.readFileSync(
+              "data/wrestlers.json",
+              "utf8"
+            )
+
+          );
+
+
+          const segments = JSON.parse(
+
+            fs.readFileSync(
+              "data/segments.json",
+              "utf8"
+            )
+
+          );
+
+
+          const event =
+
+            events.find(
+
+              item =>
+
+                String(
+                  item.status || ""
+                )
+                  .toLowerCase()
+                  ===
+                  "completed"
+
+                &&
+
+                String(
+                  item.date || ""
+                )
+                  .startsWith(
+                    "2026-07"
+                  )
+
+            );
+
+
+          if (!event) {
+
+            throw new Error(
+              "No completed July 2026 event was found for the integration test."
+            );
+
+          }
+
+
+          const participantIds =
+
+            wrestlers
+              .slice(
+                0,
+                2
+              )
+              .map(
+                wrestler => wrestler.id
+              );
+
+
+          const testSegment = {
+
+            id:
+              "segment-media-integration-test",
+
+            eventId:
+              event.id,
+
+            title:
+              "SEGMENT MEDIA INTEGRATION TEST",
+
+            importance:
+              "major",
+
+            participantIds:
+              participantIds,
+
+            summary:
+              "This runner-only test segment verifies that recorded OWL segment canon reaches Innanet, WWoW, and monthly history.",
+
+            createdAt:
+              "2026-07-31T12:00:00.000Z"
+
+          };
+
+
+          const nextSegments = [
+
+            ...segments.filter(
+
+              segment =>
+
+                segment.id !==
+                testSegment.id
+
+            ),
+
+            testSegment
+
+          ];
+
+
+          fs.writeFileSync(
+
+            "data/segments.json",
+
+            JSON.stringify(
+              nextSegments,
+              null,
+              2
+            ) + "\n"
+
+          );
+
+
+          fs.writeFileSync(
+
+            "/tmp/segment-test-meta.json",
+
+            JSON.stringify({
+              eventId:
+                event.id
+            })
+
+          );
+
+
+          console.log(
+            "Injected runner-only segment for event:",
+            event.id
+          );
+
+          NODE
+
+
+      - name: Build Innanet segment context
+
+        run: |
+
+          node scripts/build-innanet-context.mjs
+
+
+      - name: Validate Innanet segment context
+
+        run: |
+
+          node <<'NODE'
+
+          const fs = require("fs");
+
+
+          const meta = JSON.parse(
+
+            fs.readFileSync(
+              "/tmp/segment-test-meta.json",
+              "utf8"
+            )
+
+          );
+
+
+          const queue = JSON.parse(
+
+            fs.readFileSync(
+              "data/innanet/generation-queue.json",
+              "utf8"
+            )
+
+          );
+
+
+          const eventPackage =
+
+            queue.pendingEvents.find(
+
+              item =>
+
+                item.event.id ===
+                meta.eventId
+
+            );
+
+
+          if (!eventPackage) {
+
+            throw new Error(
+              "Test event did not enter Innanet generation context."
+            );
+
+          }
+
+
+          if (
+
+            !Array.isArray(
+              eventPackage.segments
+            )
+
+            ||
+
+            !eventPackage.segments.some(
+
+              segment =>
+
+                segment.id ===
+                "segment-media-integration-test"
+
+            )
+
+          ) {
+
+            throw new Error(
+              "Innanet context is missing the test segment."
+            );
+
+          }
+
+
+          if (
+
+            !eventPackage.segmentRevision
+
+            ||
+
+            eventPackage.segmentRevision ===
+            "[]"
+
+          ) {
+
+            throw new Error(
+              "Innanet context did not create a segment revision."
+            );
+
+          }
+
+
+          console.log(
+            "Innanet segment integration passed."
+          );
+
+          NODE
+
+
+      - name: Build WWoW segment context
+
+        env:
+
+          TARGET_MONTH:
+            "2026-07"
+
+        run: |
+
+          node scripts/build-wwow-context.mjs
+
+
+      - name: Validate WWoW segment context
+
+        run: |
+
+          node <<'NODE'
+
+          const fs = require("fs");
+
+
+          const context = JSON.parse(
+
+            fs.readFileSync(
+              "data/wwow/generation-context.json",
+              "utf8"
+            )
+
+          );
+
+
+          if (
+
+            !Array.isArray(
+              context.segments
+            )
+
+            ||
+
+            !context.segments.some(
+
+              segment =>
+
+                segment.id ===
+                "segment-media-integration-test"
+
+            )
+
+          ) {
+
+            throw new Error(
+              "WWoW context is missing the test segment."
+            );
+
+          }
+
+
+          if (
+
+            Number(
+              context.monthSummary.segmentCount || 0
+            ) < 1
+
+          ) {
+
+            throw new Error(
+              "WWoW segment count was not updated."
+            );
+
+          }
+
+
+          console.log(
+            "WWoW segment integration passed."
+          );
+
+          NODE
+
+
+      - name: Build temporary monthly snapshot
+
+        env:
+
+          TARGET_MONTH:
+            "2026-07"
+
+          ALLOW_REBUILD:
+            "true"
+
+        run: |
+
+          node scripts/build-monthly-snapshot.mjs
+
+
+      - name: Validate frozen history segment context
+
+        run: |
+
+          node <<'NODE'
+
+          const fs = require("fs");
+
+
+          const snapshot = JSON.parse(
+
+            fs.readFileSync(
+              "data/history/2026-07.json",
+              "utf8"
+            )
+
+          );
+
+
+          if (
+
+            !Array.isArray(
+              snapshot.segments
+            )
+
+            ||
+
+            !snapshot.segments.some(
+
+              segment =>
+
+                segment.id ===
+                "segment-media-integration-test"
+
+            )
+
+          ) {
+
+            throw new Error(
+              "Monthly history snapshot is missing the test segment."
+            );
+
+          }
+
+
+          if (
+
+            Number(
+              snapshot.summary.segmentCount || 0
+            ) < 1
+
+          ) {
+
+            throw new Error(
+              "Monthly history segment count was not updated."
+            );
+
+          }
+
+
+          console.log(
+            "Monthly history segment integration passed."
+          );
+
+          NODE
