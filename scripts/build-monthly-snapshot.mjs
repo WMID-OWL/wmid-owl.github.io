@@ -1463,6 +1463,7 @@ if (
 
 
 const [
+
     events,
     matches,
     segments,
@@ -1472,42 +1473,51 @@ const [
     reigns,
     innanetIndex,
     wwowIndex
+
 ] = await Promise.all([
 
-        readJson(
+
+    readJson(
+        "data/events.json",
+        []
+    ),
+
+
+    readJson(
         "data/matches.json",
         []
     ),
+
 
     readJson(
         "data/segments.json",
         []
     ),
 
-    readJson(
-        "data/wrestlers.json",
-        []
-    ),
 
     readJson(
         "data/wrestlers.json",
         []
     ),
+
 
     readJson(
         "data/teams.json",
         []
     ),
 
+
     readJson(
         "data/championships.json",
         []
     ),
 
+
     readJson(
         "data/title-reigns.json",
         []
     ),
+
 
     readJson(
         "data/innanet/archive-index.json",
@@ -1517,6 +1527,7 @@ const [
         }
     ),
 
+
     readJson(
         "data/wwow/archive-index.json",
         {
@@ -1524,6 +1535,7 @@ const [
                 []
         }
     )
+
 
 ]);
 
