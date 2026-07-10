@@ -141,10 +141,10 @@ jobs:
           GITHUB_TOKEN:
             ${{ secrets.GITHUB_TOKEN }}
 
-          WWOW_MODEL:
-            openai/gpt-4o-mini
+          
+          WWOW_MODEL: openai/gpt-4o-mini ^
 
-                    WWOW_REQUEST_GAP_MS:
+            WWOW_REQUEST_GAP_MS:
             "30000"
 
 
