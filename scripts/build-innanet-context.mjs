@@ -2129,6 +2129,7 @@ function standoutFacts(
 const [
     events,
     matches,
+    segments,
     announcedMatches,
     wrestlers,
     teams,
@@ -2143,8 +2144,13 @@ const [
         []
     ),
 
-    readJson(
+        readJson(
         "data/matches.json",
+        []
+    ),
+
+    readJson(
+        "data/segments.json",
         []
     ),
 
@@ -2341,8 +2347,9 @@ const wwowArchives =
     );
 
 
-const alreadyArchived =
-    archivedEventIds(
+const archivedRevisions =
+
+    archivedEventRevisions(
         innanetArchives
     );
 
@@ -2426,12 +2433,58 @@ let eligibleEvents =
                     event.id
                 )
         )
-        .filter(
-            event =>
-                !alreadyArchived.has(
+            .filter(
+
+        event => {
+
+
+            if (
+                !archivedRevisions.has(
                     event.id
                 )
-        )
+            ) {
+
+
+                return true;
+
+            }
+
+
+            const currentRevision =
+
+                segmentRevisionForEvent(
+
+                    event.id,
+                    segments
+
+                );
+
+
+            const archivedRevision =
+
+                archivedRevisions.get(
+                    event.id
+                );
+
+
+            if (
+                archivedRevision ===
+                null
+            ) {
+
+
+                return currentRevision !==
+                    "[]";
+
+            }
+
+
+            return currentRevision !==
+                archivedRevision;
+
+        }
+
+    )
         .sort(
             (a, b) =>
                 asDate(
