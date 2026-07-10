@@ -36,7 +36,7 @@ const OWL_CONTROL_ROOM_FILES = [
         label: "Title Reigns"
     },
 
-        {
+            {
         key: "events",
         fileName: "events.json",
         label: "Events"
@@ -1018,7 +1018,7 @@ function renderDashboard() {
     );
 
 
-        setCount(
+            setCount(
         "cr-count-matches",
         owlControlRoomData.matches.length
     );
