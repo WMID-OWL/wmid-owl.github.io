@@ -1,5 +1,16 @@
 {
   "version": 1,
-  "latestPeriodId": "",
-  "periods": []
+  "latestPeriodId": "2026-01",
+  "periods": [
+    {
+      "id": "2026-01",
+      "label": "January 2026",
+      "weeklyShowsRecorded": 2,
+      "majorEventsRecorded": 0,
+      "weeklyShowsComplete": false,
+      "showdownSaturdayComplete": false,
+      "awardsFinalized": false,
+      "rankingsFinalized": false
+    }
+  ]
 }
