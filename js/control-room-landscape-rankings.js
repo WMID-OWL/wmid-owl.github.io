@@ -21,10 +21,24 @@ const crLandscapeRankingEls = {
         ),
 
 
-    refresh:
+        refresh:
 
         document.getElementById(
             "cr-landscape-refresh-rankings"
+        ),
+
+
+    freeze:
+
+        document.getElementById(
+            "cr-landscape-freeze-rankings"
+        ),
+
+
+    status:
+
+        document.getElementById(
+            "cr-landscape-ranking-status"
         ),
 
 
@@ -61,6 +75,14 @@ let crLandscapeRankingData = {
 
 
     calendar:
+        null,
+
+
+    archive:
+        null,
+
+
+    rankings:
         null
 
 };
