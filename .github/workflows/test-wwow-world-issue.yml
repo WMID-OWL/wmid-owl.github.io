@@ -67,7 +67,7 @@ jobs:
             openai/gpt-4o-mini
 
           WWOW_TEST_REQUEST_GAP_MS:
-            "15000"
+            "30000"
 
         run: |
 
