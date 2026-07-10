@@ -68,6 +68,13 @@
         );
 
 
+    const cancelEditButton =
+
+        document.getElementById(
+            "cr-segment-cancel-edit"
+        );
+
+
     const message =
 
         document.getElementById(
@@ -102,9 +109,13 @@
         new Set();
 
 
+    let editingSegmentId =
+        null;
+
+
 
     // =================================
-    // HELPERS
+    // DATA HELPERS
     // =================================
 
 
@@ -180,32 +191,9 @@
 
 
 
-    function eventName(
-        eventId
-    ) {
-
-
-        const event =
-
-            events().find(
-
-                item =>
-
-                    item.id ===
-                    eventId
-
-            );
-
-
-        return event
-            ?.name
-
-            ||
-
-            eventId;
-
-    }
-
+    // =================================
+    // MESSAGE HELPERS
+    // =================================
 
 
     function showMessage(
@@ -667,6 +655,20 @@
                     "cr-segment-history-card";
 
 
+                if (
+                    segment.id ===
+                    editingSegmentId
+                ) {
+
+
+                    card.classList.add(
+                        "is-editing"
+                    );
+
+                }
+
+
+
                 const heading =
 
                     document.createElement(
@@ -714,6 +716,7 @@
                 );
 
 
+
                 const participants =
 
                     document.createElement(
@@ -749,6 +752,7 @@
                         : "No listed participants";
 
 
+
                 const summary =
 
                     document.createElement(
@@ -758,6 +762,87 @@
 
                 summary.textContent =
                     segment.summary;
+
+
+
+                const actions =
+
+                    document.createElement(
+                        "div"
+                    );
+
+
+                actions.className =
+                    "cr-segment-history-actions";
+
+
+
+                const editButton =
+
+                    document.createElement(
+                        "button"
+                    );
+
+
+                editButton.type =
+                    "button";
+
+
+                editButton.className =
+                    "control-room-button";
+
+
+                editButton.dataset.action =
+                    "edit-segment";
+
+
+                editButton.dataset.segmentId =
+                    segment.id;
+
+
+                editButton.textContent =
+                    "Edit";
+
+
+
+                const deleteButton =
+
+                    document.createElement(
+                        "button"
+                    );
+
+
+                deleteButton.type =
+                    "button";
+
+
+                deleteButton.className =
+
+                    "control-room-button cr-segment-delete-button";
+
+
+                deleteButton.dataset.action =
+                    "delete-segment";
+
+
+                deleteButton.dataset.segmentId =
+                    segment.id;
+
+
+                deleteButton.textContent =
+                    "Delete";
+
+
+
+                actions.appendChild(
+                    editButton
+                );
+
+
+                actions.appendChild(
+                    deleteButton
+                );
+
 
 
                 card.appendChild(
@@ -775,6 +860,11 @@
                 );
 
 
+                card.appendChild(
+                    actions
+                );
+
+
                 historyList.appendChild(
                     card
                 );
@@ -788,7 +878,7 @@
 
 
     // =================================
-    // VALIDATION
+    // FORM VALIDATION
     // =================================
 
 
@@ -818,13 +908,50 @@
             !valid;
 
 
-        status.textContent =
+        if (
+            editingSegmentId
+        ) {
 
-            valid
 
-                ? "READY TO SAVE"
+            status.textContent =
 
-                : "READY";
+                valid
+
+                    ? "READY TO UPDATE"
+
+                    : "EDITING";
+
+
+            saveButton.textContent =
+                "Update Segment";
+
+
+            cancelEditButton.hidden =
+                false;
+
+        }
+
+
+        else {
+
+
+            status.textContent =
+
+                valid
+
+                    ? "READY TO SAVE"
+
+                    : "READY";
+
+
+            saveButton.textContent =
+                "Save Segment";
+
+
+            cancelEditButton.hidden =
+                true;
+
+        }
 
     }
 
@@ -964,24 +1091,183 @@
 
 
     // =================================
-    // SAVE
+    // RESET FORM
     // =================================
 
 
-    async function saveSegment() {
+    function resetForm() {
 
 
-        clearMessage();
+        editingSegmentId =
+            null;
+
+
+        eventSelect.disabled =
+            false;
+
+
+        titleInput.value =
+            "";
+
+
+        importanceSelect.value =
+            "regular";
+
+
+        summaryInput.value =
+            "";
+
+
+        participantSearch.value =
+            "";
+
+
+        selectedParticipantIds.clear();
+
+
+        renderParticipants();
+
+
+        renderHistory();
+
+
+        validateForm();
+
+    }
+
+
+
+    // =================================
+    // START EDIT
+    // =================================
+
+
+    function startEdit(
+        segmentId
+    ) {
+
+
+        const segment =
+
+            segments().find(
+
+                item =>
+
+                    item.id ===
+                    segmentId
+
+            );
 
 
         if (
-            saveButton.disabled
+            !segment
         ) {
+
+
+            showMessage(
+
+                "Could not find that segment.",
+
+                "error"
+
+            );
 
 
             return;
 
         }
+
+
+        clearMessage();
+
+
+        editingSegmentId =
+            segment.id;
+
+
+        eventSelect.value =
+            segment.eventId;
+
+
+        eventSelect.disabled =
+            true;
+
+
+        titleInput.value =
+            segment.title || "";
+
+
+        importanceSelect.value =
+
+            segment.importance
+
+            ||
+
+            "regular";
+
+
+        summaryInput.value =
+            segment.summary || "";
+
+
+        selectedParticipantIds.clear();
+
+
+        (
+
+            segment.participantIds
+
+            ||
+
+            []
+
+        )
+
+            .forEach(
+
+                wrestlerId =>
+
+                    selectedParticipantIds.add(
+                        wrestlerId
+                    )
+
+            );
+
+
+        participantSearch.value =
+            "";
+
+
+        renderParticipants();
+
+
+        renderHistory();
+
+
+        validateForm();
+
+
+        titleInput.focus();
+
+
+        showMessage(
+
+            `Editing segment: ${segment.title}`,
+
+            "success"
+
+        );
+
+    }
+
+
+
+    // =================================
+    // SAVE NEW SEGMENT
+    // =================================
+
+
+    async function createSegment() {
 
 
         const eventId =
@@ -1028,22 +1314,14 @@
         };
 
 
-        saveButton.disabled =
-            true;
-
-
-        status.textContent =
-            "SAVING";
+        owlControlRoomData
+            .segments
+            .push(
+                record
+            );
 
 
         try {
-
-
-            owlControlRoomData
-                .segments
-                .push(
-                    record
-                );
 
 
             await writeSegmentsFile();
@@ -1053,39 +1331,12 @@
 
                 "cr-count-segments",
 
-                owlControlRoomData
-                    .segments
-                    .length
+                segments().length
 
             );
 
 
-            titleInput.value =
-                "";
-
-
-            summaryInput.value =
-                "";
-
-
-            importanceSelect.value =
-                "regular";
-
-
-            selectedParticipantIds.clear();
-
-
-            participantSearch.value =
-                "";
-
-
-            renderParticipants();
-
-
-            renderHistory();
-
-
-            validateForm();
+            resetForm();
 
 
             showMessage(
@@ -1095,7 +1346,6 @@
                 "success"
 
             );
-
 
         }
 
@@ -1108,6 +1358,198 @@
             owlControlRoomData
                 .segments
                 .pop();
+
+
+            throw error;
+
+        }
+
+    }
+
+
+
+    // =================================
+    // UPDATE SEGMENT
+    // =================================
+
+
+    async function updateSegment() {
+
+
+        const index =
+
+            segments().findIndex(
+
+                segment =>
+
+                    segment.id ===
+                    editingSegmentId
+
+            );
+
+
+        if (
+            index < 0
+        ) {
+
+
+            throw new Error(
+
+                "The segment being edited could not be found."
+
+            );
+
+        }
+
+
+        const previousRecord =
+
+            JSON.parse(
+
+                JSON.stringify(
+
+                    segments()[
+                        index
+                    ]
+
+                )
+
+            );
+
+
+        const updatedRecord = {
+
+
+            ...previousRecord,
+
+
+            title:
+                titleInput.value.trim(),
+
+
+            importance:
+                importanceSelect.value,
+
+
+            participantIds:
+
+                [
+                    ...selectedParticipantIds
+                ],
+
+
+            summary:
+                summaryInput.value.trim(),
+
+
+            updatedAt:
+
+                new Date()
+                    .toISOString()
+
+        };
+
+
+        owlControlRoomData
+            .segments[
+                index
+            ] = updatedRecord;
+
+
+        try {
+
+
+            await writeSegmentsFile();
+
+
+            resetForm();
+
+
+            showMessage(
+
+                `Updated segment: ${updatedRecord.title}`,
+
+                "success"
+
+            );
+
+        }
+
+
+        catch (
+            error
+        ) {
+
+
+            owlControlRoomData
+                .segments[
+                    index
+                ] = previousRecord;
+
+
+            throw error;
+
+        }
+
+    }
+
+
+
+    // =================================
+    // SAVE
+    // =================================
+
+
+    async function saveSegment() {
+
+
+        clearMessage();
+
+
+        if (
+            saveButton.disabled
+        ) {
+
+
+            return;
+
+        }
+
+
+        saveButton.disabled =
+            true;
+
+
+        status.textContent =
+            "SAVING";
+
+
+        try {
+
+
+            if (
+                editingSegmentId
+            ) {
+
+
+                await updateSegment();
+
+            }
+
+
+            else {
+
+
+                await createSegment();
+
+            }
+
+        }
+
+
+        catch (
+            error
+        ) {
 
 
             console.error(
@@ -1125,6 +1567,172 @@
 
 
             validateForm();
+
+        }
+
+    }
+
+
+
+    // =================================
+    // DELETE
+    // =================================
+
+
+    async function deleteSegment(
+        segmentId
+    ) {
+
+
+        const index =
+
+            segments().findIndex(
+
+                segment =>
+
+                    segment.id ===
+                    segmentId
+
+            );
+
+
+        if (
+            index < 0
+        ) {
+
+
+            showMessage(
+
+                "Could not find that segment.",
+
+                "error"
+
+            );
+
+
+            return;
+
+        }
+
+
+        const record =
+
+            segments()[
+                index
+            ];
+
+
+        const confirmed =
+
+            window.confirm(
+
+                `Delete segment "${record.title}"?\n\nThis removes it from OWL canon.`
+
+            );
+
+
+        if (
+            !confirmed
+        ) {
+
+
+            return;
+
+        }
+
+
+        clearMessage();
+
+
+        const removed =
+
+            owlControlRoomData
+                .segments
+                .splice(
+                    index,
+                    1
+                )[0];
+
+
+        try {
+
+
+            await writeSegmentsFile();
+
+
+            if (
+                editingSegmentId ===
+                segmentId
+            ) {
+
+
+                resetForm();
+
+            }
+
+
+            else {
+
+
+                renderHistory();
+
+
+                validateForm();
+
+            }
+
+
+            setCount(
+
+                "cr-count-segments",
+
+                segments().length
+
+            );
+
+
+            showMessage(
+
+                `Deleted segment: ${removed.title}`,
+
+                "success"
+
+            );
+
+        }
+
+
+        catch (
+            error
+        ) {
+
+
+            owlControlRoomData
+                .segments
+                .splice(
+
+                    index,
+                    0,
+                    removed
+
+                );
+
+
+            console.error(
+                error
+            );
+
+
+            renderHistory();
+
+
+            showMessage(
+
+                `Could not delete segment: ${error.message}`,
+
+                "error"
+
+            );
 
         }
 
@@ -1220,6 +1828,93 @@
 
         "click",
         saveSegment
+
+    );
+
+
+    cancelEditButton.addEventListener(
+
+        "click",
+
+        () => {
+
+
+            clearMessage();
+
+
+            resetForm();
+
+
+            showMessage(
+
+                "Segment edit canceled.",
+
+                "success"
+
+            );
+
+        }
+
+    );
+
+
+    historyList.addEventListener(
+
+        "click",
+
+        event => {
+
+
+            const button =
+
+                event.target.closest(
+
+                    "button[data-action]"
+
+                );
+
+
+            if (
+                !button
+            ) {
+
+
+                return;
+
+            }
+
+
+            const segmentId =
+
+                button.dataset.segmentId;
+
+
+            if (
+                button.dataset.action ===
+                "edit-segment"
+            ) {
+
+
+                startEdit(
+                    segmentId
+                );
+
+            }
+
+
+            if (
+                button.dataset.action ===
+                "delete-segment"
+            ) {
+
+
+                deleteSegment(
+                    segmentId
+                );
+
+            }
+
+        }
 
     );
 
