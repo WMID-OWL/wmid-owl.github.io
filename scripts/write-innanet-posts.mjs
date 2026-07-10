@@ -716,12 +716,21 @@ function buildPromptPackage(
     return {
 
 
-        event:
+                event:
             eventPackage.event,
 
 
         rules:
             eventPackage.rules,
+
+
+        segments:
+
+            eventPackage.segments
+
+            ||
+
+            [],
 
 
         matches:
@@ -966,6 +975,8 @@ VOICE:
 
 CANON RULES:
 - Database facts in the supplied package are canon.
+- Recorded OWL segment summaries are factual canon.
+- Segment summaries may be paraphrased and reacted to, but never invent exact dialogue, physical actions, attacks, alliances, challenges, promises, motivations, future matches, or consequences that are not explicitly recorded.
 - Never invent a match, result, rating, title change, contract, signing, firing, suspension, crime, backstage fight, relationship, injury diagnosis, or recovery timetable.
 - A recorded KO is a major injury-level story signal, but never invent a medical diagnosis or exact recovery time.
 - Opinion, jokes, exaggeration, criticism, and clearly framed speculation are allowed.
@@ -2599,7 +2610,7 @@ async function saveEventToMonth(
             "OWL",
 
 
-        eventType:
+                eventType:
 
             eventPackage
                 .event
@@ -2612,6 +2623,15 @@ async function saveEventToMonth(
 
         date:
             eventPackage.event.date,
+
+
+        segmentRevision:
+
+            eventPackage.segmentRevision
+
+            ||
+
+            "[]",
 
 
         generatedAt:
