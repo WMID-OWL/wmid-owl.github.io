@@ -1422,7 +1422,15 @@ crLandscapeRankingEls
         crLandscapeRankingRefresh
 
     );
+crLandscapeRankingEls
+    .freeze
+    .addEventListener(
 
+        "click",
+
+        crLandscapeRankingFreeze
+
+    );
 
 crLandscapeRankingEls
     .period
