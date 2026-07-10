@@ -1,0 +1,3971 @@
+/* =================================
+   THE LANDSCAPE
+   POWER HIERARCHY DESIGN SYSTEM
+================================= */
+
+
+:root {
+
+    --ls-black:
+        #060809;
+
+    --ls-black-soft:
+        #0a0d0f;
+
+    --ls-panel:
+        #0e1214;
+
+    --ls-panel-raised:
+        #13181b;
+
+    --ls-panel-light:
+        #192024;
+
+    --ls-line:
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    --ls-line-strong:
+        rgba(
+            255,
+            255,
+            255,
+            0.17
+        );
+
+    --ls-text:
+        #f3f5f5;
+
+    --ls-muted:
+        #818d93;
+
+    --ls-gold:
+        #c99c2f;
+
+    --ls-gold-bright:
+        #f3ce61;
+
+    --ls-gold-pale:
+        #ffe7a0;
+
+    --ls-rise:
+        #78d5a1;
+
+    --ls-fall:
+        #7fbce8;
+
+    --ls-ice:
+        #8fd4ff;
+
+    --ls-ice-deep:
+        #29526c;
+
+    --ls-danger:
+        #e06b6b;
+
+}
+
+
+
+* {
+
+    box-sizing:
+        border-box;
+
+}
+
+
+
+html {
+
+    scroll-behavior:
+        smooth;
+
+}
+
+
+
+body.landscape-page {
+
+    margin:
+        0;
+
+    min-height:
+        100vh;
+
+    color:
+        var(
+            --ls-text
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(
+                201,
+                156,
+                47,
+                0.06
+            ),
+            transparent 32%
+        ),
+
+        var(
+            --ls-black
+        );
+
+    font-family:
+
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+
+}
+
+
+
+/* =================================
+   SITE HEADER
+================================= */
+
+
+.landscape-site-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        32px;
+
+    padding:
+        18px 36px;
+
+    border-bottom:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        rgba(
+            6,
+            8,
+            9,
+            0.98
+        );
+
+}
+
+
+
+.landscape-brand {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        13px;
+
+    color:
+        inherit;
+
+    text-decoration:
+        none;
+
+}
+
+
+
+.landscape-brand-mark {
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    border:
+        1px solid
+        rgba(
+            243,
+            206,
+            97,
+            0.45
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                243,
+                206,
+                97,
+                0.1
+            ),
+            transparent
+        );
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.11em;
+
+}
+
+
+
+.landscape-brand-copy {
+
+    display:
+        grid;
+
+    gap:
+        3px;
+
+}
+
+
+
+.landscape-brand-copy strong {
+
+    font-size:
+        0.92rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.11em;
+
+}
+
+
+
+.landscape-brand-copy small {
+
+    color:
+        var(
+            --ls-muted
+        );
+
+    font-size:
+        0.52rem;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+
+.landscape-main-nav {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    justify-content:
+        flex-end;
+
+    gap:
+        18px;
+
+}
+
+
+
+.landscape-main-nav a {
+
+    position:
+        relative;
+
+    color:
+        #a2abb0;
+
+    font-size:
+        0.6rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.04em;
+
+    text-decoration:
+        none;
+
+}
+
+
+
+.landscape-main-nav a::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    bottom:
+        -6px;
+
+    width:
+        0;
+
+    height:
+        1px;
+
+    background:
+        var(
+            --ls-gold-bright
+        );
+
+    transition:
+        width 0.2s ease;
+
+}
+
+
+
+.landscape-main-nav a:hover {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+}
+
+
+
+.landscape-main-nav a:hover::after {
+
+    width:
+        100%;
+
+}
+
+
+
+/* =================================
+   HERO
+================================= */
+
+
+.landscape-hero {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    min-height:
+        560px;
+
+    display:
+        grid;
+
+    align-items:
+        end;
+
+    padding:
+        78px 38px 58px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            201,
+            156,
+            47,
+            0.18
+        );
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(
+                6,
+                8,
+                9,
+                1
+            )
+            0%,
+
+            rgba(
+                8,
+                11,
+                13,
+                0.98
+            )
+            55%,
+
+            rgba(
+                14,
+                17,
+                16,
+                0.95
+            )
+            100%
+        );
+
+}
+
+
+
+.landscape-hero::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    height:
+        1px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(
+                243,
+                206,
+                97,
+                0.65
+            ),
+            transparent
+        );
+
+}
+
+
+
+.landscape-hero-glow {
+
+    position:
+        absolute;
+
+    width:
+        700px;
+
+    height:
+        700px;
+
+    right:
+        -180px;
+
+    top:
+        -260px;
+
+    border-radius:
+        50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(
+                243,
+                206,
+                97,
+                0.12
+            )
+            0%,
+            transparent 68%
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+
+.landscape-hero-inner {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        minmax(
+            280px,
+            390px
+        );
+
+    align-items:
+        end;
+
+    gap:
+        60px;
+
+    width:
+        100%;
+
+    max-width:
+        1600px;
+
+    margin:
+        0 auto;
+
+}
+
+
+
+.landscape-overline {
+
+    margin:
+        0 0 14px;
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.22em;
+
+}
+
+
+
+.landscape-hero h1 {
+
+    margin:
+        0;
+
+    font-family:
+
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+    font-weight:
+        900;
+
+    line-height:
+        0.77;
+
+    letter-spacing:
+        -0.045em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.landscape-hero-the {
+
+    display:
+        block;
+
+    color:
+        #f4f5f5;
+
+    font-size:
+        clamp(
+            3.4rem,
+            7vw,
+            7rem
+        );
+
+}
+
+
+
+.landscape-hero-title {
+
+    display:
+        block;
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-size:
+        clamp(
+            5.6rem,
+            14vw,
+            13rem
+        );
+
+    text-shadow:
+
+        0 0 40px
+        rgba(
+            243,
+            206,
+            97,
+            0.08
+        );
+
+}
+
+
+
+.landscape-hero-statement {
+
+    max-width:
+        700px;
+
+    margin:
+        30px 0 0;
+
+    color:
+        #adb7bc;
+
+    font-size:
+        1.03rem;
+
+    font-weight:
+        500;
+
+    letter-spacing:
+        0.01em;
+
+    line-height:
+        1.6;
+
+}
+
+
+
+.landscape-report-lockup {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+    margin-top:
+        26px;
+
+}
+
+
+
+.landscape-report-lockup span {
+
+    color:
+        var(
+            --ls-muted
+        );
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+
+.landscape-report-lockup strong {
+
+    color:
+        #f0f3f4;
+
+    font-size:
+        0.86rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.03em;
+
+}
+
+
+
+.landscape-power-seal {
+
+    position:
+        relative;
+
+    padding:
+        28px;
+
+    border:
+        1px solid
+        rgba(
+            243,
+            206,
+            97,
+            0.3
+        );
+
+    background:
+
+        linear-gradient(
+            150deg,
+            rgba(
+                243,
+                206,
+                97,
+                0.08
+            ),
+            rgba(
+                255,
+                255,
+                255,
+                0.012
+            )
+        );
+
+    box-shadow:
+
+        0 30px 70px
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+
+}
+
+
+
+.landscape-power-seal-label {
+
+    color:
+        var(
+            --ls-muted
+        );
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.16em;
+
+}
+
+
+
+.landscape-power-seal-status {
+
+    display:
+        block;
+
+    margin-top:
+        7px;
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-family:
+
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+    font-size:
+        2.8rem;
+
+    letter-spacing:
+        0.02em;
+
+}
+
+
+
+.landscape-seal-rule {
+
+    width:
+        100%;
+
+    height:
+        1px;
+
+    margin:
+        22px 0;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            var(
+                --ls-gold
+            ),
+            transparent
+        );
+
+}
+
+
+
+.landscape-power-seal p {
+
+    margin:
+        0;
+
+    color:
+        #8e999f;
+
+    font-size:
+        0.76rem;
+
+    line-height:
+        1.6;
+
+}/* =================================
+   POWER PULSE
+================================= */
+
+
+.landscape-power-pulse {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            6,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    border-bottom:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        #080b0c;
+
+}
+
+
+
+.landscape-pulse-card {
+
+    min-height:
+        122px;
+
+    padding:
+        21px 22px;
+
+    border-right:
+        1px solid
+        var(
+            --ls-line
+        );
+
+}
+
+
+
+.landscape-pulse-card:last-child {
+
+    border-right:
+        0;
+
+}
+
+
+
+.landscape-pulse-card > span {
+
+    color:
+        var(
+            --ls-muted
+        );
+
+    font-size:
+        0.53rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+
+.landscape-pulse-card > strong {
+
+    display:
+        block;
+
+    margin-top:
+        12px;
+
+    overflow:
+        hidden;
+
+    color:
+        #f1f3f4;
+
+    font-family:
+
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+    font-size:
+        clamp(
+            1.4rem,
+            2.2vw,
+            2.6rem
+        );
+
+    letter-spacing:
+        0.01em;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+.landscape-pulse-card > small {
+
+    display:
+        block;
+
+    margin-top:
+        7px;
+
+    color:
+        #68747a;
+
+    font-size:
+        0.5rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.landscape-pulse-leader {
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                201,
+                156,
+                47,
+                0.14
+            ),
+            rgba(
+                201,
+                156,
+                47,
+                0.02
+            )
+        );
+
+}
+
+
+
+.landscape-pulse-leader > strong {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+}
+
+
+
+/* =================================
+   SECTION NAV
+================================= */
+
+
+.landscape-section-nav {
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    z-index:
+        200;
+
+    display:
+        flex;
+
+    gap:
+        22px;
+
+    padding:
+        14px 36px;
+
+    overflow-x:
+        auto;
+
+    border-bottom:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        rgba(
+            6,
+            8,
+            9,
+            0.94
+        );
+
+    backdrop-filter:
+        blur(
+            16px
+        );
+
+}
+
+
+
+.landscape-section-nav a {
+
+    flex:
+        0 0 auto;
+
+    color:
+        #8d989d;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    text-decoration:
+        none;
+
+}
+
+
+
+.landscape-section-nav a:hover {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+}
+
+
+
+/* =================================
+   MAIN
+================================= */
+
+
+.landscape-main {
+
+    max-width:
+        1600px;
+
+    margin:
+        0 auto;
+
+    padding:
+        26px 38px 100px;
+
+}
+
+
+
+.landscape-section {
+
+    position:
+        relative;
+
+    padding:
+        62px 0;
+
+    border-bottom:
+        1px solid
+        var(
+            --ls-line
+        );
+
+}
+
+
+
+.landscape-section-heading {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        minmax(
+            280px,
+            500px
+        );
+
+    align-items:
+        end;
+
+    gap:
+        60px;
+
+    margin-bottom:
+        30px;
+
+}
+
+
+
+.landscape-section-code {
+
+    color:
+        var(
+            --ls-gold
+        );
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.15em;
+
+}
+
+
+
+.landscape-section-heading h2 {
+
+    margin:
+        7px 0 0;
+
+    font-family:
+
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+    font-size:
+        clamp(
+            2.5rem,
+            5vw,
+            5.3rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        0.92;
+
+    letter-spacing:
+        -0.025em;
+
+}
+
+
+
+.landscape-section-heading h2 em {
+
+    display:
+        block;
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-style:
+        normal;
+
+}
+
+
+
+.landscape-section-heading p {
+
+    margin:
+        0;
+
+    color:
+        var(
+            --ls-muted
+        );
+
+    font-size:
+        0.8rem;
+
+    line-height:
+        1.65;
+
+}
+
+
+
+.landscape-loading-state {
+
+    grid-column:
+        1 / -1;
+
+    padding:
+        32px;
+
+    border:
+        1px dashed
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+
+    color:
+        #667278;
+
+    font-size:
+        0.63rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+    text-align:
+        center;
+
+}
+
+
+
+/* =================================
+   PROMOTION THRONE
+================================= */
+
+
+.landscape-promotion-rankings {
+
+    display:
+        grid;
+
+    gap:
+        14px;
+
+}
+
+
+
+.landscape-throne-card {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            240px,
+            0.75fr
+        )
+
+        minmax(
+            0,
+            1.25fr
+        );
+
+    min-height:
+        330px;
+
+    border:
+        1px solid
+        rgba(
+            243,
+            206,
+            97,
+            0.42
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 12% 50%,
+            rgba(
+                243,
+                206,
+                97,
+                0.17
+            ),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            110deg,
+            #161714,
+            #0d1113
+        );
+
+    box-shadow:
+
+        0 35px 80px
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+
+}
+
+
+
+.landscape-throne-card::after {
+
+    content:
+        "1";
+
+    position:
+        absolute;
+
+    right:
+        -10px;
+
+    bottom:
+        -70px;
+
+    color:
+        rgba(
+            243,
+            206,
+            97,
+            0.045
+        );
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        24rem;
+
+    line-height:
+        1;
+
+    pointer-events:
+        none;
+
+}
+
+
+
+.landscape-throne-identity {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    padding:
+        34px;
+
+    border-right:
+        1px solid
+        rgba(
+            243,
+            206,
+            97,
+            0.2
+        );
+
+}
+
+
+
+.landscape-throne-label {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.17em;
+
+}
+
+
+
+.landscape-throne-name {
+
+    margin:
+        20px 0;
+
+    font-family:
+
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+    font-size:
+        clamp(
+            4rem,
+            8vw,
+            8rem
+        );
+
+    line-height:
+        0.85;
+
+    letter-spacing:
+        -0.035em;
+
+}
+
+
+
+.landscape-throne-score {
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    gap:
+        10px;
+
+}
+
+
+
+.landscape-throne-score strong {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        4.5rem;
+
+    line-height:
+        0.8;
+
+}
+
+
+
+.landscape-throne-score span {
+
+    padding-bottom:
+        5px;
+
+    color:
+        #7b858a;
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+.landscape-throne-metrics {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        1px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+}
+
+
+
+.landscape-throne-metric {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
+    padding:
+        26px;
+
+    background:
+        rgba(
+            9,
+            12,
+            13,
+            0.96
+        );
+
+}
+
+
+
+.landscape-throne-metric span {
+
+    color:
+        #728087;
+
+    font-size:
+        0.54rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+.landscape-throne-metric strong {
+
+    margin-top:
+        7px;
+
+    color:
+        #f1f3f3;
+
+    font-size:
+        1.5rem;
+
+}
+
+
+
+.landscape-ranking-ladder {
+
+    display:
+        grid;
+
+    gap:
+        6px;
+
+}
+
+
+
+.landscape-power-row {
+
+    position:
+        relative;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        62px
+        minmax(
+            180px,
+            0.65fr
+        )
+        90px
+        minmax(
+            260px,
+            1fr
+        )
+        90px;
+
+    align-items:
+        center;
+
+    gap:
+        16px;
+
+    min-height:
+        84px;
+
+    padding:
+        13px 18px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        var(
+            --ls-panel
+        );
+
+}
+
+
+
+.landscape-power-row.rank-chase {
+
+    border-color:
+        rgba(
+            243,
+            206,
+            97,
+            0.19
+        );
+
+}
+
+
+
+.landscape-power-row.rank-freeze {
+
+    border-color:
+        rgba(
+            143,
+            212,
+            255,
+            0.18
+        );
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(
+                41,
+                82,
+                108,
+                0.12
+            ),
+            #0b1013
+        );
+
+}
+
+
+
+.landscape-rank-number {
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        2.2rem;
+
+    text-align:
+        center;
+
+}
+
+
+
+.rank-freeze
+.landscape-rank-number {
+
+    color:
+        var(
+            --ls-ice
+        );
+
+    text-shadow:
+
+        0 0 18px
+        rgba(
+            143,
+            212,
+            255,
+            0.16
+        );
+
+}
+
+
+
+.landscape-power-name {
+
+    display:
+        grid;
+
+    gap:
+        4px;
+
+}
+
+
+
+.landscape-power-name strong {
+
+    font-size:
+        1.02rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.landscape-power-name small {
+
+    color:
+        #68757b;
+
+    font-size:
+        0.58rem;
+
+}
+
+
+
+.landscape-movement-badge {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-width:
+        70px;
+
+    padding:
+        7px 9px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.04em;
+
+}
+
+
+
+.landscape-movement-badge.rise {
+
+    color:
+        var(
+            --ls-rise
+        );
+
+    border-color:
+        rgba(
+            120,
+            213,
+            161,
+            0.26
+        );
+
+    background:
+        rgba(
+            120,
+            213,
+            161,
+            0.06
+        );
+
+}
+
+
+
+.landscape-movement-badge.fall {
+
+    color:
+        var(
+            --ls-fall
+        );
+
+    border-color:
+        rgba(
+            127,
+            188,
+            232,
+            0.28
+        );
+
+    background:
+        rgba(
+            127,
+            188,
+            232,
+            0.06
+        );
+
+}
+
+
+
+.landscape-movement-badge.steady {
+
+    color:
+        #7d888d;
+
+}
+
+
+
+.landscape-movement-badge.new {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+}
+
+
+
+.landscape-component-bars {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        7px;
+
+}
+
+
+
+.landscape-mini-component {
+
+    display:
+        grid;
+
+    gap:
+        4px;
+
+}
+
+
+
+.landscape-mini-component span {
+
+    color:
+        #68747a;
+
+    font-size:
+        0.48rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+
+.landscape-mini-component strong {
+
+    font-size:
+        0.73rem;
+
+}
+
+
+
+.landscape-power-score {
+
+    color:
+        #eff2f3;
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        1.8rem;
+
+    text-align:
+        right;
+
+}
+
+
+
+.rank-freeze
+.landscape-power-score {
+
+    color:
+        var(
+            --ls-ice
+        );
+
+}/* =================================
+   MOVEMENT WATCH
+================================= */
+
+
+.landscape-movement-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        14px;
+
+}
+
+
+
+.landscape-movement-card {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    min-height:
+        230px;
+
+    padding:
+        28px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        var(
+            --ls-panel
+        );
+
+}
+
+
+
+.landscape-movement-card.rising {
+
+    border-color:
+        rgba(
+            120,
+            213,
+            161,
+            0.25
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 85% 10%,
+            rgba(
+                120,
+                213,
+                161,
+                0.12
+            ),
+            transparent 40%
+        ),
+
+        var(
+            --ls-panel
+        );
+
+}
+
+
+
+.landscape-movement-card.falling {
+
+    border-color:
+        rgba(
+            127,
+            188,
+            232,
+            0.25
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 85% 10%,
+            rgba(
+                127,
+                188,
+                232,
+                0.13
+            ),
+            transparent 42%
+        ),
+
+        var(
+            --ls-panel
+        );
+
+}
+
+
+
+.landscape-movement-card > span {
+
+    color:
+        var(
+            --ls-muted
+        );
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+
+.landscape-movement-card h3 {
+
+    margin:
+        40px 0 0;
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        clamp(
+            2.6rem,
+            5vw,
+            5.4rem
+        );
+
+    line-height:
+        0.9;
+
+}
+
+
+
+.landscape-movement-card strong {
+
+    display:
+        block;
+
+    margin-top:
+        13px;
+
+    font-size:
+        1.4rem;
+
+}
+
+
+
+.landscape-movement-card.rising strong {
+
+    color:
+        var(
+            --ls-rise
+        );
+
+}
+
+
+
+.landscape-movement-card.falling strong {
+
+    color:
+        var(
+            --ls-fall
+        );
+
+}
+
+
+
+.landscape-movement-empty {
+
+    grid-column:
+        1 / -1;
+
+    padding:
+        28px;
+
+    border:
+        1px dashed
+        var(
+            --ls-line-strong
+        );
+
+    color:
+        #657178;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+    text-align:
+        center;
+
+}
+
+
+
+/* =================================
+   SHOW RANKINGS
+================================= */
+
+
+.landscape-show-rankings {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        7px;
+
+}
+
+
+
+.landscape-show-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        54px
+        minmax(
+            0,
+            1fr
+        )
+        74px
+        76px;
+
+    align-items:
+        center;
+
+    gap:
+        13px;
+
+    min-height:
+        76px;
+
+    padding:
+        12px 15px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        var(
+            --ls-panel
+        );
+
+}
+
+
+
+.landscape-show-row.show-leader {
+
+    grid-column:
+        1 / -1;
+
+    min-height:
+        112px;
+
+    border-color:
+        rgba(
+            243,
+            206,
+            97,
+            0.32
+        );
+
+    background:
+
+        linear-gradient(
+            100deg,
+            rgba(
+                201,
+                156,
+                47,
+                0.14
+            ),
+            var(
+                --ls-panel
+            )
+        );
+
+}
+
+
+
+.landscape-show-row.show-freeze {
+
+    border-color:
+        rgba(
+            143,
+            212,
+            255,
+            0.16
+        );
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(
+                41,
+                82,
+                108,
+                0.12
+            ),
+            var(
+                --ls-panel
+            )
+        );
+
+}
+
+
+
+.landscape-show-info {
+
+    display:
+        grid;
+
+    gap:
+        4px;
+
+}
+
+
+
+.landscape-show-info strong {
+
+    font-size:
+        0.84rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.landscape-show-info small {
+
+    color:
+        #6f7b81;
+
+    font-size:
+        0.58rem;
+
+}
+
+
+
+.landscape-show-score {
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        1.6rem;
+
+    text-align:
+        right;
+
+}
+
+
+
+.show-freeze
+.landscape-show-score {
+
+    color:
+        var(
+            --ls-ice
+        );
+
+}
+
+
+
+/* =================================
+   EVENT GRID
+================================= */
+
+
+.landscape-event-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        11px;
+
+}
+
+
+
+.landscape-event-card {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    display:
+        grid;
+
+    gap:
+        18px;
+
+    min-height:
+        215px;
+
+    padding:
+        20px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            var(
+                --ls-panel-raised
+            ),
+            var(
+                --ls-panel
+            )
+        );
+
+}
+
+
+
+.landscape-event-card:hover {
+
+    border-color:
+        rgba(
+            243,
+            206,
+            97,
+            0.25
+        );
+
+}
+
+
+
+.landscape-event-topline {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        16px;
+
+}
+
+
+
+.landscape-event-topline span {
+
+    color:
+        var(
+            --ls-gold
+        );
+
+    font-size:
+        0.52rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+.landscape-event-rating {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        1.35rem;
+
+}
+
+
+
+.landscape-event-card h3 {
+
+    margin:
+        0;
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        2rem;
+
+    line-height:
+        0.98;
+
+}
+
+
+
+.landscape-event-meta {
+
+    align-self:
+        end;
+
+    display:
+        grid;
+
+    gap:
+        7px;
+
+}
+
+
+
+.landscape-event-meta small {
+
+    color:
+        #758188;
+
+    font-size:
+        0.61rem;
+
+}
+
+
+
+.landscape-event-tags {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        6px;
+
+}
+
+
+
+.landscape-event-tags span {
+
+    padding:
+        5px 7px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    color:
+        #7c888e;
+
+    font-size:
+        0.49rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+/* =================================
+   TOP MATCHES
+================================= */
+
+
+.landscape-match-list {
+
+    display:
+        grid;
+
+    gap:
+        5px;
+
+}
+
+
+
+.landscape-match-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        56px
+        minmax(
+            0,
+            1fr
+        )
+        minmax(
+            170px,
+            0.35fr
+        )
+        76px;
+
+    align-items:
+        center;
+
+    gap:
+        16px;
+
+    min-height:
+        72px;
+
+    padding:
+        12px 16px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        var(
+            --ls-panel
+        );
+
+}
+
+
+
+.landscape-match-row:first-child {
+
+    min-height:
+        104px;
+
+    border-color:
+        rgba(
+            243,
+            206,
+            97,
+            0.3
+        );
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(
+                201,
+                156,
+                47,
+                0.12
+            ),
+            var(
+                --ls-panel
+            )
+        );
+
+}
+
+
+
+.landscape-match-rank {
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        1.7rem;
+
+    text-align:
+        center;
+
+}
+
+
+
+.landscape-match-name {
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.landscape-match-origin {
+
+    color:
+        #77838a;
+
+    font-size:
+        0.59rem;
+
+}
+
+
+
+.landscape-match-rating {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        1.45rem;
+
+    text-align:
+        right;
+
+}
+
+
+
+/* =================================
+   MAJOR EVENTS
+================================= */
+
+
+.landscape-major-event-list {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        10px;
+
+}
+
+
+
+.landscape-major-card {
+
+    position:
+        relative;
+
+    min-height:
+        225px;
+
+    padding:
+        21px;
+
+    border:
+        1px solid
+        rgba(
+            201,
+            156,
+            47,
+            0.21
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                201,
+                156,
+                47,
+                0.08
+            ),
+            var(
+                --ls-panel
+            )
+        );
+
+}
+
+
+
+.landscape-major-card:first-child {
+
+    border-color:
+        rgba(
+            243,
+            206,
+            97,
+            0.42
+        );
+
+    box-shadow:
+
+        0 22px 50px
+        rgba(
+            0,
+            0,
+            0,
+            0.25
+        );
+
+}
+
+
+
+.landscape-major-rank {
+
+    color:
+        var(
+            --ls-gold
+        );
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+.landscape-major-card h3 {
+
+    margin:
+        42px 0 7px;
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        2.1rem;
+
+    line-height:
+        0.95;
+
+}
+
+
+
+.landscape-major-score {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        1.8rem;
+
+}
+
+
+
+.landscape-major-location {
+
+    display:
+        block;
+
+    margin-top:
+        10px;
+
+    color:
+        #728087;
+
+    font-size:
+        0.58rem;
+
+}/* =================================
+   CHAMPIONS
+================================= */
+
+
+.landscape-champion-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        10px;
+
+}
+
+
+
+.landscape-champion-company {
+
+    min-height:
+        220px;
+
+    padding:
+        20px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        var(
+            --ls-panel
+        );
+
+}
+
+
+
+.landscape-champion-company > span {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        1.35rem;
+
+    letter-spacing:
+        0.02em;
+
+}
+
+
+
+.landscape-title-holder {
+
+    display:
+        grid;
+
+    gap:
+        4px;
+
+    margin-top:
+        15px;
+
+    padding-top:
+        13px;
+
+    border-top:
+        1px solid
+        var(
+            --ls-line
+        );
+
+}
+
+
+
+.landscape-title-holder span {
+
+    color:
+        #6f7b81;
+
+    font-size:
+        0.52rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+
+.landscape-title-holder strong {
+
+    font-size:
+        0.78rem;
+
+}
+
+
+
+/* =================================
+   HONORS
+================================= */
+
+
+.landscape-honors-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        10px;
+
+}
+
+
+
+.landscape-honor-card {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    min-height:
+        210px;
+
+    padding:
+        22px;
+
+    border:
+        1px solid
+        rgba(
+            243,
+            206,
+            97,
+            0.25
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(
+                243,
+                206,
+                97,
+                0.11
+            ),
+            transparent 40%
+        ),
+
+        var(
+            --ls-panel
+        );
+
+}
+
+
+
+.landscape-honor-card span {
+
+    color:
+        var(
+            --ls-gold
+        );
+
+    font-size:
+        0.53rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+.landscape-honor-card strong {
+
+    display:
+        block;
+
+    margin-top:
+        72px;
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        1.8rem;
+
+    line-height:
+        1;
+
+}
+
+
+
+/* =================================
+   HISTORY
+================================= */
+
+
+.landscape-history-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        10px;
+
+}
+
+
+
+.landscape-history-card {
+
+    min-height:
+        180px;
+
+    padding:
+        20px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        var(
+            --ls-panel
+        );
+
+}
+
+
+
+.landscape-history-card.frozen {
+
+    border-color:
+        rgba(
+            243,
+            206,
+            97,
+            0.2
+        );
+
+}
+
+
+
+.landscape-history-card > span {
+
+    color:
+        var(
+            --ls-gold
+        );
+
+    font-size:
+        0.53rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+.landscape-history-card h3 {
+
+    margin:
+        16px 0 0;
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        2.5rem;
+
+}
+
+
+
+.landscape-history-stats {
+
+    display:
+        flex;
+
+    gap:
+        15px;
+
+    margin-top:
+        18px;
+
+    color:
+        #758188;
+
+    font-size:
+        0.58rem;
+
+}
+
+
+
+.landscape-history-state {
+
+    display:
+        block;
+
+    margin-top:
+        15px;
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-size:
+        0.54rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+/* =================================
+   EMPTY STATES
+================================= */
+
+
+.landscape-empty {
+
+    grid-column:
+        1 / -1;
+
+    padding:
+        30px;
+
+    border:
+        1px dashed
+        var(
+            --ls-line-strong
+        );
+
+    color:
+        #657178;
+
+    font-size:
+        0.6rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    text-align:
+        center;
+
+}
+
+
+
+/* =================================
+   FOOTER
+================================= */
+
+
+.landscape-footer {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        30px;
+
+    padding:
+        34px 38px;
+
+    border-top:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        #050708;
+
+}
+
+
+
+.landscape-footer div {
+
+    display:
+        grid;
+
+    gap:
+        5px;
+
+}
+
+
+
+.landscape-footer strong {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-family:
+
+        Impact,
+        sans-serif;
+
+    font-size:
+        1.6rem;
+
+    letter-spacing:
+        0.04em;
+
+}
+
+
+
+.landscape-footer span,
+.landscape-footer small {
+
+    color:
+        #677278;
+
+    font-size:
+        0.53rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.09em;
+
+}
+
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        1200px
+) {
+
+
+    .landscape-power-pulse {
+
+        grid-template-columns:
+
+            repeat(
+                3,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+    .landscape-pulse-card {
+
+        border-bottom:
+            1px solid
+            var(
+                --ls-line
+            );
+
+    }
+
+
+    .landscape-power-row {
+
+        grid-template-columns:
+
+            52px
+            minmax(
+                160px,
+                1fr
+            )
+            80px
+            82px;
+
+    }
+
+
+    .landscape-component-bars {
+
+        display:
+            none;
+
+    }
+
+
+    .landscape-event-grid {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+    .landscape-major-event-list,
+    .landscape-champion-grid,
+    .landscape-honors-grid {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        900px
+) {
+
+
+    .landscape-site-header {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .landscape-main-nav {
+
+        justify-content:
+            flex-start;
+
+    }
+
+
+    .landscape-hero-inner {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .landscape-power-seal {
+
+        max-width:
+            500px;
+
+    }
+
+
+    .landscape-section-heading {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            20px;
+
+    }
+
+
+    .landscape-throne-card {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .landscape-throne-identity {
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            rgba(
+                243,
+                206,
+                97,
+                0.18
+            );
+
+    }
+
+
+    .landscape-show-rankings {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .landscape-history-grid {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        680px
+) {
+
+
+    .landscape-hero {
+
+        min-height:
+            500px;
+
+        padding:
+            58px 20px 40px;
+
+    }
+
+
+    .landscape-hero-title {
+
+        font-size:
+            clamp(
+                4.2rem,
+                21vw,
+                7rem
+            );
+
+    }
+
+
+    .landscape-power-pulse {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+    .landscape-section-nav {
+
+        padding-left:
+            20px;
+
+        padding-right:
+            20px;
+
+    }
+
+
+    .landscape-main {
+
+        padding:
+            12px 20px 70px;
+
+    }
+
+
+    .landscape-section {
+
+        padding:
+            48px 0;
+
+    }
+
+
+    .landscape-movement-grid,
+    .landscape-event-grid,
+    .landscape-major-event-list,
+    .landscape-champion-grid,
+    .landscape-honors-grid,
+    .landscape-history-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .landscape-power-row {
+
+        grid-template-columns:
+
+            40px
+            minmax(
+                0,
+                1fr
+            )
+            70px
+            62px;
+
+        gap:
+            8px;
+
+        padding-left:
+            9px;
+
+        padding-right:
+            9px;
+
+    }
+
+
+    .landscape-match-row {
+
+        grid-template-columns:
+
+            38px
+            minmax(
+                0,
+                1fr
+            )
+            62px;
+
+    }
+
+
+    .landscape-match-origin {
+
+        display:
+            none;
+
+    }
+
+
+    .landscape-footer {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        460px
+) {
+
+
+    .landscape-power-pulse {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .landscape-throne-metrics {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .landscape-show-row {
+
+        grid-template-columns:
+
+            38px
+            minmax(
+                0,
+                1fr
+            )
+            62px;
+
+    }
+
+
+    .landscape-show-row
+    .landscape-movement-badge {
+
+        display:
+            none;
+
+    }
+
+
+}
