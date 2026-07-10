@@ -36,16 +36,16 @@ const REQUEST_GAP_MS =
 
         Number(
 
-            process.env.WWOW_REQUEST_GAP_MS
+            process.env
+                .WWOW_REQUEST_GAP_MS
 
             ||
 
-            20000
+            30000
 
         )
 
     );
-
 
 const MAX_RATE_LIMIT_RETRIES =
     4;
@@ -1143,6 +1143,462 @@ For every requested section:
 - preserve the approved title
 
 `;
+// =================================
+// FACTUAL AUDIT PROMPT
+// =================================
+
+
+const factualAuditSystemPrompt = `
+
+You are the factual editor for THE WONDERFUL WORLD OF WRESTLING.
+
+You are reviewing finished magazine copy against a supplied structured fact package.
+
+Your job is to rewrite the supplied sections so every factual claim remains supported by the supplied data.
+
+Preserve strong magazine writing, analysis, criticism, opinion, and personality wherever possible.
+
+STRICT FACT RULES:
+
+1. AUDIENCE REACTION
+
+Do not invent audience reaction.
+
+Do not claim fans were excited, captivated, disappointed, on the edge of their seats, changing preferences, losing interest, or reacting in any specific way unless supplied public-reaction data explicitly supports it.
+
+2. MATCH DETAILS
+
+Do not invent match details.
+
+A result and star rating do not prove:
+
+- specific moves
+- technique
+- pacing
+- chemistry
+- near falls
+- atmosphere
+- crowd behavior
+- storytelling
+- athletic sequences
+- physical condition
+- willpower
+
+You may analyze the importance of a verified result or rating.
+
+You may say a highly rated match ranked among the strongest supplied matches.
+
+You may not invent what physically happened inside the match.
+
+3. CAUSATION
+
+Do not invent causes.
+
+A company ranking rise does not automatically prove that a specific champion, wrestler, storyline, signing, match, or event caused the rise.
+
+A ranking decline does not prove:
+
+- bad booking
+- weak storylines
+- roster-management problems
+- fan rejection
+- internal problems
+- loss of popularity
+
+You may describe verified movement.
+
+You may compare supplied metrics.
+
+You may discuss possible competitive implications without claiming an unsupported cause.
+
+4. PERFORMER EVIDENCE
+
+Current championship status alone does not prove that someone was a standout performer that month.
+
+Only describe someone as a standout performer when the fact package contains direct current-month evidence such as:
+
+- a verified result
+- a verified match rating
+- a title win
+- a successful defense
+- tournament performance
+- a streak
+- another explicit achievement
+
+5. BACKSTAGE INFORMATION
+
+Never invent:
+
+- anonymous sources
+- insiders
+- backstage heat
+- morale problems
+- discontent
+- contract negotiations
+- contract terms
+- talent considering departure
+- releases
+- surprise debuts
+- future signings
+- roster instability
+- internal strategy
+- personal relationships
+
+6. FUTURE BOOKING
+
+Never invent:
+
+- announced matches
+- future challengers
+- cross-promotional matches
+- dream matches presented as likely events
+- tournament entries
+- debuts
+- releases
+- title plans
+
+7. RUMORS & WHISPERS
+
+This section may speculate only about possible competitive or storyline implications of verified developments.
+
+Allowed:
+
+"Nova's confirmed AAA signing could affect AAA's competitive direction."
+
+Not allowed:
+
+"Other wrestlers may now be negotiating with AAA."
+
+Allowed:
+
+"OWL falling from first to second raises the question of whether it can respond next month."
+
+Not allowed:
+
+"OWL wrestlers may be considering leaving."
+
+Do not invent hidden events merely because the section is called Rumors & Whispers.
+
+8. EDITORIAL
+
+Opinion is allowed.
+
+Unsupported factual claims are not.
+
+An editorial may argue that competition is becoming tighter when supplied rankings support that position.
+
+It may not claim:
+
+- fan loyalty changed
+- popularity increased
+- creative problems exist
+- roster problems exist
+- audience preferences changed
+
+unless those facts are supplied.
+
+9. ANALYSIS VERSUS FACT
+
+You may explain why a verified result is significant.
+
+You may compare supplied:
+
+- rankings
+- ratings
+- scores
+- titles
+- results
+- records
+- movement
+
+Do not manufacture an explanation for why something happened.
+
+OUTPUT RULES:
+
+Return JSON only.
+
+Return exactly the same sectionIds supplied.
+
+Return exactly 3 substantial paragraphs for each section.
+
+Preserve:
+
+- sectionId
+- kicker
+- title
+
+Rewrite the body wherever necessary to remove unsupported claims.
+
+Return:
+
+{
+  "sections": [
+    {
+      "sectionId": "",
+      "kicker": "",
+      "title": "",
+      "body": [
+        "paragraph one",
+        "paragraph two",
+        "paragraph three"
+      ]
+    }
+  ]
+}
+
+`;
+
+
+
+// =================================
+// WRITTEN SECTION VALIDATION
+// =================================
+
+
+function validateWrittenSection(
+    section,
+    requested
+) {
+
+
+    if (
+        !section
+    ) {
+
+
+        throw new Error(
+
+            `Missing section ${requested.sectionId}.`
+
+        );
+
+    }
+
+
+    if (
+        !Array.isArray(
+            section.body
+        )
+    ) {
+
+
+        throw new Error(
+
+            `Section ${requested.sectionId} has no body array.`
+
+        );
+
+    }
+
+
+    if (
+        section.body.length !==
+        3
+    ) {
+
+
+        throw new Error(
+
+            `Section ${requested.sectionId} returned ${section.body.length} paragraphs instead of 3.`
+
+        );
+
+    }
+
+
+    const paragraphs =
+
+        section.body
+
+            .map(
+
+                paragraph =>
+
+                    String(
+                        paragraph || ""
+                    )
+                        .trim()
+
+            );
+
+
+    if (
+        paragraphs.some(
+
+            paragraph =>
+
+                !paragraph
+
+        )
+    ) {
+
+
+        throw new Error(
+
+            `Section ${requested.sectionId} contains an empty paragraph.`
+
+        );
+
+    }
+
+
+    return {
+
+
+        sectionId:
+            requested.sectionId,
+
+
+        kicker:
+            requested.kicker,
+
+
+        title:
+            requested.title,
+
+
+        body:
+            paragraphs
+
+    };
+
+}
+
+
+
+// =================================
+// FACTUAL AUDIT
+// =================================
+
+
+async function auditWrittenBatch({
+
+    context,
+    requestedSections,
+    writtenSections
+
+}) {
+
+
+    console.log(
+
+        `Fact-checking ${requestedSections
+
+            .map(
+
+                section =>
+
+                    section.sectionId
+
+            )
+
+            .join(
+                " + "
+            )}...`
+
+    );
+
+
+    const result =
+
+        await callModelSafely(
+
+            factualAuditSystemPrompt,
+
+            `Fact-check and repair these finished WWoW sections.
+
+APPROVED SECTION PLANS:
+
+${JSON.stringify(
+    requestedSections
+)}
+
+FINISHED ARTICLE COPY:
+
+${JSON.stringify(
+    writtenSections
+)}
+
+FACT PACKAGE:
+
+${JSON.stringify(
+    context
+)}
+
+IMPORTANT:
+
+Rewrite any unsupported claim.
+
+Do not merely describe the problems.
+
+Return the corrected finished sections.
+
+Preserve each approved:
+
+- sectionId
+- kicker
+- title
+
+Return exactly 3 paragraphs per section.`
+
+        );
+
+
+    const auditedSections =
+
+        Array.isArray(
+            result?.sections
+        )
+
+            ? result.sections
+
+            : [];
+
+
+    if (
+        auditedSections.length !==
+        requestedSections.length
+    ) {
+
+
+        throw new Error(
+
+            `WWoW factual audit returned ${auditedSections.length} sections instead of ${requestedSections.length}.`
+
+        );
+
+    }
+
+
+    return requestedSections.map(
+
+        requested => {
+
+
+            const audited =
+
+                auditedSections.find(
+
+                    section =>
+
+                        section.sectionId ===
+                        requested.sectionId
+
+                );
+
+
+            return validateWrittenSection(
+
+                audited,
+                requested
+
+            );
+
+        }
+
+    );
+
+}
 
 // =================================
 // LOAD CONTEXT
@@ -1531,83 +1987,64 @@ ${JSON.stringify(
 
 
 
-    for (
-        const requested
-        of requestedSections
-    ) {
+        const validatedDraftSections =
+
+        requestedSections.map(
+
+            requested => {
 
 
-        const returned =
+                const returned =
 
-            returnedSections.find(
+                    returnedSections.find(
 
-                section =>
+                        section =>
 
-                    section.sectionId ===
-                    requested.sectionId
+                            section.sectionId ===
+                            requested.sectionId
 
-            );
-
-
-        if (
-            !returned
-        ) {
-
-            throw new Error(
-
-                `WWoW batch did not return section ${requested.sectionId}.`
-
-            );
-
-        }
+                    );
 
 
-        if (
-            !Array.isArray(
-                returned.body
-            )
+                return validateWrittenSection(
 
-            ||
+                    returned,
+                    requested
 
-            returned.body.length !== 3
-        ) {
+                );
 
-            throw new Error(
+            }
 
-                `Section ${requested.sectionId} did not return exactly 3 paragraphs.`
-
-            );
-
-        }
+        );
 
 
-        writtenSections.push({
 
-            sectionId:
-                requested.sectionId,
+    const auditedSections =
 
-            kicker:
-                requested.kicker,
+        await auditWrittenBatch({
 
-            title:
-                requested.title,
 
-            body:
+            context:
+                context,
 
-                returned.body.map(
 
-                    paragraph =>
+            requestedSections:
+                requestedSections,
 
-                        String(
-                            paragraph || ""
-                        ).trim()
 
-                )
+            writtenSections:
+                validatedDraftSections
+
 
         });
 
-    }
 
+
+    writtenSections.push(
+
+        ...auditedSections
+
+    );
 }
 
 
