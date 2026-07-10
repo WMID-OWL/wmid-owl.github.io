@@ -2544,7 +2544,25 @@ for (
                         b.order || 0
                     )
             );
+    const eventSegments =
 
+        segmentFactsForEvent(
+
+            event.id,
+            segments,
+            wrestlerMap
+
+        );
+
+
+    const segmentRevision =
+
+        segmentRevisionForEvent(
+
+            event.id,
+            segments
+
+        );
 
     const matchesThroughDate =
         matches.filter(
@@ -2573,20 +2591,54 @@ for (
         );
 
 
-    const participantIds =
-        new Set(
-            eventMatches.flatMap(
+        const participantIds =
+
+        new Set([
+
+
+            ...eventMatches.flatMap(
+
                 match =>
+
                     (
-                        match.sides || []
-                    ).flatMap(
-                        side =>
-                            side.wrestlers
-                            ||
-                            []
+
+                        match.sides
+
+                        ||
+
+                        []
+
                     )
+
+                        .flatMap(
+
+                            side =>
+
+                                side.wrestlers
+
+                                ||
+
+                                []
+
+                        )
+
+            ),
+
+
+            ...eventSegments.flatMap(
+
+                segment =>
+
+                    segment.participantIds
+
+                    ||
+
+                    []
+
             )
-        );
+
+
+        ]);
 
 
     const participantWrestlers =
@@ -2726,9 +2778,23 @@ const worldHistoryMemory =
             koMeaning:
                 "In OWL, a recorded KO is rare and symbolically represents injury-level damage. Treat it as a major event without inventing a medical diagnosis or recovery timetable.",
 
-            wrestlerPosting:
-                "Wrestler posts should be occasional, not automatic. Use roster identity and actual results only. Do not make a wrestler announce unrecorded matches or storylines."
+                        wrestlerPosting:
+
+                "Wrestler posts should be occasional, not automatic. Use roster identity, recorded segment involvement, and actual results only. Do not make a wrestler announce unrecorded matches or storylines.",
+
+
+            segmentCanon:
+
+                "Recorded segment summaries are factual canon. They may be paraphrased or reacted to, but the system must not invent dialogue, physical actions, attacks, alliances, challenges, promises, motivations, match announcements, or consequences that are not explicitly recorded."
         },
+
+
+                segmentRevision:
+            segmentRevision,
+
+
+        segments:
+            eventSegments,
 
 
         matches:
@@ -2736,6 +2802,7 @@ const worldHistoryMemory =
 
 
         standoutFacts:
+
             standoutFacts(
                 matchFacts
             ),
