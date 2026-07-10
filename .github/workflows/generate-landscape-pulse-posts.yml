@@ -1,0 +1,195 @@
+name: Generate Landscape Pulse Posts
+
+
+on:
+
+  workflow_run:
+
+    workflows:
+      - Build Landscape Pulse Context
+
+    types:
+      - completed
+
+
+  workflow_dispatch:
+
+    inputs:
+
+      max_pulses:
+
+        description: "Number of pending Landscape pulses to generate"
+
+        required: true
+
+        default: "1"
+
+
+permissions:
+
+  contents:
+    write
+
+  models:
+    read
+
+
+concurrency:
+
+  group:
+    innanet-writer
+
+  cancel-in-progress:
+    false
+
+
+jobs:
+
+  generate-pulse-posts:
+
+    if: >
+
+      github.event_name == 'workflow_dispatch' ||
+
+      github.event.workflow_run.conclusion == 'success'
+
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+        with:
+
+          ref:
+            main
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+      - name: Read Landscape Pulse queue
+
+        id:
+          queue
+
+        run: |
+
+          COUNT=$(node -e "
+
+            const fs = require('fs');
+
+            const queue = JSON.parse(
+
+              fs.readFileSync(
+
+                'data/innanet/landscape-pulse-queue.json',
+
+                'utf8'
+
+              )
+
+            );
+
+            process.stdout.write(
+
+              String(
+
+                Number(
+
+                  queue.pendingPulseCount || 0
+
+                )
+
+              )
+
+            );
+
+          ")
+
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+
+          echo "Pending Landscape pulses: $COUNT"
+
+
+      - name: Generate Landscape Pulse posts
+
+        if: >
+
+          steps.queue.outputs.count != '0'
+
+        env:
+
+          GITHUB_TOKEN:
+            ${{ secrets.GITHUB_TOKEN }}
+
+          MAX_PULSES:
+            ${{ github.event_name == 'workflow_dispatch' && inputs.max_pulses || steps.queue.outputs.count }}
+
+          LANDSCAPE_PULSE_MODEL:
+            openai/gpt-4o-mini
+
+          LANDSCAPE_PULSE_REQUEST_GAP_MS:
+            "15000"
+
+        run: |
+
+          node scripts/write-landscape-pulse-posts.mjs
+
+
+      - name: Refresh Landscape Pulse queue
+
+        if: >
+
+          always() &&
+
+          steps.queue.outputs.count != '0'
+
+        run: |
+
+          node scripts/build-landscape-pulse-context.mjs
+
+
+      - name: Commit generated Industry Pulse content
+
+        if:
+          always()
+
+        run: |
+
+          git add data/innanet
+
+
+          if git diff --cached --quiet; then
+
+            echo "No Landscape Pulse content changes to commit."
+
+            exit 0
+
+          fi
+
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          git commit \
+            -m "Publish Landscape Industry Pulse"
+
+
+          git push
