@@ -1007,7 +1007,7 @@
     // =================================
 
 
-    function createRoundOneMatches(
+        function createRoundOneMatches(
         entrants
     ) {
 
@@ -1026,70 +1026,165 @@
         }
 
 
-        const shuffled =
+
+        // =================================
+        // BACKTRACKING DRAW
+        // =================================
+        //
+        // This searches for a complete
+        // Round 1 draw with no same-company
+        // matches whenever one is possible.
+        //
+        // Candidate order is randomized so
+        // each tournament draw still feels
+        // genuinely different.
+        // =================================
+
+
+        function findValidPairs(
+            remaining
+        ) {
+
+
+            if (
+                remaining.length === 0
+            ) {
+
+
+                return [];
+
+            }
+
+
+            const entrantA =
+                remaining[0];
+
+
+            const opponentCandidates =
+
+                shuffle(
+
+                    remaining
+                        .slice(
+                            1
+                        )
+
+                )
+
+                    .filter(
+
+                        entrantB =>
+
+                            !sameCompany(
+
+                                entrantA,
+                                entrantB
+
+                            )
+
+                    );
+
+
+            for (
+                const entrantB
+                of opponentCandidates
+            ) {
+
+
+                const nextRemaining =
+
+                    remaining.filter(
+
+                        entrant =>
+
+                            entrant.entrantId !==
+                            entrantA.entrantId
+
+                            &&
+
+                            entrant.entrantId !==
+                            entrantB.entrantId
+
+                    );
+
+
+                const laterPairs =
+
+                    findValidPairs(
+                        nextRemaining
+                    );
+
+
+                if (
+                    laterPairs
+                ) {
+
+
+                    return [
+
+
+                        [
+                            entrantA,
+                            entrantB
+                        ],
+
+
+                        ...laterPairs
+
+
+                    ];
+
+                }
+
+            }
+
+
+            return null;
+
+        }
+
+
+
+        const randomizedEntrants =
 
             shuffle(
                 entrants
             );
 
 
-        const matches =
-            [];
+        const validPairs =
+
+            findValidPairs(
+                randomizedEntrants
+            );
 
 
-        while (
-            shuffled.length
+        if (
+            !validPairs
         ) {
 
 
-            const entrantA =
+            throw new Error(
 
-                shuffled.shift();
+                "A clean Round 1 draw could not be created without same-company matches."
 
+            );
 
-            let opponentIndex =
-
-                shuffled.findIndex(
-
-                    entrantB =>
-
-                        !sameCompany(
-
-                            entrantA,
-                            entrantB
-
-                        )
-
-                );
+        }
 
 
-            if (
-                opponentIndex === -1
-            ) {
 
+        return validPairs.map(
 
-                opponentIndex =
-                    0;
-
-            }
-
-
-            const entrantB =
-
-                shuffled.splice(
-
-                    opponentIndex,
-                    1
-
-                )[0];
-
-
-            matches.push({
+            (
+                pair,
+                index
+            ) => ({
 
 
                 matchId:
 
-                    `round-1-match-${matches.length + 1}`,
+                    `round-1-match-${index + 1}`,
 
 
                 round:
@@ -1097,11 +1192,11 @@
 
 
                 entrantA:
-                    entrantA,
+                    pair[0],
 
 
                 entrantB:
-                    entrantB,
+                    pair[1],
 
 
                 winnerEntrantId:
@@ -1115,17 +1210,12 @@
                 resultText:
                     ""
 
-            });
+            })
 
-        }
-
-
-        return matches;
+        );
 
     }
-
-
-
+    
     // =================================
     // CREATE BRACKET
     // =================================
