@@ -2,220 +2,55 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
-
-
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
-
-
-    <link
-        rel="stylesheet"
-        href="css/control-room.css?v=usability-1"
-    >
-
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/control-room.css">
 </head>
-
 
 <body class="control-room-body">
 
-
 <header class="control-room-header">
-
-
-    <a
-        class="control-room-brand"
-        href="index.html"
-    >
-
-        <span class="control-room-brand-mark">
-            OWL
-        </span>
-
+    <a class="control-room-brand" href="index.html">
+        <span class="control-room-brand-mark">OWL</span>
         <span class="control-room-brand-copy">
-
-            <strong>
-                CONTROL ROOM
-            </strong>
-
-            <small>
-                UNIVERSE MANAGEMENT
-            </small>
-
+            <strong>CONTROL ROOM</strong>
+            <small>UNIVERSE MANAGEMENT</small>
         </span>
-
     </a>
 
-
-    <a
-        class="control-room-site-link"
-        href="index.html"
-    >
+    <a class="control-room-site-link" href="index.html">
         View Website →
     </a>
-
-
 </header>
 
-
+<nav class="cr-tool-jump-bar" aria-label="Control Room sections">
+    <span class="cr-tool-jump-label">JUMP TO</span>
+    <a class="cr-tool-jump-link" href="#cr-tool-wrestlers">Wrestlers</a>
+    <a class="cr-tool-jump-link" href="#cr-tool-teams">Teams</a>
+    <a class="cr-tool-jump-link" href="#cr-tool-factions">Factions</a>
+    <a class="cr-tool-jump-link" href="#cr-tool-events">Events</a>
+    <a class="cr-tool-jump-link" href="#cr-tool-booker">Match Booker</a>
+    <a class="cr-tool-jump-link" href="#cr-tool-results">Results</a>
+    <a class="cr-tool-jump-link" href="#cr-tool-landscape">Landscape</a>
+    <a class="cr-tool-jump-link" href="#cr-tool-social-status">Social Status</a>
+    <a class="cr-tool-jump-link" href="#cr-tool-innanet-accounts">Innanet Accounts</a>
+    <a class="cr-tool-jump-link" href="#cr-tool-health">Data Health</a>
+</nav>
 
 <main class="control-room-page">
 
-
-    <!-- =================================
-         TOOL JUMP NAVIGATION
-    ================================== -->
-
-
-    <nav
-        id="cr-tool-jump-nav"
-        class="cr-tool-jump-nav"
-        aria-label="Control Room Tools"
-    >
-
-        <span class="cr-tool-jump-label">
-            JUMP TO
-        </span>
-
-
-        <a
-            class="cr-tool-jump-link"
-            href="#cr-tool-wrestlers"
-        >
-            Wrestlers
-        </a>
-
-
-        <a
-            class="cr-tool-jump-link"
-            href="#cr-tool-teams"
-        >
-            Teams
-        </a>
-
-
-        <a
-            class="cr-tool-jump-link"
-            href="#cr-tool-factions"
-        >
-            Factions
-        </a>
-
-
-        <a
-            class="cr-tool-jump-link"
-            href="#cr-tool-events"
-        >
-            Events
-        </a>
-
-
-        <a
-            class="cr-tool-jump-link"
-            href="#cr-tool-match-booker"
-        >
-            Match Booker
-        </a>
-
-
-               <a
-        class="cr-tool-jump-link"
-        href="#cr-tool-results"
-    >
-
-        Results
-
-    </a>
-
-
-    <a
-        class="cr-tool-jump-link"
-        href="#cr-tool-landscape"
-    >
-
-        Landscape
-
-    </a>
-
-
-    <a
-        class="cr-tool-jump-link"
-        href="#cr-tool-social-status"
-    >
-
-        Social Status
-
-    </a>
-
-    <a
-        class="cr-tool-jump-link"
-        href="#cr-tool-innanet-accounts"
-    >
-
-        Innanet Accounts
-
-    </a>
-
-
-    <a
-        class="cr-tool-jump-link"
-        href="#cr-tool-data-health"
-    >
-
-        Data Health
-
-    </a>
-
-
-    </nav>
-
-
-
-    <!-- =================================
-         HERO
-    ================================== -->
-
-
     <section class="control-room-hero">
-
-
         <div>
-
-
-            <p class="eyebrow">
-                OWL OPERATIONS
-            </p>
-
-
-            <h1>
-                Control Room
-            </h1>
-
-
+            <p class="eyebrow">OWL OPERATIONS</p>
+            <h1>Control Room</h1>
             <p class="control-room-intro">
-
-                Manage the OWL universe without manually digging
-                through JSON files.
-
+                Manage the OWL universe without manually digging through JSON files.
             </p>
-
-
         </div>
 
-
         <div class="control-room-actions">
-
-
             <button
                 id="cr-connect-folder"
                 class="control-room-button control-room-button-primary"
@@ -223,7 +58,6 @@
             >
                 Connect OWL Folder
             </button>
-
 
             <button
                 id="cr-reconnect-folder"
@@ -233,66 +67,24 @@
             >
                 Reconnect Saved Folder
             </button>
-
-
         </div>
-
-
     </section>
-
-
-
-    <!-- =================================
-         BROWSER WARNING
-    ================================== -->
-
 
     <section
         id="cr-browser-warning"
         class="control-room-message control-room-message-error"
         hidden
     >
-
-
-        <strong>
-            Browser not supported
-        </strong>
-
-
-        <p>
-
-            Open the OWL Control Room in desktop Google Chrome.
-
-        </p>
-
-
+        <strong>Browser not supported</strong>
+        <p>Open the OWL Control Room in desktop Google Chrome.</p>
     </section>
 
-
-
-    <!-- =================================
-         CONNECTION STATUS
-    ================================== -->
-
-
     <section class="control-room-panel">
-
-
         <div class="control-room-panel-heading">
-
-
             <div>
-
-                <p class="eyebrow">
-                    CONNECTION
-                </p>
-
-                <h2>
-                    Repository Status
-                </h2>
-
+                <p class="eyebrow">CONNECTION</p>
+                <h2>Repository Status</h2>
             </div>
-
 
             <span
                 id="cr-status-badge"
@@ -300,6674 +92,1068 @@
             >
                 DISCONNECTED
             </span>
-
-
         </div>
-
-
 
         <div class="control-room-repo-grid">
-
-
             <div class="control-room-repo-item">
-
-                <span>
-                    FOLDER
-                </span>
-
-                <strong id="cr-repo-name">
-                    Not connected
-                </strong>
-
+                <span>FOLDER</span>
+                <strong id="cr-repo-name">Not connected</strong>
             </div>
 
-
             <div class="control-room-repo-item">
-
-                <span>
-                    DATA FILES
-                </span>
-
-                <strong id="cr-file-summary">
-                    —
-                </strong>
-
+                <span>DATA FILES</span>
+                <strong id="cr-file-summary">—</strong>
             </div>
 
-
             <div class="control-room-repo-item">
-
-                <span>
-                    LAST CHECK
-                </span>
-
-                <strong id="cr-last-check">
-                    —
-                </strong>
-
+                <span>LAST CHECK</span>
+                <strong id="cr-last-check">—</strong>
             </div>
-
-
         </div>
 
-
-        <p
-            id="cr-connection-message"
-            class="control-room-connection-message"
-        >
-
+        <p id="cr-connection-message" class="control-room-connection-message">
             Select the local folder containing your OWL website repository.
-
         </p>
-
-
     </section>
 
-
-
-    <!-- =================================
-         LOADING
-    ================================== -->
-
-
-    <section
-        id="cr-loading"
-        class="control-room-loading"
-        hidden
-    >
-
-
-        <span class="control-room-spinner">
-        </span>
-
-
-        <strong>
-            Reading OWL databases...
-        </strong>
-
-
+    <section id="cr-loading" class="control-room-loading" hidden>
+        <span class="control-room-spinner"></span>
+        <strong>Reading OWL databases...</strong>
     </section>
 
-
-
-    <!-- =================================
-         DASHBOARD
-    ================================== -->
-
-
-    <section
-        id="cr-dashboard"
-        hidden
-    >
-
+    <section id="cr-dashboard" hidden>
 
         <section class="control-room-panel">
-
-
             <div class="control-room-panel-heading">
-
-
                 <div>
-
-                    <p class="eyebrow">
-                        UNIVERSE DATABASE
-                    </p>
-
-                    <h2>
-                        OWL at a Glance
-                    </h2>
-
+                    <p class="eyebrow">UNIVERSE DATABASE</p>
+                    <h2>OWL at a Glance</h2>
                 </div>
-
-
             </div>
-
-
 
             <div class="control-room-stat-grid">
-
-
-                <article class="control-room-stat-card">
-
-                    <span>
-                        WRESTLERS
-                    </span>
-
-                    <strong id="cr-count-wrestlers">
-                        0
-                    </strong>
-
-                </article>
-
-
-
-                <article class="control-room-stat-card">
-
-                    <span>
-                        TEAMS
-                    </span>
-
-                    <strong id="cr-count-teams">
-                        0
-                    </strong>
-
-                </article>
-
-
-
-                <article class="control-room-stat-card">
-
-                    <span>
-                        FACTIONS
-                    </span>
-
-                    <strong id="cr-count-factions">
-                        0
-                    </strong>
-
-                </article>
-
-
-
-                <article class="control-room-stat-card">
-
-                    <span>
-                        CHAMPIONSHIPS
-                    </span>
-
-                    <strong id="cr-count-championships">
-                        0
-                    </strong>
-
-                </article>
-
-
-
-                <article class="control-room-stat-card">
-
-                    <span>
-                        EVENTS
-                    </span>
-
-                    <strong id="cr-count-events">
-                        0
-                    </strong>
-
-                </article>
-
-
-
-                <article class="control-room-stat-card">
-
-                    <span>
-                        COMPLETED MATCHES
-                    </span>
-
-                    <strong id="cr-count-matches">
-                        0
-                    </strong>
-
-                </article>
-
-
-
-                <article class="control-room-stat-card">
-
-                    <span>
-                        ANNOUNCED MATCHES
-                    </span>
-
-                    <strong id="cr-count-announced">
-                        0
-                    </strong>
-
-                </article>
-
-
-
-                <article class="control-room-stat-card">
-
-                    <span>
-                        TITLE REIGNS
-                    </span>
-
-                    <strong id="cr-count-reigns">
-                        0
-                    </strong>
-
-                </article>
-
-
+                <article class="control-room-stat-card"><span>WRESTLERS</span><strong id="cr-count-wrestlers">0</strong></article>
+                <article class="control-room-stat-card"><span>TEAMS</span><strong id="cr-count-teams">0</strong></article>
+                <article class="control-room-stat-card"><span>FACTIONS</span><strong id="cr-count-factions">0</strong></article>
+                <article class="control-room-stat-card"><span>CHAMPIONSHIPS</span><strong id="cr-count-championships">0</strong></article>
+                <article class="control-room-stat-card"><span>EVENTS</span><strong id="cr-count-events">0</strong></article>
+                <article class="control-room-stat-card"><span>COMPLETED MATCHES</span><strong id="cr-count-matches">0</strong></article>
+                <article class="control-room-stat-card"><span>ANNOUNCED MATCHES</span><strong id="cr-count-announced">0</strong></article>
+                <article class="control-room-stat-card"><span>TITLE REIGNS</span><strong id="cr-count-reigns">0</strong></article>
             </div>
-
-
         </section>
-
-
-
-        <!-- =================================
-             EVENT SNAPSHOT
-        ================================== -->
-
 
         <section class="control-room-panel">
-
-
             <div class="control-room-panel-heading">
-
-
                 <div>
-
-                    <p class="eyebrow">
-                        SCHEDULE
-                    </p>
-
-                    <h2>
-                        Event Snapshot
-                    </h2>
-
+                    <p class="eyebrow">SCHEDULE</p>
+                    <h2>Event Snapshot</h2>
                 </div>
-
-
             </div>
-
-
 
             <div class="control-room-snapshot-grid">
-
-
                 <article class="control-room-snapshot-card">
-
-
-                    <span>
-                        NEXT EVENT
-                    </span>
-
-
-                    <strong id="cr-next-event-name">
-                        —
-                    </strong>
-
-
-                    <p id="cr-next-event-date">
-                        —
-                    </p>
-
-
+                    <span>NEXT EVENT</span>
+                    <strong id="cr-next-event-name">—</strong>
+                    <p id="cr-next-event-date">—</p>
                 </article>
 
-
-
                 <article class="control-room-snapshot-card">
-
-
-                    <span>
-                        LATEST COMPLETED EVENT
-                    </span>
-
-
-                    <strong id="cr-latest-event-name">
-                        —
-                    </strong>
-
-
-                    <p id="cr-latest-event-date">
-                        —
-                    </p>
-
-
+                    <span>LATEST COMPLETED EVENT</span>
+                    <strong id="cr-latest-event-name">—</strong>
+                    <p id="cr-latest-event-date">—</p>
                 </article>
-
-
             </div>
-
-
         </section>
 
+        <!-- =================================
+             WRESTLER MANAGER
+        ================================== -->
 
-<!-- =================================
-     WRESTLER MANAGER
-================================= -->
-
-
-<section
-    id="cr-tool-wrestlers"
-    class="control-room-panel"
->
-
-
-    <div class="control-room-panel-heading">
-
-
-        <div>
-
-            <p class="eyebrow">
-                ROSTER MANAGEMENT
-            </p>
-
-            <h2>
-                Wrestler Manager
-            </h2>
-
-        </div>
-
-
-        <span
-            id="cr-wrestler-editor-status"
-            class="control-room-health-summary"
-        >
-            READY
-        </span>
-
-
-    </div>
-
-
-
-    <!-- MODE -->
-
-
-    <div class="cr-editor-top-grid">
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-wrestler-editor-mode">
-
-                ACTION
-
-            </label>
-
-
-            <select id="cr-wrestler-editor-mode">
-
-                <option value="edit">
-                    Edit Existing Wrestler
-                </option>
-
-                <option value="create">
-                    Add New Wrestler
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-wrestler-editor-select-row"
-            class="cr-form-group"
-        >
-
-
-            <label for="cr-wrestler-editor-select">
-
-                WRESTLER
-
-            </label>
-
-
-            <select id="cr-wrestler-editor-select">
-
-                <option value="">
-                    Select Wrestler
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label>
-
-                DATABASE ID
-
-            </label>
-
-
-            <div
-                id="cr-wrestler-id-preview"
-                class="cr-current-value"
-            >
-                —
+        <section id="cr-tool-wrestlers" class="control-room-panel">
+            <div class="control-room-panel-heading">
+                <div>
+                    <p class="eyebrow">ROSTER MANAGEMENT</p>
+                    <h2>Wrestler Manager</h2>
+                </div>
+                <span id="cr-wrestler-editor-status" class="control-room-health-summary">READY</span>
             </div>
 
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- BASIC INFORMATION -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                PROFILE
-            </span>
-
-            <h3>
-                Basic Information
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-editor-form-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-edit-name">
-
-                    NAME
-
-                </label>
-
-
-                <input
-                    id="cr-edit-name"
-                    type="text"
-                    autocomplete="off"
-                >
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-edit-nickname">
-
-                    NICKNAME
-
-                </label>
-
-
-                <input
-                    id="cr-edit-nickname"
-                    type="text"
-                    autocomplete="off"
-                >
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-edit-hometown">
-
-                    HOMETOWN
-
-                </label>
-
-
-                <input
-                    id="cr-edit-hometown"
-                    type="text"
-                    autocomplete="off"
-                >
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-edit-country">
-
-                    COUNTRY
-
-                </label>
-
-
-                <input
-                    id="cr-edit-country"
-                    type="text"
-                    autocomplete="off"
-                >
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-edit-country-code">
-
-                    COUNTRY CODE
-
-                </label>
-
-
-                <input
-                    id="cr-edit-country-code"
-                    type="text"
-                    autocomplete="off"
-                    placeholder="Example: TT"
-                >
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-edit-flag">
-
-                    FLAG
-
-                </label>
-
-
-                <input
-                    id="cr-edit-flag"
-                    type="text"
-                    autocomplete="off"
-                    placeholder="Optional"
-                >
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- ROSTER STATUS -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                ROSTER STATUS
-            </span>
-
-            <h3>
-                Show and Division
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-editor-form-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-edit-brand">
-
-                    SHOW
-
-                </label>
-
-
-                <select id="cr-edit-brand">
-
-                    <option value="">
-                        Unassigned
-                    </option>
-
-                    <option value="Ascension">
-                        Ascension
-                    </option>
-
-                    <option value="Revolt">
-                        Revolt
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-edit-division">
-
-                    DIVISION
-
-                </label>
-
-
-                <select id="cr-edit-division">
-
-                    <option value="">
-                        Unassigned
-                    </option>
-
-                    <option value="Men">
-                        Men
-                    </option>
-
-                    <option value="Women">
-                        Women
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-existing-affiliations"
-            class="cr-affiliation-readout"
-            hidden
-        >
-
-
-            <div>
-
-                <span>
-                    CURRENT TEAM
-                </span>
-
-                <strong id="cr-editor-current-team">
-                    —
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <span>
-                    CURRENT FACTION
-                </span>
-
-                <strong id="cr-editor-current-faction">
-                    —
-                </strong>
-
-            </div>
-
-
-            <p>
-
-                Team and faction membership will be managed
-                through the dedicated Teams &amp; Factions Manager.
-
-            </p>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- WRESTLING INFORMATION -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                WRESTLING PROFILE
-            </span>
-
-            <h3>
-                Moves and Story
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-edit-finisher">
-
-                FINISHER
-
-            </label>
-
-
-            <input
-                id="cr-edit-finisher"
-                type="text"
-                autocomplete="off"
-            >
-
-
-        </div>
-
-
-
-        <div class="cr-form-group cr-editor-spaced-field">
-
-
-            <label for="cr-edit-signatures">
-
-                SIGNATURE MOVES
-
-            </label>
-
-
-            <textarea
-                id="cr-edit-signatures"
-                rows="5"
-                placeholder="Enter one move per line"
-            ></textarea>
-
-
-            <small class="cr-field-help">
-
-                One move per line.
-
-            </small>
-
-
-        </div>
-
-
-
-        <div class="cr-form-group cr-editor-spaced-field">
-
-
-            <label for="cr-edit-story">
-
-                WHY I'M HERE
-
-            </label>
-
-
-            <textarea
-                id="cr-edit-story"
-                rows="7"
-            ></textarea>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- MEDIA -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                MEDIA
-            </span>
-
-            <h3>
-                Wrestler Photo
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-edit-photo">
-
-                PHOTO PATH
-
-            </label>
-
-
-            <input
-                id="cr-edit-photo"
-                type="text"
-                autocomplete="off"
-                placeholder="assets/images/wrestlers/example.png"
-            >
-
-
-            <small class="cr-field-help">
-
-                Direct file selection and image importing will be added
-                in the Media Manager.
-
-            </small>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- REVIEW CHANGES -->
-
-
-    <div
-        id="cr-wrestler-change-preview"
-        class="cr-change-preview"
-        hidden
-    >
-
-
-        <span>
-            REVIEW CHANGES
-        </span>
-
-
-        <div
-            id="cr-wrestler-change-list"
-            class="cr-editor-change-list"
-        >
-        </div>
-
-
-    </div>
-
-
-
-    <!-- ACTIONS -->
-
-
-    <div class="cr-manager-actions">
-
-
-        <button
-            id="cr-save-wrestler"
-            class="control-room-button control-room-button-primary"
-            type="button"
-            disabled
-        >
-            Save Wrestler Changes
-        </button>
-
-
-    </div>
-
-
-
-    <p
-        id="cr-wrestler-editor-message"
-        class="cr-save-message"
-        hidden
-    >
-    </p>
-
-
-</section>
-
-</section>
-
-    <!-- =================================
-     TEAM MANAGER
-================================= -->
-
-
-<section
-    id="cr-tool-teams"
-    class="control-room-panel"
->
-
-
-    <div class="control-room-panel-heading">
-
-
-        <div>
-
-            <p class="eyebrow">
-                TAG TEAM MANAGEMENT
-            </p>
-
-            <h2>
-                Team Manager
-            </h2>
-
-        </div>
-
-
-        <span
-            id="cr-team-editor-status"
-            class="control-room-health-summary"
-        >
-            READY
-        </span>
-
-
-    </div>
-
-
-
-    <!-- MODE -->
-
-
-    <div class="cr-editor-top-grid">
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-team-editor-mode">
-
-                ACTION
-
-            </label>
-
-
-            <select id="cr-team-editor-mode">
-
-                <option value="edit">
-                    Edit Existing Team
-                </option>
-
-                <option value="create">
-                    Add New Team
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-team-editor-select-row"
-            class="cr-form-group"
-        >
-
-
-            <label for="cr-team-editor-select">
-
-                TEAM
-
-            </label>
-
-
-            <select id="cr-team-editor-select">
-
-                <option value="">
-                    Select Team
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label>
-                DATABASE ID
-            </label>
-
-
-            <div
-                id="cr-team-id-preview"
-                class="cr-current-value"
-            >
-                —
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- IDENTITY -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                TEAM IDENTITY
-            </span>
-
-            <h3>
-                Basic Information
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-editor-form-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-team-name">
-
-                    TEAM NAME
-
-                </label>
-
-
-                <input
-                    id="cr-team-name"
-                    type="text"
-                    autocomplete="off"
-                >
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-team-brand">
-
-                    SHOW
-
-                </label>
-
-
-                <select id="cr-team-brand">
-
-                    <option value="">
-                        Unassigned
-                    </option>
-
-                    <option value="Ascension">
-                        Ascension
-                    </option>
-
-                    <option value="Revolt">
-                        Revolt
-                    </option>
-
-                    <option value="OWL">
-                        Shared OWL Division
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- MEMBERS -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                OFFICIAL MEMBERS
-            </span>
-
-            <h3>
-                Tag Team Lineup
-            </h3>
-
-        </div>
-
-
-        <p class="cr-editor-note">
-
-            OWL official tag teams contain exactly two members.
-            The Control Room will synchronize their wrestler profiles automatically.
-
-        </p>
-
-
-
-        <div class="cr-team-member-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-team-member-one">
-
-                    MEMBER 1
-
-                </label>
-
-
-                <select id="cr-team-member-one">
-
-                    <option value="">
-                        Select Wrestler
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-team-member-two">
-
-                    MEMBER 2
-
-                </label>
-
-
-                <select id="cr-team-member-two">
-
-                    <option value="">
-                        Select Wrestler
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- TEAM DETAILS -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                TEAM PROFILE
-            </span>
-
-            <h3>
-                Wrestling Information
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-team-finisher">
-
-                TEAM FINISHER
-
-            </label>
-
-
-            <input
-                id="cr-team-finisher"
-                type="text"
-                autocomplete="off"
-            >
-
-
-        </div>
-
-
-
-        <div class="cr-form-group cr-editor-spaced-field">
-
-
-            <label for="cr-team-story">
-
-                WHY WE'RE HERE
-
-            </label>
-
-
-            <textarea
-                id="cr-team-story"
-                rows="7"
-            ></textarea>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- MEDIA -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                MEDIA
-            </span>
-
-            <h3>
-                Team Logo
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-team-logo">
-
-                LOGO PATH
-
-            </label>
-
-
-            <input
-                id="cr-team-logo"
-                type="text"
-                autocomplete="off"
-                placeholder="assets/images/teams/example.png"
-            >
-
-
-            <small class="cr-field-help">
-
-                Direct image importing will be handled by the Media Manager.
-
-            </small>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- REVIEW -->
-
-
-    <div
-        id="cr-team-change-preview"
-        class="cr-change-preview"
-        hidden
-    >
-
-
-        <span>
-            REVIEW CHANGES
-        </span>
-
-
-        <div
-            id="cr-team-change-list"
-            class="cr-editor-change-list"
-        >
-        </div>
-
-
-        <p
-            id="cr-team-conflict-message"
-            class="cr-change-error"
-            hidden
-        >
-        </p>
-
-
-    </div>
-
-
-
-    <!-- ACTIONS -->
-
-
-    <div class="cr-manager-actions">
-
-
-        <button
-            id="cr-save-team"
-            class="control-room-button control-room-button-primary"
-            type="button"
-            disabled
-        >
-            Save Team Changes
-        </button>
-
-
-    </div>
-
-
-
-    <p
-        id="cr-team-editor-message"
-        class="cr-save-message"
-        hidden
-    >
-    </p>
-
-
-</section>
-    
-    <!-- =================================
-     FACTION MANAGER
-================================= -->
-
-
-<section
-    id="cr-tool-factions"
-    class="control-room-panel"
->
-
-
-    <div class="control-room-panel-heading">
-
-
-        <div>
-
-            <p class="eyebrow">
-                FACTION MANAGEMENT
-            </p>
-
-            <h2>
-                Faction Manager
-            </h2>
-
-        </div>
-
-
-        <span
-            id="cr-faction-editor-status"
-            class="control-room-health-summary"
-        >
-            READY
-        </span>
-
-
-    </div>
-
-
-
-    <!-- MODE -->
-
-
-    <div class="cr-editor-top-grid">
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-faction-editor-mode">
-
-                ACTION
-
-            </label>
-
-
-            <select id="cr-faction-editor-mode">
-
-                <option value="edit">
-                    Edit Existing Faction
-                </option>
-
-                <option value="create">
-                    Add New Faction
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-faction-editor-select-row"
-            class="cr-form-group"
-        >
-
-
-            <label for="cr-faction-editor-select">
-
-                FACTION
-
-            </label>
-
-
-            <select id="cr-faction-editor-select">
-
-                <option value="">
-                    Select Faction
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label>
-                DATABASE ID
-            </label>
-
-
-            <div
-                id="cr-faction-id-preview"
-                class="cr-current-value"
-            >
-                —
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- IDENTITY -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                FACTION IDENTITY
-            </span>
-
-            <h3>
-                Basic Information
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-editor-form-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-faction-name">
-
-                    FACTION NAME
-
-                </label>
-
-
-                <input
-                    id="cr-faction-name"
-                    type="text"
-                    autocomplete="off"
-                >
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-faction-brand">
-
-                    SHOW
-
-                </label>
-
-
-                <select id="cr-faction-brand">
-
-                    <option value="">
-                        Unassigned
-                    </option>
-
-                    <option value="Ascension">
-                        Ascension
-                    </option>
-
-                    <option value="Revolt">
-                        Revolt
-                    </option>
-
-                    <option value="OWL">
-                        Shared OWL
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- STRUCTURE -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                FACTION STRUCTURE
-            </span>
-
-            <h3>
-                Team and Leadership
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-editor-form-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-faction-tag-team">
-
-                    OFFICIAL TAG TEAM
-
-                </label>
-
-
-                <select id="cr-faction-tag-team">
-
-                    <option value="">
-                        No Associated Team
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-faction-leader">
-
-                    LEADER
-
-                </label>
-
-
-                <select id="cr-faction-leader">
-
-                    <option value="">
-                        No Leader
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-        </div>
-
-
-        <p class="cr-editor-note">
-
-            Leaders are optional. If selected, the leader must also
-            appear in the faction member lineup.
-
-        </p>
-
-
-    </div>
-
-
-
-    <!-- MEMBERS -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                MEMBERSHIP
-            </span>
-
-            <h3>
-                Faction Members
-            </h3>
-
-        </div>
-
-
-        <p class="cr-editor-note">
-
-            Select three or four members. If the faction has an official
-            tag team, both team members must be included here.
-
-        </p>
-
-
-
-        <div class="cr-faction-member-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-faction-member-one">
-
-                    MEMBER 1
-
-                </label>
-
-
-                <select id="cr-faction-member-one">
-
-                    <option value="">
-                        Select Wrestler
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-faction-member-two">
-
-                    MEMBER 2
-
-                </label>
-
-
-                <select id="cr-faction-member-two">
-
-                    <option value="">
-                        Select Wrestler
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-faction-member-three">
-
-                    MEMBER 3
-
-                </label>
-
-
-                <select id="cr-faction-member-three">
-
-                    <option value="">
-                        Select Wrestler
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-faction-member-four">
-
-                    MEMBER 4
-
-                </label>
-
-
-                <select id="cr-faction-member-four">
-
-                    <option value="">
-                        Optional Fourth Member
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- SINGLES MEMBERS -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                SINGLES REPRESENTATIVES
-            </span>
-
-            <h3>
-                Singles Members
-            </h3>
-
-        </div>
-
-
-        <p class="cr-editor-note">
-
-            These are the faction members primarily tracked as singles
-            competitors rather than as the faction's official tag team.
-
-        </p>
-
-
-
-        <div class="cr-faction-member-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-faction-singles-one">
-
-                    SINGLES MEMBER 1
-
-                </label>
-
-
-                <select id="cr-faction-singles-one">
-
-                    <option value="">
-                        None
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-faction-singles-two">
-
-                    SINGLES MEMBER 2
-
-                </label>
-
-
-                <select id="cr-faction-singles-two">
-
-                    <option value="">
-                        None
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- PROFILE -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                FACTION PROFILE
-            </span>
-
-            <h3>
-                Story
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-faction-story">
-
-                WHY WE'RE HERE
-
-            </label>
-
-
-            <textarea
-                id="cr-faction-story"
-                rows="7"
-            ></textarea>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- MEDIA -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                MEDIA
-            </span>
-
-            <h3>
-                Faction Logo
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-faction-logo">
-
-                LOGO PATH
-
-            </label>
-
-
-            <input
-                id="cr-faction-logo"
-                type="text"
-                autocomplete="off"
-                placeholder="assets/images/factions/example.png"
-            >
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- REVIEW -->
-
-
-    <div
-        id="cr-faction-change-preview"
-        class="cr-change-preview"
-        hidden
-    >
-
-
-        <span>
-            REVIEW CHANGES
-        </span>
-
-
-        <div
-            id="cr-faction-change-list"
-            class="cr-editor-change-list"
-        >
-        </div>
-
-
-        <p
-            id="cr-faction-conflict-message"
-            class="cr-change-error"
-            hidden
-        >
-        </p>
-
-
-    </div>
-
-
-
-    <!-- ACTIONS -->
-
-
-    <div class="cr-manager-actions">
-
-
-        <button
-            id="cr-save-faction"
-            class="control-room-button control-room-button-primary"
-            type="button"
-            disabled
-        >
-            Save Faction Changes
-        </button>
-
-
-    </div>
-
-
-
-    <p
-        id="cr-faction-editor-message"
-        class="cr-save-message"
-        hidden
-    >
-    </p>
-
-
-</section>
-    <!-- =================================
-     EVENT MANAGER
-================================= -->
-
-
-<section
-    id="cr-tool-events"
-    class="control-room-panel"
->
-
-
-    <div class="control-room-panel-heading">
-
-
-        <div>
-
-            <p class="eyebrow">
-                EVENT MANAGEMENT
-            </p>
-
-            <h2>
-                Event Manager
-            </h2>
-
-        </div>
-
-
-        <span
-            id="cr-event-editor-status"
-            class="control-room-health-summary"
-        >
-            READY
-        </span>
-
-
-    </div>
-
-
-
-    <!-- MODE -->
-
-
-    <div class="cr-editor-top-grid">
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-event-editor-mode">
-
-                ACTION
-
-            </label>
-
-
-            <select id="cr-event-editor-mode">
-
-                <option value="edit">
-                    Edit Existing Event
-                </option>
-
-                <option value="create">
-                    Add New Event
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-event-editor-select-row"
-            class="cr-form-group"
-        >
-
-
-            <label for="cr-event-editor-select">
-
-                EVENT
-
-            </label>
-
-
-            <select id="cr-event-editor-select">
-
-                <option value="">
-                    Select Event
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label>
-                DATABASE ID
-            </label>
-
-
-            <div
-                id="cr-event-id-preview"
-                class="cr-current-value"
-            >
-                —
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- EVENT IDENTITY -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                EVENT IDENTITY
-            </span>
-
-            <h3>
-                Basic Information
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-editor-form-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-event-name">
-
-                    EVENT NAME
-
-                </label>
-
-
-                <input
-                    id="cr-event-name"
-                    type="text"
-                    autocomplete="off"
-                >
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-event-brand">
-
-                    SHOW / BRAND
-
-                </label>
-
-
-                <select id="cr-event-brand">
-
-                    <option value="">
-                        Unassigned
-                    </option>
-
-                    <option value="Ascension">
-                        Ascension
-                    </option>
-
-                    <option value="Revolt">
-                        Revolt
-                    </option>
-
-                    <option value="OWL">
-                        OWL
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-event-type">
-
-                    EVENT TYPE
-
-                </label>
-
-
-                <select id="cr-event-type">
-
-                    <option value="weekly">
-                        Weekly
-                    </option>
-
-                    <option value="ppv">
-                        PPV
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-event-date">
-
-                    DATE
-
-                </label>
-
-
-                <input
-                    id="cr-event-date"
-                    type="date"
-                >
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-event-status">
-
-                    STATUS
-
-                </label>
-
-
-                <select id="cr-event-status">
-
-                    <option value="upcoming">
-                        Upcoming
-                    </option>
-
-                    <option value="completed">
-                        Completed
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-event-location">
-
-                    LOCATION
-
-                </label>
-
-
-                <input
-                    id="cr-event-location"
-                    type="text"
-                    autocomplete="off"
-                >
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- EVENT STORY -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                EVENT PROFILE
-            </span>
-
-            <h3>
-                Presentation
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-event-tagline">
-
-                TAGLINE
-
-            </label>
-
-
-            <input
-                id="cr-event-tagline"
-                type="text"
-                autocomplete="off"
-            >
-
-
-        </div>
-
-
-
-        <div class="cr-form-group cr-editor-spaced-field">
-
-
-            <label for="cr-event-description">
-
-                DESCRIPTION
-
-            </label>
-
-
-            <textarea
-                id="cr-event-description"
-                rows="7"
-            ></textarea>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- EVENT MEDIA -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                MEDIA
-            </span>
-
-            <h3>
-                Event Poster
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-event-image">
-
-                POSTER PATH
-
-            </label>
-
-
-            <input
-                id="cr-event-image"
-                type="text"
-                autocomplete="off"
-                placeholder="assets/images/events/example.png"
-            >
-
-
-            <small class="cr-field-help">
-
-                Direct image importing will be handled by the Media Manager.
-
-            </small>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- REVIEW -->
-
-
-    <div
-        id="cr-event-change-preview"
-        class="cr-change-preview"
-        hidden
-    >
-
-
-        <span>
-            REVIEW CHANGES
-        </span>
-
-
-        <div
-            id="cr-event-change-list"
-            class="cr-editor-change-list"
-        >
-        </div>
-
-
-        <p
-            id="cr-event-conflict-message"
-            class="cr-change-error"
-            hidden
-        >
-        </p>
-
-
-    </div>
-
-
-
-    <!-- ACTIONS -->
-
-
-    <div class="cr-manager-actions">
-
-
-        <button
-            id="cr-save-event"
-            class="control-room-button control-room-button-primary"
-            type="button"
-            disabled
-        >
-            Save Event Changes
-        </button>
-
-
-    </div>
-
-
-
-    <p
-        id="cr-event-editor-message"
-        class="cr-save-message"
-        hidden
-    >
-    </p>
-
-
-</section>
-   <!-- =================================
-     MATCH BOOKER
-================================= -->
-
-
-<section
-    id="cr-tool-match-booker"
-    class="control-room-panel"
->
-
-
-    <div class="control-room-panel-heading">
-
-
-        <div>
-
-            <p class="eyebrow">
-                CARD MANAGEMENT
-            </p>
-
-            <h2>
-                Match Booker
-            </h2>
-
-        </div>
-
-
-        <span
-            id="cr-booker-status"
-            class="control-room-health-summary"
-        >
-            READY
-        </span>
-
-
-    </div>
-
-
-
-    <!-- MODE -->
-
-
-    <div class="cr-editor-top-grid">
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-booker-mode">
-
-                ACTION
-
-            </label>
-
-
-            <select id="cr-booker-mode">
-
-                <option value="create">
-                    Add Match to Card
-                </option>
-
-                <option value="edit">
-                    Edit Booked Match
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-booker-event">
-
-                EVENT
-
-            </label>
-
-
-            <select id="cr-booker-event">
-
-                <option value="">
-                    Select Event
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-booker-match-select-row"
-            class="cr-form-group"
-            hidden
-        >
-
-
-            <label for="cr-booker-match-select">
-
-                BOOKED MATCH
-
-            </label>
-
-
-            <select id="cr-booker-match-select">
-
-                <option value="">
-                    Select Match
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- MATCH INFORMATION -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                MATCH SETUP
-            </span>
-
-            <h3>
-                Match Information
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-editor-form-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-booker-match-type">
-
-                    MATCH TYPE
-
-                </label>
-
-
-                <select id="cr-booker-match-type">
-
-                    <option value="Singles">
-                        Singles
-                    </option>
-
-                    <option value="Tag Team">
-                        Tag Team
-                    </option>
-
-                    <option value="Triple Threat">
-                        Triple Threat
-                    </option>
-
-                    <option value="Fatal 4-Way">
-                        Fatal 4-Way
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-booker-order">
-
-                    CARD ORDER
-
-                </label>
-
-
-                <input
-                    id="cr-booker-order"
-                    type="number"
-                    min="1"
-                    step="1"
-                >
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-booker-championship">
-
-                    CHAMPIONSHIP
-
-                </label>
-
-
-                <select id="cr-booker-championship">
-
-                    <option value="">
-                        Non-Title Match
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-booker-status-field">
-
-                    STATUS
-
-                </label>
-
-
-                <select id="cr-booker-status-field">
-
-                    <option value="announced">
-                        Announced
-                    </option>
-
-                    <option value="postponed">
-                        Postponed
-                    </option>
-
-                    <option value="cancelled">
-                        Cancelled
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <div class="cr-form-group cr-editor-spaced-field">
-
-
-            <label for="cr-booker-stipulation">
-
-    SPECIALTY MATCH
-
-</label>
-
-
-<select id="cr-booker-stipulation">
-
-
-    <option value="">
-        Standard Match
-    </option>
-
-
-    <option value="Hate In The Crate">
-        Hate In The Crate
-    </option>
-
-
-    <option value="Cage Match">
-        Cage Match
-    </option>
-
-
-    <option value="Barbed Wire Death Match">
-        Barbed Wire Death Match
-    </option>
-
-
-    <option value="Landmine Death Match">
-        Landmine Death Match
-    </option>
-
-
-    <option value="Battle Royal">
-        Battle Royal
-    </option>
-
-
-    <option value="Overthrow Rumble">
-        Overthrow Rumble
-    </option>
-
-
-    <option value="Hex-Cell Eliminator">
-        Hex-Cell Eliminator
-    </option>
-
-
-    <option value="Fate's Wheel">
-        Fate's Wheel
-    </option>
-
-
-    <option value="The Devil's Contract">
-        The Devil's Contract
-    </option>
-
-
-    <option value="Love and War">
-        Love and War
-    </option>
-
-
-    <option value="Last Man Standing">
-        Last Man Standing
-    </option>
-
-
-    <option value="Texas Death Match">
-        Texas Death Match
-    </option>
-
-
-    <option value="2 Out Of 3 Falls Match">
-        2 Out Of 3 Falls Match
-    </option>
-
-
-        <option value="Elimination Match">
-        Elimination Match
-    </option>
-
-
-    <option value="Handicap Match">
-        Handicap Match
-    </option>
-
-
-    <option value="No DQ">
-        No DQ
-    </option>
-
-
-    <option value="Ironman Match">
-        Ironman Match
-    </option>
-
-
-    <option value="Street Fight">
-        Street Fight
-    </option>
-
-
-</select>
-
-
-        </div>
-
-
-
-                <!-- ADVANCED MATCH STRUCTURE -->
-
-
-        <div
-            id="cr-booker-advanced-match"
-            class="cr-booker-side-card"
-            hidden
-        >
-
-
-            <div class="cr-booker-side-heading">
-
-                <span>
-                    ADVANCED MATCH STRUCTURE
-                </span>
-
-            </div>
-
-
-
-            <div class="cr-editor-form-grid">
-
-
-                <!-- PARTICIPANT COUNT -->
-
-
-                <div
-                    id="cr-booker-participant-count-row"
-                    class="cr-form-group"
-                    hidden
-                >
-
-
-                    <label for="cr-booker-participant-count">
-
-                        PARTICIPANT COUNT
-
-                    </label>
-
-
-                    <select id="cr-booker-participant-count">
-
-                        <option value="3">
-                            3 Participants
-                        </option>
-
-                        <option value="4">
-                            4 Participants
-                        </option>
-
-                        <option value="5">
-                            5 Participants
-                        </option>
-
-                        <option value="6" selected>
-                            6 Participants
-                        </option>
-
-                        <option value="7">
-                            7 Participants
-                        </option>
-
-                        <option value="8">
-                            8 Participants
-                        </option>
-
+            <div class="cr-editor-top-grid">
+                <div class="cr-form-group">
+                    <label for="cr-wrestler-editor-mode">ACTION</label>
+                    <select id="cr-wrestler-editor-mode">
+                        <option value="edit">Edit Existing Wrestler</option>
+                        <option value="create">Add New Wrestler</option>
                     </select>
-
-
                 </div>
 
-
-
-                <!-- ELIMINATION RULE -->
-
-
-                <div
-                    id="cr-booker-elimination-rule-row"
-                    class="cr-form-group"
-                    hidden
-                >
-
-
-                    <label for="cr-booker-elimination-rule">
-
-                        ELIMINATION RULE
-
-                    </label>
-
-
-                    <select id="cr-booker-elimination-rule">
-
-                        <option value="Over the Top Rope">
-                            Over the Top Rope
-                        </option>
-
-                        <option value="Pinfall or Submission">
-                            Pinfall or Submission
-                        </option>
-
-                        <option value="All Three (Over the Top Rope, Pinfall, or Submission)">
-                            All Three
-                        </option>
-
+                <div id="cr-wrestler-editor-select-row" class="cr-form-group">
+                    <label for="cr-wrestler-editor-select">WRESTLER</label>
+                    <select id="cr-wrestler-editor-select">
+                        <option value="">Select Wrestler</option>
                     </select>
-
-
                 </div>
-
-
-
-                <!-- DIVISION -->
-
-
-                <div
-                    id="cr-booker-division-row"
-                    class="cr-form-group"
-                    hidden
-                >
-
-
-                    <label for="cr-booker-division">
-
-                        DIVISION
-
-                    </label>
-
-
-                    <select id="cr-booker-division">
-
-                        <option value="">
-                            Select Division
-                        </option>
-
-                        <option value="Men">
-                            Men
-                        </option>
-
-                        <option value="Women">
-                            Women
-                        </option>
-
-                    </select>
-
-
-                </div>
-
-
-
-                <!-- STRUCTURE CHOICE -->
-
-
-                <div
-                    id="cr-booker-structure-choice-row"
-                    class="cr-form-group"
-                    hidden
-                >
-
-
-                    <label for="cr-booker-structure-choice">
-
-                        MATCH STRUCTURE
-
-                    </label>
-
-
-                    <select id="cr-booker-structure-choice">
-
-                        <option value="">
-                            Select Structure
-                        </option>
-
-                        <option value="freeForAll">
-                            Individual Elimination
-                        </option>
-
-                        <option value="teamBattle">
-                            Team Elimination
-                        </option>
-
-                    </select>
-
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- DYNAMIC INDIVIDUAL PARTICIPANTS -->
-
-
-            <div
-                id="cr-booker-advanced-participants"
-                class="cr-editor-spaced-field"
-                hidden
-            >
-            </div>
-
-
-
-            <!-- DYNAMIC TEAM BATTLE SIDES -->
-
-
-            <div
-                id="cr-booker-team-battle-sides"
-                class="cr-editor-spaced-field"
-                hidden
-            >
-            </div>
-
-
-        </div>
-
-
-        <!-- ADVANCED MATCH STRUCTURE -->
-
-
-        <div
-            id="cr-booker-advanced-match"
-            class="cr-booker-side-card"
-            hidden
-        >
-
-
-            <div class="cr-booker-side-heading">
-
-                <span>
-                    ADVANCED MATCH STRUCTURE
-                </span>
-
-            </div>
-
-
-
-            <div class="cr-editor-form-grid">
-
-
-                <div
-                    id="cr-booker-participant-count-row"
-                    class="cr-form-group"
-                    hidden
-                >
-
-
-                    <label for="cr-booker-participant-count">
-
-                        PARTICIPANT COUNT
-
-                    </label>
-
-
-                    <select id="cr-booker-participant-count">
-
-                        <option value="3">
-                            3 Participants
-                        </option>
-
-                        <option value="4">
-                            4 Participants
-                        </option>
-
-                        <option value="5">
-                            5 Participants
-                        </option>
-
-                        <option value="6" selected>
-                            6 Participants
-                        </option>
-
-                        <option value="7">
-                            7 Participants
-                        </option>
-
-                        <option value="8">
-                            8 Participants
-                        </option>
-
-                    </select>
-
-
-                </div>
-
-
-
-                <div
-                    id="cr-booker-elimination-rule-row"
-                    class="cr-form-group"
-                    hidden
-                >
-
-
-                    <label for="cr-booker-elimination-rule">
-
-                        ELIMINATION RULE
-
-                    </label>
-
-
-                    <select id="cr-booker-elimination-rule">
-
-                        <option value="Over the Top Rope">
-                            Over the Top Rope
-                        </option>
-
-                        <option value="Pinfall or Submission">
-                            Pinfall or Submission
-                        </option>
-
-                        <option value="All Three (Over the Top Rope, Pinfall, or Submission)">
-                            All Three
-                        </option>
-
-                    </select>
-
-
-                </div>
-
-
-
-                <div
-                    id="cr-booker-division-row"
-                    class="cr-form-group"
-                    hidden
-                >
-
-
-                    <label for="cr-booker-division">
-
-                        DIVISION
-
-                    </label>
-
-
-                    <select id="cr-booker-division">
-
-                        <option value="">
-                            Select Division
-                        </option>
-
-                        <option value="Men">
-                            Men
-                        </option>
-
-                        <option value="Women">
-                            Women
-                        </option>
-
-                    </select>
-
-
-                </div>
-
-
-
-                <div
-                    id="cr-booker-structure-choice-row"
-                    class="cr-form-group"
-                    hidden
-                >
-
-
-                    <label for="cr-booker-structure-choice">
-
-                        MATCH STRUCTURE
-
-                    </label>
-
-
-                    <select id="cr-booker-structure-choice">
-
-                        <option value="">
-                            Select Structure
-                        </option>
-
-                        <option value="freeForAll">
-                            Individual Elimination
-                        </option>
-
-                        <option value="teamBattle">
-                            Team Elimination
-                        </option>
-
-                    </select>
-
-
-                </div>
-
-
-            </div>
-
-
-
-            <div
-                id="cr-booker-advanced-participants"
-                class="cr-editor-spaced-field"
-                hidden
-            >
-            </div>
-
-
-
-            <div
-                id="cr-booker-team-battle-sides"
-                class="cr-editor-spaced-field"
-                hidden
-            >
-            </div>
-
-
-        </div>
-        
-        <div class="cr-form-group cr-editor-spaced-field">
-
-
-            <label for="cr-booker-status-note">
-
-                STATUS NOTE
-
-            </label>
-
-
-            <input
-                id="cr-booker-status-note"
-                type="text"
-                autocomplete="off"
-                placeholder="Optional note for postponed or cancelled matches"
-            >
-
-
-        </div>
-
-
-    </div>
-
-
-
-        <!-- COMPETITORS -->
-
-
-    <div
-        id="cr-booker-standard-competitors"
-        class="cr-editor-section"
-    >
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                COMPETITORS
-            </span>
-
-            <h3>
-                Match Sides
-            </h3>
-
-        </div>
-
-
-
-        <!-- SIDE 1 -->
-
-
-        <div
-            id="cr-booker-side-one"
-            class="cr-booker-side-card"
-        >
-
-
-            <div class="cr-booker-side-heading">
-
-                <span>
-                    SIDE 1
-                </span>
-
-            </div>
-
-
-
-            <div
-                id="cr-booker-side-one-tag-controls"
-                class="cr-booker-tag-controls"
-                hidden
-            >
-
 
                 <div class="cr-form-group">
+                    <label>DATABASE ID</label>
+                    <div id="cr-wrestler-id-preview" class="cr-current-value">—</div>
+                </div>
+            </div>
 
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>PROFILE</span><h3>Basic Information</h3></div>
+                <div class="cr-editor-form-grid">
+                    <div class="cr-form-group"><label for="cr-edit-name">NAME</label><input id="cr-edit-name" type="text" autocomplete="off"></div>
+                    <div class="cr-form-group"><label for="cr-edit-nickname">NICKNAME</label><input id="cr-edit-nickname" type="text" autocomplete="off"></div>
+                    <div class="cr-form-group"><label for="cr-edit-hometown">HOMETOWN</label><input id="cr-edit-hometown" type="text" autocomplete="off"></div>
+                    <div class="cr-form-group"><label for="cr-edit-country">COUNTRY</label><input id="cr-edit-country" type="text" autocomplete="off"></div>
+                    <div class="cr-form-group"><label for="cr-edit-country-code">COUNTRY CODE</label><input id="cr-edit-country-code" type="text" autocomplete="off" placeholder="Example: TT"></div>
+                    <div class="cr-form-group"><label for="cr-edit-flag">FLAG</label><input id="cr-edit-flag" type="text" autocomplete="off" placeholder="Optional"></div>
+                </div>
+            </div>
 
-                    <label for="cr-booker-side-one-mode">
-
-                        SIDE TYPE
-
-                    </label>
-
-
-                    <select id="cr-booker-side-one-mode">
-
-                        <option value="team">
-                            Official Team
-                        </option>
-
-                        <option value="custom">
-                            Custom Pair
-                        </option>
-
-                    </select>
-
-
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>ROSTER STATUS</span><h3>Show and Division</h3></div>
+                <div class="cr-editor-form-grid">
+                    <div class="cr-form-group">
+                        <label for="cr-edit-brand">SHOW</label>
+                        <select id="cr-edit-brand">
+                            <option value="">Unassigned</option>
+                            <option value="Ascension">Ascension</option>
+                            <option value="Revolt">Revolt</option>
+                        </select>
+                    </div>
+                    <div class="cr-form-group">
+                        <label for="cr-edit-division">DIVISION</label>
+                        <select id="cr-edit-division">
+                            <option value="">Unassigned</option>
+                            <option value="Men">Men</option>
+                            <option value="Women">Women</option>
+                        </select>
+                    </div>
                 </div>
 
-
-            </div>
-
-
-
-            <div
-                id="cr-booker-side-one-team-row"
-                class="cr-form-group"
-                hidden
-            >
-
-
-                <label for="cr-booker-side-one-team">
-
-                    TEAM
-
-                </label>
-
-
-                <select id="cr-booker-side-one-team">
-
-                    <option value="">
-                        Select Team
-                    </option>
-
-                </select>
-
-
-            </div>
-
-
-
-            <div
-                id="cr-booker-side-one-wrestlers"
-                class="cr-booker-wrestler-grid"
-            >
-
-
-                <div class="cr-form-group">
-
-
-                    <label for="cr-booker-side-one-wrestler-one">
-
-                        WRESTLER 1
-
-                    </label>
-
-
-                    <select id="cr-booker-side-one-wrestler-one">
-
-                        <option value="">
-                            Select Wrestler
-                        </option>
-
-                    </select>
-
-
+                <div id="cr-existing-affiliations" class="cr-affiliation-readout" hidden>
+                    <div><span>CURRENT TEAM</span><strong id="cr-editor-current-team">—</strong></div>
+                    <div><span>CURRENT FACTION</span><strong id="cr-editor-current-faction">—</strong></div>
+                    <p>Team and faction membership will be managed through the dedicated Teams &amp; Factions Manager.</p>
                 </div>
+            </div>
 
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>WRESTLING PROFILE</span><h3>Moves and Story</h3></div>
+                <div class="cr-form-group"><label for="cr-edit-finisher">FINISHER</label><input id="cr-edit-finisher" type="text" autocomplete="off"></div>
+                <div class="cr-form-group cr-editor-spaced-field"><label for="cr-edit-signatures">SIGNATURE MOVES</label><textarea id="cr-edit-signatures" rows="5" placeholder="Enter one move per line"></textarea><small class="cr-field-help">One move per line.</small></div>
+                <div class="cr-form-group cr-editor-spaced-field"><label for="cr-edit-story">WHY I'M HERE</label><textarea id="cr-edit-story" rows="7"></textarea></div>
+            </div>
 
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>MEDIA</span><h3>Wrestler Photo</h3></div>
+                <div class="cr-form-group"><label for="cr-edit-photo">PHOTO PATH</label><input id="cr-edit-photo" type="text" autocomplete="off" placeholder="assets/images/wrestlers/example.png"><small class="cr-field-help">Direct file selection and image importing will be added in the Media Manager.</small></div>
+            </div>
 
-                <div
-                    id="cr-booker-side-one-wrestler-two-row"
-                    class="cr-form-group"
-                    hidden
-                >
+            <div id="cr-wrestler-change-preview" class="cr-change-preview" hidden>
+                <span>REVIEW CHANGES</span>
+                <div id="cr-wrestler-change-list" class="cr-editor-change-list"></div>
+            </div>
 
+            <div class="cr-manager-actions"><button id="cr-save-wrestler" class="control-room-button control-room-button-primary" type="button" disabled>Save Wrestler Changes</button></div>
+            <p id="cr-wrestler-editor-message" class="cr-save-message" hidden></p>
+        </section>
 
-                    <label for="cr-booker-side-one-wrestler-two">
+        <!-- =================================
+             TEAM MANAGER
+        ================================== -->
 
-                        WRESTLER 2
+        <section id="cr-tool-teams" class="control-room-panel">
+            <div class="control-room-panel-heading">
+                <div><p class="eyebrow">TAG TEAM MANAGEMENT</p><h2>Team Manager</h2></div>
+                <span id="cr-team-editor-status" class="control-room-health-summary">READY</span>
+            </div>
 
-                    </label>
+            <div class="cr-editor-top-grid">
+                <div class="cr-form-group"><label for="cr-team-editor-mode">ACTION</label><select id="cr-team-editor-mode"><option value="edit">Edit Existing Team</option><option value="create">Add New Team</option></select></div>
+                <div id="cr-team-editor-select-row" class="cr-form-group"><label for="cr-team-editor-select">TEAM</label><select id="cr-team-editor-select"><option value="">Select Team</option></select></div>
+                <div class="cr-form-group"><label>DATABASE ID</label><div id="cr-team-id-preview" class="cr-current-value">—</div></div>
+            </div>
 
-
-                    <select id="cr-booker-side-one-wrestler-two">
-
-                        <option value="">
-                            Select Wrestler
-                        </option>
-
-                    </select>
-
-
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>TEAM IDENTITY</span><h3>Basic Information</h3></div>
+                <div class="cr-editor-form-grid">
+                    <div class="cr-form-group"><label for="cr-team-name">TEAM NAME</label><input id="cr-team-name" type="text" autocomplete="off"></div>
+                    <div class="cr-form-group"><label for="cr-team-brand">SHOW</label><select id="cr-team-brand"><option value="">Unassigned</option><option value="Ascension">Ascension</option><option value="Revolt">Revolt</option><option value="OWL">Shared OWL Division</option></select></div>
                 </div>
-
-
             </div>
 
-
-        </div>
-
-
-
-        <!-- SIDE 2 -->
-
-
-        <div
-            id="cr-booker-side-two"
-            class="cr-booker-side-card"
-        >
-
-
-            <div class="cr-booker-side-heading">
-
-                <span>
-                    SIDE 2
-                </span>
-
-            </div>
-
-
-
-            <div
-                id="cr-booker-side-two-tag-controls"
-                class="cr-booker-tag-controls"
-                hidden
-            >
-
-
-                <div class="cr-form-group">
-
-
-                    <label for="cr-booker-side-two-mode">
-
-                        SIDE TYPE
-
-                    </label>
-
-
-                    <select id="cr-booker-side-two-mode">
-
-                        <option value="team">
-                            Official Team
-                        </option>
-
-                        <option value="custom">
-                            Custom Pair
-                        </option>
-
-                    </select>
-
-
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>OFFICIAL MEMBERS</span><h3>Tag Team Lineup</h3></div>
+                <p class="cr-editor-note">OWL official tag teams contain exactly two members. The Control Room will synchronize their wrestler profiles automatically.</p>
+                <div class="cr-team-member-grid">
+                    <div class="cr-form-group"><label for="cr-team-member-one">MEMBER 1</label><select id="cr-team-member-one"><option value="">Select Wrestler</option></select></div>
+                    <div class="cr-form-group"><label for="cr-team-member-two">MEMBER 2</label><select id="cr-team-member-two"><option value="">Select Wrestler</option></select></div>
                 </div>
-
-
             </div>
 
-
-
-            <div
-                id="cr-booker-side-two-team-row"
-                class="cr-form-group"
-                hidden
-            >
-
-
-                <label for="cr-booker-side-two-team">
-
-                    TEAM
-
-                </label>
-
-
-                <select id="cr-booker-side-two-team">
-
-                    <option value="">
-                        Select Team
-                    </option>
-
-                </select>
-
-
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>TEAM PROFILE</span><h3>Wrestling Information</h3></div>
+                <div class="cr-form-group"><label for="cr-team-finisher">TEAM FINISHER</label><input id="cr-team-finisher" type="text" autocomplete="off"></div>
+                <div class="cr-form-group cr-editor-spaced-field"><label for="cr-team-story">WHY WE'RE HERE</label><textarea id="cr-team-story" rows="7"></textarea></div>
             </div>
 
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>MEDIA</span><h3>Team Logo</h3></div>
+                <div class="cr-form-group"><label for="cr-team-logo">LOGO PATH</label><input id="cr-team-logo" type="text" autocomplete="off" placeholder="assets/images/teams/example.png"><small class="cr-field-help">Direct image importing will be handled by the Media Manager.</small></div>
+            </div>
 
+            <div id="cr-team-change-preview" class="cr-change-preview" hidden><span>REVIEW CHANGES</span><div id="cr-team-change-list" class="cr-editor-change-list"></div><p id="cr-team-conflict-message" class="cr-change-error" hidden></p></div>
+            <div class="cr-manager-actions"><button id="cr-save-team" class="control-room-button control-room-button-primary" type="button" disabled>Save Team Changes</button></div>
+            <p id="cr-team-editor-message" class="cr-save-message" hidden></p>
+        </section>        <!-- =================================
+             FACTION MANAGER
+        ================================== -->
 
-            <div
-                id="cr-booker-side-two-wrestlers"
-                class="cr-booker-wrestler-grid"
-            >
+        <section id="cr-tool-factions" class="control-room-panel">
+            <div class="control-room-panel-heading">
+                <div><p class="eyebrow">FACTION MANAGEMENT</p><h2>Faction Manager</h2></div>
+                <span id="cr-faction-editor-status" class="control-room-health-summary">READY</span>
+            </div>
 
+            <div class="cr-editor-top-grid">
+                <div class="cr-form-group"><label for="cr-faction-editor-mode">ACTION</label><select id="cr-faction-editor-mode"><option value="edit">Edit Existing Faction</option><option value="create">Add New Faction</option></select></div>
+                <div id="cr-faction-editor-select-row" class="cr-form-group"><label for="cr-faction-editor-select">FACTION</label><select id="cr-faction-editor-select"><option value="">Select Faction</option></select></div>
+                <div class="cr-form-group"><label>DATABASE ID</label><div id="cr-faction-id-preview" class="cr-current-value">—</div></div>
+            </div>
 
-                <div class="cr-form-group">
-
-
-                    <label for="cr-booker-side-two-wrestler-one">
-
-                        WRESTLER 1
-
-                    </label>
-
-
-                    <select id="cr-booker-side-two-wrestler-one">
-
-                        <option value="">
-                            Select Wrestler
-                        </option>
-
-                    </select>
-
-
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>FACTION IDENTITY</span><h3>Basic Information</h3></div>
+                <div class="cr-editor-form-grid">
+                    <div class="cr-form-group"><label for="cr-faction-name">FACTION NAME</label><input id="cr-faction-name" type="text" autocomplete="off"></div>
+                    <div class="cr-form-group"><label for="cr-faction-brand">SHOW</label><select id="cr-faction-brand"><option value="">Unassigned</option><option value="Ascension">Ascension</option><option value="Revolt">Revolt</option><option value="OWL">Shared OWL</option></select></div>
                 </div>
+            </div>
 
-
-
-                <div
-                    id="cr-booker-side-two-wrestler-two-row"
-                    class="cr-form-group"
-                    hidden
-                >
-
-
-                    <label for="cr-booker-side-two-wrestler-two">
-
-                        WRESTLER 2
-
-                    </label>
-
-
-                    <select id="cr-booker-side-two-wrestler-two">
-
-                        <option value="">
-                            Select Wrestler
-                        </option>
-
-                    </select>
-
-
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>FACTION STRUCTURE</span><h3>Team and Leadership</h3></div>
+                <div class="cr-editor-form-grid">
+                    <div class="cr-form-group"><label for="cr-faction-tag-team">OFFICIAL TAG TEAM</label><select id="cr-faction-tag-team"><option value="">No Associated Team</option></select></div>
+                    <div class="cr-form-group"><label for="cr-faction-leader">LEADER</label><select id="cr-faction-leader"><option value="">No Leader</option></select></div>
                 </div>
-
-
+                <p class="cr-editor-note">Leaders are optional. If selected, the leader must also appear in the faction member lineup.</p>
             </div>
 
-
-        </div>
-
-
-
-        <!-- SIDE 3 -->
-
-
-        <div
-            id="cr-booker-side-three"
-            class="cr-booker-side-card"
-            hidden
-        >
-
-
-            <div class="cr-booker-side-heading">
-
-                <span>
-                    SIDE 3
-                </span>
-
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>MEMBERSHIP</span><h3>Faction Members</h3></div>
+                <p class="cr-editor-note">Select three or four members. If the faction has an official tag team, both team members must be included here.</p>
+                <div class="cr-faction-member-grid">
+                    <div class="cr-form-group"><label for="cr-faction-member-one">MEMBER 1</label><select id="cr-faction-member-one"><option value="">Select Wrestler</option></select></div>
+                    <div class="cr-form-group"><label for="cr-faction-member-two">MEMBER 2</label><select id="cr-faction-member-two"><option value="">Select Wrestler</option></select></div>
+                    <div class="cr-form-group"><label for="cr-faction-member-three">MEMBER 3</label><select id="cr-faction-member-three"><option value="">Select Wrestler</option></select></div>
+                    <div class="cr-form-group"><label for="cr-faction-member-four">MEMBER 4</label><select id="cr-faction-member-four"><option value="">Optional Fourth Member</option></select></div>
+                </div>
             </div>
 
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-booker-side-three-wrestler">
-
-                    WRESTLER
-
-                </label>
-
-
-                <select id="cr-booker-side-three-wrestler">
-
-                    <option value="">
-                        Select Wrestler
-                    </option>
-
-                </select>
-
-
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>SINGLES REPRESENTATIVES</span><h3>Singles Members</h3></div>
+                <p class="cr-editor-note">These are the faction members primarily tracked as singles competitors rather than as the faction's official tag team.</p>
+                <div class="cr-faction-member-grid">
+                    <div class="cr-form-group"><label for="cr-faction-singles-one">SINGLES MEMBER 1</label><select id="cr-faction-singles-one"><option value="">None</option></select></div>
+                    <div class="cr-form-group"><label for="cr-faction-singles-two">SINGLES MEMBER 2</label><select id="cr-faction-singles-two"><option value="">None</option></select></div>
+                </div>
             </div>
 
+            <div class="cr-editor-section"><div class="cr-editor-section-heading"><span>FACTION PROFILE</span><h3>Story</h3></div><div class="cr-form-group"><label for="cr-faction-story">WHY WE'RE HERE</label><textarea id="cr-faction-story" rows="7"></textarea></div></div>
+            <div class="cr-editor-section"><div class="cr-editor-section-heading"><span>MEDIA</span><h3>Faction Logo</h3></div><div class="cr-form-group"><label for="cr-faction-logo">LOGO PATH</label><input id="cr-faction-logo" type="text" autocomplete="off" placeholder="assets/images/factions/example.png"></div></div>
 
-        </div>
+            <div id="cr-faction-change-preview" class="cr-change-preview" hidden><span>REVIEW CHANGES</span><div id="cr-faction-change-list" class="cr-editor-change-list"></div><p id="cr-faction-conflict-message" class="cr-change-error" hidden></p></div>
+            <div class="cr-manager-actions"><button id="cr-save-faction" class="control-room-button control-room-button-primary" type="button" disabled>Save Faction Changes</button></div>
+            <p id="cr-faction-editor-message" class="cr-save-message" hidden></p>
+        </section>
 
+        <!-- =================================
+             EVENT MANAGER
+        ================================== -->
 
-
-        <!-- SIDE 4 -->
-
-
-        <div
-            id="cr-booker-side-four"
-            class="cr-booker-side-card"
-            hidden
-        >
-
-
-            <div class="cr-booker-side-heading">
-
-                <span>
-                    SIDE 4
-                </span>
-
+        <section id="cr-tool-events" class="control-room-panel">
+            <div class="control-room-panel-heading">
+                <div><p class="eyebrow">EVENT MANAGEMENT</p><h2>Event Manager</h2></div>
+                <span id="cr-event-editor-status" class="control-room-health-summary">READY</span>
             </div>
 
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-booker-side-four-wrestler">
-
-                    WRESTLER
-
-                </label>
-
-
-                <select id="cr-booker-side-four-wrestler">
-
-                    <option value="">
-                        Select Wrestler
-                    </option>
-
-                </select>
-
-
+            <div class="cr-editor-top-grid">
+                <div class="cr-form-group"><label for="cr-event-editor-mode">ACTION</label><select id="cr-event-editor-mode"><option value="edit">Edit Existing Event</option><option value="create">Add New Event</option></select></div>
+                <div id="cr-event-editor-select-row" class="cr-form-group"><label for="cr-event-editor-select">EVENT</label><select id="cr-event-editor-select"><option value="">Select Event</option></select></div>
+                <div class="cr-form-group"><label>DATABASE ID</label><div id="cr-event-id-preview" class="cr-current-value">—</div></div>
             </div>
 
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- REVIEW -->
-
-
-    <div
-        id="cr-booker-preview"
-        class="cr-change-preview"
-        hidden
-    >
-
-
-        <span>
-            REVIEW MATCH
-        </span>
-
-
-        <div
-            id="cr-booker-review-list"
-            class="cr-editor-change-list"
-        >
-        </div>
-
-
-        <p
-            id="cr-booker-error"
-            class="cr-change-error"
-            hidden
-        >
-        </p>
-
-
-    </div>
-
-
-
-    <!-- ACTIONS -->
-
-
-    <div class="cr-manager-actions">
-
-
-        <button
-            id="cr-booker-save"
-            class="control-room-button control-room-button-primary"
-            type="button"
-            disabled
-        >
-            Add Match to Card
-        </button>
-
-
-    </div>
-
-
-
-    <p
-        id="cr-booker-message"
-        class="cr-save-message"
-        hidden
-    >
-    </p>
-
-
-</section>
-
-
-
-<!-- =================================
-     RESULTS WIZARD
-================================= -->
-
-
-<section
-    id="cr-tool-results"
-    class="control-room-panel"
->
-
-
-    <div class="control-room-panel-heading">
-
-
-        <div>
-
-            <p class="eyebrow">
-                MATCH RESULTS
-            </p>
-
-            <h2>
-                Results Wizard
-            </h2>
-
-        </div>
-
-
-        <span
-            id="cr-results-status"
-            class="control-room-health-summary"
-        >
-            READY
-        </span>
-
-
-    </div>
-
-
-
-    <!-- MATCH SELECTION -->
-
-
-    <div class="cr-editor-top-grid">
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-results-event">
-
-                EVENT
-
-            </label>
-
-
-            <select id="cr-results-event">
-
-                <option value="">
-                    Select Event
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-results-match">
-
-                MATCH
-
-            </label>
-
-
-            <select
-                id="cr-results-match"
-                disabled
-            >
-
-                <option value="">
-                    Select Match
-                </option>
-
-            </select>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- SELECTED MATCH -->
-
-
-    <div
-        id="cr-results-match-preview"
-        class="cr-change-preview"
-        hidden
-    >
-
-
-        <span>
-            SELECTED MATCH
-        </span>
-
-
-        <div
-            id="cr-results-match-summary"
-            class="cr-editor-change-list"
-        >
-        </div>
-
-
-    </div>
-
-
-
-    <!-- BASIC RESULT -->
-
-
-    <div
-        id="cr-results-basic-fields"
-        class="cr-editor-section"
-        hidden
-    >
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                MATCH RESULT
-            </span>
-
-            <h3>
-                Outcome
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-editor-form-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-results-result-type">
-
-                    RESULT TYPE
-
-                </label>
-
-
-                <select id="cr-results-result-type">
-
-                    <option value="win">
-                        Win
-                    </option>
-
-                    <option value="draw">
-                        Draw
-                    </option>
-
-                    <option value="no-contest">
-                        No Contest
-                    </option>
-
-                </select>
-
-
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>EVENT IDENTITY</span><h3>Basic Information</h3></div>
+                <div class="cr-editor-form-grid">
+                    <div class="cr-form-group"><label for="cr-event-name">EVENT NAME</label><input id="cr-event-name" type="text" autocomplete="off"></div>
+                    <div class="cr-form-group"><label for="cr-event-brand">SHOW / BRAND</label><select id="cr-event-brand"><option value="">Unassigned</option><option value="Ascension">Ascension</option><option value="Revolt">Revolt</option><option value="OWL">OWL</option></select></div>
+                    <div class="cr-form-group"><label for="cr-event-type">EVENT TYPE</label><select id="cr-event-type"><option value="weekly">Weekly</option><option value="ppv">PPV</option></select></div>
+                    <div class="cr-form-group"><label for="cr-event-date">DATE</label><input id="cr-event-date" type="date"></div>
+                    <div class="cr-form-group"><label for="cr-event-status">STATUS</label><select id="cr-event-status"><option value="upcoming">Upcoming</option><option value="completed">Completed</option></select></div>
+                    <div class="cr-form-group"><label for="cr-event-location">LOCATION</label><input id="cr-event-location" type="text" autocomplete="off"></div>
+                </div>
             </div>
 
-
-
-            <div
-                id="cr-results-winner-side-row"
-                class="cr-form-group"
-            >
-
-
-                <label for="cr-results-winner-side">
-
-                    WINNING SIDE
-
-                </label>
-
-
-                <select id="cr-results-winner-side">
-
-                    <option value="">
-                        Select Winning Side
-                    </option>
-
-                </select>
-
-
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>EVENT PROFILE</span><h3>Presentation</h3></div>
+                <div class="cr-form-group"><label for="cr-event-tagline">TAGLINE</label><input id="cr-event-tagline" type="text" autocomplete="off"></div>
+                <div class="cr-form-group cr-editor-spaced-field"><label for="cr-event-description">DESCRIPTION</label><textarea id="cr-event-description" rows="7"></textarea></div>
             </div>
 
+            <div class="cr-editor-section"><div class="cr-editor-section-heading"><span>MEDIA</span><h3>Event Poster</h3></div><div class="cr-form-group"><label for="cr-event-image">POSTER PATH</label><input id="cr-event-image" type="text" autocomplete="off" placeholder="assets/images/events/example.png"><small class="cr-field-help">Direct image importing will be handled by the Media Manager.</small></div></div>
 
+            <div id="cr-event-change-preview" class="cr-change-preview" hidden><span>REVIEW CHANGES</span><div id="cr-event-change-list" class="cr-editor-change-list"></div><p id="cr-event-conflict-message" class="cr-change-error" hidden></p></div>
+            <div class="cr-manager-actions"><button id="cr-save-event" class="control-room-button control-room-button-primary" type="button" disabled>Save Event Changes</button></div>
+            <p id="cr-event-editor-message" class="cr-save-message" hidden></p>
+        </section>        <!-- =================================
+             MATCH BOOKER
+        ================================== -->
 
-            <div
-                id="cr-results-finish-winner-row"
-                class="cr-form-group"
-            >
-
-
-                <label for="cr-results-finish-winner">
-
-                    WINNING WRESTLER
-
-                </label>
-
-
-                <select id="cr-results-finish-winner">
-
-                    <option value="">
-                        Select Wrestler
-                    </option>
-
-                </select>
-
-
+        <section id="cr-tool-booker" class="control-room-panel">
+            <div class="control-room-panel-heading">
+                <div><p class="eyebrow">CARD MANAGEMENT</p><h2>Match Booker</h2></div>
+                <span id="cr-booker-status" class="control-room-health-summary">READY</span>
             </div>
 
-
-
-            <div
-                id="cr-results-finish-loser-row"
-                class="cr-form-group"
-            >
-
-
-                <label for="cr-results-finish-loser">
-
-                    LOSING WRESTLER
-
-                </label>
-
-
-                <select id="cr-results-finish-loser">
-
-                    <option value="">
-                        Select Wrestler
-                    </option>
-
-                </select>
-
-
+            <div class="cr-editor-top-grid">
+                <div class="cr-form-group"><label for="cr-booker-mode">ACTION</label><select id="cr-booker-mode"><option value="create">Add Match to Card</option><option value="edit">Edit Booked Match</option></select></div>
+                <div class="cr-form-group"><label for="cr-booker-event">EVENT</label><select id="cr-booker-event"><option value="">Select Event</option></select></div>
+                <div id="cr-booker-match-select-row" class="cr-form-group" hidden><label for="cr-booker-match-select">BOOKED MATCH</label><select id="cr-booker-match-select"><option value="">Select Match</option></select></div>
             </div>
 
-
-
-            <div
-                id="cr-results-method-row"
-                class="cr-form-group"
-            >
-
-
-                <label for="cr-results-method">
-
-                    FINISH METHOD
-
-                </label>
-
-
-                <select id="cr-results-method">
-
-                    <option value="">
-                        Select Method
-                    </option>
-
-                    <option value="Pinfall">
-                        Pinfall
-                    </option>
-
-                    <option value="Submission">
-                        Submission
-                    </option>
-
-                    <option value="KO">
-                        KO
-                    </option>
-
-                    <option value="Count Out">
-                        Count Out
-                    </option>
-
-                    <option value="Disqualification">
-                        Disqualification
-                    </option>
-
-                    <option value="Other">
-                        Other
-                    </option>
-
-                </select>
-
-
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>MATCH SETUP</span><h3>Match Information</h3></div>
+                <div class="cr-editor-form-grid">
+                    <div class="cr-form-group"><label for="cr-booker-match-type">MATCH TYPE</label><select id="cr-booker-match-type"><option value="Singles">Singles</option><option value="Tag Team">Tag Team</option><option value="Triple Threat">Triple Threat</option><option value="Fatal 4-Way">Fatal 4-Way</option></select></div>
+                    <div class="cr-form-group"><label for="cr-booker-order">CARD ORDER</label><input id="cr-booker-order" type="number" min="1" step="1"></div>
+                    <div class="cr-form-group"><label for="cr-booker-championship">CHAMPIONSHIP</label><select id="cr-booker-championship"><option value="">Non-Title Match</option></select></div>
+                    <div class="cr-form-group"><label for="cr-booker-status-field">STATUS</label><select id="cr-booker-status-field"><option value="announced">Announced</option><option value="postponed">Postponed</option><option value="cancelled">Cancelled</option></select></div>
+                    <div class="cr-form-group"><label for="cr-booker-stipulation">SPECIALTY MATCH</label><select id="cr-booker-stipulation">
+                        <option value="">Standard Match</option>
+                        <option value="Hate In The Crate">Hate In The Crate</option>
+                        <option value="Cage Match">Cage Match</option>
+                        <option value="Barbed Wire Death Match">Barbed Wire Death Match</option>
+                        <option value="Landmine Death Match">Landmine Death Match</option>
+                        <option value="Battle Royal">Battle Royal</option>
+                        <option value="Overthrow Rumble">Overthrow Rumble</option>
+                        <option value="Hex-Cell Eliminator">Hex-Cell Eliminator</option>
+                        <option value="Fate's Wheel">Fate's Wheel</option>
+                        <option value="The Devil's Contract">The Devil's Contract</option>
+                        <option value="Love and War">Love and War</option>
+                        <option value="Last Man Standing">Last Man Standing</option>
+                        <option value="Texas Death Match">Texas Death Match</option>
+                        <option value="2 Out Of 3 Falls Match">2 Out Of 3 Falls Match</option>
+                        <option value="Elimination Match">Elimination Match</option>
+                        <option value="Handicap Match">Handicap Match</option>
+                        <option value="No DQ">No DQ</option>
+                        <option value="Ironman Match">Ironman Match</option>
+                        <option value="Street Fight">Street Fight</option>
+                    </select></div>
+                    <div class="cr-form-group"><label for="cr-booker-status-note">STATUS NOTE</label><input id="cr-booker-status-note" type="text" autocomplete="off"></div>
+                </div>
             </div>
 
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- MATCH PERFORMANCE -->
-
-
-    <div
-        id="cr-results-performance-fields"
-        class="cr-editor-section"
-        hidden
-    >
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                PERFORMANCE
-            </span>
-
-            <h3>
-                Match Rating
-            </h3>
-
-        </div>
-
-
-
-        <div class="cr-editor-form-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-results-rating">
-
-                    MATCH %
-
-                </label>
-
-
-                <input
-                    id="cr-results-rating"
-                    type="number"
-                    min="0"
-                    max="100"
-                    step="1"
-                >
-
-
+            <div id="cr-booker-advanced-match" class="cr-editor-section" hidden>
+                <div class="cr-editor-section-heading"><span>ADVANCED MATCH STRUCTURE</span><h3>Special Match Setup</h3></div>
+                <div class="cr-editor-form-grid">
+                    <div id="cr-booker-participant-count-row" class="cr-form-group" hidden><label for="cr-booker-participant-count">PARTICIPANT COUNT</label><select id="cr-booker-participant-count"><option value="3">3 Participants</option><option value="4">4 Participants</option><option value="5">5 Participants</option><option value="6" selected>6 Participants</option><option value="7">7 Participants</option><option value="8">8 Participants</option></select></div>
+                    <div id="cr-booker-elimination-rule-row" class="cr-form-group" hidden><label for="cr-booker-elimination-rule">ELIMINATION RULE</label><select id="cr-booker-elimination-rule"><option value="">Select Rule</option></select></div>
+                    <div id="cr-booker-division-row" class="cr-form-group" hidden><label for="cr-booker-division">DIVISION</label><select id="cr-booker-division"><option value="">Select Division</option><option value="Men">Men</option><option value="Women">Women</option></select></div>
+                    <div id="cr-booker-structure-choice-row" class="cr-form-group" hidden><label for="cr-booker-structure-choice">MATCH STRUCTURE</label><select id="cr-booker-structure-choice"><option value="">Select Structure</option></select></div>
+                </div>
+                <div id="cr-booker-advanced-participants"></div>
+                <div id="cr-booker-team-battle-sides"></div>
             </div>
 
+            <div id="cr-booker-standard-competitors" class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>COMPETITORS</span><h3>Match Sides</h3></div>
+                <div class="cr-booker-sides-grid">
+                    <article class="cr-booker-side-card">
+                        <div class="cr-booker-side-heading">SIDE 1</div>
+                        <div id="cr-booker-side-one-tag-controls">
+                            <div class="cr-form-group"><label for="cr-booker-side-one-mode">SIDE TYPE</label><select id="cr-booker-side-one-mode"><option value="team">Official Team</option><option value="custom">Custom Pair</option></select></div>
+                            <div id="cr-booker-side-one-team-row" class="cr-form-group"><label for="cr-booker-side-one-team">TEAM</label><select id="cr-booker-side-one-team"><option value="">Select Team</option></select></div>
+                        </div>
+                        <div id="cr-booker-side-one-wrestlers">
+                            <div class="cr-form-group"><label for="cr-booker-side-one-wrestler-one">WRESTLER 1</label><select id="cr-booker-side-one-wrestler-one"><option value="">Select Wrestler</option></select></div>
+                            <div id="cr-booker-side-one-wrestler-two-row" class="cr-form-group" hidden><label for="cr-booker-side-one-wrestler-two">WRESTLER 2</label><select id="cr-booker-side-one-wrestler-two"><option value="">Select Wrestler</option></select></div>
+                        </div>
+                    </article>
 
+                    <article class="cr-booker-side-card">
+                        <div class="cr-booker-side-heading">SIDE 2</div>
+                        <div id="cr-booker-side-two-tag-controls">
+                            <div class="cr-form-group"><label for="cr-booker-side-two-mode">SIDE TYPE</label><select id="cr-booker-side-two-mode"><option value="team">Official Team</option><option value="custom">Custom Pair</option></select></div>
+                            <div id="cr-booker-side-two-team-row" class="cr-form-group"><label for="cr-booker-side-two-team">TEAM</label><select id="cr-booker-side-two-team"><option value="">Select Team</option></select></div>
+                        </div>
+                        <div id="cr-booker-side-two-wrestlers">
+                            <div class="cr-form-group"><label for="cr-booker-side-two-wrestler-one">WRESTLER 1</label><select id="cr-booker-side-two-wrestler-one"><option value="">Select Wrestler</option></select></div>
+                            <div id="cr-booker-side-two-wrestler-two-row" class="cr-form-group" hidden><label for="cr-booker-side-two-wrestler-two">WRESTLER 2</label><select id="cr-booker-side-two-wrestler-two"><option value="">Select Wrestler</option></select></div>
+                        </div>
+                    </article>
 
-            <div class="cr-form-group">
-
-
-                <label for="cr-results-stars">
-
-                    STAR RATING
-
-                </label>
-
-
-                <input
-                    id="cr-results-stars"
-                    type="number"
-                    min="0"
-                    max="5"
-                    step="0.25"
-                >
-
-
+                    <article id="cr-booker-side-three" class="cr-booker-side-card" hidden><div class="cr-booker-side-heading">SIDE 3</div><div class="cr-form-group"><label for="cr-booker-side-three-wrestler">WRESTLER</label><select id="cr-booker-side-three-wrestler"><option value="">Select Wrestler</option></select></div></article>
+                    <article id="cr-booker-side-four" class="cr-booker-side-card" hidden><div class="cr-booker-side-heading">SIDE 4</div><div class="cr-form-group"><label for="cr-booker-side-four-wrestler">WRESTLER</label><select id="cr-booker-side-four-wrestler"><option value="">Select Wrestler</option></select></div></article>
+                </div>
             </div>
 
+            <div id="cr-booker-preview" class="cr-change-preview" hidden><span>REVIEW MATCH</span><div id="cr-booker-review-list" class="cr-editor-change-list"></div><p id="cr-booker-error" class="cr-change-error" hidden></p></div>
+            <div class="cr-manager-actions"><button id="cr-booker-save" class="control-room-button control-room-button-primary" type="button" disabled>Add Match to Card</button></div>
+            <p id="cr-booker-message" class="cr-save-message" hidden></p>
+        </section>
 
+        <!-- =================================
+             RESULTS WIZARD
+        ================================== -->
 
-            <div class="cr-form-group">
-
-
-                <label for="cr-results-time">
-
-                    MATCH TIME
-
-                </label>
-
-
-                <input
-                    id="cr-results-time"
-                    type="text"
-                    autocomplete="off"
-                    placeholder="18:42"
-                >
-
-
+        <section id="cr-tool-results" class="control-room-panel">
+            <div class="control-room-panel-heading">
+                <div><p class="eyebrow">MATCH RESULTS</p><h2>Results Wizard</h2></div>
+                <span id="cr-results-status" class="control-room-health-summary">READY</span>
             </div>
 
+            <div class="cr-editor-top-grid">
+                <div class="cr-form-group"><label for="cr-results-event">EVENT</label><select id="cr-results-event"><option value="">Select Event</option></select></div>
+                <div class="cr-form-group"><label for="cr-results-match">MATCH</label><select id="cr-results-match"><option value="">Select Match</option></select></div>
+            </div>
 
-        </div>
+            <div id="cr-results-match-preview" class="cr-current-value" hidden>
+                <span>SELECTED MATCH</span>
+                <strong id="cr-results-match-summary">—</strong>
+            </div>
 
+            <div id="cr-results-basic-fields" class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>MATCH RESULT</span><h3>Outcome</h3></div>
+                <div class="cr-editor-form-grid">
+                    <div class="cr-form-group"><label for="cr-results-result-type">RESULT TYPE</label><select id="cr-results-result-type"><option value="win">Win</option><option value="draw">Draw</option><option value="no-contest">No Contest</option></select></div>
+                    <div id="cr-results-winner-side-row" class="cr-form-group"><label for="cr-results-winner-side">WINNING SIDE</label><select id="cr-results-winner-side"><option value="">Select Winning Side</option></select></div>
+                    <div id="cr-results-finish-winner-row" class="cr-form-group"><label for="cr-results-finish-winner">WINNING WRESTLER</label><select id="cr-results-finish-winner"><option value="">Select Wrestler</option></select></div>
+                    <div id="cr-results-finish-loser-row" class="cr-form-group"><label for="cr-results-finish-loser">LOSING WRESTLER</label><select id="cr-results-finish-loser"><option value="">Select Wrestler</option></select></div>
+                    <div id="cr-results-method-row" class="cr-form-group"><label for="cr-results-method">FINISH METHOD</label><select id="cr-results-method"><option value="">Select Method</option><option value="Pinfall">Pinfall</option><option value="Submission">Submission</option><option value="KO">KO</option><option value="Count Out">Count Out</option><option value="Disqualification">Disqualification</option><option value="Over the Top Rope">Over the Top Rope</option><option value="Other">Other</option></select></div>
+                </div>
+            </div>
 
-    </div>
+            <div id="cr-results-performance-fields" class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>PERFORMANCE</span><h3>Match Rating</h3></div>
+                <div class="cr-editor-form-grid">
+                    <div class="cr-form-group"><label for="cr-results-rating">MATCH %</label><input id="cr-results-rating" type="number" min="0" max="100" step="1"></div>
+                    <div class="cr-form-group"><label for="cr-results-stars">STAR RATING</label><input id="cr-results-stars" type="number" min="0" max="5" step="0.25"></div>
+                    <div class="cr-form-group"><label for="cr-results-time">MATCH TIME</label><input id="cr-results-time" type="text" autocomplete="off" placeholder="18:42"></div>
+                </div>
+            </div>
 
-
-
-    <!-- SPECIALTY RESULT FIELDS -->
-
-
-    <div
-        id="cr-results-specialty-fields"
-        class="cr-editor-section"
-        hidden
-    >
-
-
-        <div class="cr-editor-section-heading">
-
-            <span>
-                SPECIALTY RESULTS
-            </span>
-
-            <h3>
-                Match-Specific Details
-            </h3>
-
-        </div>
-
-
-        <div id="cr-results-specialty-content">
-        </div>
-
-
-    </div>
-
-
-
-    <!-- REVIEW -->
-
-
-    <div
-        id="cr-results-review"
-        class="cr-change-preview"
-        hidden
-    >
-
-
-        <span>
-            REVIEW RESULT
-        </span>
-
-
-        <div
-            id="cr-results-review-list"
-            class="cr-editor-change-list"
-        >
-        </div>
-
-
-        <p
-            id="cr-results-error"
-            class="cr-change-error"
-            hidden
-        >
-        </p>
-
-
-    </div>
-
-
-
-    <!-- ACTIONS -->
-
-
-    <div class="cr-manager-actions">
-
-
-        <button
-            id="cr-results-save"
-            class="control-room-button control-room-button-primary"
-            type="button"
-            disabled
-        >
-            Save Match Result
-        </button>
-
-
-    </div>
-
-
-
-    <p
-        id="cr-results-message"
-        class="cr-save-message"
-        hidden
-    >
-    </p>
-
-
-</section>
-
-<!-- =================================
+            <div id="cr-results-specialty-fields" class="cr-editor-section" hidden><div class="cr-editor-section-heading"><span>SPECIALTY RESULTS</span><h3>Match-Specific Details</h3></div><div id="cr-results-specialty-content"></div></div>
+            <div id="cr-results-review" class="cr-change-preview" hidden><span>REVIEW RESULT</span><div id="cr-results-review-list" class="cr-editor-change-list"></div><p id="cr-results-error" class="cr-change-error" hidden></p></div>
+            <div class="cr-manager-actions"><button id="cr-results-save" class="control-room-button control-room-button-primary" type="button" disabled>Save Match Result</button></div>
+            <p id="cr-results-message" class="cr-save-message" hidden></p>
+        </section><!-- =================================
      THE LANDSCAPE
 ================================= -->
 
-
 <section
-    id="cr-tool-landscape"
-    class="control-room-panel cr-landscape-panel"
+  id="cr-tool-landscape"
+  class="control-room-panel cr-landscape-panel"
 >
-
-
-    <div class="control-room-panel-heading">
-
-
-        <div>
-
-
-            <p class="eyebrow">
-                INDUSTRY SIMULATION
-            </p>
-
-
-            <h2>
-                The Landscape
-            </h2>
-
-
-            <p class="cr-landscape-intro">
-
-                Track the wrestling world beyond OWL:
-                companies, weekly shows, monthly cycles,
-                major events, and competitive history.
-
-            </p>
-
-
-        </div>
-
-
-
-        <span
-            id="cr-landscape-status"
-            class="control-room-health-summary"
-        >
-            WAITING
-        </span>
-
-
+  <div class="control-room-panel-heading">
+    <div>
+      <p class="eyebrow">INDUSTRY SIMULATION</p>
+      <h2>The Landscape</h2>
+      <p class="cr-landscape-intro">
+        Track the wrestling world beyond OWL: companies, weekly shows,
+        monthly cycles, major events, champions, rankings, and history.
+      </p>
     </div>
 
-
-
-    <!-- SUMMARY -->
-
-
-    <div class="control-room-stat-grid">
-
-
-        <article class="control-room-stat-card">
-
-            <span>
-                CORE COMPANIES
-            </span>
-
-            <strong id="cr-landscape-company-count">
-                0
-            </strong>
-
-        </article>
-
-
-
-        <article class="control-room-stat-card">
-
-            <span>
-                WEEKLY SHOWS
-            </span>
-
-            <strong id="cr-landscape-show-count">
-                0
-            </strong>
-
-        </article>
-
-
-
-        <article class="control-room-stat-card">
-
-            <span>
-                RECORDED EVENTS
-            </span>
-
-            <strong id="cr-landscape-event-count">
-                0
-            </strong>
-
-        </article>
-
-
-
-        <article class="control-room-stat-card">
-
-            <span>
-                LATEST PERIOD
-            </span>
-
-            <strong id="cr-landscape-latest-period">
-                —
-            </strong>
-
-        </article>
-
-
-    </div>
-
-
-    <!-- LANDSCAPE SHOW RECORDER -->
-
-
-    <div class="cr-editor-section cr-landscape-entry-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                CANON ENTRY
-            </span>
-
-
-            <h3>
-                Record JoW Show
-            </h3>
-
-
-            <p>
-
-                Record a completed weekly show or monthly
-                major event from Journey of Wrestling.
-
-            </p>
-
-
-        </div>
-
-
-
-        <div class="cr-landscape-entry-grid">
-
-
-            <label>
-
-
-                <span>
-                    YEAR
-                </span>
-
-
-                <input
-                    id="cr-landscape-entry-year"
-                    type="number"
-                    min="2026"
-                    step="1"
-                >
-
-
-            </label>
-
-
-
-            <label>
-
-
-                <span>
-                    MONTH
-                </span>
-
-
-                <select
-                    id="cr-landscape-entry-month"
-                >
-                </select>
-
-
-            </label>
-
-
-
-            <label>
-
-
-                <span>
-                    CYCLE STAGE
-                </span>
-
-
-                <select
-                    id="cr-landscape-entry-stage"
-                >
-                </select>
-
-
-            </label>
-
-
-
-            <label>
-
-
-                <span>
-                    COMPANY
-                </span>
-
-
-                <select
-                    id="cr-landscape-entry-company"
-                >
-                </select>
-
-
-            </label>
-
-
-
-            <label
-                id="cr-landscape-entry-show-wrap"
-            >
-
-
-                <span>
-                    WEEKLY SHOW
-                </span>
-
-
-                <select
-                    id="cr-landscape-entry-show"
-                >
-                </select>
-
-
-            </label>
-
-
-
-            <label
-                id="cr-landscape-entry-event-name-wrap"
-                hidden
-            >
-
-
-                <span>
-                    MAJOR EVENT NAME
-                </span>
-
-
-                <input
-                    id="cr-landscape-entry-event-name"
-                    type="text"
-                    placeholder="SummerSlam"
-                >
-
-
-            </label>
-
-
-
-            <label>
-
-
-                <span>
-                    PRIVATE BOOKING STYLE
-                </span>
-
-
-                <select
-                    id="cr-landscape-entry-booking-style"
-                >
-
-                    <option value="quality">
-                        Quality
-                    </option>
-
-                    <option value="standard">
-                        Standard
-                    </option>
-
-                    <option value="long-term">
-                        Long Term
-                    </option>
-
-                    <option value="bizzaro">
-                        Bizzaro
-                    </option>
-
-                    <option value="terrible">
-                        Terrible
-                    </option>
-
-                </select>
-
-
-            </label>
-
-
-
-            <label>
-
-
-                <span>
-                    OFFICIAL SHOW RATING
-                </span>
-
-
-                <input
-                    id="cr-landscape-entry-rating"
-                    type="number"
-                    min="0"
-                    max="5"
-                    step="0.25"
-                    placeholder="4.25"
-                >
-
-
-            </label>
-
-
-        </div>
-
-
-        <div class="cr-landscape-location-panel">
-
-
-            <div>
-
-
-                <span class="cr-landscape-location-label">
-                    EVENT LOCATION
-                </span>
-
-
-                <strong
-                    id="cr-landscape-entry-location"
-                >
-                    Not generated
-                </strong>
-
-
-                <small
-                    id="cr-landscape-entry-location-detail"
-                >
-                    Generate a canon location before saving.
-                </small>
-
-
-            </div>
-
-
-
-            <button
-                id="cr-landscape-generate-location"
-                type="button"
-                class="control-room-secondary-button"
-            >
-                Generate Location
-            </button>
-
-
-        </div>
-        
-        <label class="cr-landscape-universe-notes">
-
-
-            <span>
-                UNIVERSE NOTES
-            </span>
-
-
-            <textarea
-                id="cr-landscape-entry-notes"
-                rows="4"
-                placeholder="- Wrestler injured&#10;- New signing announced&#10;- Wrestler retired&#10;- Other canon information from the JoW wrap-up"
-            ></textarea>
-
-
-            <small>
-
-                Optional. Use this for explicit JoW developments
-                such as injuries, retirements, signings, turns,
-                or other simulation events.
-
-            </small>
-
-
-        </label>
-
-
-
-        <div class="cr-landscape-card-builder-heading">
-
-
-            <div>
-
-
-                <span>
-                    SHOW CONTENT
-                </span>
-
-
-                <h4>
-                    Matches & Segments
-                </h4>
-
-
-            </div>
-
-
-
-            <div class="cr-landscape-builder-actions">
-
-
-                <button
-                    id="cr-landscape-add-match"
-                    type="button"
-                    class="control-room-secondary-button"
-                >
-                    + Add Match
-                </button>
-
-
-                <button
-                    id="cr-landscape-add-segment"
-                    type="button"
-                    class="control-room-secondary-button"
-                >
-                    + Add Segment
-                </button>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-landscape-entry-items"
-            class="cr-landscape-entry-items"
-        >
-
-
-            <p
-                id="cr-landscape-entry-empty"
-                class="cr-landscape-entry-empty"
-            >
-
-                Add the matches and segments shown in the
-                completed JoW card.
-
-            </p>
-
-
-        </div>
-
-
-
-        <div class="cr-landscape-save-row">
-
-
-            <span
-                id="cr-landscape-entry-status"
-                class="cr-landscape-entry-status"
-            >
-                READY
-            </span>
-
-
-
-            <button
-                id="cr-landscape-save-event"
-                type="button"
-                class="control-room-primary-button"
-            >
-                Save Landscape Event
-            </button>
-
-
-        </div>
-
-
-    </div>
-        <!-- LANDSCAPE CHAMPIONSHIP DESK -->
-
-
-    <div class="cr-editor-section cr-landscape-champion-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                CHAMPIONSHIP TRACKING
-            </span>
-
-
-            <h3>
-                Landscape Championship Desk
-            </h3>
-
-
-            <p>
-
-                Maintain current champions for rival companies
-                without building full external rosters.
-
-            </p>
-
-
-        </div>
-
-
-
-        <div class="cr-landscape-champion-toolbar">
-
-
-            <label>
-
-
-                <span>
-                    COMPANY
-                </span>
-
-
-                <select
-                    id="cr-landscape-champion-company"
-                >
-                </select>
-
-
-            </label>
-
-
-
-            <button
-                id="cr-landscape-add-title-slot"
-                type="button"
-                class="control-room-secondary-button"
-            >
-                + Add Title Slot
-            </button>
-
-
-        </div>
-
-
-
-        <div class="cr-landscape-champion-note">
-
-
-            <strong>
-                OWL CHAMPIONSHIPS
-            </strong>
-
-
-            <span>
-
-                OWL title holders remain controlled by the
-                existing OWL championship system.
-
-            </span>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-landscape-title-slots"
-            class="cr-landscape-title-slots"
-        >
-
-
-            <p
-                id="cr-landscape-title-empty"
-                class="cr-landscape-entry-empty"
-            >
-
-                No title slots have been created for this company yet.
-
-            </p>
-
-
-        </div>
-
-
-
-        <div class="cr-landscape-champion-history-block">
-
-
-            <div class="cr-landscape-card-builder-heading">
-
-
-                <div>
-
-
-                    <span>
-                        HISTORY
-                    </span>
-
-
-                    <h4>
-                        Recent Title Changes
-                    </h4>
-
-
-                </div>
-
-
-            </div>
-
-
-
-            <div
-                id="cr-landscape-champion-history"
-                class="cr-landscape-champion-history"
-            >
-
-
-                <p class="cr-landscape-entry-empty">
-
-                    No championship history recorded yet.
-
-                </p>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <div class="cr-landscape-save-row">
-
-
-            <span
-                id="cr-landscape-champion-status"
-                class="cr-landscape-entry-status"
-            >
-                READY
-            </span>
-
-
-
-            <button
-                id="cr-landscape-save-champions"
-                type="button"
-                class="control-room-primary-button"
-            >
-                Save Championship Changes
-            </button>
-
-
-        </div>
-
-
-    </div>
-        <!-- LANDSCAPE RANKING PREVIEW -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                COMPETITION ENGINE
-            </span>
-
-
-            <h3>
-                Landscape Score Preview
-            </h3>
-
-
-            <p>
-
-                Preview monthly and year-to-date company
-                and weekly-show standings from recorded canon.
-
-            </p>
-
-
-        </div>
-
-
-
-        <div class="cr-landscape-ranking-toolbar">
-
-
-            <label>
-
-
-                <span>
-                    PERIOD
-                </span>
-
-
-                <select
-                    id="cr-landscape-ranking-period"
-                >
-                </select>
-
-
-            </label>
-
-
-
-            <label>
-
-
-                <span>
-                    VIEW
-                </span>
-
-
-                <select
-                    id="cr-landscape-ranking-mode"
-                >
-
-                    <option value="monthly">
-                        Monthly
-                    </option>
-
-                    <option value="ytd">
-                        Year to Date
-                    </option>
-
-                </select>
-
-
-            </label>
-
-
-
-            <button
-                id="cr-landscape-refresh-rankings"
-                type="button"
-                class="control-room-secondary-button"
-            >
-                Refresh Preview
-            </button>
-
-
-        </div>
-
-
-
-        <div class="cr-landscape-ranking-columns">
-
-
-            <div>
-
-
-                <div class="cr-landscape-ranking-heading">
-
-
-                    <span>
-                        8 CORE ENTITIES
-                    </span>
-
-
-                    <h4>
-                        Promotion Power Rankings
-                    </h4>
-
-
-                </div>
-
-
-
-                <div
-                    id="cr-landscape-company-rankings"
-                    class="cr-landscape-ranking-list"
-                >
-
-
-                    <p class="cr-landscape-entry-empty">
-
-                        Record Landscape events to begin ranking companies.
-
-                    </p>
-
-
-                </div>
-
-
-            </div>
-
-
-
-            <div>
-
-
-                <div class="cr-landscape-ranking-heading">
-
-
-                    <span>
-                        11 WEEKLY SHOWS
-                    </span>
-
-
-                    <h4>
-                        Show Power Rankings
-                    </h4>
-
-
-                </div>
-
-
-
-                <div
-                    id="cr-landscape-show-rankings"
-                                    <div
-                    id="cr-landscape-show-rankings"
-                    class="cr-landscape-ranking-list"
-                >
-
-
-                    <p class="cr-landscape-entry-empty">
-
-                        Record weekly shows to begin ranking shows.
-
-                    </p>
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <div class="cr-landscape-save-row">
-
-
-            <span
-                id="cr-landscape-ranking-status"
-                class="cr-landscape-entry-status"
-            >
-                LIVE PREVIEW
-            </span>
-
-
-
-            <button
-                id="cr-landscape-freeze-rankings"
-                type="button"
-                class="control-room-primary-button"
-            >
-                Freeze Official Standings
-            </button>
-
-
-        </div>
-
-
-    </div>
-        <!-- RECORDED LANDSCAPE EVENTS -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                RECORDED CANON
-            </span>
-
-
-            <h3>
-                Landscape Event Archive
-            </h3>
-
-
-            <p>
-
-                Review the weekly shows and major events already
-                recorded in Landscape history.
-
-            </p>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-landscape-recorded-events"
-            class="cr-landscape-recorded-events"
-        >
-
-
-            <p class="cr-landscape-entry-empty">
-
-                No Landscape events have been recorded yet.
-
-            </p>
-
-
-        </div>
-
-
-    </div>
-    
-    <!-- WEEKLY SCHEDULE -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                WEEKLY LANDSCAPE
-            </span>
-
-
-            <h3>
-                The Wrestling Week
-            </h3>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-landscape-weekly-schedule"
-            class="cr-landscape-schedule-grid"
-        >
-
-            <p class="cr-landscape-empty">
-                Connect the OWL folder to load the weekly schedule.
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- MONTHLY CYCLE -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                SIMULATION CALENDAR
-            </span>
-
-
-            <h3>
-                Monthly Cycle
-            </h3>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-landscape-monthly-cycle"
-            class="cr-landscape-cycle-grid"
-        >
-
-            <p class="cr-landscape-empty">
-                Connect the OWL folder to load the Landscape cycle.
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- ARCHIVE STATE -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                HISTORY
-            </span>
-
-
-            <h3>
-                Landscape Archive
-            </h3>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-landscape-archive-summary"
-            class="cr-landscape-archive-summary"
-        >
-
-            <p class="cr-landscape-empty">
-                No Landscape history loaded.
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-</section>
-<!-- =================================
-     OWL SOCIAL SYSTEM STATUS
-================================= -->
-
-
-<section
-    id="cr-tool-social-status"
-    class="control-room-panel"
->
-
-
-    <div class="control-room-panel-heading">
-
-
-        <div>
-
-
-            <p class="eyebrow">
-                OWL SOCIAL
-            </p>
-
-
-            <h2>
-                Media System Status
-            </h2>
-
-
-        </div>
-
-
-
-        <div class="cr-social-status-actions">
-
-
-            <span
-                id="cr-social-overall-status"
-                class="control-room-health-summary"
-            >
-                CHECKING
-            </span>
-
-
-            <button
-                id="cr-social-refresh"
-                class="control-room-button control-room-button-secondary"
-                type="button"
-            >
-                Refresh Status
-            </button>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- =================================
-         MEDIA SYSTEM CARDS
-    ================================== -->
-
-
-    <div class="cr-social-system-grid">
-
-
-        <!-- INNANET -->
-
-
-        <article class="cr-social-system-card">
-
-
-            <div class="cr-social-system-card-heading">
-
-
-                <span>
-                    SOCIAL NETWORK
-                </span>
-
-
-                <h3>
-                    The Innanet
-                </h3>
-
-
-            </div>
-
-
-
-            <div class="cr-social-metric-list">
-
-
-                <div>
-
-
-                    <span>
-                        LATEST PUBLISHED SHOW
-                    </span>
-
-
-                    <strong id="cr-social-latest-show">
-                        —
-                    </strong>
-
-
-                    <small id="cr-social-latest-show-date">
-                        —
-                    </small>
-
-
-                </div>
-
-
-
-                <div>
-
-
-                    <span>
-                        ARCHIVED MONTHS
-                    </span>
-
-
-                    <strong id="cr-social-innanet-months">
-                        0
-                    </strong>
-
-
-                </div>
-
-
-
-                <div>
-
-
-                    <span>
-                        PUBLISHED SHOWS
-                    </span>
-
-
-                    <strong id="cr-social-published-shows">
-                        0
-                    </strong>
-
-
-                </div>
-
-
-
-                <div>
-
-
-                    <span>
-                        TOTAL POSTS
-                    </span>
-
-
-                    <strong id="cr-social-total-posts">
-                        0
-                    </strong>
-
-
-                </div>
-
-
-
-                <div>
-
-
-                    <span>
-                        PENDING SHOWS
-                    </span>
-
-
-                    <strong id="cr-social-pending-shows">
-                        0
-                    </strong>
-
-
-                </div>
-
-
-            </div>
-
-
-        </article>
-
-
-
-        <!-- WWOW -->
-
-
-        <article class="cr-social-system-card">
-
-
-            <div class="cr-social-system-card-heading">
-
-
-                <span>
-                    MONTHLY PUBLICATION
-                </span>
-
-
-                <h3>
-                    WWoW
-                </h3>
-
-
-            </div>
-
-
-
-            <div class="cr-social-metric-list">
-
-
-                <div>
-
-
-                    <span>
-                        LATEST ISSUE
-                    </span>
-
-
-                    <strong id="cr-social-latest-issue">
-                        —
-                    </strong>
-
-
-                    <small id="cr-social-latest-issue-title">
-                        —
-                    </small>
-
-
-                </div>
-
-
-
-                <div>
-
-
-                    <span>
-                        ISSUES PUBLISHED
-                    </span>
-
-
-                    <strong id="cr-social-issue-count">
-                        0
-                    </strong>
-
-
-                </div>
-
-
-
-                <div>
-
-
-                    <span>
-                        NEXT PUBLICATION
-                    </span>
-
-
-                    <strong id="cr-social-next-issue">
-                        —
-                    </strong>
-
-
-                    <small id="cr-social-next-issue-note">
-                        —
-                    </small>
-
-
-                </div>
-
-
-            </div>
-
-
-        </article>
-
-
-
-        <!-- WORLD MEMORY -->
-
-
-        <article class="cr-social-system-card">
-
-
-            <div class="cr-social-system-card-heading">
-
-
-                <span>
-                    HISTORICAL INTELLIGENCE
-                </span>
-
-
-                <h3>
-                    World Memory
-                </h3>
-
-
-            </div>
-
-
-
-            <div class="cr-social-metric-list">
-
-
-                <div>
-
-
-                    <span>
-                        FROZEN SNAPSHOTS
-                    </span>
-
-
-                    <strong id="cr-social-snapshot-count">
-                        0
-                    </strong>
-
-
-                </div>
-
-
-
-                <div>
-
-
-                    <span>
-                        LATEST SNAPSHOT
-                    </span>
-
-
-                    <strong id="cr-social-latest-snapshot">
-                        —
-                    </strong>
-
-
-                    <small id="cr-social-latest-snapshot-date">
-                        —
-                    </small>
-
-
-                </div>
-
-
-
-                <div>
-
-
-                    <span>
-                        HISTORY SPAN
-                    </span>
-
-
-                    <strong id="cr-social-history-span">
-                        —
-                    </strong>
-
-
-                </div>
-
-
-            </div>
-
-
-        </article>
-
-
-    </div>
-
-
-
-    <!-- =================================
-         SYSTEM HEALTH
-    ================================== -->
-
-
-    <div class="cr-social-health-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                AUTOMATION HEALTH
-            </span>
-
-
-            <h3>
-                Media Pipeline
-            </h3>
-
-
-        </div>
-
-
-
-        <div class="cr-social-health-grid">
-
-
-            <article class="cr-social-health-row">
-
-
-                <div>
-
-
-                    <strong>
-                        Innanet Queue
-                    </strong>
-
-
-                    <span>
-                        Completed shows waiting for reactions
-                    </span>
-
-
-                </div>
-
-
-                <b
-                    id="cr-social-health-queue"
-                    class="cr-social-health-badge"
-                >
-                    CHECKING
-                </b>
-
-
-            </article>
-
-
-
-            <article class="cr-social-health-row">
-
-
-                <div>
-
-
-                    <strong>
-                        WWoW Publication
-                    </strong>
-
-
-                    <span>
-                        Monthly issue publication state
-                    </span>
-
-
-                </div>
-
-
-                <b
-                    id="cr-social-health-wwow"
-                    class="cr-social-health-badge"
-                >
-                    CHECKING
-                </b>
-
-
-            </article>
-
-
-
-            <article class="cr-social-health-row">
-
-
-                <div>
-
-
-                    <strong>
-                        History Snapshot
-                    </strong>
-
-
-                    <span>
-                        Frozen memory for published months
-                    </span>
-
-
-                </div>
-
-
-                <b
-                    id="cr-social-health-history"
-                    class="cr-social-health-badge"
-                >
-                    CHECKING
-                </b>
-
-
-            </article>
-
-
-
-            <article class="cr-social-health-row">
-
-
-                <div>
-
-
-                    <strong>
-                        Long-Term Memory
-                    </strong>
-
-
-                    <span>
-                        Historical context available to AI media
-                    </span>
-
-
-                </div>
-
-
-                <b
-                    id="cr-social-health-memory"
-                    class="cr-social-health-badge"
-                >
-                    CHECKING
-                </b>
-
-
-            </article>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-    <!-- =================================
-     INNANET ACCOUNT MANAGER
-================================= -->
-
-
-<section
-    id="cr-tool-innanet-accounts"
-    class="control-room-panel"
->
-
-
-    <div class="control-room-panel-heading">
-
-
-        <div>
-
-
-            <p class="eyebrow">
-                OWL SOCIAL
-            </p>
-
-
-            <h2>
-                Innanet Account Manager
-            </h2>
-
-
-        </div>
-
-
-
-        <span
-            id="cr-account-status"
-            class="control-room-health-summary"
-        >
-            READY
-        </span>
-
-
-    </div>
-
-
-
-    <p class="cr-account-manager-intro">
-
-        Shape the recurring voices of The Innanet.
-        Retired accounts remain in historical archives but are removed
-        from future AI generation.
-
-    </p>
-
-
-
-    <!-- =================================
-         ACCOUNT SUMMARY
-    ================================== -->
-
-
-    <div class="cr-account-summary-grid">
-
-
-        <article class="control-room-stat-card">
-
-
-            <span>
-                TOTAL ACCOUNTS
-            </span>
-
-
-            <strong id="cr-account-total-count">
-                0
-            </strong>
-
-
-        </article>
-
-
-
-        <article class="control-room-stat-card">
-
-
-            <span>
-                ACTIVE
-            </span>
-
-
-            <strong id="cr-account-active-count">
-                0
-            </strong>
-
-
-        </article>
-
-
-
-        <article class="control-room-stat-card">
-
-
-            <span>
-                RETIRED
-            </span>
-
-
-            <strong id="cr-account-retired-count">
-                0
-            </strong>
-
-
-        </article>
-
-
-    </div>
-
-
-
-    <!-- =================================
-         ACCOUNT DIRECTORY
-    ================================== -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                USER DIRECTORY
-            </span>
-
-
-            <h3>
-                Recurring Innanet Accounts
-            </h3>
-
-
-        </div>
-
-
-
-        <div
-            id="cr-account-directory"
-            class="cr-account-directory"
-        >
-
-
-            <p class="cr-account-directory-empty">
-
-                Connect the OWL folder to load accounts.
-
-            </p>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- =================================
-         EDITOR MODE
-    ================================== -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                ACCOUNT EDITOR
-            </span>
-
-
-            <h3>
-                Personality Profile
-            </h3>
-
-
-        </div>
-
-
-
-        <div class="cr-editor-top-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-account-mode">
-
-                    ACTION
-
-                </label>
-
-
-                <select id="cr-account-mode">
-
-
-                    <option value="edit">
-                        Edit Existing Account
-                    </option>
-
-
-                    <option value="create">
-                        Add New Account
-                    </option>
-
-
-                </select>
-
-
-            </div>
-
-
-
-            <div
-                id="cr-account-select-row"
-                class="cr-form-group"
-            >
-
-
-                <label for="cr-account-select">
-
-                    ACCOUNT
-
-                </label>
-
-
-                <select id="cr-account-select">
-
-
-                    <option value="">
-                        Select Account
-                    </option>
-
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label>
-                    DATABASE ID
-                </label>
-
-
-                <div
-                    id="cr-account-id-preview"
-                    class="cr-current-value"
-                >
-                    —
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- =================================
-         IDENTITY
-    ================================== -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                IDENTITY
-            </span>
-
-
-            <h3>
-                Account Information
-            </h3>
-
-
-        </div>
-
-
-
-        <div class="cr-editor-form-grid">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-account-name">
-
-                    DISPLAY NAME
-
-                </label>
-
-
-                <input
-                    id="cr-account-name"
-                    type="text"
-                    autocomplete="off"
-                    placeholder="OWL Tea Room"
-                >
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-account-handle">
-
-                    HANDLE
-
-                </label>
-
-
-                <input
-                    id="cr-account-handle"
-                    type="text"
-                    autocomplete="off"
-                    placeholder="@OWLTeaRoom"
-                >
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-account-account-status">
-
-                    ACCOUNT STATUS
-
-                </label>
-
-
-                <select id="cr-account-account-status">
-
-
-                    <option value="active">
-                        Active
-                    </option>
-
-
-                    <option value="retired">
-                        Retired
-                    </option>
-
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-account-archetype">
-
-                    ARCHETYPE
-
-                </label>
-
-
-                <input
-                    id="cr-account-archetype"
-                    type="text"
-                    autocomplete="off"
-                    placeholder="gossip account"
-                >
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- =================================
-         PERSONALITY
-    ================================== -->
-
-
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                PERSONALITY
-            </span>
-
-
-            <h3>
-                Voice and Behavior
-            </h3>
-
-
-        </div>
-
-
-
-        <div class="cr-form-group">
-
-
-            <label for="cr-account-tone">
-
-                TONE
-
-            </label>
-
-
-            <textarea
-                id="cr-account-tone"
-                rows="4"
-                placeholder="messy, dramatic, nosy, funny"
-            ></textarea>
-
-
-        </div>
-
-
-
-        <div class="cr-form-group cr-editor-spaced-field">
-
-
-            <label for="cr-account-focus">
-
-                FOCUS AREAS
-            </label>
-
-
-            <textarea
-                id="cr-account-focus"
-                rows="4"
-                placeholder="title drama, fan arguments, momentum shifts, suspicious coincidences"
-            ></textarea>
-
-
-            <small class="cr-field-help">
-
-                Separate focus areas with commas or new lines.
-
-            </small>
-
-
-        </div>
-
-
-
-        <div class="cr-editor-form-grid cr-editor-spaced-field">
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-account-profanity">
-
-                    PROFANITY LEVEL
-
-                </label>
-
-
-                <select id="cr-account-profanity">
-
-
-                    <option value="none">
-                        None
-                    </option>
-
-
-                    <option value="low">
-                        Low
-                    </option>
-
-
-                    <option value="medium">
-                        Medium
-                    </option>
-
-
-                    <option value="high">
-                        High
-                    </option>
-
-
-                </select>
-
-
-            </div>
-
-
-
-            <div class="cr-form-group">
-
-
-                <label for="cr-account-frequency">
-
-                    POSTING FREQUENCY
-
-                </label>
-
-
-                <input
-                    id="cr-account-frequency"
-                    type="text"
-                    autocomplete="off"
-                    placeholder="regular"
-                >
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <div class="cr-form-group cr-editor-spaced-field">
-
-
-            <label for="cr-account-reply-style">
-
-                REPLY STYLE
-
-            </label>
-
-
-            <input
-                id="cr-account-reply-style"
-                type="text"
-                autocomplete="off"
-                placeholder="messy replies and quote-post speculation"
-            >
-
-
-        </div>
-
-
-
-        <div class="cr-form-group cr-editor-spaced-field">
-
-
-            <label for="cr-account-fact-discipline">
-
-                FACT DISCIPLINE
-
-            </label>
-
-
-            <textarea
-                id="cr-account-fact-discipline"
-                rows="5"
-                placeholder="May speculate, but all non-database claims must be clearly framed as rumor or opinion."
-            ></textarea>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- =================================
-         REVIEW
-    ================================== -->
-
-
-    <div
-        id="cr-account-change-preview"
-        class="cr-change-preview"
-        hidden
+    <span
+      id="cr-landscape-status"
+      class="control-room-health-summary"
     >
+      WAITING
+    </span>
+  </div>
 
+  <!-- SUMMARY -->
 
-        <span>
-            REVIEW ACCOUNT
-        </span>
+  <div class="control-room-stat-grid">
+    <article class="control-room-stat-card">
+      <span>CORE COMPANIES</span>
+      <strong id="cr-landscape-company-count">0</strong>
+    </article>
 
+    <article class="control-room-stat-card">
+      <span>WEEKLY SHOWS</span>
+      <strong id="cr-landscape-show-count">0</strong>
+    </article>
 
+    <article class="control-room-stat-card">
+      <span>RECORDED EVENTS</span>
+      <strong id="cr-landscape-event-count">0</strong>
+    </article>
 
-        <div
-            id="cr-account-change-list"
-            class="cr-editor-change-list"
-        >
-        </div>
+    <article class="control-room-stat-card">
+      <span>LATEST PERIOD</span>
+      <strong id="cr-landscape-latest-period">—</strong>
+    </article>
+  </div>
 
+  <!-- SHOW RECORDER -->
 
-
-        <p
-            id="cr-account-error"
-            class="cr-change-error"
-            hidden
-        >
-        </p>
-
-
+  <div class="cr-editor-section cr-landscape-entry-section">
+    <div class="cr-editor-section-heading">
+      <span>CANON ENTRY</span>
+      <h3>Record JoW Show</h3>
+      <p>
+        Record a completed weekly show or monthly major event from Journey of Wrestling.
+      </p>
     </div>
 
-
-
-    <!-- =================================
-         ACTIONS
-    ================================== -->
-
-
-    <div class="cr-manager-actions">
-
-
-        <button
-            id="cr-account-save"
-            class="control-room-button control-room-button-primary"
-            type="button"
-            disabled
+    <div class="cr-landscape-entry-grid">
+      <label>
+        <span>YEAR</span>
+        <input
+          id="cr-landscape-entry-year"
+          type="number"
+          min="2026"
+          step="1"
         >
-            Save Account Changes
+      </label>
+
+      <label>
+        <span>MONTH</span>
+        <select id="cr-landscape-entry-month"></select>
+      </label>
+
+      <label>
+        <span>CYCLE STAGE</span>
+        <select id="cr-landscape-entry-stage"></select>
+      </label>
+
+      <label>
+        <span>COMPANY</span>
+        <select id="cr-landscape-entry-company"></select>
+      </label>
+
+      <label id="cr-landscape-entry-show-wrap">
+        <span>WEEKLY SHOW</span>
+        <select id="cr-landscape-entry-show"></select>
+      </label>
+
+      <label
+        id="cr-landscape-entry-event-name-wrap"
+        hidden
+      >
+        <span>MAJOR EVENT NAME</span>
+        <input
+          id="cr-landscape-entry-event-name"
+          type="text"
+          placeholder="SummerSlam"
+        >
+      </label>
+
+      <label>
+        <span>PRIVATE BOOKING STYLE</span>
+        <select id="cr-landscape-entry-booking-style">
+          <option value="quality">Quality</option>
+          <option value="standard">Standard</option>
+          <option value="long-term">Long Term</option>
+          <option value="bizzaro">Bizzaro</option>
+          <option value="terrible">Terrible</option>
+        </select>
+      </label>
+
+      <label>
+        <span>OFFICIAL SHOW RATING</span>
+        <input
+          id="cr-landscape-entry-rating"
+          type="number"
+          min="0"
+          max="5"
+          step="0.25"
+          placeholder="4.25"
+        >
+      </label>
+    </div>
+
+    <div class="cr-landscape-location-panel">
+      <div>
+        <span class="cr-landscape-location-label">EVENT LOCATION</span>
+        <strong id="cr-landscape-entry-location">Not generated</strong>
+        <small id="cr-landscape-entry-location-detail">
+          Generate a canon location before saving.
+        </small>
+      </div>
+
+      <button
+        id="cr-landscape-generate-location"
+        type="button"
+        class="control-room-secondary-button"
+      >
+        Generate Location
+      </button>
+    </div>
+
+    <label class="cr-landscape-universe-notes">
+      <span>UNIVERSE NOTES</span>
+      <textarea
+        id="cr-landscape-entry-notes"
+        rows="4"
+        placeholder="- Wrestler injured&#10;- New signing announced&#10;- Wrestler retired&#10;- Other explicit JoW canon"
+      ></textarea>
+      <small>
+        Optional. Use only for explicit JoW developments such as injuries,
+        retirements, signings, turns, or other simulation events.
+      </small>
+    </label>
+
+    <div class="cr-landscape-card-builder-heading">
+      <div>
+        <span>SHOW CONTENT</span>
+        <h4>Matches &amp; Segments</h4>
+      </div>
+
+      <div class="cr-landscape-builder-actions">
+        <button
+          id="cr-landscape-add-match"
+          type="button"
+          class="control-room-secondary-button"
+        >
+          + Add Match
         </button>
 
-
+        <button
+          id="cr-landscape-add-segment"
+          type="button"
+          class="control-room-secondary-button"
+        >
+          + Add Segment
+        </button>
+      </div>
     </div>
 
-
-
-    <p
-        id="cr-account-message"
-        class="cr-save-message"
-        hidden
+    <div
+      id="cr-landscape-entry-items"
+      class="cr-landscape-entry-items"
     >
-    </p>
+      <p
+        id="cr-landscape-entry-empty"
+        class="cr-landscape-entry-empty"
+      >
+        Add the matches and segments shown in the completed JoW card.
+      </p>
+    </div>
 
+    <div class="cr-landscape-save-row">
+      <span
+        id="cr-landscape-entry-status"
+        class="cr-landscape-entry-status"
+      >
+        READY
+      </span>
 
-</section>
-    
+      <button
+        id="cr-landscape-save-event"
+        type="button"
+        class="control-room-primary-button"
+      >
+        Save Landscape Event
+      </button>
+    </div>
+  </div>
+
+  <!-- CHAMPIONSHIP DESK -->
+
+  <div class="cr-editor-section cr-landscape-champion-section">
+    <div class="cr-editor-section-heading">
+      <span>CHAMPIONSHIP TRACKING</span>
+      <h3>Landscape Championship Desk</h3>
+      <p>
+        Maintain current champions for rival companies without building full external rosters.
+      </p>
+    </div>
+
+    <div class="cr-landscape-champion-toolbar">
+      <label>
+        <span>COMPANY</span>
+        <select id="cr-landscape-champion-company"></select>
+      </label>
+
+      <button
+        id="cr-landscape-add-title-slot"
+        type="button"
+        class="control-room-secondary-button"
+      >
+        + Add Title Slot
+      </button>
+    </div>
+
+    <div class="cr-landscape-champion-note">
+      <strong>OWL CHAMPIONSHIPS</strong>      <span>
+        OWL title holders remain controlled by the existing OWL championship system.
+      </span>
+    </div>
+
+    <div
+      id="cr-landscape-title-slots"
+      class="cr-landscape-title-slots"
+    >
+      <p
+        id="cr-landscape-title-empty"
+        class="cr-landscape-entry-empty"
+      >
+        No title slots have been created for this company yet.
+      </p>
+    </div>
+
+    <div class="cr-landscape-champion-history-block">
+      <div class="cr-landscape-card-builder-heading">
+        <div>
+          <span>HISTORY</span>
+          <h4>Recent Title Changes</h4>
+        </div>
+      </div>
+
+      <div
+        id="cr-landscape-champion-history"
+        class="cr-landscape-champion-history"
+      >
+        <p class="cr-landscape-entry-empty">
+          No championship history recorded yet.
+        </p>
+      </div>
+    </div>
+
+    <div class="cr-landscape-save-row">
+      <span
+        id="cr-landscape-champion-status"
+        class="cr-landscape-entry-status"
+      >
+        READY
+      </span>
+
+      <button
+        id="cr-landscape-save-champions"
+        type="button"
+        class="control-room-primary-button"
+      >
+        Save Championship Changes
+      </button>
+    </div>
+  </div>
+
+  <!-- SCORE PREVIEW -->
+
+  <div class="cr-editor-section">
+    <div class="cr-editor-section-heading">
+      <span>COMPETITION ENGINE</span>
+      <h3>Landscape Score Preview</h3>
+      <p>
+        Preview monthly and year-to-date company and weekly-show standings from recorded canon.
+      </p>
+    </div>
+
+    <div class="cr-landscape-ranking-toolbar">
+      <label>
+        <span>PERIOD</span>
+        <select id="cr-landscape-ranking-period">
+          <option value="">No recorded periods</option>
+        </select>
+      </label>
+
+      <label>
+        <span>VIEW</span>
+        <select id="cr-landscape-ranking-mode">
+          <option value="monthly">Monthly</option>
+          <option value="ytd">Year to Date</option>
+        </select>
+      </label>
+
+      <button
+        id="cr-landscape-refresh-rankings"
+        type="button"
+        class="control-room-secondary-button"
+      >
+        Refresh Preview
+      </button>
+    </div>
+
+    <div class="cr-landscape-ranking-columns">
+      <div>
+        <div class="cr-landscape-ranking-heading">
+          <span>8 CORE ENTITIES</span>
+          <h4>Promotion Power Rankings</h4>
+        </div>
+
+        <div
+          id="cr-landscape-company-rankings"
+          class="cr-landscape-ranking-list"
+        >
+          <p class="cr-landscape-entry-empty">
+            Record Landscape events to begin ranking companies.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="cr-landscape-ranking-heading">
+          <span>11 WEEKLY SHOWS</span>
+          <h4>Show Power Rankings</h4>
+        </div>
+
+        <div
+          id="cr-landscape-show-rankings"
+          class="cr-landscape-ranking-list"
+        >
+          <p class="cr-landscape-entry-empty">
+            Record weekly shows to begin ranking shows.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-landscape-save-row">
+      <span
+        id="cr-landscape-ranking-status"
+        class="cr-landscape-entry-status"
+      >
+        LIVE PREVIEW
+      </span>
+
+      <button
+        id="cr-landscape-freeze-rankings"
+        type="button"
+        class="control-room-primary-button"
+      >
+        Freeze Official Standings
+      </button>
+    </div>
+  </div>
+
+  <!-- RECORDED EVENT ARCHIVE -->
+
+  <div class="cr-editor-section">
+    <div class="cr-editor-section-heading">
+      <span>RECORDED CANON</span>
+      <h3>Landscape Event Archive</h3>
+      <p>
+        Review the weekly shows and major events already recorded in Landscape history.
+      </p>
+    </div>
+
+    <div
+      id="cr-landscape-recorded-events"
+      class="cr-landscape-recorded-events"
+    >
+      <p class="cr-landscape-entry-empty">
+        No Landscape events have been recorded yet.
+      </p>
+    </div>
+  </div>
+
+  <!-- WEEKLY SCHEDULE -->
+
+  <div class="cr-editor-section">
+    <div class="cr-editor-section-heading">
+      <span>WEEKLY LANDSCAPE</span>
+      <h3>The Wrestling Week</h3>
+    </div>
+
+    <div
+      id="cr-landscape-weekly-schedule"
+      class="cr-landscape-schedule-grid"
+    >
+      <p class="cr-landscape-empty">
+        Connect the OWL folder to load the weekly schedule.
+      </p>
+    </div>
+  </div>
+
+  <!-- MONTHLY CYCLE -->
+
+  <div class="cr-editor-section">
+    <div class="cr-editor-section-heading">
+      <span>SIMULATION CALENDAR</span>
+      <h3>Monthly Cycle</h3>
+    </div>
+
+    <div
+      id="cr-landscape-monthly-cycle"
+      class="cr-landscape-cycle-grid"
+    >
+      <p class="cr-landscape-empty">
+        Connect the OWL folder to load the Landscape cycle.
+      </p>
+    </div>
+  </div>
+
+  <!-- ARCHIVE STATE -->
+
+  <div class="cr-editor-section">
+    <div class="cr-editor-section-heading">
+      <span>HISTORY</span>
+      <h3>Landscape Archive</h3>
+    </div>
+
+    <div
+      id="cr-landscape-archive-summary"
+      class="cr-landscape-archive-summary"
+    >
+      <p class="cr-landscape-empty">
+        No Landscape history loaded.
+      </p>
+    </div>
+  </div>
+</section>        <!-- =================================
+             OWL SOCIAL SYSTEM STATUS
+        ================================== -->
+
+        <section id="cr-tool-social-status" class="control-room-panel">
+            <div class="control-room-panel-heading">
+                <div><p class="eyebrow">OWL SOCIAL</p><h2>Media System Status</h2></div>
+                <div class="control-room-actions">
+                    <span id="cr-social-overall-status" class="control-room-health-summary">CHECKING</span>
+                    <button id="cr-social-refresh" type="button" class="control-room-button control-room-button-secondary">Refresh Status</button>
+                </div>
+            </div>
+
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>SOCIAL NETWORK</span><h3>The Innanet</h3></div>
+                <div class="control-room-stat-grid">
+                    <article class="control-room-stat-card"><span>LATEST PUBLISHED SHOW</span><strong id="cr-social-latest-show">—</strong><small id="cr-social-latest-show-date">—</small></article>
+                    <article class="control-room-stat-card"><span>ARCHIVED MONTHS</span><strong id="cr-social-innanet-months">0</strong></article>
+                    <article class="control-room-stat-card"><span>PUBLISHED SHOWS</span><strong id="cr-social-published-shows">0</strong></article>
+                    <article class="control-room-stat-card"><span>TOTAL POSTS</span><strong id="cr-social-total-posts">0</strong></article>
+                    <article class="control-room-stat-card"><span>PENDING SHOWS</span><strong id="cr-social-pending-shows">0</strong></article>
+                </div>
+            </div>
+
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>MONTHLY PUBLICATION</span><h3>WWoW</h3></div>
+                <div class="control-room-stat-grid">
+                    <article class="control-room-stat-card"><span>LATEST ISSUE</span><strong id="cr-social-latest-issue">—</strong><small id="cr-social-latest-issue-title">—</small></article>
+                    <article class="control-room-stat-card"><span>ISSUES PUBLISHED</span><strong id="cr-social-issue-count">0</strong></article>
+                    <article class="control-room-stat-card"><span>NEXT PUBLICATION</span><strong id="cr-social-next-issue">—</strong><small id="cr-social-next-issue-note">—</small></article>
+                </div>
+            </div>
+
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>HISTORICAL INTELLIGENCE</span><h3>World Memory</h3></div>
+                <div class="control-room-stat-grid">
+                    <article class="control-room-stat-card"><span>FROZEN SNAPSHOTS</span><strong id="cr-social-snapshot-count">0</strong></article>
+                    <article class="control-room-stat-card"><span>LATEST SNAPSHOT</span><strong id="cr-social-latest-snapshot">—</strong><small id="cr-social-latest-snapshot-date">—</small></article>
+                    <article class="control-room-stat-card"><span>HISTORY SPAN</span><strong id="cr-social-history-span">—</strong></article>
+                </div>
+            </div>
+
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>AUTOMATION HEALTH</span><h3>Media Pipeline</h3></div>
+                <div class="control-room-health-list">
+                    <div class="control-room-health-item"><div><strong>Innanet Queue</strong><span>Completed shows waiting for reactions</span></div><strong id="cr-social-health-queue">CHECKING</strong></div>
+                    <div class="control-room-health-item"><div><strong>WWoW Publication</strong><span>Monthly issue publication state</span></div><strong id="cr-social-health-wwow">CHECKING</strong></div>
+                    <div class="control-room-health-item"><div><strong>History Snapshot</strong><span>Frozen memory for published months</span></div><strong id="cr-social-health-history">CHECKING</strong></div>
+                    <div class="control-room-health-item"><div><strong>Long-Term Memory</strong><span>Historical context available to AI media</span></div><strong id="cr-social-health-memory">CHECKING</strong></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================
+             INNANET ACCOUNT MANAGER
+        ================================== -->
+
+        <section id="cr-tool-innanet-accounts" class="control-room-panel">
+            <div class="control-room-panel-heading">
+                <div><p class="eyebrow">OWL SOCIAL</p><h2>Innanet Account Manager</h2></div>
+                <span id="cr-account-status" class="control-room-health-summary">READY</span>
+            </div>
+
+            <p class="cr-editor-note">Shape the recurring voices of The Innanet. Retired accounts remain in historical archives but are removed from future AI generation.</p>
+
+            <div class="control-room-stat-grid">
+                <article class="control-room-stat-card"><span>TOTAL ACCOUNTS</span><strong id="cr-account-total-count">0</strong></article>
+                <article class="control-room-stat-card"><span>ACTIVE</span><strong id="cr-account-active-count">0</strong></article>
+                <article class="control-room-stat-card"><span>RETIRED</span><strong id="cr-account-retired-count">0</strong></article>
+            </div>
+
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>USER DIRECTORY</span><h3>Recurring Innanet Accounts</h3></div>
+                <div id="cr-account-directory"><p class="cr-landscape-entry-empty">Connect the OWL folder to load accounts.</p></div>
+            </div>
+
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>ACCOUNT EDITOR</span><h3>Personality Profile</h3></div>
+
+                <div class="cr-editor-top-grid">
+                    <div class="cr-form-group"><label for="cr-account-mode">ACTION</label><select id="cr-account-mode"><option value="edit">Edit Existing Account</option><option value="create">Add New Account</option></select></div>
+                    <div id="cr-account-select-row" class="cr-form-group"><label for="cr-account-select">ACCOUNT</label><select id="cr-account-select"><option value="">Select Account</option></select></div>
+                    <div class="cr-form-group"><label>DATABASE ID</label><div id="cr-account-id-preview" class="cr-current-value">—</div></div>
+                </div>
+            </div>
+
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>IDENTITY</span><h3>Account Information</h3></div>
+                <div class="cr-editor-form-grid">
+                    <div class="cr-form-group"><label for="cr-account-name">DISPLAY NAME</label><input id="cr-account-name" type="text" autocomplete="off"></div>
+                    <div class="cr-form-group"><label for="cr-account-handle">HANDLE</label><input id="cr-account-handle" type="text" autocomplete="off" placeholder="@handle"></div>
+                    <div class="cr-form-group"><label for="cr-account-account-status">ACCOUNT STATUS</label><select id="cr-account-account-status"><option value="active">Active</option><option value="retired">Retired</option></select></div>
+                    <div class="cr-form-group"><label for="cr-account-archetype">ARCHETYPE</label><input id="cr-account-archetype" type="text" autocomplete="off"></div>
+                </div>
+            </div>
+
+            <div class="cr-editor-section">
+                <div class="cr-editor-section-heading"><span>PERSONALITY</span><h3>Voice and Behavior</h3></div>
+                <div class="cr-editor-form-grid">
+                    <div class="cr-form-group"><label for="cr-account-tone">TONE</label><input id="cr-account-tone" type="text" autocomplete="off"></div>
+                    <div class="cr-form-group"><label for="cr-account-profanity">PROFANITY LEVEL</label><select id="cr-account-profanity"><option value="none">None</option><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select></div>
+                    <div class="cr-form-group"><label for="cr-account-frequency">POSTING FREQUENCY</label><input id="cr-account-frequency" type="text" autocomplete="off"></div>
+                    <div class="cr-form-group"><label for="cr-account-reply-style">REPLY STYLE</label><input id="cr-account-reply-style" type="text" autocomplete="off"></div>
+                </div>
+
+                <div class="cr-form-group cr-editor-spaced-field"><label for="cr-account-focus">FOCUS AREAS</label><textarea id="cr-account-focus" rows="4"></textarea><small class="cr-field-help">Separate focus areas with commas or new lines.</small></div>
+                <div class="cr-form-group cr-editor-spaced-field"><label for="cr-account-fact-discipline">FACT DISCIPLINE</label><textarea id="cr-account-fact-discipline" rows="4"></textarea></div>
+            </div>
+
+            <div id="cr-account-change-preview" class="cr-change-preview" hidden><span>REVIEW ACCOUNT</span><div id="cr-account-change-list" class="cr-editor-change-list"></div><p id="cr-account-error" class="cr-change-error" hidden></p></div>
+            <div class="cr-manager-actions"><button id="cr-account-save" class="control-room-button control-room-button-primary" type="button" disabled>Save Account Changes</button></div>
+            <p id="cr-account-message" class="cr-save-message" hidden></p>
+        </section>
+
         <!-- =================================
              DATA HEALTH
         ================================== -->
 
-
-        <section
-            id="cr-tool-data-health"
-            class="control-room-panel"
-        >
-
+        <section id="cr-tool-health" class="control-room-panel">
             <div class="control-room-panel-heading">
-
-
-                <div>
-
-                    <p class="eyebrow">
-                        SYSTEM CHECK
-                    </p>
-
-                    <h2>
-                        Data Health
-                    </h2>
-
-                </div>
-
-
-                <span
-                    id="cr-health-summary"
-                    class="control-room-health-summary"
-                >
-                    —
-                </span>
-
-
+                <div><p class="eyebrow">SYSTEM CHECK</p><h2>Data Health</h2></div>
+                <span id="cr-health-summary" class="control-room-health-summary">—</span>
             </div>
-
-
-
-            <div
-                id="cr-health-list"
-                class="control-room-health-list"
-            >
-            </div>
-
-
+            <div id="cr-health-list" class="control-room-health-list"></div>
         </section>
 
-
     </section>
-
-
 </main>
 
-
-
 <footer class="control-room-footer">
-
-
-    <strong>
-        OWL Control Room
-    </strong>
-
-
-    <p>
-        Select. Edit. Review. Save. Push.
-    </p>
-
-
+    <strong>OWL Control Room</strong>
+    <p>Select. Edit. Review. Save. Push.</p>
 </footer>
 
-
-
 <script src="js/control-room.js"></script>
-
 <script src="js/control-room-wrestler-editor.js"></script>
-
 <script src="js/control-room-team-editor.js"></script>
-    
 <script src="js/control-room-faction-editor.js"></script>
-    
 <script src="js/control-room-event-editor.js"></script>
-    
 <script src="js/control-room-match-booker.js"></script>
+<script src="js/control-room-results-wizard.js"></script>
 
-<script src="js/control-room-results-wizard.js?v=results-wizard-final-1"></script>
-    
 <script src="js/landscape-score-engine.js"></script>
 <script src="js/control-room-landscape.js"></script>
-<script src="js/control-room-landscape-entry.js"></script>
 <script src="js/control-room-landscape-champions.js"></script>
-<script src="js/control-room-landscape-rankings.js"></script>
+
 <script src="js/control-room-social-status.js"></script>
-    
 <script src="js/control-room-account-manager.js"></script>
-    
-<script src="js/control-room-usability.js?v=usability-1"></script>
 
 </body>
-
 </html>
