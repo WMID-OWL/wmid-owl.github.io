@@ -3034,7 +3034,7 @@ async function crLandscapeEntrySave() {
         );
 
 
-        if (
+                if (
             typeof crLandscapeLoad
             ===
             "function"
@@ -3042,6 +3042,30 @@ async function crLandscapeEntrySave() {
 
 
             await crLandscapeLoad();
+
+        }
+
+
+        if (
+            typeof crLandscapeRankingLoad
+            ===
+            "function"
+        ) {
+
+
+            await crLandscapeRankingLoad();
+
+        }
+
+
+        if (
+            typeof crLandscapeChampionLoad
+            ===
+            "function"
+        ) {
+
+
+            await crLandscapeChampionLoad();
 
         }
 
