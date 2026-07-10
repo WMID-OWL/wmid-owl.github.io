@@ -1,9 +1,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import {
-    loadWorldHistoryMemory
-} from "./world-history-memory.mjs";
+import { loadWorldHistoryMemory } from "./world-history-memory.mjs";
+
+import { buildWwowLandscapeContext } from "./wwow-landscape-context.mjs";
 
 const ROOT =
     process.cwd();
@@ -974,31 +974,24 @@ const selectedLabel =
     monthLabel(
         selectedMonth
     );
-const worldHistoryMemory =
-
-    await loadWorldHistoryMemory({
-
-
-        root:
-            ROOT,
-
-
-        beforeMonth:
-            selectedMonth,
+const worldHistoryMemory = await loadWorldHistoryMemory({
+    root: ROOT,
+    beforeMonth: selectedMonth,
+    maxMonths: 6,
+    maxEntities: 12,
+    includeCompanyHistory: true
+});
 
 
-        maxMonths:
-            6,
+const landscapeWorld = await buildWwowLandscapeContext({
 
+    root:
+        ROOT,
 
-        maxEntities:
-            12,
+    periodId:
+        selectedMonth
 
-
-        includeCompanyHistory:
-            true
-
-    });
+});
 
 
 // =================================
@@ -2400,10 +2393,11 @@ snapshotUse:
     },
 
 
-    worldHistoryMemory,
+        worldHistoryMemory,
 
+    landscapeWorld,
 
-historicalRecords,
+    historicalRecords,
 
 
 innanetMemory: {
