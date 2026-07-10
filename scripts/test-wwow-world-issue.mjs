@@ -41,7 +41,7 @@ const REQUEST_GAP_MS =
 
             ||
 
-            15000
+            30000
 
         )
 
@@ -55,6 +55,10 @@ const ENDPOINT =
 
 const TEST_ISSUE_ID =
     "2099-09";
+
+
+const MAX_RATE_LIMIT_RETRIES =
+    4;
 
 
 let lastRequestAt =
@@ -146,6 +150,151 @@ async function waitForRequestSlot() {
 }
 
 
+// =================================
+// RATE LIMIT RECOVERY
+// =================================
+
+
+function rateLimitDelay(
+    response,
+    attempt
+) {
+
+
+    const retryAfter =
+
+        response.headers.get(
+            "retry-after"
+        );
+
+
+    if (
+        retryAfter
+    ) {
+
+
+        const seconds =
+
+            Number(
+                retryAfter
+            );
+
+
+        if (
+            Number.isFinite(
+                seconds
+            )
+        ) {
+
+
+            return Math.max(
+
+                1000,
+
+                seconds * 1000
+
+            );
+
+        }
+
+
+        const retryDate =
+
+            Date.parse(
+                retryAfter
+            );
+
+
+        if (
+            Number.isFinite(
+                retryDate
+            )
+        ) {
+
+
+            return Math.max(
+
+                1000,
+
+                retryDate
+
+                -
+
+                Date.now()
+
+            );
+
+        }
+
+    }
+
+
+
+    const reset =
+
+        Number(
+
+            response.headers.get(
+                "x-ratelimit-reset"
+            )
+
+            ||
+
+            0
+
+        );
+
+
+    if (
+
+        Number.isFinite(
+            reset
+        )
+
+        &&
+
+        reset > 0
+
+    ) {
+
+
+        return Math.max(
+
+            1000,
+
+            (
+                reset * 1000
+            )
+
+            -
+
+            Date.now()
+
+            +
+
+            2000
+
+        );
+
+    }
+
+
+
+    return Math.min(
+
+        240000,
+
+        60000
+
+        *
+
+        (
+            2 ** attempt
+        )
+
+    );
+
+}
 
 // =================================
 // FILE HELPERS
@@ -529,114 +678,203 @@ async function callModel(
 ) {
 
 
-    await waitForRequestSlot();
+    const requestBody =
+
+        JSON.stringify({
 
 
-    lastRequestAt =
-        Date.now();
+            model:
+                MODEL,
 
 
-    const response =
-
-        await fetch(
-
-            ENDPOINT,
-
-            {
+            messages: [
 
 
-                method:
-                    "POST",
+                {
+                    role:
+                        "system",
 
-
-                headers: {
-
-
-                    Accept:
-                        "application/vnd.github+json",
-
-
-                    Authorization:
-                        `Bearer ${TOKEN}`,
-
-
-                    "X-GitHub-Api-Version":
-                        "2022-11-28",
-
-
-                    "Content-Type":
-                        "application/json"
-
+                    content:
+                        systemPrompt
                 },
 
 
-                body:
+                {
+                    role:
+                        "user",
 
-                    JSON.stringify({
-
-
-                        model:
-                            MODEL,
-
-
-                        messages: [
+                    content:
+                        userPrompt
+                }
 
 
-                            {
-                                role:
-                                    "system",
-
-                                content:
-                                    systemPrompt
-                            },
+            ],
 
 
-                            {
-                                role:
-                                    "user",
+            response_format: {
 
-                                content:
-                                    userPrompt
-                            }
+                type:
+                    "json_object"
 
-
-                        ],
+            },
 
 
-                        response_format: {
-
-                            type:
-                                "json_object"
-
-                        },
+            temperature:
+                0.75,
 
 
-                        temperature:
-                            0.75,
+            frequency_penalty:
+                0.25,
 
 
-                        frequency_penalty:
-                            0.25,
+            max_tokens:
+                3200
+
+        });
 
 
-                        max_tokens:
-                            3200
 
-                    })
-
-            }
-
-        );
+    let rateLimitAttempt =
+        0;
 
 
-    const raw =
 
-        await response.text();
-
-
-    if (
-        !response.ok
+    while (
+        true
     ) {
+
+
+        await waitForRequestSlot();
+
+
+        lastRequestAt =
+            Date.now();
+
+
+
+        const response =
+
+            await fetch(
+
+                ENDPOINT,
+
+                {
+
+
+                    method:
+                        "POST",
+
+
+                    headers: {
+
+
+                        Accept:
+                            "application/vnd.github+json",
+
+
+                        Authorization:
+                            `Bearer ${TOKEN}`,
+
+
+                        "X-GitHub-Api-Version":
+                            "2022-11-28",
+
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+
+                    body:
+                        requestBody
+
+                }
+
+            );
+
+
+
+        const raw =
+
+            await response.text();
+
+
+
+        if (
+            response.ok
+        ) {
+
+
+            const envelope =
+
+                JSON.parse(
+                    raw
+                );
+
+
+            const content =
+
+                envelope
+                    ?.choices
+                    ?.[0]
+                    ?.message
+                    ?.content;
+
+
+            return parseModelJson(
+                content
+            );
+
+        }
+
+
+
+        if (
+
+            response.status ===
+            429
+
+            &&
+
+            rateLimitAttempt <
+            MAX_RATE_LIMIT_RETRIES
+
+        ) {
+
+
+            const delay =
+
+                rateLimitDelay(
+
+                    response,
+                    rateLimitAttempt
+
+                );
+
+
+            rateLimitAttempt +=
+                1;
+
+
+            console.log(
+
+                `GitHub Models rate limit hit. Waiting ${Math.ceil(
+                    delay / 1000
+                )}s before retry ${rateLimitAttempt} of ${MAX_RATE_LIMIT_RETRIES}...`
+
+            );
+
+
+            await sleep(
+                delay
+            );
+
+
+            continue;
+
+        }
+
 
 
         throw new Error(
@@ -647,29 +885,7 @@ async function callModel(
 
     }
 
-
-    const envelope =
-
-        JSON.parse(
-            raw
-        );
-
-
-    const content =
-
-        envelope
-            ?.choices
-            ?.[0]
-            ?.message
-            ?.content;
-
-
-    return parseModelJson(
-        content
-    );
-
 }
-
 
 
 // =================================
