@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "generatedAt": "2026-07-10T18:41:30.702Z",
+  "model": "openai/gpt-4o-mini",
+  "coverageMode": "FULL WORLD COVERAGE",
+  "audit": {
+    "companiesMentioned": [
+      "OWL",
+      "AEW",
+      "WWE",
+      "TNA",
+      "CMLL",
+      "AAA"
+    ],
+    "companyCount": 6,
+    "nonOwlCompanies": [
+      "AEW",
+      "WWE",
+      "TNA",
+      "CMLL",
+      "AAA"
+    ],
+    "nonOwlCompanyCount": 5,
+    "broadCoverageSignal": true
+  },
+  "plan": {
+    "coverTitle": "AEW Dominates the Landscape: A New Era Begins",
+    "coverDeck": "AEW's rise to the top marks a significant shift in the wrestling world as they claim the title of Company of the Month.",
+    "sections": [
+      {
+        "sectionId": "cover-story",
+        "kicker": "COVER STORY",
+        "title": "AEW's Ascendance: Company of the Month",
+        "focus": "September 2099 sees AEW solidifying its position at the pinnacle of the wrestling industry, achieving a Landscape Score of 93.8 and earning the title of Company of the Month."
+      },
+      {
+        "sectionId": "month-review",
+        "kicker": "MONTH IN REVIEW",
+        "title": "A Competitive September: Highlights from the Wrestling World",
+        "focus": "A broad look at the wrestling landscape in September showcases the competitive events from various promotions, including TNA's major event dominating the month with an impressive rating."
+      },
+      {
+        "sectionId": "power-shift",
+        "kicker": "POWER SHIFT",
+        "title": "Shifting Tides: Promotions on the Move",
+        "focus": "TNA and OWL both experience notable shifts in their rankings, with TNA climbing to third place and OWL slipping to second, as their respective shows reflect this changing dynamic."
+      },
+      {
+        "sectionId": "match-month",
+        "kicker": "MATCH OF THE MONTH",
+        "title": "CMLL's Finest: A Match to Remember",
+        "focus": "CMLL's Test match between Alpha and Beta takes the spotlight this month, rated an outstanding 4.95, marking it as the Match of the Month."
+      },
+      {
+        "sectionId": "performers-month",
+        "kicker": "PERFORMERS OF THE MONTH",
+        "title": "Top Talents Shine Across Promotions",
+        "focus": "Highlighting the standout performances of wrestlers across the landscape, with particular attention to those who excelled during major events, including TNA's Test Champion Delta."
+      },
+      {
+        "sectionId": "title-picture",
+        "kicker": "TITLE PICTURE",
+        "title": "Championship Landscape: Who Holds the Gold?",
+        "focus": "An examination of current champions in the wrestling world, featuring champions like Test Champion Vega of WWE and Test Champion Sol of CMLL, along with the implications of recent title matches."
+      },
+      {
+        "sectionId": "rumors-whispers",
+        "kicker": "RUMORS & WHISPERS",
+        "title": "Speculation in the Air: What’s Next for the Wrestling World?",
+        "focus": "Exploring potential shifts and developments in contracts and signings, including the recent signing of Test Wrestler Nova with AAA and what impact it may have on the promotion."
+      },
+      {
+        "sectionId": "editorial",
+        "kicker": "EDITORIAL",
+        "title": "The State of Wrestling: A Time for Change",
+        "focus": "Reflecting on the shifting dynamics of the wrestling industry, emphasizing the importance of competition and what this means for the future of promotions, especially in light of AEW's recent success."
+      }
+    ]
+  }
+}
