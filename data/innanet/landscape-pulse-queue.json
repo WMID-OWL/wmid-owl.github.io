@@ -1,6 +1,476 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-10T08:10:05.073Z",
-  "pendingPulseCount": 0,
-  "pendingPulses": []
+  "generatedAt": "2099-12-31T23:59:59.000Z",
+  "pendingPulseCount": 1,
+  "pendingPulses": [
+    {
+      "pulseId": "landscape-monthly-2099-12",
+      "pulseType": "monthly-industry-report",
+      "periodId": "2099-12",
+      "label": "December 2099 Landscape Report",
+      "rules": {
+        "canonBoundary": "Only supplied structured Landscape facts are canon. Opinions, criticism, jokes, comparisons, and clearly labeled speculation are allowed. Do not invent matches, results, ratings, title changes, contracts, signings, firings, injuries, retirements, backstage incidents, relationships, or future booking as fact.",
+        "rankingMeaning": "Landscape Score is the official derived competition metric. Rankings and movement values may be discussed exactly as supplied.",
+        "rumorBoundary": "Rumor-style accounts may speculate only from supplied developments and must clearly frame speculation as rumor, possibility, or a question."
+      },
+      "companyRankings": [
+        {
+          "rank": 1,
+          "companyId": "owl",
+          "companyName": "OWL",
+          "landscapeScore": 94.7
+        },
+        {
+          "rank": 2,
+          "companyId": "aew",
+          "companyName": "AEW",
+          "landscapeScore": 91.2
+        },
+        {
+          "rank": 3,
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "landscapeScore": 88.6
+        },
+        {
+          "rank": 4,
+          "companyId": "tna",
+          "companyName": "TNA",
+          "landscapeScore": 83.4
+        },
+        {
+          "rank": 5,
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "landscapeScore": 80.9
+        },
+        {
+          "rank": 6,
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "landscapeScore": 77.5
+        },
+        {
+          "rank": 7,
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "landscapeScore": 73.8
+        },
+        {
+          "rank": 8,
+          "companyId": "roh",
+          "companyName": "ROH",
+          "landscapeScore": 69.4
+        }
+      ],
+      "showRankings": [
+        {
+          "rank": 1,
+          "showId": "owl-revolt",
+          "showName": "OWL Revolt",
+          "companyId": "owl",
+          "landscapeScore": 95.1
+        },
+        {
+          "rank": 2,
+          "showId": "aew-dynamite",
+          "showName": "AEW Dynamite",
+          "companyId": "aew",
+          "landscapeScore": 92.3
+        },
+        {
+          "rank": 3,
+          "showId": "owl-ascension",
+          "showName": "OWL Ascension",
+          "companyId": "owl",
+          "landscapeScore": 90.8
+        },
+        {
+          "rank": 4,
+          "showId": "wwe-raw",
+          "showName": "WWE Raw",
+          "companyId": "wwe",
+          "landscapeScore": 87.9
+        },
+        {
+          "rank": 5,
+          "showId": "tna-impact",
+          "showName": "TNA Impact",
+          "companyId": "tna",
+          "landscapeScore": 84.6
+        },
+        {
+          "rank": 6,
+          "showId": "aew-collision",
+          "showName": "AEW Collision",
+          "companyId": "aew",
+          "landscapeScore": 82.7
+        },
+        {
+          "rank": 7,
+          "showId": "wwe-smackdown",
+          "showName": "WWE SmackDown",
+          "companyId": "wwe",
+          "landscapeScore": 80.3
+        },
+        {
+          "rank": 8,
+          "showId": "cmll-super-viernes",
+          "showName": "CMLL Super Viernes",
+          "companyId": "cmll",
+          "landscapeScore": 78.5
+        },
+        {
+          "rank": 9,
+          "showId": "nxt-on-cw",
+          "showName": "NXT on CW",
+          "companyId": "nxt",
+          "landscapeScore": 75.2
+        },
+        {
+          "rank": 10,
+          "showId": "aaa-lucha-libre",
+          "showName": "AAA Lucha Libre",
+          "companyId": "aaa",
+          "landscapeScore": 71.8
+        },
+        {
+          "rank": 11,
+          "showId": "roh-on-honorclub",
+          "showName": "ROH on HonorClub",
+          "companyId": "roh",
+          "landscapeScore": 67.1
+        }
+      ],
+      "companyMovement": [
+        {
+          "id": "owl",
+          "name": "OWL",
+          "previousRank": 3,
+          "currentRank": 1,
+          "movement": 2,
+          "label": "UP 2"
+        },
+        {
+          "id": "aew",
+          "name": "AEW",
+          "previousRank": 1,
+          "currentRank": 2,
+          "movement": -1,
+          "label": "DOWN 1"
+        },
+        {
+          "id": "wwe",
+          "name": "WWE",
+          "previousRank": 2,
+          "currentRank": 3,
+          "movement": -1,
+          "label": "DOWN 1"
+        },
+        {
+          "id": "tna",
+          "name": "TNA",
+          "previousRank": 6,
+          "currentRank": 4,
+          "movement": 2,
+          "label": "UP 2"
+        },
+        {
+          "id": "cmll",
+          "name": "CMLL",
+          "previousRank": 5,
+          "currentRank": 5,
+          "movement": 0,
+          "label": "UNCHANGED"
+        },
+        {
+          "id": "nxt",
+          "name": "NXT",
+          "previousRank": 4,
+          "currentRank": 6,
+          "movement": -2,
+          "label": "DOWN 2"
+        },
+        {
+          "id": "aaa",
+          "name": "AAA",
+          "previousRank": 7,
+          "currentRank": 7,
+          "movement": 0,
+          "label": "UNCHANGED"
+        },
+        {
+          "id": "roh",
+          "name": "ROH",
+          "previousRank": 8,
+          "currentRank": 8,
+          "movement": 0,
+          "label": "UNCHANGED"
+        }
+      ],
+      "showMovement": [
+        {
+          "id": "owl-revolt",
+          "name": "OWL Revolt",
+          "previousRank": 4,
+          "currentRank": 1,
+          "movement": 3,
+          "label": "UP 3"
+        },
+        {
+          "id": "nxt-on-cw",
+          "name": "NXT on CW",
+          "previousRank": 5,
+          "currentRank": 9,
+          "movement": -4,
+          "label": "DOWN 4"
+        },
+        {
+          "id": "tna-impact",
+          "name": "TNA Impact",
+          "previousRank": 8,
+          "currentRank": 5,
+          "movement": 3,
+          "label": "UP 3"
+        },
+        {
+          "id": "roh-on-honorclub",
+          "name": "ROH on HonorClub",
+          "previousRank": 9,
+          "currentRank": 11,
+          "movement": -2,
+          "label": "DOWN 2"
+        }
+      ],
+      "majorEventBattle": [
+        {
+          "rank": 1,
+          "companyId": "owl",
+          "companyName": "OWL",
+          "eventName": "December to Remember",
+          "overallRating": 4.72
+        },
+        {
+          "rank": 2,
+          "companyId": "aew",
+          "companyName": "AEW",
+          "eventName": "Test AEW Major Event",
+          "overallRating": 4.41
+        },
+        {
+          "rank": 3,
+          "companyId": "tna",
+          "companyName": "TNA",
+          "eventName": "Test TNA Major Event",
+          "overallRating": 4.18
+        },
+        {
+          "rank": 4,
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "eventName": "Test WWE Major Event",
+          "overallRating": 3.97
+        }
+      ],
+      "topMatches": [
+        {
+          "eventName": "December to Remember",
+          "companyName": "OWL",
+          "resultText": "Test Wrestler Alpha defeated Test Wrestler Beta.",
+          "rating": 4.95
+        },
+        {
+          "eventName": "Test AEW Major Event",
+          "companyName": "AEW",
+          "resultText": "Test Wrestler Gamma defeated Test Wrestler Delta.",
+          "rating": 4.8
+        },
+        {
+          "eventName": "OWL Revolt",
+          "companyName": "OWL",
+          "resultText": "Test Wrestler Echo defeated Test Wrestler Foxtrot.",
+          "rating": 4.7
+        },
+        {
+          "eventName": "Test TNA Major Event",
+          "companyName": "TNA",
+          "resultText": "Test Wrestler Hotel defeated Test Wrestler India.",
+          "rating": 4.55
+        },
+        {
+          "eventName": "AEW Dynamite",
+          "companyName": "AEW",
+          "resultText": "Test Wrestler Juliet defeated Test Wrestler Kilo.",
+          "rating": 4.4
+        },
+        {
+          "eventName": "WWE Raw",
+          "companyName": "WWE",
+          "resultText": "Test Wrestler Lima defeated Test Wrestler Mike.",
+          "rating": 4.25
+        }
+      ],
+      "honors": {
+        "companyOfTheMonth": {
+          "name": "OWL",
+          "score": 94.7
+        },
+        "showOfTheMonth": {
+          "name": "OWL Revolt",
+          "score": 95.1
+        },
+        "majorEventOfTheMonth": {
+          "name": "December to Remember",
+          "rating": 4.72
+        },
+        "matchOfTheMonth": {
+          "name": "Test Wrestler Alpha defeated Test Wrestler Beta.",
+          "rating": 4.95
+        },
+        "mostConsistentShow": {
+          "name": "AEW Dynamite",
+          "consistencyScore": 96.2
+        },
+        "biggestClimber": {
+          "name": "OWL",
+          "previousRank": 3,
+          "currentRank": 1,
+          "positionsGained": 2
+        }
+      },
+      "championLedger": [
+        {
+          "companyId": "aew",
+          "companyName": "AEW",
+          "titles": [
+            {
+              "titleName": "Test World Championship",
+              "champion": "Test Champion Gamma"
+            }
+          ]
+        },
+        {
+          "companyId": "tna",
+          "companyName": "TNA",
+          "titles": [
+            {
+              "titleName": "Test Heavyweight Championship",
+              "champion": "Test Champion Delta"
+            }
+          ]
+        }
+      ],
+      "universeDevelopments": [
+        {
+          "companyName": "AEW",
+          "eventName": "Test AEW Major Event",
+          "notes": "JoW canon: Test Wrestler Nova signed with AEW."
+        },
+        {
+          "companyName": "TNA",
+          "eventName": "Test TNA Major Event",
+          "notes": "JoW canon: Test Wrestler Orion officially retired."
+        }
+      ],
+      "availableAccounts": [
+        {
+          "id": "wrestlingwire",
+          "accountName": "The Wrestling Wire",
+          "handle": "@WrestlingWire",
+          "archetype": "wrestling industry news desk",
+          "tone": "fast, professional, concise, neutral",
+          "focus": [
+            "company results",
+            "title changes",
+            "major events",
+            "Landscape movement"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Strict facts only. Report only events explicitly supplied in the Landscape fact package.",
+          "replyStyle": "brief updates, corrections, and follow-up context"
+        },
+        {
+          "id": "wrestlingenjoyer",
+          "accountName": "Wrestling Enjoyer",
+          "handle": "@WrestlingEnjoyer",
+          "archetype": "positive all-wrestling fan",
+          "tone": "enthusiastic, curious, generous, occasionally overwhelmed",
+          "focus": [
+            "great matches",
+            "hot shows",
+            "surprise performances",
+            "cross-promotion appreciation"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "May be wildly enthusiastic and have strong opinions, but cannot invent matches, results, ratings, title changes, or future booking.",
+          "replyStyle": "positive reactions and excited replies"
+        },
+        {
+          "id": "complaintdepartment",
+          "accountName": "The Complaint Department",
+          "handle": "@ComplaintDept",
+          "archetype": "relentless industry critic",
+          "tone": "dry, ruthless, skeptical, professional enough to be annoying",
+          "focus": [
+            "bottom-ranked companies",
+            "falling shows",
+            "bad major events",
+            "ranking collapses"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "All rankings, ratings, results, and movement claims must come directly from supplied Landscape facts.",
+          "replyStyle": "quote-post criticism, receipts, sarcastic comparisons, and short verdicts"
+        },
+        {
+          "id": "landscapenumbers",
+          "accountName": "Landscape Numbers",
+          "handle": "@LandscapeNumbers",
+          "archetype": "wrestling industry statistics obsessive",
+          "tone": "precise, detached, analytical, quietly dramatic when the numbers are extreme",
+          "focus": [
+            "Landscape Score",
+            "promotion rankings",
+            "show rankings",
+            "movement",
+            "consistency"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Never invent a number, ranking, movement value, score, rating, or record.",
+          "replyStyle": "stat breakdowns, corrections with exact numbers, and compact comparisons"
+        },
+        {
+          "id": "workratewonk",
+          "accountName": "Workrate Wonk",
+          "handle": "@WorkrateWonk",
+          "archetype": "cross-promotion match quality snob",
+          "tone": "analytical, smug, obsessive",
+          "focus": [
+            "star ratings",
+            "match quality",
+            "top matches across promotions",
+            "show quality comparisons"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Only cite ratings, rankings, match results, and performance data explicitly provided in the fact package.",
+          "replyStyle": "longer arguments about match quality and promotion comparisons"
+        },
+        {
+          "id": "grapevine",
+          "accountName": "The Grapevine",
+          "handle": "@TheGrapevine",
+          "archetype": "industry rumor and speculation account",
+          "tone": "careful, suggestive, insider-ish",
+          "focus": [
+            "visible tension",
+            "company movement",
+            "confirmed signings and retirements",
+            "industry speculation"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Any non-database claim must be explicitly labeled rumor, speculation, possibility, or a question.",
+          "replyStyle": "careful posts, clarifications, cautious follow-ups, and questions"
+        }
+      ]
+    }
+  ]
 }
