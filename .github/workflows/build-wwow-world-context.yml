@@ -61,7 +61,12 @@ jobs:
 
           node scripts/build-wwow-context.mjs
 
+      - name: Check WWoW writer syntax
 
+        run: |
+
+          node --check scripts/write-wwow-issue.mjs 
+          
       - name: Validate Landscape world package
 
         run: |
