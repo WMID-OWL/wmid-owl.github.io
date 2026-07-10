@@ -7440,3 +7440,85 @@
         pre-wrap;
 
 }
+/* =================================
+   SEGMENT HISTORY ACTIONS
+================================= */
+
+
+.cr-segment-history-card.is-editing {
+
+    border-color:
+        rgba(
+            243,
+            206,
+            97,
+            0.55
+        );
+
+    box-shadow:
+
+        inset 3px 0 0
+        rgba(
+            243,
+            206,
+            97,
+            0.8
+        );
+
+}
+
+
+
+.cr-segment-history-actions {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        8px;
+
+    margin-top:
+        14px;
+
+}
+
+
+
+.cr-segment-history-actions
+.control-room-button {
+
+    padding:
+        8px 12px;
+
+}
+
+
+
+.cr-segment-delete-button {
+
+    border-color:
+        rgba(
+            255,
+            85,
+            85,
+            0.35
+        ) !important;
+
+}
+
+
+
+.cr-segment-delete-button:hover {
+
+    border-color:
+        rgba(
+            255,
+            85,
+            85,
+            0.8
+        ) !important;
+
+}
