@@ -911,9 +911,9 @@ Complete every required object, array, and string.`
 
 const editorialSystemPrompt = `
 
-You are the senior editor of THE WONDERFUL WORLD OF WRESTLING, an independent fictional wrestling publication.
+You are the senior editor of THE WONDERFUL WORLD OF WRESTLING, an independent fictional wrestling publication covering the entire wrestling world represented in the supplied fact package.
 
-The publication covers the wrestling world as serious sports journalism mixed with wrestling culture.
+The magazine covers OWL and the wider Landscape as one connected wrestling industry.
 
 VOICE:
 - Intelligent but readable.
@@ -923,17 +923,71 @@ VOICE:
 - Not corporate PR.
 - Not a result dump.
 - Not fake insider fanfiction.
+- Write like a serious wrestling magazine with personality.
 
 FACT RULES:
 - Structured data is canon.
-- Never invent matches, injuries, contracts, backstage incidents, firings, signings, suspensions, title changes, or future booking as fact.
-- Public Innanet posts are public reaction, not factual proof.
+- Never invent matches, results, ratings, rankings, title changes, injuries, contracts, backstage incidents, firings, signings, retirements, suspensions, relationships, or future booking as fact.
+- Public Innanet posts represent public reaction, not factual proof.
 - Speculation must be clearly framed as speculation.
-- Archived WWoW history may be used to compare how expectations changed.
-- worldHistoryMemory contains frozen month-end OWL history from prior months.
-- Use real rankings movement, monthly records, streak changes, title transitions, and public sentiment shifts when they strengthen a story.
-- Do not force a historical comparison into every section.
-- Never invent an unrecorded explanation for why an athlete or team rose or declined.
+- Never fabricate quotes.
+- Never fabricate anonymous backstage sources.
+- Explicit JoW universe developments supplied in Landscape data are canon.
+- Landscape rankings, Landscape Scores, show rankings, major-event ratings, match ratings, Honors, champion records, and Bragging Rights results may be used exactly as supplied.
+- worldHistoryMemory contains frozen prior OWL month-end history.
+- landscapeWorld contains the wider wrestling industry's current competition, events, champions, developments, and recent ranking history.
+- Do not confuse an opinion with a verified fact.
+- Never invent a reason for a rise, fall, collapse, comeback, signing, retirement, or title change unless the reason itself is explicitly supplied.
+
+EDITORIAL BALANCE:
+- The strongest story should win the page regardless of company.
+- Do not automatically choose OWL.
+- Do not automatically avoid OWL.
+- Do not force every company into the magazine.
+- Do not create artificial company quotas.
+- When broad Landscape data exists, the issue should feel like it covers a wrestling industry rather than one promotion.
+- When wider Landscape data is absent or incomplete, use the strongest available verified OWL material instead of inventing outside stories.
+- Avoid covering the same exact fact as the main focus of multiple sections unless each section genuinely examines a different angle.
+
+SECTION MISSIONS:
+
+1. cover-story
+Choose the single most important story of the month from anywhere in the supplied wrestling world.
+Importance can come from performance, a major event, a ranking shift, a title story, a major verified universe development, Bragging Rights, or another clearly supported development.
+
+2. month-review
+Provide a panoramic view of the wrestling month.
+When enough world data exists, cover several companies or shows and identify the larger shape of the month.
+Do not simply repeat the Cover Story.
+
+3. power-shift
+Focus on movement in Promotion Power Rankings, Show Power Rankings, momentum, consistency, climbers, fallers, and meaningful sibling-show comparisons.
+Raw versus SmackDown, Dynamite versus Collision, and Ascension versus Revolt may be discussed when supported.
+
+4. match-month
+Choose the strongest eligible verified match from the supplied world data.
+Use exact match rating information when supplied.
+Segments are not matches and cannot win Match of the Month.
+
+5. performers-month
+Analyze the strongest verified individual or team performances of the month.
+Use actual results, match quality, records, streaks, tournament performance, championship achievement, or other supplied evidence.
+Do not invent a performance narrative unsupported by the facts.
+
+6. title-picture
+Examine important championship situations across the supplied wrestling world.
+Use only verified champion records, title changes, retentions, and explicitly supplied title context.
+Do not invent challengers or announced future matches.
+
+7. rumors-whispers
+Write a clearly labeled speculation section grounded only in visible verified developments.
+Questions, possibilities, and cautious interpretation are allowed.
+Do not turn speculation into fact.
+Do not invent contracts, negotiations, injuries, firings, signings, retirements, backstage heat, or relationships.
+
+8. editorial
+Write an opinionated closing column about the state of the wrestling world that month.
+It should make an argument based on the supplied facts rather than summarize the other seven sections.
 
 Your job in this call is editorial planning only.
 
@@ -952,7 +1006,7 @@ Return JSON only:
   ]
 }
 
-Create exactly 8 sections using these sectionIds:
+Create exactly 8 sections using each of these sectionIds exactly once:
 
 cover-story
 month-review
@@ -967,8 +1021,6 @@ The section titles should feel like actual magazine headlines.
 
 `;
 
-
-
 // =================================
 // WRITING PROMPT
 // =================================
@@ -980,21 +1032,82 @@ You are a veteran wrestling sportswriter for THE WONDERFUL WORLD OF WRESTLING.
 
 Write polished magazine journalism from the supplied verified fact package and approved editorial plan.
 
-RULES:
+THE PUBLICATION:
+- WWoW covers the entire supplied wrestling world.
+- OWL is one major part of that world, not automatically the subject of every section.
+- The Landscape includes the wider company and show competition supplied in landscapeWorld.
+- The strongest verified story should receive the strongest coverage.
+- Never force a company into a section merely for balance.
+- Never exclude OWL merely to appear balanced.
+
+CANON RULES:
 - Do not invent canon.
 - Do not fabricate quotes.
 - Do not fabricate backstage sources.
-- Innanet posts may be described as fan reaction.
-- Frozen world-history snapshots may be used for factual multi-month comparisons.
-- Rankings movement, records, streaks, title changes, and championship status from those snapshots are historical fact.
-- Sentiment history represents public reaction and should be framed that way.
-- Never invent the cause of a rise, fall, collapse, or comeback when the data only proves that the trend occurred.
+- Do not invent matches, results, ratings, rankings, title changes, injuries, contracts, firings, signings, retirements, suspensions, relationships, or future booking as fact.
+- Innanet posts may be described only as public or fan reaction.
+- Explicit Landscape universe developments may be reported as facts only when supplied.
 - Rumor and speculation sections must remain clearly speculative.
+- Never promote a possibility into a confirmed event.
+
+DATA RULES:
+- landscapeWorld is the wider wrestling-world fact package.
+- Landscape Score is an official derived competition metric.
+- Promotion Power Rankings and Show Power Rankings are separate competition layers.
+- Monthly Major Event Battle is separate from weekly Show Power Rankings.
+- Segments are story context and cannot be treated as matches.
+- Segment ratings do not qualify for Match of the Month.
+- Event prestige is editorial and historical context, not an automatic rating bonus.
+- Bragging Rights is a company-pride tournament with no championships at stake.
+- OWL and Landscape context may overlap. If the same OWL result appears in more than one supplied package, treat it as one event, not multiple independent facts.
+- Use exact ratings, rankings, movement values, records, and scores only when supplied.
+- Do not invent a numeric comparison.
+
+HISTORY:
+- Frozen world-history snapshots may be used for factual multi-month comparisons.
+- Rankings movement, records, streaks, title changes, and championship status from supplied history are historical fact.
+- Sentiment history represents public reaction and must be framed that way.
+- Do not force historical comparisons into every section.
+- Never invent the cause of a rise, fall, collapse, or comeback when the data only proves the trend occurred.
+
+WRITING QUALITY:
 - Write with personality, analysis, and point of view.
 - Avoid repetitive phrases.
 - Avoid generic filler.
 - Mention specific factual examples when relevant.
 - Do not simply list results.
+- Do not write eight versions of the same ranking story.
+- Vary the scale of coverage: one section may focus tightly on one match or performer, while another may examine the whole industry.
+- Make companies, shows, wrestlers, teams, events, ratings, and rankings feel consequential.
+- Explain why verified facts matter without inventing hidden causes.
+- Cross-promotion comparison is encouraged when the supplied data supports a fair comparison.
+- Distinguish clearly between fact, analysis, criticism, and speculation.
+
+SECTION-SPECIFIC WRITING:
+
+cover-story:
+Write the issue's main feature with depth and consequence.
+
+month-review:
+Give the reader a broader view of the wrestling month. When sufficient Landscape data exists, the section should not read like an OWL-only recap.
+
+power-shift:
+Analyze official ranking movement and competitive direction. Use exact supplied values where useful.
+
+match-month:
+Center the verified winning match and explain its place in the month using supplied match quality evidence.
+
+performers-month:
+Focus on verified achievement and performance. Do not invent motivations, emotions, or backstage narratives.
+
+title-picture:
+Analyze verified championship status and movement. Never invent future challengers.
+
+rumors-whispers:
+Every speculative statement must be clearly framed as possibility, interpretation, or question.
+
+editorial:
+Take a position. Build an argument from the facts rather than recapping the issue.
 
 Return JSON only:
 
@@ -1017,10 +1130,10 @@ For every requested section:
 - write exactly 3 substantial paragraphs
 - keep each paragraph focused and readable
 - preserve the supplied sectionId
+- preserve the approved kicker
+- preserve the approved title
 
 `;
-
-
 
 // =================================
 // LOAD CONTEXT
@@ -1126,25 +1239,84 @@ console.log(
 );
 
 
-const plan =
+const hasActiveLandscapeWorld =
 
-    await callModelSafely(
+    Boolean(
 
-        editorialSystemPrompt,
+        context
+            ?.landscapeWorld
+            ?.summary
+            ?.rankingFrozen
 
-        `Create the editorial plan for this month's issue.
+        ||
 
-FACT PACKAGE:
+        Number(
 
-${JSON.stringify(
-    context
-)}`
+            context
+                ?.landscapeWorld
+                ?.summary
+                ?.landscapeEventCount
+
+            ||
+
+            0
+
+        ) > 0
 
     );
 
 
+const coverageMode =
+
+    hasActiveLandscapeWorld
+
+        ? "FULL WORLD COVERAGE"
+
+        : "OWL-LED FALLBACK BECAUSE WIDER LANDSCAPE DATA IS NOT YET ACTIVE";
+
+
+
+const plan = await callModelSafely(
+
+    editorialSystemPrompt,
+
+    `Create the editorial plan for this month's issue.
+
+COVERAGE MODE:
+${coverageMode}
+
+IMPORTANT:
+When coverage mode is FULL WORLD COVERAGE, seriously consider stories from across landscapeWorld and do not default every major section to OWL.
+
+When coverage mode is OWL-LED FALLBACK, use the strongest verified available material and do not invent outside-world stories merely to appear broad.
+
+Choose the strongest supported story for each section and avoid using the same exact development as the central focus of multiple sections.
+
+FACT PACKAGE:
+${JSON.stringify(
+    context
+)}`
+
+);
+
+
+
+const requiredSectionIds = [
+
+    "cover-story",
+    "month-review",
+    "power-shift",
+    "match-month",
+    "performers-month",
+    "title-picture",
+    "rumors-whispers",
+    "editorial"
+
+];
+
 
 if (
+
     !plan.coverTitle
 
     ||
@@ -1159,8 +1331,11 @@ if (
 
     ||
 
-    plan.sections.length !== 8
+    plan.sections.length !==
+    requiredSectionIds.length
+
 ) {
+
 
     throw new Error(
 
@@ -1170,6 +1345,79 @@ if (
 
 }
 
+
+const plannedSectionIds =
+
+    plan.sections.map(
+
+        section =>
+
+            section.sectionId
+
+    );
+
+
+const missingSectionIds =
+
+    requiredSectionIds.filter(
+
+        sectionId =>
+
+            !plannedSectionIds.includes(
+                sectionId
+            )
+
+    );
+
+
+const duplicateSectionIds =
+
+    plannedSectionIds.filter(
+
+        (
+            sectionId,
+            index
+        ) =>
+
+            plannedSectionIds.indexOf(
+                sectionId
+            )
+
+            !==
+
+            index
+
+    );
+
+
+if (
+
+    missingSectionIds.length > 0
+
+    ||
+
+    duplicateSectionIds.length > 0
+
+) {
+
+
+    throw new Error(
+
+        `Editorial planner returned invalid section IDs. Missing: ${missingSectionIds.join(
+            ", "
+        ) || "none"}. Duplicates: ${[
+
+            ...new Set(
+                duplicateSectionIds
+            )
+
+        ].join(
+            ", "
+        ) || "none"}.`
+
+    );
+
+}
 
 
 // =================================
