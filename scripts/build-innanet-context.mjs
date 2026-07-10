@@ -1662,31 +1662,291 @@ function relevantMediaMemory(
     };
 }
 
-function archivedEventIds(
-    innanetArchives
-) {
-    const ids =
-        new Set();
+// =================================
+// SEGMENT HELPERS
+// =================================
 
-    innanetArchives.forEach(
-        ({ data }) => {
-            (
-                data.events || []
-            ).forEach(
-                event => {
-                    if (
-                        event.eventId
-                    ) {
-                        ids.add(
-                            event.eventId
-                        );
-                    }
-                }
+
+function segmentRevisionForEvent(
+    eventId,
+    segments
+) {
+
+
+    const eventSegments =
+
+        segments
+
+            .filter(
+
+                segment =>
+
+                    segment.eventId ===
+                    eventId
+
+            )
+
+            .sort(
+
+                (
+                    a,
+                    b
+                ) =>
+
+                    String(
+                        a.id || ""
+                    )
+
+                        .localeCompare(
+
+                            String(
+                                b.id || ""
+                            )
+
+                        )
+
+            )
+
+            .map(
+
+                segment => ({
+
+
+                    id:
+                        segment.id,
+
+
+                    title:
+                        segment.title,
+
+
+                    importance:
+                        segment.importance,
+
+
+                    participantIds:
+
+                        Array.isArray(
+                            segment.participantIds
+                        )
+
+                            ? segment.participantIds
+
+                            : [],
+
+
+                    summary:
+                        segment.summary,
+
+
+                    revisionTime:
+
+                        segment.updatedAt
+
+                        ||
+
+                        segment.createdAt
+
+                        ||
+
+                        ""
+
+                })
+
             );
-        }
+
+
+    return JSON.stringify(
+        eventSegments
     );
 
-    return ids;
+}
+
+
+
+function segmentFactsForEvent(
+    eventId,
+    segments,
+    wrestlerMap
+) {
+
+
+    return segments
+
+        .filter(
+
+            segment =>
+
+                segment.eventId ===
+                eventId
+
+        )
+
+        .sort(
+
+            (
+                a,
+                b
+            ) =>
+
+                String(
+                    a.createdAt || ""
+                )
+
+                    .localeCompare(
+
+                        String(
+                            b.createdAt || ""
+                        )
+
+                    )
+
+        )
+
+        .map(
+
+            segment => {
+
+
+                const participantIds =
+
+                    Array.isArray(
+                        segment.participantIds
+                    )
+
+                        ? segment.participantIds
+
+                        : [];
+
+
+                return {
+
+
+                    id:
+                        segment.id,
+
+
+                    title:
+                        segment.title || "",
+
+
+                    importance:
+
+                        segment.importance
+
+                        ||
+
+                        "regular",
+
+
+                    participantIds:
+                        participantIds,
+
+
+                    participants:
+
+                        participantIds.map(
+
+                            wrestlerId =>
+
+                                wrestlerMap[
+                                    wrestlerId
+                                ]
+                                    ?.name
+
+                                ||
+
+                                wrestlerId
+
+                        ),
+
+
+                    summary:
+
+                        String(
+                            segment.summary || ""
+                        )
+                            .trim()
+
+                };
+
+            }
+
+        );
+
+}
+
+
+
+function archivedEventRevisions(
+    innanetArchives
+) {
+
+
+    const revisions =
+        new Map();
+
+
+    innanetArchives.forEach(
+
+        ({ data }) => {
+
+
+            (
+
+                data.events
+
+                ||
+
+                []
+
+            )
+
+                .forEach(
+
+                    event => {
+
+
+                        if (
+                            !event.eventId
+                        ) {
+
+
+                            return;
+
+                        }
+
+
+                        revisions.set(
+
+                            event.eventId,
+
+                            Object.prototype
+                                .hasOwnProperty
+                                .call(
+
+                                    event,
+                                    "segmentRevision"
+
+                                )
+
+                                ? event.segmentRevision
+
+                                : null
+
+                        );
+
+                    }
+
+                );
+
+        }
+
+    );
+
+
+    return revisions;
+
 }
 
 function involvedOfficialTeams(
