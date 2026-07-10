@@ -104,14 +104,28 @@
             ),
 
 
-        majorEvents:
+                majorEvents:
 
             document.getElementById(
                 "landscape-major-event-list"
             ),
 
 
-                champions:
+        braggingRights:
+
+            document.getElementById(
+                "landscape-bragging-rights-content"
+            ),
+
+
+        braggingEditionSelect:
+
+            document.getElementById(
+                "landscape-bragging-edition-select"
+            ),
+
+
+        champions:
 
             document.getElementById(
                 "landscape-champion-grid"
@@ -165,7 +179,11 @@
             null,
 
 
-        awards:
+                awards:
+            null,
+
+
+        braggingRights:
             null
 
     };
@@ -2215,7 +2233,1179 @@
                         ""
                     );
 
-    }    // =================================
+    }   
+        // =================================
+    // BRAGGING RIGHTS
+    // =================================
+
+
+    function braggingRoundLabel(
+        roundKey
+    ) {
+
+
+        const labels = {
+
+
+            roundOf16:
+                "ROUND OF 16",
+
+
+            quarterfinals:
+                "QUARTERFINALS",
+
+
+            semifinals:
+                "SEMIFINALS",
+
+
+            final:
+                "FINAL"
+
+        };
+
+
+        return (
+
+            labels[
+                roundKey
+            ]
+
+            ||
+
+            roundKey
+
+        );
+
+    }
+
+
+
+    function braggingEditions() {
+
+
+        return (
+
+            state.braggingRights
+                ?.editions
+
+            ||
+
+            []
+
+        )
+
+            .filter(
+
+                edition =>
+
+                    edition.year
+
+            )
+
+            .sort(
+
+                (
+                    a,
+                    b
+                ) =>
+
+                    String(
+                        b.year
+                    )
+
+                        .localeCompare(
+
+                            String(
+                                a.year
+                            )
+
+                        )
+
+            );
+
+    }
+
+
+
+    function selectedBraggingEdition() {
+
+
+        const editions =
+
+            braggingEditions();
+
+
+        const selectedYear =
+
+            els.braggingEditionSelect
+                ?.value;
+
+
+        return (
+
+            editions.find(
+
+                edition =>
+
+                    String(
+                        edition.year
+                    )
+
+                    ===
+
+                    String(
+                        selectedYear
+                    )
+
+            )
+
+            ||
+
+            editions[0]
+
+            ||
+
+            null
+
+        );
+
+    }
+
+
+
+    function renderBraggingEditionOptions() {
+
+
+        if (
+            !els.braggingEditionSelect
+        ) {
+
+
+            return;
+
+        }
+
+
+        const editions =
+
+            braggingEditions();
+
+
+        if (
+            editions.length === 0
+        ) {
+
+
+            els.braggingEditionSelect
+                .innerHTML = `
+
+                    <option value="">
+                        NO EDITIONS
+                    </option>
+
+                `;
+
+
+            els.braggingEditionSelect
+                .disabled =
+                    true;
+
+
+            return;
+
+        }
+
+
+        els.braggingEditionSelect
+            .disabled =
+                false;
+
+
+        els.braggingEditionSelect
+            .innerHTML =
+
+                editions
+
+                    .map(
+
+                        edition => `
+
+                            <option
+                                value="${escapeHtml(
+                                    edition.year
+                                )}"
+                            >
+
+                                ${escapeHtml(
+                                    edition.year
+                                )}
+
+                                BRAGGING RIGHTS
+
+                            </option>
+
+                        `
+
+                    )
+
+                    .join(
+                        ""
+                    );
+
+    }
+
+
+
+    function renderBraggingChampionCard(
+        divisionLabel,
+        divisionData
+    ) {
+
+
+        const champion =
+
+            divisionData
+                ?.bracket
+                ?.winner
+
+            ||
+
+            divisionData
+                ?.champion
+
+            ||
+
+            null;
+
+
+        const finalist =
+
+            divisionData
+                ?.bracket
+                ?.finalist
+
+            ||
+
+            divisionData
+                ?.finalist
+
+            ||
+
+            null;
+
+
+        return `
+
+            <article
+                class="landscape-br-champion-card"
+                data-division="${escapeHtml(
+                    divisionLabel
+                )}"
+            >
+
+
+                <span>
+
+                    ${escapeHtml(
+                        divisionLabel
+                    )}
+
+                    TOURNAMENT CHAMPION
+
+                </span>
+
+
+                <h3>
+
+                    ${escapeHtml(
+                        champion?.wrestlerName || "TOURNAMENT IN PROGRESS"
+                    )}
+
+                </h3>
+
+
+                <div class="landscape-br-champion-company">
+
+                    ${escapeHtml(
+                        champion?.companyName || "—"
+                    )}
+
+                    ${
+
+                        champion
+
+                            ? "· TROPHY HOLDER"
+
+                            : ""
+
+                    }
+
+                </div>
+
+
+                <span class="landscape-br-finalist">
+
+                    FINALIST ·
+
+                    ${escapeHtml(
+                        finalist?.wrestlerName || "—"
+                    )}
+
+                    ${
+
+                        finalist?.companyName
+
+                            ? ` (${escapeHtml(
+                                finalist.companyName
+                            )})`
+
+                            : ""
+
+                    }
+
+                </span>
+
+
+            </article>
+
+        `;
+
+    }
+
+
+
+    function renderBraggingQualification(
+        edition
+    ) {
+
+
+        const companies =
+
+            edition
+                ?.qualificationSnapshot
+                ?.companyOrder
+
+            ||
+
+            [];
+
+
+        if (
+            companies.length === 0
+        ) {
+
+
+            return "";
+
+        }
+
+
+        return `
+
+            <section class="landscape-br-qualification-panel">
+
+
+                <div class="landscape-br-subheading">
+
+
+                    <span>
+                        OCTOBER QUALIFICATION ORDER
+                    </span>
+
+
+                    <small>
+
+                        ${escapeHtml(
+                            edition.qualificationPeriodId || ""
+                        )}
+
+                    </small>
+
+
+                </div>
+
+
+                <div class="landscape-br-qualification-grid">
+
+
+                    ${companies
+
+                        .map(
+
+                            company => `
+
+                                <article class="landscape-br-qualification-card">
+
+
+                                    <strong class="landscape-br-qualification-rank">
+
+                                        ${company.rank}
+
+                                    </strong>
+
+
+                                    <div class="landscape-br-qualification-name">
+
+
+                                        <strong>
+
+                                            ${escapeHtml(
+                                                company.companyName
+                                            )}
+
+                                        </strong>
+
+
+                                        <small>
+
+                                            SCORE
+                                            ${
+
+                                                Number.isFinite(
+                                                    Number(
+                                                        company.landscapeScore
+                                                    )
+                                                )
+
+                                                    ? Number(
+                                                        company.landscapeScore
+                                                    )
+                                                        .toFixed(
+                                                            1
+                                                        )
+
+                                                    : "—"
+
+                                            }
+
+                                        </small>
+
+
+                                    </div>
+
+
+                                    <span class="landscape-br-allocation">
+
+                                        ${company.allocation}
+
+                                        SLOT${
+
+                                            company.allocation === 1
+
+                                                ? ""
+
+                                                : "S"
+
+                                        }
+
+                                    </span>
+
+
+                                </article>
+
+                            `
+
+                        )
+
+                        .join(
+                            ""
+                        )}
+
+
+                </div>
+
+
+            </section>
+
+        `;
+
+    }
+
+
+
+    function renderBraggingMatch(
+        match
+    ) {
+
+
+        const winnerId =
+
+            match.winnerEntrantId
+
+            ||
+
+            "";
+
+
+        function entrantHtml(
+            entrant
+        ) {
+
+
+            const isWinner =
+
+                entrant?.entrantId ===
+                winnerId;
+
+
+            return `
+
+                <div class="landscape-br-entrant ${
+
+                    isWinner
+
+                        ? "is-winner"
+
+                        : ""
+
+                }">
+
+
+                    <div class="landscape-br-entrant-info">
+
+
+                        <strong>
+
+                            ${escapeHtml(
+                                entrant?.wrestlerName || "TBD"
+                            )}
+
+                        </strong>
+
+
+                        <small>
+
+                            ${escapeHtml(
+                                entrant?.companyName || "—"
+                            )}
+
+                        </small>
+
+
+                    </div>
+
+
+                    <span class="landscape-br-winner-mark">
+
+                        ${isWinner ? "WIN" : ""}
+
+                    </span>
+
+
+                </div>
+
+            `;
+
+        }
+
+
+        return `
+
+            <article class="landscape-br-match">
+
+
+                ${entrantHtml(
+                    match.entrantA
+                )}
+
+
+                ${entrantHtml(
+                    match.entrantB
+                )}
+
+
+                <div class="landscape-br-match-footer">
+
+
+                    <span>
+
+                        ${escapeHtml(
+                            match.resultText || "Result pending"
+                        )}
+
+                    </span>
+
+
+                    <strong>
+
+                        ${
+
+                            Number.isFinite(
+                                Number(
+                                    match.rating
+                                )
+                            )
+
+                                ? `${Number(
+                                    match.rating
+                                ).toFixed(
+                                    2
+                                )} ★`
+
+                                : "—"
+
+                        }
+
+                    </strong>
+
+
+                </div>
+
+
+            </article>
+
+        `;
+
+    }
+
+
+
+    function renderBraggingDivision(
+        divisionLabel,
+        divisionData
+    ) {
+
+
+        const bracket =
+
+            divisionData
+                ?.bracket;
+
+
+        if (
+            !bracket
+        ) {
+
+
+            return `
+
+                <section class="landscape-br-division">
+
+                    <p class="landscape-empty">
+
+                        ${escapeHtml(
+                            divisionLabel
+                        )}
+
+                        BRACKET HAS NOT BEEN DRAWN
+
+                    </p>
+
+                </section>
+
+            `;
+
+        }
+
+
+        const roundKeys = [
+
+            "roundOf16",
+            "quarterfinals",
+            "semifinals",
+            "final"
+
+        ];
+
+
+        return `
+
+            <section class="landscape-br-division">
+
+
+                <div class="landscape-br-division-title">
+
+
+                    <div>
+
+
+                        <span>
+                            16-PERSON SINGLE ELIMINATION
+                        </span>
+
+
+                        <h3>
+
+                            ${escapeHtml(
+                                divisionLabel
+                            )}
+
+                            TOURNAMENT
+
+                        </h3>
+
+
+                    </div>
+
+
+                    <small>
+
+                        ${
+
+                            bracket.winner
+
+                                ? "COMPLETE"
+
+                                : "IN PROGRESS"
+
+                        }
+
+                    </small>
+
+
+                </div>
+
+
+                <div class="landscape-br-bracket-scroll">
+
+
+                    <div class="landscape-br-bracket">
+
+
+                        ${roundKeys
+
+                            .map(
+
+                                roundKey => {
+
+
+                                    const matches =
+
+                                        bracket
+                                            ?.rounds
+                                            ?.[roundKey]
+
+                                        ||
+
+                                        [];
+
+
+                                    return `
+
+                                        <div class="landscape-br-round">
+
+
+                                            <div class="landscape-br-round-title">
+
+                                                ${escapeHtml(
+                                                    braggingRoundLabel(
+                                                        roundKey
+                                                    )
+                                                )}
+
+                                            </div>
+
+
+                                            ${
+
+                                                matches.length
+
+                                                    ? matches
+
+                                                        .map(
+                                                            renderBraggingMatch
+                                                        )
+
+                                                        .join(
+                                                            ""
+                                                        )
+
+                                                    : `
+
+                                                        <p class="landscape-empty">
+
+                                                            AWAITING ADVANCEMENT
+
+                                                        </p>
+
+                                                    `
+
+                                            }
+
+
+                                        </div>
+
+                                    `;
+
+                                }
+
+                            )
+
+                            .join(
+                                ""
+                            )}
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+        `;
+
+    }
+
+
+
+    function historyLeader(
+        divisionKey,
+        statGroup
+    ) {
+
+
+        return (
+
+            state.braggingRights
+                ?.history
+                ?.[divisionKey]
+                ?.[statGroup]
+                ?.[0]
+
+            ||
+
+            null
+
+        );
+
+    }
+
+
+
+    function renderBraggingHistory() {
+
+
+        const menWrestler =
+
+            historyLeader(
+                "men",
+                "wrestlerStats"
+            );
+
+
+        const womenWrestler =
+
+            historyLeader(
+                "women",
+                "wrestlerStats"
+            );
+
+
+        const menCompany =
+
+            historyLeader(
+                "men",
+                "companyStats"
+            );
+
+
+        const womenCompany =
+
+            historyLeader(
+                "women",
+                "companyStats"
+            );
+
+
+        return `
+
+            <div class="landscape-br-history-grid">
+
+
+                <article class="landscape-br-history-card">
+
+
+                    <span>
+                        MEN'S RECORD HOLDER
+                    </span>
+
+
+                    <strong>
+
+                        ${escapeHtml(
+                            menWrestler?.wrestlerName || "—"
+                        )}
+
+                    </strong>
+
+
+                    <small>
+
+                        ${menWrestler?.tournamentWins || 0}
+                        TOURNAMENT WINS
+
+                        ·
+
+                        ${menWrestler?.matchWins || 0}
+                        MATCH WINS
+
+                    </small>
+
+
+                </article>
+
+
+
+                <article class="landscape-br-history-card">
+
+
+                    <span>
+                        WOMEN'S RECORD HOLDER
+                    </span>
+
+
+                    <strong>
+
+                        ${escapeHtml(
+                            womenWrestler?.wrestlerName || "—"
+                        )}
+
+                    </strong>
+
+
+                    <small>
+
+                        ${womenWrestler?.tournamentWins || 0}
+                        TOURNAMENT WINS
+
+                        ·
+
+                        ${womenWrestler?.matchWins || 0}
+                        MATCH WINS
+
+                    </small>
+
+
+                </article>
+
+
+
+                <article class="landscape-br-history-card">
+
+
+                    <span>
+                        MEN'S COMPANY LEADER
+                    </span>
+
+
+                    <strong>
+
+                        ${escapeHtml(
+                            menCompany?.companyName || "—"
+                        )}
+
+                    </strong>
+
+
+                    <small>
+
+                        ${menCompany?.tournamentWins || 0}
+                        TROPHIES
+
+                        ·
+
+                        ${menCompany?.matchWins || 0}
+                        MATCH WINS
+
+                    </small>
+
+
+                </article>
+
+
+
+                <article class="landscape-br-history-card">
+
+
+                    <span>
+                        WOMEN'S COMPANY LEADER
+                    </span>
+
+
+                    <strong>
+
+                        ${escapeHtml(
+                            womenCompany?.companyName || "—"
+                        )}
+
+                    </strong>
+
+
+                    <small>
+
+                        ${womenCompany?.tournamentWins || 0}
+                        TROPHIES
+
+                        ·
+
+                        ${womenCompany?.matchWins || 0}
+                        MATCH WINS
+
+                    </small>
+
+
+                </article>
+
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    function renderBraggingRights() {
+
+
+        if (
+            !els.braggingRights
+        ) {
+
+
+            return;
+
+        }
+
+
+        const edition =
+
+            selectedBraggingEdition();
+
+
+        if (
+            !edition
+        ) {
+
+
+            els.braggingRights
+                .innerHTML = `
+
+                    <p class="landscape-empty">
+
+                        BRAGGING RIGHTS HISTORY HAS NOT BEGUN
+
+                    </p>
+
+                `;
+
+
+            return;
+
+        }
+
+
+        els.braggingRights
+            .innerHTML = `
+
+
+                <article
+                    class="landscape-br-edition-banner"
+                    data-year="${escapeHtml(
+                        edition.year
+                    )}"
+                >
+
+
+                    <div class="landscape-br-edition-label">
+
+
+                        <span>
+                            ANNUAL LANDSCAPE SUPREMACY EVENT
+                        </span>
+
+
+                        <h3>
+                            ${escapeHtml(
+                                edition.year
+                            )}
+                        </h3>
+
+
+                        <small>
+
+                            Qualification locked from
+
+                            ${escapeHtml(
+                                edition.qualificationPeriodId || "—"
+                            )}
+
+                        </small>
+
+
+                    </div>
+
+
+                    <span class="landscape-br-edition-status">
+
+                        ${escapeHtml(
+                            String(
+                                edition.status || ""
+                            )
+                                .replace(
+                                    /-/g,
+                                    " "
+                                )
+                                .toUpperCase()
+                        )}
+
+                    </span>
+
+
+                </article>
+
+
+
+                <div class="landscape-br-champion-grid">
+
+
+                    ${renderBraggingChampionCard(
+                        "MEN'S",
+                        edition.men
+                    )}
+
+
+                    ${renderBraggingChampionCard(
+                        "WOMEN'S",
+                        edition.women
+                    )}
+
+
+                </div>
+
+
+
+                ${renderBraggingQualification(
+                    edition
+                )}
+
+
+
+                ${renderBraggingDivision(
+                    "MEN'S",
+                    edition.men
+                )}
+
+
+
+                ${renderBraggingDivision(
+                    "WOMEN'S",
+                    edition.women
+                )}
+
+
+
+                ${renderBraggingHistory()}
+
+
+            `;
+
+    }
+    
+    // =================================
     // CHAMPIONS
     // =================================
 
@@ -2926,7 +4116,9 @@
                     "READY";
 
 
-                    renderChampions();
+                            renderBraggingRights();
+
+        renderChampions();
 
         renderHonors(
             periodId
@@ -2997,7 +4189,9 @@
         );
 
 
-                renderChampions();
+                        renderBraggingRights();
+
+        renderChampions();
 
         renderHonors(
             periodId
@@ -3056,9 +4250,10 @@
                 eventsData,
                 calendarData,
                 archiveData,
-                                rankingsData,
+                rankingsData,
                 championsData,
-                awardsData
+                awardsData,
+                braggingRightsData
 
             ] =
 
@@ -3100,10 +4295,14 @@
                     ),
 
 
-                    loadJson(
+                                        loadJson(
                         "data/landscape/awards.json"
-                    )
+                    ),
 
+
+                    loadJson(
+                        "data/landscape/bragging-rights.json"
+                    )
 
                 ]);
 
@@ -3157,12 +4356,18 @@
                 championsData;
 
 
-            state.awards =
+                        state.awards =
                 awardsData;
 
 
-            renderPage();
+            state.braggingRights =
+                braggingRightsData;
 
+
+            renderBraggingEditionOptions();
+
+
+            renderPage();
         }
 
 
@@ -3196,7 +4401,14 @@
     }
 
 
+    els.braggingEditionSelect
+        ?.addEventListener(
 
+            "change",
+
+            renderBraggingRights
+
+        );
     loadLandscape();
 
 
