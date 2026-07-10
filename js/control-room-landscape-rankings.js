@@ -88,6 +88,22 @@ let crLandscapeRankingData = {
 };
 
 
+// =================================
+// STATUS
+// =================================
+
+
+function crLandscapeRankingSetStatus(
+    value
+) {
+
+
+    crLandscapeRankingEls
+        .status
+        .textContent =
+            value;
+
+}
 
 // =================================
 // HTML SAFETY
@@ -181,6 +197,65 @@ async function crLandscapeRankingReadJson(
 }
 
 
+// =================================
+// WRITE JSON
+// =================================
+
+
+async function crLandscapeRankingWriteJson(
+    fileName,
+    data
+) {
+
+
+    const dataDirectory =
+
+        await owlRepositoryHandle
+            .getDirectoryHandle(
+                "data"
+            );
+
+
+    const landscapeDirectory =
+
+        await dataDirectory
+            .getDirectoryHandle(
+                "landscape"
+            );
+
+
+    const fileHandle =
+
+        await landscapeDirectory
+            .getFileHandle(
+                fileName
+            );
+
+
+    const writable =
+
+        await fileHandle
+            .createWritable();
+
+
+    await writable.write(
+
+        `${JSON.stringify(
+
+            data,
+
+            null,
+
+            2
+
+        )}\n`
+
+    );
+
+
+    await writable.close();
+
+}
 
 // =================================
 // PERIOD LABEL
