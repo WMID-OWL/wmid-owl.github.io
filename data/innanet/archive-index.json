@@ -1,6 +1,14 @@
 {
   "months": [
     {
+      "id": "2099-12",
+      "label": "December 2099",
+      "file": "data/innanet/2099-12.json",
+      "showCount": 0,
+      "pulseCount": 1,
+      "postCount": 12
+    },
+    {
       "id": "2026-07",
       "label": "July 2026",
       "file": "data/innanet/2026-07.json",
