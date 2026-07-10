@@ -1463,32 +1463,29 @@ if (
 
 
 const [
-
     events,
-
     matches,
-
+    segments,
     wrestlers,
-
     teams,
-
     championships,
-
     reigns,
-
     innanetIndex,
-
     wwowIndex
-
 ] = await Promise.all([
 
-    readJson(
-        "data/events.json",
+        readJson(
+        "data/matches.json",
         []
     ),
 
     readJson(
-        "data/matches.json",
+        "data/segments.json",
+        []
+    ),
+
+    readJson(
+        "data/wrestlers.json",
         []
     ),
 
@@ -1810,7 +1807,191 @@ const targetYear =
         0,
         4
     );
+// =================================
+// MONTH SEGMENT CANON
+// =================================
 
+
+const monthSegmentFacts =
+
+    segments
+
+        .filter(
+
+            segment => {
+
+
+                const event =
+
+                    eventMap[
+                        segment.eventId
+                    ];
+
+
+                return (
+
+                    event?.date
+
+                    &&
+
+                    String(
+                        event.date
+                    )
+                        .startsWith(
+                            TARGET_MONTH
+                        )
+
+                );
+
+            }
+
+        )
+
+        .sort(
+
+            (
+                a,
+                b
+            ) => {
+
+
+                const eventA =
+
+                    eventMap[
+                        a.eventId
+                    ];
+
+
+                const eventB =
+
+                    eventMap[
+                        b.eventId
+                    ];
+
+
+                return String(
+                    eventA?.date || ""
+                )
+
+                    .localeCompare(
+
+                        String(
+                            eventB?.date || ""
+                        )
+
+                    )
+
+                    ||
+
+                    String(
+                        a.createdAt || ""
+                    )
+
+                        .localeCompare(
+
+                            String(
+                                b.createdAt || ""
+                            )
+
+                        );
+
+            }
+
+        )
+
+        .map(
+
+            segment => {
+
+
+                const event =
+
+                    eventMap[
+                        segment.eventId
+                    ];
+
+
+                const participantIds =
+
+                    Array.isArray(
+                        segment.participantIds
+                    )
+
+                        ? segment.participantIds
+
+                        : [];
+
+
+                return {
+
+
+                    id:
+                        segment.id,
+
+
+                    eventId:
+                        segment.eventId,
+
+
+                    eventName:
+                        event?.name || segment.eventId,
+
+
+                    date:
+                        event?.date || "",
+
+
+                    brand:
+                        event?.brand || "OWL",
+
+
+                    title:
+                        segment.title || "",
+
+
+                    importance:
+
+                        segment.importance
+
+                        ||
+
+                        "regular",
+
+
+                    participantIds:
+                        participantIds,
+
+
+                    participants:
+
+                        participantIds.map(
+
+                            wrestlerId =>
+
+                                wrestlerMap[
+                                    wrestlerId
+                                ]
+                                    ?.name
+
+                                ||
+
+                                wrestlerId
+
+                        ),
+
+
+                    summary:
+
+                        String(
+                            segment.summary || ""
+                        )
+                            .trim()
+
+                };
+
+            }
+
+        );
 
 
 // =================================
@@ -3585,13 +3766,16 @@ const snapshot = {
     },
 
 
-    summary: {
+        summary: {
 
         eventCount:
             monthEvents.length,
 
         matchCount:
             monthItems.length,
+
+        segmentCount:
+            monthSegmentFacts.length,
 
         titleChangeCount:
             titleChanges.length,
@@ -3605,30 +3789,32 @@ const snapshot = {
     },
 
 
-    events:
+        events:
 
         monthEvents.map(
 
             event => ({
 
+
                 id:
                     event.id,
+
 
                 name:
                     event.name,
 
+
                 brand:
-                    event.brand
-                    ||
-                    "OWL",
+                    event.brand || "OWL",
+
 
                 eventType:
-                    event.eventType
-                    ||
-                    "",
+                    event.eventType || "",
+
 
                 date:
                     event.date,
+
 
                 matchCount:
 
@@ -3639,11 +3825,30 @@ const snapshot = {
                             item.event.id ===
                             event.id
 
-                    ).length
+                    )
+                        .length,
+
+
+                segmentCount:
+
+                    monthSegmentFacts.filter(
+
+                        segment =>
+
+                            segment.eventId ===
+                            event.id
+
+                    )
+                        .length
+
 
             })
 
         ),
+
+
+    segments:
+        monthSegmentFacts,
 
 
     rankings,
@@ -3747,11 +3952,16 @@ byId.set(
         asOfDate:
             closingDate,
 
-        eventCount:
+                eventCount:
             snapshot.summary.eventCount,
 
+
         matchCount:
-            snapshot.summary.matchCount
+            snapshot.summary.matchCount,
+
+
+        segmentCount:
+            snapshot.summary.segmentCount
 
     }
 
