@@ -23,5 +23,432 @@
     "allowSameCompanyLaterRounds": true,
     "titlesAtStake": false
   },
-  "editions": []
+  "editions": [
+    {
+      "year": "2099",
+      "eventPeriodId": "2099-11",
+      "qualificationPeriodId": "2099-10",
+      "status": "qualification-locked",
+      "qualificationSnapshot": {
+        "qualificationPeriodId": "2099-10",
+        "frozenAt": null,
+        "companyOrder": [
+          {
+            "rank": 1,
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "landscapeScore": 94.8,
+            "allocation": 3
+          },
+          {
+            "rank": 2,
+            "companyId": "aew",
+            "companyName": "AEW",
+            "landscapeScore": 91.6,
+            "allocation": 2
+          },
+          {
+            "rank": 3,
+            "companyId": "owl",
+            "companyName": "OWL",
+            "landscapeScore": 89.4,
+            "allocation": 1
+          },
+          {
+            "rank": 4,
+            "companyId": "tna",
+            "companyName": "TNA",
+            "landscapeScore": 85.2,
+            "allocation": 1
+          },
+          {
+            "rank": 5,
+            "companyId": "cmll",
+            "companyName": "CMLL",
+            "landscapeScore": 82.7,
+            "allocation": 1
+          },
+          {
+            "rank": 6,
+            "companyId": "aaa",
+            "companyName": "AAA",
+            "landscapeScore": 79.1,
+            "allocation": 1
+          },
+          {
+            "rank": 7,
+            "companyId": "nxt",
+            "companyName": "NXT",
+            "landscapeScore": 75.8,
+            "allocation": 1
+          },
+          {
+            "rank": 8,
+            "companyId": "roh",
+            "companyName": "ROH",
+            "landscapeScore": 72.3,
+            "allocation": 1
+          }
+        ]
+      },
+      "men": {
+        "coreSlots": [
+          {
+            "slotId": "men-core-1",
+            "source": "core",
+            "division": "Men",
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "qualificationRank": 1,
+            "allocationSlot": 1,
+            "wrestlerName": "WWE Man A",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-core-2",
+            "source": "core",
+            "division": "Men",
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "qualificationRank": 1,
+            "allocationSlot": 2,
+            "wrestlerName": "WWE Man B",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-core-3",
+            "source": "core",
+            "division": "Men",
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "qualificationRank": 1,
+            "allocationSlot": 3,
+            "wrestlerName": "WWE Man C",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-core-4",
+            "source": "core",
+            "division": "Men",
+            "companyId": "aew",
+            "companyName": "AEW",
+            "qualificationRank": 2,
+            "allocationSlot": 1,
+            "wrestlerName": "AEW Man A",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-core-5",
+            "source": "core",
+            "division": "Men",
+            "companyId": "aew",
+            "companyName": "AEW",
+            "qualificationRank": 2,
+            "allocationSlot": 2,
+            "wrestlerName": "AEW Man B",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-core-6",
+            "source": "core",
+            "division": "Men",
+            "companyId": "owl",
+            "companyName": "OWL",
+            "qualificationRank": 3,
+            "allocationSlot": 1,
+            "wrestlerName": "OWL Man",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-core-7",
+            "source": "core",
+            "division": "Men",
+            "companyId": "tna",
+            "companyName": "TNA",
+            "qualificationRank": 4,
+            "allocationSlot": 1,
+            "wrestlerName": "TNA Man",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-core-8",
+            "source": "core",
+            "division": "Men",
+            "companyId": "cmll",
+            "companyName": "CMLL",
+            "qualificationRank": 5,
+            "allocationSlot": 1,
+            "wrestlerName": "CMLL Man",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-core-9",
+            "source": "core",
+            "division": "Men",
+            "companyId": "aaa",
+            "companyName": "AAA",
+            "qualificationRank": 6,
+            "allocationSlot": 1,
+            "wrestlerName": "AAA Man",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-core-10",
+            "source": "core",
+            "division": "Men",
+            "companyId": "nxt",
+            "companyName": "NXT",
+            "qualificationRank": 7,
+            "allocationSlot": 1,
+            "wrestlerName": "NXT Man",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-core-11",
+            "source": "core",
+            "division": "Men",
+            "companyId": "roh",
+            "companyName": "ROH",
+            "qualificationRank": 8,
+            "allocationSlot": 1,
+            "wrestlerName": "ROH Man",
+            "affiliationFrozen": false
+          }
+        ],
+        "guestSlots": [
+          {
+            "slotId": "men-guest-1",
+            "source": "guest",
+            "division": "Men",
+            "guestCompanyId": "njpw",
+            "guestCompanyName": "NJPW",
+            "wrestlerName": "NJPW Guest",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-guest-2",
+            "source": "guest",
+            "division": "Men",
+            "guestCompanyId": "noah",
+            "guestCompanyName": "NOAH",
+            "wrestlerName": "NOAH Guest",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-guest-3",
+            "source": "guest",
+            "division": "Men",
+            "guestCompanyId": "mlw",
+            "guestCompanyName": "MLW",
+            "wrestlerName": "MLW Guest",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-guest-4",
+            "source": "guest",
+            "division": "Men",
+            "guestCompanyId": "revpro",
+            "guestCompanyName": "RevPro",
+            "wrestlerName": "RevPro Guest",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "men-guest-5",
+            "source": "guest",
+            "division": "Men",
+            "guestCompanyId": "gcw",
+            "guestCompanyName": "GCW",
+            "wrestlerName": "GCW Guest",
+            "affiliationFrozen": false
+          }
+        ],
+        "entrants": [],
+        "bracket": null,
+        "champion": null,
+        "finalist": null
+      },
+      "women": {
+        "coreSlots": [
+          {
+            "slotId": "women-core-1",
+            "source": "core",
+            "division": "Women",
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "qualificationRank": 1,
+            "allocationSlot": 1,
+            "wrestlerName": "WWE Woman A",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-core-2",
+            "source": "core",
+            "division": "Women",
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "qualificationRank": 1,
+            "allocationSlot": 2,
+            "wrestlerName": "WWE Woman B",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-core-3",
+            "source": "core",
+            "division": "Women",
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "qualificationRank": 1,
+            "allocationSlot": 3,
+            "wrestlerName": "WWE Woman C",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-core-4",
+            "source": "core",
+            "division": "Women",
+            "companyId": "aew",
+            "companyName": "AEW",
+            "qualificationRank": 2,
+            "allocationSlot": 1,
+            "wrestlerName": "AEW Woman A",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-core-5",
+            "source": "core",
+            "division": "Women",
+            "companyId": "aew",
+            "companyName": "AEW",
+            "qualificationRank": 2,
+            "allocationSlot": 2,
+            "wrestlerName": "AEW Woman B",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-core-6",
+            "source": "core",
+            "division": "Women",
+            "companyId": "owl",
+            "companyName": "OWL",
+            "qualificationRank": 3,
+            "allocationSlot": 1,
+            "wrestlerName": "OWL Woman",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-core-7",
+            "source": "core",
+            "division": "Women",
+            "companyId": "tna",
+            "companyName": "TNA",
+            "qualificationRank": 4,
+            "allocationSlot": 1,
+            "wrestlerName": "TNA Woman",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-core-8",
+            "source": "core",
+            "division": "Women",
+            "companyId": "cmll",
+            "companyName": "CMLL",
+            "qualificationRank": 5,
+            "allocationSlot": 1,
+            "wrestlerName": "CMLL Woman",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-core-9",
+            "source": "core",
+            "division": "Women",
+            "companyId": "aaa",
+            "companyName": "AAA",
+            "qualificationRank": 6,
+            "allocationSlot": 1,
+            "wrestlerName": "AAA Woman",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-core-10",
+            "source": "core",
+            "division": "Women",
+            "companyId": "nxt",
+            "companyName": "NXT",
+            "qualificationRank": 7,
+            "allocationSlot": 1,
+            "wrestlerName": "NXT Woman",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-core-11",
+            "source": "core",
+            "division": "Women",
+            "companyId": "roh",
+            "companyName": "ROH",
+            "qualificationRank": 8,
+            "allocationSlot": 1,
+            "wrestlerName": "ROH Woman",
+            "affiliationFrozen": false
+          }
+        ],
+        "guestSlots": [
+          {
+            "slotId": "women-guest-1",
+            "source": "guest",
+            "division": "Women",
+            "guestCompanyId": "stardom",
+            "guestCompanyName": "STARDOM",
+            "wrestlerName": "STARDOM Guest",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-guest-2",
+            "source": "guest",
+            "division": "Women",
+            "guestCompanyId": "marigold",
+            "guestCompanyName": "MARIGOLD",
+            "wrestlerName": "MARIGOLD Guest",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-guest-3",
+            "source": "guest",
+            "division": "Women",
+            "guestCompanyId": "tjpw",
+            "guestCompanyName": "TJPW",
+            "wrestlerName": "TJPW Guest",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-guest-4",
+            "source": "guest",
+            "division": "Women",
+            "guestCompanyId": "sendai-girls",
+            "guestCompanyName": "Sendai Girls",
+            "wrestlerName": "Sendai Girls Guest",
+            "affiliationFrozen": false
+          },
+          {
+            "slotId": "women-guest-5",
+            "source": "guest",
+            "division": "Women",
+            "guestCompanyId": "eve",
+            "guestCompanyName": "EVE",
+            "wrestlerName": "EVE Guest",
+            "affiliationFrozen": false
+          }
+        ],
+        "entrants": [],
+        "bracket": null,
+        "champion": null,
+        "finalist": null
+      },
+      "trophies": {
+        "menCompanyId": "",
+        "womenCompanyId": ""
+      },
+      "createdAt": "2099-10-31T00:00:00.000Z",
+      "completedAt": null
+    }
+  ]
 }
