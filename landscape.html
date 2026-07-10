@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+
+    <meta charset="UTF-8">
+
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+
+    <title>
+        The Landscape | OWL
+    </title>
+
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="css/landscape.css"
+    >
+
+
+</head>
+
+
+
+<body class="landscape-page">
+
+
+    <!-- =================================
+         SITE HEADER
+    ================================= -->
+
+
+    <header class="landscape-site-header">
+
+
+        <a
+            class="landscape-brand"
+            href="index.html"
+        >
+
+
+            <span class="landscape-brand-mark">
+                OWL
+            </span>
+
+
+            <span class="landscape-brand-copy">
+
+
+                <strong>
+                    THE LANDSCAPE
+                </strong>
+
+
+                <small>
+                    GLOBAL WRESTLING POWER INDEX
+                </small>
+
+
+            </span>
+
+
+        </a>
+
+
+
+        <nav
+            class="landscape-main-nav"
+            aria-label="OWL navigation"
+        >
+
+
+            <a href="index.html">
+                HOME
+            </a>
+
+
+            <a href="roster.html">
+                ROSTER
+            </a>
+
+
+            <a href="teams.html">
+                TEAMS
+            </a>
+
+
+            <a href="champions.html">
+                CHAMPIONS
+            </a>
+
+
+            <a href="events.html">
+                EVENTS
+            </a>
+
+
+            <a href="power-rankings.html">
+                POWER RANKINGS
+            </a>
+
+
+            <a href="owl-social.html">
+                OWL SOCIAL
+            </a>
+
+
+            <a href="records.html">
+                CAGEMATCH.OWL
+            </a>
+
+
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- =================================
+         HERO
+    ================================= -->
+
+
+    <section class="landscape-hero">
+
+
+        <div class="landscape-hero-glow"></div>
+
+
+        <div class="landscape-hero-inner">
+
+
+            <div class="landscape-hero-copy">
+
+
+                <p class="landscape-overline">
+                    POWER IS MEASURED HERE
+                </p>
+
+
+                <h1>
+
+
+                    <span class="landscape-hero-the">
+                        THE
+                    </span>
+
+
+                    <span class="landscape-hero-title">
+                        LANDSCAPE
+                    </span>
+
+
+                </h1>
+
+
+                <p class="landscape-hero-statement">
+
+                    Eight powers. Eleven weekly battlegrounds.
+                    Every number earned.
+
+                </p>
+
+
+                <div class="landscape-report-lockup">
+
+
+                    <span>
+                        CURRENT REPORT
+                    </span>
+
+
+                    <strong
+                        id="landscape-current-period"
+                    >
+                        WAITING FOR DATA
+                    </strong>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="landscape-power-seal">
+
+
+                <span class="landscape-power-seal-label">
+                    LANDSCAPE STATUS
+                </span>
+
+
+                <strong
+                    id="landscape-data-status"
+                    class="landscape-power-seal-status"
+                >
+                    LOADING
+                </strong>
+
+
+                <div class="landscape-seal-rule"></div>
+
+
+                <p>
+
+                    The competitive order of the professional
+                    wrestling world.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         POWER PULSE
+    ================================= -->
+
+
+    <section class="landscape-power-pulse">
+
+
+        <article class="landscape-pulse-card">
+
+
+            <span>
+                CORE POWERS
+            </span>
+
+
+            <strong
+                id="landscape-company-count"
+            >
+                8
+            </strong>
+
+
+            <small>
+                RANKING ELIGIBLE
+            </small>
+
+
+        </article>
+
+
+
+        <article class="landscape-pulse-card">
+
+
+            <span>
+                WEEKLY BATTLEGROUNDS
+            </span>
+
+
+            <strong
+                id="landscape-show-count"
+            >
+                11
+            </strong>
+
+
+            <small>
+                ACTIVE SHOWS
+            </small>
+
+
+        </article>
+
+
+
+        <article class="landscape-pulse-card landscape-pulse-leader">
+
+
+            <span>
+                #1 POWER
+            </span>
+
+
+            <strong
+                id="landscape-leader-promotion"
+            >
+                —
+            </strong>
+
+
+            <small>
+                CURRENT LEADER
+            </small>
+
+
+        </article>
+
+
+
+        <article class="landscape-pulse-card">
+
+
+            <span>
+                #1 WEEKLY SHOW
+            </span>
+
+
+            <strong
+                id="landscape-leader-show"
+            >
+                —
+            </strong>
+
+
+            <small>
+                CURRENT LEADER
+            </small>
+
+
+        </article>
+
+
+
+        <article class="landscape-pulse-card">
+
+
+            <span>
+                TOP MATCH
+            </span>
+
+
+            <strong
+                id="landscape-top-match-rating"
+            >
+                —
+            </strong>
+
+
+            <small>
+                CURRENT PERIOD
+            </small>
+
+
+        </article>
+
+
+
+        <article class="landscape-pulse-card">
+
+
+            <span>
+                EVENTS RECORDED
+            </span>
+
+
+            <strong
+                id="landscape-event-count"
+            >
+                0
+            </strong>
+
+
+            <small>
+                CANON RECORDS
+            </small>
+
+
+        </article>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         STICKY NAV
+    ================================= -->
+
+
+    <nav
+        class="landscape-section-nav"
+        aria-label="Landscape sections"
+    >
+
+
+        <a href="#power">
+            POWER
+        </a>
+
+
+        <a href="#movement">
+            MOVEMENT
+        </a>
+
+
+        <a href="#shows">
+            SHOWS
+        </a>
+
+
+        <a href="#current-cycle">
+            CURRENT CYCLE
+        </a>
+
+
+        <a href="#top-matches">
+            TOP MATCHES
+        </a>
+
+
+        <a href="#major-events">
+            MAJOR EVENTS
+        </a>
+
+
+        <a href="#champions">
+            CHAMPIONS
+        </a>
+
+
+        <a href="#honors">
+            HONORS
+        </a>
+
+
+        <a href="#history">
+            HISTORY
+        </a>
+
+
+    </nav>
+
+
+
+    <!-- =================================
+         MAIN
+    ================================= -->
+
+
+    <main class="landscape-main">
+
+
+        <!-- =================================
+             PROMOTION POWER
+        ================================= -->
+
+
+        <section
+            id="power"
+            class="landscape-section landscape-power-section"
+        >
+
+
+            <div class="landscape-section-heading">
+
+
+                <div>
+
+
+                    <span class="landscape-section-code">
+                        01 / POWER HIERARCHY
+                    </span>
+
+
+                    <h2>
+                        PROMOTION
+                        <em>
+                            POWER RANKINGS
+                        </em>
+                    </h2>
+
+
+                </div>
+
+
+                <p>
+
+                    The complete competitive hierarchy.
+                    Weekly product, major events, match quality,
+                    consistency, and momentum combined into one score.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div
+                id="landscape-promotion-rankings"
+                class="landscape-promotion-rankings"
+            >
+
+
+                <div class="landscape-loading-state">
+
+
+                    <span>
+                        CALCULATING POWER ORDER
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             MOVEMENT
+        ================================= -->
+
+
+        <section
+            id="movement"
+            class="landscape-section landscape-movement-section"
+        >
+
+
+            <div class="landscape-section-heading">
+
+
+                <div>
+
+
+                    <span class="landscape-section-code">
+                        02 / POWER SHIFT
+                    </span>
+
+
+                    <h2>
+                        RISE.
+                        <em>
+                            FALL.
+                        </em>
+                    </h2>
+
+
+                </div>
+
+
+                <p>
+
+                    Power is never static. Track the biggest
+                    movements between official reporting periods.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div
+                id="landscape-movement-grid"
+                class="landscape-movement-grid"
+            >
+
+
+                <article class="landscape-movement-empty">
+
+
+                    <span>
+                        MOVEMENT DATA REQUIRES MULTIPLE PERIODS
+                    </span>
+
+
+                </article>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             SHOW POWER
+        ================================= -->
+
+
+        <section
+            id="shows"
+            class="landscape-section landscape-show-section"
+        >
+
+
+            <div class="landscape-section-heading">
+
+
+                <div>
+
+
+                    <span class="landscape-section-code">
+                        03 / WEEKLY WAR
+                    </span>
+
+
+                    <h2>
+                        SHOW
+                        <em>
+                            POWER RANKINGS
+                        </em>
+                    </h2>
+
+
+                </div>
+
+
+                <p>
+
+                    Eleven programs enter every month.
+                    The numbers decide which ones matter most.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div
+                id="landscape-show-rankings"
+                class="landscape-show-rankings"
+            >
+
+
+                <div class="landscape-loading-state">
+
+
+                    <span>
+                        CALCULATING SHOW ORDER
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             CURRENT CYCLE
+        ================================= -->
+
+
+        <section
+            id="current-cycle"
+            class="landscape-section"
+        >
+
+
+            <div class="landscape-section-heading">
+
+
+                <div>
+
+
+                    <span class="landscape-section-code">
+                        04 / CURRENT CYCLE
+                    </span>
+
+
+                    <h2>
+                        THE WORLD
+                        <em>
+                            THIS PERIOD
+                        </em>
+                    </h2>
+
+
+                </div>
+
+
+                <p>
+
+                    Every recorded show and major event from the
+                    active Landscape reporting period.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div
+                id="landscape-event-grid"
+                class="landscape-event-grid"
+            >
+
+
+                <div class="landscape-loading-state">
+
+
+                    <span>
+                        LOADING CURRENT EVENTS
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             TOP MATCHES
+        ================================= -->
+
+
+        <section
+            id="top-matches"
+            class="landscape-section landscape-match-section"
+        >
+
+
+            <div class="landscape-section-heading">
+
+
+                <div>
+
+
+                    <span class="landscape-section-code">
+                        05 / BELL TO BELL
+                    </span>
+
+
+                    <h2>
+                        TOP
+                        <em>
+                            MATCHES
+                        </em>
+                    </h2>
+
+
+                </div>
+
+
+                <p>
+
+                    Segments do not count here.
+                    Only the strongest in-ring performances survive.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div
+                id="landscape-top-matches"
+                class="landscape-match-list"
+            >
+
+
+                <div class="landscape-loading-state">
+
+
+                    <span>
+                        RANKING MATCH QUALITY
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             MAJOR EVENT BATTLE
+        ================================= -->
+
+
+        <section
+            id="major-events"
+            class="landscape-section landscape-major-section"
+        >
+
+
+            <div class="landscape-section-heading">
+
+
+                <div>
+
+
+                    <span class="landscape-section-code">
+                        06 / SHOWDOWN SATURDAY
+                    </span>
+
+
+                    <h2>
+                        MAJOR EVENT
+                        <em>
+                            BATTLE
+                        </em>
+                    </h2>
+
+
+                </div>
+
+
+                <p>
+
+                    Eight major events enter the monthly battlefield.
+                    Prestige gives context. Performance decides the order.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div
+                id="landscape-major-event-list"
+                class="landscape-major-event-list"
+            >
+
+
+                <div class="landscape-loading-state">
+
+
+                    <span>
+                        NO MAJOR EVENT ORDER YET
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             CHAMPIONS
+        ================================= -->
+
+
+        <section
+            id="champions"
+            class="landscape-section"
+        >
+
+
+            <div class="landscape-section-heading">
+
+
+                <div>
+
+
+                    <span class="landscape-section-code">
+                        07 / GOLD HOLDERS
+                    </span>
+
+
+                    <h2>
+                        LANDSCAPE
+                        <em>
+                            CHAMPIONS
+                        </em>
+                    </h2>
+
+
+                </div>
+
+
+                <p>
+
+                    The current title holders recognized across
+                    the wrestling world.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div
+                id="landscape-champion-grid"
+                class="landscape-champion-grid"
+            >
+
+
+                <div class="landscape-loading-state">
+
+
+                    <span>
+                        LOADING CHAMPIONSHIP RECORDS
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             HONORS
+        ================================= -->
+
+
+        <section
+            id="honors"
+            class="landscape-section landscape-honors-section"
+        >
+
+
+            <div class="landscape-section-heading">
+
+
+                <div>
+
+
+                    <span class="landscape-section-code">
+                        08 / THE VERDICT
+                    </span>
+
+
+                    <h2>
+                        LANDSCAPE
+                        <em>
+                            HONORS
+                        </em>
+                    </h2>
+
+
+                </div>
+
+
+                <p>
+
+                    Objective monthly and yearly recognition from
+                    across professional wrestling.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div
+                id="landscape-honors-grid"
+                class="landscape-honors-grid"
+            >
+
+
+                <article class="landscape-honor-card">
+
+
+                    <span>
+                        COMPANY OF THE MONTH
+                    </span>
+
+
+                    <strong>
+                        AWAITING COMPLETED PERIOD
+                    </strong>
+
+
+                </article>
+
+
+
+                <article class="landscape-honor-card">
+
+
+                    <span>
+                        SHOW OF THE MONTH
+                    </span>
+
+
+                    <strong>
+                        AWAITING COMPLETED PERIOD
+                    </strong>
+
+
+                </article>
+
+
+
+                <article class="landscape-honor-card">
+
+
+                    <span>
+                        MAJOR EVENT OF THE MONTH
+                    </span>
+
+
+                    <strong>
+                        AWAITING COMPLETED PERIOD
+                    </strong>
+
+
+                </article>
+
+
+
+                <article class="landscape-honor-card">
+
+
+                    <span>
+                        MATCH OF THE MONTH
+                    </span>
+
+
+                    <strong>
+                        AWAITING COMPLETED PERIOD
+                    </strong>
+
+
+                </article>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             HISTORY
+        ================================= -->
+
+
+        <section
+            id="history"
+            class="landscape-section landscape-history-section"
+        >
+
+
+            <div class="landscape-section-heading">
+
+
+                <div>
+
+
+                    <span class="landscape-section-code">
+                        09 / PERMANENT RECORD
+                    </span>
+
+
+                    <h2>
+                        POWER
+                        <em>
+                            REMEMBERED
+                        </em>
+                    </h2>
+
+
+                </div>
+
+
+                <p>
+
+                    Completed periods, frozen standings,
+                    and the permanent record of the industry.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div
+                id="landscape-history-grid"
+                class="landscape-history-grid"
+            >
+
+
+                <div class="landscape-loading-state">
+
+
+                    <span>
+                        LOADING HISTORY
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =================================
+         FOOTER
+    ================================= -->
+
+
+    <footer class="landscape-footer">
+
+
+        <div>
+
+
+            <strong>
+                THE LANDSCAPE
+            </strong>
+
+
+            <span>
+                POWER IS TEMPORARY. THE RECORD IS PERMANENT.
+            </span>
+
+
+        </div>
+
+
+        <small>
+            OWL PROFESSIONAL WRESTLING INDUSTRY REPORT
+        </small>
+
+
+    </footer>
+
+
+
+    <script src="js/landscape-score-engine.js"></script>
+
+    <script src="js/landscape.js"></script>
+
+
+</body>
+
+
+</html>
