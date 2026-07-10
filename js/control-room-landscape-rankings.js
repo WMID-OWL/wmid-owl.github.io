@@ -885,6 +885,376 @@ function crLandscapeRankingRefresh() {
 }
 
 
+// =================================
+// FREEZE OFFICIAL STANDINGS
+// =================================
+
+
+async function crLandscapeRankingFreeze() {
+
+
+    try {
+
+
+        const periodId =
+
+            crLandscapeRankingEls
+                .period
+                .value;
+
+
+        if (
+            !periodId
+        ) {
+
+
+            throw new Error(
+                "Select a Landscape period first."
+            );
+
+        }
+
+
+        const archivePeriod =
+
+            crLandscapeRankingData
+                .archive
+                ?.periods
+                ?.find(
+
+                    period =>
+
+                        period.id ===
+                        periodId
+
+                );
+
+
+        if (
+            !archivePeriod
+        ) {
+
+
+            throw new Error(
+                "That period does not exist in the Landscape archive."
+            );
+
+        }
+
+
+        if (
+            !archivePeriod.weeklyShowsComplete
+        ) {
+
+
+            throw new Error(
+
+                "All 44 weekly show records must be complete before standings can freeze."
+
+            );
+
+        }
+
+
+        if (
+            !archivePeriod.showdownSaturdayComplete
+        ) {
+
+
+            throw new Error(
+
+                "All 8 Showdown Saturday major events must be complete before standings can freeze."
+
+            );
+
+        }
+
+
+        const alreadyFrozen =
+
+            crLandscapeRankingData
+                .rankings
+                ?.periods
+                ?.some(
+
+                    period =>
+
+                        period.periodId ===
+                        periodId
+
+                );
+
+
+        if (
+            alreadyFrozen
+        ) {
+
+
+            throw new Error(
+
+                "Official standings for this period are already frozen."
+
+            );
+
+        }
+
+
+        crLandscapeRankingSetStatus(
+            "CALCULATING"
+        );
+
+
+        const monthly =
+
+            window
+                .LandscapeScoreEngine
+                .calculateMonthlyRankings({
+
+                    events:
+
+                        crLandscapeRankingData
+                            .events,
+
+                    shows:
+
+                        crLandscapeRankingData
+                            .shows,
+
+                    companies:
+
+                        crLandscapeRankingData
+                            .companies,
+
+                    periodId:
+                        periodId
+
+                });
+
+
+        const ytd =
+
+            window
+                .LandscapeScoreEngine
+                .calculateYtdRankings({
+
+                    events:
+
+                        crLandscapeRankingData
+                            .events,
+
+                    shows:
+
+                        crLandscapeRankingData
+                            .shows,
+
+                    companies:
+
+                        crLandscapeRankingData
+                            .companies,
+
+                    periodId:
+                        periodId
+
+                });
+
+
+        const rankingsData =
+
+            await crLandscapeRankingReadJson(
+                "rankings.json"
+            );
+
+
+        const archiveData =
+
+            await crLandscapeRankingReadJson(
+                "archive-index.json"
+            );
+
+
+        rankingsData.scoreVersion =
+
+            window
+                .LandscapeScoreEngine
+                .SCORE_VERSION;
+
+
+        rankingsData.periods =
+
+            Array.isArray(
+                rankingsData.periods
+            )
+
+                ? rankingsData.periods
+
+                : [];
+
+
+        rankingsData.periods.push({
+
+
+            periodId:
+                periodId,
+
+
+            scoreVersion:
+
+                window
+                    .LandscapeScoreEngine
+                    .SCORE_VERSION,
+
+
+            frozenAt:
+
+                new Date()
+                    .toISOString(),
+
+
+            monthly:
+                monthly,
+
+
+            ytd:
+                ytd
+
+        });
+
+
+        rankingsData
+            .periods
+            .sort(
+
+                (
+                    a,
+                    b
+                ) =>
+
+                    String(
+                        a.periodId
+                    )
+
+                        .localeCompare(
+
+                            String(
+                                b.periodId
+                            )
+
+                        )
+
+            );
+
+
+        rankingsData.latestPeriodId =
+
+            rankingsData
+                .periods
+                .at(
+                    -1
+                )
+                ?.periodId
+
+            ||
+
+            "";
+
+
+        const archiveRecord =
+
+            archiveData
+                .periods
+                ?.find(
+
+                    period =>
+
+                        period.id ===
+                        periodId
+
+                );
+
+
+        if (
+            archiveRecord
+        ) {
+
+
+            archiveRecord.rankingsFinalized =
+                true;
+
+
+            archiveRecord.rankingsFrozenAt =
+
+                new Date()
+                    .toISOString();
+
+        }
+
+
+        crLandscapeRankingSetStatus(
+            "SAVING"
+        );
+
+
+        await crLandscapeRankingWriteJson(
+
+            "rankings.json",
+
+            rankingsData
+
+        );
+
+
+        await crLandscapeRankingWriteJson(
+
+            "archive-index.json",
+
+            archiveData
+
+        );
+
+
+        crLandscapeRankingData.rankings =
+
+            rankingsData;
+
+
+        crLandscapeRankingData.archive =
+
+            archiveData;
+
+
+        crLandscapeRankingRefresh();
+
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        console.error(
+
+            "Could not freeze Landscape rankings:",
+
+            error
+
+        );
+
+
+        crLandscapeRankingSetStatus(
+
+            error.message
+
+            ||
+
+            "FREEZE FAILED"
+
+        );
+
+    }
+
+}
 
 // =================================
 // LOAD
