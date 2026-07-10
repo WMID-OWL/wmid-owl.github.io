@@ -6697,3 +6697,560 @@
 
 
 }
+/* =================================
+   BRAGGING RIGHTS RESULTS
+================================= */
+
+
+.cr-bragging-round-block {
+
+    margin-top:
+        22px;
+
+    padding-top:
+        18px;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+
+.cr-bragging-round-block:first-child {
+
+    margin-top:
+        10px;
+
+}
+
+
+
+.cr-bragging-round-heading {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        10px;
+
+}
+
+
+
+.cr-bragging-round-heading > span {
+
+    color:
+        #d8b647;
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.cr-bragging-round-heading > small {
+
+    color:
+        #758188;
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.cr-bragging-result-match-list {
+
+    display:
+        grid;
+
+    gap:
+        10px;
+
+}
+
+
+
+.cr-bragging-result-card {
+
+    padding:
+        12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    border-radius:
+        9px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.018
+        );
+
+}
+
+
+
+.cr-bragging-result-card.has-result {
+
+    border-color:
+        rgba(
+            212,
+            173,
+            63,
+            0.26
+        );
+
+}
+
+
+
+.cr-bragging-result-matchup {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        62px
+        minmax(
+            0,
+            1fr
+        )
+        30px
+        minmax(
+            0,
+            1fr
+        );
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+}
+
+
+
+.cr-bragging-result-number {
+
+    color:
+        #77848a;
+
+    font-size:
+        0.53rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.cr-bragging-result-team {
+
+    display:
+        grid;
+
+    gap:
+        3px;
+
+}
+
+
+
+.cr-bragging-result-team strong {
+
+    color:
+        #eff2f3;
+
+    font-size:
+        0.72rem;
+
+}
+
+
+
+.cr-bragging-result-team small {
+
+    color:
+        #77838a;
+
+    font-size:
+        0.54rem;
+
+}
+
+
+
+.cr-bragging-result-matchup > b {
+
+    color:
+        #d5b349;
+
+    font-size:
+        0.58rem;
+
+    text-align:
+        center;
+
+}
+
+
+
+.cr-bragging-result-form {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            130px,
+            0.8fr
+        )
+
+        100px
+
+        minmax(
+            190px,
+            1.3fr
+        )
+
+        auto;
+
+    align-items:
+        end;
+
+    gap:
+        8px;
+
+    margin-top:
+        12px;
+
+    padding-top:
+        12px;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.065
+        );
+
+}
+
+
+
+.cr-bragging-result-form label {
+
+    display:
+        grid;
+
+    gap:
+        5px;
+
+}
+
+
+
+.cr-bragging-result-form label > span {
+
+    color:
+        #748087;
+
+    font-size:
+        0.5rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+
+.cr-bragging-result-form input,
+.cr-bragging-result-form select {
+
+    width:
+        100%;
+
+    min-height:
+        38px;
+
+    padding:
+        8px 9px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    border-radius:
+        7px;
+
+    color:
+        #edf1f2;
+
+    background:
+        #111719;
+
+    font:
+        inherit;
+
+    font-size:
+        0.68rem;
+
+}
+
+
+
+.cr-bragging-round-lock {
+
+    margin-top:
+        9px;
+
+    color:
+        #718087;
+
+    font-size:
+        0.5rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.07em;
+
+}
+
+
+
+.cr-bragging-champion-panel {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    margin-top:
+        24px;
+
+    padding:
+        22px;
+
+    border:
+        1px solid
+        rgba(
+            216,
+            182,
+            71,
+            0.4
+        );
+
+    border-radius:
+        10px;
+
+    background:
+
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(
+                216,
+                182,
+                71,
+                0.14
+            ),
+            transparent 45%
+        ),
+
+        rgba(
+            216,
+            182,
+            71,
+            0.045
+        );
+
+}
+
+
+
+.cr-bragging-champion-panel > span {
+
+    color:
+        #d8b647;
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.11em;
+
+}
+
+
+
+.cr-bragging-champion-panel > strong {
+
+    display:
+        block;
+
+    margin-top:
+        12px;
+
+    color:
+        #f2f4f4;
+
+    font-size:
+        1.7rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.cr-bragging-champion-panel > small {
+
+    display:
+        block;
+
+    margin-top:
+        5px;
+
+    color:
+        #d1b75e;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+@media (
+    max-width:
+        900px
+) {
+
+
+    .cr-bragging-result-form {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+    .cr-bragging-result-text-label {
+
+        grid-column:
+            1 / -1;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        600px
+) {
+
+
+    .cr-bragging-result-matchup {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-bragging-result-matchup > b {
+
+        text-align:
+            left;
+
+    }
+
+
+    .cr-bragging-result-form {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-bragging-result-text-label {
+
+        grid-column:
+            auto;
+
+    }
+
+
+}
