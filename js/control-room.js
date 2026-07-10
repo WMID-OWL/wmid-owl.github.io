@@ -36,10 +36,16 @@ const OWL_CONTROL_ROOM_FILES = [
         label: "Title Reigns"
     },
 
-    {
+        {
         key: "events",
         fileName: "events.json",
         label: "Events"
+    },
+
+    {
+        key: "segments",
+        fileName: "segments.json",
+        label: "Segments"
     },
 
     {
@@ -1012,21 +1018,21 @@ function renderDashboard() {
     );
 
 
-    setCount(
-
+        setCount(
         "cr-count-matches",
-
         owlControlRoomData.matches.length
-
     );
 
 
     setCount(
+        "cr-count-segments",
+        owlControlRoomData.segments.length
+    );
 
+
+    setCount(
         "cr-count-announced",
-
         owlControlRoomData.announcedMatches.length
-
     );
 
 
