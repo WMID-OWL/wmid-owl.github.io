@@ -129,7 +129,7 @@
 
 
 
-    const state = {
+        const state = {
 
 
         data:
@@ -137,6 +137,10 @@
 
 
         rankings:
+            null,
+
+
+        eventsData:
             null,
 
 
@@ -1669,10 +1673,11 @@
             );
 
 
-            const [
+                        const [
 
                 braggingData,
-                rankingsData
+                rankingsData,
+                eventsData
 
             ] =
 
@@ -1686,6 +1691,11 @@
 
                     readJson(
                         "rankings.json"
+                    ),
+
+
+                    readJson(
+                        "events.json"
                     )
 
 
@@ -1696,8 +1706,23 @@
                 braggingData;
 
 
-            state.rankings =
+                        state.rankings =
                 rankingsData;
+
+
+            state.eventsData =
+                eventsData;
+
+
+            state.eventsData.events =
+
+                Array.isArray(
+                    state.eventsData.events
+                )
+
+                    ? state.eventsData.events
+
+                    : [];
 
 
             state.data.editions =
