@@ -5915,3 +5915,785 @@
         1000 !important;
 
 }
+/* =================================
+   BRAGGING RIGHTS DESK
+================================= */
+
+
+.cr-bragging-section {
+
+    border-color:
+        rgba(
+            201,
+            156,
+            47,
+            0.22
+        );
+
+}
+
+
+
+.cr-bragging-toolbar {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            180px,
+            0.5fr
+        )
+
+        auto
+
+        auto;
+
+    align-items:
+        end;
+
+    gap:
+        12px;
+
+}
+
+
+
+.cr-bragging-toolbar label {
+
+    display:
+        grid;
+
+    gap:
+        7px;
+
+}
+
+
+
+.cr-bragging-toolbar label > span,
+.cr-bragging-column-label {
+
+    color:
+        #8c979d;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.cr-bragging-toolbar input {
+
+    width:
+        100%;
+
+    padding:
+        11px 12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.11
+        );
+
+    border-radius:
+        8px;
+
+    color:
+        #eef1f2;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
+
+    font:
+        inherit;
+
+}
+
+
+
+.cr-bragging-status {
+
+    margin-top:
+        14px;
+
+    padding:
+        11px 13px;
+
+    border-left:
+        3px solid
+        #d4ad3f;
+
+    color:
+        #d7bd6a;
+
+    background:
+        rgba(
+            212,
+            173,
+            63,
+            0.06
+        );
+
+    font-size:
+        0.67rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+
+.cr-bragging-block {
+
+    margin-top:
+        28px;
+
+}
+
+
+
+.cr-bragging-qualification {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        7px;
+
+}
+
+
+
+.cr-bragging-qualification-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        42px
+        minmax(
+            0,
+            1fr
+        )
+        auto;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    padding:
+        11px 12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.022
+        );
+
+}
+
+
+
+.cr-bragging-qualification-row > strong:first-child {
+
+    color:
+        #d8b647;
+
+    font-size:
+        1rem;
+
+}
+
+
+
+.cr-bragging-qualification-row div {
+
+    display:
+        grid;
+
+    gap:
+        3px;
+
+}
+
+
+
+.cr-bragging-qualification-row div span {
+
+    color:
+        #eef1f2;
+
+    font-size:
+        0.75rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.cr-bragging-qualification-row small {
+
+    color:
+        #748087;
+
+    font-size:
+        0.56rem;
+
+}
+
+
+
+.cr-bragging-qualification-row > strong:last-child {
+
+    color:
+        #c4a94f;
+
+    font-size:
+        0.65rem;
+
+}
+
+
+
+.cr-bragging-field-columns,
+.cr-bragging-bracket-columns {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        20px;
+
+}
+
+
+
+.cr-bragging-slot-list {
+
+    display:
+        grid;
+
+    gap:
+        7px;
+
+    margin-top:
+        9px;
+
+}
+
+
+
+.cr-bragging-slot-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            130px,
+            0.65fr
+        )
+
+        minmax(
+            150px,
+            1fr
+        );
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    padding:
+        10px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.02
+        );
+
+}
+
+
+
+.cr-bragging-slot-company {
+
+    display:
+        grid;
+
+    gap:
+        3px;
+
+}
+
+
+
+.cr-bragging-slot-company strong {
+
+    color:
+        #edf1f2;
+
+    font-size:
+        0.72rem;
+
+}
+
+
+
+.cr-bragging-slot-company small {
+
+    color:
+        #738087;
+
+    font-size:
+        0.54rem;
+
+}
+
+
+
+.cr-bragging-slot-row input,
+.cr-bragging-guest-row input {
+
+    width:
+        100%;
+
+    padding:
+        9px 10px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    border-radius:
+        7px;
+
+    color:
+        #edf1f2;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
+
+    font:
+        inherit;
+
+    font-size:
+        0.72rem;
+
+}
+
+
+
+.cr-bragging-guest-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        34px
+        minmax(
+            100px,
+            0.75fr
+        )
+        minmax(
+            130px,
+            1fr
+        );
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    padding:
+        9px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius:
+        8px;
+
+}
+
+
+
+.cr-bragging-guest-number {
+
+    color:
+        #d4ad3f;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    text-align:
+        center;
+
+}
+
+
+
+.cr-bragging-action-buttons {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        8px;
+
+    justify-content:
+        flex-end;
+
+}
+
+
+
+.cr-bragging-brackets {
+
+    margin-top:
+        32px;
+
+    padding-top:
+        25px;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+
+.cr-bragging-match-list {
+
+    display:
+        grid;
+
+    gap:
+        8px;
+
+    margin-top:
+        10px;
+
+}
+
+
+
+.cr-bragging-match-card {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        58px
+        minmax(
+            0,
+            1fr
+        )
+        28px
+        minmax(
+            0,
+            1fr
+        );
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    padding:
+        11px;
+
+    border:
+        1px solid
+        rgba(
+            212,
+            173,
+            63,
+            0.18
+        );
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(
+            212,
+            173,
+            63,
+            0.035
+        );
+
+}
+
+
+
+.cr-bragging-match-card > span {
+
+    color:
+        #8b969c;
+
+    font-size:
+        0.54rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.cr-bragging-match-card div {
+
+    display:
+        grid;
+
+    gap:
+        2px;
+
+}
+
+
+
+.cr-bragging-match-card div strong {
+
+    color:
+        #eef1f2;
+
+    font-size:
+        0.69rem;
+
+}
+
+
+
+.cr-bragging-match-card div small {
+
+    color:
+        #758188;
+
+    font-size:
+        0.54rem;
+
+}
+
+
+
+.cr-bragging-match-card b {
+
+    color:
+        #d3af49;
+
+    font-size:
+        0.58rem;
+
+    text-align:
+        center;
+
+}
+
+
+
+@media (
+    max-width:
+        950px
+) {
+
+
+    .cr-bragging-field-columns,
+    .cr-bragging-bracket-columns {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        760px
+) {
+
+
+    .cr-bragging-toolbar {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-bragging-qualification {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        560px
+) {
+
+
+    .cr-bragging-slot-row {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-bragging-guest-row {
+
+        grid-template-columns:
+
+            30px
+            1fr;
+
+    }
+
+
+    .cr-bragging-guest-row input:last-child {
+
+        grid-column:
+            2;
+
+    }
+
+
+    .cr-bragging-match-card {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-bragging-match-card b {
+
+        text-align:
+            left;
+
+    }
+
+
+}
