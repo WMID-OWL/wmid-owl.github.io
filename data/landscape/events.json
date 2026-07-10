@@ -1,4 +1,263 @@
 {
   "version": 1,
-  "events": []
+  "events": [
+    {
+      "id": "bragging-rights-2099",
+      "periodId": "2099-11",
+      "stage": "special-event",
+      "eventType": "special-event",
+      "companyId": "",
+      "showId": "",
+      "eventName": "BRAGGING RIGHTS",
+      "overallRating": 4.02,
+      "ratingSource": "tournament-match-average",
+      "location": null,
+      "matches": [
+        {
+          "id": "bragging-rights-2099-men-roundOf16-round-1-match-1",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Round of 16",
+          "resultText": "OWL BEAT NXT",
+          "rating": 3
+        },
+        {
+          "id": "bragging-rights-2099-men-roundOf16-round-1-match-2",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Round of 16",
+          "resultText": "ROH WINS",
+          "rating": 3.5
+        },
+        {
+          "id": "bragging-rights-2099-men-roundOf16-round-1-match-3",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Round of 16",
+          "resultText": "AEW WINS",
+          "rating": 4.25
+        },
+        {
+          "id": "bragging-rights-2099-men-roundOf16-round-1-match-4",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Round of 16",
+          "resultText": "WWE WINS",
+          "rating": 4.75
+        },
+        {
+          "id": "bragging-rights-2099-men-roundOf16-round-1-match-5",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Round of 16",
+          "resultText": "TNA WINS",
+          "rating": 4
+        },
+        {
+          "id": "bragging-rights-2099-men-roundOf16-round-1-match-6",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Round of 16",
+          "resultText": "CMLL STEALS THE PIN",
+          "rating": 4.25
+        },
+        {
+          "id": "bragging-rights-2099-men-roundOf16-round-1-match-7",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Round of 16",
+          "resultText": "NOAH GUEST WINS",
+          "rating": 3.5
+        },
+        {
+          "id": "bragging-rights-2099-men-roundOf16-round-1-match-8",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Round of 16",
+          "resultText": "NJPW PRO RESUUU",
+          "rating": 5
+        },
+        {
+          "id": "bragging-rights-2099-men-quarterfinals-quarterfinals-match-1",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Quarterfinals",
+          "resultText": "OWL wins of course",
+          "rating": 0
+        },
+        {
+          "id": "bragging-rights-2099-men-quarterfinals-quarterfinals-match-2",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Quarterfinals",
+          "resultText": "WWE got this",
+          "rating": 4
+        },
+        {
+          "id": "bragging-rights-2099-men-quarterfinals-quarterfinals-match-3",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Quarterfinals",
+          "resultText": "Moooose",
+          "rating": 3.75
+        },
+        {
+          "id": "bragging-rights-2099-men-quarterfinals-quarterfinals-match-4",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Quarterfinals",
+          "resultText": "NJPW using elbows",
+          "rating": 4
+        },
+        {
+          "id": "bragging-rights-2099-men-semifinals-semifinals-match-1",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Semifinals",
+          "resultText": "OWL beats the fed",
+          "rating": 4.5
+        },
+        {
+          "id": "bragging-rights-2099-men-semifinals-semifinals-match-2",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Semifinals",
+          "resultText": "TNA TNA TNA TNAaaa",
+          "rating": 3
+        },
+        {
+          "id": "bragging-rights-2099-men-final-final-match-1",
+          "matchType": "tournament-match",
+          "division": "Men",
+          "tournamentRound": "Final",
+          "resultText": "OWL WINS WILL YOU LOOK AT THAT",
+          "rating": 5
+        },
+        {
+          "id": "bragging-rights-2099-women-roundOf16-round-1-match-1",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Round of 16",
+          "resultText": "MARI MARI MARI",
+          "rating": 4
+        },
+        {
+          "id": "bragging-rights-2099-women-roundOf16-round-1-match-2",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Round of 16",
+          "resultText": "AEW CEO",
+          "rating": 5
+        },
+        {
+          "id": "bragging-rights-2099-women-roundOf16-round-1-match-3",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Round of 16",
+          "resultText": "AE dub AE dub",
+          "rating": 4.25
+        },
+        {
+          "id": "bragging-rights-2099-women-roundOf16-round-1-match-4",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Round of 16",
+          "resultText": "OWL brother",
+          "rating": 4
+        },
+        {
+          "id": "bragging-rights-2099-women-roundOf16-round-1-match-5",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Round of 16",
+          "resultText": "WWE woman wins",
+          "rating": 4
+        },
+        {
+          "id": "bragging-rights-2099-women-roundOf16-round-1-match-6",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Round of 16",
+          "resultText": "ROH forever champ",
+          "rating": 4.75
+        },
+        {
+          "id": "bragging-rights-2099-women-roundOf16-round-1-match-7",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Round of 16",
+          "resultText": "STARDOMuh",
+          "rating": 3.75
+        },
+        {
+          "id": "bragging-rights-2099-women-roundOf16-round-1-match-8",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Round of 16",
+          "resultText": "EVE girl",
+          "rating": 4
+        },
+        {
+          "id": "bragging-rights-2099-women-quarterfinals-quarterfinals-match-1",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Quarterfinals",
+          "resultText": "MARIGOLD steals it",
+          "rating": 4
+        },
+        {
+          "id": "bragging-rights-2099-women-quarterfinals-quarterfinals-match-2",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Quarterfinals",
+          "resultText": "OWL rollup",
+          "rating": 3.75
+        },
+        {
+          "id": "bragging-rights-2099-women-quarterfinals-quarterfinals-match-3",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Quarterfinals",
+          "resultText": "WWE woman wins",
+          "rating": 4.25
+        },
+        {
+          "id": "bragging-rights-2099-women-quarterfinals-quarterfinals-match-4",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Quarterfinals",
+          "resultText": "STARDOM Uh",
+          "rating": 4
+        },
+        {
+          "id": "bragging-rights-2099-women-semifinals-semifinals-match-1",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Semifinals",
+          "resultText": "OWL to the finals",
+          "rating": 5
+        },
+        {
+          "id": "bragging-rights-2099-women-semifinals-semifinals-match-2",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Semifinals",
+          "resultText": "STAR-DOM",
+          "rating": 4.25
+        },
+        {
+          "id": "bragging-rights-2099-women-final-final-match-1",
+          "matchType": "tournament-match",
+          "division": "Women",
+          "tournamentRound": "Final",
+          "resultText": "UTAMI with the dub",
+          "rating": 5
+        }
+      ],
+      "segments": [],
+      "universeNotes": "Men's Champion: OWL Man (OWL). Women's Champion: STARDOM Guest (STARDOM).",
+      "generatedFrom": "bragging-rights",
+      "generatedAt": "2026-07-10T07:00:01.124Z"
+    }
+  ]
 }

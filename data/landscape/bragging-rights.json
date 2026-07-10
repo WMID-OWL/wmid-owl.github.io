@@ -28,7 +28,7 @@
       "year": "2099",
       "eventPeriodId": "2099-11",
       "qualificationPeriodId": "2099-10",
-      "status": "qualification-locked",
+      "status": "complete",
       "qualificationSnapshot": {
         "qualificationPeriodId": "2099-10",
         "frozenAt": null,
@@ -102,7 +102,7 @@
             "qualificationRank": 1,
             "allocationSlot": 1,
             "wrestlerName": "WWE Man A",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-core-2",
@@ -113,7 +113,7 @@
             "qualificationRank": 1,
             "allocationSlot": 2,
             "wrestlerName": "WWE Man B",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-core-3",
@@ -124,7 +124,7 @@
             "qualificationRank": 1,
             "allocationSlot": 3,
             "wrestlerName": "WWE Man C",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-core-4",
@@ -135,7 +135,7 @@
             "qualificationRank": 2,
             "allocationSlot": 1,
             "wrestlerName": "AEW Man A",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-core-5",
@@ -146,7 +146,7 @@
             "qualificationRank": 2,
             "allocationSlot": 2,
             "wrestlerName": "AEW Man B",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-core-6",
@@ -157,7 +157,7 @@
             "qualificationRank": 3,
             "allocationSlot": 1,
             "wrestlerName": "OWL Man",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-core-7",
@@ -168,7 +168,7 @@
             "qualificationRank": 4,
             "allocationSlot": 1,
             "wrestlerName": "TNA Man",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-core-8",
@@ -179,7 +179,7 @@
             "qualificationRank": 5,
             "allocationSlot": 1,
             "wrestlerName": "CMLL Man",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-core-9",
@@ -190,7 +190,7 @@
             "qualificationRank": 6,
             "allocationSlot": 1,
             "wrestlerName": "AAA Man",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-core-10",
@@ -201,7 +201,7 @@
             "qualificationRank": 7,
             "allocationSlot": 1,
             "wrestlerName": "NXT Man",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-core-11",
@@ -212,7 +212,7 @@
             "qualificationRank": 8,
             "allocationSlot": 1,
             "wrestlerName": "ROH Man",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           }
         ],
         "guestSlots": [
@@ -223,7 +223,7 @@
             "guestCompanyId": "njpw",
             "guestCompanyName": "NJPW",
             "wrestlerName": "NJPW Guest",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-guest-2",
@@ -232,7 +232,7 @@
             "guestCompanyId": "noah",
             "guestCompanyName": "NOAH",
             "wrestlerName": "NOAH Guest",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-guest-3",
@@ -241,7 +241,7 @@
             "guestCompanyId": "mlw",
             "guestCompanyName": "MLW",
             "wrestlerName": "MLW Guest",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-guest-4",
@@ -250,7 +250,7 @@
             "guestCompanyId": "revpro",
             "guestCompanyName": "RevPro",
             "wrestlerName": "RevPro Guest",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "men-guest-5",
@@ -259,13 +259,791 @@
             "guestCompanyId": "gcw",
             "guestCompanyName": "GCW",
             "wrestlerName": "GCW Guest",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           }
         ],
-        "entrants": [],
-        "bracket": null,
-        "champion": null,
-        "finalist": null
+        "entrants": [
+          {
+            "entrantId": "men-core-1",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "WWE Man A",
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "qualificationRank": 1,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-core-2",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "WWE Man B",
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "qualificationRank": 1,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-core-3",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "WWE Man C",
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "qualificationRank": 1,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-core-4",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "AEW Man A",
+            "companyId": "aew",
+            "companyName": "AEW",
+            "qualificationRank": 2,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-core-5",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "AEW Man B",
+            "companyId": "aew",
+            "companyName": "AEW",
+            "qualificationRank": 2,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-core-6",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "OWL Man",
+            "companyId": "owl",
+            "companyName": "OWL",
+            "qualificationRank": 3,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-core-7",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "TNA Man",
+            "companyId": "tna",
+            "companyName": "TNA",
+            "qualificationRank": 4,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-core-8",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "CMLL Man",
+            "companyId": "cmll",
+            "companyName": "CMLL",
+            "qualificationRank": 5,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-core-9",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "AAA Man",
+            "companyId": "aaa",
+            "companyName": "AAA",
+            "qualificationRank": 6,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-core-10",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "NXT Man",
+            "companyId": "nxt",
+            "companyName": "NXT",
+            "qualificationRank": 7,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-core-11",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "ROH Man",
+            "companyId": "roh",
+            "companyName": "ROH",
+            "qualificationRank": 8,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-guest-1",
+            "source": "guest",
+            "division": "Men",
+            "wrestlerName": "NJPW Guest",
+            "companyId": "njpw",
+            "companyName": "NJPW",
+            "qualificationRank": null,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-guest-2",
+            "source": "guest",
+            "division": "Men",
+            "wrestlerName": "NOAH Guest",
+            "companyId": "noah",
+            "companyName": "NOAH",
+            "qualificationRank": null,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-guest-3",
+            "source": "guest",
+            "division": "Men",
+            "wrestlerName": "MLW Guest",
+            "companyId": "mlw",
+            "companyName": "MLW",
+            "qualificationRank": null,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-guest-4",
+            "source": "guest",
+            "division": "Men",
+            "wrestlerName": "RevPro Guest",
+            "companyId": "revpro",
+            "companyName": "RevPro",
+            "qualificationRank": null,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "men-guest-5",
+            "source": "guest",
+            "division": "Men",
+            "wrestlerName": "GCW Guest",
+            "companyId": "gcw",
+            "companyName": "GCW",
+            "qualificationRank": null,
+            "affiliationFrozen": true
+          }
+        ],
+        "bracket": {
+          "entrants": [
+            {
+              "entrantId": "men-core-1",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "WWE Man A",
+              "companyId": "wwe",
+              "companyName": "WWE",
+              "qualificationRank": 1,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-core-2",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "WWE Man B",
+              "companyId": "wwe",
+              "companyName": "WWE",
+              "qualificationRank": 1,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-core-3",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "WWE Man C",
+              "companyId": "wwe",
+              "companyName": "WWE",
+              "qualificationRank": 1,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-core-4",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "AEW Man A",
+              "companyId": "aew",
+              "companyName": "AEW",
+              "qualificationRank": 2,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-core-5",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "AEW Man B",
+              "companyId": "aew",
+              "companyName": "AEW",
+              "qualificationRank": 2,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-core-6",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "OWL Man",
+              "companyId": "owl",
+              "companyName": "OWL",
+              "qualificationRank": 3,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-core-7",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "TNA Man",
+              "companyId": "tna",
+              "companyName": "TNA",
+              "qualificationRank": 4,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-core-8",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "CMLL Man",
+              "companyId": "cmll",
+              "companyName": "CMLL",
+              "qualificationRank": 5,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-core-9",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "AAA Man",
+              "companyId": "aaa",
+              "companyName": "AAA",
+              "qualificationRank": 6,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-core-10",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "NXT Man",
+              "companyId": "nxt",
+              "companyName": "NXT",
+              "qualificationRank": 7,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-core-11",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "ROH Man",
+              "companyId": "roh",
+              "companyName": "ROH",
+              "qualificationRank": 8,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-guest-1",
+              "source": "guest",
+              "division": "Men",
+              "wrestlerName": "NJPW Guest",
+              "companyId": "njpw",
+              "companyName": "NJPW",
+              "qualificationRank": null,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-guest-2",
+              "source": "guest",
+              "division": "Men",
+              "wrestlerName": "NOAH Guest",
+              "companyId": "noah",
+              "companyName": "NOAH",
+              "qualificationRank": null,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-guest-3",
+              "source": "guest",
+              "division": "Men",
+              "wrestlerName": "MLW Guest",
+              "companyId": "mlw",
+              "companyName": "MLW",
+              "qualificationRank": null,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-guest-4",
+              "source": "guest",
+              "division": "Men",
+              "wrestlerName": "RevPro Guest",
+              "companyId": "revpro",
+              "companyName": "RevPro",
+              "qualificationRank": null,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "men-guest-5",
+              "source": "guest",
+              "division": "Men",
+              "wrestlerName": "GCW Guest",
+              "companyId": "gcw",
+              "companyName": "GCW",
+              "qualificationRank": null,
+              "affiliationFrozen": true
+            }
+          ],
+          "rounds": {
+            "roundOf16": [
+              {
+                "matchId": "round-1-match-1",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "men-core-6",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "OWL Man",
+                  "companyId": "owl",
+                  "companyName": "OWL",
+                  "qualificationRank": 3,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-core-10",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "NXT Man",
+                  "companyId": "nxt",
+                  "companyName": "NXT",
+                  "qualificationRank": 7,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-core-6",
+                "rating": 3,
+                "resultText": "OWL BEAT NXT"
+              },
+              {
+                "matchId": "round-1-match-2",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "men-core-11",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "ROH Man",
+                  "companyId": "roh",
+                  "companyName": "ROH",
+                  "qualificationRank": 8,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-guest-4",
+                  "source": "guest",
+                  "division": "Men",
+                  "wrestlerName": "RevPro Guest",
+                  "companyId": "revpro",
+                  "companyName": "RevPro",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-core-11",
+                "rating": 3.5,
+                "resultText": "ROH WINS"
+              },
+              {
+                "matchId": "round-1-match-3",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "men-guest-5",
+                  "source": "guest",
+                  "division": "Men",
+                  "wrestlerName": "GCW Guest",
+                  "companyId": "gcw",
+                  "companyName": "GCW",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-core-4",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "AEW Man A",
+                  "companyId": "aew",
+                  "companyName": "AEW",
+                  "qualificationRank": 2,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-core-4",
+                "rating": 4.25,
+                "resultText": "AEW WINS"
+              },
+              {
+                "matchId": "round-1-match-4",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "men-core-2",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "WWE Man B",
+                  "companyId": "wwe",
+                  "companyName": "WWE",
+                  "qualificationRank": 1,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-guest-3",
+                  "source": "guest",
+                  "division": "Men",
+                  "wrestlerName": "MLW Guest",
+                  "companyId": "mlw",
+                  "companyName": "MLW",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-core-2",
+                "rating": 4.75,
+                "resultText": "WWE WINS"
+              },
+              {
+                "matchId": "round-1-match-5",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "men-core-7",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "TNA Man",
+                  "companyId": "tna",
+                  "companyName": "TNA",
+                  "qualificationRank": 4,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-core-5",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "AEW Man B",
+                  "companyId": "aew",
+                  "companyName": "AEW",
+                  "qualificationRank": 2,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-core-7",
+                "rating": 4,
+                "resultText": "TNA WINS"
+              },
+              {
+                "matchId": "round-1-match-6",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "men-core-1",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "WWE Man A",
+                  "companyId": "wwe",
+                  "companyName": "WWE",
+                  "qualificationRank": 1,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-core-8",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "CMLL Man",
+                  "companyId": "cmll",
+                  "companyName": "CMLL",
+                  "qualificationRank": 5,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-core-8",
+                "rating": 4.25,
+                "resultText": "CMLL STEALS THE PIN"
+              },
+              {
+                "matchId": "round-1-match-7",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "men-core-9",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "AAA Man",
+                  "companyId": "aaa",
+                  "companyName": "AAA",
+                  "qualificationRank": 6,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-guest-2",
+                  "source": "guest",
+                  "division": "Men",
+                  "wrestlerName": "NOAH Guest",
+                  "companyId": "noah",
+                  "companyName": "NOAH",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-guest-2",
+                "rating": 3.5,
+                "resultText": "NOAH GUEST WINS"
+              },
+              {
+                "matchId": "round-1-match-8",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "men-guest-1",
+                  "source": "guest",
+                  "division": "Men",
+                  "wrestlerName": "NJPW Guest",
+                  "companyId": "njpw",
+                  "companyName": "NJPW",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-core-3",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "WWE Man C",
+                  "companyId": "wwe",
+                  "companyName": "WWE",
+                  "qualificationRank": 1,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-guest-1",
+                "rating": 5,
+                "resultText": "NJPW PRO RESUUU"
+              }
+            ],
+            "quarterfinals": [
+              {
+                "matchId": "quarterfinals-match-1",
+                "round": 2,
+                "entrantA": {
+                  "entrantId": "men-core-6",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "OWL Man",
+                  "companyId": "owl",
+                  "companyName": "OWL",
+                  "qualificationRank": 3,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-core-11",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "ROH Man",
+                  "companyId": "roh",
+                  "companyName": "ROH",
+                  "qualificationRank": 8,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-core-6",
+                "rating": 0,
+                "resultText": "OWL wins of course"
+              },
+              {
+                "matchId": "quarterfinals-match-2",
+                "round": 2,
+                "entrantA": {
+                  "entrantId": "men-core-4",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "AEW Man A",
+                  "companyId": "aew",
+                  "companyName": "AEW",
+                  "qualificationRank": 2,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-core-2",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "WWE Man B",
+                  "companyId": "wwe",
+                  "companyName": "WWE",
+                  "qualificationRank": 1,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-core-2",
+                "rating": 4,
+                "resultText": "WWE got this"
+              },
+              {
+                "matchId": "quarterfinals-match-3",
+                "round": 2,
+                "entrantA": {
+                  "entrantId": "men-core-7",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "TNA Man",
+                  "companyId": "tna",
+                  "companyName": "TNA",
+                  "qualificationRank": 4,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-core-8",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "CMLL Man",
+                  "companyId": "cmll",
+                  "companyName": "CMLL",
+                  "qualificationRank": 5,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-core-7",
+                "rating": 3.75,
+                "resultText": "Moooose"
+              },
+              {
+                "matchId": "quarterfinals-match-4",
+                "round": 2,
+                "entrantA": {
+                  "entrantId": "men-guest-2",
+                  "source": "guest",
+                  "division": "Men",
+                  "wrestlerName": "NOAH Guest",
+                  "companyId": "noah",
+                  "companyName": "NOAH",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-guest-1",
+                  "source": "guest",
+                  "division": "Men",
+                  "wrestlerName": "NJPW Guest",
+                  "companyId": "njpw",
+                  "companyName": "NJPW",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-guest-1",
+                "rating": 4,
+                "resultText": "NJPW using elbows"
+              }
+            ],
+            "semifinals": [
+              {
+                "matchId": "semifinals-match-1",
+                "round": 3,
+                "entrantA": {
+                  "entrantId": "men-core-6",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "OWL Man",
+                  "companyId": "owl",
+                  "companyName": "OWL",
+                  "qualificationRank": 3,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-core-2",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "WWE Man B",
+                  "companyId": "wwe",
+                  "companyName": "WWE",
+                  "qualificationRank": 1,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-core-6",
+                "rating": 4.5,
+                "resultText": "OWL beats the fed"
+              },
+              {
+                "matchId": "semifinals-match-2",
+                "round": 3,
+                "entrantA": {
+                  "entrantId": "men-core-7",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "TNA Man",
+                  "companyId": "tna",
+                  "companyName": "TNA",
+                  "qualificationRank": 4,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-guest-1",
+                  "source": "guest",
+                  "division": "Men",
+                  "wrestlerName": "NJPW Guest",
+                  "companyId": "njpw",
+                  "companyName": "NJPW",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-core-7",
+                "rating": 3,
+                "resultText": "TNA TNA TNA TNAaaa"
+              }
+            ],
+            "final": [
+              {
+                "matchId": "final-match-1",
+                "round": 4,
+                "entrantA": {
+                  "entrantId": "men-core-6",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "OWL Man",
+                  "companyId": "owl",
+                  "companyName": "OWL",
+                  "qualificationRank": 3,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "men-core-7",
+                  "source": "core",
+                  "division": "Men",
+                  "wrestlerName": "TNA Man",
+                  "companyId": "tna",
+                  "companyName": "TNA",
+                  "qualificationRank": 4,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "men-core-6",
+                "rating": 5,
+                "resultText": "OWL WINS WILL YOU LOOK AT THAT"
+              }
+            ]
+          },
+          "winner": {
+            "entrantId": "men-core-6",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "OWL Man",
+            "companyId": "owl",
+            "companyName": "OWL",
+            "qualificationRank": 3,
+            "affiliationFrozen": true
+          },
+          "finalist": {
+            "entrantId": "men-core-7",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "TNA Man",
+            "companyId": "tna",
+            "companyName": "TNA",
+            "qualificationRank": 4,
+            "affiliationFrozen": true
+          },
+          "completedAt": "2026-07-10T06:56:29.714Z"
+        },
+        "champion": {
+          "entrantId": "men-core-6",
+          "source": "core",
+          "division": "Men",
+          "wrestlerName": "OWL Man",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "qualificationRank": 3,
+          "affiliationFrozen": true
+        },
+        "finalist": {
+          "entrantId": "men-core-7",
+          "source": "core",
+          "division": "Men",
+          "wrestlerName": "TNA Man",
+          "companyId": "tna",
+          "companyName": "TNA",
+          "qualificationRank": 4,
+          "affiliationFrozen": true
+        }
       },
       "women": {
         "coreSlots": [
@@ -278,7 +1056,7 @@
             "qualificationRank": 1,
             "allocationSlot": 1,
             "wrestlerName": "WWE Woman A",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-core-2",
@@ -289,7 +1067,7 @@
             "qualificationRank": 1,
             "allocationSlot": 2,
             "wrestlerName": "WWE Woman B",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-core-3",
@@ -300,7 +1078,7 @@
             "qualificationRank": 1,
             "allocationSlot": 3,
             "wrestlerName": "WWE Woman C",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-core-4",
@@ -311,7 +1089,7 @@
             "qualificationRank": 2,
             "allocationSlot": 1,
             "wrestlerName": "AEW Woman A",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-core-5",
@@ -322,7 +1100,7 @@
             "qualificationRank": 2,
             "allocationSlot": 2,
             "wrestlerName": "AEW Woman B",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-core-6",
@@ -333,7 +1111,7 @@
             "qualificationRank": 3,
             "allocationSlot": 1,
             "wrestlerName": "OWL Woman",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-core-7",
@@ -344,7 +1122,7 @@
             "qualificationRank": 4,
             "allocationSlot": 1,
             "wrestlerName": "TNA Woman",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-core-8",
@@ -355,7 +1133,7 @@
             "qualificationRank": 5,
             "allocationSlot": 1,
             "wrestlerName": "CMLL Woman",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-core-9",
@@ -366,7 +1144,7 @@
             "qualificationRank": 6,
             "allocationSlot": 1,
             "wrestlerName": "AAA Woman",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-core-10",
@@ -377,7 +1155,7 @@
             "qualificationRank": 7,
             "allocationSlot": 1,
             "wrestlerName": "NXT Woman",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-core-11",
@@ -388,7 +1166,7 @@
             "qualificationRank": 8,
             "allocationSlot": 1,
             "wrestlerName": "ROH Woman",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           }
         ],
         "guestSlots": [
@@ -399,7 +1177,7 @@
             "guestCompanyId": "stardom",
             "guestCompanyName": "STARDOM",
             "wrestlerName": "STARDOM Guest",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-guest-2",
@@ -408,7 +1186,7 @@
             "guestCompanyId": "marigold",
             "guestCompanyName": "MARIGOLD",
             "wrestlerName": "MARIGOLD Guest",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-guest-3",
@@ -417,7 +1195,7 @@
             "guestCompanyId": "tjpw",
             "guestCompanyName": "TJPW",
             "wrestlerName": "TJPW Guest",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-guest-4",
@@ -426,7 +1204,7 @@
             "guestCompanyId": "sendai-girls",
             "guestCompanyName": "Sendai Girls",
             "wrestlerName": "Sendai Girls Guest",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           },
           {
             "slotId": "women-guest-5",
@@ -435,20 +1213,1945 @@
             "guestCompanyId": "eve",
             "guestCompanyName": "EVE",
             "wrestlerName": "EVE Guest",
-            "affiliationFrozen": false
+            "affiliationFrozen": true
           }
         ],
-        "entrants": [],
-        "bracket": null,
-        "champion": null,
-        "finalist": null
+        "entrants": [
+          {
+            "entrantId": "women-core-1",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "WWE Woman A",
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "qualificationRank": 1,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-core-2",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "WWE Woman B",
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "qualificationRank": 1,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-core-3",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "WWE Woman C",
+            "companyId": "wwe",
+            "companyName": "WWE",
+            "qualificationRank": 1,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-core-4",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "AEW Woman A",
+            "companyId": "aew",
+            "companyName": "AEW",
+            "qualificationRank": 2,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-core-5",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "AEW Woman B",
+            "companyId": "aew",
+            "companyName": "AEW",
+            "qualificationRank": 2,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-core-6",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "OWL Woman",
+            "companyId": "owl",
+            "companyName": "OWL",
+            "qualificationRank": 3,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-core-7",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "TNA Woman",
+            "companyId": "tna",
+            "companyName": "TNA",
+            "qualificationRank": 4,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-core-8",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "CMLL Woman",
+            "companyId": "cmll",
+            "companyName": "CMLL",
+            "qualificationRank": 5,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-core-9",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "AAA Woman",
+            "companyId": "aaa",
+            "companyName": "AAA",
+            "qualificationRank": 6,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-core-10",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "NXT Woman",
+            "companyId": "nxt",
+            "companyName": "NXT",
+            "qualificationRank": 7,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-core-11",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "ROH Woman",
+            "companyId": "roh",
+            "companyName": "ROH",
+            "qualificationRank": 8,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-guest-1",
+            "source": "guest",
+            "division": "Women",
+            "wrestlerName": "STARDOM Guest",
+            "companyId": "stardom",
+            "companyName": "STARDOM",
+            "qualificationRank": null,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-guest-2",
+            "source": "guest",
+            "division": "Women",
+            "wrestlerName": "MARIGOLD Guest",
+            "companyId": "marigold",
+            "companyName": "MARIGOLD",
+            "qualificationRank": null,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-guest-3",
+            "source": "guest",
+            "division": "Women",
+            "wrestlerName": "TJPW Guest",
+            "companyId": "tjpw",
+            "companyName": "TJPW",
+            "qualificationRank": null,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-guest-4",
+            "source": "guest",
+            "division": "Women",
+            "wrestlerName": "Sendai Girls Guest",
+            "companyId": "sendai-girls",
+            "companyName": "Sendai Girls",
+            "qualificationRank": null,
+            "affiliationFrozen": true
+          },
+          {
+            "entrantId": "women-guest-5",
+            "source": "guest",
+            "division": "Women",
+            "wrestlerName": "EVE Guest",
+            "companyId": "eve",
+            "companyName": "EVE",
+            "qualificationRank": null,
+            "affiliationFrozen": true
+          }
+        ],
+        "bracket": {
+          "entrants": [
+            {
+              "entrantId": "women-core-1",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "WWE Woman A",
+              "companyId": "wwe",
+              "companyName": "WWE",
+              "qualificationRank": 1,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-core-2",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "WWE Woman B",
+              "companyId": "wwe",
+              "companyName": "WWE",
+              "qualificationRank": 1,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-core-3",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "WWE Woman C",
+              "companyId": "wwe",
+              "companyName": "WWE",
+              "qualificationRank": 1,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-core-4",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "AEW Woman A",
+              "companyId": "aew",
+              "companyName": "AEW",
+              "qualificationRank": 2,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-core-5",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "AEW Woman B",
+              "companyId": "aew",
+              "companyName": "AEW",
+              "qualificationRank": 2,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-core-6",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "OWL Woman",
+              "companyId": "owl",
+              "companyName": "OWL",
+              "qualificationRank": 3,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-core-7",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "TNA Woman",
+              "companyId": "tna",
+              "companyName": "TNA",
+              "qualificationRank": 4,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-core-8",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "CMLL Woman",
+              "companyId": "cmll",
+              "companyName": "CMLL",
+              "qualificationRank": 5,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-core-9",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "AAA Woman",
+              "companyId": "aaa",
+              "companyName": "AAA",
+              "qualificationRank": 6,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-core-10",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "NXT Woman",
+              "companyId": "nxt",
+              "companyName": "NXT",
+              "qualificationRank": 7,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-core-11",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "ROH Woman",
+              "companyId": "roh",
+              "companyName": "ROH",
+              "qualificationRank": 8,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-guest-1",
+              "source": "guest",
+              "division": "Women",
+              "wrestlerName": "STARDOM Guest",
+              "companyId": "stardom",
+              "companyName": "STARDOM",
+              "qualificationRank": null,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-guest-2",
+              "source": "guest",
+              "division": "Women",
+              "wrestlerName": "MARIGOLD Guest",
+              "companyId": "marigold",
+              "companyName": "MARIGOLD",
+              "qualificationRank": null,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-guest-3",
+              "source": "guest",
+              "division": "Women",
+              "wrestlerName": "TJPW Guest",
+              "companyId": "tjpw",
+              "companyName": "TJPW",
+              "qualificationRank": null,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-guest-4",
+              "source": "guest",
+              "division": "Women",
+              "wrestlerName": "Sendai Girls Guest",
+              "companyId": "sendai-girls",
+              "companyName": "Sendai Girls",
+              "qualificationRank": null,
+              "affiliationFrozen": true
+            },
+            {
+              "entrantId": "women-guest-5",
+              "source": "guest",
+              "division": "Women",
+              "wrestlerName": "EVE Guest",
+              "companyId": "eve",
+              "companyName": "EVE",
+              "qualificationRank": null,
+              "affiliationFrozen": true
+            }
+          ],
+          "rounds": {
+            "roundOf16": [
+              {
+                "matchId": "round-1-match-1",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "women-guest-2",
+                  "source": "guest",
+                  "division": "Women",
+                  "wrestlerName": "MARIGOLD Guest",
+                  "companyId": "marigold",
+                  "companyName": "MARIGOLD",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-core-2",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "WWE Woman B",
+                  "companyId": "wwe",
+                  "companyName": "WWE",
+                  "qualificationRank": 1,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-guest-2",
+                "rating": 4,
+                "resultText": "MARI MARI MARI"
+              },
+              {
+                "matchId": "round-1-match-2",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "women-core-5",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "AEW Woman B",
+                  "companyId": "aew",
+                  "companyName": "AEW",
+                  "qualificationRank": 2,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-core-3",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "WWE Woman C",
+                  "companyId": "wwe",
+                  "companyName": "WWE",
+                  "qualificationRank": 1,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-core-5",
+                "rating": 5,
+                "resultText": "AEW CEO"
+              },
+              {
+                "matchId": "round-1-match-3",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "women-core-4",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "AEW Woman A",
+                  "companyId": "aew",
+                  "companyName": "AEW",
+                  "qualificationRank": 2,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-core-8",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "CMLL Woman",
+                  "companyId": "cmll",
+                  "companyName": "CMLL",
+                  "qualificationRank": 5,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-core-4",
+                "rating": 4.25,
+                "resultText": "AE dub AE dub"
+              },
+              {
+                "matchId": "round-1-match-4",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "women-core-6",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "OWL Woman",
+                  "companyId": "owl",
+                  "companyName": "OWL",
+                  "qualificationRank": 3,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-core-10",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "NXT Woman",
+                  "companyId": "nxt",
+                  "companyName": "NXT",
+                  "qualificationRank": 7,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-core-6",
+                "rating": 4,
+                "resultText": "OWL brother"
+              },
+              {
+                "matchId": "round-1-match-5",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "women-core-1",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "WWE Woman A",
+                  "companyId": "wwe",
+                  "companyName": "WWE",
+                  "qualificationRank": 1,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-core-9",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "AAA Woman",
+                  "companyId": "aaa",
+                  "companyName": "AAA",
+                  "qualificationRank": 6,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-core-1",
+                "rating": 4,
+                "resultText": "WWE woman wins"
+              },
+              {
+                "matchId": "round-1-match-6",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "women-core-11",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "ROH Woman",
+                  "companyId": "roh",
+                  "companyName": "ROH",
+                  "qualificationRank": 8,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-core-7",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "TNA Woman",
+                  "companyId": "tna",
+                  "companyName": "TNA",
+                  "qualificationRank": 4,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-core-11",
+                "rating": 4.75,
+                "resultText": "ROH forever champ"
+              },
+              {
+                "matchId": "round-1-match-7",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "women-guest-1",
+                  "source": "guest",
+                  "division": "Women",
+                  "wrestlerName": "STARDOM Guest",
+                  "companyId": "stardom",
+                  "companyName": "STARDOM",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-guest-4",
+                  "source": "guest",
+                  "division": "Women",
+                  "wrestlerName": "Sendai Girls Guest",
+                  "companyId": "sendai-girls",
+                  "companyName": "Sendai Girls",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-guest-1",
+                "rating": 3.75,
+                "resultText": "STARDOMuh"
+              },
+              {
+                "matchId": "round-1-match-8",
+                "round": 1,
+                "entrantA": {
+                  "entrantId": "women-guest-3",
+                  "source": "guest",
+                  "division": "Women",
+                  "wrestlerName": "TJPW Guest",
+                  "companyId": "tjpw",
+                  "companyName": "TJPW",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-guest-5",
+                  "source": "guest",
+                  "division": "Women",
+                  "wrestlerName": "EVE Guest",
+                  "companyId": "eve",
+                  "companyName": "EVE",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-guest-5",
+                "rating": 4,
+                "resultText": "EVE girl"
+              }
+            ],
+            "quarterfinals": [
+              {
+                "matchId": "quarterfinals-match-1",
+                "round": 2,
+                "entrantA": {
+                  "entrantId": "women-guest-2",
+                  "source": "guest",
+                  "division": "Women",
+                  "wrestlerName": "MARIGOLD Guest",
+                  "companyId": "marigold",
+                  "companyName": "MARIGOLD",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-core-5",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "AEW Woman B",
+                  "companyId": "aew",
+                  "companyName": "AEW",
+                  "qualificationRank": 2,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-guest-2",
+                "rating": 4,
+                "resultText": "MARIGOLD steals it"
+              },
+              {
+                "matchId": "quarterfinals-match-2",
+                "round": 2,
+                "entrantA": {
+                  "entrantId": "women-core-4",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "AEW Woman A",
+                  "companyId": "aew",
+                  "companyName": "AEW",
+                  "qualificationRank": 2,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-core-6",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "OWL Woman",
+                  "companyId": "owl",
+                  "companyName": "OWL",
+                  "qualificationRank": 3,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-core-6",
+                "rating": 3.75,
+                "resultText": "OWL rollup"
+              },
+              {
+                "matchId": "quarterfinals-match-3",
+                "round": 2,
+                "entrantA": {
+                  "entrantId": "women-core-1",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "WWE Woman A",
+                  "companyId": "wwe",
+                  "companyName": "WWE",
+                  "qualificationRank": 1,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-core-11",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "ROH Woman",
+                  "companyId": "roh",
+                  "companyName": "ROH",
+                  "qualificationRank": 8,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-core-1",
+                "rating": 4.25,
+                "resultText": "WWE woman wins"
+              },
+              {
+                "matchId": "quarterfinals-match-4",
+                "round": 2,
+                "entrantA": {
+                  "entrantId": "women-guest-1",
+                  "source": "guest",
+                  "division": "Women",
+                  "wrestlerName": "STARDOM Guest",
+                  "companyId": "stardom",
+                  "companyName": "STARDOM",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-guest-5",
+                  "source": "guest",
+                  "division": "Women",
+                  "wrestlerName": "EVE Guest",
+                  "companyId": "eve",
+                  "companyName": "EVE",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-guest-1",
+                "rating": 4,
+                "resultText": "STARDOM Uh"
+              }
+            ],
+            "semifinals": [
+              {
+                "matchId": "semifinals-match-1",
+                "round": 3,
+                "entrantA": {
+                  "entrantId": "women-guest-2",
+                  "source": "guest",
+                  "division": "Women",
+                  "wrestlerName": "MARIGOLD Guest",
+                  "companyId": "marigold",
+                  "companyName": "MARIGOLD",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-core-6",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "OWL Woman",
+                  "companyId": "owl",
+                  "companyName": "OWL",
+                  "qualificationRank": 3,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-core-6",
+                "rating": 5,
+                "resultText": "OWL to the finals"
+              },
+              {
+                "matchId": "semifinals-match-2",
+                "round": 3,
+                "entrantA": {
+                  "entrantId": "women-core-1",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "WWE Woman A",
+                  "companyId": "wwe",
+                  "companyName": "WWE",
+                  "qualificationRank": 1,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-guest-1",
+                  "source": "guest",
+                  "division": "Women",
+                  "wrestlerName": "STARDOM Guest",
+                  "companyId": "stardom",
+                  "companyName": "STARDOM",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-guest-1",
+                "rating": 4.25,
+                "resultText": "STAR-DOM"
+              }
+            ],
+            "final": [
+              {
+                "matchId": "final-match-1",
+                "round": 4,
+                "entrantA": {
+                  "entrantId": "women-core-6",
+                  "source": "core",
+                  "division": "Women",
+                  "wrestlerName": "OWL Woman",
+                  "companyId": "owl",
+                  "companyName": "OWL",
+                  "qualificationRank": 3,
+                  "affiliationFrozen": true
+                },
+                "entrantB": {
+                  "entrantId": "women-guest-1",
+                  "source": "guest",
+                  "division": "Women",
+                  "wrestlerName": "STARDOM Guest",
+                  "companyId": "stardom",
+                  "companyName": "STARDOM",
+                  "qualificationRank": null,
+                  "affiliationFrozen": true
+                },
+                "winnerEntrantId": "women-guest-1",
+                "rating": 5,
+                "resultText": "UTAMI with the dub"
+              }
+            ]
+          },
+          "winner": {
+            "entrantId": "women-guest-1",
+            "source": "guest",
+            "division": "Women",
+            "wrestlerName": "STARDOM Guest",
+            "companyId": "stardom",
+            "companyName": "STARDOM",
+            "qualificationRank": null,
+            "affiliationFrozen": true
+          },
+          "finalist": {
+            "entrantId": "women-core-6",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "OWL Woman",
+            "companyId": "owl",
+            "companyName": "OWL",
+            "qualificationRank": 3,
+            "affiliationFrozen": true
+          },
+          "completedAt": "2026-07-10T07:00:01.096Z"
+        },
+        "champion": {
+          "entrantId": "women-guest-1",
+          "source": "guest",
+          "division": "Women",
+          "wrestlerName": "STARDOM Guest",
+          "companyId": "stardom",
+          "companyName": "STARDOM",
+          "qualificationRank": null,
+          "affiliationFrozen": true
+        },
+        "finalist": {
+          "entrantId": "women-core-6",
+          "source": "core",
+          "division": "Women",
+          "wrestlerName": "OWL Woman",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "qualificationRank": 3,
+          "affiliationFrozen": true
+        }
       },
       "trophies": {
-        "menCompanyId": "",
-        "womenCompanyId": ""
+        "menCompanyId": "owl",
+        "womenCompanyId": "stardom"
       },
       "createdAt": "2099-10-31T00:00:00.000Z",
-      "completedAt": null
+      "completedAt": "2026-07-10T07:00:01.096Z",
+      "bracketsDrawnAt": "2026-07-10T05:52:17.850Z"
     }
-  ]
+  ],
+  "history": {
+    "updatedAt": "2026-07-10T07:00:01.096Z",
+    "editionsCompleted": 1,
+    "men": {
+      "yearly": [
+        {
+          "year": "2099",
+          "winner": {
+            "entrantId": "men-core-6",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "OWL Man",
+            "companyId": "owl",
+            "companyName": "OWL",
+            "qualificationRank": 3,
+            "affiliationFrozen": true
+          },
+          "finalist": {
+            "entrantId": "men-core-7",
+            "source": "core",
+            "division": "Men",
+            "wrestlerName": "TNA Man",
+            "companyId": "tna",
+            "companyName": "TNA",
+            "qualificationRank": 4,
+            "affiliationFrozen": true
+          },
+          "bestRatedMatch": {
+            "division": "Men",
+            "roundKey": "roundOf16",
+            "roundLabel": "Round of 16",
+            "matchNumber": 8,
+            "matchId": "round-1-match-8",
+            "entrantA": {
+              "entrantId": "men-guest-1",
+              "source": "guest",
+              "division": "Men",
+              "wrestlerName": "NJPW Guest",
+              "companyId": "njpw",
+              "companyName": "NJPW",
+              "qualificationRank": null,
+              "affiliationFrozen": true
+            },
+            "entrantB": {
+              "entrantId": "men-core-3",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "WWE Man C",
+              "companyId": "wwe",
+              "companyName": "WWE",
+              "qualificationRank": 1,
+              "affiliationFrozen": true
+            },
+            "winnerEntrantId": "men-guest-1",
+            "winner": {
+              "entrantId": "men-guest-1",
+              "source": "guest",
+              "division": "Men",
+              "wrestlerName": "NJPW Guest",
+              "companyId": "njpw",
+              "companyName": "NJPW",
+              "qualificationRank": null,
+              "affiliationFrozen": true
+            },
+            "loser": {
+              "entrantId": "men-core-3",
+              "source": "core",
+              "division": "Men",
+              "wrestlerName": "WWE Man C",
+              "companyId": "wwe",
+              "companyName": "WWE",
+              "qualificationRank": 1,
+              "affiliationFrozen": true
+            },
+            "rating": 5,
+            "resultText": "NJPW PRO RESUUU"
+          }
+        }
+      ],
+      "wrestlerStats": [
+        {
+          "wrestlerName": "OWL Man",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 1,
+          "finalAppearances": 1,
+          "semifinalAppearances": 1,
+          "matchWins": 4,
+          "matchLosses": 0,
+          "currentWinStreak": 4,
+          "longestWinStreak": 4
+        },
+        {
+          "wrestlerName": "TNA Man",
+          "companyId": "tna",
+          "companyName": "TNA",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 1,
+          "semifinalAppearances": 1,
+          "matchWins": 3,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 3
+        },
+        {
+          "wrestlerName": "WWE Man B",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 1,
+          "matchWins": 2,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 2
+        },
+        {
+          "wrestlerName": "NJPW Guest",
+          "companyId": "njpw",
+          "companyName": "NJPW",
+          "source": "guest",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 1,
+          "matchWins": 2,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 2
+        },
+        {
+          "wrestlerName": "AEW Man A",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 1
+        },
+        {
+          "wrestlerName": "CMLL Man",
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 1
+        },
+        {
+          "wrestlerName": "ROH Man",
+          "companyId": "roh",
+          "companyName": "ROH",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 1
+        },
+        {
+          "wrestlerName": "NOAH Guest",
+          "companyId": "noah",
+          "companyName": "NOAH",
+          "source": "guest",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 1
+        },
+        {
+          "wrestlerName": "WWE Man A",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "WWE Man C",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "AEW Man B",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "AAA Man",
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "NXT Man",
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "MLW Guest",
+          "companyId": "mlw",
+          "companyName": "MLW",
+          "source": "guest",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "RevPro Guest",
+          "companyId": "revpro",
+          "companyName": "RevPro",
+          "source": "guest",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "GCW Guest",
+          "companyId": "gcw",
+          "companyName": "GCW",
+          "source": "guest",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        }
+      ],
+      "companyStats": [
+        {
+          "companyId": "owl",
+          "companyName": "OWL",
+          "entries": 1,
+          "tournamentWins": 1,
+          "finalAppearances": 1,
+          "semifinalAppearances": 1,
+          "matchWins": 4
+        },
+        {
+          "companyId": "tna",
+          "companyName": "TNA",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 1,
+          "semifinalAppearances": 1,
+          "matchWins": 3
+        },
+        {
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "entries": 3,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 1,
+          "matchWins": 2
+        },
+        {
+          "companyId": "njpw",
+          "companyName": "NJPW",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 1,
+          "matchWins": 2
+        },
+        {
+          "companyId": "aew",
+          "companyName": "AEW",
+          "entries": 2,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1
+        },
+        {
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1
+        },
+        {
+          "companyId": "roh",
+          "companyName": "ROH",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1
+        },
+        {
+          "companyId": "noah",
+          "companyName": "NOAH",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1
+        },
+        {
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0
+        },
+        {
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0
+        },
+        {
+          "companyId": "mlw",
+          "companyName": "MLW",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0
+        },
+        {
+          "companyId": "revpro",
+          "companyName": "RevPro",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0
+        },
+        {
+          "companyId": "gcw",
+          "companyName": "GCW",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0
+        }
+      ],
+      "bestRatedMatches": [
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Round of 16",
+          "resultText": "NJPW PRO RESUUU",
+          "rating": 5
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Final",
+          "resultText": "OWL WINS WILL YOU LOOK AT THAT",
+          "rating": 5
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Round of 16",
+          "resultText": "WWE WINS",
+          "rating": 4.75
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Semifinals",
+          "resultText": "OWL beats the fed",
+          "rating": 4.5
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Round of 16",
+          "resultText": "AEW WINS",
+          "rating": 4.25
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Round of 16",
+          "resultText": "CMLL STEALS THE PIN",
+          "rating": 4.25
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Round of 16",
+          "resultText": "TNA WINS",
+          "rating": 4
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Quarterfinals",
+          "resultText": "WWE got this",
+          "rating": 4
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Quarterfinals",
+          "resultText": "NJPW using elbows",
+          "rating": 4
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Quarterfinals",
+          "resultText": "Moooose",
+          "rating": 3.75
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Round of 16",
+          "resultText": "ROH WINS",
+          "rating": 3.5
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Round of 16",
+          "resultText": "NOAH GUEST WINS",
+          "rating": 3.5
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Round of 16",
+          "resultText": "OWL BEAT NXT",
+          "rating": 3
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Semifinals",
+          "resultText": "TNA TNA TNA TNAaaa",
+          "rating": 3
+        },
+        {
+          "year": "2099",
+          "division": "Men",
+          "round": "Quarterfinals",
+          "resultText": "OWL wins of course",
+          "rating": 0
+        }
+      ],
+      "notableGuestPerformances": [
+        {
+          "year": "2099",
+          "wrestlerName": "NJPW Guest",
+          "companyId": "njpw",
+          "companyName": "NJPW",
+          "deepestRound": "Semifinals",
+          "depth": 3
+        },
+        {
+          "year": "2099",
+          "wrestlerName": "NOAH Guest",
+          "companyId": "noah",
+          "companyName": "NOAH",
+          "deepestRound": "Quarterfinals",
+          "depth": 2
+        },
+        {
+          "year": "2099",
+          "wrestlerName": "MLW Guest",
+          "companyId": "mlw",
+          "companyName": "MLW",
+          "deepestRound": "Round of 16",
+          "depth": 1
+        },
+        {
+          "year": "2099",
+          "wrestlerName": "RevPro Guest",
+          "companyId": "revpro",
+          "companyName": "RevPro",
+          "deepestRound": "Round of 16",
+          "depth": 1
+        },
+        {
+          "year": "2099",
+          "wrestlerName": "GCW Guest",
+          "companyId": "gcw",
+          "companyName": "GCW",
+          "deepestRound": "Round of 16",
+          "depth": 1
+        }
+      ]
+    },
+    "women": {
+      "yearly": [
+        {
+          "year": "2099",
+          "winner": {
+            "entrantId": "women-guest-1",
+            "source": "guest",
+            "division": "Women",
+            "wrestlerName": "STARDOM Guest",
+            "companyId": "stardom",
+            "companyName": "STARDOM",
+            "qualificationRank": null,
+            "affiliationFrozen": true
+          },
+          "finalist": {
+            "entrantId": "women-core-6",
+            "source": "core",
+            "division": "Women",
+            "wrestlerName": "OWL Woman",
+            "companyId": "owl",
+            "companyName": "OWL",
+            "qualificationRank": 3,
+            "affiliationFrozen": true
+          },
+          "bestRatedMatch": {
+            "division": "Women",
+            "roundKey": "roundOf16",
+            "roundLabel": "Round of 16",
+            "matchNumber": 2,
+            "matchId": "round-1-match-2",
+            "entrantA": {
+              "entrantId": "women-core-5",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "AEW Woman B",
+              "companyId": "aew",
+              "companyName": "AEW",
+              "qualificationRank": 2,
+              "affiliationFrozen": true
+            },
+            "entrantB": {
+              "entrantId": "women-core-3",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "WWE Woman C",
+              "companyId": "wwe",
+              "companyName": "WWE",
+              "qualificationRank": 1,
+              "affiliationFrozen": true
+            },
+            "winnerEntrantId": "women-core-5",
+            "winner": {
+              "entrantId": "women-core-5",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "AEW Woman B",
+              "companyId": "aew",
+              "companyName": "AEW",
+              "qualificationRank": 2,
+              "affiliationFrozen": true
+            },
+            "loser": {
+              "entrantId": "women-core-3",
+              "source": "core",
+              "division": "Women",
+              "wrestlerName": "WWE Woman C",
+              "companyId": "wwe",
+              "companyName": "WWE",
+              "qualificationRank": 1,
+              "affiliationFrozen": true
+            },
+            "rating": 5,
+            "resultText": "AEW CEO"
+          }
+        }
+      ],
+      "wrestlerStats": [
+        {
+          "wrestlerName": "STARDOM Guest",
+          "companyId": "stardom",
+          "companyName": "STARDOM",
+          "source": "guest",
+          "appearances": 1,
+          "tournamentWins": 1,
+          "finalAppearances": 1,
+          "semifinalAppearances": 1,
+          "matchWins": 4,
+          "matchLosses": 0,
+          "currentWinStreak": 4,
+          "longestWinStreak": 4
+        },
+        {
+          "wrestlerName": "OWL Woman",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 1,
+          "semifinalAppearances": 1,
+          "matchWins": 3,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 3
+        },
+        {
+          "wrestlerName": "WWE Woman A",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 1,
+          "matchWins": 2,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 2
+        },
+        {
+          "wrestlerName": "MARIGOLD Guest",
+          "companyId": "marigold",
+          "companyName": "MARIGOLD",
+          "source": "guest",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 1,
+          "matchWins": 2,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 2
+        },
+        {
+          "wrestlerName": "AEW Woman A",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 1
+        },
+        {
+          "wrestlerName": "AEW Woman B",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 1
+        },
+        {
+          "wrestlerName": "ROH Woman",
+          "companyId": "roh",
+          "companyName": "ROH",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 1
+        },
+        {
+          "wrestlerName": "EVE Guest",
+          "companyId": "eve",
+          "companyName": "EVE",
+          "source": "guest",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 1
+        },
+        {
+          "wrestlerName": "WWE Woman B",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "WWE Woman C",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "TNA Woman",
+          "companyId": "tna",
+          "companyName": "TNA",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "CMLL Woman",
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "AAA Woman",
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "NXT Woman",
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "source": "core",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "TJPW Guest",
+          "companyId": "tjpw",
+          "companyName": "TJPW",
+          "source": "guest",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        },
+        {
+          "wrestlerName": "Sendai Girls Guest",
+          "companyId": "sendai-girls",
+          "companyName": "Sendai Girls",
+          "source": "guest",
+          "appearances": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0,
+          "matchLosses": 1,
+          "currentWinStreak": 0,
+          "longestWinStreak": 0
+        }
+      ],
+      "companyStats": [
+        {
+          "companyId": "stardom",
+          "companyName": "STARDOM",
+          "entries": 1,
+          "tournamentWins": 1,
+          "finalAppearances": 1,
+          "semifinalAppearances": 1,
+          "matchWins": 4
+        },
+        {
+          "companyId": "owl",
+          "companyName": "OWL",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 1,
+          "semifinalAppearances": 1,
+          "matchWins": 3
+        },
+        {
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "entries": 3,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 1,
+          "matchWins": 2
+        },
+        {
+          "companyId": "aew",
+          "companyName": "AEW",
+          "entries": 2,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 2
+        },
+        {
+          "companyId": "marigold",
+          "companyName": "MARIGOLD",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 1,
+          "matchWins": 2
+        },
+        {
+          "companyId": "roh",
+          "companyName": "ROH",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1
+        },
+        {
+          "companyId": "eve",
+          "companyName": "EVE",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 1
+        },
+        {
+          "companyId": "tna",
+          "companyName": "TNA",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0
+        },
+        {
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0
+        },
+        {
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0
+        },
+        {
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0
+        },
+        {
+          "companyId": "tjpw",
+          "companyName": "TJPW",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0
+        },
+        {
+          "companyId": "sendai-girls",
+          "companyName": "Sendai Girls",
+          "entries": 1,
+          "tournamentWins": 0,
+          "finalAppearances": 0,
+          "semifinalAppearances": 0,
+          "matchWins": 0
+        }
+      ],
+      "bestRatedMatches": [
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Round of 16",
+          "resultText": "AEW CEO",
+          "rating": 5
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Semifinals",
+          "resultText": "OWL to the finals",
+          "rating": 5
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Final",
+          "resultText": "UTAMI with the dub",
+          "rating": 5
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Round of 16",
+          "resultText": "ROH forever champ",
+          "rating": 4.75
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Round of 16",
+          "resultText": "AE dub AE dub",
+          "rating": 4.25
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Quarterfinals",
+          "resultText": "WWE woman wins",
+          "rating": 4.25
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Semifinals",
+          "resultText": "STAR-DOM",
+          "rating": 4.25
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Round of 16",
+          "resultText": "MARI MARI MARI",
+          "rating": 4
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Round of 16",
+          "resultText": "OWL brother",
+          "rating": 4
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Round of 16",
+          "resultText": "WWE woman wins",
+          "rating": 4
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Round of 16",
+          "resultText": "EVE girl",
+          "rating": 4
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Quarterfinals",
+          "resultText": "MARIGOLD steals it",
+          "rating": 4
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Quarterfinals",
+          "resultText": "STARDOM Uh",
+          "rating": 4
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Round of 16",
+          "resultText": "STARDOMuh",
+          "rating": 3.75
+        },
+        {
+          "year": "2099",
+          "division": "Women",
+          "round": "Quarterfinals",
+          "resultText": "OWL rollup",
+          "rating": 3.75
+        }
+      ],
+      "notableGuestPerformances": [
+        {
+          "year": "2099",
+          "wrestlerName": "STARDOM Guest",
+          "companyId": "stardom",
+          "companyName": "STARDOM",
+          "deepestRound": "Champion",
+          "depth": 5
+        },
+        {
+          "year": "2099",
+          "wrestlerName": "MARIGOLD Guest",
+          "companyId": "marigold",
+          "companyName": "MARIGOLD",
+          "deepestRound": "Semifinals",
+          "depth": 3
+        },
+        {
+          "year": "2099",
+          "wrestlerName": "EVE Guest",
+          "companyId": "eve",
+          "companyName": "EVE",
+          "deepestRound": "Quarterfinals",
+          "depth": 2
+        },
+        {
+          "year": "2099",
+          "wrestlerName": "TJPW Guest",
+          "companyId": "tjpw",
+          "companyName": "TJPW",
+          "deepestRound": "Round of 16",
+          "depth": 1
+        },
+        {
+          "year": "2099",
+          "wrestlerName": "Sendai Girls Guest",
+          "companyId": "sendai-girls",
+          "companyName": "Sendai Girls",
+          "deepestRound": "Round of 16",
+          "depth": 1
+        }
+      ]
+    }
+  }
 }
