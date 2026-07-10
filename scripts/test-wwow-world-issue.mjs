@@ -369,6 +369,154 @@ async function loadWritingPrompt() {
 }
 
 
+// =================================
+// FACTUAL AUDIT PROMPT
+// =================================
+
+
+const factualAuditSystemPrompt = `
+
+You are the factual editor for THE WONDERFUL WORLD OF WRESTLING.
+
+You are reviewing finished magazine copy against a supplied structured fact package.
+
+Your job is to REWRITE the supplied sections so every factual claim remains supported by the supplied data.
+
+THIS IS NOT A STYLE REVIEW.
+Preserve strong magazine writing, analysis, criticism, and personality wherever possible.
+
+STRICT FACT RULES:
+
+1. Do not invent audience reaction.
+Do not claim fans were excited, captivated, disappointed, on the edge of their seats, changing preferences, losing interest, or reacting in any specific way unless supplied public-reaction data explicitly supports it.
+
+2. Do not invent match details.
+A match result and star rating do not prove specific moves, technique, pacing, crowd behavior, chemistry, drama, storytelling, athletic sequences, willpower, near falls, or atmosphere.
+
+You may analyze the importance of a verified result or rating.
+You may say a highly rated match ranked among the best supplied matches.
+You may not invent what physically happened inside the match.
+
+3. Do not invent causes.
+A company ranking rise does not automatically prove that a specific champion, wrestler, storyline, signing, match, or event caused the rise.
+
+A show ranking decline does not prove bad booking, bad roster management, fan rejection, weak storylines, or internal problems.
+
+You may describe verified movement.
+You may compare supplied metrics.
+You may discuss possible competitive implications as analysis without claiming an unsupported cause.
+
+4. Do not invent performer evidence.
+Current championship status alone does not prove a wrestler had a great month.
+
+Only describe someone as a standout performer when the fact package contains direct current-month evidence such as:
+- a verified match result
+- a verified match rating
+- a title win
+- a successful defense
+- tournament performance
+- a streak
+- another explicit current-month achievement
+
+5. Do not invent backstage information.
+Never invent:
+- sources
+- insiders
+- backstage heat
+- discontent
+- morale problems
+- contract negotiations
+- contract terms
+- talent considering departure
+- releases
+- surprise debuts
+- future signings
+- roster instability
+- internal strategy
+- relationships
+
+6. Do not invent future booking.
+Never invent:
+- announced matches
+- future challengers
+- cross-promotional matches
+- dream matches as likely events
+- tournament entries
+- debuts
+- releases
+- title plans
+
+7. Rumors & Whispers rules:
+This section may speculate only about the possible competitive or storyline implications of verified developments.
+
+Example allowed:
+"Nova's confirmed AAA signing could affect AAA's competitive direction."
+
+Example not allowed:
+"Other wrestlers may now be negotiating with AAA."
+
+Example allowed:
+"OWL falling from first to second raises the question of whether it can respond next month."
+
+Example not allowed:
+"OWL wrestlers may be considering leaving."
+
+Do not invent hidden events merely because the section is called Rumors & Whispers.
+
+8. Editorial rules:
+Opinion is allowed.
+Unsupported factual claims are not.
+
+An editorial may argue that competition is becoming tighter when rankings support that claim.
+
+It may not claim:
+- fan loyalty changed
+- popularity increased
+- creative problems exist
+- roster problems exist
+- audience preferences changed
+
+unless those facts are supplied.
+
+9. Analysis versus fact:
+You may explain why a verified result is significant.
+You may compare supplied rankings, ratings, scores, titles, results, and movement.
+
+Do not manufacture an explanation for why something happened.
+
+OUTPUT RULES:
+
+Return JSON only.
+
+Return exactly the same two sectionIds supplied.
+
+Return exactly 3 substantial paragraphs for each section.
+
+Preserve:
+- sectionId
+- kicker
+- title
+
+Rewrite the body wherever necessary to remove unsupported claims.
+
+Return:
+
+{
+  "sections": [
+    {
+      "sectionId": "",
+      "kicker": "",
+      "title": "",
+      "body": [
+        "paragraph one",
+        "paragraph two",
+        "paragraph three"
+      ]
+    }
+  ]
+}
+
+`;
 
 // =================================
 // MODEL CALL
@@ -600,6 +748,134 @@ Return both requested sections completely.`
 }
 
 
+// =================================
+// FACTUAL AUDIT
+// =================================
+
+
+async function auditWrittenBatch({
+
+    context,
+    requestedSections,
+    writtenSections
+
+}) {
+
+
+    console.log(
+
+        `Fact-checking ${requestedSections
+
+            .map(
+                section => section.sectionId
+            )
+
+            .join(
+                " + "
+            )}...`
+
+    );
+
+
+    const result =
+
+        await callModelSafely(
+
+            factualAuditSystemPrompt,
+
+            `Fact-check and repair these finished WWoW sections.
+
+APPROVED SECTION PLANS:
+
+${JSON.stringify(
+    requestedSections
+)}
+
+FINISHED ARTICLE COPY:
+
+${JSON.stringify(
+    writtenSections
+)}
+
+FACT PACKAGE:
+
+${JSON.stringify(
+    context
+)}
+
+IMPORTANT:
+
+Rewrite any unsupported claim.
+
+Do not merely describe the problems.
+
+Return the corrected finished sections.
+
+Preserve each approved:
+- sectionId
+- kicker
+- title
+
+Return exactly 3 paragraphs per section.`
+
+        );
+
+
+    const auditedSections =
+
+        Array.isArray(
+            result?.sections
+        )
+
+            ? result.sections
+
+            : [];
+
+
+    if (
+        auditedSections.length !==
+        requestedSections.length
+    ) {
+
+
+        throw new Error(
+
+            `WWoW factual audit returned ${auditedSections.length} sections instead of ${requestedSections.length}.`
+
+        );
+
+    }
+
+
+    return requestedSections.map(
+
+        requested => {
+
+
+            const audited =
+
+                auditedSections.find(
+
+                    section =>
+
+                        section.sectionId ===
+                        requested.sectionId
+
+                );
+
+
+            return validateWrittenSection(
+
+                audited,
+                requested
+
+            );
+
+        }
+
+    );
+
+}
 
 // =================================
 // SECTION VALIDATION
@@ -903,35 +1179,62 @@ Do not invent additional events, matches, champions, signings, retirements, nego
     }
 
 
-    requestedSections.forEach(
+        const validatedDraftSections =
 
-        requested => {
+        requestedSections.map(
 
-
-            const returned =
-
-                returnedSections.find(
-
-                    section =>
-
-                        section.sectionId ===
-                        requested.sectionId
-
-                );
+            requested => {
 
 
-            writtenSections.push(
+                const returned =
 
-                validateWrittenSection(
+                    returnedSections.find(
+
+                        section =>
+
+                            section.sectionId ===
+                            requested.sectionId
+
+                    );
+
+
+                return validateWrittenSection(
 
                     returned,
                     requested
 
-                )
+                );
 
-            );
+            }
 
-        }
+        );
+
+
+
+    const auditedSections =
+
+        await auditWrittenBatch({
+
+
+            context:
+                context,
+
+
+            requestedSections:
+                requestedSections,
+
+
+            writtenSections:
+                validatedDraftSections
+
+
+        });
+
+
+
+    writtenSections.push(
+
+        ...auditedSections
 
     );
 
