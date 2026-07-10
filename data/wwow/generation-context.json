@@ -1,12 +1,13 @@
 {
-  "generatedAt": "2026-07-08T19:45:22.693Z",
+  "generatedAt": "2026-07-10T18:04:23.629Z",
   "month": {
     "id": "2026-07",
     "label": "July 2026"
   },
   "rules": {
     "canonBoundary": "Structured database facts are canon. Analysis and opinion are allowed. Clearly labeled speculation is allowed. Never invent matches, title changes, contracts, backstage incidents, injuries, firings, signings, or future booking as fact.",
-    "historicalPerspective": "Use previous months and archived media to identify real arcs such as rises, collapses, streaks, recoveries, championship changes, and changing public perception.",
+    "historicalPerspective": "Use previous months, archived media, and frozen world snapshots to identify real arcs such as rises, collapses, streaks, recoveries, championship changes, rankings movement, and changing public perception.",
+    "snapshotUse": "worldHistoryMemory contains frozen prior month-end facts. Rankings, records, title status, and title transitions may be treated as historical fact. Innanet sentiment is public reaction. Do not invent an unrecorded reason for why a rise or collapse happened.",
     "innanetUse": "Innanet posts represent public reaction and opinion. They may be quoted or summarized as public sentiment but must never be treated as proof of factual backstage events.",
     "koMeaning": "A recorded KO is rare and symbolically represents injury-level damage in OWL. Treat it as major without inventing medical details or recovery time."
   },
@@ -14,7 +15,7 @@
     "eventCount": 3,
     "matchCount": 3,
     "titleChangeCount": 2,
-    "innanetPostCount": 13
+    "innanetPostCount": 37
   },
   "events": [
     {
@@ -542,6 +543,305 @@
       }
     ]
   },
+  "worldHistoryMemory": {
+    "source": "frozen-monthly-world-snapshots",
+    "cutoffBeforeMonth": "2026-07",
+    "months": [],
+    "entityHistories": [],
+    "companyHistory": [],
+    "usageRules": {
+      "facts": "Frozen snapshot records, ranks, championships, and title changes are historical facts.",
+      "sentiment": "Snapshot sentiment summarizes archived Innanet reaction and should be described as public reaction, not objective fact.",
+      "causes": "History can prove that a rise, fall, streak, title transition, or perception shift happened. Never invent an unrecorded cause for it."
+    }
+  },
+  "landscapeWorld": {
+    "periodId": "2026-07",
+    "rules": {
+      "canonBoundary": "Landscape events, rankings, awards, champion changes, explicit universe notes, and Bragging Rights results supplied here are canon.",
+      "competitionLayers": [
+        "Promotion Power Rankings",
+        "Show Power Rankings",
+        "Monthly Major Event Battle",
+        "Performance Leaderboards and Records"
+      ],
+      "scoreMeaning": "Landscape Score is the official derived performance metric used to compare companies and weekly shows.",
+      "segmentRule": "Segments are story context. Segment ratings do not enter Top Matches or direct in-ring match quality scoring.",
+      "prestigeRule": "Event prestige is historical and editorial context. Prestige does not automatically add rating points.",
+      "speculationRule": "WWoW may analyze, criticize, praise, joke, and clearly speculate. It may not invent matches, results, title changes, contracts, firings, injuries, retirements, signings, backstage incidents, relationships, or quotes."
+    },
+    "summary": {
+      "companyCount": 8,
+      "weeklyShowCount": 11,
+      "landscapeEventCount": 0,
+      "majorEventCount": 0,
+      "specialEventCount": 0,
+      "rankingFrozen": false,
+      "honorsAvailable": false
+    },
+    "directory": {
+      "companies": [
+        {
+          "id": "wwe",
+          "name": "WWE",
+          "shortName": "WWE",
+          "type": "core",
+          "rankingEligible": true,
+          "braggingRightsEligible": true,
+          "shows": [
+            "wwe-raw",
+            "wwe-smackdown"
+          ]
+        },
+        {
+          "id": "nxt",
+          "name": "NXT",
+          "shortName": "NXT",
+          "type": "core",
+          "rankingEligible": true,
+          "braggingRightsEligible": true,
+          "shows": [
+            "nxt-on-cw"
+          ]
+        },
+        {
+          "id": "aew",
+          "name": "AEW",
+          "shortName": "AEW",
+          "type": "core",
+          "rankingEligible": true,
+          "braggingRightsEligible": true,
+          "shows": [
+            "aew-dynamite",
+            "aew-collision"
+          ]
+        },
+        {
+          "id": "roh",
+          "name": "ROH",
+          "shortName": "ROH",
+          "type": "core",
+          "rankingEligible": true,
+          "braggingRightsEligible": true,
+          "shows": [
+            "roh-on-honorclub"
+          ]
+        },
+        {
+          "id": "tna",
+          "name": "TNA",
+          "shortName": "TNA",
+          "type": "core",
+          "rankingEligible": true,
+          "braggingRightsEligible": true,
+          "shows": [
+            "tna-impact"
+          ]
+        },
+        {
+          "id": "cmll",
+          "name": "CMLL",
+          "shortName": "CMLL",
+          "type": "core",
+          "rankingEligible": true,
+          "braggingRightsEligible": true,
+          "shows": [
+            "cmll-super-viernes"
+          ]
+        },
+        {
+          "id": "aaa",
+          "name": "AAA",
+          "shortName": "AAA",
+          "type": "core",
+          "rankingEligible": true,
+          "braggingRightsEligible": true,
+          "shows": [
+            "aaa-lucha-libre"
+          ]
+        },
+        {
+          "id": "owl",
+          "name": "OWL",
+          "shortName": "OWL",
+          "type": "core",
+          "rankingEligible": true,
+          "braggingRightsEligible": true,
+          "shows": [
+            "owl-ascension",
+            "owl-revolt"
+          ]
+        }
+      ],
+      "shows": [
+        {
+          "id": "wwe-raw",
+          "name": "WWE Raw",
+          "shortName": "Raw",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "day": "Monday",
+          "dayOrder": 1,
+          "showOrder": 1
+        },
+        {
+          "id": "aaa-lucha-libre",
+          "name": "AAA Lucha Libre",
+          "shortName": "AAA Lucha Libre",
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "day": "Monday",
+          "dayOrder": 1,
+          "showOrder": 2
+        },
+        {
+          "id": "nxt-on-cw",
+          "name": "NXT on CW",
+          "shortName": "NXT on CW",
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "day": "Tuesday",
+          "dayOrder": 2,
+          "showOrder": 1
+        },
+        {
+          "id": "owl-ascension",
+          "name": "OWL Ascension",
+          "shortName": "Ascension",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "day": "Tuesday",
+          "dayOrder": 2,
+          "showOrder": 2
+        },
+        {
+          "id": "aew-dynamite",
+          "name": "AEW Dynamite",
+          "shortName": "Dynamite",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "day": "Wednesday",
+          "dayOrder": 3,
+          "showOrder": 1
+        },
+        {
+          "id": "owl-revolt",
+          "name": "OWL Revolt",
+          "shortName": "Revolt",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "day": "Wednesday",
+          "dayOrder": 3,
+          "showOrder": 2
+        },
+        {
+          "id": "tna-impact",
+          "name": "TNA Impact",
+          "shortName": "Impact",
+          "companyId": "tna",
+          "companyName": "TNA",
+          "day": "Thursday",
+          "dayOrder": 4,
+          "showOrder": 1
+        },
+        {
+          "id": "roh-on-honorclub",
+          "name": "ROH on HonorClub",
+          "shortName": "ROH on HonorClub",
+          "companyId": "roh",
+          "companyName": "ROH",
+          "day": "Thursday",
+          "dayOrder": 4,
+          "showOrder": 2
+        },
+        {
+          "id": "aew-collision",
+          "name": "AEW Collision",
+          "shortName": "Collision",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "day": "Thursday",
+          "dayOrder": 4,
+          "showOrder": 3
+        },
+        {
+          "id": "wwe-smackdown",
+          "name": "WWE SmackDown",
+          "shortName": "SmackDown",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "day": "Friday",
+          "dayOrder": 5,
+          "showOrder": 1
+        },
+        {
+          "id": "cmll-super-viernes",
+          "name": "CMLL Super Viernes",
+          "shortName": "Super Viernes",
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "day": "Friday",
+          "dayOrder": 5,
+          "showOrder": 2
+        }
+      ]
+    },
+    "currentCompetition": {
+      "rankingPeriod": null,
+      "previousRankingPeriod": null,
+      "monthlyHonors": null,
+      "majorEventBattle": []
+    },
+    "monthlyWorld": {
+      "events": [],
+      "topMatches": [],
+      "universeDevelopments": []
+    },
+    "championLedger": [
+      {
+        "companyId": "wwe",
+        "companyName": "WWE",
+        "titles": []
+      },
+      {
+        "companyId": "nxt",
+        "companyName": "NXT",
+        "titles": []
+      },
+      {
+        "companyId": "aew",
+        "companyName": "AEW",
+        "titles": []
+      },
+      {
+        "companyId": "roh",
+        "companyName": "ROH",
+        "titles": []
+      },
+      {
+        "companyId": "tna",
+        "companyName": "TNA",
+        "titles": []
+      },
+      {
+        "companyId": "cmll",
+        "companyName": "CMLL",
+        "titles": []
+      },
+      {
+        "companyId": "aaa",
+        "companyName": "AAA",
+        "titles": []
+      },
+      {
+        "companyId": "owl",
+        "companyName": "OWL",
+        "titles": []
+      }
+    ],
+    "braggingRights": null,
+    "recentRankingHistory": []
+  },
   "historicalRecords": [
     {
       "wrestlerId": "zee-allmighty",
@@ -601,8 +901,63 @@
     }
   ],
   "innanetMemory": {
-    "totalPosts": 13,
+    "totalPosts": 37,
     "highestEngagementPosts": [
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-15",
+        "accountName": "Levi Martín",
+        "handle": "@levimartin",
+        "type": "wrestler-post",
+        "body": "Disappointed with the result tonight, but I'll come back stronger. Congrats to Zee on the win. We’ll see what’s next. #NeverGiveUp #OWL",
+        "likes": 350,
+        "reposts": 90,
+        "replies": 25
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-15",
+        "accountName": "Ascension Addict",
+        "handle": "@AscensionAddict",
+        "type": "fan-post",
+        "body": "**ZEE ALLMIGHTY IS UNSTOPPABLE!**✨ What a display of talent tonight! Can't wait to see how he builds on this victory. Let's go, champ! #AllmightyEra #ChampionsRise",
+        "likes": 200,
+        "reposts": 55,
+        "replies": 30
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-08",
+        "accountName": "Zee Allmighty",
+        "handle": "@zeeallmighty",
+        "type": "wrestler-post",
+        "body": "I may have lost tonight, but I'm not done yet. The fight continues and next time I’ll come back stronger! 💪 #AllmightyWillRise",
+        "likes": 200,
+        "reposts": 50,
+        "replies": 30
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-15",
+        "accountName": "OWL Stats",
+        "handle": "@OWLStats",
+        "type": "stats-post",
+        "body": "Zee Allmighty successfully defended the OWL World Championship tonight at Ascension, scored a pinfall victory against Levi Martín in a thrilling Triple Threat match rated 4.75 stars! #OWLStats #ChampionshipDefense",
+        "likes": 150,
+        "reposts": 45,
+        "replies": 12
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-15",
+        "accountName": "Ascension Addict",
+        "handle": "@AscensionAddict",
+        "type": "fan-post",
+        "body": "OMG, did you see how Zee played both Dorian and Levi against each other? Pure genius! This guy is NEXT LEVEL! 💥 Can’t wait for what comes next! #AllmightyEra #FutureIsBright",
+        "likes": 200,
+        "reposts": 18,
+        "replies": 10
+      },
       {
         "eventName": "Ascension",
         "date": "2026-07-01",
@@ -613,6 +968,17 @@
         "likes": 120,
         "reposts": 45,
         "replies": 3
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-15",
+        "accountName": "Levi Martín",
+        "handle": "@levimartin",
+        "type": "wrestler-post",
+        "body": "Tonight was tough. I gave it my all, but it wasn't enough this time. Congrats to Zee! I’ll be back with a vengeance! #KeepPushing #OWLFamily",
+        "likes": 150,
+        "reposts": 12,
+        "replies": 20
       },
       {
         "eventName": "Ascension",
@@ -638,6 +1004,28 @@
       },
       {
         "eventName": "Ascension",
+        "date": "2026-07-15",
+        "accountName": "Zee Allmighty",
+        "handle": "@zeeallmighty",
+        "type": "wrestler-post",
+        "body": "Showed up, showed out, and made it count. If you think I'm done here, you're in for a surprise! 💪🏆#AllmightyEra",
+        "likes": 120,
+        "reposts": 25,
+        "replies": 8
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-15",
+        "accountName": "Workrate Wonk",
+        "handle": "@WorkrateWonk",
+        "type": "opinion",
+        "body": "\"4.75 stars? For a match that had Dorian Atlas stumbling around like he forgot his lines? Come on! Zee Allmighty did his thing, but let’s be honest: Atlas's flops held the match back. #WorkrateMatters\"",
+        "likes": 102,
+        "reposts": 8,
+        "replies": 15
+      },
+      {
+        "eventName": "Ascension",
         "date": "2026-07-01",
         "accountName": "The Grapevine",
         "handle": "@TheGrapevine",
@@ -649,6 +1037,17 @@
       },
       {
         "eventName": "Ascension",
+        "date": "2026-07-15",
+        "accountName": "Asshole Fan 32",
+        "handle": "@assholefan32",
+        "type": "fan-post",
+        "body": "Why do people keep pretending Atlas has any value left? It’s like watching an empty suit in the ring. 😂 #JobberAlert #DorianTheJobber",
+        "likes": 90,
+        "reposts": 3,
+        "replies": 25
+      },
+      {
+        "eventName": "Ascension",
         "date": "2026-07-01",
         "accountName": "Ascension Addict",
         "handle": "@AscensionAddict",
@@ -657,6 +1056,28 @@
         "likes": 82,
         "reposts": 24,
         "replies": 5
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-15",
+        "accountName": "Asshole Fan 32",
+        "handle": "@assholefan32",
+        "type": "fan-post",
+        "body": "LOL, Dorian Atlas is officially the king of jobbers now! You hold the title for a month and then lose it like that? What a choke! #JobberAtlas #AscensionSucks",
+        "likes": 80,
+        "reposts": 20,
+        "replies": 5
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-08",
+        "accountName": "Asshole Fan 32",
+        "handle": "@assholefan32",
+        "type": "fan-post",
+        "body": "Congrats to Levi Martín for choking out Zee Allmighty! Just kidding, that's how you get submitted in REAL wrestling 🤣 #NoGutsNoGlory #TrueNorthElite",
+        "likes": 45,
+        "reposts": 20,
+        "replies": 10
       },
       {
         "eventName": "Ascension",
@@ -682,6 +1103,17 @@
       },
       {
         "eventName": "Ascension",
+        "date": "2026-07-15",
+        "accountName": "OWL Stats",
+        "handle": "@OWLStats",
+        "type": "stats-post",
+        "body": "Official records confirm: Zee Allmighty now holds a 2-1 record for July and maintains his OWL World Championship with a successful defense against Levi Martín and Dorian Atlas. #OWLStats #CurrentChampion",
+        "likes": 78,
+        "reposts": 5,
+        "replies": 8
+      },
+      {
+        "eventName": "Ascension",
         "date": "2026-07-01",
         "accountName": "Asshole Fan 32",
         "handle": "@assholefan32",
@@ -689,6 +1121,17 @@
         "body": "Dorian Atlas just proved he's not cut out for the big leagues. Losing the OWL World Championship right after winning it? Classic choke job! 😂 #ForeverAJobber #DisappointedFan",
         "likes": 60,
         "reposts": 5,
+        "replies": 8
+      },
+      {
+        "eventName": "Ascension",
+        "date": "2026-07-15",
+        "accountName": "Workrate Wonk",
+        "handle": "@WorkrateWonk",
+        "type": "opinion",
+        "body": "\"4.75 stars? Really? While I agree Zee Allmighty put on a solid show, it was more about Dorian Atlas's decline than anything else. Why are we pretending Atlas ever had a chance? #WorkrateMatters\"",
+        "likes": 50,
+        "reposts": 10,
         "replies": 8
       },
       {
@@ -704,6 +1147,17 @@
       },
       {
         "eventName": "Ascension",
+        "date": "2026-07-08",
+        "accountName": "Ascension Addict",
+        "handle": "@AscensionAddict",
+        "type": "fan-post",
+        "body": "**TRUE NORTH ELITE IS A FORCE!!!** 🔥💥 Levi Martín and Connor Canada are crushing the competition! Can’t wait to see them defend their titles! #TrueNorthStrong #AscensionPride",
+        "likes": 40,
+        "reposts": 15,
+        "replies": 6
+      },
+      {
+        "eventName": "Ascension",
         "date": "2026-07-01",
         "accountName": "OWL Stats",
         "handle": "@OWLStats",
@@ -715,36 +1169,14 @@
       },
       {
         "eventName": "Ascension",
-        "date": "2026-07-01",
+        "date": "2026-07-15",
         "accountName": "Workrate Wonk",
         "handle": "@WorkrateWonk",
         "type": "opinion",
-        "body": "The match between Zee Allmighty and Dorian Atlas was rated 91, but I can't help but feel it was more about Atlas's decline than Allmighty's rise. Was it really that great? 🤔 #WorkrateMatters #JustSaying",
+        "body": "Zee Allmighty might be the champ, but let's not forget it's been a rough couple of weeks for him until now. Sure, winning is everything, but a 4.75 star match shouldn’t have *that* many blunders. #JustSaying #WorkrateMatters",
         "likes": 45,
-        "reposts": 12,
-        "replies": 2
-      },
-      {
-        "eventName": "Ascension",
-        "date": "2026-07-01",
-        "accountName": "The Grapevine",
-        "handle": "@TheGrapevine",
-        "type": "rumor",
-        "body": "Hearing some whispers that the pressure on Dorian Atlas is mounting after this shocking loss. Could we see him reassess his strategy moving forward? 🤔 #Speculation #DorianAtlasReturn",
-        "likes": 50,
-        "reposts": 10,
-        "replies": 0
-      },
-      {
-        "eventName": "Ascension",
-        "date": "2026-07-01",
-        "accountName": "Workrate Wonk",
-        "handle": "@WorkrateWonk",
-        "type": "opinion",
-        "body": "The match with Zee Allmighty vs. Dorian Atlas got a rating of 91 and is being hyped everywhere, but let's be real: it's more about Atlas's downfall than Allmighty's skills. How did we get here? 🤷‍♂️ #MatchQualityMatters",
-        "likes": 40,
-        "reposts": 10,
-        "replies": 1
+        "reposts": 5,
+        "replies": 12
       }
     ]
   },
