@@ -126,7 +126,10 @@ jobs:
           echo "Pending Landscape pulses: $COUNT"
 
 
-      - name: Generate Landscape Pulse posts
+            - name: Generate Landscape Pulse posts
+
+        id:
+          generate
 
         if: >
 
@@ -151,13 +154,13 @@ jobs:
           node scripts/write-landscape-pulse-posts.mjs
 
 
-      - name: Refresh Landscape Pulse queue
+            - name: Refresh Landscape Pulse queue
 
         if: >
 
-          always() &&
+          steps.queue.outputs.count != '0' &&
 
-          steps.queue.outputs.count != '0'
+          steps.generate.outcome == 'success'
 
         run: |
 
