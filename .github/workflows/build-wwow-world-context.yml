@@ -1,0 +1,212 @@
+name: Build WWoW World Context
+
+
+on:
+
+  workflow_dispatch:
+
+    inputs:
+
+      target_month:
+
+        description: "Month to build in YYYY-MM format"
+
+        required: true
+
+        default: "2026-07"
+
+        type: string
+
+
+permissions:
+
+  contents:
+    write
+
+
+jobs:
+
+  build-world-context:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+      - name: Check out repository
+
+        uses: actions/checkout@v4
+
+        with:
+
+          ref: main
+
+
+      - name: Set up Node
+
+        uses: actions/setup-node@v4
+
+        with:
+
+          node-version: "20"
+
+
+      - name: Build WWoW world context
+
+        env:
+
+          TARGET_MONTH: ${{ inputs.target_month }}
+
+        run: |
+
+          node scripts/build-wwow-context.mjs
+
+
+      - name: Validate Landscape world package
+
+        run: |
+
+          node -e "
+
+            const fs = require('fs');
+
+            const context = JSON.parse(
+
+              fs.readFileSync(
+
+                'data/wwow/generation-context.json',
+
+                'utf8'
+
+              )
+
+            );
+
+
+            if (!context.landscapeWorld) {
+
+              throw new Error(
+
+                'landscapeWorld package is missing.'
+
+              );
+
+            }
+
+
+            if (
+
+              !Array.isArray(
+
+                context.landscapeWorld
+                  ?.directory
+                  ?.companies
+
+              )
+
+            ) {
+
+              throw new Error(
+
+                'Landscape company directory is missing.'
+
+              );
+
+            }
+
+
+            if (
+
+              !Array.isArray(
+
+                context.landscapeWorld
+                  ?.directory
+                  ?.shows
+
+              )
+
+            ) {
+
+              throw new Error(
+
+                'Landscape show directory is missing.'
+
+              );
+
+            }
+
+
+            console.log(
+
+              'WWoW Landscape company count:',
+
+              context.landscapeWorld
+                .directory
+                .companies
+                .length
+
+            );
+
+
+            console.log(
+
+              'WWoW Landscape weekly show count:',
+
+              context.landscapeWorld
+                .directory
+                .shows
+                .length
+
+            );
+
+
+            console.log(
+
+              'WWoW Landscape event count:',
+
+              context.landscapeWorld
+                .summary
+                .landscapeEventCount
+
+            );
+
+
+            console.log(
+
+              'WWoW ranking frozen:',
+
+              context.landscapeWorld
+                .summary
+                .rankingFrozen
+
+            );
+
+          "
+
+
+      - name: Commit refreshed WWoW context
+
+        run: |
+
+          git add data/wwow/generation-context.json
+
+
+          if git diff --cached --quiet; then
+
+            echo "No WWoW context changes to commit."
+
+            exit 0
+
+          fi
+
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          git commit \
+            -m "Update WWoW world context"
+
+
+          git push
