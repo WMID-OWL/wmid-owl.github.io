@@ -2808,12 +2808,36 @@
                 });
 
 
-            syncEditionOutcome(
+                        syncEditionOutcome(
                 edition
             );
 
 
+            if (
+                edition.status ===
+                "complete"
+            ) {
+
+
+                refreshHistorySummary();
+
+            }
+
+
             await persistCurrentEdition();
+
+
+            if (
+                edition.status ===
+                "complete"
+            ) {
+
+
+                await syncSpecialEventRecord(
+                    edition
+                );
+
+            }
 
 
             renderEdition(
