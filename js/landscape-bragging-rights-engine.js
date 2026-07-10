@@ -2037,7 +2037,1482 @@
     }
 
 
+    // =================================
+    // TOURNAMENT MATCH COLLECTION
+    // =================================
 
+
+    function tournamentMatchesForDivision(
+        division,
+        bracket
+    ) {
+
+
+        const matches =
+            [];
+
+
+        if (
+            !bracket
+        ) {
+
+
+            return matches;
+
+        }
+
+
+        ROUND_ORDER.forEach(
+
+            roundKey => {
+
+
+                const roundMatches =
+
+                    bracket
+                        ?.rounds
+                        ?.[roundKey]
+
+                    ||
+
+                    [];
+
+
+                roundMatches.forEach(
+
+                    (
+                        match,
+                        index
+                    ) => {
+
+
+                        const winner =
+
+                            winnerFromMatch(
+                                match
+                            );
+
+
+                        const loser =
+
+                            loserFromMatch(
+                                match
+                            );
+
+
+                        matches.push({
+
+
+                            division:
+                                division,
+
+
+                            roundKey:
+                                roundKey,
+
+
+                            roundLabel:
+
+                                roundLabel(
+                                    roundKey
+                                ),
+
+
+                            matchNumber:
+                                index + 1,
+
+
+                            matchId:
+                                match.matchId,
+
+
+                            entrantA:
+                                match.entrantA,
+
+
+                            entrantB:
+                                match.entrantB,
+
+
+                            winnerEntrantId:
+                                match.winnerEntrantId,
+
+
+                            winner:
+                                winner,
+
+
+                            loser:
+                                loser,
+
+
+                            rating:
+                                match.rating,
+
+
+                            resultText:
+                                match.resultText
+
+                        });
+
+                    }
+
+                );
+
+            }
+
+        );
+
+
+        return matches;
+
+    }
+
+
+
+    function allTournamentMatches(
+        edition
+    ) {
+
+
+        return [
+
+
+            ...tournamentMatchesForDivision(
+
+                "Men",
+
+                edition
+                    ?.men
+                    ?.bracket
+
+            ),
+
+
+            ...tournamentMatchesForDivision(
+
+                "Women",
+
+                edition
+                    ?.women
+                    ?.bracket
+
+            )
+
+
+        ];
+
+    }
+
+
+
+    function averageMatchRating(
+        matches
+    ) {
+
+
+        const ratings =
+
+            matches
+
+                .map(
+
+                    match =>
+
+                        Number(
+                            match.rating
+                        )
+
+                )
+
+                .filter(
+
+                    rating =>
+
+                        Number.isFinite(
+                            rating
+                        )
+
+                );
+
+
+        if (
+            ratings.length === 0
+        ) {
+
+
+            return null;
+
+        }
+
+
+        return (
+
+            ratings.reduce(
+
+                (
+                    total,
+                    rating
+                ) =>
+
+                    total + rating,
+
+                0
+
+            )
+
+            /
+
+            ratings.length
+
+        );
+
+    }
+
+
+
+    // =================================
+    // LANDSCAPE SPECIAL EVENT RECORD
+    // =================================
+
+
+    function buildSpecialEventRecord(
+        edition
+    ) {
+
+
+        if (
+
+            !edition
+                ?.men
+                ?.bracket
+                ?.winner
+
+            ||
+
+            !edition
+                ?.women
+                ?.bracket
+                ?.winner
+        ) {
+
+
+            throw new Error(
+
+                "Both Bragging Rights tournaments must be complete before the special event can be created."
+
+            );
+
+        }
+
+
+        const matches =
+
+            allTournamentMatches(
+                edition
+            );
+
+
+        const completedMatches =
+
+            matches.filter(
+
+                match =>
+
+                    match.winner
+
+                    &&
+
+                    Number.isFinite(
+                        Number(
+                            match.rating
+                        )
+                    )
+
+                    &&
+
+                    String(
+                        match.resultText || ""
+                    )
+                        .trim()
+
+            );
+
+
+        if (
+            completedMatches.length !== 30
+        ) {
+
+
+            throw new Error(
+
+                `Bragging Rights requires 30 completed tournament matches. Found ${completedMatches.length}.`
+
+            );
+
+        }
+
+
+        const overallRating =
+
+            averageMatchRating(
+                completedMatches
+            );
+
+
+        return {
+
+
+            id:
+
+                `bragging-rights-${edition.year}`,
+
+
+            periodId:
+                edition.eventPeriodId,
+
+
+            stage:
+                "special-event",
+
+
+            eventType:
+                "special-event",
+
+
+            companyId:
+                "",
+
+
+            showId:
+                "",
+
+
+            eventName:
+                "BRAGGING RIGHTS",
+
+
+            overallRating:
+
+                overallRating === null
+
+                    ? null
+
+                    : Number(
+                        overallRating.toFixed(
+                            2
+                        )
+                    ),
+
+
+            ratingSource:
+                "tournament-match-average",
+
+
+            location:
+                null,
+
+
+            matches:
+
+                completedMatches.map(
+
+                    match => ({
+
+
+                        id:
+
+                            `bragging-rights-${edition.year}-${match.division.toLowerCase()}-${match.roundKey}-${match.matchId}`,
+
+
+                        matchType:
+                            "tournament-match",
+
+
+                        division:
+                            match.division,
+
+
+                        tournamentRound:
+                            match.roundLabel,
+
+
+                        resultText:
+                            match.resultText,
+
+
+                        rating:
+
+                            Number(
+                                match.rating
+                            )
+
+                    })
+
+                ),
+
+
+            segments:
+                [],
+
+
+            universeNotes:
+
+                `Men's Champion: ${edition.men.bracket.winner.wrestlerName} (${edition.men.bracket.winner.companyName}). Women's Champion: ${edition.women.bracket.winner.wrestlerName} (${edition.women.bracket.winner.companyName}).`,
+
+
+            generatedFrom:
+                "bragging-rights",
+
+
+            generatedAt:
+
+                new Date()
+                    .toISOString()
+
+        };
+
+    }
+
+
+
+    // =================================
+    // HISTORY STAT HELPERS
+    // =================================
+
+
+    function getOrCreateWrestlerStat(
+        map,
+        entrant
+    ) {
+
+
+        const key =
+
+            `${entrant.companyId}::${entrant.wrestlerName}`;
+
+
+        if (
+            !map.has(
+                key
+            )
+        ) {
+
+
+            map.set(
+
+                key,
+
+                {
+
+
+                    wrestlerName:
+                        entrant.wrestlerName,
+
+
+                    companyId:
+                        entrant.companyId,
+
+
+                    companyName:
+                        entrant.companyName,
+
+
+                    source:
+                        entrant.source,
+
+
+                    appearances:
+                        0,
+
+
+                    tournamentWins:
+                        0,
+
+
+                    finalAppearances:
+                        0,
+
+
+                    semifinalAppearances:
+                        0,
+
+
+                    matchWins:
+                        0,
+
+
+                    matchLosses:
+                        0,
+
+
+                    currentWinStreak:
+                        0,
+
+
+                    longestWinStreak:
+                        0
+
+                }
+
+            );
+
+        }
+
+
+        return map.get(
+            key
+        );
+
+    }
+
+
+
+    function getOrCreateCompanyStat(
+        map,
+        entrant
+    ) {
+
+
+        const key =
+            entrant.companyId;
+
+
+        if (
+            !map.has(
+                key
+            )
+        ) {
+
+
+            map.set(
+
+                key,
+
+                {
+
+
+                    companyId:
+                        entrant.companyId,
+
+
+                    companyName:
+                        entrant.companyName,
+
+
+                    entries:
+                        0,
+
+
+                    tournamentWins:
+                        0,
+
+
+                    finalAppearances:
+                        0,
+
+
+                    semifinalAppearances:
+                        0,
+
+
+                    matchWins:
+                        0
+
+                }
+
+            );
+
+        }
+
+
+        return map.get(
+            key
+        );
+
+    }
+
+
+
+    // =================================
+    // DIVISION HISTORY
+    // =================================
+
+
+    function buildDivisionHistory(
+        editions,
+        divisionKey
+    ) {
+
+
+        const wrestlerMap =
+            new Map();
+
+
+        const companyMap =
+            new Map();
+
+
+        const yearly =
+            [];
+
+
+        const bestRatedMatches =
+            [];
+
+
+        const guestPerformances =
+            [];
+
+
+
+        editions
+
+            .filter(
+
+                edition =>
+
+                    edition
+                        ?.[divisionKey]
+                        ?.bracket
+
+            )
+
+            .sort(
+
+                (
+                    a,
+                    b
+                ) =>
+
+                    String(
+                        a.year
+                    )
+
+                        .localeCompare(
+
+                            String(
+                                b.year
+                            )
+
+                        )
+
+            )
+
+            .forEach(
+
+                edition => {
+
+
+                    const divisionData =
+
+                        edition[
+                            divisionKey
+                        ];
+
+
+                    const bracket =
+
+                        divisionData
+                            .bracket;
+
+
+                    const divisionName =
+
+                        divisionKey ===
+                        "men"
+
+                            ? "Men"
+
+                            : "Women";
+
+
+                    const entrants =
+
+                        bracket.entrants
+
+                        ||
+
+                        divisionData.entrants
+
+                        ||
+
+                        [];
+
+
+                    entrants.forEach(
+
+                        entrant => {
+
+
+                            const wrestlerStat =
+
+                                getOrCreateWrestlerStat(
+
+                                    wrestlerMap,
+                                    entrant
+
+                                );
+
+
+                            wrestlerStat.appearances +=
+                                1;
+
+
+                            const companyStat =
+
+                                getOrCreateCompanyStat(
+
+                                    companyMap,
+                                    entrant
+
+                                );
+
+
+                            companyStat.entries +=
+                                1;
+
+                        }
+
+                    );
+
+
+
+                    const semifinalEntrants =
+
+                        (
+
+                            bracket
+                                ?.rounds
+                                ?.semifinals
+
+                            ||
+
+                            []
+
+                        )
+
+                            .flatMap(
+
+                                match => [
+
+                                    match.entrantA,
+                                    match.entrantB
+
+                                ]
+
+                            );
+
+
+                    semifinalEntrants.forEach(
+
+                        entrant => {
+
+
+                            getOrCreateWrestlerStat(
+
+                                wrestlerMap,
+                                entrant
+
+                            )
+                                .semifinalAppearances +=
+                                1;
+
+
+                            getOrCreateCompanyStat(
+
+                                companyMap,
+                                entrant
+
+                            )
+                                .semifinalAppearances +=
+                                1;
+
+                        }
+
+                    );
+
+
+
+                    const finalMatch =
+
+                        bracket
+                            ?.rounds
+                            ?.final
+                            ?.[0]
+
+                        ||
+
+                        null;
+
+
+                    if (
+                        finalMatch
+                    ) {
+
+
+                        [
+
+                            finalMatch.entrantA,
+                            finalMatch.entrantB
+
+                        ]
+
+                            .forEach(
+
+                                entrant => {
+
+
+                                    getOrCreateWrestlerStat(
+
+                                        wrestlerMap,
+                                        entrant
+
+                                    )
+                                        .finalAppearances +=
+                                        1;
+
+
+                                    getOrCreateCompanyStat(
+
+                                        companyMap,
+                                        entrant
+
+                                    )
+                                        .finalAppearances +=
+                                        1;
+
+                                }
+
+                            );
+
+                    }
+
+
+
+                    const matches =
+
+                        tournamentMatchesForDivision(
+
+                            divisionName,
+                            bracket
+
+                        );
+
+
+                    matches.forEach(
+
+                        match => {
+
+
+                            if (
+                                !match.winner
+
+                                ||
+
+                                !match.loser
+                            ) {
+
+
+                                return;
+
+                            }
+
+
+                            const winnerStat =
+
+                                getOrCreateWrestlerStat(
+
+                                    wrestlerMap,
+                                    match.winner
+
+                                );
+
+
+                            const loserStat =
+
+                                getOrCreateWrestlerStat(
+
+                                    wrestlerMap,
+                                    match.loser
+
+                                );
+
+
+                            winnerStat.matchWins +=
+                                1;
+
+
+                            winnerStat.currentWinStreak +=
+                                1;
+
+
+                            winnerStat.longestWinStreak =
+
+                                Math.max(
+
+                                    winnerStat.longestWinStreak,
+
+                                    winnerStat.currentWinStreak
+
+                                );
+
+
+                            loserStat.matchLosses +=
+                                1;
+
+
+                            loserStat.currentWinStreak =
+                                0;
+
+
+                            getOrCreateCompanyStat(
+
+                                companyMap,
+                                match.winner
+
+                            )
+                                .matchWins +=
+                                1;
+
+
+
+                            const rating =
+
+                                Number(
+                                    match.rating
+                                );
+
+
+                            if (
+                                Number.isFinite(
+                                    rating
+                                )
+                            ) {
+
+
+                                bestRatedMatches.push({
+
+
+                                    year:
+                                        String(
+                                            edition.year
+                                        ),
+
+
+                                    division:
+                                        divisionName,
+
+
+                                    round:
+                                        match.roundLabel,
+
+
+                                    resultText:
+                                        match.resultText,
+
+
+                                    rating:
+                                        rating
+
+                                });
+
+                            }
+
+                        }
+
+                    );
+
+
+
+                    if (
+                        bracket.winner
+                    ) {
+
+
+                        getOrCreateWrestlerStat(
+
+                            wrestlerMap,
+                            bracket.winner
+
+                        )
+                            .tournamentWins +=
+                            1;
+
+
+                        getOrCreateCompanyStat(
+
+                            companyMap,
+                            bracket.winner
+
+                        )
+                            .tournamentWins +=
+                            1;
+
+                    }
+
+
+
+                    yearly.push({
+
+
+                        year:
+                            String(
+                                edition.year
+                            ),
+
+
+                        winner:
+                            bracket.winner,
+
+
+                        finalist:
+                            bracket.finalist,
+
+
+                        bestRatedMatch:
+
+                            matches
+
+                                .filter(
+
+                                    match =>
+
+                                        Number.isFinite(
+
+                                            Number(
+                                                match.rating
+                                            )
+
+                                        )
+
+                                )
+
+                                .sort(
+
+                                    (
+                                        a,
+                                        b
+                                    ) =>
+
+                                        Number(
+                                            b.rating
+                                        )
+
+                                        -
+
+                                        Number(
+                                            a.rating
+                                        )
+
+                                )[0]
+
+                            ||
+
+                            null
+
+                    });
+
+
+
+                    entrants
+
+                        .filter(
+
+                            entrant =>
+
+                                entrant.source ===
+                                "guest"
+
+                        )
+
+                        .forEach(
+
+                            entrant => {
+
+
+                                let deepestRound =
+                                    "Round of 16";
+
+
+                                let depth =
+                                    1;
+
+
+                                if (
+
+                                    (
+
+                                        bracket
+                                            ?.rounds
+                                            ?.quarterfinals
+
+                                        ||
+
+                                        []
+
+                                    )
+
+                                        .some(
+
+                                            match =>
+
+                                                match.entrantA.entrantId ===
+                                                entrant.entrantId
+
+                                                ||
+
+                                                match.entrantB.entrantId ===
+                                                entrant.entrantId
+
+                                        )
+                                ) {
+
+
+                                    deepestRound =
+                                        "Quarterfinals";
+
+
+                                    depth =
+                                        2;
+
+                                }
+
+
+                                if (
+
+                                    (
+
+                                        bracket
+                                            ?.rounds
+                                            ?.semifinals
+
+                                        ||
+
+                                        []
+
+                                    )
+
+                                        .some(
+
+                                            match =>
+
+                                                match.entrantA.entrantId ===
+                                                entrant.entrantId
+
+                                                ||
+
+                                                match.entrantB.entrantId ===
+                                                entrant.entrantId
+
+                                        )
+                                ) {
+
+
+                                    deepestRound =
+                                        "Semifinals";
+
+
+                                    depth =
+                                        3;
+
+                                }
+
+
+                                if (
+
+                                    finalMatch
+
+                                    &&
+
+                                    (
+
+                                        finalMatch.entrantA.entrantId ===
+                                        entrant.entrantId
+
+                                        ||
+
+                                        finalMatch.entrantB.entrantId ===
+                                        entrant.entrantId
+
+                                    )
+                                ) {
+
+
+                                    deepestRound =
+                                        "Final";
+
+
+                                    depth =
+                                        4;
+
+                                }
+
+
+                                if (
+
+                                    bracket.winner
+                                        ?.entrantId
+
+                                    ===
+
+                                    entrant.entrantId
+                                ) {
+
+
+                                    deepestRound =
+                                        "Champion";
+
+
+                                    depth =
+                                        5;
+
+                                }
+
+
+                                guestPerformances.push({
+
+
+                                    year:
+                                        String(
+                                            edition.year
+                                        ),
+
+
+                                    wrestlerName:
+                                        entrant.wrestlerName,
+
+
+                                    companyId:
+                                        entrant.companyId,
+
+
+                                    companyName:
+                                        entrant.companyName,
+
+
+                                    deepestRound:
+                                        deepestRound,
+
+
+                                    depth:
+                                        depth
+
+                                });
+
+                            }
+
+                        );
+
+                }
+
+            );
+
+
+
+        const wrestlerStats =
+
+            [
+
+                ...wrestlerMap.values()
+
+            ]
+
+                .sort(
+
+                    (
+                        a,
+                        b
+                    ) =>
+
+                        b.tournamentWins
+                        -
+                        a.tournamentWins
+
+                        ||
+
+                        b.matchWins
+                        -
+                        a.matchWins
+
+                        ||
+
+                        b.longestWinStreak
+                        -
+                        a.longestWinStreak
+
+                );
+
+
+        const companyStats =
+
+            [
+
+                ...companyMap.values()
+
+            ]
+
+                .sort(
+
+                    (
+                        a,
+                        b
+                    ) =>
+
+                        b.tournamentWins
+                        -
+                        a.tournamentWins
+
+                        ||
+
+                        b.matchWins
+                        -
+                        a.matchWins
+
+                );
+
+
+        bestRatedMatches.sort(
+
+            (
+                a,
+                b
+            ) =>
+
+                b.rating
+                -
+                a.rating
+
+        );
+
+
+        guestPerformances.sort(
+
+            (
+                a,
+                b
+            ) =>
+
+                b.depth
+                -
+                a.depth
+
+        );
+
+
+        return {
+
+
+            yearly:
+                yearly,
+
+
+            wrestlerStats:
+                wrestlerStats,
+
+
+            companyStats:
+                companyStats,
+
+
+            bestRatedMatches:
+
+                bestRatedMatches.slice(
+                    0,
+                    25
+                ),
+
+
+            notableGuestPerformances:
+
+                guestPerformances.slice(
+                    0,
+                    25
+                )
+
+        };
+
+    }
+
+
+
+    // =================================
+    // FULL HISTORY SUMMARY
+    // =================================
+
+
+    function buildHistory(
+        editions
+    ) {
+
+
+        const completedEditions =
+
+            (
+
+                editions
+
+                ||
+
+                []
+
+            )
+
+                .filter(
+
+                    edition =>
+
+                        edition
+                            ?.men
+                            ?.bracket
+                            ?.winner
+
+                        &&
+
+                        edition
+                            ?.women
+                            ?.bracket
+                            ?.winner
+
+                );
+
+
+        return {
+
+
+            updatedAt:
+
+                new Date()
+                    .toISOString(),
+
+
+            editionsCompleted:
+                completedEditions.length,
+
+
+            men:
+
+                buildDivisionHistory(
+
+                    completedEditions,
+                    "men"
+
+                ),
+
+
+            women:
+
+                buildDivisionHistory(
+
+                    completedEditions,
+                    "women"
+
+                )
+
+        };
+
+    }
+    
     // =================================
     // PUBLIC API
     // =================================
@@ -2097,7 +3572,25 @@
         recordMatchResult,
 
 
-        bracketProgress
+                bracketProgress,
+
+
+        tournamentMatchesForDivision,
+
+
+        allTournamentMatches,
+
+
+        averageMatchRating,
+
+
+        buildSpecialEventRecord,
+
+
+        buildDivisionHistory,
+
+
+        buildHistory
 
     };
 
