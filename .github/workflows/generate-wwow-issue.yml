@@ -144,8 +144,8 @@ jobs:
           WWOW_MODEL:
             openai/gpt-4o-mini
 
-          WWOW_REQUEST_GAP_MS:
-            "20000"
+           WWOW_REQUEST_GAP_MS:
+            "30000"
 
 
         run: |
