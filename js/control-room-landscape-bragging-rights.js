@@ -2172,7 +2172,129 @@
     }
 
 
+    // =================================
+    // HISTORY SUMMARY
+    // =================================
 
+
+    function refreshHistorySummary() {
+
+
+        state.data.history =
+
+            window
+                .LandscapeBraggingRightsEngine
+                .buildHistory(
+
+                    state.data.editions
+
+                );
+
+    }
+
+
+
+    // =================================
+    // SPECIAL EVENT SYNC
+    // =================================
+
+
+    async function syncSpecialEventRecord(
+        edition
+    ) {
+
+
+        const eventRecord =
+
+            window
+                .LandscapeBraggingRightsEngine
+                .buildSpecialEventRecord(
+
+                    edition
+
+                );
+
+
+        state.eventsData.events =
+
+            state.eventsData.events
+
+                .filter(
+
+                    event =>
+
+                        event.id !==
+                        eventRecord.id
+
+                );
+
+
+        state.eventsData.events.push(
+            eventRecord
+        );
+
+
+        state.eventsData.events.sort(
+
+            (
+                a,
+                b
+            ) => {
+
+
+                const periodCompare =
+
+                    String(
+                        a.periodId || ""
+                    )
+
+                        .localeCompare(
+
+                            String(
+                                b.periodId || ""
+                            )
+
+                        );
+
+
+                if (
+                    periodCompare !==
+                    0
+                ) {
+
+
+                    return periodCompare;
+
+                }
+
+
+                return String(
+                    a.id || ""
+                )
+
+                    .localeCompare(
+
+                        String(
+                            b.id || ""
+                        )
+
+                    );
+
+            }
+
+        );
+
+
+        await writeJson(
+
+            "events.json",
+
+            state.eventsData
+
+        );
+
+    }
+    
     // =================================
     // SAVE FIELD
     // =================================
