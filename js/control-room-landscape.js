@@ -2574,7 +2574,7 @@
               periodId
           });
 
-      const rankingsData =
+            const rankingsData =
         await readJson(
           "rankings.json"
         );
@@ -2582,6 +2582,11 @@
       const archiveData =
         await readJson(
           "archive-index.json"
+        );
+
+      const awardsData =
+        await readJson(
+          "awards.json"
         );
 
       rankingsData.scoreVersion =
@@ -2631,7 +2636,89 @@
           .at(-1)
           ?.periodId ||
         "";
+      // =================================
+      // CALCULATE MONTHLY HONORS
+      // =================================
 
+      awardsData.monthly =
+        Array.isArray(
+          awardsData.monthly
+        )
+          ? awardsData.monthly
+          : [];
+
+      awardsData.yearly =
+        Array.isArray(
+          awardsData.yearly
+        )
+          ? awardsData.yearly
+          : [];
+
+      const previousFrozenPeriod =
+        rankingsData.periods
+          .filter(
+            (period) =>
+              String(
+                period.periodId
+              ) <
+              String(
+                periodId
+              )
+          )
+          .at(-1)
+        ||
+        null;
+
+      const monthlyHonors =
+        window
+          .LandscapeAwardsEngine
+          .calculateMonthlyHonors({
+
+            periodId:
+              periodId,
+
+            events:
+              state.events,
+
+            monthlyRankings:
+              monthly,
+
+            previousMonthlyRankings:
+              previousFrozenPeriod
+                ?.monthly
+              ||
+              null
+          });
+
+      awardsData.monthly =
+        awardsData.monthly.filter(
+          (record) =>
+            record.periodId !==
+            periodId
+        );
+
+      awardsData.monthly.push(
+        monthlyHonors
+      );
+
+      awardsData.monthly.sort(
+        (a, b) =>
+          String(
+            a.periodId
+          ).localeCompare(
+            String(
+              b.periodId
+            )
+          )
+      );
+
+      awardsData.latestPeriodId =
+        periodId;
+
+      awardsData.awardVersion =
+        window
+          .LandscapeAwardsEngine
+          .AWARD_VERSION;
       const archiveRecord =
         archiveData.periods
           ?.find(
@@ -2659,9 +2746,14 @@
         rankingsData
       );
 
-      await writeJson(
+            await writeJson(
         "archive-index.json",
         archiveData
+      );
+
+      await writeJson(
+        "awards.json",
+        awardsData
       );
 
       await loadAll();
