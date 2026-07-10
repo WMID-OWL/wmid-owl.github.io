@@ -952,7 +952,424 @@
       </p>
     </div>
   </div>
+<!-- =================================
+     BRAGGING RIGHTS
+================================= -->
 
+<div
+    id="cr-bragging-rights-desk"
+    class="cr-editor-section cr-bragging-section"
+>
+
+
+    <div class="cr-editor-section-heading">
+
+
+        <span>
+            ANNUAL SUPREMACY TOURNAMENT
+        </span>
+
+
+        <h3>
+            BRAGGING RIGHTS
+        </h3>
+
+
+        <p>
+
+            Lock the October Landscape standings, select the
+            16-person Men's and Women's fields, and draw the
+            November tournament brackets.
+
+        </p>
+
+
+    </div>
+
+
+
+    <div class="cr-bragging-toolbar">
+
+
+        <label>
+
+
+            <span>
+                TOURNAMENT YEAR
+            </span>
+
+
+            <input
+                id="cr-bragging-year"
+                type="number"
+                min="2026"
+                step="1"
+            >
+
+
+        </label>
+
+
+
+        <button
+            id="cr-bragging-load"
+            type="button"
+            class="control-room-secondary-button"
+        >
+            Load Edition
+        </button>
+
+
+
+        <button
+            id="cr-bragging-create"
+            type="button"
+            class="control-room-primary-button"
+        >
+            Lock October Qualification
+        </button>
+
+
+    </div>
+
+
+
+    <div
+        id="cr-bragging-status"
+        class="cr-bragging-status"
+    >
+        WAITING FOR EDITION
+    </div>
+
+
+
+    <!-- QUALIFICATION SNAPSHOT -->
+
+
+    <div class="cr-bragging-block">
+
+
+        <div class="cr-landscape-card-builder-heading">
+
+
+            <div>
+
+
+                <span>
+                    QUALIFICATION
+                </span>
+
+
+                <h4>
+                    October Power Order
+                </h4>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div
+            id="cr-bragging-qualification"
+            class="cr-bragging-qualification"
+        >
+
+
+            <p class="cr-landscape-entry-empty">
+
+                Select a tournament year and lock the official
+                October standings.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- MEN'S FIELD -->
+
+
+    <div class="cr-bragging-block">
+
+
+        <div class="cr-landscape-card-builder-heading">
+
+
+            <div>
+
+
+                <span>
+                    16 ENTRANTS
+                </span>
+
+
+                <h4>
+                    Men's Field
+                </h4>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="cr-bragging-field-columns">
+
+
+            <div>
+
+
+                <span class="cr-bragging-column-label">
+                    CORE QUALIFIERS
+                </span>
+
+
+                <div
+                    id="cr-bragging-men-core"
+                    class="cr-bragging-slot-list"
+                >
+                </div>
+
+
+            </div>
+
+
+
+            <div>
+
+
+                <span class="cr-bragging-column-label">
+                    GUEST QUALIFIERS
+                </span>
+
+
+                <div
+                    id="cr-bragging-men-guests"
+                    class="cr-bragging-slot-list"
+                >
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- WOMEN'S FIELD -->
+
+
+    <div class="cr-bragging-block">
+
+
+        <div class="cr-landscape-card-builder-heading">
+
+
+            <div>
+
+
+                <span>
+                    16 ENTRANTS
+                </span>
+
+
+                <h4>
+                    Women's Field
+                </h4>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="cr-bragging-field-columns">
+
+
+            <div>
+
+
+                <span class="cr-bragging-column-label">
+                    CORE QUALIFIERS
+                </span>
+
+
+                <div
+                    id="cr-bragging-women-core"
+                    class="cr-bragging-slot-list"
+                >
+                </div>
+
+
+            </div>
+
+
+
+            <div>
+
+
+                <span class="cr-bragging-column-label">
+                    GUEST QUALIFIERS
+                </span>
+
+
+                <div
+                    id="cr-bragging-women-guests"
+                    class="cr-bragging-slot-list"
+                >
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ACTIONS -->
+
+
+    <div class="cr-landscape-save-row">
+
+
+        <span
+            id="cr-bragging-save-status"
+            class="cr-landscape-entry-status"
+        >
+            READY
+        </span>
+
+
+
+        <div class="cr-bragging-action-buttons">
+
+
+            <button
+                id="cr-bragging-save-field"
+                type="button"
+                class="control-room-secondary-button"
+            >
+                Save Tournament Field
+            </button>
+
+
+
+            <button
+                id="cr-bragging-draw"
+                type="button"
+                class="control-room-primary-button"
+            >
+                Lock Field &amp; Draw Brackets
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- BRACKETS -->
+
+
+    <div
+        id="cr-bragging-brackets"
+        class="cr-bragging-brackets"
+        hidden
+    >
+
+
+        <div class="cr-landscape-card-builder-heading">
+
+
+            <div>
+
+
+                <span>
+                    TOURNAMENT DRAW
+                </span>
+
+
+                <h4>
+                    Round of 16
+                </h4>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="cr-bragging-bracket-columns">
+
+
+            <div>
+
+
+                <span class="cr-bragging-column-label">
+                    MEN'S BRACKET
+                </span>
+
+
+                <div
+                    id="cr-bragging-men-bracket"
+                    class="cr-bragging-match-list"
+                >
+                </div>
+
+
+            </div>
+
+
+
+            <div>
+
+
+                <span class="cr-bragging-column-label">
+                    WOMEN'S BRACKET
+                </span>
+
+
+                <div
+                    id="cr-bragging-women-bracket"
+                    class="cr-bragging-match-list"
+                >
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+    
   <!-- WEEKLY SCHEDULE -->
 
   <div class="cr-editor-section">
