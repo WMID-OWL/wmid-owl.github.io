@@ -1292,6 +1292,17 @@ async function crLandscapeRankingLoad() {
 
         ] =
 
+                    const [
+
+            eventsData,
+            showsData,
+            companiesData,
+            calendarData,
+            archiveData,
+            rankingsData
+
+        ] =
+
             await Promise.all([
 
                 crLandscapeRankingReadJson(
@@ -1308,6 +1319,14 @@ async function crLandscapeRankingLoad() {
 
                 crLandscapeRankingReadJson(
                     "calendar-config.json"
+                ),
+
+                crLandscapeRankingReadJson(
+                    "archive-index.json"
+                ),
+
+                crLandscapeRankingReadJson(
+                    "rankings.json"
                 )
 
             ]);
@@ -1349,8 +1368,16 @@ async function crLandscapeRankingLoad() {
                     : [],
 
 
-            calendar:
-                calendarData
+                        calendar:
+                calendarData,
+
+
+            archive:
+                archiveData,
+
+
+            rankings:
+                rankingsData
 
         };
 
