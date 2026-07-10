@@ -740,6 +740,651 @@ function crLandscapeRenderCycle() {
 }
 
 
+// =================================
+// STAGE LABEL
+// =================================
+
+
+function crLandscapeStageLabel(
+    stageId
+) {
+
+
+    const weeklyStages =
+
+        Array.isArray(
+            crLandscapeData
+                .calendar
+                ?.weeklyStages
+        )
+
+            ? crLandscapeData
+                .calendar
+                .weeklyStages
+
+            : [];
+
+
+    const weeklyMatch =
+
+        weeklyStages.find(
+
+            stage =>
+
+                stage.id ===
+                stageId
+
+        );
+
+
+    if (
+        weeklyMatch
+    ) {
+
+
+        return weeklyMatch.label;
+
+    }
+
+
+    if (
+
+        crLandscapeData
+            .calendar
+            ?.monthlyFinale
+            ?.id
+
+        ===
+
+        stageId
+
+    ) {
+
+
+        return crLandscapeData
+            .calendar
+            .monthlyFinale
+            .label;
+
+    }
+
+
+    return stageId || "";
+
+}
+
+
+
+// =================================
+// RECORDED EVENTS
+// =================================
+
+
+function crLandscapeRenderRecordedEvents() {
+
+
+    if (
+        !crLandscapeEls.recordedEvents
+    ) {
+
+
+        return;
+
+    }
+
+
+    const events =
+
+        [...crLandscapeData.events]
+
+            .sort(
+
+                (
+                    a,
+                    b
+                ) => {
+
+
+                    const periodDifference =
+
+                        String(
+                            b.periodId || ""
+                        )
+
+                            .localeCompare(
+
+                                String(
+                                    a.periodId || ""
+                                )
+
+                            );
+
+
+                    if (
+                        periodDifference !== 0
+                    ) {
+
+
+                        return periodDifference;
+
+                    }
+
+
+                    return String(
+                        b.id || ""
+                    )
+
+                        .localeCompare(
+
+                            String(
+                                a.id || ""
+                            )
+
+                        );
+
+                }
+
+            );
+
+
+    if (
+        events.length === 0
+    ) {
+
+
+        crLandscapeEls
+            .recordedEvents
+            .innerHTML = `
+
+                <p class="cr-landscape-entry-empty">
+
+                    No Landscape events have been recorded yet.
+
+                </p>
+
+            `;
+
+
+        return;
+
+    }
+
+
+    crLandscapeEls
+        .recordedEvents
+        .innerHTML =
+
+            events
+
+                .slice(
+                    0,
+                    20
+                )
+
+                .map(
+
+                    event => {
+
+
+                        const company =
+
+                            crLandscapeData
+                                .companies
+
+                                .find(
+
+                                    item =>
+
+                                        item.id ===
+                                        event.companyId
+
+                                );
+
+
+                        const show =
+
+                            crLandscapeData
+                                .shows
+
+                                .find(
+
+                                    item =>
+
+                                        item.id ===
+                                        event.showId
+
+                                );
+
+
+                        const eventTitle =
+
+                            event.eventName
+
+                            ||
+
+                            show?.name
+
+                            ||
+
+                            "Untitled Landscape Event";
+
+
+                        const matches =
+
+                            Array.isArray(
+                                event.matches
+                            )
+
+                                ? event.matches
+
+                                : [];
+
+
+                        const segments =
+
+                            Array.isArray(
+                                event.segments
+                            )
+
+                                ? event.segments
+
+                                : [];
+
+
+                        const locationText =
+
+                            [
+
+                                event.location?.city,
+                                event.location?.region,
+                                event.location?.country
+
+                            ]
+
+                                .filter(
+                                    Boolean
+                                )
+
+                                .join(
+                                    ", "
+                                );
+
+
+                        const matchHtml =
+
+                            matches.length
+
+                                ? matches
+
+                                    .map(
+
+                                        match => `
+
+                                            <article class="cr-landscape-event-result-row">
+
+
+                                                <div>
+
+
+                                                    <span>
+                                                        MATCH
+                                                    </span>
+
+
+                                                    <strong>
+
+                                                        ${crLandscapeEscapeHtml(
+                                                            match.resultText
+                                                        )}
+
+                                                    </strong>
+
+
+                                                    ${
+
+                                                        match.storyContext
+
+                                                            ? `
+
+                                                                <small>
+
+                                                                    ${crLandscapeEscapeHtml(
+                                                                        match.storyContext
+                                                                    )}
+
+                                                                </small>
+
+                                                            `
+
+                                                            : ""
+
+                                                    }
+
+
+                                                </div>
+
+
+
+                                                <strong>
+
+                                                    ${
+
+                                                        match.rating
+                                                        ??
+                                                        "—"
+
+                                                    }
+                                                    ★
+
+                                                </strong>
+
+
+                                            </article>
+
+                                        `
+
+                                    )
+
+                                    .join(
+                                        ""
+                                    )
+
+                                : `
+
+                                    <p class="cr-landscape-event-none">
+
+                                        No matches recorded.
+
+                                    </p>
+
+                                `;
+
+
+                        const segmentHtml =
+
+                            segments.length
+
+                                ? segments
+
+                                    .map(
+
+                                        segment => `
+
+                                            <article class="cr-landscape-event-result-row">
+
+
+                                                <div>
+
+
+                                                    <span>
+                                                        SEGMENT
+                                                    </span>
+
+
+                                                    <strong>
+
+                                                        ${crLandscapeEscapeHtml(
+
+                                                            segment.segmentType
+
+                                                            ||
+
+                                                            "Segment"
+
+                                                        )}
+
+                                                    </strong>
+
+
+                                                    <small>
+
+                                                        ${crLandscapeEscapeHtml(
+                                                            segment.summary
+                                                        )}
+
+                                                    </small>
+
+
+                                                </div>
+
+
+
+                                                <strong>
+
+                                                    ${
+
+                                                        segment.rating
+                                                        ??
+                                                        "—"
+
+                                                    }
+                                                    ★
+
+                                                </strong>
+
+
+                                            </article>
+
+                                        `
+
+                                    )
+
+                                    .join(
+                                        ""
+                                    )
+
+                                : "";
+
+
+                        return `
+
+                            <details class="cr-landscape-recorded-event">
+
+
+                                <summary>
+
+
+                                    <div>
+
+
+                                        <span>
+
+                                            ${crLandscapeEscapeHtml(
+
+                                                company?.name
+
+                                                ||
+
+                                                event.companyId
+
+                                            )}
+
+                                            ·
+
+                                            ${crLandscapeEscapeHtml(
+
+                                                crLandscapePeriodLabel(
+                                                    event.periodId
+                                                )
+
+                                            )}
+
+                                            ·
+
+                                            ${crLandscapeEscapeHtml(
+
+                                                crLandscapeStageLabel(
+                                                    event.stage
+                                                )
+
+                                            )}
+
+                                        </span>
+
+
+                                        <strong>
+
+                                            ${crLandscapeEscapeHtml(
+                                                eventTitle
+                                            )}
+
+                                        </strong>
+
+
+                                        <small>
+
+                                            ${
+
+                                                locationText
+
+                                                    ? crLandscapeEscapeHtml(
+                                                        locationText
+                                                    )
+
+                                                    : "Location unavailable"
+
+                                            }
+
+                                            ·
+
+                                            ${matches.length}
+                                            matches
+
+                                            ·
+
+                                            ${segments.length}
+                                            segments
+
+                                        </small>
+
+
+                                    </div>
+
+
+
+                                    <strong class="cr-landscape-event-rating">
+
+                                        ${
+
+                                            event.overallRating
+                                            ??
+                                            "—"
+
+                                        }
+                                        ★
+
+                                    </strong>
+
+
+                                </summary>
+
+
+
+                                <div class="cr-landscape-recorded-event-body">
+
+
+                                    <div class="cr-landscape-event-meta">
+
+
+                                        <span>
+
+                                            BOOKING STYLE:
+                                            ${crLandscapeEscapeHtml(
+
+                                                event.bookingStyle
+
+                                                ||
+
+                                                "—"
+
+                                            )}
+
+                                        </span>
+
+
+                                        ${
+
+                                            event.location?.venue
+
+                                                ? `
+
+                                                    <span>
+
+                                                        VENUE:
+                                                        ${crLandscapeEscapeHtml(
+                                                            event.location.venue
+                                                        )}
+
+                                                    </span>
+
+                                                `
+
+                                                : ""
+
+                                        }
+
+
+                                    </div>
+
+
+
+                                    <div class="cr-landscape-event-results">
+
+                                        ${matchHtml}
+
+                                        ${segmentHtml}
+
+                                    </div>
+
+
+                                    ${
+
+                                        event.universeNotes
+
+                                            ? `
+
+                                                <div class="cr-landscape-event-notes">
+
+
+                                                    <span>
+                                                        UNIVERSE NOTES
+                                                    </span>
+
+
+                                                    <p>
+
+                                                        ${crLandscapeEscapeHtml(
+                                                            event.universeNotes
+                                                        )}
+
+                                                    </p>
+
+
+                                                </div>
+
+                                            `
+
+                                            : ""
+
+                                    }
+
+
+                                </div>
+
+
+                            </details>
+
+                        `;
+
+                    }
+
+                )
+
+                .join(
+                    ""
+                );
+
+}
 
 // =================================
 // ARCHIVE
@@ -928,6 +1573,8 @@ function crLandscapeRenderAll() {
 
 
     crLandscapeRenderSummary();
+
+    crLandscapeRenderRecordedEvents();
 
     crLandscapeRenderSchedule();
 
