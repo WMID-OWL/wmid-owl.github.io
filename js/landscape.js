@@ -111,10 +111,17 @@
             ),
 
 
-        champions:
+                champions:
 
             document.getElementById(
                 "landscape-champion-grid"
+            ),
+
+
+        honors:
+
+            document.getElementById(
+                "landscape-honors-grid"
             ),
 
 
@@ -154,7 +161,11 @@
             null,
 
 
-        champions:
+                champions:
+            null,
+
+
+        awards:
             null
 
     };
@@ -2413,7 +2424,284 @@
     }
 
 
+    // =================================
+    // HONORS
+    // =================================
 
+
+    function honorValue(
+        award,
+        fallback = "AWAITING COMPLETED PERIOD"
+    ) {
+
+
+        if (
+            !award
+        ) {
+
+
+            return fallback;
+
+        }
+
+
+        return (
+
+            award.name
+
+            ||
+
+            fallback
+
+        );
+
+    }
+
+
+
+    function renderHonors(
+        periodId
+    ) {
+
+
+        if (
+            !els.honors
+        ) {
+
+
+            return;
+
+        }
+
+
+        const record =
+
+            state.awards
+                ?.monthly
+                ?.find(
+
+                    item =>
+
+                        item.periodId ===
+                        periodId
+
+                )
+
+            ||
+
+            null;
+
+
+        if (
+            !record
+        ) {
+
+
+            els.honors
+                .innerHTML = `
+
+
+                    <article class="landscape-honor-card">
+
+                        <span>
+                            COMPANY OF THE MONTH
+                        </span>
+
+                        <strong>
+                            AWAITING COMPLETED PERIOD
+                        </strong>
+
+                    </article>
+
+
+                    <article class="landscape-honor-card">
+
+                        <span>
+                            SHOW OF THE MONTH
+                        </span>
+
+                        <strong>
+                            AWAITING COMPLETED PERIOD
+                        </strong>
+
+                    </article>
+
+
+                    <article class="landscape-honor-card">
+
+                        <span>
+                            MAJOR EVENT OF THE MONTH
+                        </span>
+
+                        <strong>
+                            AWAITING COMPLETED PERIOD
+                        </strong>
+
+                    </article>
+
+
+                    <article class="landscape-honor-card">
+
+                        <span>
+                            MATCH OF THE MONTH
+                        </span>
+
+                        <strong>
+                            AWAITING COMPLETED PERIOD
+                        </strong>
+
+                    </article>
+
+
+                    <article class="landscape-honor-card">
+
+                        <span>
+                            MOST CONSISTENT SHOW
+                        </span>
+
+                        <strong>
+                            AWAITING COMPLETED PERIOD
+                        </strong>
+
+                    </article>
+
+
+                    <article class="landscape-honor-card">
+
+                        <span>
+                            BIGGEST CLIMBER
+                        </span>
+
+                        <strong>
+                            AWAITING MOVEMENT DATA
+                        </strong>
+
+                    </article>
+
+
+                `;
+
+
+            return;
+
+        }
+
+
+        const awards =
+            record.awards || {};
+
+
+        els.honors
+            .innerHTML = `
+
+
+                <article class="landscape-honor-card">
+
+                    <span>
+                        COMPANY OF THE MONTH
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(
+                            honorValue(
+                                awards.companyOfTheMonth
+                            )
+                        )}
+                    </strong>
+
+                </article>
+
+
+                <article class="landscape-honor-card">
+
+                    <span>
+                        SHOW OF THE MONTH
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(
+                            honorValue(
+                                awards.showOfTheMonth
+                            )
+                        )}
+                    </strong>
+
+                </article>
+
+
+                <article class="landscape-honor-card">
+
+                    <span>
+                        MAJOR EVENT OF THE MONTH
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(
+                            honorValue(
+                                awards.majorEventOfTheMonth
+                            )
+                        )}
+                    </strong>
+
+                </article>
+
+
+                <article class="landscape-honor-card">
+
+                    <span>
+                        MATCH OF THE MONTH
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(
+                            honorValue(
+                                awards.matchOfTheMonth
+                            )
+                        )}
+                    </strong>
+
+                </article>
+
+
+                <article class="landscape-honor-card">
+
+                    <span>
+                        MOST CONSISTENT SHOW
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(
+                            honorValue(
+                                awards.mostConsistentShow
+                            )
+                        )}
+                    </strong>
+
+                </article>
+
+
+                <article class="landscape-honor-card">
+
+                    <span>
+                        BIGGEST CLIMBER
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(
+                            honorValue(
+                                awards.biggestClimber,
+                                "NO QUALIFYING CLIMBER"
+                            )
+                        )}
+                    </strong>
+
+                </article>
+
+
+            `;
+
+    }
+    
     // =================================
     // HISTORY
     // =================================
@@ -2638,9 +2926,13 @@
                     "READY";
 
 
-            renderChampions();
+                    renderChampions();
 
-            renderHistory();
+        renderHonors(
+            periodId
+        );
+
+        renderHistory();
 
 
             return;
@@ -2705,10 +2997,13 @@
         );
 
 
-        renderChampions();
+                renderChampions();
+
+        renderHonors(
+            periodId
+        );
 
         renderHistory();
-
 
         const frozen =
 
@@ -2761,8 +3056,9 @@
                 eventsData,
                 calendarData,
                 archiveData,
-                rankingsData,
-                championsData
+                                rankingsData,
+                championsData,
+                awardsData
 
             ] =
 
@@ -2799,8 +3095,13 @@
                     ),
 
 
-                    loadJson(
+                                        loadJson(
                         "data/landscape/champions.json"
+                    ),
+
+
+                    loadJson(
+                        "data/landscape/awards.json"
                     )
 
 
@@ -2852,8 +3153,12 @@
                 rankingsData;
 
 
-            state.champions =
+                        state.champions =
                 championsData;
+
+
+            state.awards =
+                awardsData;
 
 
             renderPage();
