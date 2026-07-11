@@ -910,123 +910,382 @@ function universeDevelopments(
 
 
 // =================================
-// CHAMPION LEDGER
+// CHAMPIONSHIP CANON
 // =================================
 
 
 function championLedger(
-    championsData,
+    championshipsData,
     companiesById
 ) {
 
 
-    const source =
+    const titles =
 
-        championsData?.companies
+        Array.isArray(
+            championshipsData?.titles
+        )
+
+            ? championshipsData.titles
+
+            : [];
+
+
+    const companyIds =
+
+        [
+
+            ...new Set([
+
+                ...Object.keys(
+                    companiesById
+                )
+
+                    .filter(
+
+                        companyId =>
+
+                            companyId !==
+                            "owl"
+
+                    ),
+
+                ...titles
+
+                    .map(
+
+                        title =>
+
+                            title.companyId
+
+                    )
+
+                    .filter(
+                        Boolean
+                    )
+
+            ])
+
+        ]
+
+            .sort(
+
+                (
+                    a,
+                    b
+                ) =>
+
+                    companyName(
+                        a,
+                        companiesById
+                    )
+
+                        .localeCompare(
+
+                            companyName(
+                                b,
+                                companiesById
+                            )
+
+                        )
+
+            );
+
+
+    return companyIds.map(
+
+        companyId => ({
+
+
+            companyId:
+                companyId,
+
+
+            companyName:
+
+                companyName(
+                    companyId,
+                    companiesById
+                ),
+
+
+            titles:
+
+                titles
+
+                    .filter(
+
+                        title =>
+
+                            title.companyId ===
+                            companyId
+
+                    )
+
+                    .sort(
+
+                        (
+                            a,
+                            b
+                        ) =>
+
+                            String(
+                                a.name || ""
+                            )
+
+                                .localeCompare(
+
+                                    String(
+                                        b.name || ""
+                                    )
+
+                                )
+
+                    )
+
+                    .map(
+
+                        title => ({
+
+
+                            id:
+                                title.id || "",
+
+
+                            name:
+                                title.name || "",
+
+
+                            championName:
+                                title.championName || "",
+
+
+                            status:
+
+                                title.status ===
+                                "vacant"
+
+                                    ? "vacant"
+
+                                    : "active",
+
+
+                            wonPeriodId:
+                                title.wonPeriodId || "",
+
+
+                            wonEventId:
+                                title.wonEventId || "",
+
+
+                            wonEventName:
+                                title.wonEventName || "",
+
+
+                            wonDate:
+                                title.wonDate || ""
+
+                        })
+
+                    )
+
+        })
+
+    );
+
+}
+
+
+
+function championshipChangePeriod(
+    change
+) {
+
+
+    return (
+
+        cleanText(
+            change.periodId
+        )
 
         ||
 
-        {};
-
-
-    if (
-        Array.isArray(
-            source
+        cleanText(
+            change.wonDate
         )
-    ) {
+            .slice(
+                0,
+                7
+            )
+
+    );
+
+}
 
 
-        return source.map(
 
-            company => {
-
-
-                const companyId =
-
-                    company.companyId
-
-                    ||
-
-                    company.id
-
-                    ||
-
-                    "";
+function simplifyChampionshipChange(
+    change,
+    companiesById
+) {
 
 
-                return {
+    const companyId =
+        change.companyId || "";
 
 
-                    companyId:
-                        companyId,
+    return {
 
 
-                    companyName:
-
-                        companyName(
-                            companyId,
-                            companiesById
-                        ),
+        id:
+            change.id || "",
 
 
-                    titles:
-
-                        Array.isArray(
-                            company.titles
-                        )
-
-                            ? company.titles
-
-                            : []
-
-                };
-
-            }
-
-        );
-
-    }
+        titleId:
+            change.titleId || "",
 
 
-    return Object.entries(
-        source
-    )
-
-        .map(
-
-            (
-                [
-                    companyId,
-                    company
-                ]
-            ) => ({
+        companyId:
+            companyId,
 
 
-                companyId:
-                    companyId,
+        companyName:
+
+            companyName(
+                companyId,
+                companiesById
+            ),
 
 
-                companyName:
+        titleName:
+            change.titleName || "",
 
-                    companyName(
-                        companyId,
+
+        previousChampionName:
+            change.previousChampionName || "",
+
+
+        newChampionName:
+            change.newChampionName || "",
+
+
+        changeType:
+            change.changeType || "",
+
+
+        periodId:
+
+            championshipChangePeriod(
+                change
+            ),
+
+
+        eventId:
+            change.eventId || "",
+
+
+        eventName:
+            change.eventName || "",
+
+
+        wonDate:
+            change.wonDate || "",
+
+
+        recordedAt:
+            change.recordedAt || ""
+
+    };
+
+}
+
+
+
+function championshipHistoryContext(
+    championshipHistoryData,
+    periodId,
+    companiesById
+) {
+
+
+    const changes =
+
+        (
+
+            Array.isArray(
+                championshipHistoryData?.changes
+            )
+
+                ? championshipHistoryData.changes
+
+                : []
+
+        )
+
+            .map(
+
+                change =>
+
+                    simplifyChampionshipChange(
+
+                        change,
                         companiesById
-                    ),
 
-
-                titles:
-
-                    Array.isArray(
-                        company?.titles
                     )
 
-                        ? company.titles
+            )
 
-                        : []
+            .sort(
 
-            })
+                (
+                    a,
+                    b
+                ) =>
 
-        );
+                    String(
+                        b.periodId ||
+                        b.wonDate ||
+                        b.recordedAt ||
+                        ""
+                    )
+
+                        .localeCompare(
+
+                            String(
+                                a.periodId ||
+                                a.wonDate ||
+                                a.recordedAt ||
+                                ""
+                            )
+
+                        )
+
+            );
+
+
+    return {
+
+
+        currentPeriodChanges:
+
+            changes.filter(
+
+                change =>
+
+                    change.periodId ===
+                    periodId
+
+            ),
+
+
+        recentChanges:
+
+            changes.slice(
+                0,
+                20
+            )
+
+    };
 
 }
 
@@ -1315,15 +1574,16 @@ export async function buildWwowLandscapeContext({
 
     const [
 
-        companiesData,
-        showsData,
-        eventsData,
-        rankingsData,
-        championsData,
-        awardsData,
-        braggingRightsData
+    companiesData,
+    showsData,
+    eventsData,
+    rankingsData,
+    championshipsData,
+    championshipHistoryData,
+    awardsData,
+    braggingRightsData
 
-    ] =
+] =
 
         await Promise.all([
 
@@ -1384,19 +1644,38 @@ export async function buildWwowLandscapeContext({
             ),
 
 
-            readJson(
+           readJson(
 
-                root,
+    root,
 
-                "data/landscape/champions.json",
+    "data/landscape/championships.json",
 
-                {
-                    companies:
-                        {}
-                }
+    {
+        version:
+            1,
 
-            ),
+        titles:
+            []
+    }
 
+),
+
+
+readJson(
+
+    root,
+
+    "data/landscape/championship-history.json",
+
+    {
+        version:
+            1,
+
+        changes:
+            []
+    }
+
+),
 
             readJson(
 
@@ -1607,7 +1886,38 @@ export async function buildWwowLandscapeContext({
                 })
 
             );
+const currentChampionLedger =
 
+    championLedger(
+
+        championshipsData,
+        companiesById
+
+    );
+
+
+const championshipHistory =
+
+    championshipHistoryContext(
+
+        championshipHistoryData,
+        periodId,
+        companiesById
+
+    );
+
+
+const currentTitles =
+
+    currentChampionLedger
+
+        .flatMap(
+
+            company =>
+
+                company.titles
+
+        );
 
     return {
 
@@ -1706,9 +2016,46 @@ export async function buildWwowLandscapeContext({
 
             honorsAvailable:
 
-                Boolean(
-                    monthlyHonor
-                )
+    Boolean(
+        monthlyHonor
+    ),
+
+
+currentTitleCount:
+    currentTitles.length,
+
+
+activeChampionCount:
+
+    currentTitles.filter(
+
+        title =>
+
+            title.status ===
+            "active"
+
+    )
+        .length,
+
+
+vacantTitleCount:
+
+    currentTitles.filter(
+
+        title =>
+
+            title.status ===
+            "vacant"
+
+    )
+        .length,
+
+
+currentPeriodChampionshipChangeCount:
+
+    championshipHistory
+        .currentPeriodChanges
+        .length
 
         },
 
@@ -1793,13 +2140,11 @@ export async function buildWwowLandscapeContext({
 
 
         championLedger:
+    currentChampionLedger,
 
-            championLedger(
 
-                championsData,
-                companiesById
-
-            ),
+championshipHistory:
+    championshipHistory,
 
 
         braggingRights:
