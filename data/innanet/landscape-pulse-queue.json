@@ -1,6 +1,1852 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-11T10:33:42.662Z",
-  "pendingPulseCount": 0,
-  "pendingPulses": []
+  "generatedAt": "2026-07-11T10:37:30.483Z",
+  "pendingPulseCount": 1,
+  "pendingPulses": [
+    {
+      "pulseId": "landscape-monthly-2099-10",
+      "pulseType": "monthly-industry-report",
+      "periodId": "2099-10",
+      "label": "October 2099 Landscape Report",
+      "rules": {
+        "canonBoundary": "Only supplied structured Landscape facts are canon. Opinions, criticism, jokes, comparisons, and clearly labeled speculation are allowed. Do not invent matches, results, ratings, title changes, contracts, signings, firings, injuries, retirements, backstage incidents, relationships, or future booking as fact.",
+        "rankingMeaning": "Landscape Score is the official derived competition metric. Rankings and movement values may be discussed exactly as supplied.",
+        "rumorBoundary": "Rumor-style accounts may speculate only from supplied developments and must clearly frame speculation as rumor, possibility, or a question."
+      },
+      "companyRankings": [
+        {
+          "rank": 1,
+          "companyId": "aew",
+          "companyName": "AEW",
+          "weeklyEventsRecorded": 8,
+          "allMatchesRecorded": 18,
+          "matchAverage": 4.05,
+          "components": {
+            "weeklyProduct": 80.5,
+            "majorEventPerformance": 82,
+            "matchQuality": 81.1,
+            "consistency": 97.9,
+            "momentum": 51.8
+          },
+          "landscapeScore": 81.3
+        },
+        {
+          "rank": 2,
+          "companyId": "owl",
+          "companyName": "OWL",
+          "weeklyEventsRecorded": 8,
+          "allMatchesRecorded": 18,
+          "matchAverage": 3.96,
+          "components": {
+            "weeklyProduct": 79,
+            "majorEventPerformance": 82,
+            "matchQuality": 79.3,
+            "consistency": 97.7,
+            "momentum": 51.8
+          },
+          "landscapeScore": 80.3
+        },
+        {
+          "rank": 3,
+          "companyId": "tna",
+          "companyName": "TNA",
+          "weeklyEventsRecorded": 4,
+          "allMatchesRecorded": 10,
+          "matchAverage": 3.83,
+          "components": {
+            "weeklyProduct": 76.7,
+            "majorEventPerformance": 78.8,
+            "matchQuality": 76.6,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 78.2
+        },
+        {
+          "rank": 4,
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "weeklyEventsRecorded": 4,
+          "allMatchesRecorded": 10,
+          "matchAverage": 3.74,
+          "components": {
+            "weeklyProduct": 75.4,
+            "majorEventPerformance": 76.6,
+            "matchQuality": 74.8,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 76.8
+        },
+        {
+          "rank": 5,
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "weeklyEventsRecorded": 8,
+          "allMatchesRecorded": 18,
+          "matchAverage": 3.74,
+          "components": {
+            "weeklyProduct": 75.7,
+            "majorEventPerformance": 76.2,
+            "matchQuality": 74.7,
+            "consistency": 98,
+            "momentum": 51.8
+          },
+          "landscapeScore": 76.7
+        },
+        {
+          "rank": 6,
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "weeklyEventsRecorded": 4,
+          "allMatchesRecorded": 10,
+          "matchAverage": 3.66,
+          "components": {
+            "weeklyProduct": 74.2,
+            "majorEventPerformance": 75.2,
+            "matchQuality": 73.2,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 75.7
+        },
+        {
+          "rank": 7,
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "weeklyEventsRecorded": 4,
+          "allMatchesRecorded": 10,
+          "matchAverage": 3.61,
+          "components": {
+            "weeklyProduct": 73.7,
+            "majorEventPerformance": 72.4,
+            "matchQuality": 72.2,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 74.6
+        },
+        {
+          "rank": 8,
+          "companyId": "roh",
+          "companyName": "ROH",
+          "weeklyEventsRecorded": 4,
+          "allMatchesRecorded": 10,
+          "matchAverage": 3.51,
+          "components": {
+            "weeklyProduct": 72.1,
+            "majorEventPerformance": 71.6,
+            "matchQuality": 70.2,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 73.4
+        }
+      ],
+      "showRankings": [
+        {
+          "rank": 1,
+          "showId": "aew-collision",
+          "companyId": "aew",
+          "showName": "AEW Collision",
+          "eventsRecorded": 4,
+          "matchesRecorded": 8,
+          "overallAverage": 4.04,
+          "matchAverage": 4.06,
+          "components": {
+            "overallShowRating": 80.8,
+            "matchQuality": 81.2,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 80.8
+        },
+        {
+          "rank": 2,
+          "showId": "aew-dynamite",
+          "companyId": "aew",
+          "showName": "AEW Dynamite",
+          "eventsRecorded": 4,
+          "matchesRecorded": 8,
+          "overallAverage": 4,
+          "matchAverage": 4.02,
+          "components": {
+            "overallShowRating": 80,
+            "matchQuality": 80.4,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 80.2
+        },
+        {
+          "rank": 3,
+          "showId": "owl-revolt",
+          "companyId": "owl",
+          "showName": "OWL Revolt",
+          "eventsRecorded": 4,
+          "matchesRecorded": 8,
+          "overallAverage": 3.96,
+          "matchAverage": 3.98,
+          "components": {
+            "overallShowRating": 79.2,
+            "matchQuality": 79.6,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 79.6
+        },
+        {
+          "rank": 4,
+          "showId": "owl-ascension",
+          "companyId": "owl",
+          "showName": "OWL Ascension",
+          "eventsRecorded": 4,
+          "matchesRecorded": 8,
+          "overallAverage": 3.88,
+          "matchAverage": 3.9,
+          "components": {
+            "overallShowRating": 77.6,
+            "matchQuality": 78,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 78.4
+        },
+        {
+          "rank": 5,
+          "showId": "tna-impact",
+          "companyId": "tna",
+          "showName": "TNA Impact",
+          "eventsRecorded": 4,
+          "matchesRecorded": 8,
+          "overallAverage": 3.77,
+          "matchAverage": 3.79,
+          "components": {
+            "overallShowRating": 75.4,
+            "matchQuality": 75.8,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 76.7
+        },
+        {
+          "rank": 6,
+          "showId": "wwe-raw",
+          "companyId": "wwe",
+          "showName": "WWE Raw",
+          "eventsRecorded": 4,
+          "matchesRecorded": 8,
+          "overallAverage": 3.7,
+          "matchAverage": 3.72,
+          "components": {
+            "overallShowRating": 74,
+            "matchQuality": 74.4,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 75.7
+        },
+        {
+          "rank": 7,
+          "showId": "wwe-smackdown",
+          "companyId": "wwe",
+          "showName": "WWE SmackDown",
+          "eventsRecorded": 4,
+          "matchesRecorded": 8,
+          "overallAverage": 3.7,
+          "matchAverage": 3.72,
+          "components": {
+            "overallShowRating": 74,
+            "matchQuality": 74.4,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 75.7
+        },
+        {
+          "rank": 8,
+          "showId": "cmll-super-viernes",
+          "companyId": "cmll",
+          "showName": "CMLL Super Viernes",
+          "eventsRecorded": 4,
+          "matchesRecorded": 8,
+          "overallAverage": 3.68,
+          "matchAverage": 3.7,
+          "components": {
+            "overallShowRating": 73.6,
+            "matchQuality": 74,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 75.4
+        },
+        {
+          "rank": 9,
+          "showId": "aaa-lucha-libre",
+          "companyId": "aaa",
+          "showName": "AAA Lucha Libre",
+          "eventsRecorded": 4,
+          "matchesRecorded": 8,
+          "overallAverage": 3.6,
+          "matchAverage": 3.62,
+          "components": {
+            "overallShowRating": 72,
+            "matchQuality": 72.4,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 74.2
+        },
+        {
+          "rank": 10,
+          "showId": "nxt-on-cw",
+          "companyId": "nxt",
+          "showName": "NXT on CW",
+          "eventsRecorded": 4,
+          "matchesRecorded": 8,
+          "overallAverage": 3.57,
+          "matchAverage": 3.59,
+          "components": {
+            "overallShowRating": 71.4,
+            "matchQuality": 71.8,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 73.7
+        },
+        {
+          "rank": 11,
+          "showId": "roh-on-honorclub",
+          "companyId": "roh",
+          "showName": "ROH on HonorClub",
+          "eventsRecorded": 4,
+          "matchesRecorded": 8,
+          "overallAverage": 3.46,
+          "matchAverage": 3.48,
+          "components": {
+            "overallShowRating": 69.2,
+            "matchQuality": 69.6,
+            "consistency": 98,
+            "momentum": 53.6
+          },
+          "landscapeScore": 72.1
+        }
+      ],
+      "companyMovement": [],
+      "showMovement": [],
+      "eventFacts": [
+        {
+          "eventId": "2099-10-week-1-wwe-raw",
+          "eventType": "weekly",
+          "stage": "week-1",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "showId": "wwe-raw",
+          "eventName": "WWE Raw",
+          "overallRating": 3.61,
+          "matchAverage": 3.63,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 1",
+            "city": "Test City 1",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-1-aaa-lucha-libre",
+          "eventType": "weekly",
+          "stage": "week-1",
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "showId": "aaa-lucha-libre",
+          "eventName": "AAA Lucha Libre",
+          "overallRating": 3.51,
+          "matchAverage": 3.53,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 2",
+            "city": "Test City 2",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-1-nxt-on-cw",
+          "eventType": "weekly",
+          "stage": "week-1",
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "showId": "nxt-on-cw",
+          "eventName": "NXT on CW",
+          "overallRating": 3.48,
+          "matchAverage": 3.5,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 3",
+            "city": "Test City 3",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-1-owl-ascension",
+          "eventType": "weekly",
+          "stage": "week-1",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "showId": "owl-ascension",
+          "eventName": "OWL Ascension",
+          "overallRating": 3.79,
+          "matchAverage": 3.81,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 4",
+            "city": "Test City 4",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-1-aew-dynamite",
+          "eventType": "weekly",
+          "stage": "week-1",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "showId": "aew-dynamite",
+          "eventName": "AEW Dynamite",
+          "overallRating": 3.91,
+          "matchAverage": 3.93,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 5",
+            "city": "Test City 5",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-1-owl-revolt",
+          "eventType": "weekly",
+          "stage": "week-1",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "showId": "owl-revolt",
+          "eventName": "OWL Revolt",
+          "overallRating": 3.87,
+          "matchAverage": 3.89,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 6",
+            "city": "Test City 6",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-1-tna-impact",
+          "eventType": "weekly",
+          "stage": "week-1",
+          "companyId": "tna",
+          "companyName": "TNA",
+          "showId": "tna-impact",
+          "eventName": "TNA Impact",
+          "overallRating": 3.68,
+          "matchAverage": 3.7,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 7",
+            "city": "Test City 7",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-1-roh-on-honorclub",
+          "eventType": "weekly",
+          "stage": "week-1",
+          "companyId": "roh",
+          "companyName": "ROH",
+          "showId": "roh-on-honorclub",
+          "eventName": "ROH on HonorClub",
+          "overallRating": 3.37,
+          "matchAverage": 3.39,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 8",
+            "city": "Test City 8",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-1-aew-collision",
+          "eventType": "weekly",
+          "stage": "week-1",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "showId": "aew-collision",
+          "eventName": "AEW Collision",
+          "overallRating": 3.95,
+          "matchAverage": 3.97,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 9",
+            "city": "Test City 9",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-1-wwe-smackdown",
+          "eventType": "weekly",
+          "stage": "week-1",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "showId": "wwe-smackdown",
+          "eventName": "WWE SmackDown",
+          "overallRating": 3.61,
+          "matchAverage": 3.63,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 10",
+            "city": "Test City 10",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-1-cmll-super-viernes",
+          "eventType": "weekly",
+          "stage": "week-1",
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "showId": "cmll-super-viernes",
+          "eventName": "CMLL Super Viernes",
+          "overallRating": 3.59,
+          "matchAverage": 3.61,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 11",
+            "city": "Test City 11",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-2-wwe-raw",
+          "eventType": "weekly",
+          "stage": "week-2",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "showId": "wwe-raw",
+          "eventName": "WWE Raw",
+          "overallRating": 3.67,
+          "matchAverage": 3.69,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 1",
+            "city": "Test City 1",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-2-aaa-lucha-libre",
+          "eventType": "weekly",
+          "stage": "week-2",
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "showId": "aaa-lucha-libre",
+          "eventName": "AAA Lucha Libre",
+          "overallRating": 3.57,
+          "matchAverage": 3.59,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 2",
+            "city": "Test City 2",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-2-nxt-on-cw",
+          "eventType": "weekly",
+          "stage": "week-2",
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "showId": "nxt-on-cw",
+          "eventName": "NXT on CW",
+          "overallRating": 3.54,
+          "matchAverage": 3.56,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 3",
+            "city": "Test City 3",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-2-owl-ascension",
+          "eventType": "weekly",
+          "stage": "week-2",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "showId": "owl-ascension",
+          "eventName": "OWL Ascension",
+          "overallRating": 3.85,
+          "matchAverage": 3.87,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 4",
+            "city": "Test City 4",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-2-aew-dynamite",
+          "eventType": "weekly",
+          "stage": "week-2",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "showId": "aew-dynamite",
+          "eventName": "AEW Dynamite",
+          "overallRating": 3.97,
+          "matchAverage": 3.99,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 5",
+            "city": "Test City 5",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-2-owl-revolt",
+          "eventType": "weekly",
+          "stage": "week-2",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "showId": "owl-revolt",
+          "eventName": "OWL Revolt",
+          "overallRating": 3.93,
+          "matchAverage": 3.95,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 6",
+            "city": "Test City 6",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-2-tna-impact",
+          "eventType": "weekly",
+          "stage": "week-2",
+          "companyId": "tna",
+          "companyName": "TNA",
+          "showId": "tna-impact",
+          "eventName": "TNA Impact",
+          "overallRating": 3.74,
+          "matchAverage": 3.76,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 7",
+            "city": "Test City 7",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-2-roh-on-honorclub",
+          "eventType": "weekly",
+          "stage": "week-2",
+          "companyId": "roh",
+          "companyName": "ROH",
+          "showId": "roh-on-honorclub",
+          "eventName": "ROH on HonorClub",
+          "overallRating": 3.43,
+          "matchAverage": 3.45,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 8",
+            "city": "Test City 8",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-2-aew-collision",
+          "eventType": "weekly",
+          "stage": "week-2",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "showId": "aew-collision",
+          "eventName": "AEW Collision",
+          "overallRating": 4.01,
+          "matchAverage": 4.03,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 9",
+            "city": "Test City 9",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-2-wwe-smackdown",
+          "eventType": "weekly",
+          "stage": "week-2",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "showId": "wwe-smackdown",
+          "eventName": "WWE SmackDown",
+          "overallRating": 3.67,
+          "matchAverage": 3.69,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 10",
+            "city": "Test City 10",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-2-cmll-super-viernes",
+          "eventType": "weekly",
+          "stage": "week-2",
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "showId": "cmll-super-viernes",
+          "eventName": "CMLL Super Viernes",
+          "overallRating": 3.65,
+          "matchAverage": 3.67,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 11",
+            "city": "Test City 11",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-3-wwe-raw",
+          "eventType": "weekly",
+          "stage": "week-3",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "showId": "wwe-raw",
+          "eventName": "WWE Raw",
+          "overallRating": 3.73,
+          "matchAverage": 3.75,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 1",
+            "city": "Test City 1",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-3-aaa-lucha-libre",
+          "eventType": "weekly",
+          "stage": "week-3",
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "showId": "aaa-lucha-libre",
+          "eventName": "AAA Lucha Libre",
+          "overallRating": 3.63,
+          "matchAverage": 3.65,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 2",
+            "city": "Test City 2",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-3-nxt-on-cw",
+          "eventType": "weekly",
+          "stage": "week-3",
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "showId": "nxt-on-cw",
+          "eventName": "NXT on CW",
+          "overallRating": 3.6,
+          "matchAverage": 3.62,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 3",
+            "city": "Test City 3",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-3-owl-ascension",
+          "eventType": "weekly",
+          "stage": "week-3",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "showId": "owl-ascension",
+          "eventName": "OWL Ascension",
+          "overallRating": 3.91,
+          "matchAverage": 3.93,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 4",
+            "city": "Test City 4",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-3-aew-dynamite",
+          "eventType": "weekly",
+          "stage": "week-3",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "showId": "aew-dynamite",
+          "eventName": "AEW Dynamite",
+          "overallRating": 4.03,
+          "matchAverage": 4.05,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 5",
+            "city": "Test City 5",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-3-owl-revolt",
+          "eventType": "weekly",
+          "stage": "week-3",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "showId": "owl-revolt",
+          "eventName": "OWL Revolt",
+          "overallRating": 3.99,
+          "matchAverage": 4.01,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 6",
+            "city": "Test City 6",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-3-tna-impact",
+          "eventType": "weekly",
+          "stage": "week-3",
+          "companyId": "tna",
+          "companyName": "TNA",
+          "showId": "tna-impact",
+          "eventName": "TNA Impact",
+          "overallRating": 3.8,
+          "matchAverage": 3.82,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 7",
+            "city": "Test City 7",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-3-roh-on-honorclub",
+          "eventType": "weekly",
+          "stage": "week-3",
+          "companyId": "roh",
+          "companyName": "ROH",
+          "showId": "roh-on-honorclub",
+          "eventName": "ROH on HonorClub",
+          "overallRating": 3.49,
+          "matchAverage": 3.51,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 8",
+            "city": "Test City 8",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-3-aew-collision",
+          "eventType": "weekly",
+          "stage": "week-3",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "showId": "aew-collision",
+          "eventName": "AEW Collision",
+          "overallRating": 4.07,
+          "matchAverage": 4.09,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 9",
+            "city": "Test City 9",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-3-wwe-smackdown",
+          "eventType": "weekly",
+          "stage": "week-3",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "showId": "wwe-smackdown",
+          "eventName": "WWE SmackDown",
+          "overallRating": 3.73,
+          "matchAverage": 3.75,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 10",
+            "city": "Test City 10",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-3-cmll-super-viernes",
+          "eventType": "weekly",
+          "stage": "week-3",
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "showId": "cmll-super-viernes",
+          "eventName": "CMLL Super Viernes",
+          "overallRating": 3.71,
+          "matchAverage": 3.73,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 11",
+            "city": "Test City 11",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-4-wwe-raw",
+          "eventType": "weekly",
+          "stage": "week-4",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "showId": "wwe-raw",
+          "eventName": "WWE Raw",
+          "overallRating": 3.79,
+          "matchAverage": 3.81,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 1",
+            "city": "Test City 1",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-4-aaa-lucha-libre",
+          "eventType": "weekly",
+          "stage": "week-4",
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "showId": "aaa-lucha-libre",
+          "eventName": "AAA Lucha Libre",
+          "overallRating": 3.69,
+          "matchAverage": 3.71,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 2",
+            "city": "Test City 2",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": "JoW canon test: Test Wrestler Nova signed with AAA."
+        },
+        {
+          "eventId": "2099-10-week-4-nxt-on-cw",
+          "eventType": "weekly",
+          "stage": "week-4",
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "showId": "nxt-on-cw",
+          "eventName": "NXT on CW",
+          "overallRating": 3.66,
+          "matchAverage": 3.68,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 3",
+            "city": "Test City 3",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-4-owl-ascension",
+          "eventType": "weekly",
+          "stage": "week-4",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "showId": "owl-ascension",
+          "eventName": "OWL Ascension",
+          "overallRating": 3.97,
+          "matchAverage": 3.99,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 4",
+            "city": "Test City 4",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-4-aew-dynamite",
+          "eventType": "weekly",
+          "stage": "week-4",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "showId": "aew-dynamite",
+          "eventName": "AEW Dynamite",
+          "overallRating": 4.09,
+          "matchAverage": 4.11,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 5",
+            "city": "Test City 5",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-4-owl-revolt",
+          "eventType": "weekly",
+          "stage": "week-4",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "showId": "owl-revolt",
+          "eventName": "OWL Revolt",
+          "overallRating": 4.05,
+          "matchAverage": 4.07,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 6",
+            "city": "Test City 6",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-4-tna-impact",
+          "eventType": "weekly",
+          "stage": "week-4",
+          "companyId": "tna",
+          "companyName": "TNA",
+          "showId": "tna-impact",
+          "eventName": "TNA Impact",
+          "overallRating": 3.86,
+          "matchAverage": 3.88,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 7",
+            "city": "Test City 7",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-4-roh-on-honorclub",
+          "eventType": "weekly",
+          "stage": "week-4",
+          "companyId": "roh",
+          "companyName": "ROH",
+          "showId": "roh-on-honorclub",
+          "eventName": "ROH on HonorClub",
+          "overallRating": 3.55,
+          "matchAverage": 3.57,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 8",
+            "city": "Test City 8",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-4-aew-collision",
+          "eventType": "weekly",
+          "stage": "week-4",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "showId": "aew-collision",
+          "eventName": "AEW Collision",
+          "overallRating": 4.13,
+          "matchAverage": 4.15,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 9",
+            "city": "Test City 9",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-4-wwe-smackdown",
+          "eventType": "weekly",
+          "stage": "week-4",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "showId": "wwe-smackdown",
+          "eventName": "WWE SmackDown",
+          "overallRating": 3.79,
+          "matchAverage": 3.81,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 10",
+            "city": "Test City 10",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-week-4-cmll-super-viernes",
+          "eventType": "weekly",
+          "stage": "week-4",
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "showId": "cmll-super-viernes",
+          "eventName": "CMLL Super Viernes",
+          "overallRating": 3.77,
+          "matchAverage": 3.79,
+          "matchCount": 2,
+          "segmentCount": 1,
+          "location": {
+            "venue": "Test Venue 11",
+            "city": "Test City 11",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-major-wwe",
+          "eventType": "major-event",
+          "stage": "showdown-saturday",
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "showId": "",
+          "eventName": "WWE October Test Event",
+          "overallRating": 3.81,
+          "matchAverage": 3.87,
+          "matchCount": 2,
+          "segmentCount": 0,
+          "location": {
+            "venue": "WWE Test Arena",
+            "city": "Showdown City 1",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-major-nxt",
+          "eventType": "major-event",
+          "stage": "showdown-saturday",
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "showId": "",
+          "eventName": "NXT October Test Event",
+          "overallRating": 3.62,
+          "matchAverage": 3.68,
+          "matchCount": 2,
+          "segmentCount": 0,
+          "location": {
+            "venue": "NXT Test Arena",
+            "city": "Showdown City 2",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-major-aew",
+          "eventType": "major-event",
+          "stage": "showdown-saturday",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "showId": "",
+          "eventName": "AEW October Test Event",
+          "overallRating": 4.1,
+          "matchAverage": 4.16,
+          "matchCount": 2,
+          "segmentCount": 0,
+          "location": {
+            "venue": "AEW Test Arena",
+            "city": "Showdown City 3",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-major-roh",
+          "eventType": "major-event",
+          "stage": "showdown-saturday",
+          "companyId": "roh",
+          "companyName": "ROH",
+          "showId": "",
+          "eventName": "ROH October Test Event",
+          "overallRating": 3.58,
+          "matchAverage": 3.64,
+          "matchCount": 2,
+          "segmentCount": 0,
+          "location": {
+            "venue": "ROH Test Arena",
+            "city": "Showdown City 4",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": "JoW canon test: Test Wrestler Orion officially retired."
+        },
+        {
+          "eventId": "2099-10-major-tna",
+          "eventType": "major-event",
+          "stage": "showdown-saturday",
+          "companyId": "tna",
+          "companyName": "TNA",
+          "showId": "",
+          "eventName": "TNA October Test Event",
+          "overallRating": 3.94,
+          "matchAverage": 4,
+          "matchCount": 2,
+          "segmentCount": 0,
+          "location": {
+            "venue": "TNA Test Arena",
+            "city": "Showdown City 5",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-major-cmll",
+          "eventType": "major-event",
+          "stage": "showdown-saturday",
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "showId": "",
+          "eventName": "CMLL October Test Event",
+          "overallRating": 3.83,
+          "matchAverage": 3.89,
+          "matchCount": 2,
+          "segmentCount": 0,
+          "location": {
+            "venue": "CMLL Test Arena",
+            "city": "Showdown City 6",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-major-aaa",
+          "eventType": "major-event",
+          "stage": "showdown-saturday",
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "showId": "",
+          "eventName": "AAA October Test Event",
+          "overallRating": 3.76,
+          "matchAverage": 3.82,
+          "matchCount": 2,
+          "segmentCount": 0,
+          "location": {
+            "venue": "AAA Test Arena",
+            "city": "Showdown City 7",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        },
+        {
+          "eventId": "2099-10-major-owl",
+          "eventType": "major-event",
+          "stage": "showdown-saturday",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "showId": "",
+          "eventName": "OWL October Test Event",
+          "overallRating": 4.1,
+          "matchAverage": 4.16,
+          "matchCount": 2,
+          "segmentCount": 0,
+          "location": {
+            "venue": "OWL Test Arena",
+            "city": "Showdown City 8",
+            "region": "Test Region",
+            "country": "Test Country"
+          },
+          "universeNotes": ""
+        }
+      ],
+      "majorEventBattle": [
+        {
+          "rank": 1,
+          "companyId": "aew",
+          "companyName": "AEW",
+          "eventName": "AEW October Test Event",
+          "overallRating": 4.1,
+          "location": {
+            "venue": "AEW Test Arena",
+            "city": "Showdown City 3",
+            "region": "Test Region",
+            "country": "Test Country"
+          }
+        },
+        {
+          "rank": 2,
+          "companyId": "owl",
+          "companyName": "OWL",
+          "eventName": "OWL October Test Event",
+          "overallRating": 4.1,
+          "location": {
+            "venue": "OWL Test Arena",
+            "city": "Showdown City 8",
+            "region": "Test Region",
+            "country": "Test Country"
+          }
+        },
+        {
+          "rank": 3,
+          "companyId": "tna",
+          "companyName": "TNA",
+          "eventName": "TNA October Test Event",
+          "overallRating": 3.94,
+          "location": {
+            "venue": "TNA Test Arena",
+            "city": "Showdown City 5",
+            "region": "Test Region",
+            "country": "Test Country"
+          }
+        },
+        {
+          "rank": 4,
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "eventName": "CMLL October Test Event",
+          "overallRating": 3.83,
+          "location": {
+            "venue": "CMLL Test Arena",
+            "city": "Showdown City 6",
+            "region": "Test Region",
+            "country": "Test Country"
+          }
+        },
+        {
+          "rank": 5,
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "eventName": "WWE October Test Event",
+          "overallRating": 3.81,
+          "location": {
+            "venue": "WWE Test Arena",
+            "city": "Showdown City 1",
+            "region": "Test Region",
+            "country": "Test Country"
+          }
+        },
+        {
+          "rank": 6,
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "eventName": "AAA October Test Event",
+          "overallRating": 3.76,
+          "location": {
+            "venue": "AAA Test Arena",
+            "city": "Showdown City 7",
+            "region": "Test Region",
+            "country": "Test Country"
+          }
+        },
+        {
+          "rank": 7,
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "eventName": "NXT October Test Event",
+          "overallRating": 3.62,
+          "location": {
+            "venue": "NXT Test Arena",
+            "city": "Showdown City 2",
+            "region": "Test Region",
+            "country": "Test Country"
+          }
+        },
+        {
+          "rank": 8,
+          "companyId": "roh",
+          "companyName": "ROH",
+          "eventName": "ROH October Test Event",
+          "overallRating": 3.58,
+          "location": {
+            "venue": "ROH Test Arena",
+            "city": "Showdown City 4",
+            "region": "Test Region",
+            "country": "Test Country"
+          }
+        }
+      ],
+      "topMatches": [
+        {
+          "eventId": "2099-10-major-aew",
+          "eventName": "AEW October Test Event",
+          "eventType": "major-event",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "resultText": "Test AEW Major Alpha defeated Test AEW Major Beta.",
+          "rating": 4.26,
+          "storyContext": "",
+          "division": "",
+          "tournamentRound": ""
+        },
+        {
+          "eventId": "2099-10-major-owl",
+          "eventName": "OWL October Test Event",
+          "eventType": "major-event",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "resultText": "Test OWL Major Alpha defeated Test OWL Major Beta.",
+          "rating": 4.26,
+          "storyContext": "",
+          "division": "",
+          "tournamentRound": ""
+        },
+        {
+          "eventId": "2099-10-week-4-aew-collision",
+          "eventName": "AEW Collision",
+          "eventType": "weekly",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "resultText": "Test Collision Alpha defeated Test Collision Beta.",
+          "rating": 4.25,
+          "storyContext": "",
+          "division": "",
+          "tournamentRound": ""
+        },
+        {
+          "eventId": "2099-10-week-4-aew-dynamite",
+          "eventName": "AEW Dynamite",
+          "eventType": "weekly",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "resultText": "Test Dynamite Alpha defeated Test Dynamite Beta.",
+          "rating": 4.21,
+          "storyContext": "",
+          "division": "",
+          "tournamentRound": ""
+        },
+        {
+          "eventId": "2099-10-week-3-aew-collision",
+          "eventName": "AEW Collision",
+          "eventType": "weekly",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "resultText": "Test Collision Alpha defeated Test Collision Beta.",
+          "rating": 4.19,
+          "storyContext": "",
+          "division": "",
+          "tournamentRound": ""
+        },
+        {
+          "eventId": "2099-10-week-4-owl-revolt",
+          "eventName": "OWL Revolt",
+          "eventType": "weekly",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "resultText": "Test Revolt Alpha defeated Test Revolt Beta.",
+          "rating": 4.17,
+          "storyContext": "",
+          "division": "",
+          "tournamentRound": ""
+        },
+        {
+          "eventId": "2099-10-week-3-aew-dynamite",
+          "eventName": "AEW Dynamite",
+          "eventType": "weekly",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "resultText": "Test Dynamite Alpha defeated Test Dynamite Beta.",
+          "rating": 4.15,
+          "storyContext": "",
+          "division": "",
+          "tournamentRound": ""
+        },
+        {
+          "eventId": "2099-10-week-2-aew-collision",
+          "eventName": "AEW Collision",
+          "eventType": "weekly",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "resultText": "Test Collision Alpha defeated Test Collision Beta.",
+          "rating": 4.13,
+          "storyContext": "",
+          "division": "",
+          "tournamentRound": ""
+        },
+        {
+          "eventId": "2099-10-week-3-owl-revolt",
+          "eventName": "OWL Revolt",
+          "eventType": "weekly",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "resultText": "Test Revolt Alpha defeated Test Revolt Beta.",
+          "rating": 4.11,
+          "storyContext": "",
+          "division": "",
+          "tournamentRound": ""
+        },
+        {
+          "eventId": "2099-10-major-tna",
+          "eventName": "TNA October Test Event",
+          "eventType": "major-event",
+          "companyId": "tna",
+          "companyName": "TNA",
+          "resultText": "Test TNA Major Alpha defeated Test TNA Major Beta.",
+          "rating": 4.1,
+          "storyContext": "",
+          "division": "",
+          "tournamentRound": ""
+        },
+        {
+          "eventId": "2099-10-week-2-aew-dynamite",
+          "eventName": "AEW Dynamite",
+          "eventType": "weekly",
+          "companyId": "aew",
+          "companyName": "AEW",
+          "resultText": "Test Dynamite Alpha defeated Test Dynamite Beta.",
+          "rating": 4.09,
+          "storyContext": "",
+          "division": "",
+          "tournamentRound": ""
+        },
+        {
+          "eventId": "2099-10-week-4-owl-ascension",
+          "eventName": "OWL Ascension",
+          "eventType": "weekly",
+          "companyId": "owl",
+          "companyName": "OWL",
+          "resultText": "Test Ascension Alpha defeated Test Ascension Beta.",
+          "rating": 4.09,
+          "storyContext": "",
+          "division": "",
+          "tournamentRound": ""
+        }
+      ],
+      "honors": {
+        "companyOfTheMonth": {
+          "companyId": "aew",
+          "name": "AEW",
+          "score": 81.3
+        },
+        "showOfTheMonth": {
+          "showId": "aew-collision",
+          "companyId": "aew",
+          "name": "AEW Collision",
+          "score": 80.8
+        },
+        "majorEventOfTheMonth": {
+          "eventId": "2099-10-major-aew",
+          "companyId": "aew",
+          "name": "AEW October Test Event",
+          "rating": 4.1,
+          "matchAverage": 4.16
+        },
+        "matchOfTheMonth": {
+          "matchId": "2099-10-major-aew-match-1",
+          "eventId": "2099-10-major-aew",
+          "companyId": "aew",
+          "eventName": "AEW October Test Event",
+          "name": "Test AEW Major Alpha defeated Test AEW Major Beta.",
+          "rating": 4.26
+        },
+        "mostConsistentShow": {
+          "showId": "aew-collision",
+          "companyId": "aew",
+          "name": "AEW Collision",
+          "consistencyScore": 98,
+          "landscapeScore": 80.8
+        },
+        "biggestClimber": null
+      },
+      "championshipSummary": {
+        "currentTitleCount": 0,
+        "activeChampionCount": 0,
+        "vacantTitleCount": 0,
+        "currentPeriodChangeCount": 0
+      },
+      "championLedger": [
+        {
+          "companyId": "aaa",
+          "companyName": "AAA",
+          "titles": []
+        },
+        {
+          "companyId": "aew",
+          "companyName": "AEW",
+          "titles": []
+        },
+        {
+          "companyId": "cmll",
+          "companyName": "CMLL",
+          "titles": []
+        },
+        {
+          "companyId": "nxt",
+          "companyName": "NXT",
+          "titles": []
+        },
+        {
+          "companyId": "roh",
+          "companyName": "ROH",
+          "titles": []
+        },
+        {
+          "companyId": "tna",
+          "companyName": "TNA",
+          "titles": []
+        },
+        {
+          "companyId": "wwe",
+          "companyName": "WWE",
+          "titles": []
+        }
+      ],
+      "championshipHistory": {
+        "currentPeriodChanges": [],
+        "recentChanges": []
+      },
+      "universeDevelopments": [
+        {
+          "eventId": "2099-10-week-4-aaa-lucha-libre",
+          "companyName": "AAA",
+          "eventName": "AAA Lucha Libre",
+          "notes": "JoW canon test: Test Wrestler Nova signed with AAA."
+        },
+        {
+          "eventId": "2099-10-major-roh",
+          "companyName": "ROH",
+          "eventName": "ROH October Test Event",
+          "notes": "JoW canon test: Test Wrestler Orion officially retired."
+        }
+      ],
+      "availableAccounts": [
+        {
+          "id": "workratewonk",
+          "accountName": "Workrate Wonk",
+          "handle": "@WorkrateWonk",
+          "archetype": "cross-promotion match quality snob",
+          "tone": "analytical, smug, obsessive",
+          "focus": [
+            "star ratings",
+            "match quality",
+            "top matches across promotions",
+            "show quality comparisons",
+            "workrate arguments",
+            "cross-promotion match rankings"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "Only cite ratings, rankings, match results, and performance data explicitly provided in the fact package. Comparisons and opinions are allowed, but numbers and results cannot be invented.",
+          "replyStyle": "longer arguments about match quality, promotion comparisons, and quality versus booking",
+          "frequency": "regular across OWL and Landscape coverage"
+        },
+        {
+          "id": "grapevine",
+          "accountName": "The Grapevine",
+          "handle": "@TheGrapevine",
+          "archetype": "industry rumor and speculation account",
+          "tone": "careful, suggestive, insider-ish",
+          "focus": [
+            "visible tension",
+            "title pictures",
+            "momentum shifts",
+            "company movement",
+            "fan reaction",
+            "confirmed signings and retirements",
+            "industry speculation"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Any non-database claim must be explicitly labeled rumor, speculation, possibility, or a question. Confirmed Landscape universe events may be reported as facts only when explicitly supplied. Never invent contracts, injuries, firings, signings, retirements, backstage incidents, or relationships.",
+          "replyStyle": "careful posts, clarifications, cautious follow-ups, and questions that invite speculation",
+          "frequency": "occasional across OWL and the wider wrestling world"
+        },
+        {
+          "id": "wrestlingwire",
+          "accountName": "The Wrestling Wire",
+          "handle": "@WrestlingWire",
+          "archetype": "wrestling industry news desk",
+          "tone": "fast, professional, concise, neutral",
+          "focus": [
+            "company results",
+            "title changes",
+            "major events",
+            "injuries when explicitly recorded",
+            "retirements",
+            "signings",
+            "Landscape movement",
+            "Bragging Rights"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Strict facts only. Report only events explicitly supplied in the Landscape fact package. Never invent signings, injuries, retirements, title changes, contracts, backstage incidents, or quotes.",
+          "replyStyle": "brief updates, corrections, and follow-up context",
+          "frequency": "regular when major industry developments occur"
+        },
+        {
+          "id": "wrestlingenjoyer",
+          "accountName": "Wrestling Enjoyer",
+          "handle": "@WrestlingEnjoyer",
+          "archetype": "positive all-wrestling fan",
+          "tone": "enthusiastic, curious, generous, occasionally overwhelmed",
+          "focus": [
+            "great matches",
+            "hot shows",
+            "surprise performances",
+            "different wrestling styles",
+            "cross-promotion appreciation",
+            "Bragging Rights"
+          ],
+          "profanityLevel": "low",
+          "factDiscipline": "May be wildly enthusiastic and have strong opinions, but cannot invent matches, results, ratings, title changes, or future booking.",
+          "replyStyle": "positive reactions, excited replies, and sincere cross-promotion appreciation",
+          "frequency": "regular across the wider wrestling world"
+        },
+        {
+          "id": "complaintdepartment",
+          "accountName": "The Complaint Department",
+          "handle": "@ComplaintDept",
+          "archetype": "relentless industry critic",
+          "tone": "dry, ruthless, skeptical, professional enough to be annoying",
+          "focus": [
+            "bottom-ranked companies",
+            "falling shows",
+            "bad major events",
+            "weak match averages",
+            "ranking collapses",
+            "failed momentum"
+          ],
+          "profanityLevel": "medium",
+          "factDiscipline": "Criticism may be brutal, sarcastic, and exaggerated as opinion, but all rankings, ratings, results, and movement claims must come directly from supplied Landscape facts.",
+          "replyStyle": "quote-post criticism, receipts, sarcastic comparisons, and short verdicts",
+          "frequency": "regular when a company or show gives them material"
+        },
+        {
+          "id": "landscapenumbers",
+          "accountName": "Landscape Numbers",
+          "handle": "@LandscapeNumbers",
+          "archetype": "wrestling industry statistics obsessive",
+          "tone": "precise, detached, analytical, quietly dramatic when the numbers are extreme",
+          "focus": [
+            "Landscape Score",
+            "promotion rankings",
+            "show rankings",
+            "movement",
+            "consistency",
+            "momentum",
+            "major event performance",
+            "top matches",
+            "historical comparison"
+          ],
+          "profanityLevel": "none",
+          "factDiscipline": "Never invent a number, ranking, movement value, score, rating, or record. Only use exact values explicitly supplied in the Landscape fact package.",
+          "replyStyle": "stat breakdowns, corrections with exact numbers, compact comparisons, and historical notes",
+          "frequency": "frequent around official Landscape reports and completed periods"
+        }
+      ]
+    }
+  ]
 }
