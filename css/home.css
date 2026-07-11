@@ -1105,3 +1105,55 @@
 
 
 }
+/* =================================
+   HOME LANDSCAPE TITLE CONTAINMENT
+================================= */
+
+
+.landscape-hero-copy {
+
+    min-width:
+        0;
+
+    overflow:
+        hidden;
+
+}
+
+
+.landscape-hero-copy h1 {
+
+    max-width:
+        100%;
+
+    overflow:
+        hidden;
+
+}
+
+
+.landscape-hero-title {
+
+    display:
+        block;
+
+    max-width:
+        100%;
+
+    font-size:
+        clamp(
+            4rem,
+            7vw,
+            6.6rem
+        );
+
+    line-height:
+        0.84;
+
+    letter-spacing:
+        -0.045em;
+
+    white-space:
+        nowrap;
+
+}
