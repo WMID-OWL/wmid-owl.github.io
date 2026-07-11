@@ -30,8 +30,9 @@
     <a class="cr-tool-jump-link" href="#cr-tool-wrestlers">Wrestlers</a>
     <a class="cr-tool-jump-link" href="#cr-tool-teams">Teams</a>
     <a class="cr-tool-jump-link" href="#cr-tool-factions">Factions</a>
-    <a class="cr-tool-jump-link" href="#cr-tool-events">Events</a>
-    <a class="cr-tool-jump-link" href="#cr-tool-booker">Match Booker</a>
+   <a class="cr-tool-jump-link" href="#cr-tool-events">Events</a>
+<a class="cr-tool-jump-link" href="#cr-tool-media">Media</a>
+<a class="cr-tool-jump-link" href="#cr-tool-booker">Match Booker</a>
    <a class="cr-tool-jump-link" href="#cr-tool-results">Results</a>
 
 <a class="cr-tool-jump-link" href="#cr-tool-segments">Segments</a>
@@ -414,8 +415,201 @@
 
             <div id="cr-event-change-preview" class="cr-change-preview" hidden><span>REVIEW CHANGES</span><div id="cr-event-change-list" class="cr-editor-change-list"></div><p id="cr-event-conflict-message" class="cr-change-error" hidden></p></div>
             <div class="cr-manager-actions"><button id="cr-save-event" class="control-room-button control-room-button-primary" type="button" disabled>Save Event Changes</button></div>
-            <p id="cr-event-editor-message" class="cr-save-message" hidden></p>
-        </section>        <!-- =================================
+           <p id="cr-event-editor-message" class="cr-save-message" hidden></p>
+        </section>
+
+        <!-- =================================
+             MEDIA MANAGER
+        ================================== -->
+
+        <section id="cr-tool-media" class="control-room-panel">
+
+            <div class="control-room-panel-heading">
+
+                <div>
+                    <p class="eyebrow">ASSET MANAGEMENT</p>
+                    <h2>Media Manager</h2>
+                </div>
+
+                <span
+                    id="cr-media-status"
+                    class="control-room-health-summary"
+                >
+                    READY
+                </span>
+
+            </div>
+
+            <p class="cr-editor-note">
+                Import images into the correct OWL asset folder and assign the saved path to its database record.
+            </p>
+
+            <div class="cr-editor-top-grid">
+
+                <div class="cr-form-group">
+
+                    <label for="cr-media-type">
+                        MEDIA TYPE
+                    </label>
+
+                    <select id="cr-media-type">
+
+                        <option value="">
+                            Select Media Type
+                        </option>
+
+                        <option value="wrestlers">
+                            Wrestler Photo
+                        </option>
+
+                        <option value="teams">
+                            Team Logo
+                        </option>
+
+                        <option value="factions">
+                            Faction Logo
+                        </option>
+
+                        <option value="championships">
+                            Championship Image
+                        </option>
+
+                        <option value="events">
+                            Event Poster
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label for="cr-media-record">
+                        DATABASE RECORD
+                    </label>
+
+                    <select id="cr-media-record" disabled>
+
+                        <option value="">
+                            Select Media Type First
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label>
+                        CURRENT MEDIA PATH
+                    </label>
+
+                    <div
+                        id="cr-media-current-path"
+                        class="cr-current-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>IMAGE FILE</span>
+                    <h3>Select New Media</h3>
+
+                </div>
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-media-file">
+                            IMAGE
+                        </label>
+
+                        <input
+                            id="cr-media-file"
+                            type="file"
+                            accept="image/png,image/jpeg,image/webp,image/gif"
+                            disabled
+                        >
+
+                        <small class="cr-field-help">
+                            Supported formats: PNG, JPG, WebP, and GIF.
+                        </small>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            DESTINATION PATH
+                        </label>
+
+                        <div
+                            id="cr-media-destination-path"
+                            class="cr-current-value"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div
+                id="cr-media-review"
+                class="cr-change-preview"
+                hidden
+            >
+
+                <span>REVIEW MEDIA IMPORT</span>
+
+                <div
+                    id="cr-media-review-list"
+                    class="cr-editor-change-list"
+                >
+                </div>
+
+                <p
+                    id="cr-media-error"
+                    class="cr-change-error"
+                    hidden
+                >
+                </p>
+
+            </div>
+
+            <div class="cr-manager-actions">
+
+                <button
+                    id="cr-media-save"
+                    class="control-room-button control-room-button-primary"
+                    type="button"
+                    disabled
+                >
+                    Import and Assign Image
+                </button>
+
+            </div>
+
+            <p
+                id="cr-media-message"
+                class="cr-save-message"
+                hidden
+            >
+            </p>
+
+        </section>
+
+        <!-- =================================
              MATCH BOOKER
         ================================== -->
 
