@@ -1543,15 +1543,23 @@
 
                             const rowClass =
 
-                                item.rank === 1
+    item.rank === 1
 
-                                    ? "show-leader"
+        ? "show-leader"
 
-                                    : item.rank >= 9
+        : item.rank <= 3
 
-                                        ? "show-freeze"
+            ? "show-hot"
 
-                                        : "";
+            : item.rank <= 5
+
+                ? "show-warm"
+
+                : item.rank >= 9
+
+                    ? "show-freeze"
+
+                    : "";
 
 
                             return `
