@@ -955,15 +955,31 @@ function buildPromptPackage(
 
 
         honors:
-            pulse.honors || {},
+    pulse.honors || {},
 
 
-        championLedger:
-            pulse.championLedger || [],
+championshipSummary:
+    pulse.championshipSummary || {},
 
 
-        universeDevelopments:
-            pulse.universeDevelopments || []
+championLedger:
+    pulse.championLedger || [],
+
+
+championshipHistory:
+    pulse.championshipHistory || {
+
+        currentPeriodChanges:
+            [],
+
+        recentChanges:
+            []
+
+    },
+
+
+universeDevelopments:
+    pulse.universeDevelopments || []
 
     };
 
@@ -1052,6 +1068,7 @@ LANDSCAPE:
 - Company rankings and show rankings are separate layers.
 - Major Event Battle is separate from weekly Show Power Rankings.
 - Bragging Rights is a company-pride tournament with no championships at stake.
+- Championship summaries, current champions, vacancies, and title-change history may be discussed only when supplied in the pulse package.
 
 OUTPUT:
 - Return EXACTLY 4 complete posts for each batch.
