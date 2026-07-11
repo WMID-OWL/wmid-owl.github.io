@@ -28,7 +28,7 @@ const crEditorSelectRow =
 
 
 const crEditorIdPreview =
-    d
+    document.getElementById(
         "cr-wrestler-id-preview"
     );
 
