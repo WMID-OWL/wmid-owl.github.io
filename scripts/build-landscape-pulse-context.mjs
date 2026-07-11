@@ -8,6 +8,15 @@ const ROOT =
 
 
 
+const FORCE_PERIOD_ID =
+
+    String(
+        process.env.LANDSCAPE_PULSE_FORCE_PERIOD || ""
+    )
+        .trim();
+
+
+
 const INDUSTRY_ACCOUNT_IDS =
 
     new Set([
