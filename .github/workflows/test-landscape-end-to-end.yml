@@ -1,0 +1,184 @@
+name: Test Landscape End to End
+
+
+on:
+
+  workflow_dispatch:
+
+
+permissions:
+
+  contents:
+    read
+
+
+jobs:
+
+  test-landscape-end-to-end:
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+      - name: Check Landscape test syntax
+
+        run: |
+
+          node --check scripts/test-landscape-end-to-end.mjs
+
+          node --check scripts/build-landscape-pulse-context.mjs
+
+          node --check scripts/build-wwow-context.mjs
+
+
+      - name: Verify clean starting state
+
+        run: |
+
+          node <<'NODE'
+
+          const fs = require("fs");
+
+
+          const events = JSON.parse(
+
+            fs.readFileSync(
+              "data/landscape/events.json",
+              "utf8"
+            )
+
+          );
+
+
+          const rankings = JSON.parse(
+
+            fs.readFileSync(
+              "data/landscape/rankings.json",
+              "utf8"
+            )
+
+          );
+
+
+          const awards = JSON.parse(
+
+            fs.readFileSync(
+              "data/landscape/awards.json",
+              "utf8"
+            )
+
+          );
+
+
+          if (
+
+            Array.isArray(events.events)
+
+            &&
+
+            events.events.length !== 0
+
+          ) {
+
+            throw new Error(
+
+              "Landscape events database is not clean before the test."
+
+            );
+
+          }
+
+
+          if (
+
+            Array.isArray(rankings.periods)
+
+            &&
+
+            rankings.periods.length !== 0
+
+          ) {
+
+            throw new Error(
+
+              "Landscape rankings database is not clean before the test."
+
+            );
+
+          }
+
+
+          if (
+
+            Array.isArray(awards.monthly)
+
+            &&
+
+            awards.monthly.length !== 0
+
+          ) {
+
+            throw new Error(
+
+              "Landscape awards database is not clean before the test."
+
+            );
+
+          }
+
+
+          console.log(
+
+            "Clean Landscape starting state confirmed."
+
+          );
+
+          NODE
+
+
+      - name: Run complete Landscape core cycle
+
+        run: |
+
+          node scripts/test-landscape-end-to-end.mjs
+
+
+      - name: Verify fake cycle was runner-only
+
+        run: |
+
+          git diff --quiet -- data/landscape data/innanet data/wwow || true
+
+
+          echo "Runner-only changes exist only inside this temporary Actions job."
+
+
+          echo "Nothing will be committed."
+
+
+      - name: Final system report
+
+        run: |
+
+          echo "Landscape end-to-end core test completed."
+
+          echo "No fake 2099 data was committed."
