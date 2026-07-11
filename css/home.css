@@ -789,3 +789,319 @@
         #c6a15b;
 
 }
+/* =================================
+   THE LANDSCAPE HOMEPAGE FEATURE
+================================= */
+
+
+.home-landscape-feature {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(340px, 0.9fr);
+
+    align-items:
+        stretch;
+
+    border:
+        1px solid
+        rgba(198, 161, 91, 0.32);
+
+    background:
+
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(198, 161, 91, 0.16),
+            transparent 38%
+        ),
+
+        linear-gradient(
+            125deg,
+            #171710,
+            #0c1012 58%,
+            #101619
+        );
+
+}
+
+
+.home-landscape-feature::after {
+
+    content:
+        "THE LANDSCAPE";
+
+    position:
+        absolute;
+
+    right:
+        -1rem;
+
+    bottom:
+        -2rem;
+
+    color:
+        rgba(255, 255, 255, 0.025);
+
+    font-size:
+        clamp(4rem, 9vw, 9rem);
+
+    font-weight:
+        900;
+
+    line-height:
+        0.8;
+
+    pointer-events:
+        none;
+
+}
+
+
+.home-landscape-copy {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    padding:
+        clamp(2rem, 5vw, 4.5rem);
+
+}
+
+
+.home-landscape-copy h2 {
+
+    margin:
+        0.55rem 0 1.25rem;
+
+    color:
+        #f0c967;
+
+    font-size:
+        clamp(3rem, 7vw, 6.5rem);
+
+    font-weight:
+        900;
+
+    line-height:
+        0.85;
+
+    letter-spacing:
+        -0.04em;
+
+}
+
+
+.home-landscape-copy > p:not(.eyebrow) {
+
+    max-width:
+        650px;
+
+    margin:
+        0 0 2rem;
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.7;
+
+}
+
+
+.home-landscape-stats {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    grid-template-rows:
+        repeat(3, minmax(0, 1fr));
+
+    border-left:
+        1px solid
+        rgba(255, 255, 255, 0.09);
+
+}
+
+
+.home-landscape-stats article {
+
+    display:
+        grid;
+
+    align-content:
+        center;
+
+    padding:
+        1.6rem 2rem;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.09);
+
+}
+
+
+.home-landscape-stats article:last-child {
+
+    border-bottom:
+        0;
+
+}
+
+
+.home-landscape-stats span {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.11em;
+
+}
+
+
+.home-landscape-stats strong {
+
+    margin-top:
+        0.25rem;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        clamp(2.2rem, 5vw, 4.2rem);
+
+    font-weight:
+        900;
+
+    line-height:
+        1;
+
+}
+
+
+.home-landscape-stats small {
+
+    margin-top:
+        0.4rem;
+
+    color:
+        #717d82;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+@media (max-width: 800px) {
+
+
+    .home-landscape-feature {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .home-landscape-stats {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        grid-template-rows:
+            none;
+
+        border-top:
+            1px solid
+            rgba(255, 255, 255, 0.09);
+
+        border-left:
+            0;
+
+    }
+
+
+    .home-landscape-stats article {
+
+        border-right:
+            1px solid
+            rgba(255, 255, 255, 0.09);
+
+        border-bottom:
+            0;
+
+    }
+
+
+    .home-landscape-stats article:last-child {
+
+        border-right:
+            0;
+
+    }
+
+
+}
+
+
+
+@media (max-width: 600px) {
+
+
+    .home-landscape-stats {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .home-landscape-stats article {
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.09);
+
+    }
+
+
+}
