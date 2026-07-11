@@ -1,19 +1,4 @@
 {
   "version": 1,
-  "changes": [
-    {
-      "id": "change-1783751264689-1",
-      "titleId": "aew-title-name-271c-public-test-championship",
-      "companyId": "aew",
-      "titleName": "TITLE NAME 271C Public Test Championship",
-      "previousChampionName": "",
-      "newChampionName": "CURRENT CHAMPION Public Test Champion",
-      "changeType": "initial-champion",
-      "periodId": "",
-      "eventId": "",
-      "eventName": "",
-      "wonDate": "",
-      "recordedAt": "2026-07-11T06:27:44.689Z"
-    }
-  ]
+  "changes": []
 }
