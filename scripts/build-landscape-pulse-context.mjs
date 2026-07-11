@@ -1104,52 +1104,266 @@ function calculateMovement(
 
 
 // =================================
-// CHAMPION LEDGER
+// CHAMPIONSHIP CANON
 // =================================
 
 
 function simplifyChampions(
-    championsData,
+    championshipsData,
     companiesById
 ) {
 
 
-    const records =
-        [];
+    const titles =
 
-
-    const source =
-
-        championsData
-            ?.companies;
-
-
-    if (
         Array.isArray(
-            source
+            championshipsData?.titles
         )
-    ) {
+
+            ? championshipsData.titles
+
+            : [];
 
 
-        source.forEach(
+    const companyIds =
 
-            company => {
+        [
+
+            ...new Set([
+
+                ...Object.keys(
+                    companiesById
+                )
+
+                    .filter(
+
+                        companyId =>
+
+                            companyId !==
+                            "owl"
+
+                    ),
+
+                ...titles
+
+                    .map(
+
+                        title =>
+
+                            title.companyId
+
+                    )
+
+                    .filter(
+                        Boolean
+                    )
+
+            ])
+
+        ]
+
+            .sort(
+
+                (
+                    a,
+                    b
+                ) =>
+
+                    companyName(
+                        a,
+                        companiesById
+                    )
+
+                        .localeCompare(
+
+                            companyName(
+                                b,
+                                companiesById
+                            )
+
+                        )
+
+            );
+
+
+    return companyIds.map(
+
+        companyId => ({
+
+
+            companyId:
+                companyId,
+
+
+            companyName:
+
+                companyName(
+                    companyId,
+                    companiesById
+                ),
+
+
+            titles:
+
+                titles
+
+                    .filter(
+
+                        title =>
+
+                            title.companyId ===
+                            companyId
+
+                    )
+
+                    .sort(
+
+                        (
+                            a,
+                            b
+                        ) =>
+
+                            String(
+                                a.name || ""
+                            )
+
+                                .localeCompare(
+
+                                    String(
+                                        b.name || ""
+                                    )
+
+                                )
+
+                    )
+
+                    .map(
+
+                        title => ({
+
+
+                            id:
+                                title.id || "",
+
+
+                            titleName:
+
+                                title.name
+
+                                ||
+
+                                "Championship",
+
+
+                            championName:
+                                title.championName || "",
+
+
+                            status:
+
+                                title.status ===
+                                "vacant"
+
+                                ||
+
+                                !title.championName
+
+                                    ? "vacant"
+
+                                    : "active",
+
+
+                            wonPeriodId:
+                                title.wonPeriodId || "",
+
+
+                            wonEventId:
+                                title.wonEventId || "",
+
+
+                            wonEventName:
+                                title.wonEventName || "",
+
+
+                            wonDate:
+                                title.wonDate || ""
+
+                        })
+
+                    )
+
+        })
+
+    );
+
+}
+
+
+
+function championshipChangePeriod(
+    change
+) {
+
+
+    return (
+
+        String(
+            change.periodId || ""
+        )
+            .trim()
+
+        ||
+
+        String(
+            change.wonDate || ""
+        )
+            .slice(
+                0,
+                7
+            )
+
+    );
+
+}
+
+
+
+function simplifyChampionshipHistory(
+    championshipHistoryData,
+    companiesById
+) {
+
+
+    return (
+
+        Array.isArray(
+            championshipHistoryData?.changes
+        )
+
+            ? championshipHistoryData.changes
+
+            : []
+
+    )
+
+        .map(
+
+            change => {
 
 
                 const companyId =
-
-                    company.companyId
-
-                    ||
-
-                    company.id
-
-                    ||
-
-                    "";
+                    change.companyId || "";
 
 
-                records.push({
+                return {
+
+
+                    id:
+                        change.id || "",
+
+
+                    titleId:
+                        change.titleId || "",
 
 
                     companyId:
@@ -1164,164 +1378,78 @@ function simplifyChampions(
                         ),
 
 
-                    titles:
-
-                        (
-
-                            company.titles
-
-                            ||
-
-                            []
-
-                        )
-
-                            .map(
-
-                                title => ({
+                    titleName:
+                        change.titleName || "",
 
 
-                                    titleName:
-
-                                        title.name
-
-                                        ||
-
-                                        title.titleName
-
-                                        ||
-
-                                        "Championship",
+                    previousChampionName:
+                        change.previousChampionName || "",
 
 
-                                    champion:
+                    newChampionName:
+                        change.newChampionName || "",
 
-                                        title.champion
 
-                                        ||
+                    changeType:
+                        change.changeType || "",
 
-                                        title.currentChampion
 
-                                        ||
+                    periodId:
 
-                                        "Vacant"
+                        championshipChangePeriod(
+                            change
+                        ),
 
-                                })
 
-                            )
+                    eventId:
+                        change.eventId || "",
 
-                });
+
+                    eventName:
+                        change.eventName || "",
+
+
+                    wonDate:
+                        change.wonDate || "",
+
+
+                    recordedAt:
+                        change.recordedAt || ""
+
+                };
 
             }
 
-        );
-
-
-        return records;
-
-    }
-
-
-    if (
-
-        source
-
-        &&
-
-        typeof source ===
-        "object"
-
-    ) {
-
-
-        Object.entries(
-            source
         )
 
-            .forEach(
+        .sort(
 
-                (
-                    [
-                        companyId,
-                        company
-                    ]
-                ) => {
+            (
+                a,
+                b
+            ) =>
 
+                String(
+                    b.periodId ||
+                    b.wonDate ||
+                    b.recordedAt ||
+                    ""
+                )
 
-                    records.push({
+                    .localeCompare(
 
+                        String(
+                            a.periodId ||
+                            a.wonDate ||
+                            a.recordedAt ||
+                            ""
+                        )
 
-                        companyId:
-                            companyId,
+                    )
 
-
-                        companyName:
-
-                            companyName(
-                                companyId,
-                                companiesById
-                            ),
-
-
-                        titles:
-
-                            (
-
-                                company.titles
-
-                                ||
-
-                                []
-
-                            )
-
-                                .map(
-
-                                    title => ({
-
-
-                                        titleName:
-
-                                            title.name
-
-                                            ||
-
-                                            title.titleName
-
-                                            ||
-
-                                            "Championship",
-
-
-                                        champion:
-
-                                            title.champion
-
-                                            ||
-
-                                            title.currentChampion
-
-                                            ||
-
-                                            "Vacant"
-
-                                    })
-
-                                )
-
-                    });
-
-                }
-
-            );
-
-    }
-
-
-    return records;
+        );
 
 }
-
 
 
 // =================================
@@ -1338,10 +1466,10 @@ function buildMonthlyPulse({
     showsById,
     honors,
     champions,
+    championshipHistory,
     availableAccounts
 
 }) {
-
 
     const periodId =
         rankingPeriod.periodId;
@@ -1491,7 +1619,50 @@ function buildMonthlyPulse({
 
             );
 
+const currentPeriodChampionshipChanges =
 
+    championshipHistory.filter(
+
+        change =>
+
+            change.periodId ===
+            periodId
+
+    );
+
+
+const recentChampionshipChanges =
+
+    championshipHistory
+
+        .filter(
+
+            change =>
+
+                !change.periodId
+
+                ||
+
+                change.periodId <=
+                periodId
+
+        )
+
+        .slice(
+            0,
+            20
+        );
+
+
+const currentTitles =
+
+    champions.flatMap(
+
+        company =>
+
+            company.titles
+
+    );
     return {
 
 
@@ -1638,8 +1809,60 @@ function buildMonthlyPulse({
             {},
 
 
-        championLedger:
-            champions,
+       championshipSummary: {
+
+
+    currentTitleCount:
+        currentTitles.length,
+
+
+    activeChampionCount:
+
+        currentTitles.filter(
+
+            title =>
+
+                title.status ===
+                "active"
+
+        )
+            .length,
+
+
+    vacantTitleCount:
+
+        currentTitles.filter(
+
+            title =>
+
+                title.status ===
+                "vacant"
+
+        )
+            .length,
+
+
+    currentPeriodChangeCount:
+        currentPeriodChampionshipChanges.length
+
+},
+
+
+championLedger:
+    champions,
+
+
+championshipHistory: {
+
+
+    currentPeriodChanges:
+        currentPeriodChampionshipChanges,
+
+
+    recentChanges:
+        recentChampionshipChanges
+
+},
 
 
         universeDevelopments:
@@ -1836,7 +2059,8 @@ const [
     showsData,
     eventsData,
     rankingsData,
-    championsData,
+    championshipsData,
+    championshipHistoryData,
     awardsData,
     braggingRightsData,
     accounts,
@@ -1884,12 +2108,27 @@ const [
 
 
         readJson(
-            "data/landscape/champions.json",
-            {
-                companies:
-                    []
-            }
-        ),
+    "data/landscape/championships.json",
+    {
+        version:
+            1,
+
+        titles:
+            []
+    }
+),
+
+
+readJson(
+    "data/landscape/championship-history.json",
+    {
+        version:
+            1,
+
+        changes:
+            []
+    }
+),
 
 
         readJson(
@@ -2049,11 +2288,21 @@ const champions =
 
     simplifyChampions(
 
-        championsData,
+        championshipsData,
         companiesById
 
     );
 
+
+
+const championshipHistory =
+
+    simplifyChampionshipHistory(
+
+        championshipHistoryData,
+        companiesById
+
+    );
 
 
 const archives =
@@ -2214,11 +2463,15 @@ rankingPeriods
 
 
                     champions:
-                        champions,
+    champions,
 
 
-                    availableAccounts:
-                        industryAccounts
+championshipHistory:
+    championshipHistory,
+
+
+availableAccounts:
+    industryAccounts
 
                 })
 
