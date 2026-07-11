@@ -1074,16 +1074,19 @@
 
                             const zoneClass =
 
-                                item.rank >= 7
+    item.rank >= 6
 
-                                    ? "rank-freeze"
+        ? "rank-freeze"
 
-                                    : item.rank <= 3
+        : item.rank === 2
 
-                                        ? "rank-chase"
+            ? "rank-hot"
 
-                                        : "";
+            : item.rank === 3
 
+                ? "rank-warm"
+
+                : "";
 
                             return `
 
