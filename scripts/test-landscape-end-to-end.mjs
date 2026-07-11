@@ -3,7 +3,11 @@ import path from "node:path";
 import vm from "node:vm";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
+import {
 
+    buildWwowLandscapeContext
+
+} from "./wwow-landscape-context.mjs";
 
 const execFileAsync =
     promisify(
@@ -1697,59 +1701,32 @@ assert(
 
 
 // =================================
-// BUILD WWOW WORLD CONTEXT
+// BUILD WWOW LANDSCAPE CONTEXT
 // =================================
 
 
-await execFileAsync(
+const wwowLandscapeContext =
 
-    process.execPath,
-
-    [
-        "scripts/build-wwow-context.mjs"
-    ],
-
-    {
+    await buildWwowLandscapeContext({
 
 
-        cwd:
+        root:
             ROOT,
 
 
-        env: {
+        periodId:
+            PERIOD_ID
 
 
-            ...process.env,
-
-
-            TARGET_MONTH:
-                PERIOD_ID
-
-
-        }
-
-
-    }
-
-);
-
-
-
-const wwowContext =
-
-    await readJson(
-
-        "data/wwow/generation-context.json"
-
-    );
+    });
 
 
 
 assert(
 
-    wwowContext.landscapeWorld,
+    wwowLandscapeContext,
 
-    "WWoW context is missing landscapeWorld."
+    "WWoW Landscape context was not created."
 
 );
 
@@ -1757,13 +1734,12 @@ assert(
 
 assert(
 
-    wwowContext
-        .landscapeWorld
+    wwowLandscapeContext
         .summary
         .landscapeEventCount ===
         52,
 
-    `WWoW expected 52 Landscape events, found ${wwowContext.landscapeWorld.summary.landscapeEventCount}.`
+    `WWoW expected 52 Landscape events, found ${wwowLandscapeContext.summary.landscapeEventCount}.`
 
 );
 
@@ -1771,13 +1747,12 @@ assert(
 
 assert(
 
-    wwowContext
-        .landscapeWorld
+    wwowLandscapeContext
         .summary
         .majorEventCount ===
         8,
 
-    `WWoW expected 8 major events, found ${wwowContext.landscapeWorld.summary.majorEventCount}.`
+    `WWoW expected 8 major events, found ${wwowLandscapeContext.summary.majorEventCount}.`
 
 );
 
@@ -1785,8 +1760,7 @@ assert(
 
 assert(
 
-    wwowContext
-        .landscapeWorld
+    wwowLandscapeContext
         .summary
         .rankingFrozen ===
         true,
@@ -1799,13 +1773,51 @@ assert(
 
 assert(
 
-    wwowContext
-        .landscapeWorld
+    wwowLandscapeContext
         .summary
         .honorsAvailable ===
         true,
 
     "WWoW did not receive monthly Honors."
+
+);
+
+
+
+assert(
+
+    wwowLandscapeContext
+        .currentCompetition
+        .rankingPeriod,
+
+    "WWoW Landscape context is missing the frozen ranking period."
+
+);
+
+
+
+assert(
+
+    wwowLandscapeContext
+        .currentCompetition
+        .majorEventBattle
+        .length ===
+        8,
+
+    `WWoW expected 8 Major Event Battle entries, found ${wwowLandscapeContext.currentCompetition.majorEventBattle.length}.`
+
+);
+
+
+
+assert(
+
+    wwowLandscapeContext
+        .monthlyWorld
+        .topMatches
+        .length > 0,
+
+    "WWoW Landscape context contains no Top Matches."
 
 );
 
@@ -1887,7 +1899,7 @@ console.log(
 
 console.log(
 
-    `WWoW Landscape events: ${wwowContext.landscapeWorld.summary.landscapeEventCount}`
+    `WWoW Landscape events: ${wwowLandscapeContext.summary.landscapeEventCount}`
 
 );
 
