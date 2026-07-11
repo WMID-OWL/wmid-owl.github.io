@@ -1635,9 +1635,112 @@
 
 
 
-    // =================================
+        // =================================
     // EVENTS
     // =================================
+
+
+    function cycleStages(
+        events
+    ) {
+
+
+        const configuredStages = [
+
+            ...(
+                state.calendar
+                    ?.weeklyStages
+
+                ||
+
+                []
+            ),
+
+            state.calendar
+                ?.monthlyFinale
+
+        ]
+
+            .filter(
+                Boolean
+            );
+
+
+        const configuredIds =
+
+            new Set(
+
+                configuredStages.map(
+
+                    stage =>
+
+                        stage.id
+
+                )
+
+            );
+
+
+        const extraStages =
+
+            [
+
+                ...new Set(
+
+                    events
+
+                        .map(
+
+                            event =>
+
+                                event.stage
+
+                        )
+
+                        .filter(
+
+                            stageId =>
+
+                                stageId
+
+                                &&
+
+                                !configuredIds.has(
+                                    stageId
+                                )
+
+                        )
+
+                )
+
+            ]
+
+                .map(
+
+                    stageId => ({
+
+                        id:
+                            stageId,
+
+                        label:
+                            stageLabel(
+                                stageId
+                            )
+
+                    })
+
+                );
+
+
+        return [
+
+            ...configuredStages,
+            ...extraStages
+
+        ];
+
+    }
+
 
 
     function renderEvents(
@@ -1681,71 +1784,315 @@
         }
 
 
+        const stages =
+
+            cycleStages(
+                events
+            );
+
+
+        const finaleId =
+
+            state.calendar
+                ?.monthlyFinale
+                ?.id
+
+            ||
+
+            "";
+
+
         els.eventGrid
             .innerHTML =
 
-                events
+                stages
 
                     .map(
 
-                        event => {
+                        stage => {
 
 
-                            const company =
+                            const stageEvents =
 
-                                companyForId(
-                                    event.companyId
-                                );
+                                events
+
+                                    .filter(
+
+                                        event =>
+
+                                            event.stage ===
+                                            stage.id
+
+                                    )
+
+                                    .sort(
+
+                                        (
+                                            a,
+                                            b
+                                        ) => {
 
 
-                            const show =
+                                            const companyA =
 
-                                showForId(
-                                    event.showId
-                                );
+                                                companyForId(
+                                                    a.companyId
+                                                )
+
+                                                    ?.name
+
+                                                ||
+
+                                                a.companyId
+
+                                                ||
+
+                                                "";
 
 
-                            const title =
+                                            const companyB =
 
-                                event.eventName
+                                                companyForId(
+                                                    b.companyId
+                                                )
 
-                                ||
+                                                    ?.name
 
-                                show?.name
+                                                ||
 
-                                ||
+                                                b.companyId
 
-                                "Untitled Event";
+                                                ||
+
+                                                "";
+
+
+                                            return companyA
+
+                                                .localeCompare(
+                                                    companyB
+                                                );
+
+                                        }
+
+                                    );
+
+
+                            const isFinale =
+
+                                stage.id ===
+                                finaleId;
+
+
+                            const rows =
+
+                                stageEvents.length
+
+                                    ? stageEvents
+
+                                        .map(
+
+                                            event => {
+
+
+                                                const company =
+
+                                                    companyForId(
+                                                        event.companyId
+                                                    );
+
+
+                                                const show =
+
+                                                    showForId(
+                                                        event.showId
+                                                    );
+
+
+                                                const title =
+
+                                                    event.eventName
+
+                                                    ||
+
+                                                    show?.name
+
+                                                    ||
+
+                                                    "Untitled Event";
+
+
+                                                const location =
+
+                                                    [
+
+                                                        event.location
+                                                            ?.city,
+
+                                                        event.location
+                                                            ?.region
+
+                                                    ]
+
+                                                        .filter(
+                                                            Boolean
+                                                        )
+
+                                                        .join(
+                                                            ", "
+                                                        );
+
+
+                                                const meta =
+
+                                                    [
+
+                                                        company?.name
+
+                                                        ||
+
+                                                        event.companyId,
+
+                                                        location
+
+                                                    ]
+
+                                                        .filter(
+                                                            Boolean
+                                                        )
+
+                                                        .join(
+                                                            " · "
+                                                        );
+
+
+                                                const rating =
+
+                                                    Number(
+                                                        event.overallRating
+                                                    );
+
+
+                                                return `
+
+                                                    <div class="landscape-cycle-event-row">
+
+
+                                                        <div class="landscape-cycle-event-info">
+
+
+                                                            <strong>
+
+                                                                ${escapeHtml(
+                                                                    title
+                                                                )}
+
+                                                            </strong>
+
+
+                                                            <small>
+
+                                                                ${escapeHtml(
+                                                                    meta
+                                                                )}
+
+                                                            </small>
+
+
+                                                        </div>
+
+
+                                                        <strong class="landscape-cycle-event-rating">
+
+                                                            ${
+
+                                                                Number.isFinite(
+                                                                    rating
+                                                                )
+
+                                                                    ? rating.toFixed(
+                                                                        2
+                                                                    )
+
+                                                                    : "—"
+
+                                                            }
+
+                                                        </strong>
+
+
+                                                    </div>
+
+                                                `;
+
+                                            }
+
+                                        )
+
+                                        .join(
+                                            ""
+                                        )
+
+                                    : `
+
+                                        <p class="landscape-cycle-empty">
+
+                                            NO EVENTS RECORDED
+
+                                        </p>
+
+                                    `;
 
 
                             return `
 
-                                <article class="landscape-event-card">
+                                <article class="landscape-cycle-stage ${
+
+                                    isFinale
+
+                                        ? "is-finale"
+
+                                        : ""
+
+                                }">
 
 
-                                    <div class="landscape-event-topline">
+                                    <div class="landscape-cycle-stage-heading">
 
 
-                                        <span>
-
-                                            ${escapeHtml(
-                                                company?.name || event.companyId
-                                            )}
-
-                                            ·
-
-                                            ${escapeHtml(
-                                                stageLabel(
-                                                    event.stage
-                                                )
-                                            )}
-
-                                        </span>
+                                        <div>
 
 
-                                        <strong class="landscape-event-rating">
+                                            <span>
+                                                CURRENT CYCLE
+                                            </span>
 
-                                            ${event.overallRating ?? "—"}
+
+                                            <h3>
+
+                                                ${escapeHtml(
+                                                    stage.label || stageLabel(stage.id)
+                                                )}
+
+                                            </h3>
+
+
+                                        </div>
+
+
+                                        <strong>
+
+                                            ${stageEvents.length}
+
+                                            EVENT${
+
+                                                stageEvents.length === 1
+
+                                                    ? ""
+
+                                                    : "S"
+
+                                            }
 
                                         </strong>
 
@@ -1753,69 +2100,9 @@
                                     </div>
 
 
+                                    <div class="landscape-cycle-event-list">
 
-                                    <h3>
-
-                                        ${escapeHtml(
-                                            title
-                                        )}
-
-                                    </h3>
-
-
-
-                                    <div class="landscape-event-meta">
-
-
-                                        <small>
-
-                                            ${escapeHtml(
-                                                formatLocation(
-                                                    event.location
-                                                )
-                                            )}
-
-                                        </small>
-
-
-
-                                        <div class="landscape-event-tags">
-
-
-                                            <span>
-
-                                                ${event.matches?.length || 0}
-                                                MATCHES
-
-                                            </span>
-
-
-                                            <span>
-
-                                                ${event.segments?.length || 0}
-                                                SEGMENTS
-
-                                            </span>
-
-
-                                            <span>
-
-                                                ${
-
-                                                    event.eventType ===
-                                                    "major-event"
-
-                                                        ? "MAJOR EVENT"
-
-                                                        : "WEEKLY"
-
-                                                }
-
-                                            </span>
-
-
-                                        </div>
-
+                                        ${rows}
 
                                     </div>
 
@@ -1833,8 +2120,6 @@
                     );
 
     }
-
-
 
     // =================================
     // TOP MATCHES
