@@ -5366,3 +5366,546 @@ body.landscape-page {
 
 
 }
+/* =================================
+   RANKING TEMPERATURE HIERARCHY
+================================= */
+
+
+/* =================================
+   #1 PROMOTION — ON FIRE
+================================= */
+
+
+@keyframes landscape-fire-pulse {
+
+
+    0%,
+    100% {
+
+        opacity:
+            0.72;
+
+        transform:
+            scale(
+                1
+            );
+
+    }
+
+
+    50% {
+
+        opacity:
+            1;
+
+        transform:
+            scale(
+                1.035
+            );
+
+    }
+
+
+}
+
+
+
+.landscape-throne-card {
+
+    isolation:
+        isolate;
+
+    border-color:
+        rgba(
+            255,
+            77,
+            45,
+            0.72
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(
+                255,
+                56,
+                32,
+                0.28
+            ),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 34% 110%,
+            rgba(
+                255,
+                139,
+                0,
+                0.18
+            ),
+            transparent 40%
+        ),
+
+        linear-gradient(
+            110deg,
+            #2b0d09,
+            #160b0b 48%,
+            #0d1113
+        );
+
+    box-shadow:
+
+        0 0 36px
+        rgba(
+            255,
+            73,
+            38,
+            0.16
+        ),
+
+        0 35px 80px
+        rgba(
+            0,
+            0,
+            0,
+            0.42
+        );
+
+}
+
+
+
+.landscape-throne-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    z-index:
+        1;
+
+    right:
+        -10%;
+
+    bottom:
+        -52%;
+
+    left:
+        -10%;
+
+    height:
+        82%;
+
+    background:
+
+        radial-gradient(
+            ellipse at 18% 100%,
+            rgba(
+                255,
+                59,
+                31,
+                0.54
+            ),
+            transparent 44%
+        ),
+
+        radial-gradient(
+            ellipse at 48% 100%,
+            rgba(
+                255,
+                132,
+                0,
+                0.4
+            ),
+            transparent 42%
+        ),
+
+        radial-gradient(
+            ellipse at 78% 100%,
+            rgba(
+                214,
+                35,
+                24,
+                0.44
+            ),
+            transparent 44%
+        );
+
+    filter:
+        blur(
+            16px
+        );
+
+    pointer-events:
+        none;
+
+    animation:
+
+        landscape-fire-pulse
+        3.5s
+        ease-in-out
+        infinite;
+
+}
+
+
+
+.landscape-throne-label {
+
+    color:
+        #ff943f;
+
+}
+
+
+
+.landscape-throne-score strong {
+
+    color:
+        #ff5938;
+
+    text-shadow:
+
+        0 0 24px
+        rgba(
+            255,
+            78,
+            42,
+            0.34
+        );
+
+}
+
+
+
+.landscape-throne-identity {
+
+    border-right-color:
+        rgba(
+            255,
+            99,
+            50,
+            0.24
+        );
+
+}
+
+
+
+/* =================================
+   PROMOTION #2 — HOT
+================================= */
+
+
+.landscape-power-row.rank-hot {
+
+    border-color:
+        rgba(
+            255,
+            142,
+            56,
+            0.38
+        );
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(
+                255,
+                119,
+                35,
+                0.13
+            ),
+            var(
+                --ls-panel
+            )
+        );
+
+}
+
+
+
+.rank-hot
+.landscape-rank-number,
+
+.rank-hot
+.landscape-power-score {
+
+    color:
+        #ff963f;
+
+    text-shadow:
+
+        0 0 18px
+        rgba(
+            255,
+            135,
+            52,
+            0.19
+        );
+
+}
+
+
+
+/* =================================
+   PROMOTION #3 — HEATING UP
+================================= */
+
+
+.landscape-power-row.rank-warm {
+
+    border-color:
+        rgba(
+            244,
+            207,
+            87,
+            0.28
+        );
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(
+                244,
+                207,
+                87,
+                0.08
+            ),
+            var(
+                --ls-panel
+            )
+        );
+
+}
+
+
+
+.rank-warm
+.landscape-rank-number,
+
+.rank-warm
+.landscape-power-score {
+
+    color:
+        #f4cf57;
+
+    text-shadow:
+
+        0 0 16px
+        rgba(
+            244,
+            207,
+            87,
+            0.14
+        );
+
+}
+
+
+
+/* =================================
+   SHOW #1 — RED HOT
+================================= */
+
+
+.landscape-show-row.show-leader {
+
+    border-color:
+        rgba(
+            255,
+            73,
+            43,
+            0.62
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 7% 50%,
+            rgba(
+                255,
+                67,
+                36,
+                0.22
+            ),
+            transparent 28%
+        ),
+
+        linear-gradient(
+            100deg,
+            rgba(
+                114,
+                20,
+                14,
+                0.3
+            ),
+            var(
+                --ls-panel
+            )
+        );
+
+    box-shadow:
+
+        inset 4px 0 0
+        rgba(
+            255,
+            76,
+            43,
+            0.82
+        ),
+
+        0 0 26px
+        rgba(
+            255,
+            76,
+            43,
+            0.08
+        );
+
+}
+
+
+
+.show-leader
+.landscape-rank-number,
+
+.show-leader
+.landscape-show-score {
+
+    color:
+        #ff5b3d;
+
+    text-shadow:
+
+        0 0 20px
+        rgba(
+            255,
+            78,
+            44,
+            0.26
+        );
+
+}
+
+
+
+/* =================================
+   SHOWS #2–3 — HOT
+================================= */
+
+
+.landscape-show-row.show-hot {
+
+    border-color:
+        rgba(
+            255,
+            145,
+            57,
+            0.32
+        );
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(
+                255,
+                126,
+                36,
+                0.11
+            ),
+            var(
+                --ls-panel
+            )
+        );
+
+}
+
+
+
+.show-hot
+.landscape-rank-number,
+
+.show-hot
+.landscape-show-score {
+
+    color:
+        #ff963f;
+
+}
+
+
+
+/* =================================
+   SHOWS #4–5 — HEATING UP
+================================= */
+
+
+.landscape-show-row.show-warm {
+
+    border-color:
+        rgba(
+            244,
+            207,
+            87,
+            0.24
+        );
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(
+                244,
+                207,
+                87,
+                0.07
+            ),
+            var(
+                --ls-panel
+            )
+        );
+
+}
+
+
+
+.show-warm
+.landscape-rank-number,
+
+.show-warm
+.landscape-show-score {
+
+    color:
+        #f4cf57;
+
+}
+
+
+
+/* =================================
+   ICE ZONE EMPHASIS
+================================= */
+
+
+.landscape-power-row.rank-freeze,
+
+.landscape-show-row.show-freeze {
+
+    box-shadow:
+
+        inset 3px 0 0
+        rgba(
+            143,
+            212,
+            255,
+            0.42
+        );
+
+}
