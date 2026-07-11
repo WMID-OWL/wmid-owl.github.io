@@ -3,2281 +3,2528 @@
 // LANDSCAPE CHAMPIONSHIP DESK
 // =================================
 
-
-// =================================
-// ELEMENTS
-// =================================
+(() => {
+  "use strict";
 
 
-const crLandscapeChampionEls = {
+  // =================================
+  // ELEMENTS
+  // =================================
 
-
+  const els = {
     company:
-
-        document.getElementById(
-            "cr-landscape-champion-company"
-        ),
-
+      document.getElementById(
+        "cr-landscape-champion-company"
+      ),
 
     addTitle:
-
-        document.getElementById(
-            "cr-landscape-add-title-slot"
-        ),
-
+      document.getElementById(
+        "cr-landscape-add-title-slot"
+      ),
 
     titleSlots:
-
-        document.getElementById(
-            "cr-landscape-title-slots"
-        ),
-
-
-    empty:
-
-        document.getElementById(
-            "cr-landscape-title-empty"
-        ),
-
+      document.getElementById(
+        "cr-landscape-title-slots"
+      ),
 
     history:
-
-        document.getElementById(
-            "cr-landscape-champion-history"
-        ),
-
+      document.getElementById(
+        "cr-landscape-champion-history"
+      ),
 
     status:
-
-        document.getElementById(
-            "cr-landscape-champion-status"
-        ),
-
+      document.getElementById(
+        "cr-landscape-champion-status"
+      ),
 
     save:
-
-        document.getElementById(
-            "cr-landscape-save-champions"
-        )
-
-};
+      document.getElementById(
+        "cr-landscape-save-champions"
+      )
+  };
 
 
+  // =================================
+  // STATE
+  // =================================
 
-// =================================
-// STATE
-// =================================
-
-
-let crLandscapeChampionData = {
-
-
-    companies:
-        [],
-
-
-    champions:
-        null,
+  const state = {
+    companies: [],
+    events: [],
+    titles: [],
+    changes: []
+  };
 
 
-    events:
-        [],
+  let initialized =
+    false;
 
 
-    shows:
-        [],
+  // =================================
+  // BASIC HELPERS
+  // =================================
+
+  function setStatus(
+    text
+  ) {
+
+    if (
+      els.status
+    ) {
+
+      els.status.textContent =
+        text;
+
+    }
+
+  }
 
 
-    calendar:
-        null
-
-};
-
-
-let crLandscapeChampionBaselineTitles =
-    [];
-
-
-
-// =================================
-// STATUS
-// =================================
-
-
-function crLandscapeChampionSetStatus(
+  function escapeHtml(
     value
-) {
-
-
-    crLandscapeChampionEls
-        .status
-        .textContent =
-            value;
-
-}
-
-
-
-// =================================
-// HTML SAFETY
-// =================================
-
-
-function crLandscapeChampionEscapeHtml(
-    value
-) {
-
+  ) {
 
     return String(
-        value ?? ""
+      value ?? ""
     )
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
 
-        .replace(
-            /</g,
-            "&lt;"
-        )
+      .replace(
+        /</g,
+        "&lt;"
+      )
 
-        .replace(
-            />/g,
-            "&gt;"
-        )
+      .replace(
+        />/g,
+        "&gt;"
+      )
 
-        .replace(
-            /"/g,
-            "&quot;"
-        )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
 
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+      .replace(
+        /'/g,
+        "&#039;"
+      );
 
-}
-
-
-
-// =================================
-// SLUG
-// =================================
+  }
 
 
-function crLandscapeChampionSlug(
+  function createSlug(
     value
-) {
-
+  ) {
 
     return String(
-        value || ""
+      value || ""
     )
 
-        .toLowerCase()
+      .normalize(
+        "NFD"
+      )
 
-        .trim()
+      .replace(
+        /[\u0300-\u036f]/g,
+        ""
+      )
 
-        .replace(
-            /[^a-z0-9]+/g,
-            "-"
-        )
+      .toLowerCase()
 
-        .replace(
-            /^-|-$/g,
-            ""
-        );
+      .replace(
+        /[^a-z0-9]+/g,
+        "-"
+      )
 
-}
+      .replace(
+        /^-+|-+$/g,
+        ""
+      );
 
-
-
-// =================================
-// READ JSON
-// =================================
-
-
-async function crLandscapeChampionReadJson(
-    fileName
-) {
+  }
 
 
-    const dataDirectory =
+  function selectedCompanyId() {
 
-        await owlRepositoryHandle
-            .getDirectoryHandle(
-                "data"
-            );
+    return (
+      els.company?.value ||
+      ""
+    );
 
-
-    const landscapeDirectory =
-
-        await dataDirectory
-            .getDirectoryHandle(
-                "landscape"
-            );
+  }
 
 
-    const fileHandle =
+  function companyForId(
+    companyId
+  ) {
 
-        await landscapeDirectory
-            .getFileHandle(
-                fileName
-            );
+    return (
+      state.companies.find(
+        company =>
+          company.id === companyId
+      )
+
+      ||
+
+      null
+    );
+
+  }
 
 
-    const file =
+  function eventForId(
+    eventId
+  ) {
 
-        await fileHandle
-            .getFile();
+    return (
+      state.events.find(
+        event =>
+          event.id === eventId
+      )
+
+      ||
+
+      null
+    );
+
+  }
 
 
-    return JSON.parse(
+  function eventName(
+    event
+  ) {
 
-        await file.text()
+    if (!event) {
+
+      return "";
+
+    }
+
+
+    return (
+
+      event.eventName
+
+      ||
+
+      event.showId
+
+      ||
+
+      event.id
+
+      ||
+
+      "Untitled Event"
 
     );
 
-}
+  }
 
 
+  // =================================
+  // LANDSCAPE DIRECTORY
+  // =================================
 
-// =================================
-// WRITE JSON
-// =================================
+  async function landscapeDirectoryHandle() {
 
+    if (
+      typeof owlRepositoryHandle ===
+        "undefined"
 
-async function crLandscapeChampionWriteJson(
-    fileName,
-    data
-) {
+      ||
+
+      !owlRepositoryHandle
+    ) {
+
+      throw new Error(
+        "OWL repository is not connected."
+      );
+
+    }
 
 
     const dataDirectory =
+      await owlRepositoryHandle
+        .getDirectoryHandle(
+          "data"
+        );
 
-        await owlRepositoryHandle
-            .getDirectoryHandle(
-                "data"
-            );
+
+    return dataDirectory
+      .getDirectoryHandle(
+        "landscape"
+      );
+
+  }
 
 
-    const landscapeDirectory =
+  // =================================
+  // READ JSON
+  // =================================
 
-        await dataDirectory
-            .getDirectoryHandle(
-                "landscape"
-            );
+  async function readJson(
+    fileName
+  ) {
+
+    const directory =
+      await landscapeDirectoryHandle();
 
 
     const fileHandle =
+      await directory.getFileHandle(
+        fileName
+      );
 
-        await landscapeDirectory
-            .getFileHandle(
-                fileName
-            );
+
+    const file =
+      await fileHandle.getFile();
+
+
+    return JSON.parse(
+      await file.text()
+    );
+
+  }
+
+
+  // =================================
+  // WRITE JSON
+  // =================================
+
+  async function writeJson(
+    fileName,
+    data
+  ) {
+
+    const directory =
+      await landscapeDirectoryHandle();
+
+
+    const fileHandle =
+      await directory.getFileHandle(
+        fileName
+      );
 
 
     const writable =
-
-        await fileHandle
-            .createWritable();
+      await fileHandle.createWritable();
 
 
     await writable.write(
 
-        `${JSON.stringify(
-
-            data,
-
-            null,
-
-            2
-
-        )}\n`
+      `${
+        JSON.stringify(
+          data,
+          null,
+          2
+        )
+      }\n`
 
     );
 
 
     await writable.close();
 
-}
+  }
 
 
+  // =================================
+  // WRITE PERMISSION
+  // =================================
 
-// =================================
-// PERIOD LABEL
-// =================================
-
-
-function crLandscapeChampionPeriodLabel(
-    periodId
-) {
-
-
-    const match =
-
-        String(
-            periodId || ""
-        )
-            .match(
-                /^(\d{4})-(\d{2})$/
-            );
-
+  async function ensureWritePermission() {
 
     if (
-        !match
+      typeof owlRepositoryHandle ===
+        "undefined"
+
+      ||
+
+      !owlRepositoryHandle
     ) {
 
-
-        return periodId || "";
+      return false;
 
     }
 
 
-    const year =
-        match[1];
+    const options = {
+      mode: "readwrite"
+    };
 
 
-    const monthId =
-        match[2];
+    if (
+      typeof owlRepositoryHandle
+        .queryPermission !== "function"
+    ) {
+
+      return true;
+
+    }
 
 
-    const month =
-
-        crLandscapeChampionData
-            .calendar
-            ?.months
-            ?.find(
-
-                item =>
-
-                    item.id ===
-                    monthId
-
-            );
-
-
-    return month
-
-        ? `${month.name} ${year}`
-
-        : periodId;
-
-}
-
-
-
-// =================================
-// STAGE LABEL
-// =================================
-
-
-function crLandscapeChampionStageLabel(
-    stageId
-) {
-
-
-    const stages = [
-
-        ...(
-            crLandscapeChampionData
-                .calendar
-                ?.weeklyStages
-
-            ||
-
-            []
-        ),
-
-        crLandscapeChampionData
-            .calendar
-            ?.monthlyFinale
-
-    ]
-
-        .filter(
-            Boolean
-        );
-
-
-    return stages
-
-        .find(
-
-            stage =>
-
-                stage.id ===
-                stageId
-
+    if (
+      await owlRepositoryHandle
+        .queryPermission(
+          options
         )
 
-        ?.label
+      === "granted"
+    ) {
 
-        ||
+      return true;
 
-        stageId
-
-        ||
-
-        "";
-
-}
+    }
 
 
+    if (
+      typeof owlRepositoryHandle
+        .requestPermission !== "function"
+    ) {
 
-// =================================
-// EVENT LABEL
-// =================================
+      return false;
+
+    }
 
 
-function crLandscapeChampionEventLabel(
-    event
-) {
+    return (
 
-
-    return [
-
-        crLandscapeChampionPeriodLabel(
-            event.periodId
-        ),
-
-        crLandscapeChampionStageLabel(
-            event.stage
-        ),
-
-        event.eventName || ""
-
-    ]
-
-        .filter(
-            Boolean
+      await owlRepositoryHandle
+        .requestPermission(
+          options
         )
 
-        .join(
-            " · "
-        );
+      === "granted"
 
-}
+    );
 
-
-
-// =================================
-// BUILD COMPANY SELECT
-// =================================
+  }
 
 
-function crLandscapeChampionBuildCompanySelect() {
+  // =================================
+  // COMPANY SELECT
+  // =================================
+
+  function buildCompanyOptions() {
+
+    if (
+      !els.company
+    ) {
+
+      return;
+
+    }
 
 
-    const externalCompanies =
-
-        crLandscapeChampionData
-            .companies
-
-            .filter(
-
-                company =>
-
-                    company.id !==
-                    "owl"
-
-            );
+    const previousValue =
+      els.company.value;
 
 
-    crLandscapeChampionEls
-        .company
-        .innerHTML =
+    const companies =
+      [...state.companies]
 
-            externalCompanies
+        .filter(
+          company =>
+            company.id !== "owl"
+        )
 
-                .map(
+        .sort(
+          (a, b) =>
 
-                    company => `
-
-                        <option value="${
-
-                            crLandscapeChampionEscapeHtml(
-                                company.id
-                            )
-
-                        }">
-
-                            ${crLandscapeChampionEscapeHtml(
-                                company.name
-                            )}
-
-                        </option>
-
-                    `
-
-                )
-
-                .join(
-                    ""
-                );
-
-}
-
-
-
-// =================================
-// EVENT OPTIONS
-// =================================
-
-
-function crLandscapeChampionEventOptions(
-    companyId,
-    selectedEventId
-) {
-
-
-    const companyEvents =
-
-        crLandscapeChampionData
-            .events
-
-            .filter(
-
-                event =>
-
-                    event.companyId ===
-                    companyId
-
+            String(
+              a.name || ""
             )
 
-            .sort(
+              .localeCompare(
 
-                (
-                    a,
-                    b
-                ) => {
+                String(
+                  b.name || ""
+                )
 
+              )
 
-                    const periodDifference =
-
-                        String(
-                            b.periodId || ""
-                        )
-
-                            .localeCompare(
-
-                                String(
-                                    a.periodId || ""
-                                )
-
-                            );
+        );
 
 
-                    if (
-                        periodDifference !== 0
-                    ) {
+    els.company.innerHTML =
+      companies
+
+        .map(
+          company => `
+
+            <option
+              value="${escapeHtml(company.id)}"
+            >
+              ${escapeHtml(company.name)}
+            </option>
+
+          `
+        )
+
+        .join("");
 
 
-                        return periodDifference;
+    if (
+      previousValue
 
-                    }
+      &&
 
+      companies.some(
+        company =>
+          company.id === previousValue
+      )
+    ) {
 
-                    return String(
-                        b.id || ""
-                    )
+      els.company.value =
+        previousValue;
 
-                        .localeCompare(
+    }
 
-                            String(
-                                a.id || ""
-                            )
-
-                        );
-
-                }
-
-            );
+  }
 
 
-    const defaultOption = `
+  // =================================
+  // COMPANY EVENTS
+  // =================================
 
-        <option value="">
+  function companyEvents(
+    companyId
+  ) {
 
-            No event selected / initial snapshot
+    return [...state.events]
 
-        </option>
+      .filter(
+        event =>
+          event.companyId ===
+            companyId
+      )
+
+      .sort(
+        (a, b) => {
+
+          const periodDifference =
+
+            String(
+              b.periodId || ""
+            )
+
+              .localeCompare(
+
+                String(
+                  a.periodId || ""
+                )
+
+              );
+
+
+          if (
+            periodDifference !== 0
+          ) {
+
+            return periodDifference;
+
+          }
+
+
+          return (
+
+            String(
+              b.recordedAt || ""
+            )
+
+              .localeCompare(
+
+                String(
+                  a.recordedAt || ""
+                )
+
+              )
+
+          );
+
+        }
+      );
+
+  }
+
+
+  // =================================
+  // EVENT OPTIONS
+  // =================================
+
+  function buildEventOptions(
+    companyId,
+    selectedEventId = ""
+  ) {
+
+    const events =
+      companyEvents(
+        companyId
+      );
+
+
+    const emptyOption = `
+
+      <option value="">
+        Not Recorded / Unknown
+      </option>
 
     `;
 
 
     return (
 
-        defaultOption
+      emptyOption
 
-        +
+      +
 
-        companyEvents
+      events
 
-            .map(
+        .map(
+          event => `
 
-                event => `
+            <option
+              value="${escapeHtml(event.id)}"
+              ${
+                event.id === selectedEventId
+                  ? "selected"
+                  : ""
+              }
+            >
+              ${escapeHtml(event.periodId || "—")}
+              —
+              ${escapeHtml(eventName(event))}
+            </option>
 
-                    <option
-                        value="${
+          `
+        )
 
-                            crLandscapeChampionEscapeHtml(
-                                event.id
-                            )
-
-                        }"
-
-                        ${
-
-                            event.id ===
-                            selectedEventId
-
-                                ? "selected"
-
-                                : ""
-
-                        }
-                    >
-
-                        ${crLandscapeChampionEscapeHtml(
-
-                            crLandscapeChampionEventLabel(
-                                event
-                            )
-
-                        )}
-
-                    </option>
-
-                `
-
-            )
-
-            .join(
-                ""
-            )
+        .join("")
 
     );
 
-}
+  }
 
 
+  // =================================
+  // TITLE STATUS MODE
+  // =================================
 
-// =================================
-// CREATE TITLE CARD
-// =================================
+  function refreshCardStatus(
+    card
+  ) {
 
+    const status =
+      card.querySelector(
+        ".cr-landscape-title-status"
+      );
 
-function crLandscapeChampionCreateTitleCard(
-    title = null
-) {
 
-
-    const companyId =
-
-        crLandscapeChampionEls
-            .company
-            .value;
-
-
-    const card =
-
-        document.createElement(
-            "article"
-        );
-
-
-    card.className =
-        "cr-landscape-title-card";
-
-
-    card.dataset.titleId =
-
-        title?.id
-
-        ||
-
-        "";
-
-
-    card.innerHTML = `
-
-        <div class="cr-landscape-title-card-heading">
-
-
-            <div>
-
-
-                <span>
-                    CHAMPIONSHIP
-                </span>
-
-
-                <strong>
-
-                    ${crLandscapeChampionEscapeHtml(
-
-                        title?.name
-
-                        ||
-
-                        "New Title Slot"
-
-                    )}
-
-                </strong>
-
-
-            </div>
-
-
-            ${
-
-                title?.id
-
-                    ? ""
-
-                    : `
-
-                        <button
-                            type="button"
-                            class="cr-landscape-remove-new-title"
-                        >
-                            Remove
-                        </button>
-
-                    `
-
-            }
-
-
-        </div>
-
-
-
-        <div class="cr-landscape-title-fields">
-
-
-            <label>
-
-
-                <span>
-                    TITLE NAME
-                </span>
-
-
-                <input
-                    class="cr-landscape-title-name"
-                    type="text"
-                    value="${
-
-                        crLandscapeChampionEscapeHtml(
-                            title?.name || ""
-                        )
-
-                    }"
-                    placeholder="AEW World Championship"
-                >
-
-
-            </label>
-
-
-
-            <label>
-
-
-                <span>
-                    CURRENT CHAMPION
-                </span>
-
-
-                <input
-                    class="cr-landscape-title-champion"
-                    type="text"
-                    value="${
-
-                        crLandscapeChampionEscapeHtml(
-                            title?.champion || ""
-                        )
-
-                    }"
-                    placeholder="Jon Moxley"
-                >
-
-
-            </label>
-
-
-        </div>
-
-
-
-        <label class="cr-landscape-title-event-label">
-
-
-            <span>
-                CHANGE EVENT
-            </span>
-
-
-            <select class="cr-landscape-title-event">
-
-                ${crLandscapeChampionEventOptions(
-
-                    companyId,
-
-                    title?.lastChangeEventId || ""
-
-                )}
-
-            </select>
-
-
-            <small>
-
-                Used only when a new title slot is created
-                or the champion name changes.
-
-            </small>
-
-
-        </label>
-
-    `;
-
-
-    const removeButton =
-
-        card.querySelector(
-            ".cr-landscape-remove-new-title"
-        );
+    const champion =
+      card.querySelector(
+        ".cr-landscape-title-champion"
+      );
 
 
     if (
-        removeButton
+      !status ||
+      !champion
     ) {
 
-
-        removeButton.addEventListener(
-
-            "click",
-
-            () => {
-
-
-                card.remove();
-
-                crLandscapeChampionRefreshEmpty();
-
-            }
-
-        );
+      return;
 
     }
 
 
-    const titleNameInput =
+    const vacant =
+      status.value === "vacant";
 
-        card.querySelector(
-            ".cr-landscape-title-name"
-        );
+
+    if (
+      vacant
+    ) {
+
+      champion.value =
+        "";
+
+    }
+
+
+    champion.disabled =
+      vacant;
+
+  }
+
+
+  // =================================
+  // TITLE SLOT CARD
+  // =================================
+
+  function createTitleCard(
+    record = {}
+  ) {
+
+    const companyId =
+      selectedCompanyId();
+
+
+    const card =
+      document.createElement(
+        "article"
+      );
+
+
+    card.className =
+      "cr-landscape-content-item cr-landscape-title-slot";
+
+
+    card.dataset.titleId =
+      record.id || "";
+
+
+    const titleName =
+      record.name || "";
+
+
+    const championName =
+      record.championName || "";
+
+
+    const status =
+      record.status === "vacant"
+        ? "vacant"
+        : "active";
+
+
+    const wonEventId =
+      record.wonEventId || "";
+
+
+    const wonDate =
+      record.wonDate || "";
+
+
+    card.innerHTML = `
+
+      <div class="cr-landscape-content-item-heading">
+
+        <div>
+
+          <span>
+            TITLE SLOT
+          </span>
+
+          <strong class="cr-landscape-title-heading">
+            ${
+              escapeHtml(titleName)
+              ||
+              "New Championship"
+            }
+          </strong>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="cr-landscape-remove-title"
+        >
+          Remove
+        </button>
+
+      </div>
+
+
+      <div class="cr-editor-form-grid">
+
+
+        <div class="cr-form-group">
+
+          <label>
+            TITLE NAME
+          </label>
+
+          <input
+            type="text"
+            class="cr-landscape-title-name"
+            autocomplete="off"
+            value="${escapeHtml(titleName)}"
+            placeholder="World Championship"
+          >
+
+        </div>
+
+
+        <div class="cr-form-group">
+
+          <label>
+            STATUS
+          </label>
+
+          <select
+            class="cr-landscape-title-status"
+          >
+
+            <option
+              value="active"
+              ${
+                status === "active"
+                  ? "selected"
+                  : ""
+              }
+            >
+              Active Champion
+            </option>
+
+            <option
+              value="vacant"
+              ${
+                status === "vacant"
+                  ? "selected"
+                  : ""
+              }
+            >
+              Vacant
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="cr-form-group">
+
+          <label>
+            CURRENT CHAMPION
+          </label>
+
+          <input
+            type="text"
+            class="cr-landscape-title-champion"
+            autocomplete="off"
+            value="${escapeHtml(championName)}"
+            placeholder="Champion Name"
+          >
+
+        </div>
+
+
+        <div class="cr-form-group">
+
+          <label>
+            WON / CHANGE EVENT
+          </label>
+
+          <select
+            class="cr-landscape-title-event"
+          >
+
+            ${
+              buildEventOptions(
+                companyId,
+                wonEventId
+              )
+            }
+
+          </select>
+
+        </div>
+
+
+        <div class="cr-form-group">
+
+          <label>
+            WON / CHANGE DATE
+          </label>
+
+          <input
+            type="date"
+            class="cr-landscape-title-date"
+            value="${escapeHtml(wonDate)}"
+          >
+
+        </div>
+
+
+      </div>
+
+    `;
+
+
+    const nameInput =
+      card.querySelector(
+        ".cr-landscape-title-name"
+      );
 
 
     const heading =
-
-        card.querySelector(
-            ".cr-landscape-title-card-heading strong"
-        );
-
-
-    titleNameInput.addEventListener(
-
-        "input",
-
-        () => {
+      card.querySelector(
+        ".cr-landscape-title-heading"
+      );
 
 
-            heading.textContent =
+    const statusSelect =
+      card.querySelector(
+        ".cr-landscape-title-status"
+      );
 
-                titleNameInput.value.trim()
 
-                ||
+    const removeButton =
+      card.querySelector(
+        ".cr-landscape-remove-title"
+      );
 
-                "New Title Slot";
+
+    nameInput?.addEventListener(
+
+      "input",
+
+      () => {
+
+        if (
+          heading
+        ) {
+
+          heading.textContent =
+
+            nameInput.value.trim()
+
+            ||
+
+            "New Championship";
 
         }
 
+
+        setStatus(
+          "CHANGES READY"
+        );
+
+      }
+
+    );
+
+
+    statusSelect?.addEventListener(
+
+      "change",
+
+      () => {
+
+        refreshCardStatus(
+          card
+        );
+
+
+        setStatus(
+          "CHANGES READY"
+        );
+
+      }
+
+    );
+
+
+    card
+
+      .querySelectorAll(
+        "input, select"
+      )
+
+      .forEach(
+        field => {
+
+          field.addEventListener(
+
+            "change",
+
+            () => {
+
+              setStatus(
+                "CHANGES READY"
+              );
+
+            }
+
+          );
+
+        }
+      );
+
+
+    removeButton?.addEventListener(
+
+      "click",
+
+      () => {
+
+        card.remove();
+
+
+        renderEmptyState();
+
+
+        setStatus(
+          "CHANGES READY"
+        );
+
+      }
+
+    );
+
+
+    refreshCardStatus(
+      card
     );
 
 
     return card;
 
-}
+  }
 
 
+  // =================================
+  // EMPTY STATE
+  // =================================
 
-// =================================
-// EMPTY STATE
-// =================================
+  function renderEmptyState() {
 
+    if (
+      !els.titleSlots
+    ) {
 
-function crLandscapeChampionRefreshEmpty() {
+      return;
 
-
-    const cardCount =
-
-        crLandscapeChampionEls
-            .titleSlots
-
-            .querySelectorAll(
-                ".cr-landscape-title-card"
-            )
-            .length;
+    }
 
 
-    crLandscapeChampionEls
-        .empty
-        .hidden =
+    const titleCards =
 
-            cardCount > 0;
-
-}
+      els.titleSlots.querySelectorAll(
+        ".cr-landscape-title-slot"
+      );
 
 
+    const existingEmpty =
 
-// =================================
-// RENDER TITLE SLOTS
-// =================================
+      els.titleSlots.querySelector(
+        ".cr-landscape-title-empty-message"
+      );
 
 
-function crLandscapeChampionRenderTitles() {
+    existingEmpty?.remove();
+
+
+    if (
+      titleCards.length === 0
+    ) {
+
+      els.titleSlots.insertAdjacentHTML(
+
+        "beforeend",
+
+        `
+
+          <p
+            class="
+              cr-landscape-entry-empty
+              cr-landscape-title-empty-message
+            "
+          >
+            No title slots have been created
+            for this company yet.
+          </p>
+
+        `
+
+      );
+
+    }
+
+  }
+
+
+  // =================================
+  // RENDER TITLE SLOTS
+  // =================================
+
+  function renderTitleSlots() {
+
+    if (
+      !els.titleSlots
+    ) {
+
+      return;
+
+    }
 
 
     const companyId =
-
-        crLandscapeChampionEls
-            .company
-            .value;
+      selectedCompanyId();
 
 
-    const companyRecord =
+    const companyTitles =
+      [...state.titles]
 
-        crLandscapeChampionData
-            .champions
-            ?.companies
-            ?.[companyId]
-
-        ||
-
-        {
-            titles:
-                []
-        };
-
-
-    const titles =
-
-        Array.isArray(
-            companyRecord.titles
+        .filter(
+          title =>
+            title.companyId ===
+              companyId
         )
-
-            ? companyRecord.titles
-
-            : [];
-
-
-    crLandscapeChampionBaselineTitles =
-
-        structuredClone(
-            titles
-        );
-
-
-    crLandscapeChampionEls
-        .titleSlots
-
-        .querySelectorAll(
-            ".cr-landscape-title-card"
-        )
-
-        .forEach(
-
-            card =>
-                card.remove()
-
-        );
-
-
-    titles
-
-        .slice()
 
         .sort(
+          (a, b) =>
 
-            (
-                a,
-                b
-            ) =>
+            String(
+              a.name || ""
+            )
+
+              .localeCompare(
 
                 String(
-                    a.name || ""
+                  b.name || ""
                 )
 
-                    .localeCompare(
+              )
 
-                        String(
-                            b.name || ""
-                        )
+        );
 
-                    )
+
+    els.titleSlots.innerHTML =
+      "";
+
+
+    companyTitles.forEach(
+      title => {
+
+        els.titleSlots.appendChild(
+
+          createTitleCard(
+            title
+          )
+
+        );
+
+      }
+    );
+
+
+    renderEmptyState();
+
+  }
+
+
+  // =================================
+  // ADD TITLE SLOT
+  // =================================
+
+  function addTitleSlot() {
+
+    if (
+      !els.titleSlots
+    ) {
+
+      return;
+
+    }
+
+
+    if (
+      !selectedCompanyId()
+    ) {
+
+      setStatus(
+        "SELECT COMPANY"
+      );
+
+
+      return;
+
+    }
+
+
+    els.titleSlots
+
+      .querySelector(
+        ".cr-landscape-title-empty-message"
+      )
+
+      ?.remove();
+
+
+    els.titleSlots.appendChild(
+
+      createTitleCard()
+
+    );
+
+
+    setStatus(
+      "CHANGES READY"
+    );
+
+  }
+
+
+  // =================================
+  // HISTORY LABEL
+  // =================================
+
+  function changeTypeLabel(
+    changeType
+  ) {
+
+    const labels = {
+
+      "initial-champion":
+        "INITIAL CHAMPION",
+
+      "title-change":
+        "TITLE CHANGE",
+
+      "new-champion":
+        "NEW CHAMPION",
+
+      "vacated":
+        "TITLE VACATED",
+
+      "title-retired":
+        "TITLE RETIRED"
+
+    };
+
+
+    return (
+
+      labels[
+        changeType
+      ]
+
+      ||
+
+      "CHAMPIONSHIP UPDATE"
+
+    );
+
+  }
+
+
+  // =================================
+  // RENDER HISTORY
+  // =================================
+
+  function renderHistory() {
+
+    if (
+      !els.history
+    ) {
+
+      return;
+
+    }
+
+
+    const companyId =
+      selectedCompanyId();
+
+
+    const changes =
+      [...state.changes]
+
+        .filter(
+          change =>
+            change.companyId ===
+              companyId
+        )
+
+        .sort(
+          (a, b) =>
+
+            String(
+              b.recordedAt || ""
+            )
+
+              .localeCompare(
+
+                String(
+                  a.recordedAt || ""
+                )
+
+              )
 
         )
 
-        .forEach(
+        .slice(
+          0,
+          12
+        );
 
-            title => {
+
+    if (
+      changes.length === 0
+    ) {
+
+      els.history.innerHTML = `
+
+        <p class="cr-landscape-entry-empty">
+          No championship history recorded yet.
+        </p>
+
+      `;
 
 
-                crLandscapeChampionEls
-                    .titleSlots
-                    .appendChild(
+      return;
 
-                        crLandscapeChampionCreateTitleCard(
-                            title
+    }
+
+
+    els.history.innerHTML =
+      changes
+
+        .map(
+          change => {
+
+            const previousChampion =
+
+              change.previousChampionName
+
+              ||
+
+              "VACANT";
+
+
+            const newChampion =
+
+              change.newChampionName
+
+              ||
+
+              (
+                change.changeType ===
+                  "title-retired"
+
+                  ? "RETIRED"
+
+                  : "VACANT"
+              );
+
+
+            const eventText =
+
+              change.eventName
+
+              ||
+
+              change.periodId
+
+              ||
+
+              "Event not recorded";
+
+
+            return `
+
+              <article
+                class="cr-landscape-event-result-row"
+              >
+
+                <div>
+
+                  <span>
+                    ${
+                      escapeHtml(
+                        changeTypeLabel(
+                          change.changeType
                         )
+                      )
+                    }
+                  </span>
 
-                    );
+                  <strong>
+                    ${escapeHtml(change.titleName)}
+                  </strong>
 
-            }
+                  <small>
+                    ${
+                      escapeHtml(
+                        previousChampion
+                      )
+                    }
+                    →
+                    ${
+                      escapeHtml(
+                        newChampion
+                      )
+                    }
+                  </small>
 
-        );
+                  <small>
+                    ${escapeHtml(eventText)}
+                  </small>
+
+                </div>
+
+              </article>
+
+            `;
+
+          }
+        )
+
+        .join("");
+
+  }
 
 
-    crLandscapeChampionRefreshEmpty();
+  // =================================
+  // RENDER DESK
+  // =================================
 
-    crLandscapeChampionRenderHistory();
+  function renderDesk() {
 
-}
+    renderTitleSlots();
 
+    renderHistory();
 
-
-// =================================
-// ADD TITLE SLOT
-// =================================
-
-
-function crLandscapeChampionAddTitle() {
+  }
 
 
-    crLandscapeChampionEls
-        .titleSlots
-        .appendChild(
+  // =================================
+  // BUILD TITLE ID
+  // =================================
 
-            crLandscapeChampionCreateTitleCard()
+  function buildTitleId(
+    companyId,
+    titleName
+  ) {
 
-        );
+    return [
+
+      createSlug(
+        companyId
+      ),
+
+      createSlug(
+        titleName
+      )
+
+    ]
+
+      .filter(
+        Boolean
+      )
+
+      .join("-");
+
+  }
 
 
-    crLandscapeChampionRefreshEmpty();
+  // =================================
+  // COLLECT TITLE SLOTS
+  // =================================
+
+  function collectCompanyTitles() {
+
+    const companyId =
+      selectedCompanyId();
+
+
+    if (
+      !companyId
+    ) {
+
+      throw new Error(
+        "Select a company."
+      );
+
+    }
 
 
     const cards =
 
-        crLandscapeChampionEls
-            .titleSlots
+      [
+        ...(
+          els.titleSlots
+            ?.querySelectorAll(
+              ".cr-landscape-title-slot"
+            )
 
-            .querySelectorAll(
-                ".cr-landscape-title-card"
-            );
+          ||
 
-
-    cards[
-        cards.length - 1
-    ]
-
-        ?.querySelector(
-            ".cr-landscape-title-name"
+          []
         )
-
-        ?.focus();
-
-}
+      ];
 
 
+    const titles =
+      cards.map(
+        card => {
 
-// =================================
-// RENDER HISTORY
-// =================================
+          const name =
 
-
-function crLandscapeChampionRenderHistory() {
-
-
-    const companyId =
-
-        crLandscapeChampionEls
-            .company
-            .value;
-
-
-    const history =
-
-        Array.isArray(
-            crLandscapeChampionData
-                .champions
-                ?.history
-        )
-
-            ? crLandscapeChampionData
-                .champions
-                .history
-
-            : [];
-
-
-    const companyHistory =
-
-        history
-
-            .filter(
-
-                entry =>
-
-                    entry.companyId ===
-                    companyId
-
+            card.querySelector(
+              ".cr-landscape-title-name"
             )
 
-            .slice()
-
-            .reverse()
-
-            .slice(
-                0,
-                10
-            );
-
-
-    if (
-        companyHistory.length === 0
-    ) {
-
-
-        crLandscapeChampionEls
-            .history
-            .innerHTML = `
-
-                <p class="cr-landscape-entry-empty">
-
-                    No championship history recorded yet.
-
-                </p>
-
-            `;
-
-
-        return;
-
-    }
-
-
-    crLandscapeChampionEls
-        .history
-        .innerHTML =
-
-            companyHistory
-
-                .map(
-
-                    entry => {
-
-
-                        const event =
-
-                            crLandscapeChampionData
-                                .events
-
-                                .find(
-
-                                    item =>
-
-                                        item.id ===
-                                        entry.eventId
-
-                                );
-
-
-                        const context =
-
-                            event
-
-                                ? crLandscapeChampionEventLabel(
-                                    event
-                                )
-
-                                : entry.periodId
-
-                                    ? crLandscapeChampionPeriodLabel(
-                                        entry.periodId
-                                    )
-
-                                    : "Initial Landscape snapshot";
-
-
-                        return `
-
-                            <article class="cr-landscape-title-history-row">
-
-
-                                <div>
-
-
-                                    <span>
-
-                                        ${crLandscapeChampionEscapeHtml(
-                                            entry.titleName
-                                        )}
-
-                                    </span>
-
-
-                                    <strong>
-
-                                        ${crLandscapeChampionEscapeHtml(
-                                            entry.newChampion
-                                        )}
-
-                                    </strong>
-
-
-                                </div>
-
-
-
-                                <div>
-
-
-                                    <span>
-
-                                        ${
-
-                                            entry.previousChampion
-
-                                                ? `FROM ${
-
-                                                    crLandscapeChampionEscapeHtml(
-                                                        entry.previousChampion
-                                                    )
-
-                                                }`
-
-                                                : "INITIAL CHAMPION"
-
-                                        }
-
-                                    </span>
-
-
-                                    <small>
-
-                                        ${crLandscapeChampionEscapeHtml(
-                                            context
-                                        )}
-
-                                    </small>
-
-
-                                </div>
-
-
-                            </article>
-
-                        `;
-
-                    }
-
-                )
-
-                .join(
-                    ""
-                );
-
-}
-
-
-
-// =================================
-// UNIQUE TITLE ID
-// =================================
-
-
-function crLandscapeChampionUniqueTitleId(
-    titleName,
-    usedIds
-) {
-
-
-    const baseId =
-
-        crLandscapeChampionSlug(
-            titleName
-        )
-
-        ||
-
-        "title";
-
-
-    let candidate =
-        baseId;
-
-
-    let number =
-        2;
-
-
-    while (
-        usedIds.has(
-            candidate
-        )
-    ) {
-
-
-        candidate =
-
-            `${baseId}-${number}`;
-
-
-        number +=
-            1;
-
-    }
-
-
-    usedIds.add(
-        candidate
-    );
-
-
-    return candidate;
-
-}
-
-
-
-// =================================
-// COLLECT TITLE CARDS
-// =================================
-
-
-function crLandscapeChampionCollectCards() {
-
-
-    return [
-
-        ...crLandscapeChampionEls
-            .titleSlots
-
-            .querySelectorAll(
-                ".cr-landscape-title-card"
-            )
-
-    ]
-
-        .map(
-
-            card => ({
-
-
-                existingId:
-
-                    card.dataset.titleId
-
-                    ||
-
-                    "",
-
-
-                name:
-
-                    card
-
-                        .querySelector(
-                            ".cr-landscape-title-name"
-                        )
-
-                        .value
-                        .trim(),
-
-
-                champion:
-
-                    card
-
-                        .querySelector(
-                            ".cr-landscape-title-champion"
-                        )
-
-                        .value
-                        .trim(),
-
-
-                eventId:
-
-                    card
-
-                        .querySelector(
-                            ".cr-landscape-title-event"
-                        )
-
-                        .value
-
-            })
-
-        );
-
-}
-
-
-
-// =================================
-// VALIDATE
-// =================================
-
-
-function crLandscapeChampionValidate(
-    records
-) {
-
-
-    if (
-        records.length === 0
-    ) {
-
-
-        throw new Error(
-            "Add at least one championship title slot."
-        );
-
-    }
-
-
-    const incomplete =
-
-        records.find(
-
-            record =>
-
-                !record.name
-
-                ||
-
-                !record.champion
-
-        );
-
-
-    if (
-        incomplete
-    ) {
-
-
-        throw new Error(
-
-            "Every title slot needs a title name and current champion."
-
-        );
-
-    }
-
-
-    const normalizedNames =
-
-        records.map(
-
-            record =>
-
-                record.name
-                    .toLowerCase()
-
-        );
-
-
-    const uniqueNames =
-
-        new Set(
-            normalizedNames
-        );
-
-
-    if (
-        uniqueNames.size !==
-        normalizedNames.length
-    ) {
-
-
-        throw new Error(
-
-            "Two title slots cannot use the same title name."
-
-        );
-
-    }
-
-}
-
-
-
-// =================================
-// SAVE
-// =================================
-
-
-async function crLandscapeChampionSave() {
-
-
-    try {
-
-
-        crLandscapeChampionSetStatus(
-            "VALIDATING"
-        );
-
-
-        const companyId =
-
-            crLandscapeChampionEls
-                .company
-                .value;
-
-
-        const records =
-
-            crLandscapeChampionCollectCards();
-
-
-        crLandscapeChampionValidate(
-            records
-        );
-
-
-        const championsData =
-
-            await crLandscapeChampionReadJson(
-                "champions.json"
-            );
-
-
-        const companyRecord =
-
-            championsData
-                .companies
-                ?.[companyId]
-
-            ||
-
-            {
-                titles:
-                    []
-            };
-
-
-        const existingTitles =
-
-            Array.isArray(
-                companyRecord.titles
-            )
-
-                ? companyRecord.titles
-
-                : [];
-
-
-        const existingMap =
-
-            new Map(
-
-                existingTitles.map(
-
-                    title => [
-
-                        title.id,
-                        title
-
-                    ]
-
-                )
-
-            );
-
-
-        const usedIds =
-
-            new Set(
-
-                existingTitles.map(
-                    title =>
-                        title.id
-                )
-
-            );
-
-
-        const eventMap =
-
-            new Map(
-
-                crLandscapeChampionData
-                    .events
-
-                    .map(
-
-                        event => [
-
-                            event.id,
-                            event
-
-                        ]
-
-                    )
-
-            );
-
-
-        const historyAdditions =
-            [];
-
-
-        const newTitles =
-
-            records.map(
-
-                (
-                    record,
-                    index
-                ) => {
-
-
-                    const existing =
-
-                        record.existingId
-
-                            ? existingMap.get(
-                                record.existingId
-                            )
-
-                            : null;
-
-
-                    const titleId =
-
-                        existing
-
-                            ? existing.id
-
-                            : crLandscapeChampionUniqueTitleId(
-
-                                record.name,
-                                usedIds
-
-                            );
-
-
-                    const selectedEvent =
-
-                        record.eventId
-
-                            ? eventMap.get(
-                                record.eventId
-                            )
-
-                            : null;
-
-
-                    const championChanged =
-
-                        existing
-
-                        &&
-
-                        String(
-                            existing.champion || ""
-                        )
-
-                        !==
-
-                        record.champion;
-
-
-                    const isNewTitle =
-
-                        !existing;
-
-
-                    if (
-                        championChanged
-
-                        ||
-
-                        isNewTitle
-                    ) {
-
-
-                        historyAdditions.push({
-
-
-                            id:
-
-                                [
-
-                                    companyId,
-                                    titleId,
-                                    Date.now(),
-                                    index
-
-                                ].join(
-                                    "-"
-                                ),
-
-
-                            type:
-
-                                isNewTitle
-
-                                    ? "initial-snapshot"
-
-                                    : "title-change",
-
-
-                            companyId:
-                                companyId,
-
-
-                            titleId:
-                                titleId,
-
-
-                            titleName:
-                                record.name,
-
-
-                            previousChampion:
-
-                                existing?.champion
-
-                                ||
-
-                                "",
-
-
-                            newChampion:
-                                record.champion,
-
-
-                            eventId:
-
-                                selectedEvent?.id
-
-                                ||
-
-                                "",
-
-
-                            periodId:
-
-                                selectedEvent?.periodId
-
-                                ||
-
-                                "",
-
-
-                            stage:
-
-                                selectedEvent?.stage
-
-                                ||
-
-                                "",
-
-
-                            recordedAt:
-
-                                new Date()
-                                    .toISOString()
-
-                        });
-
-                    }
-
-
-                    return {
-
-
-                        id:
-                            titleId,
-
-
-                        name:
-                            record.name,
-
-
-                        champion:
-                            record.champion,
-
-
-                        lastChangeEventId:
-
-                            (
-                                championChanged
-
-                                ||
-
-                                isNewTitle
-                            )
-
-                                ? selectedEvent?.id || ""
-
-                                : existing
-                                    ?.lastChangeEventId
-
-                                    ||
-
-                                    "",
-
-
-                        lastChangePeriodId:
-
-                            (
-                                championChanged
-
-                                ||
-
-                                isNewTitle
-                            )
-
-                                ? selectedEvent?.periodId || ""
-
-                                : existing
-                                    ?.lastChangePeriodId
-
-                                    ||
-
-                                    "",
-
-
-                        updatedAt:
-
-                            new Date()
-                                .toISOString()
-
-                    };
-
-                }
-
-            );
-
-
-        newTitles.sort(
-
-            (
-                a,
-                b
-            ) =>
-
-                String(
-                    a.name
-                )
-
-                    .localeCompare(
-
-                        String(
-                            b.name
-                        )
-
-                    )
-
-        );
-
-
-        championsData.companies[
-            companyId
-        ] = {
-
-
-            titles:
-                newTitles
-
-        };
-
-
-        championsData.history =
-
-            Array.isArray(
-                championsData.history
-            )
-
-                ? [
-
-                    ...championsData.history,
-                    ...historyAdditions
-
-                ]
-
-                : [
-
-                    ...historyAdditions
-
-                ];
-
-
-        const periodIds =
-
-            championsData
-                .history
-
-                .map(
-
-                    entry =>
-                        entry.periodId
-
-                )
-
-                .filter(
-                    Boolean
-                )
-
-                .sort();
-
-
-        championsData.updatedPeriodId =
-
-            periodIds.at(
-                -1
-            )
-
-            ||
-
-            championsData.updatedPeriodId
+              ?.value
+              .trim()
 
             ||
 
             "";
 
 
-        crLandscapeChampionSetStatus(
-            "SAVING"
+          const status =
+
+            card.querySelector(
+              ".cr-landscape-title-status"
+            )
+
+              ?.value
+
+            ||
+
+            "active";
+
+
+          const championName =
+
+            status === "vacant"
+
+              ? ""
+
+              : (
+
+                card.querySelector(
+                  ".cr-landscape-title-champion"
+                )
+
+                  ?.value
+                  .trim()
+
+                ||
+
+                ""
+
+              );
+
+
+          const selectedEventId =
+
+            card.querySelector(
+              ".cr-landscape-title-event"
+            )
+
+              ?.value
+
+            ||
+
+            "";
+
+
+          const selectedEvent =
+            eventForId(
+              selectedEventId
+            );
+
+
+          const wonDate =
+
+            card.querySelector(
+              ".cr-landscape-title-date"
+            )
+
+              ?.value
+
+            ||
+
+            "";
+
+
+          if (
+            !name
+          ) {
+
+            throw new Error(
+              "Every title slot needs a title name."
+            );
+
+          }
+
+
+          if (
+            status === "active"
+
+            &&
+
+            !championName
+          ) {
+
+            throw new Error(
+              `${name} needs a current champion or must be marked vacant.`
+            );
+
+          }
+
+
+          const existingId =
+            card.dataset.titleId || "";
+
+
+          const id =
+
+            existingId
+
+            ||
+
+            buildTitleId(
+              companyId,
+              name
+            );
+
+
+          return {
+            id,
+            companyId,
+            name,
+            championName,
+            status,
+
+            wonPeriodId:
+              selectedEvent?.periodId || "",
+
+            wonEventId:
+              selectedEvent?.id || "",
+
+            wonEventName:
+              selectedEvent
+                ? eventName(selectedEvent)
+                : "",
+
+            wonDate
+          };
+
+        }
+      );
+
+
+    const normalizedNames =
+      titles.map(
+        title =>
+          title.name
+            .trim()
+            .toLowerCase()
+      );
+
+
+    if (
+      new Set(
+        normalizedNames
+      ).size !==
+        normalizedNames.length
+    ) {
+
+      throw new Error(
+        "A company cannot have two title slots with the same name."
+      );
+
+    }
+
+
+    const titleIds =
+      titles.map(
+        title =>
+          title.id
+      );
+
+
+    if (
+      new Set(
+        titleIds
+      ).size !==
+        titleIds.length
+    ) {
+
+      throw new Error(
+        "Two title slots generated the same database ID."
+      );
+
+    }
+
+
+    return titles;
+
+  }
+
+
+  // =================================
+  // BUILD HISTORY CHANGE
+  // =================================
+
+  function buildHistoryChange(
+    before,
+    after,
+    index
+  ) {
+
+    if (
+      !after
+    ) {
+
+      return null;
+
+    }
+
+
+    const previousChampion =
+      before?.championName || "";
+
+
+    const newChampion =
+      after.championName || "";
+
+
+    const previousStatus =
+      before?.status || "";
+
+
+    const newStatus =
+      after.status || "";
+
+
+    let changeType =
+      "";
+
+
+    if (
+      !before
+    ) {
+
+      if (
+        newStatus === "active"
+      ) {
+
+        changeType =
+          "initial-champion";
+
+      }
+
+    }
+
+
+    else if (
+      previousStatus === "active"
+
+      &&
+
+      newStatus === "vacant"
+    ) {
+
+      changeType =
+        "vacated";
+
+    }
+
+
+    else if (
+      previousStatus === "vacant"
+
+      &&
+
+      newStatus === "active"
+    ) {
+
+      changeType =
+        "new-champion";
+
+    }
+
+
+    else if (
+      previousChampion !==
+        newChampion
+
+      &&
+
+      newStatus === "active"
+    ) {
+
+      changeType =
+        "title-change";
+
+    }
+
+
+    if (
+      !changeType
+    ) {
+
+      return null;
+
+    }
+
+
+    const recordedAt =
+      new Date().toISOString();
+
+
+    return {
+      id:
+        `change-${Date.now()}-${index + 1}`,
+
+      titleId:
+        after.id,
+
+      companyId:
+        after.companyId,
+
+      titleName:
+        after.name,
+
+      previousChampionName:
+        previousChampion,
+
+      newChampionName:
+        newChampion,
+
+      changeType,
+
+      periodId:
+        after.wonPeriodId || "",
+
+      eventId:
+        after.wonEventId || "",
+
+      eventName:
+        after.wonEventName || "",
+
+      wonDate:
+        after.wonDate || "",
+
+      recordedAt
+    };
+
+  }
+
+
+  // =================================
+  // BUILD RETIREMENT HISTORY
+  // =================================
+
+  function buildRetirementChange(
+    title,
+    index
+  ) {
+
+    return {
+      id:
+        `change-${Date.now()}-retired-${index + 1}`,
+
+      titleId:
+        title.id,
+
+      companyId:
+        title.companyId,
+
+      titleName:
+        title.name,
+
+      previousChampionName:
+        title.championName || "",
+
+      newChampionName:
+        "",
+
+      changeType:
+        "title-retired",
+
+      periodId:
+        "",
+
+      eventId:
+        "",
+
+      eventName:
+        "",
+
+      wonDate:
+        "",
+
+      recordedAt:
+        new Date().toISOString()
+    };
+
+  }
+
+
+  // =================================
+  // SAVE CHAMPIONSHIPS
+  // =================================
+
+  async function saveChampionships() {
+
+    setStatus(
+      "VALIDATING"
+    );
+
+
+    try {
+
+      const permission =
+        await ensureWritePermission();
+
+
+      if (
+        !permission
+      ) {
+
+        throw new Error(
+          "Write permission was not granted."
+        );
+
+      }
+
+
+      const companyId =
+        selectedCompanyId();
+
+
+      if (
+        !companyId
+      ) {
+
+        throw new Error(
+          "Select a company."
+        );
+
+      }
+
+
+      const nextCompanyTitles =
+        collectCompanyTitles();
+
+
+      setStatus(
+        "SAVING"
+      );
+
+
+      const [
+        championshipsData,
+        historyData
+      ] =
+        await Promise.all([
+
+          readJson(
+            "championships.json"
+          ),
+
+          readJson(
+            "championship-history.json"
+          )
+
+        ]);
+
+
+      championshipsData.titles =
+        Array.isArray(
+          championshipsData.titles
+        )
+
+          ? championshipsData.titles
+
+          : [];
+
+
+      historyData.changes =
+        Array.isArray(
+          historyData.changes
+        )
+
+          ? historyData.changes
+
+          : [];
+
+
+      const originalChampionships =
+        structuredClone(
+          championshipsData
         );
 
 
-        await crLandscapeChampionWriteJson(
+      const existingCompanyTitles =
+        championshipsData.titles
 
-            "champions.json",
+          .filter(
+            title =>
+              title.companyId ===
+                companyId
+          );
 
-            championsData
+
+      const otherCompanyTitles =
+        championshipsData.titles
+
+          .filter(
+            title =>
+              title.companyId !==
+                companyId
+          );
+
+
+      const otherIds =
+        new Set(
+
+          otherCompanyTitles.map(
+            title =>
+              title.id
+          )
 
         );
 
 
-        crLandscapeChampionData.champions =
-
-            championsData;
-
-
-        crLandscapeChampionRenderTitles();
-
-
-        crLandscapeChampionSetStatus(
-            "SAVED"
+      const conflictingTitle =
+        nextCompanyTitles.find(
+          title =>
+            otherIds.has(
+              title.id
+            )
         );
+
+
+      if (
+        conflictingTitle
+      ) {
+
+        throw new Error(
+          `The title ID ${conflictingTitle.id} already belongs to another company.`
+        );
+
+      }
+
+
+      const newHistoryEntries =
+        [];
+
+
+      nextCompanyTitles.forEach(
+        (
+          title,
+          index
+        ) => {
+
+          const previousTitle =
+            existingCompanyTitles.find(
+              existing =>
+                existing.id ===
+                  title.id
+            )
+
+            ||
+
+            null;
+
+
+          const historyChange =
+            buildHistoryChange(
+
+              previousTitle,
+
+              title,
+
+              index
+
+            );
+
+
+          if (
+            historyChange
+          ) {
+
+            newHistoryEntries.push(
+              historyChange
+            );
+
+          }
+
+        }
+      );
+
+
+      const nextTitleIds =
+        new Set(
+
+          nextCompanyTitles.map(
+            title =>
+              title.id
+          )
+
+        );
+
+
+      existingCompanyTitles
+
+        .filter(
+          title =>
+            !nextTitleIds.has(
+              title.id
+            )
+        )
+
+        .forEach(
+          (
+            title,
+            index
+          ) => {
+
+            newHistoryEntries.push(
+
+              buildRetirementChange(
+                title,
+                index
+              )
+
+            );
+
+          }
+        );
+
+
+      championshipsData.titles =
+
+        [
+          ...otherCompanyTitles,
+          ...nextCompanyTitles
+        ]
+
+          .sort(
+            (a, b) => {
+
+              const companyDifference =
+
+                String(
+                  a.companyId || ""
+                )
+
+                  .localeCompare(
+
+                    String(
+                      b.companyId || ""
+                    )
+
+                  );
+
+
+              if (
+                companyDifference !== 0
+              ) {
+
+                return companyDifference;
+
+              }
+
+
+              return (
+
+                String(
+                  a.name || ""
+                )
+
+                  .localeCompare(
+
+                    String(
+                      b.name || ""
+                    )
+
+                  )
+
+              );
+
+            }
+          );
+
+
+      historyData.changes.push(
+        ...newHistoryEntries
+      );
+
+
+      let championshipsWritten =
+        false;
+
+
+      try {
+
+        await writeJson(
+
+          "championships.json",
+
+          championshipsData
+
+        );
+
+
+        championshipsWritten =
+          true;
+
+
+        await writeJson(
+
+          "championship-history.json",
+
+          historyData
+
+        );
+
+      }
+
+
+      catch (
+        writeError
+      ) {
+
+        if (
+          championshipsWritten
+        ) {
+
+          try {
+
+            await writeJson(
+
+              "championships.json",
+
+              originalChampionships
+
+            );
+
+          }
+
+
+          catch (
+            rollbackError
+          ) {
+
+            console.error(
+
+              "Landscape championship rollback failed:",
+
+              rollbackError
+
+            );
+
+          }
+
+        }
+
+
+        throw writeError;
+
+      }
+
+
+      await loadAll();
+
+
+      setStatus(
+        "SAVED"
+      );
 
     }
 
 
     catch (
-        error
+      error
     ) {
 
+      console.error(
 
-        console.error(
+        "Landscape championship save failed:",
 
-            "Could not save Landscape championships:",
+        error
 
-            error
-
-        );
-
-
-        crLandscapeChampionSetStatus(
-
-            error.message
-
-            ||
-
-            "SAVE FAILED"
-
-        );
-
-    }
-
-}
+      );
 
 
+      setStatus(
 
-// =================================
-// LOAD
-// =================================
-
-
-async function crLandscapeChampionLoad() {
-
-
-    if (
-        typeof owlRepositoryHandle
-        ===
-        "undefined"
+        error.message
 
         ||
 
-        !owlRepositoryHandle
+        "SAVE FAILED"
+
+      );
+
+    }
+
+  }
+
+
+  // =================================
+  // LOAD ALL CHAMPIONSHIP DATA
+  // =================================
+
+  async function loadAll() {
+
+    if (
+      typeof owlRepositoryHandle ===
+        "undefined"
+
+      ||
+
+      !owlRepositoryHandle
     ) {
 
-
-        return;
+      return;
 
     }
 
 
     try {
 
-
-        crLandscapeChampionSetStatus(
-            "LOADING"
-        );
-
-
-        const [
-
-            companiesData,
-            championsData,
-            eventsData,
-            showsData,
-            calendarData
-
-        ] =
-
-            await Promise.all([
-
-                crLandscapeChampionReadJson(
-                    "companies.json"
-                ),
-
-                crLandscapeChampionReadJson(
-                    "champions.json"
-                ),
-
-                crLandscapeChampionReadJson(
-                    "events.json"
-                ),
-
-                crLandscapeChampionReadJson(
-                    "shows.json"
-                ),
-
-                crLandscapeChampionReadJson(
-                    "calendar-config.json"
-                )
-
-            ]);
+      setStatus(
+        "LOADING"
+      );
 
 
-        crLandscapeChampionData = {
+      const [
+        companiesData,
+        eventsData,
+        championshipsData,
+        historyData
+      ] =
+        await Promise.all([
+
+          readJson(
+            "companies.json"
+          ),
+
+          readJson(
+            "events.json"
+          ),
+
+          readJson(
+            "championships.json"
+          ),
+
+          readJson(
+            "championship-history.json"
+          )
+
+        ]);
 
 
-            companies:
+      state.companies =
+        Array.isArray(
+          companiesData.companies
+        )
 
-                Array.isArray(
-                    companiesData.companies
-                )
+          ? companiesData.companies
 
-                    ? companiesData.companies
-
-                    : [],
-
-
-            champions:
-                championsData,
+          : [];
 
 
-            events:
+      state.events =
+        Array.isArray(
+          eventsData.events
+        )
 
-                Array.isArray(
-                    eventsData.events
-                )
+          ? eventsData.events
 
-                    ? eventsData.events
-
-                    : [],
-
-
-            shows:
-
-                Array.isArray(
-                    showsData.shows
-                )
-
-                    ? showsData.shows
-
-                    : [],
+          : [];
 
 
-            calendar:
-                calendarData
+      state.titles =
+        Array.isArray(
+          championshipsData.titles
+        )
 
-        };
+          ? championshipsData.titles
+
+          : [];
 
 
-        crLandscapeChampionBuildCompanySelect();
+      state.changes =
+        Array.isArray(
+          historyData.changes
+        )
 
-        crLandscapeChampionRenderTitles();
+          ? historyData.changes
+
+          : [];
 
 
-        crLandscapeChampionSetStatus(
-            "READY"
-        );
+      buildCompanyOptions();
+
+
+      renderDesk();
+
+
+      setStatus(
+        "READY"
+      );
 
     }
 
 
     catch (
-        error
+      error
     ) {
 
+      console.error(
 
-        console.error(
+        "Landscape Championship Desk load failed:",
 
-            "Could not load Landscape Championship Desk:",
+        error
 
-            error
-
-        );
+      );
 
 
-        crLandscapeChampionSetStatus(
-            "LOAD FAILED"
-        );
+      setStatus(
+        "LOAD FAILED"
+      );
+
+
+      if (
+        els.titleSlots
+      ) {
+
+        els.titleSlots.innerHTML = `
+
+          <p class="cr-landscape-entry-empty">
+            ${
+              escapeHtml(
+                error.message ||
+                "Championship data could not load."
+              )
+            }
+          </p>
+
+        `;
+
+      }
 
     }
 
-}
+  }
 
 
+  // =================================
+  // EVENTS
+  // =================================
 
-// =================================
-// EVENTS
-// =================================
+  function bindEvents() {
 
+    if (
+      initialized
+    ) {
 
-crLandscapeChampionEls
-    .company
-    .addEventListener(
+      return;
 
-        "change",
-
-        () => {
-
-
-            crLandscapeChampionRenderTitles();
-
-            crLandscapeChampionSetStatus(
-                "READY"
-            );
-
-        }
-
-    );
+    }
 
 
-crLandscapeChampionEls
-    .addTitle
-    .addEventListener(
-
-        "click",
-
-        crLandscapeChampionAddTitle
-
-    );
+    initialized =
+      true;
 
 
-crLandscapeChampionEls
-    .save
-    .addEventListener(
+    els.company?.addEventListener(
 
-        "click",
+      "change",
 
-        crLandscapeChampionSave
+      () => {
+
+        renderDesk();
+
+
+        setStatus(
+          "READY"
+        );
+
+      }
 
     );
 
 
+    els.addTitle?.addEventListener(
 
-// =================================
-// REPOSITORY EVENT
-// =================================
+      "click",
+
+      addTitleSlot
+
+    );
 
 
-window.addEventListener(
+    els.save?.addEventListener(
+
+      "click",
+
+      saveChampionships
+
+    );
+
+  }
+
+
+  // =================================
+  // PUBLIC HOOK
+  // =================================
+
+  window.crLandscapeChampionLoad =
+    loadAll;
+
+
+  // =================================
+  // STARTUP
+  // =================================
+
+  bindEvents();
+
+
+  window.addEventListener(
 
     "owl-control-room-data-loaded",
 
-    crLandscapeChampionLoad
+    loadAll
 
-);
-
-
-
-// =================================
-// SAFETY INITIALIZATION
-// =================================
+  );
 
 
-try {
-
+  try {
 
     if (
-
-        typeof owlRepositoryHandle
-        !==
+      typeof owlRepositoryHandle !==
         "undefined"
 
-        &&
+      &&
 
-        owlRepositoryHandle
-
+      owlRepositoryHandle
     ) {
 
-
-        crLandscapeChampionLoad();
+      loadAll();
 
     }
 
+  }
 
-}
 
-
-catch (
+  catch (
     error
-) {
-
+  ) {
 
     console.warn(
 
-        "Landscape Championship Desk waiting for repository connection.",
+      "Landscape Championship Desk waiting for repository connection.",
 
-        error
+      error
 
     );
 
-}
+  }
+
+})();
