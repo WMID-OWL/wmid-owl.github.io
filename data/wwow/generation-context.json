@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T21:18:26.341Z",
+  "generatedAt": "2026-07-11T08:20:34.746Z",
   "month": {
     "id": "2026-07",
     "label": "July 2026"
@@ -9,11 +9,13 @@
     "historicalPerspective": "Use previous months, archived media, and frozen world snapshots to identify real arcs such as rises, collapses, streaks, recoveries, championship changes, rankings movement, and changing public perception.",
     "snapshotUse": "worldHistoryMemory contains frozen prior month-end facts. Rankings, records, title status, and title transitions may be treated as historical fact. Innanet sentiment is public reaction. Do not invent an unrecorded reason for why a rise or collapse happened.",
     "innanetUse": "Innanet posts represent public reaction and opinion. They may be quoted or summarized as public sentiment but must never be treated as proof of factual backstage events.",
+    "segmentCanon": "Recorded OWL segments are factual story canon. WWoW may summarize, analyze, criticize, praise, or discuss implications of the recorded facts, but may not invent dialogue, actions, motivations, attacks, alliances, match announcements, or consequences that are not explicitly supplied.",
     "koMeaning": "A recorded KO is rare and symbolically represents injury-level damage in OWL. Treat it as major without inventing medical details or recovery time."
   },
   "monthSummary": {
     "eventCount": 3,
     "matchCount": 3,
+    "segmentCount": 0,
     "titleChangeCount": 2,
     "innanetPostCount": 37
   },
@@ -142,6 +144,7 @@
       ]
     }
   ],
+  "segments": [],
   "wrestlerContext": [
     {
       "id": "zee-allmighty",
@@ -577,7 +580,11 @@
       "majorEventCount": 0,
       "specialEventCount": 0,
       "rankingFrozen": false,
-      "honorsAvailable": false
+      "honorsAvailable": false,
+      "currentTitleCount": 0,
+      "activeChampionCount": 0,
+      "vacantTitleCount": 0,
+      "currentPeriodChampionshipChangeCount": 0
     },
     "directory": {
       "companies": [
@@ -799,18 +806,23 @@
     },
     "championLedger": [
       {
-        "companyId": "wwe",
-        "companyName": "WWE",
-        "titles": []
-      },
-      {
-        "companyId": "nxt",
-        "companyName": "NXT",
+        "companyId": "aaa",
+        "companyName": "AAA",
         "titles": []
       },
       {
         "companyId": "aew",
         "companyName": "AEW",
+        "titles": []
+      },
+      {
+        "companyId": "cmll",
+        "companyName": "CMLL",
+        "titles": []
+      },
+      {
+        "companyId": "nxt",
+        "companyName": "NXT",
         "titles": []
       },
       {
@@ -824,21 +836,15 @@
         "titles": []
       },
       {
-        "companyId": "cmll",
-        "companyName": "CMLL",
-        "titles": []
-      },
-      {
-        "companyId": "aaa",
-        "companyName": "AAA",
-        "titles": []
-      },
-      {
-        "companyId": "owl",
-        "companyName": "OWL",
+        "companyId": "wwe",
+        "companyName": "WWE",
         "titles": []
       }
     ],
+    "championshipHistory": {
+      "currentPeriodChanges": [],
+      "recentChanges": []
+    },
     "braggingRights": null,
     "recentRankingHistory": []
   },
