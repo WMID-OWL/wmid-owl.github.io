@@ -1,0 +1,418 @@
+name: Publish Landscape Public Test
+
+
+on:
+
+  workflow_dispatch:
+
+
+permissions:
+
+  contents:
+    write
+
+
+concurrency:
+
+  group: landscape-public-test
+
+  cancel-in-progress: false
+
+
+jobs:
+
+  publish-landscape-test:
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+        with:
+
+          ref:
+            main
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+      - name: Verify clean Landscape state
+
+        run: |
+
+          node <<'NODE'
+
+          const fs = require("fs");
+
+
+          const events = JSON.parse(
+
+            fs.readFileSync(
+              "data/landscape/events.json",
+              "utf8"
+            )
+
+          );
+
+
+          const rankings = JSON.parse(
+
+            fs.readFileSync(
+              "data/landscape/rankings.json",
+              "utf8"
+            )
+
+          );
+
+
+          const awards = JSON.parse(
+
+            fs.readFileSync(
+              "data/landscape/awards.json",
+              "utf8"
+            )
+
+          );
+
+
+          const archive = JSON.parse(
+
+            fs.readFileSync(
+              "data/landscape/archive-index.json",
+              "utf8"
+            )
+
+          );
+
+
+          if (
+
+            Array.isArray(events.events)
+
+            &&
+
+            events.events.length !== 0
+
+          ) {
+
+            throw new Error(
+
+              "Landscape events database is not clean."
+
+            );
+
+          }
+
+
+          if (
+
+            Array.isArray(rankings.periods)
+
+            &&
+
+            rankings.periods.length !== 0
+
+          ) {
+
+            throw new Error(
+
+              "Landscape rankings database is not clean."
+
+            );
+
+          }
+
+
+          if (
+
+            Array.isArray(awards.monthly)
+
+            &&
+
+            awards.monthly.length !== 0
+
+          ) {
+
+            throw new Error(
+
+              "Landscape awards database is not clean."
+
+            );
+
+          }
+
+
+          if (
+
+            Array.isArray(archive.periods)
+
+            &&
+
+            archive.periods.length !== 0
+
+          ) {
+
+            throw new Error(
+
+              "Landscape archive database is not clean."
+
+            );
+
+          }
+
+
+          console.log(
+
+            "Clean Landscape state confirmed."
+
+          );
+
+          NODE
+
+
+      - name: Build tested Landscape fixture
+
+        run: |
+
+          node scripts/test-landscape-end-to-end.mjs
+
+
+      - name: Validate public fixture
+
+        run: |
+
+          node <<'NODE'
+
+          const fs = require("fs");
+
+
+          const events = JSON.parse(
+
+            fs.readFileSync(
+              "data/landscape/events.json",
+              "utf8"
+            )
+
+          );
+
+
+          const rankings = JSON.parse(
+
+            fs.readFileSync(
+              "data/landscape/rankings.json",
+              "utf8"
+            )
+
+          );
+
+
+          const awards = JSON.parse(
+
+            fs.readFileSync(
+              "data/landscape/awards.json",
+              "utf8"
+            )
+
+          );
+
+
+          const archive = JSON.parse(
+
+            fs.readFileSync(
+              "data/landscape/archive-index.json",
+              "utf8"
+            )
+
+          );
+
+
+          if (events.events.length !== 52) {
+
+            throw new Error(
+
+              `Expected 52 events, found ${events.events.length}.`
+
+            );
+
+          }
+
+
+          const period =
+
+            rankings.periods.find(
+
+              item =>
+
+                item.periodId ===
+                "2099-10"
+
+            );
+
+
+          if (!period) {
+
+            throw new Error(
+
+              "October 2099 ranking period is missing."
+
+            );
+
+          }
+
+
+          if (
+
+            period.monthly
+              ?.companyRankings
+              ?.length !== 8
+
+          ) {
+
+            throw new Error(
+
+              "Expected 8 company rankings."
+
+            );
+
+          }
+
+
+          if (
+
+            period.monthly
+              ?.showRankings
+              ?.length !== 11
+
+          ) {
+
+            throw new Error(
+
+              "Expected 11 show rankings."
+
+            );
+
+          }
+
+
+          if (
+
+            !awards.monthly.some(
+
+              item =>
+
+                item.periodId ===
+                "2099-10"
+
+            )
+
+          ) {
+
+            throw new Error(
+
+              "October 2099 Honors are missing."
+
+            );
+
+          }
+
+
+          if (
+
+            archive.latestPeriodId !==
+            "2099-10"
+
+          ) {
+
+            throw new Error(
+
+              "Landscape archive does not point to October 2099."
+
+            );
+
+          }
+
+
+          console.log(
+
+            "Public Landscape fixture validated."
+
+          );
+
+
+          console.log(
+
+            "Events: 52"
+
+          );
+
+
+          console.log(
+
+            "Companies ranked: 8"
+
+          );
+
+
+          console.log(
+
+            "Shows ranked: 11"
+
+          );
+
+
+          console.log(
+
+            "Honors period: 2099-10"
+
+          );
+
+          NODE
+
+
+      - name: Commit temporary public fixture
+
+        run: |
+
+          git add data/landscape/events.json
+
+          git add data/landscape/rankings.json
+
+          git add data/landscape/awards.json
+
+          git add data/landscape/archive-index.json
+
+
+          if git diff --cached --quiet; then
+
+            echo "No Landscape public fixture changes to commit."
+
+            exit 0
+
+          fi
+
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          git commit \
+            -m "Publish temporary Landscape public test"
+
+
+          git push
