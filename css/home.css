@@ -1157,3 +1157,92 @@
         nowrap;
 
 }
+/* =================================
+   HOME LANDSCAPE TITLE CONTAINMENT
+================================= */
+
+
+.home-landscape-copy {
+
+    min-width:
+        0;
+
+    overflow:
+        hidden;
+
+}
+
+
+.home-landscape-copy h2 {
+
+    max-width:
+        100%;
+
+    margin:
+        0;
+
+    line-height:
+        0.82;
+
+}
+
+
+.home-landscape-copy h2 span {
+
+    display:
+        block;
+
+}
+
+
+.home-landscape-the {
+
+    font-size:
+        clamp(
+            3.2rem,
+            5vw,
+            5.2rem
+        );
+
+}
+
+
+.home-landscape-name {
+
+    max-width:
+        100%;
+
+    font-size:
+        clamp(
+            4.1rem,
+            6.8vw,
+            6.2rem
+        );
+
+    white-space:
+        nowrap;
+
+}
+
+
+@media (
+    max-width:
+        900px
+) {
+
+    .home-landscape-copy {
+
+        overflow:
+            visible;
+
+    }
+
+
+    .home-landscape-name {
+
+        white-space:
+            normal;
+
+    }
+
+}
