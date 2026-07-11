@@ -3701,94 +3701,9 @@
 
     }
     
-        // =================================
+          // =================================
     // CHAMPIONS
     // =================================
-
-
-    function championshipWonLabel(
-        title
-    ) {
-
-
-        const details =
-            [];
-
-
-        if (
-            title.wonEventName
-        ) {
-
-
-            details.push(
-                title.wonEventName
-            );
-
-        }
-
-
-        else if (
-            title.wonPeriodId
-        ) {
-
-
-            details.push(
-                periodLabel(
-                    title.wonPeriodId
-                )
-            );
-
-        }
-
-
-        if (
-            title.wonDate
-        ) {
-
-
-            const date =
-
-                new Date(
-                    `${title.wonDate}T00:00:00`
-                );
-
-
-            details.push(
-
-                Number.isNaN(
-                    date.getTime()
-                )
-
-                    ? title.wonDate
-
-                    : date.toLocaleDateString(
-
-                        "en-US",
-
-                        {
-                            month:
-                                "short",
-
-                            day:
-                                "numeric",
-
-                            year:
-                                "numeric"
-                        }
-
-                    )
-
-            );
-
-        }
-
-
-        return details.join(
-            " · "
-        );
-
-    }
-
 
 
     function renderChampions() {
@@ -3806,197 +3721,184 @@
                 : [];
 
 
-        const cards =
-            [];
+        const companies =
 
+            state.companies
 
-        state.companies
+                .filter(
 
-            .filter(
+                    company =>
 
-                company =>
+                        company.id !==
+                        "owl"
 
-                    company.id !==
-                    "owl"
-
-            )
-
-            .forEach(
-
-                company => {
-
-
-                    const companyTitles =
-
-                        titles
-
-                            .filter(
-
-                                title =>
-
-                                    title.companyId ===
-                                    company.id
-
-                            )
-
-                            .sort(
-
-                                (
-                                    a,
-                                    b
-                                ) =>
-
-                                    String(
-                                        a.name || ""
-                                    )
-
-                                        .localeCompare(
-
-                                            String(
-                                                b.name || ""
-                                            )
-
-                                        )
-
-                            );
-
-
-                    if (
-                        companyTitles.length === 0
-                    ) {
-
-
-                        return;
-
-                    }
-
-
-                    cards.push(`
-
-                        <article class="landscape-champion-company">
-
-
-                            <span>
-
-                                ${escapeHtml(
-                                    company.name
-                                )}
-
-                            </span>
-
-
-                            ${companyTitles
-
-                                .map(
-
-                                    title => {
-
-
-                                        const vacant =
-
-                                            title.status ===
-                                            "vacant"
-
-                                            ||
-
-                                            !title.championName;
-
-
-                                        const reignDetails =
-
-                                            championshipWonLabel(
-                                                title
-                                            );
-
-
-                                        return `
-
-                                            <div class="landscape-title-holder">
-
-
-                                                <span>
-
-                                                    ${escapeHtml(
-                                                        title.name || "CHAMPIONSHIP"
-                                                    )}
-
-                                                </span>
-
-
-                                                <strong>
-
-                                                    ${escapeHtml(
-
-                                                        vacant
-
-                                                            ? "VACANT"
-
-                                                            : title.championName
-
-                                                    )}
-
-                                                </strong>
-
-
-                                                <small>
-
-                                                    ${escapeHtml(
-
-                                                        vacant
-
-                                                            ? "TITLE CURRENTLY VACANT"
-
-                                                            : reignDetails
-
-                                                                ? `WON · ${reignDetails}`
-
-                                                                : "REIGN DETAILS NOT RECORDED"
-
-                                                    )}
-
-                                                </small>
-
-
-                                            </div>
-
-                                        `;
-
-                                    }
-
-                                )
-
-                                .join(
-                                    ""
-                                )}
-
-
-                        </article>
-
-                    `);
-
-                }
-
-            );
+                );
 
 
         els.champions
             .innerHTML =
 
-                cards.length
+                companies
 
-                    ? cards.join(
-                        ""
+                    .map(
+
+                        company => {
+
+
+                            const companyTitles =
+
+                                titles
+
+                                    .filter(
+
+                                        title =>
+
+                                            title.companyId ===
+                                            company.id
+
+                                    )
+
+                                    .sort(
+
+                                        (
+                                            a,
+                                            b
+                                        ) =>
+
+                                            String(
+                                                a.name || ""
+                                            )
+
+                                                .localeCompare(
+
+                                                    String(
+                                                        b.name || ""
+                                                    )
+
+                                                )
+
+                                    );
+
+
+                            const titleRows =
+
+                                companyTitles.length
+
+                                    ? companyTitles
+
+                                        .map(
+
+                                            title => {
+
+
+                                                const championName =
+
+                                                    title.status ===
+                                                    "vacant"
+
+                                                    ||
+
+                                                    !title.championName
+
+                                                        ? "VACANT"
+
+                                                        : title.championName;
+
+
+                                                return `
+
+                                                    <div class="landscape-title-holder">
+
+
+                                                        <span>
+
+                                                            ${escapeHtml(
+                                                                title.name || "CHAMPIONSHIP"
+                                                            )}
+
+                                                        </span>
+
+
+                                                        <strong>
+
+                                                            ${escapeHtml(
+                                                                championName
+                                                            )}
+
+                                                        </strong>
+
+
+                                                    </div>
+
+                                                `;
+
+                                            }
+
+                                        )
+
+                                        .join(
+                                            ""
+                                        )
+
+                                    : `
+
+                                        <p class="landscape-champion-empty">
+
+                                            NO TITLES RECORDED
+
+                                        </p>
+
+                                    `;
+
+
+                            return `
+
+                                <article class="landscape-champion-company">
+
+
+                                    <h3>
+
+                                        ${escapeHtml(
+                                            company.name
+                                        )}
+
+                                    </h3>
+
+
+                                    <div class="landscape-title-directory-heading">
+
+
+                                        <span>
+                                            TITLE
+                                        </span>
+
+
+                                        <span>
+                                            CHAMPION
+                                        </span>
+
+
+                                    </div>
+
+
+                                    <div class="landscape-title-directory">
+
+                                        ${titleRows}
+
+                                    </div>
+
+
+                                </article>
+
+                            `;
+
+                        }
+
                     )
 
-                    : `
-
-                        <p class="landscape-empty">
-
-                            NO EXTERNAL CHAMPIONS RECORDED YET
-
-                        </p>
-
-                    `;
+                    .join(
+                        ""
+                    );
 
     }
 
