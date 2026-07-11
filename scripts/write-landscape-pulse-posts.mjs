@@ -524,6 +524,25 @@ function cleanText(
 
 
 
+function normalizeAccountId(
+    value
+) {
+
+
+    return cleanText(
+        value,
+        80
+    )
+        .replace(
+            /^@+/,
+            ""
+        )
+        .toLowerCase();
+
+}
+
+
+
 function monthLabel(
     id
 ) {
@@ -1037,6 +1056,7 @@ LANDSCAPE:
 OUTPUT:
 - Return EXACTLY 4 complete posts for each batch.
 - Use only recurring accounts from availableAccounts.
+- accountId must exactly match an availableAccounts id and must never include an @ symbol.
 - Do not create wrestler posts.
 - Include different viewpoints.
 - Avoid repeating the same fact, joke, or wording.
@@ -1625,13 +1645,9 @@ function batchValidationIssues(
 
             const accountId =
 
-                cleanText(
-
-                    post?.accountId,
-
-                    80
-
-                );
+    normalizeAccountId(
+        post?.accountId
+    );
 
 
             const body =
@@ -2086,11 +2102,18 @@ async function generateBatch(
             return {
 
 
-                ...post,
+    ...post,
 
 
-                postId:
-                    globalId,
+    accountId:
+
+        normalizeAccountId(
+            post.accountId
+        ),
+
+
+    postId:
+        globalId,
 
 
                 replyTo:
@@ -2245,9 +2268,13 @@ function validatePosts(
 
             const account =
 
-                accountMap[
-                    post.accountId
-                ];
+    accountMap[
+
+        normalizeAccountId(
+            post.accountId
+        )
+
+    ];
 
 
             if (
