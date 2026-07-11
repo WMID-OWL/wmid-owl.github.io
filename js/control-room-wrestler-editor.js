@@ -2451,23 +2451,29 @@ crEditorSelect.addEventListener(
 
 Object.values(
     crEditorFields
-).forEach(
-    field => {
+)
+
+    .filter(
+        Boolean
+    )
+
+    .forEach(
+        field => {
 
 
-        field.addEventListener(
-            "input",
-            crEditorReviewChanges
-        );
+            field.addEventListener(
+                "input",
+                crEditorReviewChanges
+            );
 
 
-        field.addEventListener(
-            "change",
-            crEditorReviewChanges
-        );
+            field.addEventListener(
+                "change",
+                crEditorReviewChanges
+            );
 
-    }
-);
+        }
+    );
 
 
 
