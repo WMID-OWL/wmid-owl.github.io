@@ -3234,7 +3234,9 @@ body.landscape-page {
     font-size:
         0.58rem;
 
-}/* =================================
+}
+
+/* =================================
    CHAMPIONS
 ================================= */
 
@@ -3247,7 +3249,7 @@ body.landscape-page {
     grid-template-columns:
 
         repeat(
-            4,
+            3,
             minmax(
                 0,
                 1fr
@@ -3255,7 +3257,7 @@ body.landscape-page {
         );
 
     gap:
-        10px;
+        34px 42px;
 
 }
 
@@ -3263,28 +3265,29 @@ body.landscape-page {
 
 .landscape-champion-company {
 
-    min-height:
-        220px;
+    min-width:
+        0;
 
-    padding:
-        20px;
+    padding-top:
+        14px;
 
-    border:
-        1px solid
-        var(
-            --ls-line
-        );
-
-    background:
-        var(
-            --ls-panel
+    border-top:
+        2px solid
+        rgba(
+            243,
+            206,
+            97,
+            0.38
         );
 
 }
 
 
 
-.landscape-champion-company > span {
+.landscape-champion-company h3 {
+
+    margin:
+        0 0 14px;
 
     color:
         var(
@@ -3294,13 +3297,87 @@ body.landscape-page {
     font-family:
 
         Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
         sans-serif;
 
     font-size:
-        1.35rem;
+        1.65rem;
+
+    font-weight:
+        900;
 
     letter-spacing:
-        0.02em;
+        0.025em;
+
+}
+
+
+
+.landscape-title-directory-heading {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        minmax(
+            110px,
+            0.8fr
+        );
+
+    gap:
+        18px;
+
+    padding:
+        0 0 8px;
+
+    border-bottom:
+        1px solid
+        var(
+            --ls-line-strong
+        );
+
+}
+
+
+
+.landscape-title-directory-heading span {
+
+    color:
+        #667278;
+
+    font-size:
+        0.49rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+.landscape-title-directory-heading span:last-child {
+
+    text-align:
+        right;
+
+}
+
+
+
+.landscape-title-directory {
+
+    display:
+        grid;
 
 }
 
@@ -3311,16 +3388,37 @@ body.landscape-page {
     display:
         grid;
 
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        minmax(
+            110px,
+            0.8fr
+        );
+
+    align-items:
+        center;
+
     gap:
-        4px;
+        18px;
 
-    margin-top:
-        15px;
+    min-height:
+        42px;
 
-    padding-top:
-        13px;
+    margin:
+        0;
+
+    padding:
+        9px 0;
 
     border-top:
+        0;
+
+    border-bottom:
         1px solid
         var(
             --ls-line
@@ -3332,17 +3430,26 @@ body.landscape-page {
 
 .landscape-title-holder span {
 
+    overflow:
+        hidden;
+
     color:
-        #6f7b81;
+        #9ba5aa;
 
     font-size:
-        0.52rem;
+        0.66rem;
 
     font-weight:
-        900;
+        800;
 
     letter-spacing:
-        0.06em;
+        0;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
 
 }
 
@@ -3350,8 +3457,56 @@ body.landscape-page {
 
 .landscape-title-holder strong {
 
+    overflow:
+        hidden;
+
+    color:
+        #f1f3f4;
+
     font-size:
-        0.78rem;
+        0.7rem;
+
+    font-weight:
+        900;
+
+    text-align:
+        right;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+.landscape-champion-empty {
+
+    margin:
+        0;
+
+    padding:
+        14px 0;
+
+    border-bottom:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    color:
+        #5f6b71;
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.07em;
 
 }
 
