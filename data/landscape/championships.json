@@ -1,4 +1,16 @@
 {
   "version": 1,
-  "titles": []
+  "titles": [
+    {
+      "id": "aew-title-name-271c-public-test-championship",
+      "companyId": "aew",
+      "name": "TITLE NAME 271C Public Test Championship",
+      "championName": "CURRENT CHAMPION Public Test Champion",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": ""
+    }
+  ]
 }
