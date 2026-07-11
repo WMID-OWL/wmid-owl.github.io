@@ -3416,82 +3416,109 @@
 
     }
     
-    // =================================
+        // =================================
     // CHAMPIONS
     // =================================
 
 
-    function championCompanyRecord(
-        companyId
+    function championshipWonLabel(
+        title
     ) {
 
 
-        const companiesData =
-
-            state.champions
-                ?.companies;
+        const details =
+            [];
 
 
         if (
-            Array.isArray(
-                companiesData
-            )
+            title.wonEventName
         ) {
 
 
-            return companiesData.find(
+            details.push(
+                title.wonEventName
+            );
 
-                company =>
+        }
 
-                    company.companyId ===
-                    companyId
 
-                    ||
+        else if (
+            title.wonPeriodId
+        ) {
 
-                    company.id ===
-                    companyId
 
-            )
-
-            ||
-
-            null;
+            details.push(
+                periodLabel(
+                    title.wonPeriodId
+                )
+            );
 
         }
 
 
         if (
-            companiesData
-
-            &&
-
-            typeof companiesData ===
-            "object"
+            title.wonDate
         ) {
 
 
-            return (
+            const date =
 
-                companiesData[
-                    companyId
-                ]
+                new Date(
+                    `${title.wonDate}T00:00:00`
+                );
 
-                ||
 
-                null
+            details.push(
+
+                Number.isNaN(
+                    date.getTime()
+                )
+
+                    ? title.wonDate
+
+                    : date.toLocaleDateString(
+
+                        "en-US",
+
+                        {
+                            month:
+                                "short",
+
+                            day:
+                                "numeric",
+
+                            year:
+                                "numeric"
+                        }
+
+                    )
 
             );
 
         }
 
 
-        return null;
+        return details.join(
+            " · "
+        );
 
     }
 
 
 
     function renderChampions() {
+
+
+        const titles =
+
+            Array.isArray(
+                state.champions
+                    ?.titles
+            )
+
+                ? state.champions.titles
+
+                : [];
 
 
         const cards =
@@ -3514,26 +3541,43 @@
                 company => {
 
 
-                    const record =
+                    const companyTitles =
 
-                        championCompanyRecord(
-                            company.id
-                        );
+                        titles
 
+                            .filter(
 
-                    const titles =
+                                title =>
 
-                        Array.isArray(
-                            record?.titles
-                        )
+                                    title.companyId ===
+                                    company.id
 
-                            ? record.titles
+                            )
 
-                            : [];
+                            .sort(
+
+                                (
+                                    a,
+                                    b
+                                ) =>
+
+                                    String(
+                                        a.name || ""
+                                    )
+
+                                        .localeCompare(
+
+                                            String(
+                                                b.name || ""
+                                            )
+
+                                        )
+
+                            );
 
 
                     if (
-                        titles.length === 0
+                        companyTitles.length === 0
                     ) {
 
 
@@ -3556,36 +3600,83 @@
                             </span>
 
 
-                            ${titles
+                            ${companyTitles
 
                                 .map(
 
-                                    title => `
-
-                                        <div class="landscape-title-holder">
+                                    title => {
 
 
-                                            <span>
+                                        const vacant =
 
-                                                ${escapeHtml(
-                                                    title.name || title.titleName || "CHAMPIONSHIP"
-                                                )}
+                                            title.status ===
+                                            "vacant"
 
-                                            </span>
+                                            ||
 
-
-                                            <strong>
-
-                                                ${escapeHtml(
-                                                    title.champion || title.currentChampion || "VACANT"
-                                                )}
-
-                                            </strong>
+                                            !title.championName;
 
 
-                                        </div>
+                                        const reignDetails =
 
-                                    `
+                                            championshipWonLabel(
+                                                title
+                                            );
+
+
+                                        return `
+
+                                            <div class="landscape-title-holder">
+
+
+                                                <span>
+
+                                                    ${escapeHtml(
+                                                        title.name || "CHAMPIONSHIP"
+                                                    )}
+
+                                                </span>
+
+
+                                                <strong>
+
+                                                    ${escapeHtml(
+
+                                                        vacant
+
+                                                            ? "VACANT"
+
+                                                            : title.championName
+
+                                                    )}
+
+                                                </strong>
+
+
+                                                <small>
+
+                                                    ${escapeHtml(
+
+                                                        vacant
+
+                                                            ? "TITLE CURRENTLY VACANT"
+
+                                                            : reignDetails
+
+                                                                ? `WON · ${reignDetails}`
+
+                                                                : "REIGN DETAILS NOT RECORDED"
+
+                                                    )}
+
+                                                </small>
+
+
+                                            </div>
+
+                                        `;
+
+                                    }
 
                                 )
 
@@ -4302,8 +4393,8 @@
 
 
                                         loadJson(
-                        "data/landscape/champions.json"
-                    ),
+    "data/landscape/championships.json"
+),
 
 
                                         loadJson(
