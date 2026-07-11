@@ -2096,9 +2096,14 @@
 #cr-tool-teams,
 #cr-tool-factions,
 #cr-tool-events,
-#cr-tool-match-booker,
+#cr-tool-media,
+#cr-tool-booker,
 #cr-tool-results,
-#cr-tool-data-health {
+#cr-tool-segments,
+#cr-tool-landscape,
+#cr-tool-social-status,
+#cr-tool-innanet-accounts,
+#cr-tool-health {
 
     scroll-margin-top:
         100px;
