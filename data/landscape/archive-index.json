@@ -1,5 +1,15 @@
 {
   "version": 1,
-  "latestPeriodId": "",
-  "periods": []
+  "latestPeriodId": "2099-10",
+  "periods": [
+    {
+      "id": "2099-10",
+      "label": "October 2099",
+      "weeklyShowsRecorded": 44,
+      "weeklyShowsComplete": true,
+      "majorEventsRecorded": 8,
+      "showdownSaturdayComplete": true,
+      "rankingsFinalized": true
+    }
+  ]
 }

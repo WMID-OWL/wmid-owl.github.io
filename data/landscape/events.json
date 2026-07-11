@@ -1,4 +1,2073 @@
 {
   "version": 1,
-  "events": []
+  "events": [
+    {
+      "id": "2099-10-week-1-wwe-raw",
+      "periodId": "2099-10",
+      "stage": "week-1",
+      "eventType": "weekly",
+      "companyId": "wwe",
+      "showId": "wwe-raw",
+      "eventName": "WWE Raw",
+      "bookingStyle": "Standard",
+      "overallRating": 3.61,
+      "location": {
+        "venue": "Test Venue 1",
+        "city": "Test City 1",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-1-wwe-raw-match-1",
+          "matchType": "singles",
+          "resultText": "Test Raw Alpha defeated Test Raw Beta.",
+          "rating": 3.73,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-1-wwe-raw-match-2",
+          "matchType": "singles",
+          "resultText": "Test Raw Gamma defeated Test Raw Delta.",
+          "rating": 3.53,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for WWE Raw.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-1-aaa-lucha-libre",
+      "periodId": "2099-10",
+      "stage": "week-1",
+      "eventType": "weekly",
+      "companyId": "aaa",
+      "showId": "aaa-lucha-libre",
+      "eventName": "AAA Lucha Libre",
+      "bookingStyle": "Standard",
+      "overallRating": 3.51,
+      "location": {
+        "venue": "Test Venue 2",
+        "city": "Test City 2",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-1-aaa-lucha-libre-match-1",
+          "matchType": "singles",
+          "resultText": "Test AAA Lucha Libre Alpha defeated Test AAA Lucha Libre Beta.",
+          "rating": 3.63,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-1-aaa-lucha-libre-match-2",
+          "matchType": "singles",
+          "resultText": "Test AAA Lucha Libre Gamma defeated Test AAA Lucha Libre Delta.",
+          "rating": 3.43,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for AAA Lucha Libre.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-1-nxt-on-cw",
+      "periodId": "2099-10",
+      "stage": "week-1",
+      "eventType": "weekly",
+      "companyId": "nxt",
+      "showId": "nxt-on-cw",
+      "eventName": "NXT on CW",
+      "bookingStyle": "Standard",
+      "overallRating": 3.48,
+      "location": {
+        "venue": "Test Venue 3",
+        "city": "Test City 3",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-1-nxt-on-cw-match-1",
+          "matchType": "singles",
+          "resultText": "Test NXT on CW Alpha defeated Test NXT on CW Beta.",
+          "rating": 3.6,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-1-nxt-on-cw-match-2",
+          "matchType": "singles",
+          "resultText": "Test NXT on CW Gamma defeated Test NXT on CW Delta.",
+          "rating": 3.4,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for NXT on CW.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-1-owl-ascension",
+      "periodId": "2099-10",
+      "stage": "week-1",
+      "eventType": "weekly",
+      "companyId": "owl",
+      "showId": "owl-ascension",
+      "eventName": "OWL Ascension",
+      "bookingStyle": "Standard",
+      "overallRating": 3.79,
+      "location": {
+        "venue": "Test Venue 4",
+        "city": "Test City 4",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-1-owl-ascension-match-1",
+          "matchType": "singles",
+          "resultText": "Test Ascension Alpha defeated Test Ascension Beta.",
+          "rating": 3.91,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-1-owl-ascension-match-2",
+          "matchType": "singles",
+          "resultText": "Test Ascension Gamma defeated Test Ascension Delta.",
+          "rating": 3.71,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for OWL Ascension.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-1-aew-dynamite",
+      "periodId": "2099-10",
+      "stage": "week-1",
+      "eventType": "weekly",
+      "companyId": "aew",
+      "showId": "aew-dynamite",
+      "eventName": "AEW Dynamite",
+      "bookingStyle": "Standard",
+      "overallRating": 3.91,
+      "location": {
+        "venue": "Test Venue 5",
+        "city": "Test City 5",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-1-aew-dynamite-match-1",
+          "matchType": "singles",
+          "resultText": "Test Dynamite Alpha defeated Test Dynamite Beta.",
+          "rating": 4.03,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-1-aew-dynamite-match-2",
+          "matchType": "singles",
+          "resultText": "Test Dynamite Gamma defeated Test Dynamite Delta.",
+          "rating": 3.83,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for AEW Dynamite.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-1-owl-revolt",
+      "periodId": "2099-10",
+      "stage": "week-1",
+      "eventType": "weekly",
+      "companyId": "owl",
+      "showId": "owl-revolt",
+      "eventName": "OWL Revolt",
+      "bookingStyle": "Standard",
+      "overallRating": 3.87,
+      "location": {
+        "venue": "Test Venue 6",
+        "city": "Test City 6",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-1-owl-revolt-match-1",
+          "matchType": "singles",
+          "resultText": "Test Revolt Alpha defeated Test Revolt Beta.",
+          "rating": 3.99,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-1-owl-revolt-match-2",
+          "matchType": "singles",
+          "resultText": "Test Revolt Gamma defeated Test Revolt Delta.",
+          "rating": 3.79,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for OWL Revolt.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-1-tna-impact",
+      "periodId": "2099-10",
+      "stage": "week-1",
+      "eventType": "weekly",
+      "companyId": "tna",
+      "showId": "tna-impact",
+      "eventName": "TNA Impact",
+      "bookingStyle": "Standard",
+      "overallRating": 3.68,
+      "location": {
+        "venue": "Test Venue 7",
+        "city": "Test City 7",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-1-tna-impact-match-1",
+          "matchType": "singles",
+          "resultText": "Test Impact Alpha defeated Test Impact Beta.",
+          "rating": 3.8,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-1-tna-impact-match-2",
+          "matchType": "singles",
+          "resultText": "Test Impact Gamma defeated Test Impact Delta.",
+          "rating": 3.6,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for TNA Impact.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-1-roh-on-honorclub",
+      "periodId": "2099-10",
+      "stage": "week-1",
+      "eventType": "weekly",
+      "companyId": "roh",
+      "showId": "roh-on-honorclub",
+      "eventName": "ROH on HonorClub",
+      "bookingStyle": "Standard",
+      "overallRating": 3.37,
+      "location": {
+        "venue": "Test Venue 8",
+        "city": "Test City 8",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-1-roh-on-honorclub-match-1",
+          "matchType": "singles",
+          "resultText": "Test ROH on HonorClub Alpha defeated Test ROH on HonorClub Beta.",
+          "rating": 3.49,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-1-roh-on-honorclub-match-2",
+          "matchType": "singles",
+          "resultText": "Test ROH on HonorClub Gamma defeated Test ROH on HonorClub Delta.",
+          "rating": 3.29,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for ROH on HonorClub.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-1-aew-collision",
+      "periodId": "2099-10",
+      "stage": "week-1",
+      "eventType": "weekly",
+      "companyId": "aew",
+      "showId": "aew-collision",
+      "eventName": "AEW Collision",
+      "bookingStyle": "Standard",
+      "overallRating": 3.95,
+      "location": {
+        "venue": "Test Venue 9",
+        "city": "Test City 9",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-1-aew-collision-match-1",
+          "matchType": "singles",
+          "resultText": "Test Collision Alpha defeated Test Collision Beta.",
+          "rating": 4.07,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-1-aew-collision-match-2",
+          "matchType": "singles",
+          "resultText": "Test Collision Gamma defeated Test Collision Delta.",
+          "rating": 3.87,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for AEW Collision.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-1-wwe-smackdown",
+      "periodId": "2099-10",
+      "stage": "week-1",
+      "eventType": "weekly",
+      "companyId": "wwe",
+      "showId": "wwe-smackdown",
+      "eventName": "WWE SmackDown",
+      "bookingStyle": "Standard",
+      "overallRating": 3.61,
+      "location": {
+        "venue": "Test Venue 10",
+        "city": "Test City 10",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-1-wwe-smackdown-match-1",
+          "matchType": "singles",
+          "resultText": "Test SmackDown Alpha defeated Test SmackDown Beta.",
+          "rating": 3.73,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-1-wwe-smackdown-match-2",
+          "matchType": "singles",
+          "resultText": "Test SmackDown Gamma defeated Test SmackDown Delta.",
+          "rating": 3.53,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for WWE SmackDown.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-1-cmll-super-viernes",
+      "periodId": "2099-10",
+      "stage": "week-1",
+      "eventType": "weekly",
+      "companyId": "cmll",
+      "showId": "cmll-super-viernes",
+      "eventName": "CMLL Super Viernes",
+      "bookingStyle": "Standard",
+      "overallRating": 3.59,
+      "location": {
+        "venue": "Test Venue 11",
+        "city": "Test City 11",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-1-cmll-super-viernes-match-1",
+          "matchType": "singles",
+          "resultText": "Test Super Viernes Alpha defeated Test Super Viernes Beta.",
+          "rating": 3.71,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-1-cmll-super-viernes-match-2",
+          "matchType": "singles",
+          "resultText": "Test Super Viernes Gamma defeated Test Super Viernes Delta.",
+          "rating": 3.51,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for CMLL Super Viernes.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-2-wwe-raw",
+      "periodId": "2099-10",
+      "stage": "week-2",
+      "eventType": "weekly",
+      "companyId": "wwe",
+      "showId": "wwe-raw",
+      "eventName": "WWE Raw",
+      "bookingStyle": "Standard",
+      "overallRating": 3.67,
+      "location": {
+        "venue": "Test Venue 1",
+        "city": "Test City 1",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-2-wwe-raw-match-1",
+          "matchType": "singles",
+          "resultText": "Test Raw Alpha defeated Test Raw Beta.",
+          "rating": 3.79,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-2-wwe-raw-match-2",
+          "matchType": "singles",
+          "resultText": "Test Raw Gamma defeated Test Raw Delta.",
+          "rating": 3.59,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for WWE Raw.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-2-aaa-lucha-libre",
+      "periodId": "2099-10",
+      "stage": "week-2",
+      "eventType": "weekly",
+      "companyId": "aaa",
+      "showId": "aaa-lucha-libre",
+      "eventName": "AAA Lucha Libre",
+      "bookingStyle": "Standard",
+      "overallRating": 3.57,
+      "location": {
+        "venue": "Test Venue 2",
+        "city": "Test City 2",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-2-aaa-lucha-libre-match-1",
+          "matchType": "singles",
+          "resultText": "Test AAA Lucha Libre Alpha defeated Test AAA Lucha Libre Beta.",
+          "rating": 3.69,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-2-aaa-lucha-libre-match-2",
+          "matchType": "singles",
+          "resultText": "Test AAA Lucha Libre Gamma defeated Test AAA Lucha Libre Delta.",
+          "rating": 3.49,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for AAA Lucha Libre.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-2-nxt-on-cw",
+      "periodId": "2099-10",
+      "stage": "week-2",
+      "eventType": "weekly",
+      "companyId": "nxt",
+      "showId": "nxt-on-cw",
+      "eventName": "NXT on CW",
+      "bookingStyle": "Standard",
+      "overallRating": 3.54,
+      "location": {
+        "venue": "Test Venue 3",
+        "city": "Test City 3",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-2-nxt-on-cw-match-1",
+          "matchType": "singles",
+          "resultText": "Test NXT on CW Alpha defeated Test NXT on CW Beta.",
+          "rating": 3.66,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-2-nxt-on-cw-match-2",
+          "matchType": "singles",
+          "resultText": "Test NXT on CW Gamma defeated Test NXT on CW Delta.",
+          "rating": 3.46,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for NXT on CW.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-2-owl-ascension",
+      "periodId": "2099-10",
+      "stage": "week-2",
+      "eventType": "weekly",
+      "companyId": "owl",
+      "showId": "owl-ascension",
+      "eventName": "OWL Ascension",
+      "bookingStyle": "Standard",
+      "overallRating": 3.85,
+      "location": {
+        "venue": "Test Venue 4",
+        "city": "Test City 4",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-2-owl-ascension-match-1",
+          "matchType": "singles",
+          "resultText": "Test Ascension Alpha defeated Test Ascension Beta.",
+          "rating": 3.97,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-2-owl-ascension-match-2",
+          "matchType": "singles",
+          "resultText": "Test Ascension Gamma defeated Test Ascension Delta.",
+          "rating": 3.77,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for OWL Ascension.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-2-aew-dynamite",
+      "periodId": "2099-10",
+      "stage": "week-2",
+      "eventType": "weekly",
+      "companyId": "aew",
+      "showId": "aew-dynamite",
+      "eventName": "AEW Dynamite",
+      "bookingStyle": "Standard",
+      "overallRating": 3.97,
+      "location": {
+        "venue": "Test Venue 5",
+        "city": "Test City 5",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-2-aew-dynamite-match-1",
+          "matchType": "singles",
+          "resultText": "Test Dynamite Alpha defeated Test Dynamite Beta.",
+          "rating": 4.09,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-2-aew-dynamite-match-2",
+          "matchType": "singles",
+          "resultText": "Test Dynamite Gamma defeated Test Dynamite Delta.",
+          "rating": 3.89,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for AEW Dynamite.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-2-owl-revolt",
+      "periodId": "2099-10",
+      "stage": "week-2",
+      "eventType": "weekly",
+      "companyId": "owl",
+      "showId": "owl-revolt",
+      "eventName": "OWL Revolt",
+      "bookingStyle": "Standard",
+      "overallRating": 3.93,
+      "location": {
+        "venue": "Test Venue 6",
+        "city": "Test City 6",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-2-owl-revolt-match-1",
+          "matchType": "singles",
+          "resultText": "Test Revolt Alpha defeated Test Revolt Beta.",
+          "rating": 4.05,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-2-owl-revolt-match-2",
+          "matchType": "singles",
+          "resultText": "Test Revolt Gamma defeated Test Revolt Delta.",
+          "rating": 3.85,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for OWL Revolt.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-2-tna-impact",
+      "periodId": "2099-10",
+      "stage": "week-2",
+      "eventType": "weekly",
+      "companyId": "tna",
+      "showId": "tna-impact",
+      "eventName": "TNA Impact",
+      "bookingStyle": "Standard",
+      "overallRating": 3.74,
+      "location": {
+        "venue": "Test Venue 7",
+        "city": "Test City 7",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-2-tna-impact-match-1",
+          "matchType": "singles",
+          "resultText": "Test Impact Alpha defeated Test Impact Beta.",
+          "rating": 3.86,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-2-tna-impact-match-2",
+          "matchType": "singles",
+          "resultText": "Test Impact Gamma defeated Test Impact Delta.",
+          "rating": 3.66,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for TNA Impact.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-2-roh-on-honorclub",
+      "periodId": "2099-10",
+      "stage": "week-2",
+      "eventType": "weekly",
+      "companyId": "roh",
+      "showId": "roh-on-honorclub",
+      "eventName": "ROH on HonorClub",
+      "bookingStyle": "Standard",
+      "overallRating": 3.43,
+      "location": {
+        "venue": "Test Venue 8",
+        "city": "Test City 8",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-2-roh-on-honorclub-match-1",
+          "matchType": "singles",
+          "resultText": "Test ROH on HonorClub Alpha defeated Test ROH on HonorClub Beta.",
+          "rating": 3.55,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-2-roh-on-honorclub-match-2",
+          "matchType": "singles",
+          "resultText": "Test ROH on HonorClub Gamma defeated Test ROH on HonorClub Delta.",
+          "rating": 3.35,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for ROH on HonorClub.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-2-aew-collision",
+      "periodId": "2099-10",
+      "stage": "week-2",
+      "eventType": "weekly",
+      "companyId": "aew",
+      "showId": "aew-collision",
+      "eventName": "AEW Collision",
+      "bookingStyle": "Standard",
+      "overallRating": 4.01,
+      "location": {
+        "venue": "Test Venue 9",
+        "city": "Test City 9",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-2-aew-collision-match-1",
+          "matchType": "singles",
+          "resultText": "Test Collision Alpha defeated Test Collision Beta.",
+          "rating": 4.13,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-2-aew-collision-match-2",
+          "matchType": "singles",
+          "resultText": "Test Collision Gamma defeated Test Collision Delta.",
+          "rating": 3.93,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for AEW Collision.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-2-wwe-smackdown",
+      "periodId": "2099-10",
+      "stage": "week-2",
+      "eventType": "weekly",
+      "companyId": "wwe",
+      "showId": "wwe-smackdown",
+      "eventName": "WWE SmackDown",
+      "bookingStyle": "Standard",
+      "overallRating": 3.67,
+      "location": {
+        "venue": "Test Venue 10",
+        "city": "Test City 10",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-2-wwe-smackdown-match-1",
+          "matchType": "singles",
+          "resultText": "Test SmackDown Alpha defeated Test SmackDown Beta.",
+          "rating": 3.79,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-2-wwe-smackdown-match-2",
+          "matchType": "singles",
+          "resultText": "Test SmackDown Gamma defeated Test SmackDown Delta.",
+          "rating": 3.59,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for WWE SmackDown.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-2-cmll-super-viernes",
+      "periodId": "2099-10",
+      "stage": "week-2",
+      "eventType": "weekly",
+      "companyId": "cmll",
+      "showId": "cmll-super-viernes",
+      "eventName": "CMLL Super Viernes",
+      "bookingStyle": "Standard",
+      "overallRating": 3.65,
+      "location": {
+        "venue": "Test Venue 11",
+        "city": "Test City 11",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-2-cmll-super-viernes-match-1",
+          "matchType": "singles",
+          "resultText": "Test Super Viernes Alpha defeated Test Super Viernes Beta.",
+          "rating": 3.77,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-2-cmll-super-viernes-match-2",
+          "matchType": "singles",
+          "resultText": "Test Super Viernes Gamma defeated Test Super Viernes Delta.",
+          "rating": 3.57,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for CMLL Super Viernes.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-3-wwe-raw",
+      "periodId": "2099-10",
+      "stage": "week-3",
+      "eventType": "weekly",
+      "companyId": "wwe",
+      "showId": "wwe-raw",
+      "eventName": "WWE Raw",
+      "bookingStyle": "Standard",
+      "overallRating": 3.73,
+      "location": {
+        "venue": "Test Venue 1",
+        "city": "Test City 1",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-3-wwe-raw-match-1",
+          "matchType": "singles",
+          "resultText": "Test Raw Alpha defeated Test Raw Beta.",
+          "rating": 3.85,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-3-wwe-raw-match-2",
+          "matchType": "singles",
+          "resultText": "Test Raw Gamma defeated Test Raw Delta.",
+          "rating": 3.65,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for WWE Raw.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-3-aaa-lucha-libre",
+      "periodId": "2099-10",
+      "stage": "week-3",
+      "eventType": "weekly",
+      "companyId": "aaa",
+      "showId": "aaa-lucha-libre",
+      "eventName": "AAA Lucha Libre",
+      "bookingStyle": "Standard",
+      "overallRating": 3.63,
+      "location": {
+        "venue": "Test Venue 2",
+        "city": "Test City 2",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-3-aaa-lucha-libre-match-1",
+          "matchType": "singles",
+          "resultText": "Test AAA Lucha Libre Alpha defeated Test AAA Lucha Libre Beta.",
+          "rating": 3.75,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-3-aaa-lucha-libre-match-2",
+          "matchType": "singles",
+          "resultText": "Test AAA Lucha Libre Gamma defeated Test AAA Lucha Libre Delta.",
+          "rating": 3.55,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for AAA Lucha Libre.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-3-nxt-on-cw",
+      "periodId": "2099-10",
+      "stage": "week-3",
+      "eventType": "weekly",
+      "companyId": "nxt",
+      "showId": "nxt-on-cw",
+      "eventName": "NXT on CW",
+      "bookingStyle": "Standard",
+      "overallRating": 3.6,
+      "location": {
+        "venue": "Test Venue 3",
+        "city": "Test City 3",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-3-nxt-on-cw-match-1",
+          "matchType": "singles",
+          "resultText": "Test NXT on CW Alpha defeated Test NXT on CW Beta.",
+          "rating": 3.72,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-3-nxt-on-cw-match-2",
+          "matchType": "singles",
+          "resultText": "Test NXT on CW Gamma defeated Test NXT on CW Delta.",
+          "rating": 3.52,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for NXT on CW.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-3-owl-ascension",
+      "periodId": "2099-10",
+      "stage": "week-3",
+      "eventType": "weekly",
+      "companyId": "owl",
+      "showId": "owl-ascension",
+      "eventName": "OWL Ascension",
+      "bookingStyle": "Standard",
+      "overallRating": 3.91,
+      "location": {
+        "venue": "Test Venue 4",
+        "city": "Test City 4",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-3-owl-ascension-match-1",
+          "matchType": "singles",
+          "resultText": "Test Ascension Alpha defeated Test Ascension Beta.",
+          "rating": 4.03,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-3-owl-ascension-match-2",
+          "matchType": "singles",
+          "resultText": "Test Ascension Gamma defeated Test Ascension Delta.",
+          "rating": 3.83,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for OWL Ascension.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-3-aew-dynamite",
+      "periodId": "2099-10",
+      "stage": "week-3",
+      "eventType": "weekly",
+      "companyId": "aew",
+      "showId": "aew-dynamite",
+      "eventName": "AEW Dynamite",
+      "bookingStyle": "Standard",
+      "overallRating": 4.03,
+      "location": {
+        "venue": "Test Venue 5",
+        "city": "Test City 5",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-3-aew-dynamite-match-1",
+          "matchType": "singles",
+          "resultText": "Test Dynamite Alpha defeated Test Dynamite Beta.",
+          "rating": 4.15,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-3-aew-dynamite-match-2",
+          "matchType": "singles",
+          "resultText": "Test Dynamite Gamma defeated Test Dynamite Delta.",
+          "rating": 3.95,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for AEW Dynamite.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-3-owl-revolt",
+      "periodId": "2099-10",
+      "stage": "week-3",
+      "eventType": "weekly",
+      "companyId": "owl",
+      "showId": "owl-revolt",
+      "eventName": "OWL Revolt",
+      "bookingStyle": "Standard",
+      "overallRating": 3.99,
+      "location": {
+        "venue": "Test Venue 6",
+        "city": "Test City 6",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-3-owl-revolt-match-1",
+          "matchType": "singles",
+          "resultText": "Test Revolt Alpha defeated Test Revolt Beta.",
+          "rating": 4.11,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-3-owl-revolt-match-2",
+          "matchType": "singles",
+          "resultText": "Test Revolt Gamma defeated Test Revolt Delta.",
+          "rating": 3.91,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for OWL Revolt.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-3-tna-impact",
+      "periodId": "2099-10",
+      "stage": "week-3",
+      "eventType": "weekly",
+      "companyId": "tna",
+      "showId": "tna-impact",
+      "eventName": "TNA Impact",
+      "bookingStyle": "Standard",
+      "overallRating": 3.8,
+      "location": {
+        "venue": "Test Venue 7",
+        "city": "Test City 7",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-3-tna-impact-match-1",
+          "matchType": "singles",
+          "resultText": "Test Impact Alpha defeated Test Impact Beta.",
+          "rating": 3.92,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-3-tna-impact-match-2",
+          "matchType": "singles",
+          "resultText": "Test Impact Gamma defeated Test Impact Delta.",
+          "rating": 3.72,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for TNA Impact.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-3-roh-on-honorclub",
+      "periodId": "2099-10",
+      "stage": "week-3",
+      "eventType": "weekly",
+      "companyId": "roh",
+      "showId": "roh-on-honorclub",
+      "eventName": "ROH on HonorClub",
+      "bookingStyle": "Standard",
+      "overallRating": 3.49,
+      "location": {
+        "venue": "Test Venue 8",
+        "city": "Test City 8",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-3-roh-on-honorclub-match-1",
+          "matchType": "singles",
+          "resultText": "Test ROH on HonorClub Alpha defeated Test ROH on HonorClub Beta.",
+          "rating": 3.61,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-3-roh-on-honorclub-match-2",
+          "matchType": "singles",
+          "resultText": "Test ROH on HonorClub Gamma defeated Test ROH on HonorClub Delta.",
+          "rating": 3.41,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for ROH on HonorClub.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-3-aew-collision",
+      "periodId": "2099-10",
+      "stage": "week-3",
+      "eventType": "weekly",
+      "companyId": "aew",
+      "showId": "aew-collision",
+      "eventName": "AEW Collision",
+      "bookingStyle": "Standard",
+      "overallRating": 4.07,
+      "location": {
+        "venue": "Test Venue 9",
+        "city": "Test City 9",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-3-aew-collision-match-1",
+          "matchType": "singles",
+          "resultText": "Test Collision Alpha defeated Test Collision Beta.",
+          "rating": 4.19,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-3-aew-collision-match-2",
+          "matchType": "singles",
+          "resultText": "Test Collision Gamma defeated Test Collision Delta.",
+          "rating": 3.99,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for AEW Collision.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-3-wwe-smackdown",
+      "periodId": "2099-10",
+      "stage": "week-3",
+      "eventType": "weekly",
+      "companyId": "wwe",
+      "showId": "wwe-smackdown",
+      "eventName": "WWE SmackDown",
+      "bookingStyle": "Standard",
+      "overallRating": 3.73,
+      "location": {
+        "venue": "Test Venue 10",
+        "city": "Test City 10",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-3-wwe-smackdown-match-1",
+          "matchType": "singles",
+          "resultText": "Test SmackDown Alpha defeated Test SmackDown Beta.",
+          "rating": 3.85,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-3-wwe-smackdown-match-2",
+          "matchType": "singles",
+          "resultText": "Test SmackDown Gamma defeated Test SmackDown Delta.",
+          "rating": 3.65,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for WWE SmackDown.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-3-cmll-super-viernes",
+      "periodId": "2099-10",
+      "stage": "week-3",
+      "eventType": "weekly",
+      "companyId": "cmll",
+      "showId": "cmll-super-viernes",
+      "eventName": "CMLL Super Viernes",
+      "bookingStyle": "Standard",
+      "overallRating": 3.71,
+      "location": {
+        "venue": "Test Venue 11",
+        "city": "Test City 11",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-3-cmll-super-viernes-match-1",
+          "matchType": "singles",
+          "resultText": "Test Super Viernes Alpha defeated Test Super Viernes Beta.",
+          "rating": 3.83,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-3-cmll-super-viernes-match-2",
+          "matchType": "singles",
+          "resultText": "Test Super Viernes Gamma defeated Test Super Viernes Delta.",
+          "rating": 3.63,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for CMLL Super Viernes.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-4-wwe-raw",
+      "periodId": "2099-10",
+      "stage": "week-4",
+      "eventType": "weekly",
+      "companyId": "wwe",
+      "showId": "wwe-raw",
+      "eventName": "WWE Raw",
+      "bookingStyle": "Standard",
+      "overallRating": 3.79,
+      "location": {
+        "venue": "Test Venue 1",
+        "city": "Test City 1",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-4-wwe-raw-match-1",
+          "matchType": "singles",
+          "resultText": "Test Raw Alpha defeated Test Raw Beta.",
+          "rating": 3.91,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-4-wwe-raw-match-2",
+          "matchType": "singles",
+          "resultText": "Test Raw Gamma defeated Test Raw Delta.",
+          "rating": 3.71,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for WWE Raw.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-4-aaa-lucha-libre",
+      "periodId": "2099-10",
+      "stage": "week-4",
+      "eventType": "weekly",
+      "companyId": "aaa",
+      "showId": "aaa-lucha-libre",
+      "eventName": "AAA Lucha Libre",
+      "bookingStyle": "Standard",
+      "overallRating": 3.69,
+      "location": {
+        "venue": "Test Venue 2",
+        "city": "Test City 2",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-4-aaa-lucha-libre-match-1",
+          "matchType": "singles",
+          "resultText": "Test AAA Lucha Libre Alpha defeated Test AAA Lucha Libre Beta.",
+          "rating": 3.81,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-4-aaa-lucha-libre-match-2",
+          "matchType": "singles",
+          "resultText": "Test AAA Lucha Libre Gamma defeated Test AAA Lucha Libre Delta.",
+          "rating": 3.61,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for AAA Lucha Libre.",
+          "rating": null
+        }
+      ],
+      "universeNotes": "JoW canon test: Test Wrestler Nova signed with AAA."
+    },
+    {
+      "id": "2099-10-week-4-nxt-on-cw",
+      "periodId": "2099-10",
+      "stage": "week-4",
+      "eventType": "weekly",
+      "companyId": "nxt",
+      "showId": "nxt-on-cw",
+      "eventName": "NXT on CW",
+      "bookingStyle": "Standard",
+      "overallRating": 3.66,
+      "location": {
+        "venue": "Test Venue 3",
+        "city": "Test City 3",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-4-nxt-on-cw-match-1",
+          "matchType": "singles",
+          "resultText": "Test NXT on CW Alpha defeated Test NXT on CW Beta.",
+          "rating": 3.78,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-4-nxt-on-cw-match-2",
+          "matchType": "singles",
+          "resultText": "Test NXT on CW Gamma defeated Test NXT on CW Delta.",
+          "rating": 3.58,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for NXT on CW.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-4-owl-ascension",
+      "periodId": "2099-10",
+      "stage": "week-4",
+      "eventType": "weekly",
+      "companyId": "owl",
+      "showId": "owl-ascension",
+      "eventName": "OWL Ascension",
+      "bookingStyle": "Standard",
+      "overallRating": 3.97,
+      "location": {
+        "venue": "Test Venue 4",
+        "city": "Test City 4",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-4-owl-ascension-match-1",
+          "matchType": "singles",
+          "resultText": "Test Ascension Alpha defeated Test Ascension Beta.",
+          "rating": 4.09,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-4-owl-ascension-match-2",
+          "matchType": "singles",
+          "resultText": "Test Ascension Gamma defeated Test Ascension Delta.",
+          "rating": 3.89,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for OWL Ascension.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-4-aew-dynamite",
+      "periodId": "2099-10",
+      "stage": "week-4",
+      "eventType": "weekly",
+      "companyId": "aew",
+      "showId": "aew-dynamite",
+      "eventName": "AEW Dynamite",
+      "bookingStyle": "Standard",
+      "overallRating": 4.09,
+      "location": {
+        "venue": "Test Venue 5",
+        "city": "Test City 5",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-4-aew-dynamite-match-1",
+          "matchType": "singles",
+          "resultText": "Test Dynamite Alpha defeated Test Dynamite Beta.",
+          "rating": 4.21,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-4-aew-dynamite-match-2",
+          "matchType": "singles",
+          "resultText": "Test Dynamite Gamma defeated Test Dynamite Delta.",
+          "rating": 4.01,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for AEW Dynamite.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-4-owl-revolt",
+      "periodId": "2099-10",
+      "stage": "week-4",
+      "eventType": "weekly",
+      "companyId": "owl",
+      "showId": "owl-revolt",
+      "eventName": "OWL Revolt",
+      "bookingStyle": "Standard",
+      "overallRating": 4.05,
+      "location": {
+        "venue": "Test Venue 6",
+        "city": "Test City 6",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-4-owl-revolt-match-1",
+          "matchType": "singles",
+          "resultText": "Test Revolt Alpha defeated Test Revolt Beta.",
+          "rating": 4.17,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-4-owl-revolt-match-2",
+          "matchType": "singles",
+          "resultText": "Test Revolt Gamma defeated Test Revolt Delta.",
+          "rating": 3.97,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for OWL Revolt.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-4-tna-impact",
+      "periodId": "2099-10",
+      "stage": "week-4",
+      "eventType": "weekly",
+      "companyId": "tna",
+      "showId": "tna-impact",
+      "eventName": "TNA Impact",
+      "bookingStyle": "Standard",
+      "overallRating": 3.86,
+      "location": {
+        "venue": "Test Venue 7",
+        "city": "Test City 7",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-4-tna-impact-match-1",
+          "matchType": "singles",
+          "resultText": "Test Impact Alpha defeated Test Impact Beta.",
+          "rating": 3.98,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-4-tna-impact-match-2",
+          "matchType": "singles",
+          "resultText": "Test Impact Gamma defeated Test Impact Delta.",
+          "rating": 3.78,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for TNA Impact.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-4-roh-on-honorclub",
+      "periodId": "2099-10",
+      "stage": "week-4",
+      "eventType": "weekly",
+      "companyId": "roh",
+      "showId": "roh-on-honorclub",
+      "eventName": "ROH on HonorClub",
+      "bookingStyle": "Standard",
+      "overallRating": 3.55,
+      "location": {
+        "venue": "Test Venue 8",
+        "city": "Test City 8",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-4-roh-on-honorclub-match-1",
+          "matchType": "singles",
+          "resultText": "Test ROH on HonorClub Alpha defeated Test ROH on HonorClub Beta.",
+          "rating": 3.67,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-4-roh-on-honorclub-match-2",
+          "matchType": "singles",
+          "resultText": "Test ROH on HonorClub Gamma defeated Test ROH on HonorClub Delta.",
+          "rating": 3.47,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for ROH on HonorClub.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-4-aew-collision",
+      "periodId": "2099-10",
+      "stage": "week-4",
+      "eventType": "weekly",
+      "companyId": "aew",
+      "showId": "aew-collision",
+      "eventName": "AEW Collision",
+      "bookingStyle": "Standard",
+      "overallRating": 4.13,
+      "location": {
+        "venue": "Test Venue 9",
+        "city": "Test City 9",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-4-aew-collision-match-1",
+          "matchType": "singles",
+          "resultText": "Test Collision Alpha defeated Test Collision Beta.",
+          "rating": 4.25,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-4-aew-collision-match-2",
+          "matchType": "singles",
+          "resultText": "Test Collision Gamma defeated Test Collision Delta.",
+          "rating": 4.05,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for AEW Collision.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-4-wwe-smackdown",
+      "periodId": "2099-10",
+      "stage": "week-4",
+      "eventType": "weekly",
+      "companyId": "wwe",
+      "showId": "wwe-smackdown",
+      "eventName": "WWE SmackDown",
+      "bookingStyle": "Standard",
+      "overallRating": 3.79,
+      "location": {
+        "venue": "Test Venue 10",
+        "city": "Test City 10",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-4-wwe-smackdown-match-1",
+          "matchType": "singles",
+          "resultText": "Test SmackDown Alpha defeated Test SmackDown Beta.",
+          "rating": 3.91,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-4-wwe-smackdown-match-2",
+          "matchType": "singles",
+          "resultText": "Test SmackDown Gamma defeated Test SmackDown Delta.",
+          "rating": 3.71,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for WWE SmackDown.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-week-4-cmll-super-viernes",
+      "periodId": "2099-10",
+      "stage": "week-4",
+      "eventType": "weekly",
+      "companyId": "cmll",
+      "showId": "cmll-super-viernes",
+      "eventName": "CMLL Super Viernes",
+      "bookingStyle": "Standard",
+      "overallRating": 3.77,
+      "location": {
+        "venue": "Test Venue 11",
+        "city": "Test City 11",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-week-4-cmll-super-viernes-match-1",
+          "matchType": "singles",
+          "resultText": "Test Super Viernes Alpha defeated Test Super Viernes Beta.",
+          "rating": 3.89,
+          "storyContext": ""
+        },
+        {
+          "id": "2099-10-week-4-cmll-super-viernes-match-2",
+          "matchType": "singles",
+          "resultText": "Test Super Viernes Gamma defeated Test Super Viernes Delta.",
+          "rating": 3.69,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "segmentType": "story-segment",
+          "summary": "Test story context for CMLL Super Viernes.",
+          "rating": null
+        }
+      ],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-major-wwe",
+      "periodId": "2099-10",
+      "stage": "showdown-saturday",
+      "eventType": "major-event",
+      "companyId": "wwe",
+      "showId": "",
+      "eventName": "WWE October Test Event",
+      "bookingStyle": "Standard",
+      "overallRating": 3.81,
+      "location": {
+        "venue": "WWE Test Arena",
+        "city": "Showdown City 1",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-major-wwe-match-1",
+          "matchType": "singles",
+          "resultText": "Test WWE Major Alpha defeated Test WWE Major Beta.",
+          "rating": 3.97
+        },
+        {
+          "id": "2099-10-major-wwe-match-2",
+          "matchType": "singles",
+          "resultText": "Test WWE Major Gamma defeated Test WWE Major Delta.",
+          "rating": 3.77
+        }
+      ],
+      "segments": [],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-major-nxt",
+      "periodId": "2099-10",
+      "stage": "showdown-saturday",
+      "eventType": "major-event",
+      "companyId": "nxt",
+      "showId": "",
+      "eventName": "NXT October Test Event",
+      "bookingStyle": "Standard",
+      "overallRating": 3.62,
+      "location": {
+        "venue": "NXT Test Arena",
+        "city": "Showdown City 2",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-major-nxt-match-1",
+          "matchType": "singles",
+          "resultText": "Test NXT Major Alpha defeated Test NXT Major Beta.",
+          "rating": 3.78
+        },
+        {
+          "id": "2099-10-major-nxt-match-2",
+          "matchType": "singles",
+          "resultText": "Test NXT Major Gamma defeated Test NXT Major Delta.",
+          "rating": 3.58
+        }
+      ],
+      "segments": [],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-major-aew",
+      "periodId": "2099-10",
+      "stage": "showdown-saturday",
+      "eventType": "major-event",
+      "companyId": "aew",
+      "showId": "",
+      "eventName": "AEW October Test Event",
+      "bookingStyle": "Standard",
+      "overallRating": 4.1,
+      "location": {
+        "venue": "AEW Test Arena",
+        "city": "Showdown City 3",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-major-aew-match-1",
+          "matchType": "singles",
+          "resultText": "Test AEW Major Alpha defeated Test AEW Major Beta.",
+          "rating": 4.26
+        },
+        {
+          "id": "2099-10-major-aew-match-2",
+          "matchType": "singles",
+          "resultText": "Test AEW Major Gamma defeated Test AEW Major Delta.",
+          "rating": 4.06
+        }
+      ],
+      "segments": [],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-major-roh",
+      "periodId": "2099-10",
+      "stage": "showdown-saturday",
+      "eventType": "major-event",
+      "companyId": "roh",
+      "showId": "",
+      "eventName": "ROH October Test Event",
+      "bookingStyle": "Standard",
+      "overallRating": 3.58,
+      "location": {
+        "venue": "ROH Test Arena",
+        "city": "Showdown City 4",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-major-roh-match-1",
+          "matchType": "singles",
+          "resultText": "Test ROH Major Alpha defeated Test ROH Major Beta.",
+          "rating": 3.74
+        },
+        {
+          "id": "2099-10-major-roh-match-2",
+          "matchType": "singles",
+          "resultText": "Test ROH Major Gamma defeated Test ROH Major Delta.",
+          "rating": 3.54
+        }
+      ],
+      "segments": [],
+      "universeNotes": "JoW canon test: Test Wrestler Orion officially retired."
+    },
+    {
+      "id": "2099-10-major-tna",
+      "periodId": "2099-10",
+      "stage": "showdown-saturday",
+      "eventType": "major-event",
+      "companyId": "tna",
+      "showId": "",
+      "eventName": "TNA October Test Event",
+      "bookingStyle": "Standard",
+      "overallRating": 3.94,
+      "location": {
+        "venue": "TNA Test Arena",
+        "city": "Showdown City 5",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-major-tna-match-1",
+          "matchType": "singles",
+          "resultText": "Test TNA Major Alpha defeated Test TNA Major Beta.",
+          "rating": 4.1
+        },
+        {
+          "id": "2099-10-major-tna-match-2",
+          "matchType": "singles",
+          "resultText": "Test TNA Major Gamma defeated Test TNA Major Delta.",
+          "rating": 3.9
+        }
+      ],
+      "segments": [],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-major-cmll",
+      "periodId": "2099-10",
+      "stage": "showdown-saturday",
+      "eventType": "major-event",
+      "companyId": "cmll",
+      "showId": "",
+      "eventName": "CMLL October Test Event",
+      "bookingStyle": "Standard",
+      "overallRating": 3.83,
+      "location": {
+        "venue": "CMLL Test Arena",
+        "city": "Showdown City 6",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-major-cmll-match-1",
+          "matchType": "singles",
+          "resultText": "Test CMLL Major Alpha defeated Test CMLL Major Beta.",
+          "rating": 3.99
+        },
+        {
+          "id": "2099-10-major-cmll-match-2",
+          "matchType": "singles",
+          "resultText": "Test CMLL Major Gamma defeated Test CMLL Major Delta.",
+          "rating": 3.79
+        }
+      ],
+      "segments": [],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-major-aaa",
+      "periodId": "2099-10",
+      "stage": "showdown-saturday",
+      "eventType": "major-event",
+      "companyId": "aaa",
+      "showId": "",
+      "eventName": "AAA October Test Event",
+      "bookingStyle": "Standard",
+      "overallRating": 3.76,
+      "location": {
+        "venue": "AAA Test Arena",
+        "city": "Showdown City 7",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-major-aaa-match-1",
+          "matchType": "singles",
+          "resultText": "Test AAA Major Alpha defeated Test AAA Major Beta.",
+          "rating": 3.92
+        },
+        {
+          "id": "2099-10-major-aaa-match-2",
+          "matchType": "singles",
+          "resultText": "Test AAA Major Gamma defeated Test AAA Major Delta.",
+          "rating": 3.72
+        }
+      ],
+      "segments": [],
+      "universeNotes": ""
+    },
+    {
+      "id": "2099-10-major-owl",
+      "periodId": "2099-10",
+      "stage": "showdown-saturday",
+      "eventType": "major-event",
+      "companyId": "owl",
+      "showId": "",
+      "eventName": "OWL October Test Event",
+      "bookingStyle": "Standard",
+      "overallRating": 4.1,
+      "location": {
+        "venue": "OWL Test Arena",
+        "city": "Showdown City 8",
+        "region": "Test Region",
+        "country": "Test Country"
+      },
+      "matches": [
+        {
+          "id": "2099-10-major-owl-match-1",
+          "matchType": "singles",
+          "resultText": "Test OWL Major Alpha defeated Test OWL Major Beta.",
+          "rating": 4.26
+        },
+        {
+          "id": "2099-10-major-owl-match-2",
+          "matchType": "singles",
+          "resultText": "Test OWL Major Gamma defeated Test OWL Major Delta.",
+          "rating": 4.06
+        }
+      ],
+      "segments": [],
+      "universeNotes": ""
+    }
+  ]
 }

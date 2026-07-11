@@ -1,7 +1,49 @@
 {
   "version": 1,
   "awardVersion": 1,
-  "latestPeriodId": "",
-  "monthly": [],
+  "latestPeriodId": "2099-10",
+  "monthly": [
+    {
+      "periodId": "2099-10",
+      "awardVersion": 1,
+      "generatedAt": "2026-07-11T02:58:13.436Z",
+      "awards": {
+        "companyOfTheMonth": {
+          "companyId": "aew",
+          "name": "AEW",
+          "score": 81.3
+        },
+        "showOfTheMonth": {
+          "showId": "aew-collision",
+          "companyId": "aew",
+          "name": "AEW Collision",
+          "score": 80.8
+        },
+        "majorEventOfTheMonth": {
+          "eventId": "2099-10-major-aew",
+          "companyId": "aew",
+          "name": "AEW October Test Event",
+          "rating": 4.1,
+          "matchAverage": 4.16
+        },
+        "matchOfTheMonth": {
+          "matchId": "2099-10-major-aew-match-1",
+          "eventId": "2099-10-major-aew",
+          "companyId": "aew",
+          "eventName": "AEW October Test Event",
+          "name": "Test AEW Major Alpha defeated Test AEW Major Beta.",
+          "rating": 4.26
+        },
+        "mostConsistentShow": {
+          "showId": "aew-collision",
+          "companyId": "aew",
+          "name": "AEW Collision",
+          "consistencyScore": 98,
+          "landscapeScore": 80.8
+        },
+        "biggestClimber": null
+      }
+    }
+  ],
   "yearly": []
 }
