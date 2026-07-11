@@ -2379,22 +2379,29 @@ rankingPeriods
 
             const pulseId =
 
-                `landscape-monthly-${periodId}`;
+    `landscape-monthly-${periodId}`;
 
 
-            if (
-                alreadyPublished.has(
-                    pulseId
-                )
-            ) {
+if (
+
+    alreadyPublished.has(
+        pulseId
+    )
+
+    &&
+
+    periodId !==
+    FORCE_PERIOD_ID
+
+) {
 
 
-                return;
+    return;
 
-            }
+}
 
 
-            const previousRankingPeriod =
+const previousRankingPeriod =
 
                 index > 0
 
