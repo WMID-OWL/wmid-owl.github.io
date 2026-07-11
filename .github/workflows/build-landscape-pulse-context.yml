@@ -2,12 +2,6 @@ name: Build Landscape Pulse Context
 
 on:
   workflow_dispatch:
-    inputs:
-      test_period:
-        description: "Optional published period to rebuild for validation"
-        required: false
-        default: ""
-        type: string
 
   push:
     branches:
@@ -42,8 +36,6 @@ jobs:
           node-version: "20"
 
       - name: Build Landscape Pulse context
-        env:
-          LANDSCAPE_PULSE_FORCE_PERIOD: "${{ inputs.test_period }}"
         run: |
           node scripts/build-landscape-pulse-context.mjs
 
