@@ -1,4 +1,16 @@
 {
   "version": 1,
-  "titles": []
+  "titles": [
+    {
+      "id": "aaa-273c-context-test-championship",
+      "companyId": "aaa",
+      "name": "273C Context Test Championship",
+      "championName": "Context Test Champion",
+      "status": "active",
+      "wonPeriodId": "2099-10",
+      "wonEventId": "2099-10-major-aaa",
+      "wonEventName": "AAA October Test Event",
+      "wonDate": ""
+    }
+  ]
 }
