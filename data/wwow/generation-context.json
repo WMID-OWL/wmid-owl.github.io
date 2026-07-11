@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T08:53:53.834Z",
+  "generatedAt": "2026-07-11T09:15:53.286Z",
   "month": {
     "id": "2026-07",
     "label": "July 2026"
@@ -581,8 +581,8 @@
       "specialEventCount": 0,
       "rankingFrozen": false,
       "honorsAvailable": false,
-      "currentTitleCount": 1,
-      "activeChampionCount": 1,
+      "currentTitleCount": 0,
+      "activeChampionCount": 0,
       "vacantTitleCount": 0,
       "currentPeriodChampionshipChangeCount": 0
     },
@@ -808,18 +808,7 @@
       {
         "companyId": "aaa",
         "companyName": "AAA",
-        "titles": [
-          {
-            "id": "aaa-273c-context-test-championship",
-            "name": "273C Context Test Championshipmmm",
-            "championName": "Context Test Championv",
-            "status": "active",
-            "wonPeriodId": "2099-10",
-            "wonEventId": "2099-10-major-aaa",
-            "wonEventName": "AAA October Test Event",
-            "wonDate": ""
-          }
-        ]
+        "titles": []
       },
       {
         "companyId": "aew",
@@ -854,38 +843,7 @@
     ],
     "championshipHistory": {
       "currentPeriodChanges": [],
-      "recentChanges": [
-        {
-          "id": "change-1783758459577-1",
-          "titleId": "aaa-273c-context-test-championship",
-          "companyId": "aaa",
-          "companyName": "AAA",
-          "titleName": "273C Context Test Championship",
-          "previousChampionName": "",
-          "newChampionName": "Context Test Champion",
-          "changeType": "initial-champion",
-          "periodId": "2099-10",
-          "eventId": "2099-10-major-aaa",
-          "eventName": "AAA October Test Event",
-          "wonDate": "",
-          "recordedAt": "2026-07-11T08:27:39.577Z"
-        },
-        {
-          "id": "change-1783759726043-1",
-          "titleId": "aaa-273c-context-test-championship",
-          "companyId": "aaa",
-          "companyName": "AAA",
-          "titleName": "273C Context Test Championshipmmm",
-          "previousChampionName": "Context Test Champion",
-          "newChampionName": "Context Test Championv",
-          "changeType": "title-change",
-          "periodId": "2099-10",
-          "eventId": "2099-10-major-aaa",
-          "eventName": "AAA October Test Event",
-          "wonDate": "",
-          "recordedAt": "2026-07-11T08:48:46.043Z"
-        }
-      ]
+      "recentChanges": []
     },
     "braggingRights": null,
     "recentRankingHistory": []
