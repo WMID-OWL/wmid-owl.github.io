@@ -28,7 +28,7 @@ const crEditorSelectRow =
 
 
 const crEditorIdPreview =
-    document.getElementById(
+    d
         "cr-wrestler-id-preview"
     );
 
@@ -130,11 +130,16 @@ const crEditorFields = {
         ),
 
     finisher:
-        document.getElementById(
-            "cr-edit-finisher"
-        ),
+    document.getElementById(
+        "cr-edit-finisher"
+    ),
 
-    signatureMoves:
+finisher2:
+    document.getElementById(
+        "cr-edit-finisher-two"
+    ),
+
+signatureMoves:
         document.getElementById(
             "cr-edit-signatures"
         ),
@@ -185,9 +190,12 @@ const crEditorFieldLabels = {
         "Division",
 
     finisher:
-        "Finisher",
+    "Finisher 1",
 
-    signatureMoves:
+finisher2:
+    "Finisher 2",
+
+signatureMoves:
         "Signature Moves",
 
     whyImHere:
@@ -401,9 +409,12 @@ function crEditorGetFormRecord() {
             crEditorFields.division.value,
 
         finisher:
-            crEditorFields.finisher.value.trim(),
+    crEditorFields.finisher.value.trim(),
 
-        signatureMoves:
+finisher2:
+    crEditorFields.finisher2.value.trim(),
+
+signatureMoves:
             crEditorGetSignatureMoves(),
 
         whyImHere:
@@ -450,9 +461,12 @@ function crEditorGetEditableRecord(
             wrestler.division || "",
 
         finisher:
-            wrestler.finisher || "",
+    wrestler.finisher || "",
 
-        signatureMoves:
+finisher2:
+    wrestler.finisher2 || "",
+
+signatureMoves:
             Array.isArray(
                 wrestler.signatureMoves
             )
@@ -511,10 +525,14 @@ function crEditorFillForm(
 
 
     crEditorFields.finisher.value =
-        record.finisher || "";
+    record.finisher || "";
 
 
-    crEditorFields.signatureMoves.value =
+crEditorFields.finisher2.value =
+    record.finisher2 || "";
+
+
+crEditorFields.signatureMoves.value =
 
         Array.isArray(
             record.signatureMoves
@@ -573,9 +591,12 @@ function crEditorClearForm() {
             "",
 
         finisher:
-            "",
+    "",
 
-        signatureMoves:
+finisher2:
+    "",
+
+signatureMoves:
             [],
 
         whyImHere:
@@ -1594,45 +1615,101 @@ function crEditorReplaceStringField(
         );
 
 
-
     if (
-        !pattern.test(
+        pattern.test(
             block
         )
     ) {
 
 
-        throw new Error(
-            `Could not find field ${key}.`
+        return block.replace(
+
+            pattern,
+
+            (
+                match,
+                prefix
+            ) => {
+
+
+                return (
+
+                    prefix
+
+                    +
+
+                    JSON.stringify(
+                        value
+                    )
+
+                );
+
+            }
+
         );
 
     }
 
 
-
-    return block.replace(
-
-        pattern,
-
-        (
-            match,
-            prefix
-        ) => {
+    const closingBraceIndex =
+        block.lastIndexOf(
+            "}"
+        );
 
 
-            return (
+    if (
+        closingBraceIndex === -1
+    ) {
 
-                prefix
 
-                +
+        throw new Error(
+            `Could not add field ${key}.`
+        );
 
-                JSON.stringify(
-                    value
-                )
+    }
 
-            );
 
-        }
+    const beforeClosingBrace =
+
+        block.slice(
+            0,
+            closingBraceIndex
+        )
+            .trimEnd();
+
+
+    const separator =
+
+        beforeClosingBrace.endsWith(
+            "{"
+        )
+
+            ? ""
+
+            : ",";
+
+
+    return (
+
+        beforeClosingBrace
+
+        +
+
+        separator
+
+        +
+
+        `\n    ${JSON.stringify(
+            key
+        )}: ${JSON.stringify(
+            value
+        )}\n`
+
+        +
+
+        block.slice(
+            closingBraceIndex
+        )
 
     );
 
@@ -1903,9 +1980,18 @@ function crEditorBuildNewWrestler() {
             "",
 
         finisher:
-            form.finisher,
+    form.finisher,
 
-        signatureMoves:
+finisher2:
+    form.finisher2,
+
+finisherGif:
+    "",
+
+finisher2Gif:
+    "",
+
+signatureMoves:
             form.signatureMoves,
 
         whyImHere:
