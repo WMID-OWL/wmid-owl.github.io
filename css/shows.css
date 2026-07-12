@@ -1831,3 +1831,615 @@
     }
 
 }
+/* =================================
+   BRAND CHAMPIONSHIPS AND ROSTER
+================================= */
+
+
+.show-brand-world {
+
+    margin-top:
+        3rem;
+
+    padding:
+        clamp(
+            1.5rem,
+            4vw,
+            3rem
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    background:
+        #0d1112;
+
+}
+
+
+.show-brand-world-heading {
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        space-between;
+
+    gap:
+        2rem;
+
+    margin-bottom:
+        2rem;
+
+}
+
+
+.show-brand-world-heading h2 {
+
+    margin:
+        0.7rem 0 0;
+
+    font-size:
+        clamp(
+            2.5rem,
+            5vw,
+            4.5rem
+        );
+
+    line-height:
+        0.95;
+
+    letter-spacing:
+        -0.055em;
+
+}
+
+
+.show-brand-world-heading > span {
+
+    color:
+        var(
+            --show-accent
+        );
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.11em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.show-roster-heading {
+
+    margin-top:
+        4rem;
+
+}
+
+
+/* =================================
+   CHAMPIONSHIP CARDS
+================================= */
+
+
+.show-brand-championship-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        1rem;
+
+}
+
+
+.show-title-card {
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    background:
+        #121718;
+
+}
+
+
+.show-title-art {
+
+    min-height:
+        190px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    overflow:
+        hidden;
+
+    padding:
+        1rem;
+
+    background:
+        #080a0b;
+
+}
+
+
+.show-title-art img {
+
+    width:
+        100%;
+
+    height:
+        190px;
+
+    object-fit:
+        contain;
+
+}
+
+
+.show-title-art > span {
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    font-size:
+        3.5rem;
+
+    font-weight:
+        1000;
+
+}
+
+
+.show-title-copy {
+
+    padding:
+        1.25rem;
+
+}
+
+
+.show-title-meta {
+
+    color:
+        var(
+            --show-accent
+        );
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.show-title-copy h3 {
+
+    margin:
+        0.65rem 0 1.2rem;
+
+    font-size:
+        1.35rem;
+
+    line-height:
+        1.1;
+
+}
+
+
+.show-title-copy h3 a {
+
+    color:
+        #ffffff;
+
+    text-decoration:
+        none;
+
+}
+
+
+.show-title-copy small {
+
+    display:
+        block;
+
+    color:
+        #7f898d;
+
+    font-size:
+        0.53rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.show-title-holder {
+
+    display:
+        inline-block;
+
+    margin-top:
+        0.45rem;
+
+    color:
+        #ffffff;
+
+    font-size:
+        1rem;
+
+    font-weight:
+        900;
+
+    text-decoration:
+        none;
+
+}
+
+
+.show-title-holder:hover {
+
+    color:
+        var(
+            --show-accent
+        );
+
+}
+
+
+.show-title-holder.vacant {
+
+    color:
+        #7f898d;
+
+}
+
+
+/* =================================
+   ROSTER PREVIEW
+================================= */
+
+
+.show-brand-roster-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        1rem;
+
+}
+
+
+.show-roster-card {
+
+    overflow:
+        hidden;
+
+    color:
+        #ffffff;
+
+    text-decoration:
+        none;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    background:
+        #121718;
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease;
+
+}
+
+
+.show-roster-card:hover {
+
+    transform:
+        translateY(
+            -3px
+        );
+
+    border-color:
+        var(
+            --show-accent
+        );
+
+}
+
+
+.show-roster-portrait {
+
+    aspect-ratio:
+        4 / 3;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    overflow:
+        hidden;
+
+    background:
+        #080a0b;
+
+}
+
+
+.show-roster-portrait img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+}
+
+
+.show-roster-portrait span {
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+
+    font-size:
+        2.5rem;
+
+    font-weight:
+        1000;
+
+}
+
+
+.show-roster-copy {
+
+    padding:
+        1rem;
+
+}
+
+
+.show-roster-copy small {
+
+    color:
+        var(
+            --show-accent
+        );
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.show-roster-copy h3 {
+
+    margin:
+        0.45rem 0 0;
+
+    font-size:
+        1.25rem;
+
+}
+
+
+.show-roster-copy p {
+
+    margin:
+        0.35rem 0 0;
+
+    color:
+        #899397;
+
+    font-size:
+        0.8rem;
+
+}
+
+
+.show-full-roster-link {
+
+    display:
+        inline-block;
+
+    margin-top:
+        1.5rem;
+
+    color:
+        #ffffff;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.show-full-roster-link:hover {
+
+    color:
+        var(
+            --show-accent
+        );
+
+}
+
+
+.show-brand-empty {
+
+    grid-column:
+        1 / -1;
+
+    padding:
+        2rem;
+
+    color:
+        #899397;
+
+    border:
+        1px dashed
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+
+}
+
+
+/* =================================
+   BRAND WORLD RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        1050px
+) {
+
+    .show-brand-championship-grid,
+    .show-brand-roster-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        650px
+) {
+
+    .show-brand-world-heading {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            0.7rem;
+
+    }
+
+
+    .show-brand-championship-grid,
+    .show-brand-roster-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
