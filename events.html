@@ -20,9 +20,14 @@
 
 
     <link
-        rel="stylesheet"
-        href="css/events.css"
-    >
+    rel="stylesheet"
+    href="css/events.css"
+>
+
+<link
+    rel="stylesheet"
+    href="css/events-calendar.css"
+>
 
 </head>
 
@@ -130,6 +135,76 @@
             nights in OWL Wrestling.
 
         </p>
+
+
+    </section>
+
+
+    <!-- OWL MONTHLY CALENDAR -->
+
+
+    <section class="events-section owl-calendar-section">
+
+
+        <div class="owl-calendar-heading">
+
+
+            <div>
+
+                <p class="eyebrow">
+                    LIVE FROM OWL PARLIAMENT HALL
+                </p>
+
+                <h2>
+                    Parliament Schedule
+                </h2>
+
+                <p>
+                    Four weeks of Ascension and Revolt,
+                    followed by OWL’s monthly PPV.
+                </p>
+
+            </div>
+
+
+            <div class="owl-calendar-controls">
+
+                <button
+                    id="owl-calendar-previous"
+                    type="button"
+                    aria-label="Previous schedule month"
+                >
+                    ←
+                </button>
+
+                <strong id="owl-calendar-month">
+                    Loading Schedule...
+                </strong>
+
+                <button
+                    id="owl-calendar-next"
+                    type="button"
+                    aria-label="Next schedule month"
+                >
+                    →
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+        <div
+            id="owl-calendar-grid"
+            class="owl-calendar-grid"
+        >
+
+            <div class="owl-calendar-empty">
+                Loading the OWL calendar...
+            </div>
+
+        </div>
 
 
     </section>
@@ -264,6 +339,8 @@
 <script src="js/app.js"></script>
 
 <script src="js/events.js"></script>
+
+<script src="js/events-calendar.js"></script>
 
 
 </body>
