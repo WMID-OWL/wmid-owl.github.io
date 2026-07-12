@@ -107,9 +107,14 @@ const crEventFields = {
             "cr-event-location"
         ),
 
-    image:
+        image:
         document.getElementById(
             "cr-event-image"
+        ),
+
+    youtubeVideoId:
+        document.getElementById(
+            "cr-event-youtube"
         ),
 
     tagline:
@@ -151,8 +156,11 @@ const crEventLabels = {
     location:
         "Location",
 
-    image:
+        image:
         "Poster Path",
+
+    youtubeVideoId:
+        "YouTube Video",
 
     tagline:
         "Tagline",
@@ -354,6 +362,176 @@ function crEventDisplayValue(
 
 
 // =================================
+// YOUTUBE VIDEO ID
+// =================================
+
+
+function crEventExtractYouTubeId(
+    value
+) {
+
+    const rawValue =
+        String(
+            value || ""
+        ).trim();
+
+
+    if (!rawValue) {
+
+        return "";
+
+    }
+
+
+    const videoIdPattern =
+        /^[A-Za-z0-9_-]{11}$/;
+
+
+    if (
+        videoIdPattern.test(
+            rawValue
+        )
+    ) {
+
+        return rawValue;
+
+    }
+
+
+    try {
+
+        const url =
+            new URL(
+                rawValue
+            );
+
+
+        const hostname =
+            url.hostname
+
+                .replace(
+                    /^www\./i,
+                    ""
+                )
+
+                .toLowerCase();
+
+
+        let videoId =
+            "";
+
+
+        if (
+            hostname === "youtu.be"
+        ) {
+
+            videoId =
+                url.pathname
+
+                    .split("/")
+
+                    .filter(
+                        Boolean
+                    )[0]
+
+                ||
+
+                "";
+
+        }
+
+
+        else if (
+            hostname.endsWith(
+                "youtube.com"
+            )
+
+            ||
+
+            hostname.endsWith(
+                "youtube-nocookie.com"
+            )
+        ) {
+
+            if (
+                url.pathname === "/watch"
+            ) {
+
+                videoId =
+                    url.searchParams.get(
+                        "v"
+                    )
+
+                    ||
+
+                    "";
+
+            }
+
+
+            else {
+
+                const pathParts =
+                    url.pathname
+
+                        .split("/")
+
+                        .filter(
+                            Boolean
+                        );
+
+
+                const supportedPaths = [
+
+                    "embed",
+                    "shorts",
+                    "live"
+
+                ];
+
+
+                if (
+                    supportedPaths.includes(
+                        pathParts[0]
+                    )
+                ) {
+
+                    videoId =
+                        pathParts[1]
+
+                        ||
+
+                        "";
+
+                }
+
+            }
+
+        }
+
+
+        return videoIdPattern.test(
+            videoId
+        )
+
+            ? videoId
+
+            : "";
+
+    }
+
+
+    catch (error) {
+
+        return "";
+
+    }
+
+}
+
+
+
+// =================================
 // FORM RECORD
 // =================================
 
@@ -380,8 +558,13 @@ function crEventGetFormRecord() {
         location:
             crEventFields.location.value.trim(),
 
-        image:
+                image:
             crEventFields.image.value.trim(),
+
+        youtubeVideoId:
+            crEventExtractYouTubeId(
+                crEventFields.youtubeVideoId.value
+            ),
 
         tagline:
             crEventFields.tagline.value.trim(),
@@ -419,8 +602,13 @@ function crEventGetEditableRecord(
         location:
             event.location || "",
 
-        image:
+                image:
             event.image || "",
+
+        youtubeVideoId:
+            crEventExtractYouTubeId(
+                event.youtubeVideoId || ""
+            ),
 
         tagline:
             event.tagline || "",
@@ -467,8 +655,17 @@ function crEventFillForm(
         record.location || "";
 
 
-    crEventFields.image.value =
+        crEventFields.image.value =
         record.image || "";
+
+
+    crEventFields.youtubeVideoId.value =
+
+        record.youtubeVideoId
+
+            ? `https://www.youtube.com/watch?v=${record.youtubeVideoId}`
+
+            : "";
 
 
     crEventFields.tagline.value =
@@ -509,7 +706,10 @@ function crEventClearForm() {
         location:
             "",
 
-        image:
+                image:
+            "",
+
+        youtubeVideoId:
             "",
 
         tagline:
@@ -994,10 +1194,31 @@ function crEventValidate(
     }
 
 
-    if (!record.eventType) {
+        if (!record.eventType) {
 
         errors.push(
             "Event type is required."
+        );
+
+    }
+
+
+    const youtubeInput =
+        crEventFields.youtubeVideoId.value.trim();
+
+
+    if (
+        youtubeInput
+
+        &&
+
+        !record.youtubeVideoId
+    ) {
+
+        errors.push(
+
+            "Enter a valid YouTube URL or an 11-character YouTube video ID."
+
         );
 
     }
@@ -1136,10 +1357,25 @@ function crEventReviewChanges() {
         );
 
 
-        crEventAddReviewRow(
+                crEventAddReviewRow(
             "Status",
             record.status
         );
+
+
+        if (
+            record.youtubeVideoId
+        ) {
+
+            crEventAddReviewRow(
+
+                "YouTube Video",
+
+                record.youtubeVideoId
+
+            );
+
+        }
 
 
 
@@ -1211,9 +1447,39 @@ function crEventReviewChanges() {
 
 
 
-    if (
+        if (
         changeKeys.length === 0
     ) {
+
+        if (
+            errors.length > 0
+        ) {
+
+            crEventPreview.hidden =
+                false;
+
+
+            crEventConflictMessage.textContent =
+                errors.join(" ");
+
+
+            crEventConflictMessage.hidden =
+                false;
+
+
+            crEventSaveButton.disabled =
+                true;
+
+
+            crEventSetStatus(
+                "CHECK FORM"
+            );
+
+
+            return;
+
+        }
+
 
         crEventPreview.hidden =
             true;
@@ -1615,36 +1881,96 @@ function crEventReplaceStringField(
 
 
     if (
-        !pattern.test(
+        pattern.test(
             block
         )
     ) {
 
-        throw new Error(
+        return block.replace(
 
-            `Could not find field ${key}.`
+            pattern,
+
+            (
+                match,
+                prefix
+            ) =>
+
+                prefix
+
+                +
+
+                JSON.stringify(
+                    value
+                )
 
         );
 
     }
 
 
-    return block.replace(
+    const closingIndex =
+        block.lastIndexOf(
+            "}"
+        );
 
-        pattern,
 
-        (
-            match,
-            prefix
-        ) =>
+    if (
+        closingIndex === -1
+    ) {
 
-            prefix
+        throw new Error(
 
-            +
+            `Could not add field ${key}.`
 
-            JSON.stringify(
-                value
+        );
+
+    }
+
+
+    const beforeClosing =
+        block
+
+            .slice(
+                0,
+                closingIndex
             )
+
+            .trimEnd();
+
+
+    const separator =
+
+        beforeClosing.endsWith(
+            "{"
+        )
+
+            ? "\n"
+
+            : ",\n";
+
+
+    const newField =
+
+        `    ${JSON.stringify(key)}: ${JSON.stringify(value)}\n`;
+
+
+    return (
+
+        beforeClosing
+
+        +
+
+        separator
+
+        +
+
+        newField
+
+        +
+
+        block.slice(
+            closingIndex
+        )
 
     );
 
@@ -1865,8 +2191,11 @@ function crEventBuildNewRecord() {
         location:
             form.location,
 
-        image:
+                image:
             form.image,
+
+        youtubeVideoId:
+            form.youtubeVideoId,
 
         tagline:
             form.tagline,
