@@ -99,7 +99,7 @@ const owlOfficialSocialPages = [
             "YouTube",
 
         url:
-            "https://www.youtube.com/@WMIDx",
+    "https://www.youtube.com/@WeAreTheOWLefed",
 
         className:
             "owl-social-youtube",
