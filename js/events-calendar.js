@@ -51,8 +51,11 @@
 
 
     let scheduledEvents =
-        [];
+    [];
 
+
+let nextUpcomingEventId =
+    "";
 
     function normalize(
         value
@@ -350,14 +353,42 @@
 
             <a
                 class="owl-calendar-show-slot ${brandClass(
-                    event
-                )}"
+    event
+)} ${
+
+    String(
+        event.id || ""
+    ) === nextUpcomingEventId
+
+        ? "calendar-next-up"
+
+        : ""
+
+}"
                 href="event.html?id=${encodeURIComponent(
                     event.id
                 )}"
             >
 
-                <span class="owl-calendar-show-day">
+    ${
+
+        String(
+            event.id || ""
+        ) === nextUpcomingEventId
+
+            ? `
+
+                <span class="owl-calendar-next-badge">
+                    NEXT UP
+                </span>
+
+            `
+
+            : ""
+
+    }
+
+    <span class="owl-calendar-show-day">
                     ${escapeHtml(
                         dayLabel
                     )}
@@ -450,15 +481,43 @@
         return `
 
             <a
-                class="owl-calendar-ppv"
+                class="owl-calendar-ppv ${
+
+    String(
+        event.id || ""
+    ) === nextUpcomingEventId
+
+        ? "calendar-next-up"
+
+        : ""
+
+}"
                 href="event.html?id=${encodeURIComponent(
                     event.id
                 )}"
             >
 
-                <span class="owl-calendar-card-label">
-                    MONTHLY PPV
+    ${
+
+        String(
+            event.id || ""
+        ) === nextUpcomingEventId
+
+            ? `
+
+                <span class="owl-calendar-next-badge">
+                    NEXT UP
                 </span>
+
+            `
+
+            : ""
+
+    }
+
+    <span class="owl-calendar-card-label">
+        MONTHLY PPV
+    </span>
 
                 <div class="owl-calendar-ppv-art">
 
@@ -774,37 +833,64 @@
                     .sort();
 
 
-            const firstUpcomingMonth =
-                scheduledEvents
+            const nextUpcomingEvent =
 
-                    .filter(
-                        event =>
+    scheduledEvents
 
-                            normalize(
-                                event.status
-                            ) === "upcoming"
-                    )
+        .filter(
 
-                    .sort(
-                        (a, b) =>
+            event =>
 
-                            dateValue(
-                                a.date
-                            )
+                normalize(
+                    event.status
+                ) === "upcoming"
 
-                            -
+        )
 
-                            dateValue(
-                                b.date
-                            )
-                    )
+        .sort(
 
-                    .map(
-                        event =>
+            (
+                a,
+                b
+            ) =>
 
-                            event.calendarMonthId
-                    )
-                    [0];
+                dateValue(
+                    a.date
+                )
+
+                -
+
+                dateValue(
+                    b.date
+                )
+
+        )
+        [0]
+
+    ||
+
+    null;
+
+
+nextUpcomingEventId =
+
+    nextUpcomingEvent
+
+        ? String(
+            nextUpcomingEvent.id || ""
+        )
+
+        : "";
+
+
+const firstUpcomingMonth =
+
+    nextUpcomingEvent
+        ?.calendarMonthId
+
+    ||
+
+    "";
 
 
             selectedMonthIndex =
