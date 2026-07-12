@@ -211,6 +211,46 @@
       "city": "Montreal",
       "region": "Quebec",
       "country": "Canada"
+    },
+    {
+      "city": "Montgomery",
+      "region": "Alabama",
+      "country": "United States"
+    },
+    {
+      "city": "Birmingham",
+      "region": "Alabama",
+      "country": "United States"
+    },
+    {
+      "city": "Mobile",
+      "region": "Alabama",
+      "country": "United States"
+    },
+    {
+      "city": "Huntsville",
+      "region": "Alabama",
+      "country": "United States"
+    },
+    {
+      "city": "Troy",
+      "region": "Alabama",
+      "country": "United States"
+    },
+    {
+      "city": "Clearwater",
+      "region": "Florida",
+      "country": "United States"
+    },
+    {
+      "city": "Jackson",
+      "region": "Mississippi",
+      "country": "United States"
+    },
+    {
+      "city": "Tuscaloosa",
+      "region": "Alabama",
+      "country": "United States"
     }
   ],
 
