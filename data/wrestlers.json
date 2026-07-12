@@ -11,14 +11,16 @@
   "division": "Men",
   "photo": "",
   "currentTitle": "",
-  "finisher": "",
+  "finisher": "test finisher1",
   "signatureMoves": [],
   "whyImHere": "",
   "team": "",
 "teamId": "",
 "faction": "",
   "championshipsHeld": [],
-  "awards": []
+  "awards": [],
+    "finisher2": "test finisher two",
+    "finisherGif": "assets/images/finishers/zee-allmighty-finisher-1.gif"
 },
   {
     "id": "dorian-atlas",
