@@ -362,78 +362,103 @@
 
 
     function recordLabel(
-        record
+    record
+) {
+
+
+    const baseName =
+
+        cleanText(
+            record?.name
+        )
+
+        ||
+
+        cleanText(
+            record?.title
+        )
+
+        ||
+
+        cleanText(
+            record?.eventName
+        )
+
+        ||
+
+        cleanText(
+            record?.id
+        )
+
+        ||
+
+        "Unnamed Record";
+
+
+    const finisherName =
+
+        cleanText(
+            record?.finisherName
+        );
+
+
+    return finisherName
+
+        ? `${baseName} — ${finisherName}`
+
+        : baseName;
+
+}
+    function currentMediaPath(
+    record,
+    config
+) {
+
+
+    if (
+        config?.finisherMode
     ) {
 
 
-        return (
+        return cleanText(
 
-            cleanText(
-                record?.name
-            )
-
-            ||
-
-            cleanText(
-                record?.title
-            )
-
-            ||
-
-            cleanText(
-                record?.eventName
-            )
-
-            ||
-
-            cleanText(
-                record?.id
-            )
-
-            ||
-
-            "Unnamed Record"
+            record?.[
+                record.finisherPathField
+            ]
 
         );
 
     }
 
 
-
-    function currentMediaPath(
-        record,
-        config
+    for (
+        const field
+        of config.pathFields
     ) {
 
 
-        for (
-            const field
-            of config.pathFields
+        const value =
+
+            cleanText(
+                record?.[field]
+            );
+
+
+        if (
+            value
         ) {
 
 
-            const value =
-
-                cleanText(
-                    record?.[field]
-                );
-
-
-            if (
-                value
-            ) {
-
-
-                return value;
-
-            }
+            return value;
 
         }
 
-
-        return "";
-
     }
+
+
+    return "";
+
+}
 
 
 
@@ -501,21 +526,41 @@
     function selectedRecord() {
 
 
-        const config =
-            selectedConfig();
+    const config =
+        selectedConfig();
 
 
-        if (
-            !config
-        ) {
+    if (
+        !config
+    ) {
 
 
-            return null;
+        return null;
 
-        }
+    }
 
 
-        return (
+    if (
+        config.finisherMode
+    ) {
+
+
+        const [
+
+            wrestlerId,
+            slot
+
+        ] =
+
+            String(
+                recordSelect.value || ""
+            )
+                .split(
+                    "::"
+                );
+
+
+        const wrestler =
 
             recordsForConfig(
                 config
@@ -531,18 +576,111 @@
 
                         ===
 
-                        recordSelect.value
+                        wrestlerId
 
-                )
+                );
 
-            ||
 
-            null
+        if (
+            !wrestler
+        ) {
 
-        );
+
+            return null;
+
+        }
+
+
+        const isSecond =
+            slot === "2";
+
+
+        const finisherName =
+
+            cleanText(
+
+                isSecond
+
+                    ? wrestler.finisher2
+
+                    : wrestler.finisher
+
+            );
+
+
+        if (
+            !finisherName
+        ) {
+
+
+            return null;
+
+        }
+
+
+        return {
+
+
+            ...wrestler,
+
+
+            mediaSelectionId:
+                recordSelect.value,
+
+
+            finisherSlot:
+
+                isSecond
+
+                    ? "2"
+
+                    : "1",
+
+
+            finisherName:
+                finisherName,
+
+
+            finisherPathField:
+
+                isSecond
+
+                    ? "finisher2Gif"
+
+                    : "finisherGif"
+
+        };
 
     }
 
+
+    return (
+
+        recordsForConfig(
+            config
+        )
+
+            .find(
+
+                record =>
+
+                    String(
+                        record.id
+                    )
+
+                    ===
+
+                    recordSelect.value
+
+            )
+
+        ||
+
+        null
+
+    );
+
+}
 
 
     function fileExtension(
@@ -587,31 +725,52 @@
 
 
 
-    function buildDestinationPath(
-        config,
-        record,
-        file
+   function buildDestinationPath(
+    config,
+    record,
+    file
+) {
+
+
+    const extension =
+
+        fileExtension(
+            file
+        );
+
+
+    if (
+
+        !config
+
+        ||
+
+        !record?.id
+
+        ||
+
+        !extension
+
     ) {
 
 
-        const extension =
+        return "";
 
-            fileExtension(
-                file
-            );
+    }
+
+
+    if (
+        config.finisherMode
+    ) {
 
 
         if (
 
-            !config
+            extension !== "gif"
 
             ||
 
-            !record?.id
-
-            ||
-
-            !extension
+            !record.finisherSlot
 
         ) {
 
@@ -623,12 +782,20 @@
 
         return (
 
-            `assets/images/${config.folder}/${record.id}.${extension}`
+            `assets/images/finishers/${record.id}-finisher-${record.finisherSlot}.gif`
 
         );
 
     }
 
+
+    return (
+
+        `assets/images/${config.folder}/${record.id}.${extension}`
+
+    );
+
+}
 
 
     // =================================
@@ -744,18 +911,121 @@
         }
 
 
-        const records =
+        const sourceRecords =
 
-            [
+    [
 
-                ...recordsForConfig(
-                    config
-                )
+        ...recordsForConfig(
+            config
+        )
 
-            ]
+    ];
 
-                .sort(
 
+const records =
+
+    (
+
+        config.finisherMode
+
+            ? sourceRecords.flatMap(
+
+                wrestler => {
+
+
+                    const options =
+                        [];
+
+
+                    const firstFinisher =
+
+                        cleanText(
+                            wrestler.finisher
+                        );
+
+
+                    const secondFinisher =
+
+                        cleanText(
+                            wrestler.finisher2
+                        );
+
+
+                    if (
+                        firstFinisher
+                    ) {
+
+
+                        options.push({
+
+
+                            ...wrestler,
+
+
+                            mediaSelectionId:
+
+                                `${wrestler.id}::1`,
+
+
+                            finisherSlot:
+                                "1",
+
+
+                            finisherName:
+                                firstFinisher,
+
+
+                            finisherPathField:
+                                "finisherGif"
+
+                        });
+
+                    }
+
+
+                    if (
+                        secondFinisher
+                    ) {
+
+
+                        options.push({
+
+
+                            ...wrestler,
+
+
+                            mediaSelectionId:
+
+                                `${wrestler.id}::2`,
+
+
+                            finisherSlot:
+                                "2",
+
+
+                            finisherName:
+                                secondFinisher,
+
+
+                            finisherPathField:
+                                "finisher2Gif"
+
+                        });
+
+                    }
+
+
+                    return options;
+
+                }
+
+            )
+
+            : sourceRecords
+
+    )
+
+        .sort(
                     (
                         a,
                         b
@@ -792,8 +1062,8 @@
 
                         <option
                             value="${escapeHtml(
-                                record.id
-                            )}"
+    record.mediaSelectionId || record.id
+)}"
                         >
 
                             ${escapeHtml(
@@ -820,10 +1090,19 @@
 
 
         fileInput.disabled =
-            true;
+    true;
 
 
-        setStatus(
+fileInput.accept =
+
+    config.finisherMode
+
+        ? "image/gif"
+
+        : "image/png,image/jpeg,image/webp,image/gif";
+
+
+setStatus(
 
             records.length
 
@@ -898,12 +1177,27 @@
 
 
         fileInput.disabled =
-            false;
+    false;
 
 
-        setStatus(
-            "SELECT IMAGE"
-        );
+fileInput.accept =
+
+    config.finisherMode
+
+        ? "image/gif"
+
+        : "image/png,image/jpeg,image/webp,image/gif";
+
+
+setStatus(
+
+    config.finisherMode
+
+        ? "SELECT GIF"
+
+        : "SELECT IMAGE"
+
+);
 
     }
 
@@ -994,7 +1288,36 @@
             return;
 
         }
+if (
 
+    config.finisherMode
+
+    &&
+
+    extension !==
+    "gif"
+
+) {
+
+
+    selectedFile =
+        null;
+
+
+    destinationPath.textContent =
+        "—";
+
+
+    showError(
+
+        "Finisher media must be an animated GIF file."
+
+    );
+
+
+    return;
+
+}
 
         selectedFile =
             file;
@@ -1029,7 +1352,28 @@
                     )}
                 </span>
 
-            </div>
+                        </div>
+
+
+            ${config.finisherMode
+
+                ? `
+
+                    <div class="cr-editor-change-row">
+
+                        <strong>FINISHER</strong>
+
+                        <span>
+                            ${escapeHtml(
+                                record.finisherName
+                            )}
+                        </span>
+
+                    </div>
+
+                `
+
+                : ""}
 
 
             <div class="cr-editor-change-row">
