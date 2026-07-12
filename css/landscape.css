@@ -6480,7 +6480,7 @@ body.landscape-page {
     }
 
 
-    .landscape-main-nav a::after {
+        .landscape-main-nav a::after {
 
         right:
             auto;
@@ -6495,19 +6495,32 @@ body.landscape-page {
             100px;
 
         transform:
+
             translateX(
                 -50%
+            )
+
+            scaleX(
+                0
             );
+
+        transform-origin:
+            center;
 
     }
 
 
-    .landscape-main-nav a:hover::after,
-
     .landscape-main-nav a.active::after {
 
-        width:
-            100px;
+        transform:
+
+            translateX(
+                -50%
+            )
+
+            scaleX(
+                1
+            );
 
     }
 
