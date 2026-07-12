@@ -1,0 +1,1209 @@
+/* =================================
+   SHOWS HUB
+================================= */
+
+
+.shows-hub-page,
+.show-page {
+
+    background:
+        #070909;
+
+}
+
+
+.shows-hub {
+
+    width:
+        min(
+            1500px,
+            calc(100% - 48px)
+        );
+
+    margin:
+        0 auto;
+
+    padding:
+        5rem 0;
+
+}
+
+
+.shows-hub-intro {
+
+    max-width:
+        760px;
+
+    margin-bottom:
+        2.5rem;
+
+}
+
+
+.shows-hub-intro h1 {
+
+    margin:
+        0;
+
+    font-size:
+        clamp(
+            3.8rem,
+            8vw,
+            7rem
+        );
+
+    line-height:
+        0.9;
+
+    letter-spacing:
+        -0.065em;
+
+}
+
+
+.shows-hub-intro > p:last-child {
+
+    max-width:
+        620px;
+
+    margin:
+        1.3rem 0 0;
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.7;
+
+}
+
+
+/* =================================
+   SHOW GATEWAYS
+================================= */
+
+
+.shows-gateway-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    min-height:
+        650px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.13
+        );
+
+}
+
+
+.show-gateway {
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    min-height:
+        650px;
+
+    overflow:
+        hidden;
+
+    color:
+        #ffffff;
+
+    text-decoration:
+        none;
+
+    background-position:
+        center;
+
+    background-repeat:
+        no-repeat;
+
+    background-size:
+        cover;
+
+}
+
+
+.show-gateway:first-child {
+
+    border-right:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.16
+        );
+
+}
+
+
+.show-gateway-ascension {
+
+    background-image:
+        url("../assets/images/shows/ascension-glass.png");
+
+}
+
+
+.show-gateway-revolt {
+
+    background-image:
+        url("../assets/images/shows/revolt-glass.png");
+
+}
+
+
+.show-gateway-overlay {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+
+        linear-gradient(
+            to top,
+            rgba(
+                0,
+                0,
+                0,
+                0.96
+            )
+            0%,
+            rgba(
+                0,
+                0,
+                0,
+                0.62
+            )
+            45%,
+            rgba(
+                0,
+                0,
+                0,
+                0.12
+            )
+            100%
+        );
+
+    transition:
+        background 0.25s ease;
+
+}
+
+
+.show-gateway:hover
+.show-gateway-overlay {
+
+    background:
+
+        linear-gradient(
+            to top,
+            rgba(
+                0,
+                0,
+                0,
+                0.93
+            )
+            0%,
+            rgba(
+                0,
+                0,
+                0,
+                0.38
+            )
+            48%,
+            rgba(
+                0,
+                0,
+                0,
+                0.02
+            )
+            100%
+        );
+
+}
+
+
+.show-gateway::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    border:
+        2px solid
+        transparent;
+
+    pointer-events:
+        none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.show-gateway-ascension:hover::after {
+
+    border-color:
+        rgba(
+            153,
+            202,
+            255,
+            0.85
+        );
+
+    box-shadow:
+        inset 0 0 60px
+        rgba(
+            104,
+            167,
+            228,
+            0.22
+        );
+
+}
+
+
+.show-gateway-revolt:hover::after {
+
+    border-color:
+        rgba(
+            255,
+            73,
+            38,
+            0.9
+        );
+
+    box-shadow:
+        inset 0 0 60px
+        rgba(
+            255,
+            62,
+            23,
+            0.25
+        );
+
+}
+
+
+.show-gateway-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    width:
+        100%;
+
+    padding:
+        clamp(
+            2rem,
+            5vw,
+            4rem
+        );
+
+}
+
+
+.show-gateway-night {
+
+    display:
+        block;
+
+    margin-bottom:
+        1.5rem;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.18em;
+
+}
+
+
+.show-gateway-ascension
+.show-gateway-night {
+
+    color:
+        #b9dcff;
+
+}
+
+
+.show-gateway-revolt
+.show-gateway-night {
+
+    color:
+        #ff6745;
+
+}
+
+
+.show-gateway-logo {
+
+    height:
+        130px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+}
+
+
+.show-gateway-logo img {
+
+    display:
+        block;
+
+    width:
+        min(
+            100%,
+            500px
+        );
+
+    max-height:
+        125px;
+
+    object-fit:
+        contain;
+
+    object-position:
+        left center;
+
+}
+
+
+.show-gateway-content p {
+
+    max-width:
+        500px;
+
+    margin:
+        1.4rem 0;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.78
+        );
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.65;
+
+}
+
+
+.show-gateway-content strong {
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.shows-hall-lockup {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        0.7rem;
+
+    padding:
+        1.4rem;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    border-top:
+        0;
+
+    background:
+        #0e1213;
+
+}
+
+
+.shows-hall-lockup span {
+
+    color:
+        #788185;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+.shows-hall-lockup strong {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.62rem;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+/* =================================
+   INDIVIDUAL SHOW HERO
+================================= */
+
+
+.show-brand-hero {
+
+    position:
+        relative;
+
+    min-height:
+        760px;
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    overflow:
+        hidden;
+
+    background-position:
+        center;
+
+    background-repeat:
+        no-repeat;
+
+    background-size:
+        cover;
+
+}
+
+
+.ascension-brand-hero {
+
+    background-image:
+        url("../assets/images/shows/ascension-glass.png");
+
+}
+
+
+.revolt-brand-hero {
+
+    background-image:
+        url("../assets/images/shows/revolt-glass.png");
+
+}
+
+
+.show-brand-hero-overlay {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(
+                0,
+                0,
+                0,
+                0.96
+            )
+            0%,
+            rgba(
+                0,
+                0,
+                0,
+                0.68
+            )
+            45%,
+            rgba(
+                0,
+                0,
+                0,
+                0.14
+            )
+            100%
+        ),
+
+        linear-gradient(
+            to top,
+            rgba(
+                0,
+                0,
+                0,
+                0.92
+            ),
+            transparent 60%
+        );
+
+}
+
+
+.show-brand-hero-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    width:
+        min(
+            1300px,
+            calc(100% - 48px)
+        );
+
+    margin:
+        0 auto;
+
+    padding:
+        8rem 0 5rem;
+
+}
+
+
+.show-brand-overline {
+
+    margin:
+        0 0 1.5rem;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.2em;
+
+}
+
+
+.show-brand-main-logo {
+
+    display:
+        block;
+
+    width:
+        min(
+            650px,
+            90%
+        );
+
+    max-height:
+        190px;
+
+    object-fit:
+        contain;
+
+    object-position:
+        left center;
+
+}
+
+
+.show-brand-statement {
+
+    max-width:
+        600px;
+
+    margin:
+        2rem 0 0;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.82
+        );
+
+    font-size:
+        clamp(
+            1rem,
+            2vw,
+            1.3rem
+        );
+
+    line-height:
+        1.65;
+
+}
+
+
+.show-brand-actions {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        0.8rem;
+
+    margin-top:
+        2rem;
+
+}
+
+
+.show-brand-actions a {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        48px;
+
+    padding:
+        0 1.2rem;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+    text-decoration:
+        none;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.show-brand-primary-action {
+
+    background:
+        #f5f5f2;
+
+    color:
+        #090b0c;
+
+}
+
+
+.ascension-show-page
+.show-brand-primary-action:hover {
+
+    background:
+        #9ccfff;
+
+}
+
+
+.revolt-show-page
+.show-brand-primary-action:hover {
+
+    background:
+        #ff4a2c;
+
+    color:
+        #ffffff;
+
+}
+
+
+.show-brand-secondary-action {
+
+    color:
+        #ffffff;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.35
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.45
+        );
+
+}
+
+
+/* =================================
+   SHOW INFORMATION
+================================= */
+
+
+.show-brand-information {
+
+    width:
+        min(
+            1300px,
+            calc(100% - 48px)
+        );
+
+    margin:
+        0 auto;
+
+    padding:
+        4rem 0 7rem;
+
+}
+
+
+.show-brand-facts {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        1px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+}
+
+
+.show-brand-facts article {
+
+    min-height:
+        150px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        flex-end;
+
+    gap:
+        0.6rem;
+
+    padding:
+        1.5rem;
+
+    background:
+        #101415;
+
+}
+
+
+.show-brand-facts span {
+
+    color:
+        #7f898d;
+
+    font-size:
+        0.61rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+.show-brand-facts strong {
+
+    font-size:
+        clamp(
+            1.2rem,
+            2.6vw,
+            2rem
+        );
+
+}
+
+
+.show-brand-manifesto {
+
+    position:
+        relative;
+
+    min-height:
+        520px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    margin-top:
+        3rem;
+
+    overflow:
+        hidden;
+
+    background-position:
+        center;
+
+    background-repeat:
+        no-repeat;
+
+    background-size:
+        cover;
+
+}
+
+
+.ascension-manifesto {
+
+    background-image:
+        url("../assets/images/shows/ascension-ring.png");
+
+}
+
+
+.revolt-manifesto {
+
+    background-image:
+        url("../assets/images/shows/revolt-ring.png");
+
+}
+
+
+.show-brand-manifesto::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(
+                0,
+                0,
+                0,
+                0.97
+            )
+            0%,
+            rgba(
+                0,
+                0,
+                0,
+                0.87
+            )
+            48%,
+            rgba(
+                0,
+                0,
+                0,
+                0.28
+            )
+            100%
+        );
+
+}
+
+
+.show-brand-manifesto > div {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    max-width:
+        650px;
+
+    padding:
+        clamp(
+            2rem,
+            6vw,
+            5rem
+        );
+
+}
+
+
+.show-brand-section-label {
+
+    margin:
+        0;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.17em;
+
+}
+
+
+.ascension-show-page
+.show-brand-section-label {
+
+    color:
+        #9ccfff;
+
+}
+
+
+.revolt-show-page
+.show-brand-section-label {
+
+    color:
+        #ff5637;
+
+}
+
+
+.show-brand-manifesto h2 {
+
+    margin:
+        1rem 0;
+
+    font-size:
+        clamp(
+            2.8rem,
+            6vw,
+            5.4rem
+        );
+
+    line-height:
+        0.95;
+
+    letter-spacing:
+        -0.06em;
+
+}
+
+
+.show-brand-manifesto p:not(.show-brand-section-label) {
+
+    color:
+        #aeb6b8;
+
+    line-height:
+        1.8;
+
+}
+
+
+.show-brand-manifesto a {
+
+    display:
+        inline-block;
+
+    margin-top:
+        1.5rem;
+
+    color:
+        #ffffff;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        800px
+) {
+
+    .shows-gateway-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .show-gateway,
+    .show-brand-hero {
+
+        min-height:
+            560px;
+
+    }
+
+
+    .show-gateway:first-child {
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.16
+            );
+
+    }
+
+
+    .show-brand-facts {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .shows-hall-lockup {
+
+        align-items:
+            center;
+
+        flex-direction:
+            column;
+
+    }
+
+}
