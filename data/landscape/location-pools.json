@@ -316,11 +316,13 @@
     },
 
     "owl-ascension": {
-      "mode": "owl-home"
+       "mode": "fixed",
+      "venue": "OWL Parliament Hall"
     },
 
     "owl-revolt": {
-      "mode": "owl-home"
+       "mode": "fixed",
+      "venue": "OWL Parliament Hall"
     }
   },
 
