@@ -1,4 +1,131 @@
 // =================================
+// OWL GLOBAL FAVICON
+// =================================
+
+
+function installOwlFavicon() {
+
+
+    const faviconPath =
+        "assets/images/branding/owl-favicon.png";
+
+
+    const appleTouchIconPath =
+        "assets/images/branding/apple-touch-icon.png";
+
+
+
+    function ensureHeadLink(
+        relValue,
+        hrefValue,
+        typeValue = ""
+    ) {
+
+        let link =
+            document.head.querySelector(
+                `link[rel="${relValue}"]`
+            );
+
+
+        if (!link) {
+
+            link =
+                document.createElement(
+                    "link"
+                );
+
+
+            link.rel =
+                relValue;
+
+
+            document.head.appendChild(
+                link
+            );
+
+        }
+
+
+        link.href =
+            hrefValue;
+
+
+        if (typeValue) {
+
+            link.type =
+                typeValue;
+
+        }
+
+
+        return link;
+
+    }
+
+
+
+    ensureHeadLink(
+        "icon",
+        faviconPath,
+        "image/png"
+    );
+
+
+    ensureHeadLink(
+        "shortcut icon",
+        faviconPath,
+        "image/png"
+    );
+
+
+    const appleTouchIcon =
+        ensureHeadLink(
+            "apple-touch-icon",
+            appleTouchIconPath,
+            "image/png"
+        );
+
+
+    appleTouchIcon.sizes =
+        "180x180";
+
+
+
+    let themeColor =
+        document.head.querySelector(
+            'meta[name="theme-color"]'
+        );
+
+
+    if (!themeColor) {
+
+        themeColor =
+            document.createElement(
+                "meta"
+            );
+
+
+        themeColor.name =
+            "theme-color";
+
+
+        document.head.appendChild(
+            themeColor
+        );
+
+    }
+
+
+    themeColor.content =
+        "#080a0b";
+
+}
+
+
+
+installOwlFavicon();
+
+// =================================
 // OWL OFFICIAL SOCIAL LINKS
 // =================================
 
