@@ -6107,10 +6107,19 @@ body {
 
     }
 
-    .wwow-masthead-of {
+        .wwow-masthead-of {
 
         display:
-            none;
+            block;
+
+        grid-column:
+            1;
+
+        grid-row:
+            2;
+
+        align-self:
+            baseline;
 
     }
 
@@ -6118,7 +6127,10 @@ body {
     .wwow-masthead-wrestling {
 
         grid-column:
-            1 / -1;
+            2;
+
+        grid-row:
+            2;
 
     }
 
