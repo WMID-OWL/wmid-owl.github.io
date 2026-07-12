@@ -682,6 +682,17 @@ async function loadRepositoryData(
 ) {
 
 
+    const savedScrollPosition = {
+
+        left:
+            window.scrollX,
+
+        top:
+            window.scrollY
+
+    };
+
+
     setLoading(
         true
     );
@@ -852,11 +863,39 @@ window.dispatchEvent(
     }
 
 
-    finally {
+        finally {
 
 
         setLoading(
             false
+        );
+
+
+        requestAnimationFrame(
+            () => {
+
+
+                requestAnimationFrame(
+                    () => {
+
+
+                        window.scrollTo({
+
+                            left:
+                                savedScrollPosition.left,
+
+                            top:
+                                savedScrollPosition.top,
+
+                            behavior:
+                                "auto"
+
+                        });
+
+                    }
+                );
+
+            }
         );
 
     }
