@@ -1,0 +1,849 @@
+/* =================================
+   ANNUAL MAJOR EVENT CALENDAR
+================================= */
+
+
+.landscape-annual-calendar-section {
+
+    position:
+        relative;
+
+}
+
+
+
+.landscape-calendar-heading-side {
+
+    max-width:
+        520px;
+
+}
+
+
+
+.landscape-calendar-heading-side > p {
+
+    margin:
+        0;
+
+}
+
+
+
+.landscape-calendar-legend {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        9px;
+
+    margin-top:
+        14px;
+
+}
+
+
+
+.landscape-calendar-legend span {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    min-height:
+        28px;
+
+    padding:
+        0 10px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    color:
+        var(
+            --ls-muted
+        );
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+.landscape-calendar-legend-diamond {
+
+    color:
+        var(
+            --ls-ice
+        );
+
+    font-size:
+        0.68rem;
+
+}
+
+
+
+.landscape-calendar-legend-flagship {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+}
+
+
+
+.landscape-event-calendar-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        14px;
+
+}
+
+
+
+.landscape-calendar-company {
+
+    --company-accent:
+        var(
+            --ls-ice
+        );
+
+    --company-accent-rgb:
+        143, 212, 255;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    padding:
+        18px;
+
+    border:
+        1px solid
+        var(
+            --ls-line-strong
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                var(
+                    --company-accent-rgb
+                ),
+                0.07
+            ),
+            transparent 26%
+        ),
+
+        var(
+            --ls-panel
+        );
+
+}
+
+
+
+.landscape-calendar-company::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        3px;
+
+    background:
+        var(
+            --company-accent
+        );
+
+    opacity:
+        0.82;
+
+}
+
+
+
+.landscape-calendar-company--owl {
+
+    --company-accent:
+        #8fd4ff;
+
+    --company-accent-rgb:
+        143, 212, 255;
+
+}
+
+
+
+.landscape-calendar-company--wwe {
+
+    --company-accent:
+        #e33c47;
+
+    --company-accent-rgb:
+        227, 60, 71;
+
+}
+
+
+
+.landscape-calendar-company--aew {
+
+    --company-accent:
+        #d5ad4a;
+
+    --company-accent-rgb:
+        213, 173, 74;
+
+}
+
+
+
+.landscape-calendar-company--tna {
+
+    --company-accent:
+        #4d91ff;
+
+    --company-accent-rgb:
+        77, 145, 255;
+
+}
+
+
+
+.landscape-calendar-company--roh {
+
+    --company-accent:
+        #c95151;
+
+    --company-accent-rgb:
+        201, 81, 81;
+
+}
+
+
+
+.landscape-calendar-company--nxt {
+
+    --company-accent:
+        #f0c849;
+
+    --company-accent-rgb:
+        240, 200, 73;
+
+}
+
+
+
+.landscape-calendar-company--aaa {
+
+    --company-accent:
+        #f05b48;
+
+    --company-accent-rgb:
+        240, 91, 72;
+
+}
+
+
+
+.landscape-calendar-company--cmll {
+
+    --company-accent:
+        #58bb7b;
+
+    --company-accent-rgb:
+        88, 187, 123;
+
+}
+
+
+
+.landscape-calendar-company-heading {
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        space-between;
+
+    gap:
+        18px;
+
+    padding:
+        3px 2px 16px;
+
+}
+
+
+
+.landscape-calendar-company-heading span {
+
+    color:
+        var(
+            --company-accent
+        );
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+
+.landscape-calendar-company-heading h3 {
+
+    margin:
+        4px 0 0;
+
+    font-family:
+
+        Impact,
+        "Arial Narrow",
+        sans-serif;
+
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            3.2rem
+        );
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        0.015em;
+
+    line-height:
+        0.95;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.landscape-calendar-company-heading small {
+
+    color:
+        var(
+            --ls-muted
+        );
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+    text-align:
+        right;
+
+}
+
+
+
+.landscape-calendar-month-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        8px;
+
+}
+
+
+
+.landscape-calendar-event {
+
+    position:
+        relative;
+
+    min-height:
+        104px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    gap:
+        16px;
+
+    padding:
+        11px;
+
+    border:
+        1px solid
+        var(
+            --ls-line
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    transition:
+
+        transform
+        0.15s
+        ease,
+
+        border-color
+        0.15s
+        ease,
+
+        background
+        0.15s
+        ease;
+
+}
+
+
+
+.landscape-calendar-event:hover {
+
+    transform:
+        translateY(
+            -2px
+        );
+
+    border-color:
+        rgba(
+            var(
+                --company-accent-rgb
+            ),
+            0.48
+        );
+
+    background:
+        rgba(
+            var(
+                --company-accent-rgb
+            ),
+            0.055
+        );
+
+}
+
+
+
+.landscape-calendar-event-topline {
+
+    min-height:
+        18px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        8px;
+
+}
+
+
+
+.landscape-calendar-month {
+
+    color:
+        var(
+            --company-accent
+        );
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+
+.landscape-calendar-event > strong {
+
+    color:
+        var(
+            --ls-text
+        );
+
+    font-size:
+        clamp(
+            0.73rem,
+            1.1vw,
+            0.92rem
+        );
+
+    line-height:
+        1.25;
+
+}
+
+
+
+.landscape-calendar-event.is-big-four {
+
+    border-color:
+        rgba(
+            var(
+                --company-accent-rgb
+            ),
+            0.44
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                var(
+                    --company-accent-rgb
+                ),
+                0.09
+            ),
+            rgba(
+                255,
+                255,
+                255,
+                0.018
+            )
+        );
+
+}
+
+
+
+.landscape-calendar-event.is-big-four::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        3px;
+
+    height:
+        100%;
+
+    background:
+        var(
+            --company-accent
+        );
+
+}
+
+
+
+.landscape-calendar-big-four-mark {
+
+    color:
+        var(
+            --company-accent
+        );
+
+    font-size:
+        0.7rem;
+
+    line-height:
+        1;
+
+}
+
+
+
+.landscape-calendar-event.is-flagship {
+
+    border-color:
+        rgba(
+            243,
+            206,
+            97,
+            0.72
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                243,
+                206,
+                97,
+                0.16
+            ),
+            rgba(
+                var(
+                    --company-accent-rgb
+                ),
+                0.07
+            ),
+            rgba(
+                255,
+                255,
+                255,
+                0.018
+            )
+        );
+
+    box-shadow:
+
+        0 0 0 1px
+        rgba(
+            243,
+            206,
+            97,
+            0.08
+        ),
+
+        0 12px 28px
+        rgba(
+            0,
+            0,
+            0,
+            0.2
+        );
+
+}
+
+
+
+.landscape-calendar-event.is-flagship::before {
+
+    background:
+        var(
+            --ls-gold-bright
+        );
+
+}
+
+
+
+.landscape-calendar-flagship-label {
+
+    color:
+        var(
+            --ls-gold-bright
+        );
+
+    font-size:
+        0.48rem;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+.landscape-calendar-empty {
+
+    grid-column:
+        1 / -1;
+
+    padding:
+        24px;
+
+    border:
+        1px dashed
+        var(
+            --ls-line-strong
+        );
+
+    color:
+        var(
+            --ls-muted
+        );
+
+    font-size:
+        0.72rem;
+
+    text-align:
+        center;
+
+}
+
+
+
+/* =================================
+   ANNUAL CALENDAR RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        1120px
+) {
+
+    .landscape-event-calendar-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+    .landscape-calendar-heading-side {
+
+        max-width:
+            none;
+
+    }
+
+
+    .landscape-calendar-month-grid {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+    .landscape-calendar-company-heading {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            7px;
+
+    }
+
+
+    .landscape-calendar-company-heading small {
+
+        text-align:
+            left;
+
+    }
+
+}
