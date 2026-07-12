@@ -1,0 +1,1080 @@
+/* =================================
+   OWL SIGNATURE SERIES
+================================= */
+
+
+* {
+
+    box-sizing:
+        border-box;
+
+}
+
+
+
+html,
+body {
+
+    min-height:
+        100%;
+
+}
+
+
+
+.signature-series-body {
+
+    margin:
+        0;
+
+    color:
+        #f5f4ef;
+
+    background:
+
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(
+                201,
+                164,
+                92,
+                0.12
+            ),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            180deg,
+            #090b0c,
+            #0e1112 48%,
+            #080a0b
+        );
+
+}
+
+
+
+.signature-series-page {
+
+    width:
+
+        min(
+            1440px,
+            calc(
+                100% - 32px
+            )
+        );
+
+    margin:
+        0 auto;
+
+    padding:
+        48px 0 80px;
+
+}
+
+
+
+/* =================================
+   HERO
+================================= */
+
+
+.signature-series-hero {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        230px;
+
+    align-items:
+        end;
+
+    gap:
+        50px;
+
+    min-height:
+        510px;
+
+    padding:
+
+        clamp(
+            34px,
+            7vw,
+            82px
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.11
+        );
+
+    background:
+
+        linear-gradient(
+            115deg,
+            rgba(
+                9,
+                11,
+                12,
+                0.96
+            ),
+            rgba(
+                22,
+                19,
+                13,
+                0.86
+            )
+        ),
+
+        repeating-linear-gradient(
+            135deg,
+            rgba(
+                255,
+                255,
+                255,
+                0.025
+            )
+            0,
+            rgba(
+                255,
+                255,
+                255,
+                0.025
+            )
+            1px,
+            transparent
+            1px,
+            transparent
+            17px
+        );
+
+    box-shadow:
+
+        0
+        30px
+        90px
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+
+}
+
+
+
+.signature-series-hero::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    right:
+        -140px;
+
+    bottom:
+        -260px;
+
+    width:
+        620px;
+
+    height:
+        620px;
+
+    border:
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.14
+        );
+
+    border-radius:
+        50%;
+
+    box-shadow:
+
+        0
+        0
+        120px
+        rgba(
+            201,
+            164,
+            92,
+            0.08
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+
+.signature-series-hero-copy {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+}
+
+
+
+.signature-series-eyebrow {
+
+    margin:
+        0;
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.7rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.2em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.signature-series-hero h1 {
+
+    margin:
+        14px 0 0;
+
+    font-size:
+
+        clamp(
+            4rem,
+            10vw,
+            9.5rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        0.77;
+
+    letter-spacing:
+        -0.07em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.signature-series-hero h1 span,
+.signature-series-hero h1 strong {
+
+    display:
+        block;
+
+}
+
+
+
+.signature-series-hero h1 strong {
+
+    color:
+        #c9a45c;
+
+    font-weight:
+        900;
+
+}
+
+
+
+.signature-series-intro {
+
+    max-width:
+        760px;
+
+    margin:
+        30px 0 0;
+
+    color:
+        #aeb5b3;
+
+    font-size:
+
+        clamp(
+            1rem,
+            1.7vw,
+            1.3rem
+        );
+
+    line-height:
+        1.7;
+
+}
+
+
+
+.signature-series-seal {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    align-content:
+        center;
+
+    width:
+        220px;
+
+    height:
+        220px;
+
+    border:
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.45
+        );
+
+    border-radius:
+        50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(
+                201,
+                164,
+                92,
+                0.15
+            ),
+            rgba(
+                201,
+                164,
+                92,
+                0.025
+            )
+        );
+
+    box-shadow:
+
+        inset
+        0
+        0
+        0
+        10px
+        rgba(
+            201,
+            164,
+            92,
+            0.025
+        ),
+
+        0
+        20px
+        60px
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+
+}
+
+
+
+.signature-series-seal span,
+.signature-series-seal small {
+
+    color:
+        #9e8760;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.18em;
+
+}
+
+
+
+.signature-series-seal strong {
+
+    margin:
+        4px 0;
+
+    color:
+        #e9cd8a;
+
+    font-size:
+        4.8rem;
+
+    line-height:
+        1;
+
+    letter-spacing:
+        -0.09em;
+
+}
+
+
+
+/* =================================
+   DESTINATION GRID
+================================= */
+
+
+.signature-series-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        22px;
+
+    margin-top:
+        22px;
+
+}
+
+
+
+.signature-series-card {
+
+    --signature-accent:
+        #c9a45c;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    min-height:
+        440px;
+
+    padding:
+
+        clamp(
+            26px,
+            4vw,
+            46px
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    color:
+        #f5f4ef;
+
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            color-mix(
+                in srgb,
+                var(
+                    --signature-accent
+                )
+                18%,
+                transparent
+            ),
+            transparent 42%
+        ),
+
+        #111516;
+
+    text-decoration:
+        none;
+
+    transition:
+
+        transform
+        0.2s ease,
+
+        border-color
+        0.2s ease,
+
+        box-shadow
+        0.2s ease;
+
+}
+
+
+
+.signature-series-card::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    right:
+        -80px;
+
+    bottom:
+        -110px;
+
+    width:
+        280px;
+
+    height:
+        280px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --signature-accent
+            )
+            32%,
+            transparent
+        );
+
+    transform:
+        rotate(
+            45deg
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+
+.signature-series-card:hover {
+
+    transform:
+        translateY(
+            -6px
+        );
+
+    border-color:
+        color-mix(
+            in srgb,
+            var(
+                --signature-accent
+            )
+            65%,
+            transparent
+        );
+
+    box-shadow:
+
+        0
+        24px
+        65px
+        rgba(
+            0,
+            0,
+            0,
+            0.34
+        );
+
+}
+
+
+
+.signature-tournament-card {
+
+    --signature-accent:
+        #d8b45f;
+
+}
+
+
+
+.signature-match-card {
+
+    --signature-accent:
+        #bd493f;
+
+}
+
+
+
+.signature-power-card {
+
+    --signature-accent:
+        #df8e3f;
+
+}
+
+
+
+.signature-proving-card {
+
+    --signature-accent:
+        #72ad7e;
+
+}
+
+
+
+.signature-card-number {
+
+    position:
+        absolute;
+
+    top:
+        23px;
+
+    right:
+        28px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    font-size:
+        3.8rem;
+
+    font-weight:
+        900;
+
+    line-height:
+        1;
+
+}
+
+
+
+.signature-card-copy {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+}
+
+
+
+.signature-card-kicker {
+
+    color:
+        var(
+            --signature-accent
+        );
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.16em;
+
+}
+
+
+
+.signature-series-card h2 {
+
+    max-width:
+        560px;
+
+    margin:
+        36px 0 0;
+
+    font-size:
+
+        clamp(
+            2.3rem,
+            4vw,
+            4.3rem
+        );
+
+    line-height:
+        0.94;
+
+    letter-spacing:
+        -0.055em;
+
+}
+
+
+
+.signature-series-card p {
+
+    max-width:
+        610px;
+
+    margin:
+        21px 0 0;
+
+    color:
+        #a5adaa;
+
+    font-size:
+        0.98rem;
+
+    line-height:
+        1.7;
+
+}
+
+
+
+.signature-card-tags {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        8px;
+
+    margin-top:
+        25px;
+
+}
+
+
+
+.signature-card-tags span {
+
+    padding:
+        7px 10px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    color:
+        #c4c9c7;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        850;
+
+    letter-spacing:
+        0.06em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.signature-card-action {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    align-self:
+        flex-start;
+
+    margin-top:
+        auto;
+
+    padding-top:
+        40px;
+
+    color:
+        var(
+            --signature-accent
+        );
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+/* =================================
+   CLOSING STATEMENT
+================================= */
+
+
+.signature-series-statement {
+
+    margin-top:
+        22px;
+
+    padding:
+
+        clamp(
+            30px,
+            5vw,
+            60px
+        );
+
+    border-left:
+        4px solid
+        #c9a45c;
+
+    background:
+        #111516;
+
+}
+
+
+
+.signature-series-statement h2 {
+
+    max-width:
+        900px;
+
+    margin:
+        10px 0 0;
+
+    font-size:
+
+        clamp(
+            2rem,
+            4vw,
+            3.8rem
+        );
+
+    line-height:
+        1;
+
+    letter-spacing:
+        -0.045em;
+
+}
+
+
+
+.signature-series-statement p:last-child {
+
+    max-width:
+        800px;
+
+    margin:
+        20px 0 0;
+
+    color:
+        #a9b0ae;
+
+    line-height:
+        1.75;
+
+}
+
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        900px
+) {
+
+
+    .signature-series-hero {
+
+        grid-template-columns:
+            1fr;
+
+        min-height:
+            0;
+
+    }
+
+
+    .signature-series-seal {
+
+        width:
+            160px;
+
+        height:
+            160px;
+
+    }
+
+
+    .signature-series-seal strong {
+
+        font-size:
+            3.5rem;
+
+    }
+
+
+    .signature-series-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .signature-series-page {
+
+        width:
+            calc(
+                100% - 20px
+            );
+
+        padding:
+            20px 0 60px;
+
+    }
+
+
+    .signature-series-hero {
+
+        gap:
+            30px;
+
+        padding:
+            30px 24px;
+
+    }
+
+
+    .signature-series-hero h1 {
+
+        font-size:
+            clamp(
+                3.5rem,
+                18vw,
+                5.7rem
+            );
+
+    }
+
+
+    .signature-series-card {
+
+        min-height:
+            390px;
+
+        padding:
+            26px 22px;
+
+    }
+
+
+    .signature-card-number {
+
+        top:
+            18px;
+
+        right:
+            20px;
+
+        font-size:
+            3rem;
+
+    }
+
+
+}
