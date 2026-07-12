@@ -125,6 +125,120 @@ function installOwlFavicon() {
 
 installOwlFavicon();
 
+
+
+// =================================
+// OWL SIGNATURE SERIES NAVIGATION
+// =================================
+
+
+function installSignatureSeriesNavigation() {
+
+
+    const navigationBars =
+
+        document.querySelectorAll(
+            ".site-nav, .landscape-main-nav"
+        );
+
+
+    navigationBars.forEach(
+
+        navigationBar => {
+
+
+            const existingLink =
+
+                navigationBar.querySelector(
+                    'a[href="signature-series.html"]'
+                );
+
+
+            if (
+                existingLink
+            ) {
+
+                return;
+
+            }
+
+
+            const signatureSeriesLink =
+
+                document.createElement(
+                    "a"
+                );
+
+
+            signatureSeriesLink.href =
+                "signature-series.html";
+
+
+            signatureSeriesLink.textContent =
+                "Signature Series";
+
+
+            const currentPage =
+
+                window.location.pathname
+                    .split("/")
+                    .pop();
+
+
+            if (
+                currentPage ===
+                "signature-series.html"
+            ) {
+
+                signatureSeriesLink.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            const owlSocialLink =
+
+                navigationBar.querySelector(
+                    'a[href="owl-social.html"]'
+                );
+
+
+            if (
+                owlSocialLink
+            ) {
+
+                navigationBar.insertBefore(
+
+                    signatureSeriesLink,
+
+                    owlSocialLink
+
+                );
+
+            }
+
+
+            else {
+
+                navigationBar.appendChild(
+                    signatureSeriesLink
+                );
+
+            }
+
+        }
+
+    );
+
+}
+
+
+
+installSignatureSeriesNavigation();
+
+
+
 // =================================
 // OWL OFFICIAL SOCIAL LINKS
 // =================================
