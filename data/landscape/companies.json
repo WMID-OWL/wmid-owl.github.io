@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "companies": [
     {
       "id": "wwe",
@@ -12,23 +12,156 @@
         "wwe-raw",
         "wwe-smackdown"
       ],
-      "eventCalendar": [],
-      "flagshipEventId": "",
-      "majorEventIds": []
+      "eventCalendar": [
+        {
+          "id": "wwe-royal-rumble",
+          "month": "01",
+          "name": "Royal Rumble"
+        },
+        {
+          "id": "wwe-elimination-chamber",
+          "month": "02",
+          "name": "Elimination Chamber"
+        },
+        {
+          "id": "wwe-saturday-night-s-main-event",
+          "month": "03",
+          "name": "Saturday Night's Main Event"
+        },
+        {
+          "id": "wwe-wrestlemania",
+          "month": "04",
+          "name": "WrestleMania"
+        },
+        {
+          "id": "wwe-backlash",
+          "month": "05",
+          "name": "Backlash"
+        },
+        {
+          "id": "wwe-clash-at-the-castle",
+          "month": "06",
+          "name": "Clash At The Castle"
+        },
+        {
+          "id": "wwe-night-of-champions",
+          "month": "07",
+          "name": "Night Of Champions"
+        },
+        {
+          "id": "wwe-summerslam",
+          "month": "08",
+          "name": "SummerSlam"
+        },
+        {
+          "id": "wwe-crown-jewel",
+          "month": "09",
+          "name": "Crown Jewel"
+        },
+        {
+          "id": "wwe-money-in-the-bank",
+          "month": "10",
+          "name": "Money In The Bank"
+        },
+        {
+          "id": "wwe-survivor-series",
+          "month": "11",
+          "name": "Survivor Series"
+        },
+        {
+          "id": "wwe-wrestlepalooza",
+          "month": "12",
+          "name": "Wrestlepalooza"
+        }
+      ],
+      "flagshipEventId": "wwe-wrestlemania",
+      "majorEventIds": [
+        "wwe-royal-rumble",
+        "wwe-elimination-chamber",
+        "wwe-wrestlemania",
+        "wwe-summerslam"
+      ]
     },
     {
       "id": "nxt",
       "name": "NXT",
       "shortName": "NXT",
+      "calendarName": "NXT on CW",
       "type": "core",
       "rankingEligible": true,
       "braggingRightsEligible": true,
       "shows": [
         "nxt-on-cw"
       ],
-      "eventCalendar": [],
-      "flagshipEventId": "",
-      "majorEventIds": []
+      "eventCalendar": [
+        {
+          "id": "nxt-new-years-evil",
+          "month": "01",
+          "name": "New Years Evil"
+        },
+        {
+          "id": "nxt-vengeance-day",
+          "month": "02",
+          "name": "Vengeance Day"
+        },
+        {
+          "id": "nxt-roadblock",
+          "month": "03",
+          "name": "RoadBlock"
+        },
+        {
+          "id": "nxt-stand-and-deliver",
+          "month": "04",
+          "name": "Stand And Deliver"
+        },
+        {
+          "id": "nxt-battleground",
+          "month": "05",
+          "name": "BattleGround"
+        },
+        {
+          "id": "nxt-no-mercy",
+          "month": "06",
+          "name": "No Mercy"
+        },
+        {
+          "id": "nxt-the-great-american-bash",
+          "month": "07",
+          "name": "The Great American Bash"
+        },
+        {
+          "id": "nxt-heatwave",
+          "month": "08",
+          "name": "Heatwave"
+        },
+        {
+          "id": "nxt-homecoming",
+          "month": "09",
+          "name": "Homecoming"
+        },
+        {
+          "id": "nxt-halloween-havoc",
+          "month": "10",
+          "name": "Halloween Havoc"
+        },
+        {
+          "id": "nxt-gold-rush",
+          "month": "11",
+          "name": "Gold Rush"
+        },
+        {
+          "id": "nxt-deadline",
+          "month": "12",
+          "name": "Deadline"
+        }
+      ],
+      "flagshipEventId": "nxt-stand-and-deliver",
+      "majorEventIds": [
+        "nxt-vengeance-day",
+        "nxt-the-great-american-bash",
+        "nxt-halloween-havoc",
+        "nxt-stand-and-deliver"
+      ]
     },
     {
       "id": "aew",
@@ -41,9 +174,75 @@
         "aew-dynamite",
         "aew-collision"
       ],
-      "eventCalendar": [],
-      "flagshipEventId": "",
-      "majorEventIds": []
+      "eventCalendar": [
+        {
+          "id": "aew-maximum-carnage",
+          "month": "01",
+          "name": "Maximum Carnage"
+        },
+        {
+          "id": "aew-grand-slam",
+          "month": "02",
+          "name": "Grand Slam"
+        },
+        {
+          "id": "aew-revolution",
+          "month": "03",
+          "name": "Revolution"
+        },
+        {
+          "id": "aew-dynasty",
+          "month": "04",
+          "name": "Dynasty"
+        },
+        {
+          "id": "aew-double-or-nothing",
+          "month": "05",
+          "name": "Double or Nothing"
+        },
+        {
+          "id": "aew-forbidden-door",
+          "month": "06",
+          "name": "Forbidden Door"
+        },
+        {
+          "id": "aew-grand-slam-07",
+          "month": "07",
+          "name": "Grand Slam"
+        },
+        {
+          "id": "aew-all-in",
+          "month": "08",
+          "name": "All In"
+        },
+        {
+          "id": "aew-all-out",
+          "month": "09",
+          "name": "All Out"
+        },
+        {
+          "id": "aew-wrestledream",
+          "month": "10",
+          "name": "WrestleDream"
+        },
+        {
+          "id": "aew-full-gear",
+          "month": "11",
+          "name": "Full Gear"
+        },
+        {
+          "id": "aew-world-s-end",
+          "month": "12",
+          "name": "World's End"
+        }
+      ],
+      "flagshipEventId": "aew-all-in",
+      "majorEventIds": [
+        "aew-revolution",
+        "aew-double-or-nothing",
+        "aew-all-out",
+        "aew-all-in"
+      ]
     },
     {
       "id": "roh",
@@ -55,9 +254,75 @@
       "shows": [
         "roh-on-honorclub"
       ],
-      "eventCalendar": [],
-      "flagshipEventId": "",
-      "majorEventIds": []
+      "eventCalendar": [
+        {
+          "id": "roh-honor-reigns-supreme",
+          "month": "01",
+          "name": "Honor Reigns Supreme"
+        },
+        {
+          "id": "roh-global-wars-international-show",
+          "month": "02",
+          "name": "Global Wars: International Show"
+        },
+        {
+          "id": "roh-honor-rising",
+          "month": "03",
+          "name": "Honor Rising"
+        },
+        {
+          "id": "roh-supercard-of-honor",
+          "month": "04",
+          "name": "SuperCard of Honor"
+        },
+        {
+          "id": "roh-best-in-the-world",
+          "month": "05",
+          "name": "Best In The World"
+        },
+        {
+          "id": "roh-survival-of-the-fittest",
+          "month": "06",
+          "name": "Survival of the Fittest"
+        },
+        {
+          "id": "roh-glory-by-honor",
+          "month": "07",
+          "name": "Glory By Honor"
+        },
+        {
+          "id": "roh-death-before-dishonor",
+          "month": "08",
+          "name": "Death Before Dishonor"
+        },
+        {
+          "id": "roh-bound-by-honor",
+          "month": "09",
+          "name": "Bound by Honor"
+        },
+        {
+          "id": "roh-carnival-of-horror",
+          "month": "10",
+          "name": "Carnival of Horror"
+        },
+        {
+          "id": "roh-honor-for-all",
+          "month": "11",
+          "name": "Honor For All"
+        },
+        {
+          "id": "roh-final-battle",
+          "month": "12",
+          "name": "Final Battle"
+        }
+      ],
+      "flagshipEventId": "roh-supercard-of-honor",
+      "majorEventIds": [
+        "roh-global-wars-international-show",
+        "roh-supercard-of-honor",
+        "roh-death-before-dishonor",
+        "roh-final-battle"
+      ]
     },
     {
       "id": "tna",
@@ -69,9 +334,75 @@
       "shows": [
         "tna-impact"
       ],
-      "eventCalendar": [],
-      "flagshipEventId": "",
-      "majorEventIds": []
+      "eventCalendar": [
+        {
+          "id": "tna-genesis",
+          "month": "01",
+          "name": "Genesis"
+        },
+        {
+          "id": "tna-no-surrender",
+          "month": "02",
+          "name": "No Surrender"
+        },
+        {
+          "id": "tna-sacrifice",
+          "month": "03",
+          "name": "Sacrifice"
+        },
+        {
+          "id": "tna-rebellion",
+          "month": "04",
+          "name": "Rebellion"
+        },
+        {
+          "id": "tna-under-siege",
+          "month": "05",
+          "name": "Under Siege"
+        },
+        {
+          "id": "tna-against-all-odds",
+          "month": "06",
+          "name": "Against All Odds"
+        },
+        {
+          "id": "tna-slammiversary",
+          "month": "07",
+          "name": "Slammiversary"
+        },
+        {
+          "id": "tna-emergence",
+          "month": "08",
+          "name": "Emergence"
+        },
+        {
+          "id": "tna-victory-road",
+          "month": "09",
+          "name": "Victory Road"
+        },
+        {
+          "id": "tna-bound-for-glory",
+          "month": "10",
+          "name": "Bound for Glory"
+        },
+        {
+          "id": "tna-turning-point",
+          "month": "11",
+          "name": "Turning Point"
+        },
+        {
+          "id": "tna-final-resolution",
+          "month": "12",
+          "name": "Final Resolution"
+        }
+      ],
+      "flagshipEventId": "tna-bound-for-glory",
+      "majorEventIds": [
+        "tna-genesis",
+        "tna-rebellion",
+        "tna-slammiversary",
+        "tna-bound-for-glory"
+      ]
     },
     {
       "id": "cmll",
@@ -83,9 +414,75 @@
       "shows": [
         "cmll-super-viernes"
       ],
-      "eventCalendar": [],
-      "flagshipEventId": "",
-      "majorEventIds": []
+      "eventCalendar": [
+        {
+          "id": "cmll-sin-salida",
+          "month": "01",
+          "name": "Sin Salida"
+        },
+        {
+          "id": "cmll-que-no-te-ganen-tus-monstrous",
+          "month": "02",
+          "name": "Que No Te Ganen Tus Monstrous"
+        },
+        {
+          "id": "cmll-homenaje-a-dos-leyendes",
+          "month": "03",
+          "name": "Homenaje A Dos Leyendes"
+        },
+        {
+          "id": "cmll-aniversario-arena-mexico",
+          "month": "04",
+          "name": "Aniversario Arena Mexico"
+        },
+        {
+          "id": "cmll-fantastica-mania",
+          "month": "05",
+          "name": "Fantastica Mania"
+        },
+        {
+          "id": "cmll-sabados-de-coliseo",
+          "month": "06",
+          "name": "Sabados de Coliseo"
+        },
+        {
+          "id": "cmll-grand-prix-internacional",
+          "month": "07",
+          "name": "Grand Prix Internacional"
+        },
+        {
+          "id": "cmll-noche-de-campeones",
+          "month": "08",
+          "name": "Noche de Campeones"
+        },
+        {
+          "id": "cmll-aniverserio",
+          "month": "09",
+          "name": "Aniverserio"
+        },
+        {
+          "id": "cmll-grand-prix-de-amazonas",
+          "month": "10",
+          "name": "Grand Prix de Amazonas"
+        },
+        {
+          "id": "cmll-dia-de-muertos",
+          "month": "11",
+          "name": "Dia de Muertos"
+        },
+        {
+          "id": "cmll-espectacular-funcion-de-fin-de-ano",
+          "month": "12",
+          "name": "Espectacular Funcion de Fin de Ano"
+        }
+      ],
+      "flagshipEventId": "cmll-aniverserio",
+      "majorEventIds": [
+        "cmll-fantastica-mania",
+        "cmll-homenaje-a-dos-leyendes",
+        "cmll-grand-prix-internacional",
+        "cmll-aniverserio"
+      ]
     },
     {
       "id": "aaa",
@@ -97,9 +494,75 @@
       "shows": [
         "aaa-lucha-libre"
       ],
-      "eventCalendar": [],
-      "flagshipEventId": "",
-      "majorEventIds": []
+      "eventCalendar": [
+        {
+          "id": "aaa-nacemos-para-lucha-gira",
+          "month": "01",
+          "name": "Nacemos Para Lucha Gira"
+        },
+        {
+          "id": "aaa-rey-de-reyes",
+          "month": "02",
+          "name": "Rey de Reyes"
+        },
+        {
+          "id": "aaa-lucha-libre-world-cup",
+          "month": "03",
+          "name": "Lucha Libre World Cup"
+        },
+        {
+          "id": "aaa-fastejando-dia-del-norte",
+          "month": "04",
+          "name": "Fastejando Dia Del Norte"
+        },
+        {
+          "id": "aaa-noche-de-los-grandes",
+          "month": "05",
+          "name": "Noche de Los Grandes"
+        },
+        {
+          "id": "aaa-leyendas-de-clase-mundial",
+          "month": "06",
+          "name": "Leyendas de Clase Mundial"
+        },
+        {
+          "id": "aaa-verano-de-escandalo",
+          "month": "07",
+          "name": "Verano de Escandalo"
+        },
+        {
+          "id": "aaa-triplemania",
+          "month": "08",
+          "name": "TripleMania"
+        },
+        {
+          "id": "aaa-world-s-collide",
+          "month": "09",
+          "name": "World's Collide"
+        },
+        {
+          "id": "aaa-heroes-inmortales",
+          "month": "10",
+          "name": "Heroes Inmortales"
+        },
+        {
+          "id": "aaa-campeonato-explanada",
+          "month": "11",
+          "name": "Campeonato Explanada"
+        },
+        {
+          "id": "aaa-guerra-de-titanes",
+          "month": "12",
+          "name": "Guerra de Titanes"
+        }
+      ],
+      "flagshipEventId": "aaa-triplemania",
+      "majorEventIds": [
+        "aaa-heroes-inmortales",
+        "aaa-rey-de-reyes",
+        "aaa-verano-de-escandalo",
+        "aaa-triplemania"
+      ]
     },
     {
       "id": "owl",
@@ -112,9 +575,75 @@
         "owl-ascension",
         "owl-revolt"
       ],
-      "eventCalendar": [],
-      "flagshipEventId": "",
-      "majorEventIds": []
+      "eventCalendar": [
+        {
+          "id": "owl-zero-hour",
+          "month": "01",
+          "name": "Zero Hour"
+        },
+        {
+          "id": "owl-all-love-lost",
+          "month": "02",
+          "name": "All Love Lost"
+        },
+        {
+          "id": "owl-overthrow",
+          "month": "03",
+          "name": "Overthrow"
+        },
+        {
+          "id": "owl-no-escape",
+          "month": "04",
+          "name": "No Escape"
+        },
+        {
+          "id": "owl-fight-to-survive",
+          "month": "05",
+          "name": "Fight to Survive"
+        },
+        {
+          "id": "owl-survivors-remorse",
+          "month": "06",
+          "name": "Survivors Remorse"
+        },
+        {
+          "id": "owl-proving-ground",
+          "month": "07",
+          "name": "Proving Ground"
+        },
+        {
+          "id": "owl-blood-on-the-sand",
+          "month": "08",
+          "name": "Blood on the Sand"
+        },
+        {
+          "id": "owl-global-warfare",
+          "month": "09",
+          "name": "Global Warfare"
+        },
+        {
+          "id": "owl-deal-with-the-devil",
+          "month": "10",
+          "name": "Deal with the Devil"
+        },
+        {
+          "id": "owl-game-over",
+          "month": "11",
+          "name": "Game Over"
+        },
+        {
+          "id": "owl-december-to-remember",
+          "month": "12",
+          "name": "December to Remember"
+        }
+      ],
+      "flagshipEventId": "owl-fight-to-survive",
+      "majorEventIds": [
+        "owl-overthrow",
+        "owl-survivors-remorse",
+        "owl-proving-ground",
+        "owl-fight-to-survive"
+      ]
     }
   ]
 }
