@@ -175,7 +175,7 @@ function installSignatureSeriesNavigation() {
 
 
             signatureSeriesLink.textContent =
-                "Signature Series";
+    "SIGNATURE SERIES";
 
 
             const currentPage =
