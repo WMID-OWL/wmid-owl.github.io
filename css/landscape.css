@@ -6231,3 +6231,285 @@ body.landscape-page {
         );
 
 }
+/* =================================
+   LANDSCAPE MOBILE NAVIGATION
+================================= */
+
+
+.landscape-nav-toggle {
+
+    display:
+        none;
+
+}
+
+
+
+@media (
+    max-width:
+        900px
+) {
+
+
+    body.landscape-nav-open {
+
+        overflow:
+            hidden;
+
+    }
+
+
+    .landscape-site-header {
+
+        position:
+            relative;
+
+        z-index:
+            1000;
+
+        align-items:
+            center;
+
+        flex-direction:
+            row;
+
+        justify-content:
+            space-between;
+
+        padding:
+            16px 20px;
+
+    }
+
+
+    .landscape-brand {
+
+        min-width:
+            0;
+
+    }
+
+
+    .landscape-brand-copy strong {
+
+        font-size:
+            0.78rem;
+
+    }
+
+
+    .landscape-brand-copy small {
+
+        font-size:
+            0.46rem;
+
+    }
+
+
+    .landscape-nav-toggle {
+
+        position:
+            relative;
+
+        z-index:
+            1002;
+
+        display:
+            inline-flex;
+
+        flex:
+            0 0 54px;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        width:
+            54px;
+
+        height:
+            54px;
+
+        padding:
+            0;
+
+        color:
+            var(
+                --ls-text
+            );
+
+        background:
+            transparent;
+
+        border:
+            1px solid
+            var(
+                --ls-line-strong
+            );
+
+        font:
+            inherit;
+
+        font-size:
+            1.5rem;
+
+        font-weight:
+            800;
+
+        line-height:
+            1;
+
+        cursor:
+            pointer;
+
+    }
+
+
+    .landscape-main-nav {
+
+        position:
+            absolute;
+
+        top:
+            100%;
+
+        right:
+            0;
+
+        left:
+            0;
+
+        z-index:
+            1001;
+
+        display:
+            none;
+
+        flex-direction:
+            column;
+
+        flex-wrap:
+            nowrap;
+
+        align-items:
+            stretch;
+
+        justify-content:
+            flex-start;
+
+        gap:
+            0;
+
+        max-height:
+            calc(
+                100vh - 81px
+            );
+
+        padding:
+            8px 20px 18px;
+
+        overflow-y:
+            auto;
+
+        background:
+            rgba(
+                6,
+                8,
+                9,
+                0.99
+            );
+
+        border-bottom:
+            1px solid
+            var(
+                --ls-line
+            );
+
+        box-shadow:
+
+            0
+            20px
+            40px
+
+            rgba(
+                0,
+                0,
+                0,
+                0.5
+            );
+
+    }
+
+
+    .landscape-main-nav.open {
+
+        display:
+            flex;
+
+    }
+
+
+    .landscape-main-nav a {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        width:
+            100%;
+
+        min-height:
+            54px;
+
+        padding:
+            14px 20px;
+
+        font-size:
+            0.74rem;
+
+        text-align:
+            center;
+
+    }
+
+
+    .landscape-main-nav a::after {
+
+        right:
+            auto;
+
+        bottom:
+            4px;
+
+        left:
+            50%;
+
+        width:
+            100px;
+
+        transform:
+            translateX(
+                -50%
+            );
+
+    }
+
+
+    .landscape-main-nav a:hover::after,
+
+    .landscape-main-nav a.active::after {
+
+        width:
+            100px;
+
+    }
+
+
+}
