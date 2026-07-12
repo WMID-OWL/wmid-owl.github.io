@@ -601,7 +601,7 @@ function createWrestlerLink(
         // =================================
 
 
-        if (event.description) {
+                if (event.description) {
 
 
             document.getElementById(
@@ -613,6 +613,77 @@ function createWrestlerLink(
             document.getElementById(
                 "event-description-section"
             ).hidden =
+                false;
+
+        }
+
+
+
+        // =================================
+        // FULL EVENT YOUTUBE VIDEO
+        // =================================
+
+
+        const youtubeVideoId =
+
+            String(
+                event.youtubeVideoId || ""
+            ).trim();
+
+
+        const youtubeVideoIdPattern =
+
+            /^[A-Za-z0-9_-]{11}$/;
+
+
+        if (
+            youtubeVideoIdPattern.test(
+                youtubeVideoId
+            )
+        ) {
+
+
+            const videoSection =
+
+                document.getElementById(
+                    "event-video-section"
+                );
+
+
+            const videoPlayer =
+
+                document.getElementById(
+                    "event-youtube-player"
+                );
+
+
+            const youtubeLink =
+
+                document.getElementById(
+                    "event-youtube-link"
+                );
+
+
+            videoPlayer.src =
+
+                `https://www.youtube.com/embed/${encodeURIComponent(
+                    youtubeVideoId
+                )}?rel=0`;
+
+
+            videoPlayer.title =
+
+                `${event.name} — Full Event Replay`;
+
+
+            youtubeLink.href =
+
+                `https://www.youtube.com/watch?v=${encodeURIComponent(
+                    youtubeVideoId
+                )}`;
+
+
+            videoSection.hidden =
                 false;
 
         }
