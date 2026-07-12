@@ -1,0 +1,880 @@
+/* =================================
+   OWL MONTHLY CALENDAR
+================================= */
+
+
+.owl-calendar-section {
+
+    position:
+        relative;
+
+}
+
+
+.owl-calendar-heading {
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        space-between;
+
+    gap:
+        2rem;
+
+    margin-bottom:
+        2rem;
+
+}
+
+
+.owl-calendar-heading h2 {
+
+    margin:
+        0;
+
+    font-size:
+        clamp(
+            2.8rem,
+            6vw,
+            5rem
+        );
+
+    letter-spacing:
+        -0.055em;
+
+}
+
+
+.owl-calendar-heading p:not(.eyebrow) {
+
+    max-width:
+        650px;
+
+    margin:
+        1rem 0 0;
+
+    color:
+        #a7b0b3;
+
+    line-height:
+        1.6;
+
+}
+
+
+.owl-calendar-controls {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        44px
+        minmax(
+            170px,
+            auto
+        )
+        44px;
+
+    align-items:
+        center;
+
+    border:
+        1px solid
+        rgba(
+            198,
+            161,
+            91,
+            0.38
+        );
+
+    background:
+        #111517;
+
+}
+
+
+.owl-calendar-controls button {
+
+    width:
+        44px;
+
+    height:
+        44px;
+
+    border:
+        0;
+
+    background:
+        transparent;
+
+    color:
+        #f5f5f2;
+
+    cursor:
+        pointer;
+
+    font-size:
+        1.1rem;
+
+    font-weight:
+        900;
+
+}
+
+
+.owl-calendar-controls button:hover:not(:disabled) {
+
+    background:
+        #c6a15b;
+
+    color:
+        #080a0b;
+
+}
+
+
+.owl-calendar-controls button:disabled {
+
+    color:
+        #4c5457;
+
+    cursor:
+        not-allowed;
+
+}
+
+
+.owl-calendar-controls strong {
+
+    padding:
+        0 1rem;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    text-align:
+        center;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+/* =================================
+   CALENDAR GRID
+================================= */
+
+
+.owl-calendar-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        )
+
+        minmax(
+            260px,
+            1.25fr
+        );
+
+    gap:
+        0.75rem;
+
+}
+
+
+.owl-calendar-week-card {
+
+    min-width:
+        0;
+
+    display:
+        grid;
+
+    grid-template-rows:
+        auto
+        1fr
+        1fr;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    background:
+        #0e1214;
+
+}
+
+
+.owl-calendar-week-heading {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        1rem;
+
+    padding:
+        0.8rem 0.9rem;
+
+    background:
+        #171d20;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+.owl-calendar-week-heading span {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.63rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.owl-calendar-week-heading strong {
+
+    color:
+        #7d888c;
+
+    font-size:
+        0.58rem;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+/* =================================
+   WEEKLY SHOW CELLS
+================================= */
+
+
+.owl-calendar-show-slot {
+
+    min-height:
+        150px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    gap:
+        0.65rem;
+
+    padding:
+        0.9rem;
+
+    color:
+        #f5f5f2;
+
+    text-decoration:
+        none;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease;
+
+}
+
+
+.owl-calendar-show-slot:last-child {
+
+    border-bottom:
+        0;
+
+}
+
+
+.owl-calendar-show-slot:hover {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        rgba(
+            198,
+            161,
+            91,
+            0.55
+        );
+
+}
+
+
+.owl-calendar-show-day {
+
+    color:
+        #899397;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.11em;
+
+}
+
+
+.owl-calendar-show-branding {
+
+    min-height:
+        68px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+}
+
+
+.owl-calendar-show-branding img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    max-height:
+        76px;
+
+    object-fit:
+        contain;
+
+}
+
+
+.owl-calendar-show-branding strong {
+
+    font-size:
+        clamp(
+            1.25rem,
+            2.3vw,
+            2rem
+        );
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        -0.04em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.owl-calendar-show-slot small {
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.calendar-brand-ascension {
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                79,
+                118,
+                151,
+                0.18
+            ),
+            rgba(
+                10,
+                14,
+                17,
+                0.95
+            )
+        );
+
+}
+
+
+.calendar-brand-revolt {
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                154,
+                52,
+                38,
+                0.2
+            ),
+            rgba(
+                15,
+                10,
+                10,
+                0.96
+            )
+        );
+
+}
+
+
+.calendar-brand-owl {
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                198,
+                161,
+                91,
+                0.17
+            ),
+            rgba(
+                12,
+                13,
+                12,
+                0.96
+            )
+        );
+
+}
+
+
+/* =================================
+   PPV CARD
+================================= */
+
+
+.owl-calendar-ppv {
+
+    position:
+        relative;
+
+    min-height:
+        100%;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(
+            198,
+            161,
+            91,
+            0.5
+        );
+
+    background:
+        #11100d;
+
+    color:
+        #f5f5f2;
+
+    text-decoration:
+        none;
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease;
+
+}
+
+
+.owl-calendar-ppv:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        #c6a15b;
+
+}
+
+
+.owl-calendar-card-label {
+
+    position:
+        absolute;
+
+    z-index:
+        3;
+
+    top:
+        0.85rem;
+
+    left:
+        0.85rem;
+
+    padding:
+        0.45rem 0.55rem;
+
+    background:
+        #c6a15b;
+
+    color:
+        #080a0b;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.owl-calendar-ppv-art {
+
+    min-height:
+        280px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    overflow:
+        hidden;
+
+    background:
+        #080a0b;
+
+}
+
+
+.owl-calendar-ppv-art img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    min-height:
+        280px;
+
+    object-fit:
+        cover;
+
+}
+
+
+.owl-calendar-ppv-placeholder {
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    min-height:
+        280px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.13
+        );
+
+    font-size:
+        5rem;
+
+    font-weight:
+        1000;
+
+}
+
+
+.owl-calendar-ppv-copy {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        0.45rem;
+
+    padding:
+        1.2rem;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+}
+
+
+.owl-calendar-ppv-copy strong {
+
+    font-size:
+        clamp(
+            1.5rem,
+            2.6vw,
+            2.3rem
+        );
+
+    line-height:
+        1;
+
+}
+
+
+.owl-calendar-ppv-copy small {
+
+    color:
+        #c6a15b;
+
+    font-weight:
+        900;
+
+}
+
+
+.owl-calendar-ppv-copy span {
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.8rem;
+
+}
+
+
+/* =================================
+   EMPTY CELLS
+================================= */
+
+
+.calendar-slot-empty {
+
+    opacity:
+        0.55;
+
+    cursor:
+        default;
+
+}
+
+
+.calendar-slot-empty:hover {
+
+    transform:
+        none;
+
+}
+
+
+.owl-calendar-empty {
+
+    grid-column:
+        1 / -1;
+
+    padding:
+        2rem;
+
+    color:
+        #899397;
+
+    border:
+        1px dashed
+        rgba(
+            255,
+            255,
+            255,
+            0.16
+        );
+
+    text-align:
+        center;
+
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        1150px
+) {
+
+    .owl-calendar-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+    .owl-calendar-ppv {
+
+        grid-column:
+            1 / -1;
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        750px
+) {
+
+    .owl-calendar-heading {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .owl-calendar-controls {
+
+        width:
+            100%;
+
+        grid-template-columns:
+            44px
+            1fr
+            44px;
+
+    }
+
+
+    .owl-calendar-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .owl-calendar-ppv {
+
+        grid-column:
+            auto;
+
+    }
+
+}
