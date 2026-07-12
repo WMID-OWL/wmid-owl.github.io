@@ -1,0 +1,190 @@
+/* =================================
+   WRESTLER FINISHER SHOWCASE
+================================= */
+
+
+.finisher-showcase {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        1rem;
+
+    margin-top:
+        1.25rem;
+
+}
+
+
+.finisher-showcase[hidden] {
+
+    display:
+        none;
+
+}
+
+
+.finisher-showcase.finisher-showcase-single {
+
+    grid-template-columns:
+        minmax(
+            0,
+            1fr
+        );
+
+    max-width:
+        900px;
+
+}
+
+
+.finisher-card {
+
+    overflow:
+        hidden;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+}
+
+
+.finisher-card-media {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        100%;
+
+    aspect-ratio:
+        16 / 9;
+
+    overflow:
+        hidden;
+
+    background:
+        #050607;
+
+}
+
+
+.finisher-card-media img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
+
+}
+
+
+.finisher-card-copy {
+
+    padding:
+        1rem 1.1rem;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+.finisher-card-copy span {
+
+    display:
+        block;
+
+    color:
+        #899397;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.finisher-card-copy strong {
+
+    display:
+        block;
+
+    margin-top:
+        0.35rem;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        clamp(
+            1.25rem,
+            3vw,
+            2rem
+        );
+
+    line-height:
+        1.1;
+
+}
+
+
+@media (
+    max-width:
+        750px
+) {
+
+    .finisher-showcase {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
