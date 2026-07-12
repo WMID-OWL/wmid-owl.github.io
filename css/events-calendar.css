@@ -878,3 +878,88 @@
     }
 
 }
+/* =================================
+   NEXT UPCOMING EVENT
+================================= */
+
+
+.owl-calendar-show-slot,
+.owl-calendar-ppv {
+
+    position:
+        relative;
+
+}
+
+
+.calendar-next-up {
+
+    border-color:
+        #c6a15b;
+
+    box-shadow:
+
+        0 0 0 1px
+        rgba(
+            198,
+            161,
+            91,
+            0.25
+        ),
+
+        0 0 30px
+        rgba(
+            198,
+            161,
+            91,
+            0.12
+        );
+
+}
+
+
+.owl-calendar-next-badge {
+
+    position:
+        absolute;
+
+    z-index:
+        5;
+
+    top:
+        0.65rem;
+
+    right:
+        0.65rem;
+
+    padding:
+        0.35rem 0.45rem;
+
+    background:
+        #c6a15b;
+
+    color:
+        #080a0b;
+
+    font-size:
+        0.5rem;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.owl-calendar-ppv
+.owl-calendar-next-badge {
+
+    top:
+        0.85rem;
+
+    right:
+        0.85rem;
+
+}
