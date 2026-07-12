@@ -2443,3 +2443,375 @@
     }
 
 }
+/* =================================
+   BRAND TEAMS AND FACTIONS
+================================= */
+
+
+.show-brand-groups {
+
+    margin-top:
+        3rem;
+
+    padding:
+        clamp(
+            1.5rem,
+            4vw,
+            3rem
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    background:
+        #0d1112;
+
+}
+
+
+.show-faction-heading {
+
+    margin-top:
+        4rem;
+
+}
+
+
+.show-brand-team-grid,
+.show-brand-faction-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        1rem;
+
+}
+
+
+.show-group-card {
+
+    min-width:
+        0;
+
+    overflow:
+        hidden;
+
+    color:
+        #ffffff;
+
+    text-decoration:
+        none;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    background:
+        #121718;
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease;
+
+}
+
+
+.show-group-card:hover {
+
+    transform:
+        translateY(
+            -3px
+        );
+
+    border-color:
+        var(
+            --show-accent
+        );
+
+}
+
+
+.show-group-art {
+
+    aspect-ratio:
+        16 / 10;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    overflow:
+        hidden;
+
+    padding:
+        1rem;
+
+    background:
+        #080a0b;
+
+}
+
+
+.show-group-art img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
+
+}
+
+
+.show-group-art > span {
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            3.5rem
+        );
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+.show-group-copy {
+
+    padding:
+        1.2rem;
+
+}
+
+
+.show-group-meta {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        1rem;
+
+}
+
+
+.show-group-meta span,
+.show-group-meta small {
+
+    color:
+        var(
+            --show-accent
+        );
+
+    font-size:
+        0.53rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.show-group-card h3 {
+
+    margin:
+        0.7rem 0 0;
+
+    font-size:
+        1.45rem;
+
+    line-height:
+        1.05;
+
+}
+
+
+.show-group-card p {
+
+    min-height:
+        2.8em;
+
+    margin:
+        0.65rem 0 0;
+
+    color:
+        #929c9f;
+
+    font-size:
+        0.78rem;
+
+    line-height:
+        1.4;
+
+}
+
+
+.show-group-card
+.show-faction-team {
+
+    margin-top:
+        0.8rem;
+
+    color:
+        #929c9f;
+
+    font-size:
+        0.72rem;
+
+}
+
+
+.show-group-card
+.show-faction-team b {
+
+    color:
+        #ffffff;
+
+}
+
+
+.show-group-card > .show-group-copy > strong {
+
+    display:
+        block;
+
+    margin-top:
+        1.2rem;
+
+    font-size:
+        0.61rem;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.show-groups-directory-link {
+
+    display:
+        inline-block;
+
+    margin-top:
+        1.5rem;
+
+    color:
+        #ffffff;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.show-groups-directory-link:hover {
+
+    color:
+        var(
+            --show-accent
+        );
+
+}
+
+
+/* =================================
+   GROUPS RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        1050px
+) {
+
+    .show-brand-team-grid,
+    .show-brand-faction-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        650px
+) {
+
+    .show-brand-team-grid,
+    .show-brand-faction-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
