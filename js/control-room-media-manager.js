@@ -17,9 +17,12 @@
                 "wrestlers",
 
             folder:
-                "wrestlers",
+    "wrestlers",
 
-            pathFields: [
+writeField:
+    "photo",
+
+pathFields: [
 
                 "photo",
                 "image",
@@ -59,9 +62,12 @@
                 "teams",
 
             folder:
-                "teams",
+    "teams",
 
-            pathFields: [
+writeField:
+    "logo",
+
+pathFields: [
 
                 "logo",
                 "image",
@@ -81,9 +87,12 @@
                 "factions",
 
             folder:
-                "factions",
+    "factions",
 
-            pathFields: [
+writeField:
+    "logo",
+
+pathFields: [
 
                 "logo",
                 "image",
@@ -103,9 +112,12 @@
                 "championships",
 
             folder:
-                "championships",
+    "championships",
 
-            pathFields: [
+writeField:
+    "image",
+
+pathFields: [
 
                 "image",
                 "beltImage",
@@ -125,9 +137,12 @@
                 "events",
 
             folder:
-                "events",
+    "events",
 
-            pathFields: [
+writeField:
+    "image",
+
+pathFields: [
 
                 "image",
                 "poster",
@@ -797,7 +812,882 @@
 
 }
 
+    // =================================
+    // MEDIA WRITING
+    // =================================
 
+
+    async function ensureWritePermission() {
+
+
+        if (
+            typeof owlRepositoryHandle ===
+                "undefined"
+
+            ||
+
+            !owlRepositoryHandle
+        ) {
+
+
+            return false;
+
+        }
+
+
+        const options = {
+
+            mode:
+                "readwrite"
+
+        };
+
+
+        const currentPermission =
+
+            await owlRepositoryHandle.queryPermission(
+                options
+            );
+
+
+        if (
+            currentPermission ===
+            "granted"
+        ) {
+
+
+            return true;
+
+        }
+
+
+        const requestedPermission =
+
+            await owlRepositoryHandle.requestPermission(
+                options
+            );
+
+
+        return (
+
+            requestedPermission ===
+            "granted"
+
+        );
+
+    }
+
+
+
+    function selectedWriteField(
+        config,
+        record
+    ) {
+
+
+        if (
+            config?.finisherMode
+        ) {
+
+
+            return cleanText(
+                record?.finisherPathField
+            );
+
+        }
+
+
+        return cleanText(
+            config?.writeField
+        );
+
+    }
+
+
+
+    function findRecordObjectBounds(
+        text,
+        recordId
+    ) {
+
+
+        const escapedId =
+
+            String(
+                recordId
+            )
+                .replace(
+                    /[.*+?^${}()|[\]\\]/g,
+                    "\\$&"
+                );
+
+
+        const idPattern =
+
+            new RegExp(
+
+                `"id"\\s*:\\s*"${escapedId}"`
+
+            );
+
+
+        const idMatch =
+
+            idPattern.exec(
+                text
+            );
+
+
+        if (
+            !idMatch
+        ) {
+
+
+            throw new Error(
+
+                `Could not find database record ${recordId}.`
+
+            );
+
+        }
+
+
+        const start =
+
+            text.lastIndexOf(
+                "{",
+                idMatch.index
+            );
+
+
+        if (
+            start === -1
+        ) {
+
+
+            throw new Error(
+
+                "Could not find the beginning of the database record."
+
+            );
+
+        }
+
+
+        let end =
+            -1;
+
+
+        let depth =
+            0;
+
+
+        let insideString =
+            false;
+
+
+        let escapedCharacter =
+            false;
+
+
+        for (
+
+            let index = start;
+
+            index < text.length;
+
+            index += 1
+
+        ) {
+
+
+            const character =
+                text[index];
+
+
+            if (
+                escapedCharacter
+            ) {
+
+
+                escapedCharacter =
+                    false;
+
+
+                continue;
+
+            }
+
+
+            if (
+
+                character === "\\"
+
+                &&
+
+                insideString
+
+            ) {
+
+
+                escapedCharacter =
+                    true;
+
+
+                continue;
+
+            }
+
+
+            if (
+                character === "\""
+            ) {
+
+
+                insideString =
+                    !insideString;
+
+
+                continue;
+
+            }
+
+
+            if (
+                insideString
+            ) {
+
+
+                continue;
+
+            }
+
+
+            if (
+                character === "{"
+            ) {
+
+
+                depth +=
+                    1;
+
+            }
+
+
+            if (
+                character === "}"
+            ) {
+
+
+                depth -=
+                    1;
+
+
+                if (
+                    depth === 0
+                ) {
+
+
+                    end =
+                        index;
+
+
+                    break;
+
+                }
+
+            }
+
+        }
+
+
+        if (
+            end === -1
+        ) {
+
+
+            throw new Error(
+
+                "Could not find the end of the database record."
+
+            );
+
+        }
+
+
+        return {
+
+            start,
+            end
+
+        };
+
+    }
+
+
+
+    function replaceOrAddStringField(
+        block,
+        key,
+        value
+    ) {
+
+
+        const escapedKey =
+
+            String(
+                key
+            )
+                .replace(
+                    /[.*+?^${}()|[\]\\]/g,
+                    "\\$&"
+                );
+
+
+        const pattern =
+
+            new RegExp(
+
+                `("${escapedKey}"\\s*:\\s*)("(?:\\\\.|[^"\\\\])*")`
+
+            );
+
+
+        if (
+            pattern.test(
+                block
+            )
+        ) {
+
+
+            return block.replace(
+
+                pattern,
+
+                (
+                    match,
+                    prefix
+                ) =>
+
+                    prefix
+
+                    +
+
+                    JSON.stringify(
+                        value
+                    )
+
+            );
+
+        }
+
+
+        const closingBraceIndex =
+
+            block.lastIndexOf(
+                "}"
+            );
+
+
+        if (
+            closingBraceIndex === -1
+        ) {
+
+
+            throw new Error(
+
+                `Could not add media field ${key}.`
+
+            );
+
+        }
+
+
+        const beforeClosingBrace =
+
+            block.slice(
+                0,
+                closingBraceIndex
+            )
+                .trimEnd();
+
+
+        const separator =
+
+            beforeClosingBrace.endsWith(
+                "{"
+            )
+
+                ? ""
+
+                : ",";
+
+
+        return (
+
+            beforeClosingBrace
+
+            +
+
+            separator
+
+            +
+
+            `\n    ${JSON.stringify(
+                key
+            )}: ${JSON.stringify(
+                value
+            )}\n`
+
+            +
+
+            block.slice(
+                closingBraceIndex
+            )
+
+        );
+
+    }
+
+
+
+    async function writeMediaFile(
+        config,
+        record,
+        file,
+        newPath
+    ) {
+
+
+        const assetsDirectory =
+
+            await owlRepositoryHandle.getDirectoryHandle(
+
+                "assets",
+
+                {
+                    create:
+                        true
+                }
+
+            );
+
+
+        const imagesDirectory =
+
+            await assetsDirectory.getDirectoryHandle(
+
+                "images",
+
+                {
+                    create:
+                        true
+                }
+
+            );
+
+
+        const destinationDirectory =
+
+            await imagesDirectory.getDirectoryHandle(
+
+                config.folder,
+
+                {
+                    create:
+                        true
+                }
+
+            );
+
+
+        const fileName =
+
+            newPath
+                .split(
+                    "/"
+                )
+                .pop();
+
+
+        if (
+            !fileName
+        ) {
+
+
+            throw new Error(
+
+                "The destination filename could not be created."
+
+            );
+
+        }
+
+
+        const destinationHandle =
+
+            await destinationDirectory.getFileHandle(
+
+                fileName,
+
+                {
+                    create:
+                        true
+                }
+
+            );
+
+
+        const writable =
+
+            await destinationHandle.createWritable();
+
+
+        await writable.write(
+            file
+        );
+
+
+        await writable.close();
+
+    }
+
+
+
+    async function updateDatabasePath(
+        config,
+        record,
+        newPath
+    ) {
+
+
+        const field =
+
+            selectedWriteField(
+                config,
+                record
+            );
+
+
+        if (
+            !field
+        ) {
+
+
+            throw new Error(
+
+                "The database media field could not be determined."
+
+            );
+
+        }
+
+
+        const dataDirectory =
+
+            await owlRepositoryHandle.getDirectoryHandle(
+                "data"
+            );
+
+
+        const fileHandle =
+
+            await dataDirectory.getFileHandle(
+
+                `${config.dataKey}.json`
+
+            );
+
+
+        const file =
+
+            await fileHandle.getFile();
+
+
+        const originalText =
+
+            await file.text();
+
+
+        const bounds =
+
+            findRecordObjectBounds(
+
+                originalText,
+                record.id
+
+            );
+
+
+        const originalBlock =
+
+            originalText.slice(
+
+                bounds.start,
+                bounds.end + 1
+
+            );
+
+
+        const updatedBlock =
+
+            replaceOrAddStringField(
+
+                originalBlock,
+                field,
+                newPath
+
+            );
+
+
+        const updatedText =
+
+            originalText.slice(
+                0,
+                bounds.start
+            )
+
+            +
+
+            updatedBlock
+
+            +
+
+            originalText.slice(
+                bounds.end + 1
+            );
+
+
+        const writable =
+
+            await fileHandle.createWritable();
+
+
+        await writable.write(
+            updatedText
+        );
+
+
+        await writable.close();
+
+    }
+
+
+
+    async function saveSelectedMedia() {
+
+
+        const config =
+            selectedConfig();
+
+
+        const record =
+            selectedRecord();
+
+
+        const file =
+            selectedFile;
+
+
+        if (
+
+            !config
+
+            ||
+
+            !record
+
+            ||
+
+            !file
+
+        ) {
+
+
+            return;
+
+        }
+
+
+        const newPath =
+
+            buildDestinationPath(
+
+                config,
+                record,
+                file
+
+            );
+
+
+        if (
+            !newPath
+        ) {
+
+
+            showError(
+
+                "A valid destination path could not be created."
+
+            );
+
+
+            return;
+
+        }
+
+
+        saveButton.disabled =
+            true;
+
+
+        setStatus(
+            "IMPORTING..."
+        );
+
+
+        clearMessage();
+
+
+        errorMessage.hidden =
+            true;
+
+
+        try {
+
+
+            const hasPermission =
+
+                await ensureWritePermission();
+
+
+            if (
+                !hasPermission
+            ) {
+
+
+                throw new Error(
+
+                    "Write permission was not granted."
+
+                );
+
+            }
+
+
+            const selectedType =
+                mediaTypeSelect.value;
+
+
+            const selectedRecordValue =
+                recordSelect.value;
+
+
+            await writeMediaFile(
+
+                config,
+                record,
+                file,
+                newPath
+
+            );
+
+
+            await updateDatabasePath(
+
+                config,
+                record,
+                newPath
+
+            );
+
+
+            await loadRepositoryData(
+                owlRepositoryHandle
+            );
+
+
+            mediaTypeSelect.value =
+                selectedType;
+
+
+            populateRecordOptions();
+
+
+            recordSelect.value =
+                selectedRecordValue;
+
+
+            handleRecordChange();
+
+
+            message.textContent =
+
+                `${recordLabel(
+                    record
+                )} was imported and assigned to ${newPath}. Review the new image file and database change in GitHub Desktop before committing.`;
+
+
+            message.className =
+
+                "cr-save-message save-success";
+
+
+            message.hidden =
+                false;
+
+
+            setStatus(
+                "SAVED"
+            );
+
+
+        }
+
+
+        catch (
+            error
+        ) {
+
+
+            console.error(
+
+                "Could not import media:",
+                error
+
+            );
+
+
+            message.textContent =
+
+                error.message
+
+                ||
+
+                "The media file could not be imported.";
+
+
+            message.className =
+
+                "cr-save-message save-error";
+
+
+            message.hidden =
+                false;
+
+
+            setStatus(
+                "IMPORT FAILED"
+            );
+
+
+            saveButton.disabled =
+                false;
+
+        }
+
+    }
+    
     // =================================
     // RESET
     // =================================
@@ -1431,13 +2321,12 @@ if (
 
 
         saveButton.disabled =
-            true;
+    false;
 
 
-        setStatus(
-            "PREVIEW READY"
-        );
-
+setStatus(
+    "READY TO IMPORT"
+);
     }
 
 
@@ -1465,13 +2354,21 @@ if (
 
     fileInput.addEventListener(
 
-        "change",
-        handleFileChange
+    "change",
+    handleFileChange
 
-    );
+);
 
 
-    window.addEventListener(
+saveButton.addEventListener(
+
+    "click",
+    saveSelectedMedia
+
+);
+
+
+window.addEventListener(
 
         "owl-control-room-data-loaded",
 
