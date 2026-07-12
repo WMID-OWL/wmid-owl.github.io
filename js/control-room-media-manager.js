@@ -8,7 +8,7 @@
     const MEDIA_TYPES = {
 
 
-        wrestlers: {
+                wrestlers: {
 
             label:
                 "Wrestler Photo",
@@ -26,6 +26,26 @@
                 "photoPath"
 
             ]
+
+        },
+
+
+        finishers: {
+
+            label:
+                "Finisher GIF",
+
+            dataKey:
+                "wrestlers",
+
+            folder:
+                "finishers",
+
+            pathFields:
+                [],
+
+            finisherMode:
+                true
 
         },
 
