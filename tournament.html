@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+
+    <meta charset="UTF-8">
+
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+
+    <title>
+        Tournament | OWL Signature Series
+    </title>
+
+
+    <link
+        rel="stylesheet"
+        href="css/style.css?v=global-nav-1"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="css/tournament.css?v=1"
+    >
+
+
+</head>
+
+
+
+<body class="tournament-page-body">
+
+
+<header class="site-header">
+
+
+    <a
+        class="brand"
+        href="index.html"
+    >
+
+
+        <span class="brand-mark">
+            OWL
+        </span>
+
+
+        <span class="brand-sub">
+            WRESTLING
+        </span>
+
+
+    </a>
+
+
+
+    <button
+        class="nav-toggle"
+        aria-label="Toggle navigation"
+    >
+        ☰
+    </button>
+
+
+
+    <nav class="site-nav">
+
+
+        <a href="index.html">
+            Home
+        </a>
+
+
+        <a href="roster.html">
+            Roster
+        </a>
+
+
+        <a href="groups.html">
+            Teams
+        </a>
+
+
+        <a href="champions.html">
+            Champions
+        </a>
+
+
+        <a href="events.html">
+            Events
+        </a>
+
+
+        <a href="shows.html">
+            Shows
+        </a>
+
+
+        <a href="power-rankings.html">
+            Power Rankings
+        </a>
+
+
+        <a href="landscape.html">
+            The Landscape
+        </a>
+
+
+        <a href="owl-social.html">
+            OWL Social
+        </a>
+
+
+        <a href="records.html">
+            Cagematch.owl
+        </a>
+
+
+    </nav>
+
+
+</header>
+
+
+
+<main class="tournament-page">
+
+
+    <!-- =================================
+         LOADING
+    ================================== -->
+
+
+    <section
+        id="tournament-loading"
+        class="tournament-state"
+    >
+        Loading tournament...
+    </section>
+
+
+
+    <!-- =================================
+         ERROR
+    ================================== -->
+
+
+    <section
+        id="tournament-error"
+        class="tournament-state tournament-error"
+        hidden
+    >
+
+
+        <strong>
+            TOURNAMENT NOT FOUND
+        </strong>
+
+
+        <p>
+
+            The requested tournament could not be loaded.
+
+        </p>
+
+
+        <a href="one-off-tournaments.html">
+            ← Return to One-Off Tournaments
+        </a>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         CONTENT
+    ================================== -->
+
+
+    <div
+        id="tournament-content"
+        hidden
+    >
+
+
+        <!-- HERO -->
+
+
+        <section class="tournament-hero">
+
+
+            <div class="tournament-hero-copy">
+
+
+                <a
+                    class="tournament-back-link"
+                    href="one-off-tournaments.html"
+                >
+                    ← One-Off Tournaments
+                </a>
+
+
+                <div class="tournament-hero-topline">
+
+
+                    <span
+                        id="tournament-badge"
+                        class="tournament-badge"
+                    >
+                    </span>
+
+
+                    <span
+                        id="tournament-year"
+                        class="tournament-year"
+                    >
+                    </span>
+
+
+                </div>
+
+
+                <h1 id="tournament-name">
+                </h1>
+
+
+                <p
+                    id="tournament-purpose"
+                    class="tournament-purpose"
+                >
+                </p>
+
+
+                <span
+                    id="tournament-status"
+                    class="tournament-status"
+                >
+                </span>
+
+
+            </div>
+
+
+
+            <div class="tournament-hero-visual">
+
+
+                <img
+                    id="tournament-image"
+                    src=""
+                    alt=""
+                    hidden
+                >
+
+
+                <div
+                    id="tournament-image-placeholder"
+                    class="tournament-image-placeholder"
+                >
+
+
+                    <span>
+                        OWL
+                    </span>
+
+
+                    <strong id="tournament-placeholder-year">
+                    </strong>
+
+
+                    <small>
+                        FOUNDING SERIES
+                    </small>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- SUMMARY -->
+
+
+        <section class="tournament-summary-section">
+
+
+            <div class="tournament-section-heading">
+
+
+                <div>
+
+
+                    <p class="tournament-eyebrow">
+                        TOURNAMENT SCALE
+                    </p>
+
+
+                    <h2>
+                        The First Fight for Gold
+                    </h2>
+
+
+                </div>
+
+
+                <p>
+
+                    Ten championship brackets will determine the
+                    first titleholders in OWL history.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div
+                id="tournament-summary-grid"
+                class="tournament-summary-grid"
+            >
+            </div>
+
+
+        </section>
+
+
+
+        <!-- BRACKETS -->
+
+
+        <section class="tournament-brackets-section">
+
+
+            <div class="tournament-section-heading">
+
+
+                <div>
+
+
+                    <p class="tournament-eyebrow">
+                        CHAMPIONSHIP BRACKETS
+                    </p>
+
+
+                    <h2>
+                        Choose a Division
+                    </h2>
+
+
+                </div>
+
+
+                <p>
+
+                    Select a championship to view its participants,
+                    rounds, progress, results, and eventual inaugural
+                    champion.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div
+                id="tournament-bracket-groups"
+                class="tournament-bracket-groups"
+            >
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+</main>
+
+
+
+<footer class="site-footer">
+
+
+    <div>
+
+
+        <strong>
+            OWL Wrestling
+        </strong>
+
+
+        <p>
+            Ascension. Revolt. One world.
+        </p>
+
+
+    </div>
+
+
+</footer>
+
+
+
+<script src="js/app.js?v=signature-series-2"></script>
+
+<script src="js/tournament.js?v=1"></script>
+
+
+</body>
+
+
+</html>
