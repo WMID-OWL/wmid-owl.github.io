@@ -1134,6 +1134,138 @@ function renderRoundShell(
 
 }
 
+function renderTournamentBracketWinner(
+    bracket,
+    wrestlers,
+    teams
+) {
+
+
+    const winnerElement =
+
+        document.getElementById(
+            "tournament-bracket-winner"
+        );
+
+
+    const winnerStatus =
+
+        winnerElement.querySelector(
+            "span"
+        );
+
+
+    const winnerName =
+
+        winnerElement.querySelector(
+            "strong"
+        );
+
+
+    const winnerDetail =
+
+        winnerElement.querySelector(
+            "small"
+        );
+
+
+    const bracketSetup =
+
+        getSavedTournamentBracketSetup(
+            bracket
+        );
+
+
+    const winnerId =
+
+        bracketSetup.winnerId
+
+        ||
+
+        "";
+
+
+    if (
+        !winnerId
+    ) {
+
+
+        winnerElement.className =
+            "tournament-bracket-winner";
+
+
+        winnerStatus.textContent =
+            "TO BE CROWNED";
+
+
+        winnerName.textContent =
+            "—";
+
+
+        winnerDetail.textContent =
+            "Tournament winner";
+
+
+        return;
+
+    }
+
+
+    const winner =
+
+        getTournamentBracketEntrant(
+
+            bracket,
+
+            winnerId,
+
+            wrestlers,
+
+            teams
+
+        );
+
+
+    const winnerDisplayName =
+
+        winner?.name
+
+        ||
+
+        "Winner Unavailable";
+
+
+    const entrantDetail =
+
+        getTournamentBracketEntrantDetail(
+
+            bracket,
+
+            winner,
+
+            wrestlers
+
+        );
+
+
+    winnerElement.className =
+
+        "tournament-bracket-winner tournament-bracket-winner-crowned";
+
+
+    winnerStatus.textContent =
+        "TOURNAMENT WINNER";
+
+
+    winnerName.textContent =
+        winnerDisplayName;
+
+
+    winnerDetail.textContent =
+
+        `${bracket.name} • ${entrantDetail}`;
+
+}
 
 function renderTournamentBracketPage(
     tournament,
@@ -1241,7 +1373,18 @@ function renderTournamentBracketPage(
     );
 
 
-        renderRoundShell(
+            renderRoundShell(
+
+        bracket,
+
+        wrestlers,
+
+        teams
+
+    );
+
+
+    renderTournamentBracketWinner(
 
         bracket,
 
