@@ -1478,14 +1478,35 @@ const tournamentFieldReview =
     );
 
 
-const tournamentFieldSaveButton =
+const tournamentFieldReview =
 
     document.getElementById(
-        "cr-tournament-field-save"
+        "cr-tournament-field-review"
     );
 
 
-const tournamentFieldLockButton =
+const tournamentFieldChangeList =
+
+    document.getElementById(
+        "cr-tournament-field-change-list"
+    );
+
+
+const tournamentFieldError =
+
+    document.getElementById(
+        "cr-tournament-field-error"
+    );
+
+
+const tournamentFieldMessage =
+
+    document.getElementById(
+        "cr-tournament-field-message"
+    );
+
+
+const tournamentFieldSaveButton =
 
     document.getElementById(
         "cr-tournament-field-lock"
@@ -1659,8 +1680,28 @@ function resetTournamentFieldOverview() {
         "Select a bracket first";
 
 
-    tournamentFieldReview.hidden =
+        tournamentFieldReview.hidden =
         true;
+
+
+    tournamentFieldChangeList.innerHTML =
+        "";
+
+
+    tournamentFieldError.hidden =
+        true;
+
+
+    tournamentFieldError.textContent =
+        "";
+
+
+    tournamentFieldMessage.hidden =
+        true;
+
+
+    tournamentFieldMessage.textContent =
+        "";
 
 
     tournamentFieldSaveButton.disabled =
@@ -2098,6 +2139,832 @@ function getTournamentEntrantDetail(
 
 }
 
+function getStoredTournamentParticipants(
+    bracket
+) {
+
+
+    return Array.isArray(
+        bracket?.participants
+    )
+
+        ? bracket.participants
+
+        : [];
+
+}
+
+
+
+function tournamentParticipantListsMatch(
+    firstList,
+    secondList
+) {
+
+
+    if (
+        firstList.length !==
+        secondList.length
+    ) {
+
+        return false;
+
+    }
+
+
+    return firstList.every(
+
+        (
+            participantId,
+            index
+        ) =>
+
+            participantId ===
+            secondList[index]
+
+    );
+
+}
+
+
+
+function getTournamentEntrantDisplayName(
+    bracket,
+    participantId
+) {
+
+
+    const entrant =
+        getTournamentEntrantRecord(
+
+            bracket,
+
+            participantId
+
+        );
+
+
+    return entrant?.name ||
+        participantId;
+
+}
+
+
+
+function validateTournamentFieldDraft(
+    bracket
+) {
+
+
+    if (
+        !bracket
+    ) {
+
+        return "Select a championship bracket.";
+
+    }
+
+
+    if (
+        bracket.fieldLocked
+    ) {
+
+        return "This participant field is locked.";
+
+    }
+
+
+    const numericFieldSize =
+
+        Number(
+            bracket.fieldSize || 0
+        );
+
+
+    if (
+        !Number.isInteger(
+            numericFieldSize
+        )
+
+        ||
+
+        numericFieldSize <=
+            0
+    ) {
+
+        return "This bracket does not have a valid field size.";
+
+    }
+
+
+    if (
+        tournamentFieldDraftParticipants.length >
+            numericFieldSize
+    ) {
+
+        return `This bracket allows only ${numericFieldSize} participants.`;
+
+    }
+
+
+    const uniqueParticipantIds =
+        new Set(
+            tournamentFieldDraftParticipants
+        );
+
+
+    if (
+        uniqueParticipantIds.size !==
+        tournamentFieldDraftParticipants.length
+    ) {
+
+        return "The participant field contains a duplicate entrant.";
+
+    }
+
+
+    for (
+        const participantId
+        of tournamentFieldDraftParticipants
+    ) {
+
+
+        const entrant =
+            getTournamentEntrantRecord(
+
+                bracket,
+
+                participantId
+
+            );
+
+
+        if (
+            !entrant
+        ) {
+
+            return `Participant record not found: ${participantId}`;
+
+        }
+
+
+        const isEligible =
+
+            bracket.participantType ===
+                "team"
+
+                ? isTournamentTeamEligible(
+                    entrant,
+                    bracket
+                )
+
+                : isTournamentWrestlerEligible(
+                    entrant,
+                    bracket
+                );
+
+
+        if (
+            !isEligible
+        ) {
+
+            return `${entrant.name || participantId} is not eligible for this bracket.`;
+
+        }
+
+    }
+
+
+    return "";
+
+}
+
+
+
+function appendTournamentFieldReviewRow(
+    label,
+    value
+) {
+
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "control-room-health-item";
+
+
+    const rowLabel =
+        document.createElement(
+            "span"
+        );
+
+
+    rowLabel.textContent =
+        label;
+
+
+    const rowValue =
+        document.createElement(
+            "strong"
+        );
+
+
+    rowValue.textContent =
+        value;
+
+
+    row.append(
+
+        rowLabel,
+
+        rowValue
+
+    );
+
+
+    tournamentFieldChangeList.appendChild(
+        row
+    );
+
+}
+
+
+
+function renderTournamentFieldChangeReview(
+    bracket
+) {
+
+
+    const storedParticipants =
+        getStoredTournamentParticipants(
+            bracket
+        );
+
+
+    const draftMatchesStored =
+        tournamentParticipantListsMatch(
+
+            storedParticipants,
+
+            tournamentFieldDraftParticipants
+
+        );
+
+
+    tournamentFieldChangeList.innerHTML =
+        "";
+
+
+    tournamentFieldError.hidden =
+        true;
+
+
+    tournamentFieldError.textContent =
+        "";
+
+
+    if (
+        draftMatchesStored
+
+        ||
+
+        bracket.fieldLocked
+    ) {
+
+
+        tournamentFieldReview.hidden =
+            true;
+
+
+        tournamentFieldSaveButton.disabled =
+            true;
+
+
+        return;
+
+    }
+
+
+    const validationError =
+        validateTournamentFieldDraft(
+            bracket
+        );
+
+
+    const storedParticipantSet =
+        new Set(
+            storedParticipants
+        );
+
+
+    const draftParticipantSet =
+        new Set(
+            tournamentFieldDraftParticipants
+        );
+
+
+    const addedParticipantIds =
+
+        tournamentFieldDraftParticipants.filter(
+
+            participantId =>
+
+                !storedParticipantSet.has(
+                    participantId
+                )
+
+        );
+
+
+    const removedParticipantIds =
+
+        storedParticipants.filter(
+
+            participantId =>
+
+                !draftParticipantSet.has(
+                    participantId
+                )
+
+        );
+
+
+    appendTournamentFieldReviewRow(
+
+        "FIELD COUNT",
+
+        `${storedParticipants.length} → ${tournamentFieldDraftParticipants.length}`
+
+    );
+
+
+    addedParticipantIds.forEach(
+
+        participantId => {
+
+
+            appendTournamentFieldReviewRow(
+
+                "ADD",
+
+                getTournamentEntrantDisplayName(
+                    bracket,
+                    participantId
+                )
+
+            );
+
+        }
+
+    );
+
+
+    removedParticipantIds.forEach(
+
+        participantId => {
+
+
+            appendTournamentFieldReviewRow(
+
+                "REMOVE",
+
+                getTournamentEntrantDisplayName(
+                    bracket,
+                    participantId
+                )
+
+            );
+
+        }
+
+    );
+
+
+    tournamentFieldReview.hidden =
+        false;
+
+
+    if (
+        validationError
+    ) {
+
+
+        tournamentFieldError.textContent =
+            validationError;
+
+
+        tournamentFieldError.hidden =
+            false;
+
+
+        tournamentFieldSaveButton.disabled =
+            true;
+
+
+        return;
+
+    }
+
+
+    tournamentFieldSaveButton.disabled =
+        false;
+
+}
+
+
+
+async function writeTournamentDatabase(
+    tournamentDatabase
+) {
+
+
+    if (
+        !owlRepositoryHandle
+    ) {
+
+        throw new Error(
+            "The OWL repository is not connected."
+        );
+
+    }
+
+
+    const hasPermission =
+        await hasRepositoryPermission(
+            owlRepositoryHandle
+        );
+
+
+    if (
+        !hasPermission
+    ) {
+
+        throw new Error(
+            "Write permission was not granted for the OWL repository."
+        );
+
+    }
+
+
+    const dataDirectory =
+
+        await owlRepositoryHandle.getDirectoryHandle(
+            "data"
+        );
+
+
+    const tournamentFileHandle =
+
+        await dataDirectory.getFileHandle(
+            "tournaments.json"
+        );
+
+
+    const writable =
+
+        await tournamentFileHandle.createWritable();
+
+
+    try {
+
+
+        await writable.write(
+
+            `${JSON.stringify(
+                tournamentDatabase,
+                null,
+                2
+            )}\n`
+
+        );
+
+
+        await writable.close();
+
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        try {
+
+
+            await writable.abort();
+
+
+        }
+
+
+        catch (
+            abortError
+        ) {
+
+
+            console.warn(
+
+                "Could not abort tournament database write:",
+
+                abortError
+
+            );
+
+        }
+
+
+        throw error;
+
+    }
+
+}
+
+
+
+async function saveTournamentParticipantField() {
+
+
+    const tournament =
+        getSelectedControlRoomTournament();
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    if (
+        !tournament
+
+        ||
+
+        !bracket
+    ) {
+
+        return;
+
+    }
+
+
+    const validationError =
+        validateTournamentFieldDraft(
+            bracket
+        );
+
+
+    if (
+        validationError
+    ) {
+
+
+        tournamentFieldError.textContent =
+            validationError;
+
+
+        tournamentFieldError.hidden =
+            false;
+
+
+        tournamentFieldReview.hidden =
+            false;
+
+
+        tournamentFieldSaveButton.disabled =
+            true;
+
+
+        return;
+
+    }
+
+
+    const tournamentDatabase =
+        owlControlRoomData.tournaments;
+
+
+    if (
+        !tournamentDatabase
+
+        ||
+
+        Array.isArray(
+            tournamentDatabase
+        )
+
+        ||
+
+        !Array.isArray(
+            tournamentDatabase.tournaments
+        )
+    ) {
+
+        tournamentFieldError.textContent =
+            "The tournament database is not available.";
+
+
+        tournamentFieldError.hidden =
+            false;
+
+
+        tournamentFieldReview.hidden =
+            false;
+
+
+        return;
+
+    }
+
+
+    const selectedTournamentId =
+        tournament.id;
+
+
+    const selectedBracketId =
+        bracket.id;
+
+
+    const updatedTournamentDatabase = {
+
+        ...tournamentDatabase,
+
+        tournaments:
+
+            tournamentDatabase.tournaments.map(
+
+                storedTournament => {
+
+
+                    if (
+                        storedTournament.id !==
+                        selectedTournamentId
+                    ) {
+
+                        return storedTournament;
+
+                    }
+
+
+                    return {
+
+                        ...storedTournament,
+
+                        brackets:
+
+                            Array.isArray(
+                                storedTournament.brackets
+                            )
+
+                                ? storedTournament.brackets.map(
+
+                                    storedBracket => {
+
+
+                                        if (
+                                            storedBracket.id !==
+                                            selectedBracketId
+                                        ) {
+
+                                            return storedBracket;
+
+                                        }
+
+
+                                        return {
+
+                                            ...storedBracket,
+
+                                            participants: [
+
+                                                ...tournamentFieldDraftParticipants
+
+                                            ]
+
+                                        };
+
+                                    }
+
+                                )
+
+                                : []
+
+                    };
+
+                }
+
+            )
+
+    };
+
+
+    tournamentFieldSaveButton.disabled =
+        true;
+
+
+    tournamentFieldLockButton.disabled =
+        true;
+
+
+    tournamentFieldStatus.textContent =
+        "SAVING";
+
+
+    tournamentFieldMessage.hidden =
+        true;
+
+
+    tournamentFieldError.hidden =
+        true;
+
+
+    try {
+
+
+        await writeTournamentDatabase(
+            updatedTournamentDatabase
+        );
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        tournamentSelect.value =
+            selectedTournamentId;
+
+
+        populateTournamentBracketSelector();
+
+
+        tournamentBracketSelect.value =
+            selectedBracketId;
+
+
+        loadTournamentFieldDraft();
+
+
+        tournamentFieldStatus.textContent =
+            "READY";
+
+
+        tournamentFieldMessage.textContent =
+            "Participant field saved successfully.";
+
+
+        tournamentFieldMessage.hidden =
+            false;
+
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        console.error(
+
+            "Could not save tournament participant field:",
+
+            error
+
+        );
+
+
+        tournamentFieldStatus.textContent =
+            "ERROR";
+
+
+        tournamentFieldError.textContent =
+
+            error.message
+
+            ||
+
+            "The participant field could not be saved.";
+
+
+        tournamentFieldError.hidden =
+            false;
+
+
+        tournamentFieldReview.hidden =
+            false;
+
+
+        renderTournamentFieldChangeReview(
+            bracket
+        );
+
+    }
+
+}
 
 function loadTournamentFieldDraft() {
 
@@ -2132,6 +2999,10 @@ function loadTournamentFieldDraft() {
 function addTournamentFieldParticipant(
     participantId
 ) {
+
+
+    tournamentFieldMessage.hidden =
+        true;
 
 
     const bracket =
@@ -2192,6 +3063,10 @@ function addTournamentFieldParticipant(
 function removeTournamentFieldParticipant(
     participantId
 ) {
+
+
+    tournamentFieldMessage.hidden =
+        true;
 
 
     const bracket =
@@ -2855,15 +3730,7 @@ function renderTournamentFieldOverview() {
                     : "Search eligible wrestlers";
 
 
-    tournamentFieldSaveButton.disabled =
-        true;
-
-
-    tournamentFieldLockButton.disabled =
-        true;
-
-
-    tournamentFieldReview.hidden =
+        tournamentFieldLockButton.disabled =
         true;
 
 
@@ -2871,6 +3738,11 @@ function renderTournamentFieldOverview() {
 
 
     renderStoredTournamentParticipants(
+        bracket
+    );
+
+
+    renderTournamentFieldChangeReview(
         bracket
     );
 }
@@ -3387,6 +4259,15 @@ tournamentParticipantSearch.addEventListener(
     "input",
 
     renderTournamentEligibleParticipants
+
+);
+
+
+tournamentFieldSaveButton.addEventListener(
+
+    "click",
+
+    saveTournamentParticipantField
 
 );
 
