@@ -1513,6 +1513,62 @@ const tournamentFieldLockButton =
     );
 
 
+const tournamentBracketSetupStatus =
+
+    document.getElementById(
+        "cr-tournament-bracket-setup-status"
+    );
+
+
+const tournamentBracketRoundCount =
+
+    document.getElementById(
+        "cr-tournament-bracket-round-count"
+    );
+
+
+const tournamentBracketOpeningMatchCount =
+
+    document.getElementById(
+        "cr-tournament-bracket-opening-match-count"
+    );
+
+
+const tournamentBracketByeCount =
+
+    document.getElementById(
+        "cr-tournament-bracket-bye-count"
+    );
+
+
+const tournamentBracketSetupPreview =
+
+    document.getElementById(
+        "cr-tournament-bracket-setup-preview"
+    );
+
+
+const tournamentBracketPreviewButton =
+
+    document.getElementById(
+        "cr-tournament-bracket-preview"
+    );
+
+
+const tournamentBracketSaveButton =
+
+    document.getElementById(
+        "cr-tournament-bracket-save"
+    );
+
+
+const tournamentBracketSetupMessage =
+
+    document.getElementById(
+        "cr-tournament-bracket-setup-message"
+    );
+
+
 let tournamentFieldDraftParticipants =
     [];
 
@@ -1642,6 +1698,342 @@ function setTournamentManagerEmptyMessage(
 }
 
 
+function getTournamentBracketSetup(
+    bracket
+) {
+
+
+    const bracketSetup =
+        bracket?.bracketSetup;
+
+
+    if (
+        !bracketSetup
+
+        ||
+
+        Array.isArray(
+            bracketSetup
+        )
+
+        ||
+
+        typeof bracketSetup !==
+            "object"
+    ) {
+
+        return {
+
+            generated:
+                false,
+
+            generatedAt:
+                "",
+
+            rounds:
+                [],
+
+            winnerId:
+                ""
+
+        };
+
+    }
+
+
+    return bracketSetup;
+
+}
+
+
+
+function getTournamentBracketStructure(
+    fieldSize
+) {
+
+
+    const numericFieldSize =
+
+        Number(
+            fieldSize || 0
+        );
+
+
+    if (
+        !Number.isInteger(
+            numericFieldSize
+        )
+
+        ||
+
+        numericFieldSize <
+            2
+    ) {
+
+        return {
+
+            bracketSize:
+                0,
+
+            totalRounds:
+                0,
+
+            openingMatchCount:
+                0,
+
+            byeCount:
+                0
+
+        };
+
+    }
+
+
+    const bracketSize =
+
+        2 ** Math.ceil(
+
+            Math.log2(
+                numericFieldSize
+            )
+
+        );
+
+
+    const byeCount =
+
+        bracketSize -
+        numericFieldSize;
+
+
+    const openingMatchCount =
+
+        (
+            numericFieldSize -
+            byeCount
+        )
+
+        /
+
+        2;
+
+
+    const totalRounds =
+
+        Math.log2(
+            bracketSize
+        );
+
+
+    return {
+
+        bracketSize,
+
+        totalRounds,
+
+        openingMatchCount,
+
+        byeCount
+
+    };
+
+}
+
+
+
+function renderTournamentBracketSetupOverview(
+    bracket
+) {
+
+
+    if (
+        !bracket
+    ) {
+
+
+        tournamentBracketSetupStatus.textContent =
+            "NOT GENERATED";
+
+
+        tournamentBracketRoundCount.textContent =
+            "0";
+
+
+        tournamentBracketOpeningMatchCount.textContent =
+            "0";
+
+
+        tournamentBracketByeCount.textContent =
+            "0";
+
+
+        tournamentBracketPreviewButton.disabled =
+            true;
+
+
+        tournamentBracketSaveButton.disabled =
+            true;
+
+
+        tournamentBracketSetupMessage.hidden =
+            true;
+
+
+        setTournamentManagerEmptyMessage(
+
+            tournamentBracketSetupPreview,
+
+            "Select a championship bracket to view its bracket-setup status."
+
+        );
+
+
+        return;
+
+    }
+
+
+    const bracketSetup =
+        getTournamentBracketSetup(
+            bracket
+        );
+
+
+    const structure =
+        getTournamentBracketStructure(
+            bracket.fieldSize
+        );
+
+
+    const storedParticipants =
+        getStoredTournamentParticipants(
+            bracket
+        );
+
+
+    const fieldIsComplete =
+
+        storedParticipants.length ===
+        Number(
+            bracket.fieldSize || 0
+        );
+
+
+    tournamentBracketSetupStatus.textContent =
+
+        bracketSetup.generated
+
+            ? "GENERATED"
+
+            : "NOT GENERATED";
+
+
+    tournamentBracketRoundCount.textContent =
+        structure.totalRounds;
+
+
+    tournamentBracketOpeningMatchCount.textContent =
+        structure.openingMatchCount;
+
+
+    tournamentBracketByeCount.textContent =
+        structure.byeCount;
+
+
+    tournamentBracketSaveButton.disabled =
+        true;
+
+
+    tournamentBracketSetupMessage.hidden =
+        true;
+
+
+    if (
+        bracketSetup.generated
+    ) {
+
+
+        tournamentBracketPreviewButton.disabled =
+            true;
+
+
+        setTournamentManagerEmptyMessage(
+
+            tournamentBracketSetupPreview,
+
+            "A saved bracket setup already exists for this championship bracket."
+
+        );
+
+
+        return;
+
+    }
+
+
+    if (
+        !fieldIsComplete
+    ) {
+
+
+        tournamentBracketPreviewButton.disabled =
+            true;
+
+
+        setTournamentManagerEmptyMessage(
+
+            tournamentBracketSetupPreview,
+
+            "Complete and save the participant field before generating tournament matchups."
+
+        );
+
+
+        return;
+
+    }
+
+
+    if (
+        !bracket.fieldLocked
+    ) {
+
+
+        tournamentBracketPreviewButton.disabled =
+            true;
+
+
+        setTournamentManagerEmptyMessage(
+
+            tournamentBracketSetupPreview,
+
+            "Lock the completed participant field before generating tournament matchups."
+
+        );
+
+
+        return;
+
+    }
+
+
+    tournamentBracketPreviewButton.disabled =
+        false;
+
+
+    setTournamentManagerEmptyMessage(
+
+        tournamentBracketSetupPreview,
+
+        structure.byeCount > 0
+
+            ? `This field is ready for bracket setup. The opening round will contain ${structure.openingMatchCount} matches and ${structure.byeCount} byes.`
+
+            : `This field is ready for bracket setup. The opening round will contain ${structure.openingMatchCount} matches.`
+
+    );
+
+}
 
 function resetTournamentFieldOverview() {
 
@@ -1710,12 +2102,17 @@ function resetTournamentFieldOverview() {
         true;
 
 
-    tournamentFieldLockButton.textContent =
+       tournamentFieldLockButton.textContent =
         "Lock Completed Field";
 
 
     tournamentFieldLockButton.disabled =
         true;
+
+
+    renderTournamentBracketSetupOverview(
+        null
+    );
 
 
     setTournamentManagerEmptyMessage(
@@ -4191,7 +4588,12 @@ function renderTournamentFieldOverview() {
     );
 
 
-    updateTournamentFieldLockButton(
+        updateTournamentFieldLockButton(
+        bracket
+    );
+
+
+    renderTournamentBracketSetupOverview(
         bracket
     );
 
