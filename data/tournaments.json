@@ -1,0 +1,119 @@
+{
+  "tournaments": [
+    {
+      "id": "inaugural-championship-series",
+      "name": "The Inaugural Championship Series",
+      "year": 2026,
+      "status": "Upcoming",
+      "badge": "Founding Tournament",
+      "purpose": "Crown the first champions in OWL history and establish the inaugural titleholders who will forever represent the foundation of each division.",
+      "image": "",
+      "directoryStats": [
+        {
+          "value": "10",
+          "label": "Championship Brackets"
+        },
+        {
+          "value": "128",
+          "label": "Singles Competitor Slots"
+        },
+        {
+          "value": "44",
+          "label": "Tag Team Slots"
+        }
+      ],
+      "brackets": [
+        {
+          "id": "owl-world-championship",
+          "name": "OWL World Championship",
+          "brand": "Ascension",
+          "division": "Men's Singles",
+          "fieldSize": 16,
+          "fieldUnit": "Competitors",
+          "status": "Upcoming"
+        },
+        {
+          "id": "owl-womens-world-championship",
+          "name": "OWL Women's World Championship",
+          "brand": "Ascension",
+          "division": "Women's Singles",
+          "fieldSize": 16,
+          "fieldUnit": "Competitors",
+          "status": "Upcoming"
+        },
+        {
+          "id": "ascension-championship",
+          "name": "Ascension Championship",
+          "brand": "Ascension",
+          "division": "Men's Singles",
+          "fieldSize": 16,
+          "fieldUnit": "Competitors",
+          "status": "Upcoming"
+        },
+        {
+          "id": "womens-ascension-championship",
+          "name": "Women's Ascension Championship",
+          "brand": "Ascension",
+          "division": "Women's Singles",
+          "fieldSize": 16,
+          "fieldUnit": "Competitors",
+          "status": "Upcoming"
+        },
+        {
+          "id": "owl-heavyweight-championship",
+          "name": "OWL Heavyweight Championship",
+          "brand": "Revolt",
+          "division": "Men's Singles",
+          "fieldSize": 16,
+          "fieldUnit": "Competitors",
+          "status": "Upcoming"
+        },
+        {
+          "id": "owl-womens-heavyweight-championship",
+          "name": "OWL Women's Heavyweight Championship",
+          "brand": "Revolt",
+          "division": "Women's Singles",
+          "fieldSize": 16,
+          "fieldUnit": "Competitors",
+          "status": "Upcoming"
+        },
+        {
+          "id": "revolt-championship",
+          "name": "Revolt Championship",
+          "brand": "Revolt",
+          "division": "Men's Singles",
+          "fieldSize": 16,
+          "fieldUnit": "Competitors",
+          "status": "Upcoming"
+        },
+        {
+          "id": "womens-revolt-championship",
+          "name": "Women's Revolt Championship",
+          "brand": "Revolt",
+          "division": "Women's Singles",
+          "fieldSize": 16,
+          "fieldUnit": "Competitors",
+          "status": "Upcoming"
+        },
+        {
+          "id": "twin-talon-tag-team-championships",
+          "name": "Twin Talon Tag Team Championships",
+          "brand": "Shared",
+          "division": "Men's Tag Teams",
+          "fieldSize": 28,
+          "fieldUnit": "Teams",
+          "status": "Upcoming"
+        },
+        {
+          "id": "womens-twin-talon-tag-team-championships",
+          "name": "Women's Twin Talon Tag Team Championships",
+          "brand": "Shared",
+          "division": "Women's Tag Teams",
+          "fieldSize": 16,
+          "fieldUnit": "Teams",
+          "status": "Upcoming"
+        }
+      ]
+    }
+  ]
+}
