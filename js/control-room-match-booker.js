@@ -225,9 +225,16 @@ const crBookerSideFourWrestler = document.getElementById(
 // STATE
 // =================================
 
-let crBookerOriginalRecord = null;
+let crBookerOriginalRecord =
+    null;
 
-let crBookerPendingMatchId = "";
+
+let crBookerPendingMatchId =
+    "";
+
+
+let crBookerTournamentLinkContext =
+    null;
 
 
 // =================================
@@ -2140,8 +2147,13 @@ function crBookerRefreshTagSide(
 // =================================
 
 function crBookerClearForm() {
-  crBookerMatchType.value =
-    "Singles";
+
+    crBookerTournamentLinkContext =
+        null;
+
+
+    crBookerMatchType.value =
+        "Singles";
 
   crBookerOrder.value =
     "";
@@ -4044,6 +4056,499 @@ async function crBookerSaveMatch() {
   }
 }
 
+// =================================
+// TOURNAMENT MATCH INTAKE
+// =================================
+
+
+function crBookerGetTournamentIntakeEvent(
+    eventId
+) {
+
+
+    const event =
+
+        Array.isArray(
+            owlControlRoomData.events
+        )
+
+            ? owlControlRoomData.events.find(
+
+                storedEvent =>
+
+                    storedEvent.id ===
+                    eventId
+
+            )
+
+            : null;
+
+
+    if (
+        !event
+    ) {
+
+        return null;
+
+    }
+
+
+    if (
+        String(
+            event.status || ""
+        ).toLowerCase() ===
+            "completed"
+    ) {
+
+        return null;
+
+    }
+
+
+    return event;
+
+}
+
+
+
+function crBookerValidateTournamentIntake(
+    intake
+) {
+
+
+    if (
+        !intake
+
+        ||
+
+        Array.isArray(
+            intake
+        )
+
+        ||
+
+        typeof intake !==
+            "object"
+    ) {
+
+        return "Tournament match information was not provided.";
+
+    }
+
+
+    if (
+        intake.participantType !==
+            "wrestler"
+
+        &&
+
+        intake.participantType !==
+            "team"
+    ) {
+
+        return "Tournament participant type must be wrestler or team.";
+
+    }
+
+
+    if (
+        !intake.participantOneId
+
+        ||
+
+        !intake.participantTwoId
+    ) {
+
+        return "The tournament matchup does not have two participants.";
+
+    }
+
+
+    if (
+        intake.participantOneId ===
+        intake.participantTwoId
+    ) {
+
+        return "The same participant cannot appear on both sides.";
+
+    }
+
+
+    if (
+        !crBookerGetTournamentIntakeEvent(
+            intake.eventId
+        )
+    ) {
+
+        return "Select a valid non-completed hosting event.";
+
+    }
+
+
+    const cardOrder =
+        Number(
+            intake.order
+        );
+
+
+    if (
+        !Number.isInteger(
+            cardOrder
+        )
+
+        ||
+
+        cardOrder <
+            1
+    ) {
+
+        return "Tournament match card order must be a whole number greater than zero.";
+
+    }
+
+
+    if (
+        intake.participantType ===
+            "team"
+    ) {
+
+
+        const teamOne =
+            crBookerGetTeam(
+                intake.participantOneId
+            );
+
+
+        const teamTwo =
+            crBookerGetTeam(
+                intake.participantTwoId
+            );
+
+
+        if (
+            !teamOne
+
+            ||
+
+            !teamTwo
+        ) {
+
+            return "One or more tournament team records could not be found.";
+
+        }
+
+
+        if (
+            !Array.isArray(
+                teamOne.members
+            )
+
+            ||
+
+            teamOne.members.length !==
+                2
+
+            ||
+
+            !Array.isArray(
+                teamTwo.members
+            )
+
+            ||
+
+            teamTwo.members.length !==
+                2
+        ) {
+
+            return "Tournament tag-team matches require two official two-member teams.";
+
+        }
+
+
+        const sharedMember =
+
+            teamOne.members.some(
+
+                memberId =>
+
+                    teamTwo.members.includes(
+                        memberId
+                    )
+
+            );
+
+
+        if (
+            sharedMember
+        ) {
+
+            return "The two tournament teams cannot share a wrestler.";
+
+        }
+
+    }
+
+
+    else {
+
+
+        const wrestlerOne =
+            crBookerGetWrestler(
+                intake.participantOneId
+            );
+
+
+        const wrestlerTwo =
+            crBookerGetWrestler(
+                intake.participantTwoId
+            );
+
+
+        if (
+            !wrestlerOne
+
+            ||
+
+            !wrestlerTwo
+        ) {
+
+            return "One or more tournament wrestler records could not be found.";
+
+        }
+
+    }
+
+
+    return "";
+
+}
+
+
+
+function crBookerLoadTournamentMatch(
+    intake
+) {
+
+
+    const validationError =
+        crBookerValidateTournamentIntake(
+            intake
+        );
+
+
+    if (
+        validationError
+    ) {
+
+        throw new Error(
+            validationError
+        );
+
+    }
+
+
+    crBookerMode.value =
+        "create";
+
+
+    crBookerHandleModeChange();
+
+
+    crBookerEvent.value =
+        intake.eventId;
+
+
+    crBookerHandleEventChange();
+
+
+    crBookerMatchType.value =
+
+        intake.participantType ===
+            "team"
+
+            ? "Tag Team"
+
+            : "Singles";
+
+
+    crBookerOrder.value =
+        Number(
+            intake.order
+        );
+
+
+    crBookerStatusField.value =
+        "announced";
+
+
+    crBookerStipulation.value =
+        "";
+
+
+    crBookerStatusNote.value =
+        "";
+
+
+    const championshipId =
+        String(
+            intake.championshipId || ""
+        );
+
+
+    const championshipExists =
+
+        [
+
+            ...crBookerChampionship.options
+
+        ].some(
+
+            option =>
+
+                option.value ===
+                championshipId
+
+        );
+
+
+    crBookerChampionship.value =
+
+        championshipExists
+
+            ? championshipId
+
+            : "";
+
+
+    crBookerRefreshSideLayout();
+
+
+    if (
+        intake.participantType ===
+            "team"
+    ) {
+
+
+        crBookerSideOneMode.value =
+            "team";
+
+
+        crBookerSideTwoMode.value =
+            "team";
+
+
+        crBookerSideOneTeam.value =
+            intake.participantOneId;
+
+
+        crBookerSideTwoTeam.value =
+            intake.participantTwoId;
+
+
+        crBookerRefreshTagSide(
+            1
+        );
+
+
+        crBookerRefreshTagSide(
+            2
+        );
+
+    }
+
+
+    else {
+
+
+        crBookerSideOneWrestlerOne.value =
+            intake.participantOneId;
+
+
+        crBookerSideTwoWrestlerOne.value =
+            intake.participantTwoId;
+
+    }
+
+
+    crBookerTournamentLinkContext = {
+
+        tournamentId:
+            intake.tournamentId || "",
+
+        bracketId:
+            intake.bracketId || "",
+
+        bracketMatchId:
+            intake.bracketMatchId || "",
+
+        roundId:
+            intake.roundId || "",
+
+        roundOrder:
+            Number(
+                intake.roundOrder || 0
+            )
+
+    };
+
+
+    crBookerReview();
+
+
+    const matchBookerPanel =
+
+        document.getElementById(
+            "cr-tool-booker"
+        );
+
+
+    if (
+        matchBookerPanel
+    ) {
+
+
+        matchBookerPanel.scrollIntoView({
+
+            behavior:
+                "smooth",
+
+            block:
+                "start"
+
+        });
+
+    }
+
+
+    window.dispatchEvent(
+
+        new CustomEvent(
+
+            "owl-tournament-match-booker-loaded",
+
+            {
+
+                detail: {
+
+                    ...crBookerTournamentLinkContext,
+
+                    eventId:
+                        intake.eventId,
+
+                    order:
+                        Number(
+                            intake.order
+                        )
+
+                }
+
+            }
+
+        )
+
+    );
+
+}
 
 // =================================
 // INPUT EVENTS
@@ -4239,13 +4744,73 @@ crBookerSideTwoMode.addEventListener(
 
 
 crBookerSave.addEventListener(
-  "click",
-  crBookerSaveMatch,
+    "click",
+    crBookerSaveMatch
 );
 
 
 window.addEventListener(
-  "owl-control-room-data-loaded",
+
+    "owl-load-tournament-match",
+
+    event => {
+
+
+        try {
+
+
+            crBookerLoadTournamentMatch(
+
+                event.detail || {}
+
+            );
+
+
+        }
+
+
+        catch (
+            error
+        ) {
+
+
+            console.error(
+
+                "Could not load tournament match into Match Booker:",
+
+                error
+
+            );
+
+
+            crBookerSetStatus(
+                "LOAD FAILED"
+            );
+
+
+            crBookerShowMessage(
+
+                error.message
+
+                ||
+
+                "The tournament match could not be loaded.",
+
+                "save-error"
+
+            );
+
+        }
+
+    }
+
+);
+
+
+
+window.addEventListener(
+
+    "owl-control-room-data-loaded",
   () => {
     crBookerPopulateOptions();
 
