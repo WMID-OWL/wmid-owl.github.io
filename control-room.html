@@ -912,8 +912,147 @@
 
                 </div>
 
-                <p
+                                <p
                     id="cr-tournament-bracket-setup-message"
+                    class="cr-save-message"
+                    hidden
+                >
+                </p>
+
+            </div>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        MATCH BOOKING
+                    </span>
+
+                    <h3>
+                        Tournament Match Queue
+                    </h3>
+
+                    <p>
+                        Select a ready tournament matchup and load it into the existing Match Booker.
+                        Bye slots and matchups awaiting previous-round winners cannot be booked.
+                    </p>
+
+                </div>
+
+                <div class="cr-editor-top-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-tournament-match-select">
+                            TOURNAMENT MATCH
+                        </label>
+
+                        <select
+                            id="cr-tournament-match-select"
+                            disabled
+                        >
+
+                            <option value="">
+                                Select a Generated Bracket First
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-tournament-match-event">
+                            HOSTING EVENT
+                        </label>
+
+                        <select
+                            id="cr-tournament-match-event"
+                            disabled
+                        >
+
+                            <option value="">
+                                Select Tournament Match First
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-tournament-match-order">
+                            CARD ORDER
+                        </label>
+
+                        <input
+                            id="cr-tournament-match-order"
+                            type="number"
+                            min="1"
+                            step="1"
+                            disabled
+                        >
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            LINK STATUS
+                        </label>
+
+                        <div
+                            id="cr-tournament-match-link-status"
+                            class="cr-current-value"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="cr-tournament-match-booking-preview"
+                    class="cr-change-preview"
+                    hidden
+                >
+
+                    <span>
+                        REVIEW TOURNAMENT MATCH
+                    </span>
+
+                    <div
+                        id="cr-tournament-match-booking-details"
+                        class="cr-editor-change-list"
+                    >
+                    </div>
+
+                    <p
+                        id="cr-tournament-match-booking-error"
+                        class="cr-change-error"
+                        hidden
+                    >
+                    </p>
+
+                </div>
+
+                <div class="cr-manager-actions">
+
+                    <button
+                        id="cr-tournament-load-match-booker"
+                        class="control-room-button control-room-button-primary"
+                        type="button"
+                        disabled
+                    >
+                        Load Match into Match Booker
+                    </button>
+
+                </div>
+
+                <p
+                    id="cr-tournament-match-booking-message"
                     class="cr-save-message"
                     hidden
                 >
