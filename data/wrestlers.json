@@ -23,5 +23,33 @@
     "factionId": "",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "errol-capleton",
+    "name": "Errol Capleton",
+    "nickname": "Bad Mon",
+    "hometown": "Montego Bay, Jamaica",
+    "country": "Jamaica",
+    "countryCode": "JA",
+    "flag": "🇯🇲",
+    "brand": "Ascension",
+    "division": "Men",
+    "photo": "assets/images/wrestlers/errol-capleton.png",
+    "currentTitle": "",
+    "finisher": "BOMB-BACLAAT!",
+    "finisher2": "",
+    "finisherGif": "assets/images/finishers/errol-capleton-finisher-1.gif",
+    "finisher2Gif": "",
+    "signatureMoves": [
+      "ONE LOVE (harlem hangover)",
+      "SHOTTA (trouble in paradise)"
+    ],
+    "whyImHere": "Errol Capleton carries the rhythm, pride, and fighting spirit of Jamaica everywhere he goes. Known as “Bad Mon” and celebrated by many as the Pride of Jamaica, Capleton enters OWL determined to represent his homeland on the biggest stage possible. His energy is infectious, but opponents quickly learn that the smile disappears once the bell rings.\n\nCapleton relies on explosive speed, sharp instincts, and unpredictable strikes that can end a match before his opponent realizes they are in danger. One moment he is dancing just outside their reach; the next, they are staring up at the lights. He fights with confidence, heart, and the belief that every victory belongs not only to him, but to everyone back home cheering his name.",
+    "team": "",
+    "teamId": "",
+    "faction": "",
+    "factionId": "",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
