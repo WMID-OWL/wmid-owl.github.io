@@ -2587,26 +2587,26 @@ function updateTournamentFieldLockButton(
 ) {
 
 
-    tournamentFieldLockButton.textContent =
-        bracket.fieldLocked
-
-            ? "Participant Field Locked"
-
-            : "Lock Completed Field";
-
-
     if (
         bracket.fieldLocked
     ) {
 
 
+        tournamentFieldLockButton.textContent =
+            "Reopen Participant Field";
+
+
         tournamentFieldLockButton.disabled =
-            true;
+            false;
 
 
         return;
 
     }
+
+
+    tournamentFieldLockButton.textContent =
+        "Lock Completed Field";
 
 
     const numericFieldSize =
@@ -3055,6 +3055,360 @@ async function saveTournamentParticipantField() {
         renderTournamentFieldChangeReview(
             bracket
         );
+
+    }
+
+}
+async function toggleTournamentParticipantFieldLock() {
+
+
+    const tournament =
+        getSelectedControlRoomTournament();
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    if (
+        !tournament
+
+        ||
+
+        !bracket
+    ) {
+
+        return;
+
+    }
+
+
+    const shouldLock =
+        !Boolean(
+            bracket.fieldLocked
+        );
+
+
+    if (
+        shouldLock
+    ) {
+
+
+        const numericFieldSize =
+
+            Number(
+                bracket.fieldSize || 0
+            );
+
+
+        const storedParticipants =
+            getStoredTournamentParticipants(
+                bracket
+            );
+
+
+        const draftMatchesStored =
+            tournamentParticipantListsMatch(
+
+                storedParticipants,
+
+                tournamentFieldDraftParticipants
+
+            );
+
+
+        const validationError =
+            validateTournamentFieldDraft(
+                bracket
+            );
+
+
+        if (
+            validationError
+
+            ||
+
+            !draftMatchesStored
+
+            ||
+
+            storedParticipants.length !==
+                numericFieldSize
+        ) {
+
+
+            tournamentFieldError.textContent =
+
+                validationError
+
+                ||
+
+                "Save the complete participant field before locking it.";
+
+
+            tournamentFieldError.hidden =
+                false;
+
+
+            tournamentFieldReview.hidden =
+                false;
+
+
+            return;
+
+        }
+
+    }
+
+
+    const confirmationMessage =
+
+        shouldLock
+
+            ? `Lock the completed ${bracket.name} participant field? Entrants cannot be edited while it is locked.`
+
+            : `Reopen the ${bracket.name} participant field for editing?`;
+
+
+    const confirmed =
+        window.confirm(
+            confirmationMessage
+        );
+
+
+    if (
+        !confirmed
+    ) {
+
+        return;
+
+    }
+
+
+    const tournamentDatabase =
+        owlControlRoomData.tournaments;
+
+
+    if (
+        !tournamentDatabase
+
+        ||
+
+        Array.isArray(
+            tournamentDatabase
+        )
+
+        ||
+
+        !Array.isArray(
+            tournamentDatabase.tournaments
+        )
+    ) {
+
+
+        tournamentFieldError.textContent =
+            "The tournament database is not available.";
+
+
+        tournamentFieldError.hidden =
+            false;
+
+
+        tournamentFieldReview.hidden =
+            false;
+
+
+        return;
+
+    }
+
+
+    const selectedTournamentId =
+        tournament.id;
+
+
+    const selectedBracketId =
+        bracket.id;
+
+
+    const updatedTournamentDatabase = {
+
+        ...tournamentDatabase,
+
+        tournaments:
+
+            tournamentDatabase.tournaments.map(
+
+                storedTournament => {
+
+
+                    if (
+                        storedTournament.id !==
+                        selectedTournamentId
+                    ) {
+
+                        return storedTournament;
+
+                    }
+
+
+                    return {
+
+                        ...storedTournament,
+
+                        brackets:
+
+                            Array.isArray(
+                                storedTournament.brackets
+                            )
+
+                                ? storedTournament.brackets.map(
+
+                                    storedBracket => {
+
+
+                                        if (
+                                            storedBracket.id !==
+                                            selectedBracketId
+                                        ) {
+
+                                            return storedBracket;
+
+                                        }
+
+
+                                        return {
+
+                                            ...storedBracket,
+
+                                            fieldLocked:
+                                                shouldLock
+
+                                        };
+
+                                    }
+
+                                )
+
+                                : []
+
+                    };
+
+                }
+
+            )
+
+    };
+
+
+    tournamentFieldSaveButton.disabled =
+        true;
+
+
+    tournamentFieldLockButton.disabled =
+        true;
+
+
+    tournamentFieldStatus.textContent =
+
+        shouldLock
+
+            ? "LOCKING"
+
+            : "REOPENING";
+
+
+    tournamentFieldMessage.hidden =
+        true;
+
+
+    tournamentFieldError.hidden =
+        true;
+
+
+    try {
+
+
+        await writeTournamentDatabase(
+            updatedTournamentDatabase
+        );
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        tournamentSelect.value =
+            selectedTournamentId;
+
+
+        populateTournamentBracketSelector();
+
+
+        tournamentBracketSelect.value =
+            selectedBracketId;
+
+
+        loadTournamentFieldDraft();
+
+
+        tournamentFieldStatus.textContent =
+            "READY";
+
+
+        tournamentFieldMessage.textContent =
+
+            shouldLock
+
+                ? "Participant field locked successfully."
+
+                : "Participant field reopened successfully.";
+
+
+        tournamentFieldMessage.hidden =
+            false;
+
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        console.error(
+
+            "Could not update tournament field lock:",
+
+            error
+
+        );
+
+
+        tournamentFieldStatus.textContent =
+            "ERROR";
+
+
+        tournamentFieldError.textContent =
+
+            error.message
+
+            ||
+
+            "The participant field lock could not be updated.";
+
+
+        tournamentFieldError.hidden =
+            false;
+
+
+        tournamentFieldReview.hidden =
+            false;
+
+
+        renderTournamentFieldOverview();
 
     }
 
@@ -4364,6 +4718,15 @@ tournamentFieldSaveButton.addEventListener(
     "click",
 
     saveTournamentParticipantField
+
+);
+
+
+tournamentFieldLockButton.addEventListener(
+
+    "click",
+
+    toggleTournamentParticipantFieldLock
 
 );
 
