@@ -30,7 +30,8 @@
     <a class="cr-tool-jump-link" href="#cr-tool-wrestlers">Wrestlers</a>
     <a class="cr-tool-jump-link" href="#cr-tool-teams">Teams</a>
     <a class="cr-tool-jump-link" href="#cr-tool-factions">Factions</a>
-   <a class="cr-tool-jump-link" href="#cr-tool-events">Events</a>
+      <a class="cr-tool-jump-link" href="#cr-tool-events">Events</a>
+<a class="cr-tool-jump-link" href="#cr-tool-tournaments">Tournaments</a>
 <a class="cr-tool-jump-link" href="#cr-tool-media">Media</a>
 <a class="cr-tool-jump-link" href="#cr-tool-booker">Match Booker</a>
    <a class="cr-tool-jump-link" href="#cr-tool-results">Results</a>
@@ -510,9 +511,304 @@
 
             </div>
 
-            <div id="cr-event-change-preview" class="cr-change-preview" hidden><span>REVIEW CHANGES</span><div id="cr-event-change-list" class="cr-editor-change-list"></div><p id="cr-event-conflict-message" class="cr-change-error" hidden></p></div>
+                        <div id="cr-event-change-preview" class="cr-change-preview" hidden><span>REVIEW CHANGES</span><div id="cr-event-change-list" class="cr-editor-change-list"></div><p id="cr-event-conflict-message" class="cr-change-error" hidden></p></div>
             <div class="cr-manager-actions"><button id="cr-save-event" class="control-room-button control-room-button-primary" type="button" disabled>Save Event Changes</button></div>
            <p id="cr-event-editor-message" class="cr-save-message" hidden></p>
+        </section>
+
+        <!-- =================================
+             TOURNAMENT FIELD MANAGER
+        ================================== -->
+
+        <section
+            id="cr-tool-tournaments"
+            class="control-room-panel"
+        >
+
+            <div class="control-room-panel-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        TOURNAMENT MANAGEMENT
+                    </p>
+
+                    <h2>
+                        Tournament Field Manager
+                    </h2>
+
+                </div>
+
+                <span
+                    id="cr-tournament-field-status"
+                    class="control-room-health-summary"
+                >
+                    WAITING
+                </span>
+
+            </div>
+
+            <p class="cr-editor-note">
+                Build and review the participant field for each tournament bracket before generating matchups.
+            </p>
+
+            <div class="cr-editor-top-grid">
+
+                <div class="cr-form-group">
+
+                    <label for="cr-tournament-select">
+                        TOURNAMENT
+                    </label>
+
+                    <select
+                        id="cr-tournament-select"
+                        disabled
+                    >
+
+                        <option value="">
+                            Connect the OWL Folder
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label for="cr-tournament-bracket-select">
+                        CHAMPIONSHIP BRACKET
+                    </label>
+
+                    <select
+                        id="cr-tournament-bracket-select"
+                        disabled
+                    >
+
+                        <option value="">
+                            Select Tournament First
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label>
+                        FIELD STATUS
+                    </label>
+
+                    <div
+                        id="cr-tournament-current-status"
+                        class="cr-current-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        FIELD OVERVIEW
+                    </span>
+
+                    <h3>
+                        Bracket Requirements
+                    </h3>
+
+                </div>
+
+                <div class="control-room-stat-grid">
+
+                    <article class="control-room-stat-card">
+
+                        <span>
+                            FIELD SIZE
+                        </span>
+
+                        <strong id="cr-tournament-field-size">
+                            0
+                        </strong>
+
+                    </article>
+
+                    <article class="control-room-stat-card">
+
+                        <span>
+                            SELECTED
+                        </span>
+
+                        <strong id="cr-tournament-selected-count">
+                            0
+                        </strong>
+
+                    </article>
+
+                    <article class="control-room-stat-card">
+
+                        <span>
+                            REMAINING
+                        </span>
+
+                        <strong id="cr-tournament-remaining-count">
+                            0
+                        </strong>
+
+                    </article>
+
+                    <article class="control-room-stat-card">
+
+                        <span>
+                            FIELD LOCK
+                        </span>
+
+                        <strong id="cr-tournament-lock-state">
+                            OPEN
+                        </strong>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        ELIGIBLE ENTRANTS
+                    </span>
+
+                    <h3>
+                        Available Participants
+                    </h3>
+
+                    <p>
+                        Only wrestlers or official teams eligible for the selected bracket will appear here.
+                    </p>
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label for="cr-tournament-participant-search">
+                        SEARCH ELIGIBLE PARTICIPANTS
+                    </label>
+
+                    <input
+                        id="cr-tournament-participant-search"
+                        type="search"
+                        autocomplete="off"
+                        placeholder="Select a bracket first"
+                        disabled
+                    >
+
+                </div>
+
+                <div
+                    id="cr-tournament-eligible-list"
+                    class="cr-segment-participant-list"
+                >
+
+                    <p class="cr-landscape-entry-empty">
+                        Select a tournament and championship bracket to view eligible participants.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        SELECTED FIELD
+                    </span>
+
+                    <h3>
+                        Current Participants
+                    </h3>
+
+                    <p>
+                        Participants remain editable until the completed field is locked.
+                    </p>
+
+                </div>
+
+                <div
+                    id="cr-tournament-selected-list"
+                    class="cr-segment-history-list"
+                >
+
+                    <p class="cr-landscape-entry-empty">
+                        No bracket selected.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div
+                id="cr-tournament-field-review"
+                class="cr-change-preview"
+                hidden
+            >
+
+                <span>
+                    REVIEW FIELD CHANGES
+                </span>
+
+                <div
+                    id="cr-tournament-field-change-list"
+                    class="cr-editor-change-list"
+                >
+                </div>
+
+                <p
+                    id="cr-tournament-field-error"
+                    class="cr-change-error"
+                    hidden
+                >
+                </p>
+
+            </div>
+
+            <div class="cr-manager-actions">
+
+                <button
+                    id="cr-tournament-field-save"
+                    class="control-room-button control-room-button-primary"
+                    type="button"
+                    disabled
+                >
+                    Save Participant Field
+                </button>
+
+                <button
+                    id="cr-tournament-field-lock"
+                    class="control-room-button"
+                    type="button"
+                    disabled
+                >
+                    Lock Completed Field
+                </button>
+
+            </div>
+
+            <p
+                id="cr-tournament-field-message"
+                class="cr-save-message"
+                hidden
+            >
+            </p>
+
         </section>
 
         <!-- =================================
