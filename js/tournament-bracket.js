@@ -644,6 +644,45 @@ function getTournamentBracketMatchSideLabel(
 }
 
 
+function getTournamentBracketMatchWinnerLabel(
+    bracket,
+    match,
+    wrestlers,
+    teams
+) {
+
+
+    if (
+        !match?.winnerId
+    ) {
+
+        return "";
+
+    }
+
+
+    const winner =
+
+        getTournamentBracketEntrant(
+
+            bracket,
+
+            match.winnerId,
+
+            wrestlers,
+
+            teams
+
+        );
+
+
+    return winner?.name
+
+        ||
+
+        "Winner Unavailable";
+
+}
 
 function renderPendingTournamentRounds(
     bracket,
@@ -860,13 +899,51 @@ function renderRoundShell(
                                     );
 
 
-                                const matchupLabel =
+                                                                const matchupLabel =
 
                                     match.isBye
 
                                         ? `${participantOneLabel} — BYE`
 
                                         : `${participantOneLabel} vs ${participantTwoLabel}`;
+
+
+                                const winnerLabel =
+
+                                    getTournamentBracketMatchWinnerLabel(
+
+                                        bracket,
+
+                                        match,
+
+                                        wrestlers,
+
+                                        teams
+
+                                    );
+
+
+                                const isCompletedMatch =
+
+                                    Boolean(
+                                        winnerLabel
+                                    )
+
+                                    &&
+
+                                    !match.isBye;
+
+
+                                const isTournamentWinner =
+
+                                    Boolean(
+                                        winnerLabel
+                                    )
+
+                                    &&
+
+                                    bracketSetup.winnerId ===
+                                        match.winnerId;
 
 
                                 const matchNumber =
@@ -881,9 +958,74 @@ function renderRoundShell(
                                         1;
 
 
+                                const matchClassName =
+
+                                    [
+
+                                        "tournament-round-match",
+
+                                        match.isBye
+
+                                            ? "tournament-round-match-bye"
+
+                                            : "",
+
+                                        isCompletedMatch
+
+                                            ? "tournament-round-match-completed"
+
+                                            : "",
+
+                                        isTournamentWinner
+
+                                            ? "tournament-round-match-champion"
+
+                                            : ""
+
+                                    ]
+
+                                        .filter(
+                                            Boolean
+                                        )
+
+                                        .join(
+                                            " "
+                                        );
+
+
+                                const resultPrefix =
+
+                                    match.isBye
+
+                                        ? "ADVANCES"
+
+                                        : isTournamentWinner
+
+                                            ? "TOURNAMENT WINNER"
+
+                                            : "WINNER";
+
+
+                                const resultName =
+
+                                    winnerLabel
+
+                                    ||
+
+                                    (
+
+                                        match.isBye
+
+                                            ? participantOneLabel
+
+                                            : ""
+
+                                    );
+
+
                                 return `
 
-                                    <article class="tournament-round-match">
+                                    <article class="${matchClassName}">
 
                                         <span>
                                             ${
@@ -891,7 +1033,11 @@ function renderRoundShell(
 
                                                     ? "BYE"
 
-                                                    : `MATCH ${matchNumber}`
+                                                    : isCompletedMatch
+
+                                                        ? `MATCH ${matchNumber} • COMPLETE`
+
+                                                        : `MATCH ${matchNumber}`
                                             }
                                         </span>
 
@@ -900,6 +1046,28 @@ function renderRoundShell(
                                                 matchupLabel
                                             )}
                                         </strong>
+
+                                        ${
+                                            resultName
+
+                                                ? `
+
+                                                    <small class="tournament-round-match-result">
+
+                                                        ${escapeTournamentBracketText(
+                                                            resultPrefix
+                                                        )}:
+
+                                                        ${escapeTournamentBracketText(
+                                                            resultName
+                                                        )}
+
+                                                    </small>
+
+                                                `
+
+                                                : ""
+                                        }
 
                                     </article>
 
