@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "id": "jordan-pack",
+    "name": "Jordan Pack",
+    "nickname": "The Mad Wolf",
+    "hometown": "Durango, CO",
+    "country": "",
+    "countryCode": "US",
+    "flag": "🇺🇸",
+    "brand": "Ascension",
+    "division": "Men",
+    "photo": "assets/images/wrestlers/jordan-pack.png",
+    "currentTitle": "",
+    "finisher": "Pack Mentality",
+    "finisher2": "",
+    "finisherGif": "",
+    "finisher2Gif": "",
+    "signatureMoves": [
+      "Tour Of The Woods"
+    ],
+    "whyImHere": "Jordan Pack did not come to OWL for fame, championships, or acceptance. Known only as “The Mad Wolf,” Pack emerged from the woods of Durango, Colorado, where rumors claim he was raised among wolves. Whether those stories are true remains unknown—and Pack has never cared enough to explain himself.\n\nA loner by nature, he enters the ring wearing a wolf headdress and a straitjacket, unleashing years of frustration through overwhelming strength and brutal violence. Pack displays the instincts of a predator: patient, territorial, relentless, and always ready to strike. Wrestling gives him a place to release the rage that has followed him out of the wilderness. He is not here to belong. He is here to hunt.",
+    "team": "",
+    "teamId": "",
+    "faction": "",
+    "factionId": "",
+    "championshipsHeld": [],
+    "awards": []
+  }
+]
