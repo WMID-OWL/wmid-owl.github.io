@@ -931,7 +931,46 @@ function crResultsGetWinnerSideMembers(
 
 }
 
+function crResultsIsTournamentMatch(
+    match =
+        crResultsSelectedMatch
+) {
 
+
+    const tournamentLink =
+        match?.tournamentLink;
+
+
+    return Boolean(
+
+        tournamentLink
+
+        &&
+
+        !Array.isArray(
+            tournamentLink
+        )
+
+        &&
+
+        typeof tournamentLink ===
+            "object"
+
+        &&
+
+        tournamentLink.tournamentId
+
+        &&
+
+        tournamentLink.bracketId
+
+        &&
+
+        tournamentLink.bracketMatchId
+
+    );
+
+}
 
 // =================================
 // EVENT AND MATCH OPTIONS
@@ -5365,6 +5404,29 @@ function crResultsValidateStandard(
     errors
 ) {
 
+
+    if (
+        crResultsIsTournamentMatch()
+
+        &&
+
+        form.resultType !==
+            "win"
+    ) {
+
+
+        errors.push(
+
+            "Tournament matches require a winner so the bracket can advance."
+
+        );
+
+
+        return;
+
+    }
+
+
     if (
         form.resultType !== "win"
     ) {
@@ -6407,9 +6469,15 @@ function crResultsLoadSelectedMatch() {
     crResultsPopulateWinnerControls();
 
 
-    if (
+        if (
         CR_RESULTS_FORCED_WIN_STIPULATIONS.has(
             match.stipulation
+        )
+
+        ||
+
+        crResultsIsTournamentMatch(
+            match
         )
     ) {
 
