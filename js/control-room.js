@@ -1478,13 +1478,6 @@ const tournamentFieldReview =
     );
 
 
-const tournamentFieldReview =
-
-    document.getElementById(
-        "cr-tournament-field-review"
-    );
-
-
 const tournamentFieldChangeList =
 
     document.getElementById(
@@ -1509,8 +1502,17 @@ const tournamentFieldMessage =
 const tournamentFieldSaveButton =
 
     document.getElementById(
+        "cr-tournament-field-save"
+    );
+
+
+const tournamentFieldLockButton =
+
+    document.getElementById(
         "cr-tournament-field-lock"
     );
+
+
 let tournamentFieldDraftParticipants =
     [];
 
