@@ -1687,6 +1687,710 @@ function resetTournamentFieldOverview() {
 
 
 
+function getTournamentWrestlers() {
+
+
+    return Array.isArray(
+        owlControlRoomData.wrestlers
+    )
+
+        ? owlControlRoomData.wrestlers
+
+        : [];
+
+}
+
+
+
+function getTournamentTeams() {
+
+
+    return Array.isArray(
+        owlControlRoomData.teams
+    )
+
+        ? owlControlRoomData.teams
+
+        : [];
+
+}
+
+
+
+function getTournamentWrestlerById(
+    wrestlerId
+) {
+
+
+    return getTournamentWrestlers().find(
+
+        wrestler =>
+
+            wrestler.id ===
+            wrestlerId
+
+    ) || null;
+
+}
+
+
+
+function getTournamentTeamById(
+    teamId
+) {
+
+
+    return getTournamentTeams().find(
+
+        team =>
+
+            team.id ===
+            teamId
+
+    ) || null;
+
+}
+
+
+
+function getTournamentBracketGender(
+    bracket
+) {
+
+
+    const division =
+        normalize(
+            bracket?.division
+        );
+
+
+    if (
+        division.includes(
+            "women"
+        )
+    ) {
+
+        return "women";
+
+    }
+
+
+    if (
+        division.includes(
+            "men"
+        )
+    ) {
+
+        return "men";
+
+    }
+
+
+    return "";
+
+}
+
+
+
+function isTournamentWrestlerEligible(
+    wrestler,
+    bracket
+) {
+
+
+    const requiredGender =
+        getTournamentBracketGender(
+            bracket
+        );
+
+
+    if (
+        !requiredGender
+
+        ||
+
+        normalize(
+            wrestler.division
+        ) !==
+            requiredGender
+    ) {
+
+        return false;
+
+    }
+
+
+    const bracketBrand =
+        normalize(
+            bracket.brand
+        );
+
+
+    if (
+        !bracketBrand
+
+        ||
+
+        bracketBrand ===
+            "shared"
+
+        ||
+
+        bracketBrand ===
+            "owl"
+    ) {
+
+        return true;
+
+    }
+
+
+    return (
+
+        normalize(
+            wrestler.brand
+        )
+
+        ===
+
+        bracketBrand
+
+    );
+
+}
+
+
+
+function isTournamentTeamEligible(
+    team,
+    bracket
+) {
+
+
+    const members =
+
+        Array.isArray(
+            team.members
+        )
+
+            ? team.members
+
+            : [];
+
+
+    if (
+        members.length !==
+        2
+    ) {
+
+        return false;
+
+    }
+
+
+    const memberRecords =
+
+        members.map(
+            getTournamentWrestlerById
+        );
+
+
+    if (
+        memberRecords.some(
+            member => !member
+        )
+    ) {
+
+        return false;
+
+    }
+
+
+    const requiredGender =
+        getTournamentBracketGender(
+            bracket
+        );
+
+
+    if (
+        !requiredGender
+
+        ||
+
+        !memberRecords.every(
+
+            member =>
+
+                normalize(
+                    member.division
+                )
+
+                ===
+
+                requiredGender
+
+        )
+    ) {
+
+        return false;
+
+    }
+
+
+    const bracketBrand =
+        normalize(
+            bracket.brand
+        );
+
+
+    if (
+        !bracketBrand
+
+        ||
+
+        bracketBrand ===
+            "shared"
+
+        ||
+
+        bracketBrand ===
+            "owl"
+    ) {
+
+        return true;
+
+    }
+
+
+    return (
+
+        normalize(
+            team.brand
+        )
+
+        ===
+
+        bracketBrand
+
+    );
+
+}
+
+
+
+function getTournamentEntrantRecord(
+    bracket,
+    participantId
+) {
+
+
+    if (
+        bracket.participantType ===
+        "team"
+    ) {
+
+        return getTournamentTeamById(
+            participantId
+        );
+
+    }
+
+
+    return getTournamentWrestlerById(
+        participantId
+    );
+
+}
+
+
+
+function getTournamentEntrantDetail(
+    bracket,
+    entrant
+) {
+
+
+    if (
+        !entrant
+    ) {
+
+        return "Database record not found";
+
+    }
+
+
+    if (
+        bracket.participantType ===
+        "team"
+    ) {
+
+
+        const memberNames =
+
+            (
+                Array.isArray(
+                    entrant.members
+                )
+
+                    ? entrant.members
+
+                    : []
+            )
+
+                .map(
+
+                    memberId =>
+
+                        getTournamentWrestlerById(
+                            memberId
+                        )?.name
+
+                        ||
+
+                        memberId
+
+                )
+
+                .join(
+                    " & "
+                );
+
+
+        return [
+
+            memberNames,
+
+            entrant.brand || "OWL"
+
+        ]
+
+            .filter(
+                Boolean
+            )
+
+            .join(
+                " • "
+            );
+
+    }
+
+
+    return [
+
+        entrant.brand,
+
+        entrant.division
+
+    ]
+
+        .filter(
+            Boolean
+        )
+
+        .join(
+            " • "
+        );
+
+}
+
+
+
+function getEligibleTournamentEntrants(
+    bracket
+) {
+
+
+    const selectedParticipantIds =
+        new Set(
+
+            Array.isArray(
+                bracket.participants
+            )
+
+                ? bracket.participants
+
+                : []
+
+        );
+
+
+    const entrants =
+
+        bracket.participantType ===
+        "team"
+
+            ? getTournamentTeams().filter(
+
+                team =>
+
+                    !selectedParticipantIds.has(
+                        team.id
+                    )
+
+                    &&
+
+                    isTournamentTeamEligible(
+                        team,
+                        bracket
+                    )
+
+            )
+
+            : getTournamentWrestlers().filter(
+
+                wrestler =>
+
+                    !selectedParticipantIds.has(
+                        wrestler.id
+                    )
+
+                    &&
+
+                    isTournamentWrestlerEligible(
+                        wrestler,
+                        bracket
+                    )
+
+            );
+
+
+    return entrants.sort(
+
+        (
+            entrantA,
+            entrantB
+        ) =>
+
+            String(
+                entrantA.name || entrantA.id
+            ).localeCompare(
+
+                String(
+                    entrantB.name || entrantB.id
+                )
+
+            )
+
+    );
+
+}
+
+
+
+function renderTournamentEligibleParticipants() {
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    if (
+        !bracket
+    ) {
+
+
+        setTournamentManagerEmptyMessage(
+
+            tournamentEligibleList,
+
+            "Select a tournament and championship bracket to view eligible participants."
+
+        );
+
+
+        return;
+
+    }
+
+
+    if (
+        bracket.fieldLocked
+    ) {
+
+
+        setTournamentManagerEmptyMessage(
+
+            tournamentEligibleList,
+
+            "This participant field is locked."
+
+        );
+
+
+        return;
+
+    }
+
+
+    const searchQuery =
+        normalize(
+            tournamentParticipantSearch.value
+        );
+
+
+    const eligibleEntrants =
+
+        getEligibleTournamentEntrants(
+            bracket
+        )
+
+            .filter(
+
+                entrant => {
+
+
+                    if (
+                        !searchQuery
+                    ) {
+
+                        return true;
+
+                    }
+
+
+                    const detail =
+                        getTournamentEntrantDetail(
+                            bracket,
+                            entrant
+                        );
+
+
+                    return normalize(
+
+                        [
+
+                            entrant.name,
+
+                            entrant.id,
+
+                            detail
+
+                        ].join(
+                            " "
+                        )
+
+                    ).includes(
+                        searchQuery
+                    );
+
+                }
+
+            );
+
+
+    if (
+        eligibleEntrants.length ===
+        0
+    ) {
+
+
+        setTournamentManagerEmptyMessage(
+
+            tournamentEligibleList,
+
+            searchQuery
+
+                ? "No eligible participants match this search."
+
+                : "No eligible participants are available for this bracket."
+
+        );
+
+
+        return;
+
+    }
+
+
+    tournamentEligibleList.innerHTML =
+        "";
+
+
+    eligibleEntrants.forEach(
+
+        entrant => {
+
+
+            const entrantRow =
+                document.createElement(
+                    "div"
+                );
+
+
+            entrantRow.className =
+                "control-room-health-item";
+
+
+            const entrantIdentity =
+                document.createElement(
+                    "div"
+                );
+
+
+            const entrantName =
+                document.createElement(
+                    "strong"
+                );
+
+
+            entrantName.textContent =
+                entrant.name ||
+                entrant.id;
+
+
+            const entrantDetail =
+                document.createElement(
+                    "span"
+                );
+
+
+            entrantDetail.textContent =
+                getTournamentEntrantDetail(
+                    bracket,
+                    entrant
+                );
+
+
+            entrantIdentity.append(
+
+                entrantName,
+
+                entrantDetail
+
+            );
+
+
+            const eligibilityLabel =
+                document.createElement(
+                    "strong"
+                );
+
+
+            eligibilityLabel.textContent =
+                "ELIGIBLE";
+
+
+            entrantRow.append(
+
+                entrantIdentity,
+
+                eligibilityLabel
+
+            );
+
+
+            tournamentEligibleList.appendChild(
+                entrantRow
+            );
+
+        }
+
+    );
+
+}
+
+
+
 function renderStoredTournamentParticipants(
     bracket
 ) {
@@ -1735,6 +2439,16 @@ function renderStoredTournamentParticipants(
         ) => {
 
 
+            const entrant =
+                getTournamentEntrantRecord(
+
+                    bracket,
+
+                    participantId
+
+                );
+
+
             const participantRow =
                 document.createElement(
                     "div"
@@ -1756,21 +2470,57 @@ function renderStoredTournamentParticipants(
                 `Slot ${index + 1}`;
 
 
-            const participantValue =
+            const participantIdentity =
+                document.createElement(
+                    "div"
+                );
+
+
+            const participantName =
                 document.createElement(
                     "strong"
                 );
 
 
-            participantValue.textContent =
+            participantName.textContent =
+
+                entrant?.name
+
+                ||
+
                 participantId;
+
+
+            const participantDetail =
+                document.createElement(
+                    "span"
+                );
+
+
+            participantDetail.textContent =
+                getTournamentEntrantDetail(
+
+                    bracket,
+
+                    entrant
+
+                );
+
+
+            participantIdentity.append(
+
+                participantName,
+
+                participantDetail
+
+            );
 
 
             participantRow.append(
 
                 participantNumber,
 
-                participantValue
+                participantIdentity
 
             );
 
@@ -1864,12 +2614,14 @@ function renderTournamentFieldOverview() {
             : "OPEN";
 
 
-    tournamentParticipantSearch.value =
+        tournamentParticipantSearch.value =
         "";
 
 
     tournamentParticipantSearch.disabled =
-        true;
+        Boolean(
+            bracket.fieldLocked
+        );
 
 
     tournamentParticipantSearch.placeholder =
@@ -1878,7 +2630,12 @@ function renderTournamentFieldOverview() {
 
             ? "This participant field is locked"
 
-            : "Participant selection will be connected next";
+            : bracket.participantType ===
+                "team"
+
+                ? "Search eligible teams"
+
+                : "Search eligible wrestlers";
 
 
     tournamentFieldSaveButton.disabled =
@@ -1893,23 +2650,12 @@ function renderTournamentFieldOverview() {
         true;
 
 
-    setTournamentManagerEmptyMessage(
-
-        tournamentEligibleList,
-
-        bracket.fieldLocked
-
-            ? "This participant field is locked."
-
-            : "Eligible participant loading will be connected in the next step."
-
-    );
+    renderTournamentEligibleParticipants();
 
 
     renderStoredTournamentParticipants(
         bracket
     );
-
 }
 
 
@@ -2416,6 +3162,15 @@ tournamentBracketSelect.addEventListener(
     "change",
 
     renderTournamentFieldOverview
+
+);
+
+
+tournamentParticipantSearch.addEventListener(
+
+    "input",
+
+    renderTournamentEligibleParticipants
 
 );
 
