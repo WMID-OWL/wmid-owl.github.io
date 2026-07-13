@@ -1706,8 +1706,12 @@ function resetTournamentFieldOverview() {
         "";
 
 
-    tournamentFieldSaveButton.disabled =
+        tournamentFieldSaveButton.disabled =
         true;
+
+
+    tournamentFieldLockButton.textContent =
+        "Lock Completed Field";
 
 
     tournamentFieldLockButton.disabled =
@@ -2578,6 +2582,94 @@ function renderTournamentFieldChangeReview(
 }
 
 
+function updateTournamentFieldLockButton(
+    bracket
+) {
+
+
+    tournamentFieldLockButton.textContent =
+        bracket.fieldLocked
+
+            ? "Participant Field Locked"
+
+            : "Lock Completed Field";
+
+
+    if (
+        bracket.fieldLocked
+    ) {
+
+
+        tournamentFieldLockButton.disabled =
+            true;
+
+
+        return;
+
+    }
+
+
+    const numericFieldSize =
+
+        Number(
+            bracket.fieldSize || 0
+        );
+
+
+    const storedParticipants =
+        getStoredTournamentParticipants(
+            bracket
+        );
+
+
+    const draftMatchesStored =
+        tournamentParticipantListsMatch(
+
+            storedParticipants,
+
+            tournamentFieldDraftParticipants
+
+        );
+
+
+    const validationError =
+        validateTournamentFieldDraft(
+            bracket
+        );
+
+
+    const fieldIsComplete =
+
+        Number.isInteger(
+            numericFieldSize
+        )
+
+        &&
+
+        numericFieldSize >
+            0
+
+        &&
+
+        storedParticipants.length ===
+            numericFieldSize;
+
+
+    tournamentFieldLockButton.disabled =
+
+        !fieldIsComplete
+
+        ||
+
+        !draftMatchesStored
+
+        ||
+
+        Boolean(
+            validationError
+        );
+
+}
 
 async function writeTournamentDatabase(
     tournamentDatabase
@@ -3732,11 +3824,7 @@ function renderTournamentFieldOverview() {
                     : "Search eligible wrestlers";
 
 
-        tournamentFieldLockButton.disabled =
-        true;
-
-
-    renderTournamentEligibleParticipants();
+            renderTournamentEligibleParticipants();
 
 
     renderStoredTournamentParticipants(
@@ -3744,9 +3832,15 @@ function renderTournamentFieldOverview() {
     );
 
 
-    renderTournamentFieldChangeReview(
+        renderTournamentFieldChangeReview(
         bracket
     );
+
+
+    updateTournamentFieldLockButton(
+        bracket
+    );
+
 }
 
 
