@@ -4051,6 +4051,65 @@ function getTournamentMatchupDisplayName(
 }
 
 
+function getTournamentBracketChampionshipId(
+    bracket
+) {
+
+
+    const championships =
+
+        Array.isArray(
+            owlControlRoomData.championships
+        )
+
+            ? owlControlRoomData.championships
+
+            : [];
+
+
+    const championshipById =
+
+        championships.find(
+
+            championship =>
+
+                championship.id ===
+                bracket.id
+
+        );
+
+
+    if (
+        championshipById
+    ) {
+
+        return championshipById.id;
+
+    }
+
+
+    const championshipByName =
+
+        championships.find(
+
+            championship =>
+
+                normalize(
+                    championship.name
+                )
+
+                ===
+
+                normalize(
+                    bracket.name
+                )
+
+        );
+
+
+    return championshipByName?.id || "";
+
+}
 
 function getTournamentEventById(
     eventId
@@ -4286,6 +4345,131 @@ function appendTournamentMatchBookingDetail(
 }
 
 
+function updateTournamentMatchBookerLoadButton() {
+
+
+    tournamentLoadMatchBookerButton.disabled =
+        true;
+
+
+    tournamentMatchBookingError.hidden =
+        true;
+
+
+    tournamentMatchBookingError.textContent =
+        "";
+
+
+    const entry =
+        getSelectedTournamentBracketMatchEntry();
+
+
+    if (
+        !entry
+    ) {
+
+        return;
+
+    }
+
+
+    const linkStatus =
+
+        getTournamentMatchLinkStatusValue(
+            entry.match
+        );
+
+
+    if (
+        linkStatus !==
+            "UNBOOKED"
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        !entry.match.participantOneId
+
+        ||
+
+        !entry.match.participantTwoId
+    ) {
+
+        tournamentMatchBookingError.textContent =
+            "This tournament matchup does not have two ready participants.";
+
+
+        tournamentMatchBookingError.hidden =
+            false;
+
+
+        return;
+
+    }
+
+
+    const event =
+
+        getTournamentEventById(
+            tournamentMatchEvent.value
+        );
+
+
+    if (
+        !event
+
+        ||
+
+        normalize(
+            event.status
+        ) ===
+            "completed"
+    ) {
+
+        return;
+
+    }
+
+
+    const cardOrder =
+
+        Number(
+            tournamentMatchOrder.value
+        );
+
+
+    if (
+        !Number.isInteger(
+            cardOrder
+        )
+
+        ||
+
+        cardOrder <
+            1
+    ) {
+
+
+        tournamentMatchBookingError.textContent =
+            "Card Order must be a whole number greater than zero.";
+
+
+        tournamentMatchBookingError.hidden =
+            false;
+
+
+        return;
+
+    }
+
+
+    tournamentLoadMatchBookerButton.disabled =
+        false;
+
+}
 
 function renderTournamentMatchBookingDetails(
     entry
@@ -4438,8 +4622,11 @@ function renderTournamentMatchBookingDetails(
     }
 
 
-    tournamentMatchBookingPreview.hidden =
+        tournamentMatchBookingPreview.hidden =
         false;
+
+
+    updateTournamentMatchBookerLoadButton();
 
 }
 
@@ -4876,6 +5063,140 @@ function renderTournamentMatchQueue(
 }
 
 
+function loadTournamentMatchIntoMatchBooker() {
+
+
+    const tournament =
+        getSelectedControlRoomTournament();
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    const entry =
+        getSelectedTournamentBracketMatchEntry();
+
+
+    if (
+        !tournament
+
+        ||
+
+        !bracket
+
+        ||
+
+        !entry
+    ) {
+
+        return;
+
+    }
+
+
+    updateTournamentMatchBookerLoadButton();
+
+
+    if (
+        tournamentLoadMatchBookerButton.disabled
+    ) {
+
+        return;
+
+    }
+
+
+    const eventId =
+        tournamentMatchEvent.value;
+
+
+    const cardOrder =
+
+        Number(
+            tournamentMatchOrder.value
+        );
+
+
+    const championshipId =
+
+        getTournamentBracketChampionshipId(
+            bracket
+        );
+
+
+    tournamentLoadMatchBookerButton.disabled =
+        true;
+
+
+    tournamentMatchBookingMessage.hidden =
+        true;
+
+
+    window.dispatchEvent(
+
+        new CustomEvent(
+
+            "owl-load-tournament-match",
+
+            {
+
+                detail: {
+
+                    tournamentId:
+                        tournament.id,
+
+                    bracketId:
+                        bracket.id,
+
+                    bracketMatchId:
+                        entry.match.id,
+
+                    roundId:
+                        entry.round.id || "",
+
+                    roundOrder:
+
+                        Number(
+                            entry.round.order || 0
+                        ),
+
+                    participantType:
+                        bracket.participantType,
+
+                    participantOneId:
+                        entry.match.participantOneId,
+
+                    participantTwoId:
+                        entry.match.participantTwoId,
+
+                    eventId,
+
+                    order:
+                        cardOrder,
+
+                    championshipId
+
+                }
+
+            }
+
+        )
+
+    );
+
+
+    tournamentMatchBookingMessage.textContent =
+        "Tournament match loaded into Match Booker. Review it there before adding it to the event card.";
+
+
+    tournamentMatchBookingMessage.hidden =
+        false;
+
+
+    updateTournamentMatchBookerLoadButton();
+
+}
 
 function handleTournamentMatchEventChange() {
 
@@ -4897,6 +5218,9 @@ function handleTournamentMatchEventChange() {
 
     }
 
+
+    updateTournamentMatchBookerLoadButton();
+
 }
 
 
@@ -4917,6 +5241,9 @@ function refreshTournamentMatchBookingDetails() {
         );
 
     }
+
+
+    updateTournamentMatchBookerLoadButton();
 
 }
 
@@ -8099,6 +8426,15 @@ tournamentMatchOrder.addEventListener(
     "input",
 
     refreshTournamentMatchBookingDetails
+
+);
+
+
+tournamentLoadMatchBookerButton.addEventListener(
+
+    "click",
+
+    loadTournamentMatchIntoMatchBooker
 
 );
 
