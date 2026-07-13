@@ -180,9 +180,180 @@ function getRoundNames(
 }
 
 
+function getTournamentBracketWrestlerById(
+    wrestlers,
+    wrestlerId
+) {
+
+
+    return wrestlers.find(
+
+        wrestler =>
+
+            wrestler.id ===
+            wrestlerId
+
+    ) || null;
+
+}
+
+
+
+function getTournamentBracketTeamById(
+    teams,
+    teamId
+) {
+
+
+    return teams.find(
+
+        team =>
+
+            team.id ===
+            teamId
+
+    ) || null;
+
+}
+
+
+
+function getTournamentBracketEntrant(
+    bracket,
+    participantId,
+    wrestlers,
+    teams
+) {
+
+
+    if (
+        !participantId
+    ) {
+
+        return null;
+
+    }
+
+
+    if (
+        bracket.participantType ===
+        "team"
+    ) {
+
+        return getTournamentBracketTeamById(
+
+            teams,
+
+            participantId
+
+        );
+
+    }
+
+
+    return getTournamentBracketWrestlerById(
+
+        wrestlers,
+
+        participantId
+
+    );
+
+}
+
+
+
+function getTournamentBracketEntrantDetail(
+    bracket,
+    entrant,
+    wrestlers
+) {
+
+
+    if (
+        !entrant
+    ) {
+
+        return "Database record unavailable";
+
+    }
+
+
+    if (
+        bracket.participantType ===
+        "team"
+    ) {
+
+
+        const memberIds =
+
+            Array.isArray(
+                entrant.members
+            )
+
+                ? entrant.members
+
+                : [];
+
+
+        const memberNames =
+
+            memberIds.map(
+
+                memberId =>
+
+                    getTournamentBracketWrestlerById(
+
+                        wrestlers,
+
+                        memberId
+
+                    )?.name
+
+                    ||
+
+                    "Unknown Member"
+
+            );
+
+
+        return memberNames.length > 0
+
+            ? memberNames.join(
+                " & "
+            )
+
+            : "Official Tag Team";
+
+    }
+
+
+    return [
+
+        entrant.brand,
+
+        entrant.division
+
+    ]
+
+        .filter(
+            Boolean
+        )
+
+        .join(
+            " • "
+        )
+
+        ||
+
+        "Singles Competitor";
+
+}
 
 function renderParticipantSlots(
-    bracket
+    bracket,
+    wrestlers,
+    teams
 ) {
 
 
@@ -200,6 +371,21 @@ function renderParticipantSlots(
         );
 
 
+    const lockedParticipants =
+
+        bracket.fieldLocked
+
+        &&
+
+        Array.isArray(
+            bracket.participants
+        )
+
+            ? bracket.participants
+
+            : [];
+
+
     participantGrid.innerHTML =
 
         Array.from(
@@ -214,34 +400,99 @@ function renderParticipantSlots(
             (
                 unusedValue,
                 index
-            ) => `
+            ) => {
 
-                <article class="tournament-participant-slot">
 
-                    <span>
-                        ${index + 1}
-                    </span>
+                const participantId =
 
-                    <strong>
-                        Participant TBD
-                    </strong>
+                    lockedParticipants[
+                        index
+                    ]
 
-                    <small>
-                        ${escapeTournamentBracketText(
-                            bracket.fieldUnit === "Teams"
-                                ? "Team Slot"
-                                : "Competitor Slot"
-                        )}
-                    </small>
+                    ||
 
-                </article>
+                    "";
 
-            `
+
+                const entrant =
+
+                    getTournamentBracketEntrant(
+
+                        bracket,
+
+                        participantId,
+
+                        wrestlers,
+
+                        teams
+
+                    );
+
+
+                const entrantName =
+
+                    participantId
+
+                        ? entrant?.name
+
+                            ||
+
+                            "Participant Unavailable"
+
+                        : "Participant TBD";
+
+
+                const entrantDetail =
+
+                    participantId
+
+                        ? getTournamentBracketEntrantDetail(
+
+                            bracket,
+
+                            entrant,
+
+                            wrestlers
+
+                        )
+
+                        : bracket.fieldUnit ===
+                            "Teams"
+
+                            ? "Team Slot"
+
+                            : "Competitor Slot";
+
+
+                return `
+
+                    <article class="tournament-participant-slot">
+
+                        <span>
+                            ${index + 1}
+                        </span>
+
+                        <strong>
+                            ${escapeTournamentBracketText(
+                                entrantName
+                            )}
+                        </strong>
+
+                        <small>
+                            ${escapeTournamentBracketText(
+                                entrantDetail
+                            )}
+                        </small>
+
+                    </article>
+
+                `;
+
+            }
 
         ).join("");
 
 }
-
 
 
 function renderRoundShell(
@@ -324,7 +575,9 @@ function renderRoundShell(
 
 function renderTournamentBracketPage(
     tournament,
-    bracket
+    bracket,
+    wrestlers,
+    teams
 ) {
 
 
@@ -415,8 +668,14 @@ function renderTournamentBracketPage(
         )}`;
 
 
-    renderParticipantSlots(
-        bracket
+        renderParticipantSlots(
+
+        bracket,
+
+        wrestlers,
+
+        teams
+
     );
 
 
@@ -465,27 +724,109 @@ async function loadTournamentBracketPage() {
         }
 
 
-        const response =
+               const [
 
-            await fetch(
+            tournamentResponse,
+
+            wrestlerResponse,
+
+            teamResponse
+
+        ] = await Promise.all([
+
+            fetch(
                 "data/tournaments.json"
-            );
+            ),
+
+            fetch(
+                "data/wrestlers.json"
+            ),
+
+            fetch(
+                "data/teams.json"
+            )
+
+        ]);
 
 
         if (
-            !response.ok
+            !tournamentResponse.ok
         ) {
 
             throw new Error(
-                `Tournament request failed: ${response.status}`
+
+                `Tournament request failed: ${tournamentResponse.status}`
+
             );
 
         }
 
 
-        const database =
+        if (
+            !wrestlerResponse.ok
+        ) {
 
-            await response.json();
+            throw new Error(
+
+                `Wrestler request failed: ${wrestlerResponse.status}`
+
+            );
+
+        }
+
+
+        if (
+            !teamResponse.ok
+        ) {
+
+            throw new Error(
+
+                `Team request failed: ${teamResponse.status}`
+
+            );
+
+        }
+
+
+        const [
+
+            database,
+
+            wrestlerDatabase,
+
+            teamDatabase
+
+        ] = await Promise.all([
+
+            tournamentResponse.json(),
+
+            wrestlerResponse.json(),
+
+            teamResponse.json()
+
+        ]);
+
+
+        const wrestlers =
+
+            Array.isArray(
+                wrestlerDatabase
+            )
+
+                ? wrestlerDatabase
+
+                : [];
+
+
+        const teams =
+
+            Array.isArray(
+                teamDatabase
+            )
+
+                ? teamDatabase
+
+                : [];
 
 
         const tournaments =
@@ -556,9 +897,16 @@ async function loadTournamentBracketPage() {
         }
 
 
-        renderTournamentBracketPage(
+                renderTournamentBracketPage(
+
             tournament,
-            bracket
+
+            bracket,
+
+            wrestlers,
+
+            teams
+
         );
 
     }
