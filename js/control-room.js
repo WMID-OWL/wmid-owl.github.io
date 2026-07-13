@@ -2690,7 +2690,633 @@ function renderTournamentBracketSetupDraft(
 
 
 function generateTournamentBracketPreview() {
+    
+function validateTournamentBracketSetupDraft(
+    bracket
+) {
 
+
+    if (
+        !bracket
+    ) {
+
+        return "Select a championship bracket.";
+
+    }
+
+
+    const savedBracketSetup =
+        getTournamentBracketSetup(
+            bracket
+        );
+
+
+    if (
+        savedBracketSetup.generated
+    ) {
+
+        return "A saved bracket setup already exists.";
+
+    }
+
+
+    if (
+        !bracket.fieldLocked
+    ) {
+
+        return "Lock the completed participant field before saving the bracket setup.";
+
+    }
+
+
+    const fieldSize =
+
+        Number(
+            bracket.fieldSize || 0
+        );
+
+
+    const storedParticipants =
+        getStoredTournamentParticipants(
+            bracket
+        );
+
+
+    if (
+        storedParticipants.length !==
+        fieldSize
+    ) {
+
+        return "The saved participant field is not complete.";
+
+    }
+
+
+    if (
+        !tournamentBracketSetupDraft
+
+        ||
+
+        !Array.isArray(
+            tournamentBracketSetupDraft.rounds
+        )
+    ) {
+
+        return "Generate a bracket preview before saving.";
+
+    }
+
+
+    const structure =
+        getTournamentBracketStructure(
+            fieldSize
+        );
+
+
+    const rounds =
+        tournamentBracketSetupDraft.rounds;
+
+
+    if (
+        rounds.length !==
+        structure.totalRounds
+    ) {
+
+        return "The bracket preview has an incorrect number of rounds.";
+
+    }
+
+
+    for (
+        let roundIndex =
+            0;
+
+        roundIndex <
+            rounds.length;
+
+        roundIndex +=
+            1
+    ) {
+
+
+        const round =
+            rounds[
+                roundIndex
+            ];
+
+
+        const expectedMatchCount =
+
+            structure.bracketSize
+
+            /
+
+            (
+                2 ** (
+                    roundIndex +
+                    1
+                )
+            );
+
+
+        if (
+            !Array.isArray(
+                round.matches
+            )
+
+            ||
+
+            round.matches.length !==
+                expectedMatchCount
+        ) {
+
+            return `${round.name || `Round ${roundIndex + 1}`} has an incorrect number of matches.`;
+
+        }
+
+    }
+
+
+    const openingRound =
+        rounds[0];
+
+
+    const openingParticipantIds =
+
+        openingRound.matches.flatMap(
+
+            match => [
+
+                match.participantOneId,
+
+                match.participantTwoId
+
+            ]
+
+        )
+
+            .filter(
+                Boolean
+            );
+
+
+    if (
+        openingParticipantIds.length !==
+        fieldSize
+    ) {
+
+        return "The opening round does not contain the complete participant field.";
+
+    }
+
+
+    const uniqueOpeningParticipantIds =
+        new Set(
+            openingParticipantIds
+        );
+
+
+    if (
+        uniqueOpeningParticipantIds.size !==
+        openingParticipantIds.length
+    ) {
+
+        return "The bracket preview contains a duplicate participant.";
+
+    }
+
+
+    const storedParticipantSet =
+        new Set(
+            storedParticipants
+        );
+
+
+    if (
+        openingParticipantIds.some(
+
+            participantId =>
+
+                !storedParticipantSet.has(
+                    participantId
+                )
+
+        )
+    ) {
+
+        return "The bracket preview contains a participant outside the saved field.";
+
+    }
+
+
+    const byeMatches =
+
+        openingRound.matches.filter(
+
+            match =>
+                match.isBye
+        );
+
+
+    if (
+        byeMatches.length !==
+        structure.byeCount
+    ) {
+
+        return "The bracket preview has an incorrect number of byes.";
+
+    }
+
+
+    const invalidByeMatch =
+
+        byeMatches.find(
+
+            match =>
+
+                !match.participantOneId
+
+                ||
+
+                Boolean(
+                    match.participantTwoId
+                )
+
+                ||
+
+                match.winnerId !==
+                    match.participantOneId
+
+                ||
+
+                match.status !==
+                    "bye"
+
+        );
+
+
+    if (
+        invalidByeMatch
+    ) {
+
+        return "One or more bracket byes are invalid.";
+
+    }
+
+
+    const invalidOpeningMatch =
+
+        openingRound.matches.find(
+
+            match =>
+
+                !match.isBye
+
+                &&
+
+                (
+                    !match.participantOneId
+
+                    ||
+
+                    !match.participantTwoId
+                )
+
+        );
+
+
+    if (
+        invalidOpeningMatch
+    ) {
+
+        return "One or more opening-round matchups are incomplete.";
+
+    }
+
+
+    return "";
+
+}
+
+
+
+async function saveTournamentBracketSetup() {
+
+
+    const tournament =
+        getSelectedControlRoomTournament();
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    if (
+        !tournament
+
+        ||
+
+        !bracket
+    ) {
+
+        return;
+
+    }
+
+
+    const validationError =
+        validateTournamentBracketSetupDraft(
+            bracket
+        );
+
+
+    if (
+        validationError
+    ) {
+
+
+        tournamentBracketSetupMessage.textContent =
+            validationError;
+
+
+        tournamentBracketSetupMessage.hidden =
+            false;
+
+
+        tournamentBracketSaveButton.disabled =
+            true;
+
+
+        return;
+
+    }
+
+
+    const confirmed =
+        window.confirm(
+
+            `Save the ${bracket.name} bracket setup as official? The participant field cannot be reopened while this setup exists.`
+
+        );
+
+
+    if (
+        !confirmed
+    ) {
+
+        return;
+
+    }
+
+
+    const tournamentDatabase =
+        owlControlRoomData.tournaments;
+
+
+    if (
+        !tournamentDatabase
+
+        ||
+
+        Array.isArray(
+            tournamentDatabase
+        )
+
+        ||
+
+        !Array.isArray(
+            tournamentDatabase.tournaments
+        )
+    ) {
+
+
+        tournamentBracketSetupMessage.textContent =
+            "The tournament database is not available.";
+
+
+        tournamentBracketSetupMessage.hidden =
+            false;
+
+
+        return;
+
+    }
+
+
+    const selectedTournamentId =
+        tournament.id;
+
+
+    const selectedBracketId =
+        bracket.id;
+
+
+    const savedRounds =
+
+        tournamentBracketSetupDraft.rounds.map(
+
+            round => ({
+
+                ...round,
+
+                matches:
+
+                    round.matches.map(
+
+                        match => ({
+
+                            ...match
+
+                        })
+
+                    )
+
+            })
+
+        );
+
+
+    const updatedTournamentDatabase = {
+
+        ...tournamentDatabase,
+
+        tournaments:
+
+            tournamentDatabase.tournaments.map(
+
+                storedTournament => {
+
+
+                    if (
+                        storedTournament.id !==
+                        selectedTournamentId
+                    ) {
+
+                        return storedTournament;
+
+                    }
+
+
+                    return {
+
+                        ...storedTournament,
+
+                        brackets:
+
+                            Array.isArray(
+                                storedTournament.brackets
+                            )
+
+                                ? storedTournament.brackets.map(
+
+                                    storedBracket => {
+
+
+                                        if (
+                                            storedBracket.id !==
+                                            selectedBracketId
+                                        ) {
+
+                                            return storedBracket;
+
+                                        }
+
+
+                                        return {
+
+                                            ...storedBracket,
+
+                                            bracketSetup: {
+
+                                                generated:
+                                                    true,
+
+                                                generatedAt:
+                                                    new Date().toISOString(),
+
+                                                rounds:
+                                                    savedRounds,
+
+                                                winnerId:
+                                                    ""
+
+                                            }
+
+                                        };
+
+                                    }
+
+                                )
+
+                                : []
+
+                    };
+
+                }
+
+            )
+
+    };
+
+
+    tournamentBracketPreviewButton.disabled =
+        true;
+
+
+    tournamentBracketSaveButton.disabled =
+        true;
+
+
+    tournamentFieldLockButton.disabled =
+        true;
+
+
+    tournamentFieldStatus.textContent =
+        "SAVING SETUP";
+
+
+    tournamentBracketSetupMessage.hidden =
+        true;
+
+
+    try {
+
+
+        await writeTournamentDatabase(
+            updatedTournamentDatabase
+        );
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        tournamentSelect.value =
+            selectedTournamentId;
+
+
+        populateTournamentBracketSelector();
+
+
+        tournamentBracketSelect.value =
+            selectedBracketId;
+
+
+        loadTournamentFieldDraft();
+
+
+        tournamentFieldStatus.textContent =
+            "READY";
+
+
+        tournamentBracketSetupMessage.textContent =
+            "Bracket setup saved successfully.";
+
+
+        tournamentBracketSetupMessage.hidden =
+            false;
+
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        console.error(
+
+            "Could not save tournament bracket setup:",
+
+            error
+
+        );
+
+
+        tournamentFieldStatus.textContent =
+            "ERROR";
+
+
+        tournamentBracketSetupMessage.textContent =
+
+            error.message
+
+            ||
+
+            "The bracket setup could not be saved.";
+
+
+        tournamentBracketSetupMessage.hidden =
+            false;
+
+
+        renderTournamentFieldOverview();
+
+    }
+
+}
 
     const bracket =
         getSelectedControlRoomBracket();
@@ -2939,7 +3565,7 @@ function renderTournamentBracketSetupOverview(
         false;
 
 
-    if (
+        if (
         tournamentBracketSetupDraft
     ) {
 
@@ -2950,6 +3576,10 @@ function renderTournamentBracketSetupOverview(
 
         tournamentBracketPreviewButton.textContent =
             "Regenerate Bracket Preview";
+
+
+        tournamentBracketSaveButton.disabled =
+            false;
 
 
         renderTournamentBracketSetupDraft(
@@ -3927,7 +4557,29 @@ function renderTournamentFieldChangeReview(
 function updateTournamentFieldLockButton(
     bracket
 ) {
+    
+    const bracketSetup =
+        getTournamentBracketSetup(
+            bracket
+        );
 
+
+    if (
+        bracketSetup.generated
+    ) {
+
+
+        tournamentFieldLockButton.textContent =
+            "Participant Field Finalized";
+
+
+        tournamentFieldLockButton.disabled =
+            true;
+
+
+        return;
+
+    }
 
     if (
         bracket.fieldLocked
@@ -6087,6 +6739,15 @@ tournamentBracketPreviewButton.addEventListener(
     "click",
 
     generateTournamentBracketPreview
+
+);
+
+
+tournamentBracketSaveButton.addEventListener(
+
+    "click",
+
+    saveTournamentBracketSetup
 
 );
 
