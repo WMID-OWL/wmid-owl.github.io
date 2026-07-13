@@ -31,8 +31,14 @@
           "fieldSize": 16,
                     "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
+                   "participants": [],
           "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
           "status": "Upcoming"
         },
         {
@@ -43,8 +49,14 @@
           "fieldSize": 16,
                    "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
+                    "participants": [],
           "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
           "status": "Upcoming"
         },
         {
@@ -55,8 +67,14 @@
           "fieldSize": 16,
                    "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
+                   "participants": [],
           "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
           "status": "Upcoming"
         },
         {
@@ -67,8 +85,14 @@
           "fieldSize": 16,
                     "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
+                   "participants": [],
           "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
           "status": "Upcoming"
         },
         {
@@ -79,8 +103,14 @@
           "fieldSize": 16,
                     "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
+                   "participants": [],
           "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
           "status": "Upcoming"
         },
         {
@@ -91,8 +121,14 @@
           "fieldSize": 16,
                    "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
+                    "participants": [],
           "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
           "status": "Upcoming"
         },
         {
@@ -103,8 +139,14 @@
           "fieldSize": 16,
                     "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
+                   "participants": [],
           "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
           "status": "Upcoming"
         },
         {
@@ -115,8 +157,14 @@
           "fieldSize": 16,
                     "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
+                   "participants": [],
           "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
           "status": "Upcoming"
         },
         {
@@ -127,8 +175,14 @@
           "fieldSize": 28,
                    "fieldUnit": "Teams",
           "participantType": "team",
-          "participants": [],
+                    "participants": [],
           "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
           "status": "Upcoming"
         },
         {
@@ -139,8 +193,14 @@
           "fieldSize": 16,
                     "fieldUnit": "Teams",
           "participantType": "team",
-          "participants": [],
+                   "participants": [],
           "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
           "status": "Upcoming"
         }
       ]
