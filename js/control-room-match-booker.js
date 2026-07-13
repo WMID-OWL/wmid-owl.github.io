@@ -3926,18 +3926,418 @@ function crBookerBuildSavedRecord() {
     delete record.specialty;
   }
 
-  if (
-    form.statusNote
-  ) {
-    record.statusNote =
-      form.statusNote;
-  } else {
-    delete record.statusNote;
-  }
+      if (
+        form.statusNote
+    ) {
 
-  return record;
+        record.statusNote =
+            form.statusNote;
+
+    }
+
+
+    else {
+
+        delete record.statusNote;
+
+    }
+
+
+    if (
+        crBookerTournamentLinkContext
+    ) {
+
+
+        record.tournamentLink = {
+
+            tournamentId:
+                crBookerTournamentLinkContext.tournamentId,
+
+            bracketId:
+                crBookerTournamentLinkContext.bracketId,
+
+            bracketMatchId:
+                crBookerTournamentLinkContext.bracketMatchId,
+
+            roundId:
+                crBookerTournamentLinkContext.roundId,
+
+            roundOrder:
+                crBookerTournamentLinkContext.roundOrder
+
+        };
+
+    }
+
+
+    else if (
+        crBookerMode.value !==
+            "edit"
+    ) {
+
+
+        delete record.tournamentLink;
+
+    }
+
+
+    return record;
+
 }
 
+// =================================
+// SAVE TOURNAMENT MATCH LINK
+// =================================
+
+
+async function crBookerSaveTournamentMatchLink(
+    record
+) {
+
+
+    const context =
+        crBookerTournamentLinkContext;
+
+
+    if (
+        !context
+    ) {
+
+        return false;
+
+    }
+
+
+    if (
+        crBookerMode.value !==
+            "create"
+    ) {
+
+        throw new Error(
+            "Tournament intake can only create a new booked match."
+        );
+
+    }
+
+
+    const tournamentDatabase =
+        owlControlRoomData.tournaments;
+
+
+    if (
+        !tournamentDatabase
+
+        ||
+
+        Array.isArray(
+            tournamentDatabase
+        )
+
+        ||
+
+        !Array.isArray(
+            tournamentDatabase.tournaments
+        )
+    ) {
+
+        throw new Error(
+            "The tournament database is not available."
+        );
+
+    }
+
+
+    let tournamentFound =
+        false;
+
+
+    let bracketFound =
+        false;
+
+
+    let roundFound =
+        false;
+
+
+    let bracketMatchFound =
+        false;
+
+
+    const updatedTournamentDatabase = {
+
+        ...tournamentDatabase,
+
+        tournaments:
+
+            tournamentDatabase.tournaments.map(
+
+                tournament => {
+
+
+                    if (
+                        tournament.id !==
+                        context.tournamentId
+                    ) {
+
+                        return tournament;
+
+                    }
+
+
+                    tournamentFound =
+                        true;
+
+
+                    return {
+
+                        ...tournament,
+
+                        brackets:
+
+                            Array.isArray(
+                                tournament.brackets
+                            )
+
+                                ? tournament.brackets.map(
+
+                                    bracket => {
+
+
+                                        if (
+                                            bracket.id !==
+                                            context.bracketId
+                                        ) {
+
+                                            return bracket;
+
+                                        }
+
+
+                                        bracketFound =
+                                            true;
+
+
+                                        const bracketSetup =
+
+                                            bracket.bracketSetup
+
+                                            &&
+
+                                            !Array.isArray(
+                                                bracket.bracketSetup
+                                            )
+
+                                            &&
+
+                                            typeof bracket.bracketSetup ===
+                                                "object"
+
+                                                ? bracket.bracketSetup
+
+                                                : {
+
+                                                    generated:
+                                                        false,
+
+                                                    generatedAt:
+                                                        "",
+
+                                                    rounds:
+                                                        [],
+
+                                                    winnerId:
+                                                        ""
+
+                                                };
+
+
+                                        return {
+
+                                            ...bracket,
+
+                                            bracketSetup: {
+
+                                                ...bracketSetup,
+
+                                                rounds:
+
+                                                    Array.isArray(
+                                                        bracketSetup.rounds
+                                                    )
+
+                                                        ? bracketSetup.rounds.map(
+
+                                                            round => {
+
+
+                                                                if (
+                                                                    round.id !==
+                                                                    context.roundId
+                                                                ) {
+
+                                                                    return round;
+
+                                                                }
+
+
+                                                                roundFound =
+                                                                    true;
+
+
+                                                                return {
+
+                                                                    ...round,
+
+                                                                    matches:
+
+                                                                        Array.isArray(
+                                                                            round.matches
+                                                                        )
+
+                                                                            ? round.matches.map(
+
+                                                                                match => {
+
+
+                                                                                    if (
+                                                                                        match.id !==
+                                                                                        context.bracketMatchId
+                                                                                    ) {
+
+                                                                                        return match;
+
+                                                                                    }
+
+
+                                                                                    bracketMatchFound =
+                                                                                        true;
+
+
+                                                                                    if (
+                                                                                        match.matchRecordId
+                                                                                    ) {
+
+                                                                                        throw new Error(
+
+                                                                                            "This tournament matchup is already linked to a booked match."
+
+                                                                                        );
+
+                                                                                    }
+
+
+                                                                                    return {
+
+                                                                                        ...match,
+
+                                                                                        eventId:
+                                                                                            record.eventId,
+
+                                                                                        matchRecordId:
+                                                                                            record.id,
+
+                                                                                        status:
+                                                                                            record.status || "announced"
+
+                                                                                    };
+
+                                                                                }
+
+                                                                            )
+
+                                                                            : []
+
+                                                                };
+
+                                                            }
+
+                                                        )
+
+                                                        : []
+
+                                            }
+
+                                        };
+
+                                    }
+
+                                )
+
+                                : []
+
+                    };
+
+                }
+
+            )
+
+    };
+
+
+    if (
+        !tournamentFound
+    ) {
+
+        throw new Error(
+            "The linked tournament could not be found."
+        );
+
+    }
+
+
+    if (
+        !bracketFound
+    ) {
+
+        throw new Error(
+            "The linked championship bracket could not be found."
+        );
+
+    }
+
+
+    if (
+        !roundFound
+    ) {
+
+        throw new Error(
+            "The linked tournament round could not be found."
+        );
+
+    }
+
+
+    if (
+        !bracketMatchFound
+    ) {
+
+        throw new Error(
+            "The linked tournament matchup could not be found."
+        );
+
+    }
+
+
+    if (
+        typeof writeTournamentDatabase !==
+            "function"
+    ) {
+
+        throw new Error(
+            "The tournament database writer is unavailable."
+        );
+
+    }
+
+
+    await writeTournamentDatabase(
+        updatedTournamentDatabase
+    );
+
+
+    return true;
+
+}
 
 // =================================
 // SAVE MATCH
@@ -4000,31 +4400,111 @@ async function crBookerSaveMatch() {
             record,
           );
 
-    await crBookerWriteFile(
-      matchFile.fileHandle,
-      updatedText,
-    );
+            await crBookerWriteFile(
 
-    crBookerPendingMatchId =
-      crBookerMode.value ===
-        "edit"
-        ? record.id
-        : "";
+            matchFile.fileHandle,
 
-    await loadRepositoryData(
-      owlRepositoryHandle,
-    );
+            updatedText
+
+        );
+
+
+        const savedTournamentContext =
+
+            crBookerTournamentLinkContext
+
+                ? {
+
+                    ...crBookerTournamentLinkContext
+
+                }
+
+                : null;
+
+
+        let tournamentMatchLinked =
+            false;
+
+
+        if (
+            savedTournamentContext
+        ) {
+
+
+            try {
+
+
+                tournamentMatchLinked =
+
+                    await crBookerSaveTournamentMatchLink(
+                        record
+                    );
+
+
+            }
+
+
+            catch (
+                tournamentLinkError
+            ) {
+
+
+                await crBookerWriteFile(
+
+                    matchFile.fileHandle,
+
+                    matchFile.text
+
+                );
+
+
+                throw new Error(
+
+                    `${tournamentLinkError.message} The announced match write was rolled back.`
+
+                );
+
+            }
+
+        }
+
+
+        crBookerTournamentLinkContext =
+            null;
+
+
+        crBookerPendingMatchId =
+
+            crBookerMode.value ===
+                "edit"
+
+                ? record.id
+
+                : "";
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
 
     crBookerRefreshMatchList();
 
     crBookerShowMessage(
-      crBookerMode.value ===
-        "edit"
-        ? "Booked match changes were saved locally. Review announced-matches.json in GitHub Desktop."
-        : "Match was added to the event card. Review announced-matches.json in GitHub Desktop.",
 
-      "save-success",
-    );
+    crBookerMode.value ===
+        "edit"
+
+        ? "Booked match changes were saved locally. Review announced-matches.json in GitHub Desktop."
+
+        : tournamentMatchLinked
+
+            ? "Tournament match was added to the event card and linked to its bracket. Review announced-matches.json and tournaments.json in GitHub Desktop."
+
+            : "Match was added to the event card. Review announced-matches.json in GitHub Desktop.",
+
+    "save-success"
+
+);
 
     crBookerSetStatus(
       crBookerMode.value ===
