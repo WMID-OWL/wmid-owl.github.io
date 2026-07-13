@@ -48,10 +48,17 @@ const OWL_CONTROL_ROOM_FILES = [
         label: "Segments"
     },
 
-    {
+        {
         key: "announcedMatches",
         fileName: "announced-matches.json",
         label: "Announced Matches"
+    },
+
+    {
+        key: "tournaments",
+        fileName: "tournaments.json",
+        label: "Tournaments",
+        collectionKey: "tournaments"
     }
 
 ];
@@ -628,13 +635,13 @@ async function hasRepositoryPermission(
 
 async function readJsonFile(
     dataDirectory,
-    fileName
+    databaseFile
 ) {
 
 
     const fileHandle =
         await dataDirectory.getFileHandle(
-            fileName
+            databaseFile.fileName
         );
 
 
@@ -653,6 +660,59 @@ async function readJsonFile(
 
 
     if (
+        databaseFile.collectionKey
+    ) {
+
+
+        if (
+            !parsed
+
+            ||
+
+            Array.isArray(
+                parsed
+            )
+
+            ||
+
+            typeof parsed !==
+                "object"
+
+            ||
+
+            !Array.isArray(
+                parsed[
+                    databaseFile.collectionKey
+                ]
+            )
+        ) {
+
+
+            throw new Error(
+
+                `${databaseFile.fileName} must contain a JSON object with a ${databaseFile.collectionKey} array.`
+
+            );
+
+        }
+
+
+        return {
+
+            data:
+                parsed,
+
+            count:
+                parsed[
+                    databaseFile.collectionKey
+                ].length
+
+        };
+
+    }
+
+
+    if (
         !Array.isArray(
             parsed
         )
@@ -660,13 +720,21 @@ async function readJsonFile(
 
 
         throw new Error(
-            `${fileName} must contain a JSON array.`
+            `${databaseFile.fileName} must contain a JSON array.`
         );
 
     }
 
 
-    return parsed;
+    return {
+
+        data:
+            parsed,
+
+        count:
+            parsed.length
+
+    };
 
 }
 
@@ -733,19 +801,20 @@ async function loadRepositoryData(
             try {
 
 
-                const data =
+                                const fileResult =
                     await readJsonFile(
 
                         dataDirectory,
 
-                        databaseFile.fileName
+                        databaseFile
 
                     );
 
 
                 owlControlRoomData[
                     databaseFile.key
-                ] = data;
+                ] =
+                    fileResult.data;
 
 
                 fileResults.push({
@@ -756,7 +825,7 @@ async function loadRepositoryData(
                         true,
 
                     count:
-                        data.length,
+                        fileResult.count,
 
                     error:
                         ""
@@ -770,9 +839,21 @@ async function loadRepositoryData(
             catch (error) {
 
 
-                owlControlRoomData[
+                                owlControlRoomData[
                     databaseFile.key
-                ] = [];
+                ] =
+
+                    databaseFile.collectionKey
+
+                        ? {
+
+                            [
+                                databaseFile.collectionKey
+                            ]: []
+
+                        }
+
+                        : [];
 
 
                 fileResults.push({
@@ -846,8 +927,9 @@ window.dispatchEvent(
             "Selected Folder";
 
 
-        fileSummary.textContent =
-            "0 / 8 valid";
+                fileSummary.textContent =
+
+            `0 / ${OWL_CONTROL_ROOM_FILES.length} valid`;
 
 
         setConnectionMessage(
