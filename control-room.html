@@ -802,12 +802,124 @@
 
             </div>
 
-            <p
+                        <p
                 id="cr-tournament-field-message"
                 class="cr-save-message"
                 hidden
             >
             </p>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        BRACKET SETUP
+                    </span>
+
+                    <h3>
+                        Tournament Matchups
+                    </h3>
+
+                    <p>
+                        Generate and review the tournament matchups after the completed participant field has been locked.
+                    </p>
+
+                </div>
+
+                <div class="control-room-stat-grid">
+
+                    <article class="control-room-stat-card">
+
+                        <span>
+                            SETUP STATUS
+                        </span>
+
+                        <strong id="cr-tournament-bracket-setup-status">
+                            NOT GENERATED
+                        </strong>
+
+                    </article>
+
+                    <article class="control-room-stat-card">
+
+                        <span>
+                            TOTAL ROUNDS
+                        </span>
+
+                        <strong id="cr-tournament-bracket-round-count">
+                            0
+                        </strong>
+
+                    </article>
+
+                    <article class="control-room-stat-card">
+
+                        <span>
+                            OPENING MATCHES
+                        </span>
+
+                        <strong id="cr-tournament-bracket-opening-match-count">
+                            0
+                        </strong>
+
+                    </article>
+
+                    <article class="control-room-stat-card">
+
+                        <span>
+                            BYES
+                        </span>
+
+                        <strong id="cr-tournament-bracket-bye-count">
+                            0
+                        </strong>
+
+                    </article>
+
+                </div>
+
+                <div
+                    id="cr-tournament-bracket-setup-preview"
+                    class="cr-segment-history-list"
+                >
+
+                    <p class="cr-landscape-entry-empty">
+                        Select a championship bracket to view its bracket-setup status.
+                    </p>
+
+                </div>
+
+                <div class="cr-manager-actions">
+
+                    <button
+                        id="cr-tournament-bracket-preview"
+                        class="control-room-button"
+                        type="button"
+                        disabled
+                    >
+                        Generate Bracket Preview
+                    </button>
+
+                    <button
+                        id="cr-tournament-bracket-save"
+                        class="control-room-button control-room-button-primary"
+                        type="button"
+                        disabled
+                    >
+                        Save Bracket Setup
+                    </button>
+
+                </div>
+
+                <p
+                    id="cr-tournament-bracket-setup-message"
+                    class="cr-save-message"
+                    hidden
+                >
+                </p>
+
+            </div>
 
         </section>
 
