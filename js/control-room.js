@@ -1490,7 +1490,8 @@ const tournamentFieldLockButton =
     document.getElementById(
         "cr-tournament-field-lock"
     );
-
+let tournamentFieldDraftParticipants =
+    [];
 
 
 function getControlRoomTournaments() {
@@ -1620,6 +1621,10 @@ function setTournamentManagerEmptyMessage(
 
 
 function resetTournamentFieldOverview() {
+
+
+    tournamentFieldDraftParticipants =
+        [];
 
 
     tournamentCurrentStatus.textContent =
@@ -2094,25 +2099,149 @@ function getTournamentEntrantDetail(
 }
 
 
+function loadTournamentFieldDraft() {
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    tournamentFieldDraftParticipants =
+
+        bracket
+
+        &&
+
+        Array.isArray(
+            bracket.participants
+        )
+
+            ? [
+                ...bracket.participants
+            ]
+
+            : [];
+
+
+    renderTournamentFieldOverview();
+
+}
+
+
+
+function addTournamentFieldParticipant(
+    participantId
+) {
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    if (
+        !bracket
+
+        ||
+
+        bracket.fieldLocked
+
+        ||
+
+        !participantId
+    ) {
+
+        return;
+
+    }
+
+
+    const numericFieldSize =
+
+        Number(
+            bracket.fieldSize || 0
+        );
+
+
+    if (
+        tournamentFieldDraftParticipants.includes(
+            participantId
+        )
+
+        ||
+
+        tournamentFieldDraftParticipants.length >=
+            numericFieldSize
+    ) {
+
+        return;
+
+    }
+
+
+    tournamentFieldDraftParticipants.push(
+        participantId
+    );
+
+
+    renderTournamentFieldOverview();
+
+}
+
+
+
+function removeTournamentFieldParticipant(
+    participantId
+) {
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    if (
+        !bracket
+
+        ||
+
+        bracket.fieldLocked
+
+        ||
+
+        !participantId
+    ) {
+
+        return;
+
+    }
+
+
+    tournamentFieldDraftParticipants =
+
+        tournamentFieldDraftParticipants.filter(
+
+            storedParticipantId =>
+
+                storedParticipantId !==
+                participantId
+
+        );
+
+
+    renderTournamentFieldOverview();
+
+}
 
 function getEligibleTournamentEntrants(
     bracket
 ) {
 
 
-    const selectedParticipantIds =
+        const selectedParticipantIds =
         new Set(
 
-            Array.isArray(
-                bracket.participants
-            )
-
-                ? bracket.participants
-
-                : []
+            tournamentFieldDraftParticipants
 
         );
-
 
     const entrants =
 
@@ -2213,6 +2342,33 @@ function renderTournamentEligibleParticipants() {
             tournamentEligibleList,
 
             "This participant field is locked."
+
+        );
+
+
+        return;
+
+    }
+
+
+    const numericFieldSize =
+
+        Number(
+            bracket.fieldSize || 0
+        );
+
+
+    if (
+        tournamentFieldDraftParticipants.length >=
+            numericFieldSize
+    ) {
+
+
+        setTournamentManagerEmptyMessage(
+
+            tournamentEligibleList,
+
+            "This participant field is full."
 
         );
 
@@ -2360,21 +2516,44 @@ function renderTournamentEligibleParticipants() {
             );
 
 
-            const eligibilityLabel =
+            const addButton =
                 document.createElement(
-                    "strong"
+                    "button"
                 );
 
 
-            eligibilityLabel.textContent =
-                "ELIGIBLE";
+            addButton.type =
+                "button";
+
+
+            addButton.className =
+                "control-room-button";
+
+
+            addButton.textContent =
+                "Add to Field";
+
+
+            addButton.addEventListener(
+
+                "click",
+
+                () => {
+
+                    addTournamentFieldParticipant(
+                        entrant.id
+                    );
+
+                }
+
+            );
 
 
             entrantRow.append(
 
                 entrantIdentity,
 
-                eligibilityLabel
+                addButton
 
             );
 
@@ -2390,7 +2569,6 @@ function renderTournamentEligibleParticipants() {
 }
 
 
-
 function renderStoredTournamentParticipants(
     bracket
 ) {
@@ -2398,13 +2576,7 @@ function renderStoredTournamentParticipants(
 
     const participants =
 
-        Array.isArray(
-            bracket.participants
-        )
-
-            ? bracket.participants
-
-            : [];
+        tournamentFieldDraftParticipants;
 
 
     if (
@@ -2516,11 +2688,52 @@ function renderStoredTournamentParticipants(
             );
 
 
+            const removeButton =
+                document.createElement(
+                    "button"
+                );
+
+
+            removeButton.type =
+                "button";
+
+
+            removeButton.className =
+                "control-room-button";
+
+
+            removeButton.textContent =
+                "Remove";
+
+
+            removeButton.disabled =
+                Boolean(
+                    bracket.fieldLocked
+                );
+
+
+            removeButton.addEventListener(
+
+                "click",
+
+                () => {
+
+                    removeTournamentFieldParticipant(
+                        participantId
+                    );
+
+                }
+
+            );
+
+
             participantRow.append(
 
                 participantNumber,
 
-                participantIdentity
+                participantIdentity,
+
+                removeButton
 
             );
 
@@ -2534,7 +2747,6 @@ function renderStoredTournamentParticipants(
     );
 
 }
-
 
 
 function renderTournamentFieldOverview() {
@@ -2557,15 +2769,9 @@ function renderTournamentFieldOverview() {
     }
 
 
-    const participants =
+        const participants =
 
-        Array.isArray(
-            bracket.participants
-        )
-
-            ? bracket.participants
-
-            : [];
+        tournamentFieldDraftParticipants;
 
 
     const numericFieldSize =
@@ -2618,10 +2824,16 @@ function renderTournamentFieldOverview() {
         "";
 
 
-    tournamentParticipantSearch.disabled =
+        tournamentParticipantSearch.disabled =
+
         Boolean(
             bracket.fieldLocked
-        );
+        )
+
+        ||
+
+        selectedCount >=
+            numericFieldSize;
 
 
     tournamentParticipantSearch.placeholder =
@@ -2630,12 +2842,17 @@ function renderTournamentFieldOverview() {
 
             ? "This participant field is locked"
 
-            : bracket.participantType ===
-                "team"
+            : selectedCount >=
+                numericFieldSize
 
-                ? "Search eligible teams"
+                ? "This participant field is full"
 
-                : "Search eligible wrestlers";
+                : bracket.participantType ===
+                    "team"
+
+                    ? "Search eligible teams"
+
+                    : "Search eligible wrestlers";
 
 
     tournamentFieldSaveButton.disabled =
@@ -3161,10 +3378,9 @@ tournamentBracketSelect.addEventListener(
 
     "change",
 
-    renderTournamentFieldOverview
+    loadTournamentFieldDraft
 
 );
-
 
 tournamentParticipantSearch.addEventListener(
 
