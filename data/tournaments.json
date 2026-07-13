@@ -29,7 +29,10 @@
           "brand": "Ascension",
           "division": "Men's Singles",
           "fieldSize": 16,
-          "fieldUnit": "Competitors",
+                    "fieldUnit": "Competitors",
+          "participantType": "wrestler",
+          "participants": [],
+          "fieldLocked": false,
           "status": "Upcoming"
         },
         {
@@ -38,7 +41,10 @@
           "brand": "Ascension",
           "division": "Women's Singles",
           "fieldSize": 16,
-          "fieldUnit": "Competitors",
+                   "fieldUnit": "Competitors",
+          "participantType": "wrestler",
+          "participants": [],
+          "fieldLocked": false,
           "status": "Upcoming"
         },
         {
@@ -47,7 +53,10 @@
           "brand": "Ascension",
           "division": "Men's Singles",
           "fieldSize": 16,
-          "fieldUnit": "Competitors",
+                   "fieldUnit": "Competitors",
+          "participantType": "wrestler",
+          "participants": [],
+          "fieldLocked": false,
           "status": "Upcoming"
         },
         {
@@ -56,7 +65,10 @@
           "brand": "Ascension",
           "division": "Women's Singles",
           "fieldSize": 16,
-          "fieldUnit": "Competitors",
+                    "fieldUnit": "Competitors",
+          "participantType": "wrestler",
+          "participants": [],
+          "fieldLocked": false,
           "status": "Upcoming"
         },
         {
@@ -65,7 +77,10 @@
           "brand": "Revolt",
           "division": "Men's Singles",
           "fieldSize": 16,
-          "fieldUnit": "Competitors",
+                    "fieldUnit": "Competitors",
+          "participantType": "wrestler",
+          "participants": [],
+          "fieldLocked": false,
           "status": "Upcoming"
         },
         {
@@ -74,7 +89,10 @@
           "brand": "Revolt",
           "division": "Women's Singles",
           "fieldSize": 16,
-          "fieldUnit": "Competitors",
+                   "fieldUnit": "Competitors",
+          "participantType": "wrestler",
+          "participants": [],
+          "fieldLocked": false,
           "status": "Upcoming"
         },
         {
@@ -83,7 +101,10 @@
           "brand": "Revolt",
           "division": "Men's Singles",
           "fieldSize": 16,
-          "fieldUnit": "Competitors",
+                    "fieldUnit": "Competitors",
+          "participantType": "wrestler",
+          "participants": [],
+          "fieldLocked": false,
           "status": "Upcoming"
         },
         {
@@ -92,7 +113,10 @@
           "brand": "Revolt",
           "division": "Women's Singles",
           "fieldSize": 16,
-          "fieldUnit": "Competitors",
+                    "fieldUnit": "Competitors",
+          "participantType": "wrestler",
+          "participants": [],
+          "fieldLocked": false,
           "status": "Upcoming"
         },
         {
@@ -101,7 +125,10 @@
           "brand": "Shared",
           "division": "Men's Tag Teams",
           "fieldSize": 28,
-          "fieldUnit": "Teams",
+                   "fieldUnit": "Teams",
+          "participantType": "team",
+          "participants": [],
+          "fieldLocked": false,
           "status": "Upcoming"
         },
         {
@@ -110,7 +137,10 @@
           "brand": "Shared",
           "division": "Women's Tag Teams",
           "fieldSize": 16,
-          "fieldUnit": "Teams",
+                    "fieldUnit": "Teams",
+          "participantType": "team",
+          "participants": [],
+          "fieldLocked": false,
           "status": "Upcoming"
         }
       ]
