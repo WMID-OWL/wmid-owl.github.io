@@ -8545,7 +8545,17 @@ function crResultsSerializeJsonArray(
 
 }
 
+function crResultsSerializeJsonObject(
+    record
+) {
 
+    return `${JSON.stringify(
+        record,
+        null,
+        2
+    )}\n`;
+
+}
 
 // =================================
 // SAVE RESULT
@@ -8642,7 +8652,97 @@ async function crResultsSaveResult() {
 
             );
 
+        let tournamentFile =
+            null;
 
+
+        let tournamentUpdate = {
+
+            changed:
+                false,
+
+            database:
+                null,
+
+            winnerEntrantId:
+                ""
+
+        };
+
+
+        let updatedTournamentText =
+            "";
+
+
+        if (
+            crResultsIsTournamentMatch()
+        ) {
+
+
+            tournamentFile =
+
+                await crResultsReadDataFile(
+                    "tournaments.json"
+                );
+
+
+            let tournamentDatabase;
+
+
+            try {
+
+
+                tournamentDatabase =
+
+                    JSON.parse(
+                        tournamentFile.text
+                    );
+
+
+            }
+
+
+            catch (
+                error
+            ) {
+
+
+                throw new Error(
+                    "tournaments.json is not valid JSON."
+                );
+
+            }
+
+
+            tournamentUpdate =
+
+                crResultsBuildTournamentAdvancementUpdate(
+
+                    tournamentDatabase,
+
+                    crResultsSelectedMatch,
+
+                    form
+
+                );
+
+
+            if (
+                tournamentUpdate.changed
+            ) {
+
+
+                updatedTournamentText =
+
+                    crResultsSerializeJsonObject(
+
+                        tournamentUpdate.database
+
+                    );
+
+            }
+
+        }
         let titleFile =
             null;
 
@@ -8739,7 +8839,7 @@ async function crResultsSaveResult() {
         );
 
 
-        if (
+               if (
             titleFile
 
             &&
@@ -8757,6 +8857,30 @@ async function crResultsSaveResult() {
                 titleFile.fileHandle,
 
                 updatedTitleText
+
+            );
+
+        }
+
+
+        if (
+            tournamentFile
+
+            &&
+
+            tournamentUpdate.changed
+        ) {
+
+            writtenFiles.push(
+                tournamentFile
+            );
+
+
+            await crResultsWriteFile(
+
+                tournamentFile.fileHandle,
+
+                updatedTournamentText
 
             );
 
@@ -8789,12 +8913,24 @@ async function crResultsSaveResult() {
 
                 "announced-matches.json",
 
-                ...(
+                                ...(
 
                     titleUpdate.changed
 
                         ? [
                             "title-reigns.json"
+                        ]
+
+                        : []
+
+                ),
+
+                ...(
+
+                    tournamentUpdate.changed
+
+                        ? [
+                            "tournaments.json"
                         ]
 
                         : []
