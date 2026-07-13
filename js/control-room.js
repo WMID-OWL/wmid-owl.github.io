@@ -2001,7 +2001,7 @@ function createTournamentBracketMatch(
         );
 
 
-    return {
+        return {
 
         id:
             `round-${roundNumber}-match-${matchNumber}`,
@@ -2018,6 +2018,12 @@ function createTournamentBracketMatch(
 
         sourceTwoMatchId:
             values.sourceTwoMatchId || "",
+
+        eventId:
+            values.eventId || "",
+
+        matchRecordId:
+            values.matchRecordId || "",
 
         winnerId:
 
