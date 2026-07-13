@@ -1573,6 +1573,10 @@ let tournamentFieldDraftParticipants =
     [];
 
 
+let tournamentBracketSetupDraft =
+    null;
+
+
 function getControlRoomTournaments() {
 
 
@@ -1840,6 +1844,916 @@ function getTournamentBracketStructure(
 }
 
 
+function shuffleTournamentBracketParticipants(
+    participantIds
+) {
+
+
+    const shuffledParticipants = [
+        ...participantIds
+    ];
+
+
+    for (
+        let index =
+            shuffledParticipants.length - 1;
+
+        index >
+            0;
+
+        index -=
+            1
+    ) {
+
+
+        const randomIndex =
+
+            Math.floor(
+
+                Math.random() *
+                (
+                    index +
+                    1
+                )
+
+            );
+
+
+        [
+
+            shuffledParticipants[
+                index
+            ],
+
+            shuffledParticipants[
+                randomIndex
+            ]
+
+        ] = [
+
+            shuffledParticipants[
+                randomIndex
+            ],
+
+            shuffledParticipants[
+                index
+            ]
+
+        ];
+
+    }
+
+
+    return shuffledParticipants;
+
+}
+
+
+
+function getTournamentBracketRoundNames(
+    fieldSize
+) {
+
+
+    const numericFieldSize =
+
+        Number(
+            fieldSize || 0
+        );
+
+
+    if (
+        numericFieldSize ===
+        16
+    ) {
+
+        return [
+
+            "Round of 16",
+
+            "Quarterfinals",
+
+            "Semifinals",
+
+            "Final"
+
+        ];
+
+    }
+
+
+    if (
+        numericFieldSize ===
+        28
+    ) {
+
+        return [
+
+            "Opening Round",
+
+            "Round of 16",
+
+            "Quarterfinals",
+
+            "Semifinals",
+
+            "Final"
+
+        ];
+
+    }
+
+
+    return [
+
+        "Opening Round",
+
+        "Quarterfinals",
+
+        "Semifinals",
+
+        "Final"
+
+    ];
+
+}
+
+
+
+function createTournamentBracketMatch(
+    roundNumber,
+    matchNumber,
+    values = {}
+) {
+
+
+    const participantOneId =
+        values.participantOneId || "";
+
+
+    const participantTwoId =
+        values.participantTwoId || "";
+
+
+    const isBye =
+        Boolean(
+            values.isBye
+        );
+
+
+    return {
+
+        id:
+            `round-${roundNumber}-match-${matchNumber}`,
+
+        order:
+            matchNumber,
+
+        participantOneId,
+
+        participantTwoId,
+
+        sourceOneMatchId:
+            values.sourceOneMatchId || "",
+
+        sourceTwoMatchId:
+            values.sourceTwoMatchId || "",
+
+        winnerId:
+
+            isBye
+
+                ? participantOneId
+
+                : "",
+
+        status:
+
+            isBye
+
+                ? "bye"
+
+                : "pending",
+
+        isBye
+
+    };
+
+}
+
+
+
+function generateTournamentBracketPreviewData(
+    bracket
+) {
+
+
+    const structure =
+        getTournamentBracketStructure(
+            bracket.fieldSize
+        );
+
+
+    const participants =
+
+        Array.isArray(
+            bracket.participants
+        )
+
+            ? bracket.participants
+
+            : [];
+
+
+    const shuffledParticipants =
+
+        shuffleTournamentBracketParticipants(
+            participants
+        );
+
+
+    const roundNames =
+
+        getTournamentBracketRoundNames(
+            bracket.fieldSize
+        );
+
+
+    const rounds =
+        [];
+
+
+    const openingRoundSlotCount =
+
+        structure.bracketSize /
+        2;
+
+
+    const openingRoundMatches =
+        [];
+
+
+    if (
+        structure.byeCount >
+        0
+    ) {
+
+
+        const byeRecipients =
+
+            shuffledParticipants.slice(
+                0,
+                structure.byeCount
+            );
+
+
+        const openingRoundCompetitors =
+
+            shuffledParticipants.slice(
+                structure.byeCount
+            );
+
+
+        const byePositions =
+
+            new Set(
+
+                Array.from(
+
+                    {
+                        length:
+                            structure.byeCount
+                    },
+
+                    (
+                        unusedValue,
+                        index
+                    ) =>
+
+                        index *
+
+                        (
+                            openingRoundSlotCount /
+                            structure.byeCount
+                        )
+
+                )
+
+            );
+
+
+        let byeRecipientIndex =
+            0;
+
+
+        let competitorIndex =
+            0;
+
+
+        for (
+            let matchIndex =
+                0;
+
+            matchIndex <
+                openingRoundSlotCount;
+
+            matchIndex +=
+                1
+        ) {
+
+
+            if (
+                byePositions.has(
+                    matchIndex
+                )
+            ) {
+
+
+                const byeRecipientId =
+
+                    byeRecipients[
+                        byeRecipientIndex
+                    ];
+
+
+                openingRoundMatches.push(
+
+                    createTournamentBracketMatch(
+
+                        1,
+
+                        matchIndex +
+                            1,
+
+                        {
+
+                            participantOneId:
+                                byeRecipientId,
+
+                            participantTwoId:
+                                "",
+
+                            isBye:
+                                true
+
+                        }
+
+                    )
+
+                );
+
+
+                byeRecipientIndex +=
+                    1;
+
+
+                continue;
+
+            }
+
+
+            openingRoundMatches.push(
+
+                createTournamentBracketMatch(
+
+                    1,
+
+                    matchIndex +
+                        1,
+
+                    {
+
+                        participantOneId:
+
+                            openingRoundCompetitors[
+                                competitorIndex
+                            ],
+
+                        participantTwoId:
+
+                            openingRoundCompetitors[
+                                competitorIndex +
+                                    1
+                            ],
+
+                        isBye:
+                            false
+
+                    }
+
+                )
+
+            );
+
+
+            competitorIndex +=
+                2;
+
+        }
+
+    }
+
+
+    else {
+
+
+        for (
+            let matchIndex =
+                0;
+
+            matchIndex <
+                openingRoundSlotCount;
+
+            matchIndex +=
+                1
+        ) {
+
+
+            openingRoundMatches.push(
+
+                createTournamentBracketMatch(
+
+                    1,
+
+                    matchIndex +
+                        1,
+
+                    {
+
+                        participantOneId:
+
+                            shuffledParticipants[
+                                matchIndex *
+                                2
+                            ],
+
+                        participantTwoId:
+
+                            shuffledParticipants[
+
+                                (
+                                    matchIndex *
+                                    2
+                                )
+
+                                +
+
+                                1
+
+                            ],
+
+                        isBye:
+                            false
+
+                    }
+
+                )
+
+            );
+
+        }
+
+    }
+
+
+    rounds.push({
+
+        id:
+            "round-1",
+
+        order:
+            1,
+
+        name:
+            roundNames[0] ||
+            "Opening Round",
+
+        matches:
+            openingRoundMatches
+
+    });
+
+
+    for (
+        let roundNumber =
+            2;
+
+        roundNumber <=
+            structure.totalRounds;
+
+        roundNumber +=
+            1
+    ) {
+
+
+        const previousRound =
+
+            rounds[
+                roundNumber -
+                2
+            ];
+
+
+        const matchCount =
+
+            previousRound.matches.length /
+            2;
+
+
+        const matches =
+            [];
+
+
+        for (
+            let matchIndex =
+                0;
+
+            matchIndex <
+                matchCount;
+
+            matchIndex +=
+                1
+        ) {
+
+
+            matches.push(
+
+                createTournamentBracketMatch(
+
+                    roundNumber,
+
+                    matchIndex +
+                        1,
+
+                    {
+
+                        sourceOneMatchId:
+
+                            previousRound.matches[
+
+                                matchIndex *
+                                2
+
+                            ].id,
+
+                        sourceTwoMatchId:
+
+                            previousRound.matches[
+
+                                (
+                                    matchIndex *
+                                    2
+                                )
+
+                                +
+
+                                1
+
+                            ].id
+
+                    }
+
+                )
+
+            );
+
+        }
+
+
+        rounds.push({
+
+            id:
+                `round-${roundNumber}`,
+
+            order:
+                roundNumber,
+
+            name:
+
+                roundNames[
+                    roundNumber -
+                    1
+                ]
+
+                ||
+
+                `Round ${roundNumber}`,
+
+            matches
+
+        });
+
+    }
+
+
+    return {
+
+        rounds,
+
+        winnerId:
+            ""
+
+    };
+
+}
+
+
+
+function getTournamentBracketPreviewSideLabel(
+    bracket,
+    match,
+    participantProperty,
+    sourceProperty
+) {
+
+
+    const participantId =
+        match[
+            participantProperty
+        ];
+
+
+    if (
+        participantId
+    ) {
+
+        return getTournamentEntrantDisplayName(
+
+            bracket,
+
+            participantId
+
+        );
+
+    }
+
+
+    const sourceMatchId =
+        match[
+            sourceProperty
+        ];
+
+
+    if (
+        sourceMatchId
+    ) {
+
+
+        const sourceMatchNumber =
+
+            sourceMatchId.split(
+                "-"
+            ).at(
+                -1
+            );
+
+
+        return `Winner of Match ${sourceMatchNumber}`;
+
+    }
+
+
+    return "TBD";
+
+}
+
+
+
+function renderTournamentBracketSetupDraft(
+    bracket
+) {
+
+
+    if (
+        !tournamentBracketSetupDraft
+
+        ||
+
+        !Array.isArray(
+            tournamentBracketSetupDraft.rounds
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    tournamentBracketSetupPreview.innerHTML =
+        "";
+
+
+    tournamentBracketSetupDraft.rounds.forEach(
+
+        round => {
+
+
+            const roundHeading =
+                document.createElement(
+                    "div"
+                );
+
+
+            roundHeading.className =
+                "cr-editor-section-heading";
+
+
+            const roundLabel =
+                document.createElement(
+                    "span"
+                );
+
+
+            roundLabel.textContent =
+
+                `ROUND ${round.order}`;
+
+
+            const roundName =
+                document.createElement(
+                    "h3"
+                );
+
+
+            roundName.textContent =
+                round.name;
+
+
+            roundHeading.append(
+
+                roundLabel,
+
+                roundName
+
+            );
+
+
+            tournamentBracketSetupPreview.appendChild(
+                roundHeading
+            );
+
+
+            round.matches.forEach(
+
+                match => {
+
+
+                    const matchRow =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    matchRow.className =
+                        "control-room-health-item";
+
+
+                    const matchLabel =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    matchLabel.textContent =
+
+                        `MATCH ${match.order}`;
+
+
+                    const participantOneLabel =
+
+                        getTournamentBracketPreviewSideLabel(
+
+                            bracket,
+
+                            match,
+
+                            "participantOneId",
+
+                            "sourceOneMatchId"
+
+                        );
+
+
+                    const participantTwoLabel =
+
+                        getTournamentBracketPreviewSideLabel(
+
+                            bracket,
+
+                            match,
+
+                            "participantTwoId",
+
+                            "sourceTwoMatchId"
+
+                        );
+
+
+                    const matchup =
+                        document.createElement(
+                            "strong"
+                        );
+
+
+                    matchup.textContent =
+
+                        match.isBye
+
+                            ? `${participantOneLabel} — BYE`
+
+                            : `${participantOneLabel} vs ${participantTwoLabel}`;
+
+
+                    matchRow.append(
+
+                        matchLabel,
+
+                        matchup
+
+                    );
+
+
+                    tournamentBracketSetupPreview.appendChild(
+                        matchRow
+                    );
+
+                }
+
+            );
+
+        }
+
+    );
+
+}
+
+
+
+function generateTournamentBracketPreview() {
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    if (
+        !bracket
+    ) {
+
+        return;
+
+    }
+
+
+    const bracketSetup =
+        getTournamentBracketSetup(
+            bracket
+        );
+
+
+    const storedParticipants =
+        getStoredTournamentParticipants(
+            bracket
+        );
+
+
+    const fieldIsComplete =
+
+        storedParticipants.length ===
+        Number(
+            bracket.fieldSize || 0
+        );
+
+
+    if (
+        bracketSetup.generated
+
+        ||
+
+        !fieldIsComplete
+
+        ||
+
+        !bracket.fieldLocked
+    ) {
+
+        return;
+
+    }
+
+
+    tournamentBracketSetupDraft =
+
+        generateTournamentBracketPreviewData(
+            bracket
+        );
+
+
+    renderTournamentBracketSetupOverview(
+        bracket
+    );
+
+}
 
 function renderTournamentBracketSetupOverview(
     bracket
@@ -1940,12 +2854,16 @@ function renderTournamentBracketSetupOverview(
         structure.byeCount;
 
 
-    tournamentBracketSaveButton.disabled =
+        tournamentBracketSaveButton.disabled =
         true;
 
 
     tournamentBracketSetupMessage.hidden =
         true;
+
+
+    tournamentBracketPreviewButton.textContent =
+        "Generate Bracket Preview";
 
 
     if (
@@ -2017,8 +2935,31 @@ function renderTournamentBracketSetupOverview(
     }
 
 
-    tournamentBracketPreviewButton.disabled =
+        tournamentBracketPreviewButton.disabled =
         false;
+
+
+    if (
+        tournamentBracketSetupDraft
+    ) {
+
+
+        tournamentBracketSetupStatus.textContent =
+            "PREVIEW READY";
+
+
+        tournamentBracketPreviewButton.textContent =
+            "Regenerate Bracket Preview";
+
+
+        renderTournamentBracketSetupDraft(
+            bracket
+        );
+
+
+        return;
+
+    }
 
 
     setTournamentManagerEmptyMessage(
@@ -2038,8 +2979,12 @@ function renderTournamentBracketSetupOverview(
 function resetTournamentFieldOverview() {
 
 
-    tournamentFieldDraftParticipants =
+        tournamentFieldDraftParticipants =
         [];
+
+
+    tournamentBracketSetupDraft =
+        null;
 
 
     tournamentCurrentStatus.textContent =
@@ -3814,6 +4759,10 @@ async function toggleTournamentParticipantFieldLock() {
 function loadTournamentFieldDraft() {
 
 
+    tournamentBracketSetupDraft =
+        null;
+
+
     const bracket =
         getSelectedControlRoomBracket();
 
@@ -5129,6 +6078,15 @@ tournamentFieldLockButton.addEventListener(
     "click",
 
     toggleTournamentParticipantFieldLock
+
+);
+
+
+tournamentBracketPreviewButton.addEventListener(
+
+    "click",
+
+    generateTournamentBracketPreview
 
 );
 
