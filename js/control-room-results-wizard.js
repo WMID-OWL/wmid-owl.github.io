@@ -972,6 +972,227 @@ function crResultsIsTournamentMatch(
 
 }
 
+function crResultsGetTournamentBracket(
+    match =
+        crResultsSelectedMatch
+) {
+
+
+    if (
+        !crResultsIsTournamentMatch(
+            match
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    const tournamentDatabase =
+        owlControlRoomData.tournaments;
+
+
+    if (
+        !tournamentDatabase
+
+        ||
+
+        Array.isArray(
+            tournamentDatabase
+        )
+
+        ||
+
+        !Array.isArray(
+            tournamentDatabase.tournaments
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    const tournamentLink =
+        match.tournamentLink;
+
+
+    const tournament =
+
+        tournamentDatabase.tournaments.find(
+
+            storedTournament =>
+
+                storedTournament.id ===
+                tournamentLink.tournamentId
+
+        );
+
+
+    if (
+        !tournament
+
+        ||
+
+        !Array.isArray(
+            tournament.brackets
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    return tournament.brackets.find(
+
+        bracket =>
+
+            bracket.id ===
+            tournamentLink.bracketId
+
+    ) || null;
+
+}
+
+
+
+function crResultsIsTournamentFinalMatch(
+    match =
+        crResultsSelectedMatch
+) {
+
+
+    const bracket =
+        crResultsGetTournamentBracket(
+            match
+        );
+
+
+    const rounds =
+        bracket?.bracketSetup?.rounds;
+
+
+    if (
+        !Array.isArray(
+            rounds
+        )
+
+        ||
+
+        rounds.length ===
+            0
+    ) {
+
+        return false;
+
+    }
+
+
+    const orderedRounds =
+
+        [
+
+            ...rounds
+
+        ].sort(
+
+            (
+                roundA,
+                roundB
+            ) =>
+
+                Number(
+                    roundA.order || 0
+                )
+
+                -
+
+                Number(
+                    roundB.order || 0
+                )
+
+        );
+
+
+    const finalRound =
+
+        orderedRounds[
+            orderedRounds.length -
+            1
+        ];
+
+
+    const tournamentLink =
+        match.tournamentLink;
+
+
+    if (
+        finalRound.id
+
+        &&
+
+        tournamentLink.roundId ===
+            finalRound.id
+    ) {
+
+        return true;
+
+    }
+
+
+    return (
+
+        Number(
+            tournamentLink.roundOrder || 0
+        )
+
+        ===
+
+        Number(
+            finalRound.order ||
+            orderedRounds.length
+        )
+
+    );
+
+}
+
+
+
+function crResultsShouldApplyTitleConsequence(
+    match =
+        crResultsSelectedMatch
+) {
+
+
+    if (
+        !match?.championshipId
+    ) {
+
+        return false;
+
+    }
+
+
+    if (
+        !crResultsIsTournamentMatch(
+            match
+        )
+    ) {
+
+        return true;
+
+    }
+
+
+    return crResultsIsTournamentFinalMatch(
+        match
+    );
+
+}
+
 // =================================
 // EVENT AND MATCH OPTIONS
 // =================================
@@ -7808,13 +8029,13 @@ async function crResultsSaveResult() {
             "";
 
 
-        if (
-            crResultsSelectedMatch
-                .championshipId
+                if (
+            crResultsShouldApplyTitleConsequence()
 
             &&
 
-            form.resultType === "win"
+            form.resultType ===
+                "win"
         ) {
 
             titleFile =
