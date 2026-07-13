@@ -495,16 +495,160 @@ function renderParticipantSlots(
 }
 
 
-function renderRoundShell(
+function getSavedTournamentBracketSetup(
     bracket
 ) {
 
 
-    const roundGrid =
+    const bracketSetup =
+        bracket?.bracketSetup;
 
-        document.getElementById(
-            "tournament-round-grid"
+
+    if (
+        !bracketSetup
+
+        ||
+
+        Array.isArray(
+            bracketSetup
+        )
+
+        ||
+
+        typeof bracketSetup !==
+            "object"
+    ) {
+
+        return {
+
+            generated:
+                false,
+
+            generatedAt:
+                "",
+
+            rounds:
+                [],
+
+            winnerId:
+                ""
+
+        };
+
+    }
+
+
+    return bracketSetup;
+
+}
+
+
+
+function getTournamentBracketSourceLabel(
+    sourceMatchId
+) {
+
+
+    const sourceMatch =
+
+        /^round-(\d+)-match-(\d+)$/.exec(
+
+            String(
+                sourceMatchId || ""
+            )
+
         );
+
+
+    if (
+        !sourceMatch
+    ) {
+
+        return "Previous-Round Winner";
+
+    }
+
+
+    return `Winner of Round ${sourceMatch[1]} Match ${sourceMatch[2]}`;
+
+}
+
+
+
+function getTournamentBracketMatchSideLabel(
+    bracket,
+    match,
+    participantProperty,
+    sourceProperty,
+    wrestlers,
+    teams
+) {
+
+
+    const participantId =
+
+        match[
+            participantProperty
+        ];
+
+
+    if (
+        participantId
+    ) {
+
+
+        const entrant =
+
+            getTournamentBracketEntrant(
+
+                bracket,
+
+                participantId,
+
+                wrestlers,
+
+                teams
+
+            );
+
+
+        return entrant?.name
+
+            ||
+
+            "Participant Unavailable";
+
+    }
+
+
+    const sourceMatchId =
+
+        match[
+            sourceProperty
+        ];
+
+
+    if (
+        sourceMatchId
+    ) {
+
+        return getTournamentBracketSourceLabel(
+            sourceMatchId
+        );
+
+    }
+
+
+    return "TBD";
+
+}
+
+
+
+function renderPendingTournamentRounds(
+    bracket,
+    roundGrid
+) {
 
 
     const roundNames =
@@ -571,6 +715,256 @@ function renderRoundShell(
 
 }
 
+
+
+function renderRoundShell(
+    bracket,
+    wrestlers,
+    teams
+) {
+
+
+    const roundGrid =
+
+        document.getElementById(
+            "tournament-round-grid"
+        );
+
+
+    const bracketSetup =
+
+        getSavedTournamentBracketSetup(
+            bracket
+        );
+
+
+    if (
+        !bracketSetup.generated
+
+        ||
+
+        !Array.isArray(
+            bracketSetup.rounds
+        )
+
+        ||
+
+        bracketSetup.rounds.length ===
+            0
+    ) {
+
+
+        renderPendingTournamentRounds(
+
+            bracket,
+
+            roundGrid
+
+        );
+
+
+        return;
+
+    }
+
+
+    roundGrid.innerHTML =
+
+        bracketSetup.rounds.map(
+
+            (
+                round,
+                roundIndex
+            ) => {
+
+
+                const roundNumber =
+
+                    Number(
+                        round.order
+                    )
+
+                    ||
+
+                    roundIndex +
+                        1;
+
+
+                const roundName =
+
+                    round.name
+
+                    ||
+
+                    `Round ${roundNumber}`;
+
+
+                const matches =
+
+                    Array.isArray(
+                        round.matches
+                    )
+
+                        ? round.matches
+
+                        : [];
+
+
+                const matchMarkup =
+
+                    matches.length > 0
+
+                        ? matches.map(
+
+                            (
+                                match,
+                                matchIndex
+                            ) => {
+
+
+                                const participantOneLabel =
+
+                                    getTournamentBracketMatchSideLabel(
+
+                                        bracket,
+
+                                        match,
+
+                                        "participantOneId",
+
+                                        "sourceOneMatchId",
+
+                                        wrestlers,
+
+                                        teams
+
+                                    );
+
+
+                                const participantTwoLabel =
+
+                                    getTournamentBracketMatchSideLabel(
+
+                                        bracket,
+
+                                        match,
+
+                                        "participantTwoId",
+
+                                        "sourceTwoMatchId",
+
+                                        wrestlers,
+
+                                        teams
+
+                                    );
+
+
+                                const matchupLabel =
+
+                                    match.isBye
+
+                                        ? `${participantOneLabel} — BYE`
+
+                                        : `${participantOneLabel} vs ${participantTwoLabel}`;
+
+
+                                const matchNumber =
+
+                                    Number(
+                                        match.order
+                                    )
+
+                                    ||
+
+                                    matchIndex +
+                                        1;
+
+
+                                return `
+
+                                    <article class="tournament-round-match">
+
+                                        <span>
+                                            ${
+                                                match.isBye
+
+                                                    ? "BYE"
+
+                                                    : `MATCH ${matchNumber}`
+                                            }
+                                        </span>
+
+                                        <strong>
+                                            ${escapeTournamentBracketText(
+                                                matchupLabel
+                                            )}
+                                        </strong>
+
+                                    </article>
+
+                                `;
+
+                            }
+
+                        ).join("")
+
+                        : `
+
+                            <article class="tournament-round-match">
+
+                                <span>
+                                    MATCHUPS PENDING
+                                </span>
+
+                                <strong>
+                                    —
+                                </strong>
+
+                            </article>
+
+                        `;
+
+
+                return `
+
+                    <section class="tournament-round-column">
+
+
+                        <div class="tournament-round-heading">
+
+
+                            <span>
+                                ROUND ${roundNumber}
+                            </span>
+
+
+                            <h3>
+                                ${escapeTournamentBracketText(
+                                    roundName
+                                )}
+                            </h3>
+
+
+                        </div>
+
+
+                        <div class="tournament-round-match-list">
+
+                            ${matchMarkup}
+
+                        </div>
+
+
+                    </section>
+
+                `;
+
+            }
+
+        ).join("");
+
+}
 
 
 function renderTournamentBracketPage(
@@ -679,8 +1073,14 @@ function renderTournamentBracketPage(
     );
 
 
-    renderRoundShell(
-        bracket
+        renderRoundShell(
+
+        bracket,
+
+        wrestlers,
+
+        teams
+
     );
 
 
