@@ -185,9 +185,27 @@ function installSignatureSeriesNavigation() {
                     .pop();
 
 
+                        const signatureSeriesPages = [
+
+                "signature-series.html",
+
+                "one-off-tournaments.html",
+
+                "tournament.html",
+
+                "signature-matches.html",
+
+                "power-players.html",
+
+                "proving-ground.html"
+
+            ];
+
+
             if (
-                currentPage ===
-                "signature-series.html"
+                signatureSeriesPages.includes(
+                    currentPage
+                )
             ) {
 
                 signatureSeriesLink.classList.add(
