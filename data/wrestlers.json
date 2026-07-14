@@ -498,5 +498,30 @@
     "factionId": "",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "ren-takeda",
+    "name": "Ren Takeda",
+    "nickname": "Golden Tiger",
+    "hometown": "Tokyo, Japan",
+    "country": "Japan",
+    "countryCode": "JP",
+    "flag": "🇯🇵",
+    "brand": "Ascension",
+    "division": "Men",
+    "photo": "assets/images/wrestlers/ren-takeda.png",
+    "currentTitle": "",
+    "finisher": "GOLDEN TIGER BOMB",
+    "finisher2": "",
+    "finisherGif": "assets/images/finishers/ren-takeda-finisher-1.gif",
+    "finisher2Gif": "",
+    "signatureMoves": [],
+    "whyImHere": "Ren Takeda was born in Tokyo, but his legend was shaped in the quiet hours after the crowds went home. While others chased fame, Takeda trained in silence, obsessed with becoming something rare: a wrestler with the patience of a predator, the precision of a fighter, and the spirit of a warrior who never wastes motion.\n\nKnown as “The Golden Tiger,” Takeda carries himself with calm intensity until the bell rings. Then the stillness disappears, replaced by sudden strikes, explosive movement, and a killer instinct hidden behind his composed expression. The tiger is not loud because it does not need to be. It waits, watches, and attacks when the opening appears.\n\nTakeda came to OWL to prove that greatness does not always roar. Sometimes it stalks quietly from Tokyo, wrapped in gold, until the whole world realizes it is already too late.",
+    "team": "",
+    "teamId": "",
+    "faction": "",
+    "factionId": "",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
