@@ -151,10 +151,35 @@ async function loadTeamProfile() {
             team.name;
 
 
-        document.getElementById(
+                document.getElementById(
             "team-brand"
         ).textContent =
             team.brand || "";
+
+
+
+        // =================================
+        // MANAGER / VALET
+        // =================================
+
+
+        if (
+            team.manager
+        ) {
+
+
+            document.getElementById(
+                "team-manager"
+            ).textContent =
+                team.manager;
+
+
+            document.getElementById(
+                "team-manager-section"
+            ).hidden =
+                false;
+
+        }
 
 
 
