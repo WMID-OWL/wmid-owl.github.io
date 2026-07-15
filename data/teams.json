@@ -43,5 +43,20 @@
     "whyWereHere": "BTTITW stands for Best Tag Team in the World, and yes, they picked the name before winning anything because humility was never part of the plan. Johnny Gargano and Zack Sabre Jr. formed out of tension, not friendship. They were two obsessive wrestling minds who kept clashing, countering, and testing each other until competition slowly turned into respect.\n\nTheir styles should not work together this well, but that is what makes them dangerous. Gargano brings speed, heart, counters, and big-match survival. Zack brings submissions, joint manipulation, arrogance, and the ability to make every opponent look like they skipped class. One fights with emotion, the other with calculation, and somehow they meet in the middle as a nightmare tag team.\n\nBTTITW is not here to be liked. They are here to prove the name is not a joke.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "blacktide",
+    "name": "BlackTide",
+    "manager": "",
+    "members": [
+      "brody-king",
+      "jeff-cobb"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/blacktide.png",
+    "finisher": "",
+    "whyWereHere": "When Jeff Cobb and Brody King joined forces, OWL got hit by a natural disaster. Black Tide is power, violence, and destruction rolled into one team — two wrecking machines who don’t care about flash, approval, or playing nice. Cobb brings the explosive throws and impossible strength, while Brody brings the chaos and brutality that turns every fight into a nightmare. Together, they don’t just beat teams — they swallow them whole. Black Tide is here to wash over the division, drag the competition under, and leave nothing standing when the wave pulls back. If they’ve set their sights on the tag titles, it may already be too late.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
