@@ -77,9 +77,14 @@ const crFactionMessage =
 
 const crFactionFields = {
 
-    name:
+        name:
         document.getElementById(
             "cr-faction-name"
+        ),
+
+    manager:
+        document.getElementById(
+            "cr-faction-manager"
         ),
 
     brand:
@@ -359,8 +364,11 @@ function crFactionGetFormRecord() {
 
     return {
 
-        name:
+                name:
             crFactionFields.name.value.trim(),
+
+        manager:
+            crFactionFields.manager.value.trim(),
 
         brand:
             crFactionFields.brand.value,
@@ -405,8 +413,11 @@ function crFactionGetEditableRecord(
 
     return {
 
-        name:
+                name:
             faction.name || "",
+
+        manager:
+            faction.manager || "",
 
         brand:
             faction.brand || "",
@@ -452,8 +463,12 @@ function crFactionFillForm(
     record
 ) {
 
-    crFactionFields.name.value =
+        crFactionFields.name.value =
         record.name || "";
+
+
+    crFactionFields.manager.value =
+        record.manager || "";
 
 
     crFactionFields.brand.value =
@@ -512,7 +527,10 @@ function crFactionClearForm() {
 
     crFactionFillForm({
 
-        name:
+                name:
+            "",
+
+        manager:
             "",
 
         brand:
@@ -1554,8 +1572,11 @@ function crFactionFieldLabel(
 
     const labels = {
 
-        name:
+                name:
             "Faction Name",
+
+        manager:
+            "Manager / Valet",
 
         brand:
             "Show",
@@ -1683,9 +1704,15 @@ function crFactionReviewChanges() {
         );
 
 
-        crFactionAddReviewRow(
+                crFactionAddReviewRow(
             "Database ID",
             newId
+        );
+
+
+        crFactionAddReviewRow(
+            "Manager / Valet",
+            record.manager || "None"
         );
 
 
@@ -2191,36 +2218,92 @@ function crFactionReplaceStringField(
 
 
     if (
-        !pattern.test(
+        pattern.test(
             block
         )
     ) {
 
-        throw new Error(
+        return block.replace(
 
-            `Could not find field ${key}.`
+            pattern,
+
+            (
+                match,
+                prefix
+            ) =>
+
+                prefix
+
+                +
+
+                JSON.stringify(
+                    value
+                )
 
         );
 
     }
 
 
-    return block.replace(
+    const closingBraceIndex =
+        block.lastIndexOf(
+            "}"
+        );
 
-        pattern,
 
-        (
-            match,
-            prefix
-        ) =>
+    if (
+        closingBraceIndex ===
+            -1
+    ) {
 
-            prefix
+        throw new Error(
+            `Could not add field ${key}.`
+        );
 
-            +
+    }
 
-            JSON.stringify(
-                value
-            )
+
+    const beforeClosingBrace =
+
+        block.slice(
+            0,
+            closingBraceIndex
+        )
+            .trimEnd();
+
+
+    const separator =
+
+        beforeClosingBrace.endsWith(
+            "{"
+        )
+
+            ? ""
+
+            : ",";
+
+
+    return (
+
+        beforeClosingBrace
+
+        +
+
+        separator
+
+        +
+
+        `\n    ${JSON.stringify(
+            key
+        )}: ${JSON.stringify(
+            value
+        )}\n`
+
+        +
+
+        block.slice(
+            closingBraceIndex
+        )
 
     );
 
@@ -2559,8 +2642,11 @@ function crFactionBuildNewRecord() {
                 form.name
             ),
 
-        name:
+                name:
             form.name,
+
+        manager:
+            form.manager,
 
         brand:
             form.brand,
