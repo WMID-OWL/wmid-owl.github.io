@@ -58,5 +58,20 @@
     "whyWereHere": "When Jeff Cobb and Brody King joined forces, OWL got hit by a natural disaster. Black Tide is power, violence, and destruction rolled into one team — two wrecking machines who don’t care about flash, approval, or playing nice. Cobb brings the explosive throws and impossible strength, while Brody brings the chaos and brutality that turns every fight into a nightmare. Together, they don’t just beat teams — they swallow them whole. Black Tide is here to wash over the division, drag the competition under, and leave nothing standing when the wave pulls back. If they’ve set their sights on the tag titles, it may already be too late.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "bounty-hunnaz",
+    "name": "Bounty Hunnaz",
+    "manager": "",
+    "members": [
+      "gabe-kidd",
+      "jacob-fatu"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/bounty-hunnaz.png",
+    "finisher": "",
+    "whyWereHere": "Bounty Hunnaz are not here to be fan favorites, role models, or tag-team purists. Gabe Kidd and Jacob Fatu formed around one simple idea: every roster has people who need to be dealt with, and they are more than willing to collect the price.\n\nKidd is the wild dog of the team—mouthy, reckless, and always ready to turn a match into a fight. Fatu is the monster behind him, a Samoan wrecking machine who makes sure nobody walks away once the hunt begins. Together, they feel less like a tag team and more like a warning notice. They do not chase glory the traditional way. They hunt targets, cash in damage, and leave teams wondering who put their name on the list.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
