@@ -72,9 +72,14 @@ const crTeamMessage =
 
 const crTeamFields = {
 
-    name:
+        name:
         document.getElementById(
             "cr-team-name"
+        ),
+
+    manager:
+        document.getElementById(
+            "cr-team-manager"
         ),
 
     brand:
@@ -305,8 +310,11 @@ function crTeamGetFormRecord() {
 
     return {
 
-        name:
+                name:
             crTeamFields.name.value.trim(),
+
+        manager:
+            crTeamFields.manager.value.trim(),
 
         brand:
             crTeamFields.brand.value,
@@ -340,8 +348,11 @@ function crTeamGetEditableRecord(
 
     return {
 
-        name:
+                name:
             team.name || "",
+
+        manager:
+            team.manager || "",
 
         brand:
             team.brand || "",
@@ -380,8 +391,12 @@ function crTeamFillForm(
 ) {
 
 
-    crTeamFields.name.value =
+        crTeamFields.name.value =
         record.name || "";
+
+
+    crTeamFields.manager.value =
+        record.manager || "";
 
 
     crTeamFields.brand.value =
@@ -430,7 +445,10 @@ function crTeamClearForm() {
 
     crTeamFillForm({
 
-        name:
+                name:
+            "",
+
+        manager:
             "",
 
         brand:
@@ -1362,22 +1380,25 @@ function crTeamReviewChanges() {
 
             crTeamAddReviewRow(
 
-                key === "name"
+                                key === "name"
                     ? "Team Name"
 
-                    : key === "brand"
-                        ? "Show"
+                    : key === "manager"
+                        ? "Manager / Valet"
 
-                        : key === "members"
-                            ? "Members"
+                        : key === "brand"
+                            ? "Show"
 
-                            : key === "finisher"
-                                ? "Finisher"
+                            : key === "members"
+                                ? "Members"
 
-                                : key === "whyWereHere"
-                                    ? "Why We're Here"
+                                : key === "finisher"
+                                    ? "Finisher"
 
-                                    : "Logo Path",
+                                    : key === "whyWereHere"
+                                        ? "Why We're Here"
+
+                                        : "Logo Path",
 
                 `${oldValue || "Empty"} → ${newValue || "Empty"}`
 
@@ -1755,35 +1776,93 @@ function crTeamReplaceStringField(
 
 
     if (
-        !pattern.test(
+        pattern.test(
             block
         )
     ) {
 
 
-        throw new Error(
-            `Could not find field ${key}.`
+        return block.replace(
+
+            pattern,
+
+            (
+                match,
+                prefix
+            ) =>
+
+                prefix
+
+                +
+
+                JSON.stringify(
+                    value
+                )
+
         );
 
     }
 
 
-    return block.replace(
+    const closingBraceIndex =
+        block.lastIndexOf(
+            "}"
+        );
 
-        pattern,
 
-        (
-            match,
-            prefix
-        ) =>
+    if (
+        closingBraceIndex ===
+            -1
+    ) {
 
-            prefix
+        throw new Error(
+            `Could not add field ${key}.`
+        );
 
-            +
+    }
 
-            JSON.stringify(
-                value
-            )
+
+    const beforeClosingBrace =
+
+        block.slice(
+            0,
+            closingBraceIndex
+        )
+            .trimEnd();
+
+
+    const separator =
+
+        beforeClosingBrace.endsWith(
+            "{"
+        )
+
+            ? ""
+
+            : ",";
+
+
+    return (
+
+        beforeClosingBrace
+
+        +
+
+        separator
+
+        +
+
+        `\n    ${JSON.stringify(
+            key
+        )}: ${JSON.stringify(
+            value
+        )}\n`
+
+        +
+
+        block.slice(
+            closingBraceIndex
+        )
 
     );
 
@@ -2130,8 +2209,11 @@ function crTeamBuildNewRecord() {
                 form.name
             ),
 
-        name:
+               name:
             form.name,
+
+        manager:
+            form.manager,
 
         members:
             form.members,
