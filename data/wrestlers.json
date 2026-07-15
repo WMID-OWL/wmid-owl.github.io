@@ -22,8 +22,9 @@
     "faction": "",
     "factionId": "",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "manager": "Manager Test Adding Long Name"
+},
   {
     "id": "errol-capleton",
     "name": "Errol Capleton",
