@@ -94,9 +94,14 @@ const crEditorFields = {
             "cr-edit-name"
         ),
 
-    nickname:
+        nickname:
         document.getElementById(
             "cr-edit-nickname"
+        ),
+
+    manager:
+        document.getElementById(
+            "cr-edit-manager"
         ),
 
     hometown:
@@ -168,8 +173,11 @@ const crEditorFieldLabels = {
     name:
         "Name",
 
-    nickname:
+       nickname:
         "Nickname",
+
+    manager:
+        "Manager / Valet",
 
     hometown:
         "Hometown",
@@ -385,8 +393,11 @@ function crEditorGetFormRecord() {
         name:
             crEditorFields.name.value.trim(),
 
-        nickname:
+               nickname:
             crEditorFields.nickname.value.trim(),
+
+        manager:
+            crEditorFields.manager.value.trim(),
 
         hometown:
             crEditorFields.hometown.value.trim(),
@@ -439,8 +450,11 @@ function crEditorGetEditableRecord(
         name:
             wrestler.name || "",
 
-        nickname:
+                nickname:
             wrestler.nickname || "",
+
+        manager:
+            wrestler.manager || "",
 
         hometown:
             wrestler.hometown || "",
@@ -496,8 +510,12 @@ function crEditorFillForm(
         record.name || "";
 
 
-    crEditorFields.nickname.value =
+        crEditorFields.nickname.value =
         record.nickname || "";
+
+
+    crEditorFields.manager.value =
+        record.manager || "";
 
 
     crEditorFields.hometown.value =
@@ -569,7 +587,10 @@ function crEditorClearForm() {
         name:
             "",
 
-        nickname:
+                nickname:
+            "",
+
+        manager:
             "",
 
         hometown:
@@ -1952,8 +1973,11 @@ function crEditorBuildNewWrestler() {
         name:
             form.name,
 
-        nickname:
+                nickname:
             form.nickname,
+
+        manager:
+            form.manager,
 
         hometown:
             form.hometown,
