@@ -452,9 +452,70 @@
             <div class="cr-editor-section">
                 <div class="cr-editor-section-heading"><span>FACTION IDENTITY</span><h3>Basic Information</h3></div>
                 <div class="cr-editor-form-grid">
-                    <div class="cr-form-group"><label for="cr-faction-name">FACTION NAME</label><input id="cr-faction-name" type="text" autocomplete="off"></div>
-                    <div class="cr-form-group"><label for="cr-faction-brand">SHOW</label><select id="cr-faction-brand"><option value="">Unassigned</option><option value="Ascension">Ascension</option><option value="Revolt">Revolt</option><option value="OWL">Shared OWL</option></select></div>
-                </div>
+                    <div class="cr-editor-form-grid">
+
+    <div class="cr-form-group">
+
+        <label for="cr-faction-name">
+            FACTION NAME
+        </label>
+
+        <input
+            id="cr-faction-name"
+            type="text"
+            autocomplete="off"
+        >
+
+    </div>
+
+    <div class="cr-form-group">
+
+        <label for="cr-faction-manager">
+            MANAGER / VALET — OPTIONAL
+        </label>
+
+        <input
+            id="cr-faction-manager"
+            type="text"
+            autocomplete="off"
+            placeholder="Enter manager or valet name"
+        >
+
+        <small class="cr-field-help">
+            Enter the name only. No separate roster profile is required.
+        </small>
+
+    </div>
+
+    <div class="cr-form-group">
+
+        <label for="cr-faction-brand">
+            SHOW
+        </label>
+
+        <select id="cr-faction-brand">
+
+            <option value="">
+                Unassigned
+            </option>
+
+            <option value="Ascension">
+                Ascension
+            </option>
+
+            <option value="Revolt">
+                Revolt
+            </option>
+
+            <option value="OWL">
+                Shared OWL
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
             </div>
 
             <div class="cr-editor-section">
@@ -2813,7 +2874,7 @@
 <script src="js/control-room-media-manager.js"></script>
 <script src="js/control-room-wrestler-editor.js?v=manager-1"></script>
 <script src="js/control-room-team-editor.js?v=manager-1"></script>
-<script src="js/control-room-faction-editor.js"></script>
+<script src="js/control-room-faction-editor.js?v=manager-1"></script>
 <script src="js/control-room-event-editor.js"></script>
 <script src="js/control-room-match-booker.js"></script>
 <script src="js/control-room-results-wizard.js"></script>
