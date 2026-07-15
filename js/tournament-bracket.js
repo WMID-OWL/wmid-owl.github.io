@@ -934,11 +934,21 @@ function renderRoundShell(
                                     !match.isBye;
 
 
+                                                                const isFinalRound =
+
+                                    roundIndex ===
+                                    bracketSetup.rounds.length - 1;
+
+
                                 const isTournamentWinner =
 
                                     Boolean(
                                         winnerLabel
                                     )
+
+                                    &&
+
+                                    isFinalRound
 
                                     &&
 
