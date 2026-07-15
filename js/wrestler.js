@@ -409,7 +409,26 @@ async function loadWrestlerProfile() {
     `);
 
 }
+        if (wrestler.manager) {
 
+            affiliations.push(`
+
+                <div class="affiliation-item">
+
+                    <span>
+                        MANAGER / VALET
+                    </span>
+
+                    <strong>
+                        ${wrestler.manager}
+                    </strong>
+
+                </div>
+
+            `);
+
+        }
+        
         if (affiliations.length > 0) {
 
             document.getElementById(
