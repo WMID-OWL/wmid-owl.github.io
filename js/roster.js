@@ -1313,7 +1313,36 @@ async function loadRoster() {
 
 
 
-        wrestlers.forEach(
+                const alphabetizedWrestlers =
+
+            [...wrestlers]
+
+                .sort(
+                    (
+                        firstWrestler,
+                        secondWrestler
+                    ) =>
+
+                        String(
+                            firstWrestler.name || ""
+                        ).localeCompare(
+
+                            String(
+                                secondWrestler.name || ""
+                            ),
+
+                            undefined,
+
+                            {
+                                sensitivity:
+                                    "base"
+                            }
+
+                        )
+                );
+
+
+        alphabetizedWrestlers.forEach(
             wrestler => {
 
                 placeWrestlerCard(
