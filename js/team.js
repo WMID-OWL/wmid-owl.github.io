@@ -296,12 +296,18 @@ async function loadTeamProfile() {
         // =================================
 
 
-        if (team.finisher) {
+                if (team.finisher) {
 
             document.getElementById(
                 "team-finisher"
             ).textContent =
                 team.finisher;
+
+
+            document.getElementById(
+                "team-finisher-section"
+            ).hidden =
+                false;
 
         }
 
