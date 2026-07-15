@@ -345,9 +345,69 @@
             <div class="cr-editor-section">
                 <div class="cr-editor-section-heading"><span>TEAM IDENTITY</span><h3>Basic Information</h3></div>
                 <div class="cr-editor-form-grid">
-                    <div class="cr-form-group"><label for="cr-team-name">TEAM NAME</label><input id="cr-team-name" type="text" autocomplete="off"></div>
-                    <div class="cr-form-group"><label for="cr-team-brand">SHOW</label><select id="cr-team-brand"><option value="">Unassigned</option><option value="Ascension">Ascension</option><option value="Revolt">Revolt</option><option value="OWL">Shared OWL Division</option></select></div>
-                </div>
+
+    <div class="cr-form-group">
+
+        <label for="cr-team-name">
+            TEAM NAME
+        </label>
+
+        <input
+            id="cr-team-name"
+            type="text"
+            autocomplete="off"
+        >
+
+    </div>
+
+    <div class="cr-form-group">
+
+        <label for="cr-team-manager">
+            MANAGER / VALET — OPTIONAL
+        </label>
+
+        <input
+            id="cr-team-manager"
+            type="text"
+            autocomplete="off"
+            placeholder="Example: Paul Ellering"
+        >
+
+        <small class="cr-field-help">
+            Enter the name only. No separate roster profile is required.
+        </small>
+
+    </div>
+
+    <div class="cr-form-group">
+
+        <label for="cr-team-brand">
+            SHOW
+        </label>
+
+        <select id="cr-team-brand">
+
+            <option value="">
+                Unassigned
+            </option>
+
+            <option value="Ascension">
+                Ascension
+            </option>
+
+            <option value="Revolt">
+                Revolt
+            </option>
+
+            <option value="OWL">
+                Shared OWL Division
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
             </div>
 
             <div class="cr-editor-section">
@@ -2752,7 +2812,7 @@
 <script src="js/control-room.js"></script>
 <script src="js/control-room-media-manager.js"></script>
 <script src="js/control-room-wrestler-editor.js?v=manager-1"></script>
-<script src="js/control-room-team-editor.js"></script>
+<script src="js/control-room-team-editor.js?v=manager-1"></script>
 <script src="js/control-room-faction-editor.js"></script>
 <script src="js/control-room-event-editor.js"></script>
 <script src="js/control-room-match-booker.js"></script>
