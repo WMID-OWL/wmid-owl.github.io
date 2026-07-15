@@ -220,10 +220,35 @@ async function loadFactionProfile() {
             faction.name;
 
 
-        document.getElementById(
+                document.getElementById(
             "faction-brand"
         ).textContent =
             faction.brand || "";
+
+
+
+        // =================================
+        // MANAGER / VALET
+        // =================================
+
+
+        if (
+            faction.manager
+        ) {
+
+
+            document.getElementById(
+                "faction-manager"
+            ).textContent =
+                faction.manager;
+
+
+            document.getElementById(
+                "faction-manager-section"
+            ).hidden =
+                false;
+
+        }
 
 
 
