@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": "the-i-w-c",
+    "name": "The I.W.C",
+    "manager": "",
+    "members": [
+      "will-komplane",
+      "buzz-kihl"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/the-i-w-c.png",
+    "finisher": "",
+    "whyWereHere": "The I.W.C. believes OWL has a problem, and unfortunately for everyone else, they think they are the solution. Led by loudmouth critic Will Komplane and enforced by heavy-handed muscle Buzz Kihl, the team operates like a walking comment section with authority issues. They claim they are here to “clean up” wrestling, correct bad behavior, and hold the roster to a higher standard—but really, they just want control.\n\nKomplane does the talking, judging, and moral grandstanding, while Buzz makes sure nobody gets too comfortable disagreeing. Together, they turn every match into a lecture and every loss into somebody else’s fault. The I.W.C. came to OWL to censor chaos, punish imperfection, and prove that their version of wrestling is the only one that matters.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "true-north-elite",
+    "name": "True North Elite",
+    "manager": "",
+    "members": [
+      "levi-martin",
+      "connor-canada"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/true-north-elite.png",
+    "finisher": "SUPER CANADIAN DESTROYER",
+    "whyWereHere": "True North Elite was born inside Syrup City Wrestling Academy, where two very different kinds of privilege collided. Levi Martin came from money and wanted something that could finally challenge him. Connor Canada came from hockey, where his future as an all-world goalie was ruined by a temper he could never keep in the crease.\n\nTogether, they became a perfect problem: Levi brought polish, arrogance, and cold ambition, while Connor brought violence, anger, and the kind of mean streak that made opponents regret signing contracts. After running through the Canadian indies and collecting gold, True North Elite arrived in OWL looking for a bigger stage and better prey. They do not see themselves as hungry newcomers. They see themselves as superior athletes from the north, here to take what they believe already belongs to them.",
+    "championshipsHeld": [],
+    "awards": []
+  }
+]
