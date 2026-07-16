@@ -88,5 +88,20 @@
     "whyWereHere": "Los Ingobernables: Plata o Plomo is not a normal tag team. It is an ultimatum. RUSH and Andrade operate with the same message for every team in OWL: accept their superiority, or get forced to understand it the hard way.\n\nRUSH brings raw violence, pride, and the ability to turn any match into a fight no one is comfortable surviving. Andrade brings precision, arrogance, and the kind of ring IQ that makes every opening feel like a trap. Together, they are money and menace, luxury and brutality, style and punishment. They do not see the tag division as competition. They see it as territory.\n\nThe name says everything. Take the silver, take the beating, or get out of their way.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "double-dragon",
+    "name": "Double Dragon",
+    "manager": "",
+    "members": [
+      "dragon-lee",
+      "dralistico"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/double-dragon.png",
+    "finisher": "",
+    "whyWereHere": "Double Dragon is what happens when family, lucha libre, and competitive pride collide. Dragon Lee and Dralístico do not enter OWL as two random stars thrown together for convenience. They enter as brothers with shared history, shared blood, and very different ways of proving greatness.\n\nDragon Lee brings speed, precision, and controlled fire. Dralístico brings style, danger, and unpredictability. Together, they create a team that can outpace, outfly, and outthink almost anyone in the division. But underneath the masks, the moves, and the spectacle is something more personal: they are fighting to show that their family’s legacy is not finished being written.\n\nDouble Dragon is not here to simply compete. They are here to make the tag division feel the heat.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
