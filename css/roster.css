@@ -55,27 +55,36 @@
 
 .roster-portrait {
 
-    flex: 0 0 110px;
+    flex:
+        0 0 145px;
 
-    width: 110px;
+    width:
+        145px;
 
-    aspect-ratio: 4 / 5;
+    aspect-ratio:
+        4 / 5;
 
-    display: grid;
+    display:
+        grid;
 
-    place-items: center;
+    place-items:
+        center;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
-    background: #171d20;
+    background:
+        #171d20;
 
     border:
         1px solid
         rgba(255, 255, 255, 0.12);
 
-    font-size: 1.8rem;
+    font-size:
+        1.8rem;
 
-    font-weight: 900;
+    font-weight:
+        900;
 
 }
 
@@ -83,14 +92,37 @@
 
 .roster-portrait img {
 
-    width: 100%;
+    width:
+        100%;
 
-    height: 100%;
+    height:
+        100%;
 
-    object-fit: cover;
+    object-fit:
+        cover;
+
+    object-position:
+        center top;
+
+    transform:
+        scale(1.06);
+
+    transform-origin:
+        center top;
+
+    transition:
+        transform 0.2s ease;
 
 }
 
+
+.roster-card-link:hover
+.roster-portrait img {
+
+    transform:
+        scale(1.1);
+
+}
 
 
 .roster-card-info {
@@ -142,11 +174,13 @@
     }
 
 
-    .roster-portrait {
+        .roster-portrait {
 
-        flex-basis: 90px;
+        flex-basis:
+            110px;
 
-        width: 90px;
+        width:
+            110px;
 
     }
 
