@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": "los-ingobernables-plata-o-plomo",
+    "name": "Los Ingobernables: Plata o Plomo",
+    "manager": "",
+    "brand": "Ascension",
+    "logo": "assets/images/factions/los-ingobernables-plata-o-plomo.png",
+    "leader": "",
+    "tagTeamId": "los-ingobernables-plata-o-plomo",
+    "members": [
+      "andrade",
+      "rush",
+      "bandido"
+    ],
+    "singlesMembers": [
+      "bandido"
+    ],
+    "whyWereHere": "Los Ingobernables: Plata o Plomo is built on power, pride, and the refusal to be controlled by anyone outside their circle. With RUSH and Andrade holding down the tag division and Bandido standing as the singles weapon of the group, the faction gives OWL three different problems with the same dangerous answer.\n\nRUSH is the violence. Andrade is the strategy. Bandido is the spectacle — the masked ace who can outfly, outfight, and outshine anyone placed in front of him. Together, they bring lucha royalty, world-traveled credibility, and a code that does not bend for management, fans, or rivals.\n\nThey are not here to join OWL’s culture. They are here to change the power structure. Plata o Plomo is not just a name. It is the choice they give every opponent before the bell rings.",
+    "championshipsHeld": [],
+    "awards": []
+  }
+]

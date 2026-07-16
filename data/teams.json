@@ -73,5 +73,20 @@
     "whyWereHere": "Bounty Hunnaz are not here to be fan favorites, role models, or tag-team purists. Gabe Kidd and Jacob Fatu formed around one simple idea: every roster has people who need to be dealt with, and they are more than willing to collect the price.\n\nKidd is the wild dog of the team—mouthy, reckless, and always ready to turn a match into a fight. Fatu is the monster behind him, a Samoan wrecking machine who makes sure nobody walks away once the hunt begins. Together, they feel less like a tag team and more like a warning notice. They do not chase glory the traditional way. They hunt targets, cash in damage, and leave teams wondering who put their name on the list.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "los-ingobernables-plata-o-plomo",
+    "name": "Los Ingobernables: Plata o Plomo",
+    "manager": "",
+    "members": [
+      "andrade",
+      "rush"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/los-ingobernables-plata-o-plomo.png",
+    "finisher": "",
+    "whyWereHere": "Los Ingobernables: Plata o Plomo is not a normal tag team. It is an ultimatum. RUSH and Andrade operate with the same message for every team in OWL: accept their superiority, or get forced to understand it the hard way.\n\nRUSH brings raw violence, pride, and the ability to turn any match into a fight no one is comfortable surviving. Andrade brings precision, arrogance, and the kind of ring IQ that makes every opening feel like a trap. Together, they are money and menace, luxury and brutality, style and punishment. They do not see the tag division as competition. They see it as territory.\n\nThe name says everything. Take the silver, take the beating, or get out of their way.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
