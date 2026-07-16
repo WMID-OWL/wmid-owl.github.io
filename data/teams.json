@@ -133,5 +133,20 @@
     "whyWereHere": "Dude…Bro sounds like a joke until the bell rings. Rob Van Dam and Matt Riddle might be one of OWL’s most unlikely pairings, but the chemistry is obvious: two laid-back fighters with explosive offense, strange timing, and enough confidence to make chaos look casual.\n\nRVD brings the legendary cool factor, aerial creativity, and educated feet. Riddle brings MMA toughness, barefoot violence, and a reckless kind of joy for combat. Together, they do not move like a traditional tag team. They drift, strike, counter, improvise, and somehow land exactly where they need to be.\n\nOpponents may laugh at the name, the attitude, or the vibe. Then the kicks start flying, the suplexes start landing, and suddenly everyone understands: Dude…Bro is relaxed, not weak.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "idolos-de-oro",
+    "name": "Idolos De Oro",
+    "manager": "",
+    "members": [
+      "mistico",
+      "mascara-dorada"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/idolos-de-oro.png",
+    "finisher": "",
+    "whyWereHere": "Ídolos de Oro is the kind of team that makes the tag division feel more expensive the second they arrive. Místico and Máscara Dorada bring elegance, speed, tradition, and spectacle wrapped in gold. They are not just two luchadores sharing a corner — they are two generations of lucha brilliance moving with the same purpose.\n\nMístico is the icon: calm, precise, legendary, and impossible to rattle. Máscara Dorada is the golden spark: fearless, explosive, and hungry to prove he belongs beside the best. Together, they can overwhelm teams with speed, confuse them with rhythm, and embarrass them with creativity.\n\nOWL’s tag division has power teams, violent teams, and loud teams. Ídolos de Oro brings something different: magic, legacy, and championship shine.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
