@@ -923,7 +923,7 @@ function renderRoundShell(
                                     );
 
 
-                                const isCompletedMatch =
+                                                                const isCompletedMatch =
 
                                     Boolean(
                                         winnerLabel
@@ -934,7 +934,22 @@ function renderRoundShell(
                                     !match.isBye;
 
 
-                                                                const isFinalRound =
+                                const isBookedMatch =
+
+                                    Boolean(
+                                        match.eventId
+                                    )
+
+                                    &&
+
+                                    !match.isBye
+
+                                    &&
+
+                                    !isCompletedMatch;
+
+
+                                const isFinalRound =
 
                                     roundIndex ===
                                     bracketSetup.rounds.length - 1;
@@ -1039,7 +1054,7 @@ function renderRoundShell(
 
                                         <span>
                                             ${
-                                                match.isBye
+                                                                                                match.isBye
 
                                                     ? "BYE"
 
@@ -1047,7 +1062,11 @@ function renderRoundShell(
 
                                                         ? `MATCH ${matchNumber} • COMPLETE`
 
-                                                        : `MATCH ${matchNumber}`
+                                                        : isBookedMatch
+
+                                                            ? `MATCH ${matchNumber} • BOOKED`
+
+                                                            : `MATCH ${matchNumber}`
                                             }
                                         </span>
 
