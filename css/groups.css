@@ -1,3 +1,8 @@
+/* =================================
+   GROUPS PAGE
+================================= */
+
+
 .groups-page {
 
     width:
@@ -10,6 +15,12 @@
         0 auto;
 
 }
+
+
+
+/* =================================
+   HERO
+================================= */
 
 
 .groups-hero {
@@ -59,6 +70,12 @@
         1.7;
 
 }
+
+
+
+/* =================================
+   PAGE SECTIONS
+================================= */
 
 
 .groups-section {
@@ -131,6 +148,12 @@
 }
 
 
+
+/* =================================
+   TEAM / FACTION GRID
+================================= */
+
+
 .group-grid {
 
     display:
@@ -138,8 +161,8 @@
 
     grid-template-columns:
         repeat(
-            auto-fit,
-            minmax(280px, 1fr)
+            2,
+            minmax(0, 1fr)
         );
 
     gap:
@@ -148,19 +171,38 @@
 }
 
 
+
+/* =================================
+   TEAM / FACTION CARD
+================================= */
+
+
 .group-card {
 
     display:
         grid;
 
     grid-template-columns:
-        150px 1fr;
+        minmax(200px, 40%)
+        minmax(0, 1fr);
+
+    width:
+        100%;
+
+    min-width:
+        0;
 
     min-height:
-        190px;
+        260px;
 
     overflow:
         hidden;
+
+    color:
+        inherit;
+
+    text-decoration:
+        none;
 
     background:
         #111517;
@@ -187,6 +229,12 @@
 }
 
 
+
+/* =================================
+   CARD IMAGE
+================================= */
+
+
 .group-card-image {
 
     display:
@@ -194,6 +242,9 @@
 
     place-items:
         center;
+
+    min-width:
+        0;
 
     overflow:
         hidden;
@@ -205,6 +256,9 @@
 
 
 .group-card-image img {
+
+    display:
+        block;
 
     width:
         100%;
@@ -232,6 +286,12 @@
 }
 
 
+
+/* =================================
+   CARD BODY
+================================= */
+
+
 .group-card-body {
 
     display:
@@ -242,6 +302,9 @@
 
     justify-content:
         center;
+
+    min-width:
+        0;
 
     padding:
         1.5rem;
@@ -256,6 +319,12 @@
 
     justify-content:
         space-between;
+
+    align-items:
+        center;
+
+    min-width:
+        0;
 
     gap:
         1rem;
@@ -284,16 +353,57 @@
 }
 
 
+.group-brand {
+
+    min-width:
+        0;
+
+    overflow-wrap:
+        anywhere;
+
+}
+
+
+.group-record {
+
+    flex:
+        0 0 auto;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+/* =================================
+   CARD NAME AND MEMBERS
+================================= */
+
+
 .group-card h3 {
 
     margin:
-        0.6rem 0 0.35rem;
+        0.7rem 0 0.45rem;
+
+    max-width:
+        100%;
 
     font-size:
-        1.7rem;
+        clamp(
+            1.6rem,
+            2.2vw,
+            2.1rem
+        );
 
     line-height:
-        1;
+        1.05;
+
+    overflow-wrap:
+        anywhere;
+
+    word-break:
+        normal;
 
 }
 
@@ -303,13 +413,25 @@
     margin:
         0;
 
+    max-width:
+        100%;
+
     color:
         #a7b0b3;
 
     line-height:
         1.5;
 
+    overflow-wrap:
+        anywhere;
+
 }
+
+
+
+/* =================================
+   VIEW LINK
+================================= */
 
 
 .view-group {
@@ -338,7 +460,8 @@
 }
 
 
-.group-card:hover .view-group {
+.group-card:hover
+.view-group {
 
     color:
         #c6a15b;
@@ -346,12 +469,48 @@
 }
 
 
-@media (max-width: 650px) {
+
+/* =================================
+   TABLET
+================================= */
+
+
+@media (max-width: 900px) {
+
+    .group-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
 
     .group-card {
 
         grid-template-columns:
-            110px 1fr;
+            minmax(190px, 38%)
+            minmax(0, 1fr);
+
+    }
+
+}
+
+
+
+/* =================================
+   MOBILE
+================================= */
+
+
+@media (max-width: 650px) {
+
+    .groups-page {
+
+        width:
+            min(
+                100% - 28px,
+                1200px
+            );
 
     }
 
@@ -366,6 +525,97 @@
 
         gap:
             0.5rem;
+
+    }
+
+
+    .group-card {
+
+        grid-template-columns:
+            120px
+            minmax(0, 1fr);
+
+        min-height:
+            210px;
+
+    }
+
+
+    .group-card-body {
+
+        padding:
+            1rem;
+
+    }
+
+
+    .group-card h3 {
+
+        font-size:
+            1.5rem;
+
+    }
+
+
+    .group-card-topline {
+
+        gap:
+            0.5rem;
+
+    }
+
+}
+
+
+
+/* =================================
+   SMALL MOBILE
+================================= */
+
+
+@media (max-width: 420px) {
+
+    .group-card {
+
+        grid-template-columns:
+            100px
+            minmax(0, 1fr);
+
+    }
+
+
+    .group-card-body {
+
+        padding:
+            0.85rem;
+
+    }
+
+
+    .group-card h3 {
+
+        font-size:
+            1.3rem;
+
+    }
+
+
+    .group-brand,
+    .group-record {
+
+        font-size:
+            0.6rem;
+
+        letter-spacing:
+            0.06em;
+
+    }
+
+
+    .view-group {
+
+        font-size:
+            0.7rem;
 
     }
 
