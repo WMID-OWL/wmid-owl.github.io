@@ -118,5 +118,20 @@
     "whyWereHere": "Hard Luck is what happens when Irish pride meets bad intentions. Sheamus and Jordan Devlin did not come together because they needed friends. They came together because OWL’s tag division needed a warning. One is a battle-tested bruiser who has made a career out of turning matches into fights. The other is a bitter, skilled technician with something to prove and no patience for disrespect.\n\nTogether, they are rough, mean, and hard to game-plan for. Sheamus brings the power, pressure, and veteran punishment. Devlin brings the speed, counters, and nasty precision. If you try to outfight them, Sheamus will flatten you. If you try to outwrestle them, Devlin will twist you up.\n\nThe name says it all: when you draw Sheamus and Devlin, that is Hard Luck.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "dude-bro",
+    "name": "Dude...Bro",
+    "manager": "",
+    "members": [
+      "rob-van-dam",
+      "matt-riddle"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/dude-bro.png",
+    "finisher": "",
+    "whyWereHere": "Dude…Bro sounds like a joke until the bell rings. Rob Van Dam and Matt Riddle might be one of OWL’s most unlikely pairings, but the chemistry is obvious: two laid-back fighters with explosive offense, strange timing, and enough confidence to make chaos look casual.\n\nRVD brings the legendary cool factor, aerial creativity, and educated feet. Riddle brings MMA toughness, barefoot violence, and a reckless kind of joy for combat. Together, they do not move like a traditional tag team. They drift, strike, counter, improvise, and somehow land exactly where they need to be.\n\nOpponents may laugh at the name, the attitude, or the vibe. Then the kicks start flying, the suplexes start landing, and suddenly everyone understands: Dude…Bro is relaxed, not weak.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
