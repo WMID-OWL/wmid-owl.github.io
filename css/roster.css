@@ -151,7 +151,12 @@
     }
 
 }
-/* ROSTER CONTROLS */
+
+
+
+/* =================================
+   ROSTER CONTROLS
+================================= */
 
 
 .roster-controls {
@@ -332,7 +337,8 @@
 
 
 
-.roster-filter.is-active {
+.roster-filter.is-active,
+.roster-filter.active {
 
     background:
         #c6a15b;
@@ -371,6 +377,9 @@
         #a7b0b3;
 
 }
+
+
+
 /* =================================
    ROSTER TEAM RESULTS
 ================================= */
@@ -382,6 +391,7 @@
         4rem 0;
 
 }
+
 
 
 .roster-section-heading {
@@ -404,6 +414,7 @@
 }
 
 
+
 .roster-section-heading h2 {
 
     margin:
@@ -420,6 +431,7 @@
         -0.05em;
 
 }
+
 
 
 .roster-section-heading > span {
@@ -442,6 +454,7 @@
 }
 
 
+
 .roster-team-grid {
 
     display:
@@ -450,7 +463,7 @@
     grid-template-columns:
         repeat(
             auto-fit,
-            minmax(460px, 1fr)
+            minmax(320px, 1fr)
         );
 
     gap:
@@ -459,23 +472,17 @@
 }
 
 
+
 .roster-team-card {
 
     display:
         grid;
 
     grid-template-columns:
-        minmax(150px, 40%)
-        minmax(0, 1fr);
-
-    width:
-        100%;
-
-    min-width:
-        0;
+        170px 1fr;
 
     min-height:
-        230px;
+        210px;
 
     overflow:
         hidden;
@@ -492,6 +499,19 @@
         border-color 0.15s ease;
 
 }
+
+
+
+.roster-team-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(198, 161, 91, 0.7);
+
+}
+
 
 
 .roster-team-image {
@@ -511,6 +531,7 @@
 }
 
 
+
 .roster-team-image img {
 
     width:
@@ -523,6 +544,7 @@
         contain;
 
 }
+
 
 
 .roster-team-image > span {
@@ -539,6 +561,7 @@
 }
 
 
+
 .roster-team-body {
 
     display:
@@ -550,49 +573,11 @@
     justify-content:
         center;
 
-    min-width:
-        0;
-
     padding:
         1.5rem;
 
-} 
-.roster-team-topline span,
-.roster-team-topline strong {
-
-    color:
-        #c6a15b;
-
-    font-size:
-        0.7rem;
-
-    font-weight:
-        900;
-
-    text-transform:
-        uppercase;
-
-    letter-spacing:
-        0.1em;
-
-}
-.roster-team-topline span {
-
-    min-width:
-        0;
-
 }
 
-
-.roster-team-topline strong {
-
-    flex:
-        0 0 auto;
-
-    white-space:
-        nowrap;
-
-}
 
 
 .roster-team-topline {
@@ -612,6 +597,7 @@
 }
 
 
+
 .roster-team-topline span,
 .roster-team-topline strong {
 
@@ -633,39 +619,26 @@
 }
 
 
+
 .roster-team-body h3 {
 
     margin:
         0.75rem 0 0.4rem;
 
-    max-width:
-        100%;
-
     font-size:
-        clamp(
-            1.5rem,
-            2vw,
-            2rem
-        );
+        2rem;
 
     line-height:
-        1.05;
-
-    overflow-wrap:
-        anywhere;
-
-    word-break:
-        normal;
+        1;
 
 }
+
+
 
 .roster-team-body p {
 
     margin:
         0;
-
-    max-width:
-        100%;
 
     color:
         #a7b0b3;
@@ -673,10 +646,8 @@
     line-height:
         1.5;
 
-    overflow-wrap:
-        anywhere;
-
 }
+
 
 
 .roster-view-team {
@@ -702,6 +673,7 @@
 }
 
 
+
 .roster-team-card:hover
 .roster-view-team {
 
@@ -711,20 +683,13 @@
 }
 
 
+
 @media (max-width: 650px) {
-    .roster-team-grid {
+
+    .roster-team-card {
 
         grid-template-columns:
-            1fr;
-
-    }
-        .roster-team-card {
-
-        grid-template-columns:
-            110px minmax(0, 1fr);
-
-        min-height:
-            190px;
+            110px 1fr;
 
     }
 
