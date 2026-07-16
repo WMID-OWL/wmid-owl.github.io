@@ -103,5 +103,20 @@
     "whyWereHere": "Double Dragon is what happens when family, lucha libre, and competitive pride collide. Dragon Lee and Dralístico do not enter OWL as two random stars thrown together for convenience. They enter as brothers with shared history, shared blood, and very different ways of proving greatness.\n\nDragon Lee brings speed, precision, and controlled fire. Dralístico brings style, danger, and unpredictability. Together, they create a team that can outpace, outfly, and outthink almost anyone in the division. But underneath the masks, the moves, and the spectacle is something more personal: they are fighting to show that their family’s legacy is not finished being written.\n\nDouble Dragon is not here to simply compete. They are here to make the tag division feel the heat.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "hard-luck",
+    "name": "Hard Luck",
+    "manager": "",
+    "members": [
+      "jordan-devlin",
+      "sheamus-o-shaunessy"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/hard-luck.png",
+    "finisher": "",
+    "whyWereHere": "Hard Luck is what happens when Irish pride meets bad intentions. Sheamus and Jordan Devlin did not come together because they needed friends. They came together because OWL’s tag division needed a warning. One is a battle-tested bruiser who has made a career out of turning matches into fights. The other is a bitter, skilled technician with something to prove and no patience for disrespect.\n\nTogether, they are rough, mean, and hard to game-plan for. Sheamus brings the power, pressure, and veteran punishment. Devlin brings the speed, counters, and nasty precision. If you try to outfight them, Sheamus will flatten you. If you try to outwrestle them, Devlin will twist you up.\n\nThe name says it all: when you draw Sheamus and Devlin, that is Hard Luck.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
