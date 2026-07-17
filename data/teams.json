@@ -148,5 +148,20 @@
     "whyWereHere": "Ídolos de Oro is the kind of team that makes the tag division feel more expensive the second they arrive. Místico and Máscara Dorada bring elegance, speed, tradition, and spectacle wrapped in gold. They are not just two luchadores sharing a corner — they are two generations of lucha brilliance moving with the same purpose.\n\nMístico is the icon: calm, precise, legendary, and impossible to rattle. Máscara Dorada is the golden spark: fearless, explosive, and hungry to prove he belongs beside the best. Together, they can overwhelm teams with speed, confuse them with rhythm, and embarrass them with creativity.\n\nOWL’s tag division has power teams, violent teams, and loud teams. Ídolos de Oro brings something different: magic, legacy, and championship shine.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "the-forgotten-family",
+    "name": "The Forgotten Family",
+    "manager": "",
+    "members": [
+      "samoa-joe",
+      "toa-liona"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/the-forgotten-family.png",
+    "finisher": "",
+    "whyWereHere": "The Forgotten Family is built on one simple truth: Samoan wrestling history is bigger than the names everyone already knows. Samoa Joe and Toa Liona are not tied to the famous Anoaʻi dynasty, and that is exactly the point. They do not come to OWL carrying someone else’s legacy. They come carrying their own anger, pride, and destruction.\n\nJoe is the cold, calculating killer — a veteran who can break opponents mentally before finishing them physically. Toa is the wrecking ball — pure island power with no interest in slowing down. Together, they are not trying to be accepted into anyone’s bloodline. They are here to carve out their own.\n\nThe Forgotten Family is not a tribute. It is a warning: remember them now, or get remembered for what they did to you.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
