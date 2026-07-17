@@ -478,7 +478,7 @@
   {
     "id": "cameron-cam-flash",
     "name": "Cameron \"Cam\" Flash",
-    "nickname": "Mr. 4K @Cam_FlashTV",
+    "nickname": "Mr. 4K",
     "hometown": "Chino Hills, CA",
     "country": "United States",
     "countryCode": "US",
@@ -492,7 +492,7 @@
     "finisherGif": "assets/images/finishers/cameron-cam-flash-finisher-1.gif",
     "finisher2Gif": "assets/images/finishers/cameron-cam-flash-finisher-2.gif",
     "signatureMoves": [],
-    "whyImHere": "Cameron “Cam” Flash talked himself into OWL before he ever wrestled his way in. Known online as Mr. 4K, he built his name as an annoying streamer, loudmouth wrestling critic, and proud member of the internet wrestling community—the kind of guy who watched one match and immediately claimed he could do it better. After one dare too many, Cam stepped into a ring to prove the internet right. The problem? The internet may have lied.\n\nFlash is flashy, obnoxious, and convinced every match is content. His nickname sounds elite, but “4K” is also the follower count he cannot seem to break past. Most of his offense is questionable at best: mistimed dives, ugly landings, and moves that only work when gravity feels generous. But every now and then, Cam catches someone slipping and turns a botch into an opportunity. He may not be good yet—but he is loud enough to make OWL notice.",
+    "whyImHere": "Cameron “Cam” Flash talked himself into OWL before he ever wrestled his way in. Known online as Mr. 4K @Cam_FlashTV, he built his name as an annoying streamer, loudmouth wrestling critic, and proud member of the internet wrestling community—the kind of guy who watched one match and immediately claimed he could do it better. After one dare too many, Cam stepped into a ring to prove the internet right. The problem? The internet may have lied.\n\nFlash is flashy, obnoxious, and convinced every match is content. His nickname sounds elite, but “4K” is also the follower count he cannot seem to break past. Most of his offense is questionable at best: mistimed dives, ugly landings, and moves that only work when gravity feels generous. But every now and then, Cam catches someone slipping and turns a botch into an opportunity. He may not be good yet—but he is loud enough to make OWL notice.",
     "team": "",
     "teamId": "",
     "faction": "",
@@ -1205,7 +1205,7 @@
   },
   {
     "id": "sheamus-o-shaunessy",
-    "name": "Sheamus O'Shaunessy",
+    "name": "Sheamus Farrelly",
     "nickname": "The Celtic Warrior",
     "manager": "",
     "hometown": "Dublin, Ireland",
