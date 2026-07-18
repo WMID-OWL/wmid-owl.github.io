@@ -193,5 +193,20 @@
     "whyWereHere": "Fraxiom is controlled chaos with championship proof behind it. Nathan Frazer and Axiom should not work as smoothly as they do. Frazer is reckless speed, all instinct and acceleration. Axiom is masked precision, all timing and calculation. But together, they turn contrast into chemistry.\n\nThey came together after proving they could push each other as opponents, then discovered they were even harder to handle as partners. Their NXT run made them former champions, with WWE listing their reign from September 2024 to April 2025, and both later debuted on SmackDown in April 2025.\n\nIn OWL, Fraxiom brings a different kind of threat to the tag division. Power teams can hit harder. Brawlers can fight dirtier. But nobody makes the match move faster. One second of hesitation, and Fraxiom is already three counters ahead.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "southern-cross",
+    "name": "Southern Cross",
+    "manager": "",
+    "members": [
+      "mark-davis",
+      "bronson-reed"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/southern-cross.png",
+    "finisher": "",
+    "whyWereHere": "Southern Cross is Australian violence with no apology attached. Mark Davis and Bronson Reed are not a flashy pretty-boy tag team, and they are damn sure not here to dance around the division. They are two heavy hitters from down under who turned size, strength, and bad intentions into a team identity.\n\nDavis brings the tag-team instincts, the grit, and the brawler’s timing. Reed brings the overwhelming mass, speed, and destruction that makes every impact feel final. Together, they are not just big — they are coordinated, mean, and built to make opponents feel smaller by the minute.\n\nThe name Southern Cross carries pride, but the team carries punishment. When Davis and Reed step across the ring, the message is simple: look up, because the sky is about to fall.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
