@@ -893,6 +893,182 @@
 
 }
 /* =================================
+   ROSTER ALPHABET JUMP BAR
+================================= */
+
+
+.roster-alphabet-nav {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            13,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        0.45rem;
+
+    margin-top:
+        1.5rem;
+
+    padding:
+        1rem;
+
+    background:
+        #0d1113;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.roster-alphabet-nav[hidden] {
+
+    display:
+        none;
+
+}
+
+
+.roster-alphabet-button {
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    min-height:
+        38px;
+
+    padding:
+        0.45rem;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+    color:
+        #5f686c;
+
+    cursor:
+        default;
+
+    font:
+        inherit;
+
+    font-size:
+        0.75rem;
+
+    font-weight:
+        900;
+
+    line-height:
+        1;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease;
+
+}
+
+
+.roster-alphabet-button.is-available {
+
+    color:
+        #f5f5f2;
+
+    cursor:
+        pointer;
+
+}
+
+
+.roster-alphabet-button.is-available:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        #c6a15b;
+
+    border-color:
+        #c6a15b;
+
+    color:
+        #080a0b;
+
+}
+
+
+.roster-alphabet-button:disabled {
+
+    opacity:
+        0.35;
+
+}
+
+
+@media (max-width: 800px) {
+
+    .roster-alphabet-nav {
+
+        grid-template-columns:
+            repeat(
+                9,
+                minmax(0, 1fr)
+            );
+
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .roster-alphabet-nav {
+
+        grid-template-columns:
+            repeat(
+                7,
+                minmax(0, 1fr)
+            );
+
+        gap:
+            0.35rem;
+
+        padding:
+            0.75rem;
+
+    }
+
+
+    .roster-alphabet-button {
+
+        min-height:
+            34px;
+
+        padding:
+            0.35rem;
+
+        font-size:
+            0.68rem;
+
+    }
+
+}
+
+/* =================================
    ALPHABETICAL ROSTER SECTIONS
 ================================= */
 
@@ -918,31 +1094,15 @@
 
 .roster-letter-heading {
 
-    position:
-        sticky;
-
-    top:
-        0;
-
-    z-index:
-        5;
-
     margin:
         0 0 1rem;
 
-    padding:
-        0.65rem 0 0.55rem;
+    padding-bottom:
+        0.55rem;
 
     border-bottom:
         1px solid
         rgba(198, 161, 91, 0.45);
-
-    background:
-        linear-gradient(
-            to bottom,
-            #0b0e10 75%,
-            rgba(11, 14, 16, 0)
-        );
 
     color:
         #c6a15b;
@@ -965,6 +1125,9 @@
 
     text-transform:
         uppercase;
+
+    scroll-margin-top:
+        1.5rem;
 
 }
 
