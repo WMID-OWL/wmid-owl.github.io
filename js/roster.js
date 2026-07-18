@@ -155,7 +155,11 @@ async function loadRoster() {
             document.getElementById(
                 "roster-alphabet-nav"
             );
-
+        
+        const alphabetTopButton =
+            document.getElementById(
+                "roster-alphabet-top"
+            );
 
         const alphabetLetters =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -2164,7 +2168,75 @@ async function loadRoster() {
         // =================================
         // ALPHABET JUMP EVENTS
         // =================================
+        
+        alphabetTopButton.addEventListener(
+            "click",
+            () => {
 
+
+                const rosterControls =
+                    document.querySelector(
+                        ".roster-controls"
+                    );
+
+
+                if (
+                    !rosterControls
+                ) {
+
+                    return;
+
+                }
+
+
+                const siteHeader =
+                    document.querySelector(
+                        ".site-header"
+                    );
+
+
+                const siteHeaderHeight =
+                    siteHeader
+
+                        ? siteHeader.offsetHeight
+
+                        : 0;
+
+
+                const targetPosition =
+
+                    rosterControls
+                        .getBoundingClientRect()
+                        .top
+
+                    +
+
+                    window.scrollY
+
+                    -
+
+                    siteHeaderHeight
+
+                    -
+
+                    16;
+
+
+                window.scrollTo(
+                    {
+                        top:
+                            Math.max(
+                                0,
+                                targetPosition
+                            ),
+
+                        behavior:
+                            "smooth"
+                    }
+                );
+
+            }
+        );
 
         alphabetButtons.forEach(
             button => {
