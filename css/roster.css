@@ -1,14 +1,16 @@
 .roster-grid {
 
-    display: grid;
+    display:
+        grid;
 
     grid-template-columns:
         repeat(
             auto-fill,
-            minmax(280px, 1fr)
+            minmax(175px, 1fr)
         );
 
-    gap: 1rem;
+    gap:
+        1rem;
 
 }
 
@@ -28,7 +30,23 @@
 
 .roster-wrestler-card {
 
-    height: 100%;
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    height:
+        100%;
+
+    min-width:
+        0;
+
+    overflow:
+        hidden;
+
+    background:
+        #111517;
 
     transition:
         transform 0.2s ease,
@@ -56,10 +74,10 @@
 .roster-portrait {
 
     flex:
-        0 0 145px;
+        none;
 
     width:
-        145px;
+        100%;
 
     aspect-ratio:
         4 / 5;
@@ -74,14 +92,17 @@
         hidden;
 
     background:
-        #171d20;
+        #080a0b;
 
     border:
+        none;
+
+    border-bottom:
         1px solid
         rgba(255, 255, 255, 0.12);
 
     font-size:
-        1.8rem;
+        2rem;
 
     font-weight:
         900;
@@ -91,6 +112,9 @@
 
 
 .roster-portrait img {
+
+    display:
+        block;
 
     width:
         100%;
@@ -104,14 +128,8 @@
     object-position:
         center top;
 
-    transform:
-        scale(1.06);
-
-    transform-origin:
-        center top;
-
     transition:
-        transform 0.2s ease;
+        transform 0.25s ease;
 
 }
 
@@ -120,24 +138,73 @@
 .roster-portrait img {
 
     transform:
-        scale(1.1);
+        scale(1.04);
 
 }
 
 
 .roster-card-info {
 
-    min-width: 0;
+    display:
+        flex;
+
+    flex:
+        1;
+
+    flex-direction:
+        column;
+
+    min-width:
+        0;
+
+    padding:
+        1rem;
+
+}
+
+.roster-card-brand {
+
+    display:
+        block;
+
+    margin-bottom:
+        0.45rem;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
 
 }
 
 
-
 .roster-card-info h3 {
 
-    margin: 0 0 0.4rem;
+    margin:
+        0;
 
-    font-size: 1.5rem;
+    font-size:
+        clamp(
+            1.2rem,
+            1.5vw,
+            1.55rem
+        );
+
+    line-height:
+        1.05;
+
+    overflow-wrap:
+        anywhere;
 
 }
 
@@ -145,11 +212,23 @@
 
 .roster-nickname {
 
-    color: #c6a15b !important;
+    margin:
+        0.55rem 0 0 !important;
 
-    font-style: italic;
+    color:
+        #c6a15b !important;
 
-    margin: 0 0 0.35rem !important;
+    font-size:
+        0.86rem;
+
+    font-style:
+        italic;
+
+    line-height:
+        1.35;
+
+    overflow-wrap:
+        anywhere;
 
 }
 
@@ -157,30 +236,34 @@
 
 .roster-hometown {
 
-    color: #a7b0b3;
-
-    margin: 0 !important;
+    display:
+        none;
 
 }
 
 
 
-@media (max-width: 520px) {
+@media (max-width: 700px) {
 
     .roster-grid {
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
 
     }
 
+}
 
-        .roster-portrait {
 
-        flex-basis:
-            110px;
+@media (max-width: 390px) {
 
-        width:
-            110px;
+    .roster-grid {
+
+        grid-template-columns:
+            1fr;
 
     }
 
