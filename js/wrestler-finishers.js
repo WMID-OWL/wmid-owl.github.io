@@ -127,14 +127,13 @@
             );
 
 
-        label.textContent =
+                label.textContent =
 
             index === 0
 
                 ? "FINISHER"
 
-                : "SECOND FINISHER";
-
+                : "SIGNATURE MOVE";
 
 
         const name =
