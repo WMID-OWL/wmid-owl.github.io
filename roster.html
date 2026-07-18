@@ -127,63 +127,63 @@
     </div>
 
 
-    <div
-        class="roster-filter-bar"
-        aria-label="Roster filters"
+        <div
+        class="roster-filter-bar roster-brand-filter-bar"
+        aria-label="Select an OWL brand"
     >
 
         <button
             type="button"
-            class="roster-filter is-active"
-            data-filter="all"
-        >
-            All
-        </button>
-
-        <button
-            type="button"
-            class="roster-filter"
-            data-filter="ascension"
+            class="roster-filter roster-brand-filter active"
+            data-brand="ascension"
         >
             Ascension
         </button>
 
         <button
             type="button"
-            class="roster-filter"
-            data-filter="revolt"
+            class="roster-filter roster-brand-filter"
+            data-brand="revolt"
         >
             Revolt
         </button>
 
+    </div>
+
+
+    <div
+        class="roster-filter-bar roster-category-filter-bar"
+        aria-label="Select a roster category"
+    >
+
         <button
             type="button"
-            class="roster-filter"
-            data-filter="men"
+            class="roster-filter roster-category-filter active"
+            data-category="men"
         >
             Men
         </button>
 
         <button
             type="button"
-            class="roster-filter"
-            data-filter="women"
+            class="roster-filter roster-category-filter"
+            data-category="women"
         >
             Women
         </button>
 
         <button
             type="button"
-            class="roster-filter"
-            data-filter="tag-teams"
+            class="roster-filter roster-category-filter"
+            data-category="tag-teams"
         >
             Tag Teams
         </button>
 
         <button
             type="button"
-            class="roster-filter"
-            data-filter="factions"
+            class="roster-filter roster-category-filter"
+            data-category="factions"
         >
             Factions
         </button>
@@ -270,41 +270,6 @@
     </section>
 
 
-
-    <!-- UNASSIGNED -->
-
-    <section
-        class="section"
-        id="unassigned-section"
-        hidden
-    >
-
-        <div class="section-heading">
-
-            <div>
-
-                <p class="eyebrow">
-                    OWL DATABASE
-                </p>
-
-                <h2>
-                    Unassigned
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div
-            id="unassigned-roster"
-            class="roster-grid"
-        >
-        </div>
-
-    </section>
-
-
 </main>
 
 
@@ -329,7 +294,7 @@
 
 <script src="js/app.js"></script>
 
-<script src="js/roster.js"></script>
+<script src="js/roster.js?v=brand-category-nav-1"></script>
 
 
 </body>
