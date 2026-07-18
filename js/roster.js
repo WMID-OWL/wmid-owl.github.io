@@ -191,7 +191,107 @@ async function loadRoster() {
                 .toUpperCase();
 
         }
+        function getAlphabetLetter(
+            name
+        ) {
 
+
+            const firstCharacter =
+                String(
+                    name || ""
+                )
+                    .trim()
+                    .charAt(0)
+                    .toUpperCase();
+
+
+            return /^[A-Z]$/.test(
+                firstCharacter
+            )
+                ? firstCharacter
+                : "#";
+
+        }
+
+
+
+        function getAlphabetGroup(
+            container,
+            letter
+        ) {
+
+
+            let group =
+                container.querySelector(
+                    `[data-letter="${letter}"]`
+                );
+
+
+            if (
+                group
+            ) {
+
+                return group;
+
+            }
+
+
+            group =
+                document.createElement(
+                    "section"
+                );
+
+
+            group.className =
+                "roster-letter-group";
+
+
+            group.dataset.letter =
+                letter;
+
+
+            const heading =
+                document.createElement(
+                    "h3"
+                );
+
+
+            heading.className =
+                "roster-letter-heading";
+
+
+            heading.textContent =
+                letter;
+
+
+            const grid =
+                document.createElement(
+                    "div"
+                );
+
+
+            grid.className =
+                "roster-letter-grid";
+
+
+            group.appendChild(
+                heading
+            );
+
+
+            group.appendChild(
+                grid
+            );
+
+
+            container.appendChild(
+                group
+            );
+
+
+            return group;
+
+        }
 
 
         // =================================
@@ -1267,7 +1367,7 @@ async function loadRoster() {
         // =================================
 
 
-        function placeWrestlerCard(
+                function placeWrestlerCard(
             wrestler
         ) {
 
@@ -1284,14 +1384,22 @@ async function loadRoster() {
                 );
 
 
+            const letter =
+                getAlphabetLetter(
+                    wrestler.name
+                );
+
+
+            let rosterContainer =
+                null;
+
+
             if (
                 brand === "ascension"
             ) {
 
-
-                ascensionRoster.appendChild(
-                    card
-                );
+                rosterContainer =
+                    ascensionRoster;
 
             }
 
@@ -1300,27 +1408,39 @@ async function loadRoster() {
                 brand === "revolt"
             ) {
 
-
-                revoltRoster.appendChild(
-                    card
-                );
+                rosterContainer =
+                    revoltRoster;
 
             }
 
 
-            else if (
-                unassignedRoster
+            if (
+                !rosterContainer
             ) {
 
-
-                unassignedRoster.appendChild(
-                    card
-                );
+                return;
 
             }
 
-        }
 
+            const alphabetGroup =
+                getAlphabetGroup(
+                    rosterContainer,
+                    letter
+                );
+
+
+            const alphabetGrid =
+                alphabetGroup.querySelector(
+                    ".roster-letter-grid"
+                );
+
+
+            alphabetGrid.appendChild(
+                card
+            );
+
+        }
 
 
                 const alphabetizedWrestlers =
@@ -1465,11 +1585,46 @@ async function loadRoster() {
                     ];
 
 
-                    const visibleCards =
+                                        const visibleCards =
                         cards.filter(
                             card =>
                                 !card.hidden
                         );
+
+
+                    const alphabetGroups = [
+
+                        ...item.container
+                            .querySelectorAll(
+                                ".roster-letter-group"
+                            )
+
+                    ];
+
+
+                    alphabetGroups.forEach(
+                        group => {
+
+
+                            const visibleGroupCards = [
+
+                                ...group.querySelectorAll(
+                                    ".roster-card-link"
+                                )
+
+                            ]
+
+                                .filter(
+                                    card =>
+                                        !card.hidden
+                                );
+
+
+                            group.hidden =
+                                visibleGroupCards.length === 0;
+
+                        }
+                    );
 
 
                     item.section.hidden =
