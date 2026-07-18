@@ -150,7 +150,20 @@ async function loadRoster() {
             document.getElementById(
                 "roster-empty-state"
             );
+        
+        const alphabetNav =
+            document.getElementById(
+                "roster-alphabet-nav"
+            );
 
+
+        const alphabetLetters =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                .split("");
+
+
+        const alphabetButtons =
+            [];
 
         let activeBrand =
             "ascension";
@@ -158,7 +171,49 @@ async function loadRoster() {
 
         let activeCategory =
             "men";
+        alphabetLetters.forEach(
+            letter => {
 
+
+                const button =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                button.type =
+                    "button";
+
+
+                button.className =
+                    "roster-alphabet-button";
+
+
+                button.dataset.letter =
+                    letter;
+
+
+                button.textContent =
+                    letter;
+
+
+                button.setAttribute(
+                    "aria-label",
+                    `Jump to wrestlers beginning with ${letter}`
+                );
+
+
+                alphabetNav.appendChild(
+                    button
+                );
+
+
+                alphabetButtons.push(
+                    button
+                );
+
+            }
+        );
 
 
         // =================================
@@ -214,7 +269,33 @@ async function loadRoster() {
         }
 
 
+        function getActiveRosterContainer() {
 
+
+            if (
+                activeBrand ===
+                "ascension"
+            ) {
+
+                return ascensionRoster;
+
+            }
+
+
+            if (
+                activeBrand ===
+                "revolt"
+            ) {
+
+                return revoltRoster;
+
+            }
+
+
+            return null;
+
+        }
+        
         function getAlphabetGroup(
             container,
             letter
@@ -1519,7 +1600,93 @@ async function loadRoster() {
         }
 
 
+        // =================================
+        // UPDATE ALPHABET NAVIGATION
+        // =================================
 
+
+        function updateAlphabetNavigation() {
+
+
+            const isWrestlerCategory =
+
+                activeCategory === "men"
+
+                ||
+
+                activeCategory === "women";
+
+
+            alphabetNav.hidden =
+                !isWrestlerCategory;
+
+
+            if (
+                !isWrestlerCategory
+            ) {
+
+                return;
+
+            }
+
+
+            const activeContainer =
+                getActiveRosterContainer();
+
+
+            alphabetButtons.forEach(
+                button => {
+
+
+                    const letter =
+                        button.dataset.letter;
+
+
+                    const group =
+                        activeContainer
+
+                            ? activeContainer.querySelector(
+                                `.roster-letter-group[data-letter="${letter}"]`
+                            )
+
+                            : null;
+
+
+                    const visibleCards =
+                        group
+
+                            ? [
+                                ...group.querySelectorAll(
+                                    ".roster-card-link"
+                                )
+                            ]
+
+                                .filter(
+                                    card =>
+                                        !card.hidden
+                                )
+
+                            : [];
+
+
+                    const hasVisibleWrestlers =
+                        visibleCards.length > 0;
+
+
+                    button.disabled =
+                        !hasVisibleWrestlers;
+
+
+                    button.classList.toggle(
+                        "is-available",
+                        hasVisibleWrestlers
+                    );
+
+                }
+            );
+
+        }
+        
         // =================================
         // UPDATE WRESTLER SECTIONS
         // =================================
@@ -1684,7 +1851,11 @@ async function loadRoster() {
         ) {
 
 
-            hideWrestlerSections();
+                        hideWrestlerSections();
+
+
+            alphabetNav.hidden =
+                true;
 
 
             factionSection.hidden =
@@ -1787,7 +1958,11 @@ async function loadRoster() {
         ) {
 
 
-            hideWrestlerSections();
+                        hideWrestlerSections();
+
+
+            alphabetNav.hidden =
+                true;
 
 
             teamSection.hidden =
@@ -1978,12 +2153,86 @@ async function loadRoster() {
             );
 
 
-            updateWrestlerSections();
+                        updateWrestlerSections();
+
+
+            updateAlphabetNavigation();
 
         }
 
 
+        // =================================
+        // ALPHABET JUMP EVENTS
+        // =================================
 
+
+        alphabetButtons.forEach(
+            button => {
+
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+
+                        if (
+                            button.disabled
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const activeContainer =
+                            getActiveRosterContainer();
+
+
+                        if (
+                            !activeContainer
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const letter =
+                            button.dataset.letter;
+
+
+                        const targetGroup =
+                            activeContainer.querySelector(
+                                `.roster-letter-group[data-letter="${letter}"]`
+                            );
+
+
+                        if (
+                            !targetGroup ||
+                            targetGroup.hidden
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        targetGroup.scrollIntoView(
+                            {
+                                behavior:
+                                    "smooth",
+
+                                block:
+                                    "start"
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+        
         // =================================
         // FILTER BUTTON EVENTS
         // =================================
