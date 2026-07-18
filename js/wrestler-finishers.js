@@ -387,11 +387,11 @@
             ) {
 
 
-                heading.textContent =
+                                heading.textContent =
 
                     finishers.length === 2
 
-                        ? "Finishers"
+                        ? "Finisher & Signature Move"
 
                         : "Finisher";
 
