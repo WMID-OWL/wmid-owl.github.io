@@ -178,5 +178,20 @@
     "whyWereHere": "What Da Dog Doin’ sounds unserious until the two dogs get loose. Bron Breakker and Clark Connors are not a polished tag team built on elegance or strategy. They are a pair of violent, hard-charging maniacs who treat every match like someone left the gate open.\n\nBron is the bulldozer: explosive, loud, powerful, and impossible to ignore once he starts moving. Connors is the bite: scrappy, mean, relentless, and more than happy to make a match ugly. Together, they bring dog-fight energy to OWL’s tag division — barking, charging, throwing bodies, and daring anyone to stand their ground.\n\nThe name may get a laugh at first. Then the bell rings, and the joke becomes a problem.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "fraxiom",
+    "name": "Fraxiom",
+    "manager": "",
+    "members": [
+      "axiom",
+      "nathan-frazer"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/fraxiom.png",
+    "finisher": "",
+    "whyWereHere": "Fraxiom is controlled chaos with championship proof behind it. Nathan Frazer and Axiom should not work as smoothly as they do. Frazer is reckless speed, all instinct and acceleration. Axiom is masked precision, all timing and calculation. But together, they turn contrast into chemistry.\n\nThey came together after proving they could push each other as opponents, then discovered they were even harder to handle as partners. Their NXT run made them former champions, with WWE listing their reign from September 2024 to April 2025, and both later debuted on SmackDown in April 2025.\n\nIn OWL, Fraxiom brings a different kind of threat to the tag division. Power teams can hit harder. Brawlers can fight dirtier. But nobody makes the match move faster. One second of hesitation, and Fraxiom is already three counters ahead.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
