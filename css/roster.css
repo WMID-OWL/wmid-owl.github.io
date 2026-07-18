@@ -911,9 +911,9 @@
     display:
         grid;
 
-    grid-template-columns:
+        grid-template-columns:
         repeat(
-            13,
+            14,
             minmax(0, 1fr)
         );
 
