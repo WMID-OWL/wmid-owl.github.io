@@ -911,9 +911,9 @@
     display:
         grid;
 
-        grid-template-columns:
+            grid-template-columns:
         repeat(
-            14,
+            13,
             minmax(0, 1fr)
         );
 
@@ -1001,45 +1001,6 @@
 
 }
 
-.roster-alphabet-top {
-
-    grid-column:
-        span 2;
-
-    background:
-        #c6a15b;
-
-    border-color:
-        #c6a15b;
-
-    color:
-        #080a0b;
-
-    cursor:
-        pointer;
-
-    letter-spacing:
-        0.06em;
-
-}
-
-
-.roster-alphabet-top:hover {
-
-    transform:
-        translateY(-2px);
-
-    background:
-        #f5f5f2;
-
-    border-color:
-        #f5f5f2;
-
-    color:
-        #080a0b;
-
-}
-
 .roster-alphabet-button.is-available {
 
     color:
@@ -1088,14 +1049,6 @@
 
     }
 
-
-    .roster-alphabet-top {
-
-        grid-column:
-            span 1;
-
-    }
-
 }
 
 
@@ -1114,12 +1067,6 @@
 
         padding:
             0.75rem;
-    .roster-alphabet-top {
-
-        grid-column:
-            span 2;
-
-    }
         
     }
 
