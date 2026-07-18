@@ -892,3 +892,106 @@
     }
 
 }
+/* =================================
+   ALPHABETICAL ROSTER SECTIONS
+================================= */
+
+
+.roster-letter-group {
+
+    grid-column:
+        1 / -1;
+
+    min-width:
+        0;
+
+}
+
+
+.roster-letter-group + .roster-letter-group {
+
+    margin-top:
+        1.75rem;
+
+}
+
+
+.roster-letter-heading {
+
+    margin:
+        0 0 1rem;
+
+    padding-bottom:
+        0.55rem;
+
+    border-bottom:
+        1px solid
+        rgba(198, 161, 91, 0.45);
+
+    color:
+        #c6a15b;
+
+    font-size:
+        clamp(
+            1.65rem,
+            3vw,
+            2.35rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        1;
+
+    letter-spacing:
+        0.08em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.roster-letter-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(175px, 1fr)
+        );
+
+    gap:
+        1rem;
+
+}
+
+
+@media (max-width: 700px) {
+
+    .roster-letter-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+    }
+
+}
+
+
+@media (max-width: 390px) {
+
+    .roster-letter-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
