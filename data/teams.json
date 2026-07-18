@@ -208,5 +208,20 @@
     "whyWereHere": "Southern Cross is Australian violence with no apology attached. Mark Davis and Bronson Reed are not a flashy pretty-boy tag team, and they are damn sure not here to dance around the division. They are two heavy hitters from down under who turned size, strength, and bad intentions into a team identity.\n\nDavis brings the tag-team instincts, the grit, and the brawler’s timing. Reed brings the overwhelming mass, speed, and destruction that makes every impact feel final. Together, they are not just big — they are coordinated, mean, and built to make opponents feel smaller by the minute.\n\nThe name Southern Cross carries pride, but the team carries punishment. When Davis and Reed step across the ring, the message is simple: look up, because the sky is about to fall.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "deddley-sistaz",
+    "name": "Deddley Sistaz",
+    "manager": "",
+    "members": [
+      "martha-may-deddley",
+      "chevonne-deddley"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/deddley-sistaz.png",
+    "finisher": "3-SHE",
+    "whyWereHere": "Martha May and Chevonne Deddley are the tag-team engine of The Deddley Sistaz: one part wrecking ball, one part controlled chaos, and entirely too comfortable around wooden furniture.\n\nMartha May brings the power, the volume, and the kind of aggression that turns a normal match into a family emergency. Chevonne brings speed, timing, and enough awareness to aim that destruction in the right direction. Together, they fight with the natural chemistry of women who have been causing trouble side by side their entire lives.\n\nThey do not want clean victories or polite applause. They want noise, impact, and the sight of another team wondering how everything went wrong so quickly. When Martha and Chevonne arrive, the table is not part of the decoration. It is part of the strategy.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]

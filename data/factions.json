@@ -18,5 +18,25 @@
     "whyWereHere": "Los Ingobernables: Plata o Plomo is built on power, pride, and the refusal to be controlled by anyone outside their circle. With RUSH and Andrade holding down the tag division and Bandido standing as the singles weapon of the group, the faction gives OWL three different problems with the same dangerous answer.\n\nRUSH is the violence. Andrade is the strategy. Bandido is the spectacle — the masked ace who can outfly, outfight, and outshine anyone placed in front of him. Together, they bring lucha royalty, world-traveled credibility, and a code that does not bend for management, fans, or rivals.\n\nThey are not here to join OWL’s culture. They are here to change the power structure. Plata o Plomo is not just a name. It is the choice they give every opponent before the bell rings.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "the-deddley-sistaz",
+    "name": "The Deddley Sistaz",
+    "manager": "",
+    "brand": "Ascension",
+    "logo": "assets/images/factions/the-deddley-sistaz.png",
+    "leader": "",
+    "tagTeamId": "deddley-sistaz",
+    "members": [
+      "martha-may-deddley",
+      "chevonne-deddley",
+      "sami-deddley"
+    ],
+    "singlesMembers": [
+      "sami-deddley"
+    ],
+    "whyWereHere": "From the proudly chaotic streets of Deddleyville, USA, The Deddley Sistaz arrive carrying a family tradition of violence, loyalty, and furniture-based problem solving.\n\nMartha May is the powerhouse and loudmouth leader, capable of turning any disagreement into structural damage. Chevonne is the sharper, quicker half of the tag team, giving the family’s destruction rhythm and direction. Little Sami is the undersized singles daredevil, throwing herself into danger with the confidence of someone who knows her family will finish whatever she starts.\n\nThey argue, interrupt each other, and occasionally look one bad decision away from fighting among themselves—but nobody outside the family gets to touch one of them without answering to all three. The Deddley Sistaz are messy, loud, fiercely loyal, and always ready to get the tables.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
