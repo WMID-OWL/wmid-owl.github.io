@@ -134,9 +134,15 @@ async function loadRoster() {
             );
 
 
-        const filterButtons =
+                const brandButtons =
             document.querySelectorAll(
-                ".roster-filter"
+                ".roster-brand-filter"
+            );
+
+
+        const categoryButtons =
+            document.querySelectorAll(
+                ".roster-category-filter"
             );
 
 
@@ -146,8 +152,12 @@ async function loadRoster() {
             );
 
 
-        let activeFilter =
-            "all";
+        let activeBrand =
+            "ascension";
+
+
+        let activeCategory =
+            "men";
 
 
 
@@ -1359,63 +1369,32 @@ async function loadRoster() {
         // =================================
 
 
-        function matchesActiveFilter(
+                function matchesActiveWrestlerView(
             card
         ) {
 
 
-            switch (
-                activeFilter
-            ) {
+            const matchesBrand =
+
+                card.dataset.brand ===
+                activeBrand;
 
 
-                case "all":
+            const matchesDivision =
 
-                    return true;
-
-
-
-                case "ascension":
-
-                    return (
-                        card.dataset.brand
-                        === "ascension"
-                    );
+                card.dataset.division ===
+                activeCategory;
 
 
+            return (
 
-                case "revolt":
+                matchesBrand
 
-                    return (
-                        card.dataset.brand
-                        === "revolt"
-                    );
+                &&
 
+                matchesDivision
 
-
-                case "men":
-
-                    return (
-                        card.dataset.division
-                        === "men"
-                    );
-
-
-
-                case "women":
-
-                    return (
-                        card.dataset.division
-                        === "women"
-                    );
-
-
-
-                default:
-
-                    return true;
-
-            }
+            );
 
         }
 
@@ -1565,9 +1544,15 @@ async function loadRoster() {
                 "";
 
 
-            const visibleTeams =
+                        const visibleTeams =
                 teams.filter(
                     team => {
+
+
+                        const teamBrand =
+                            normalize(
+                                team.brand
+                            );
 
 
                         const searchableText =
@@ -1588,8 +1573,17 @@ async function loadRoster() {
                             );
 
 
-                        return searchableText.includes(
-                            searchText
+                        return (
+
+                            teamBrand ===
+                                activeBrand
+
+                            &&
+
+                            searchableText.includes(
+                                searchText
+                            )
+
                         );
 
                     }
@@ -1653,9 +1647,15 @@ async function loadRoster() {
                 "";
 
 
-            const visibleFactions =
+                        const visibleFactions =
                 factions.filter(
                     faction => {
+
+
+                        const factionBrand =
+                            normalize(
+                                faction.brand
+                            );
 
 
                         const searchableText =
@@ -1676,13 +1676,21 @@ async function loadRoster() {
                             );
 
 
-                        return searchableText.includes(
-                            searchText
+                        return (
+
+                            factionBrand ===
+                                activeBrand
+
+                            &&
+
+                            searchableText.includes(
+                                searchText
+                            )
+
                         );
 
                     }
                 );
-
 
             visibleFactions.forEach(
                 faction => {
@@ -1734,8 +1742,9 @@ async function loadRoster() {
             // TAG TEAM MODE
 
 
-            if (
-                activeFilter === "tag-teams"
+                        if (
+                activeCategory ===
+                    "tag-teams"
             ) {
 
 
@@ -1753,8 +1762,9 @@ async function loadRoster() {
             // FACTION MODE
 
 
-            if (
-                activeFilter === "factions"
+                        if (
+                activeCategory ===
+                    "factions"
             ) {
 
 
@@ -1790,8 +1800,8 @@ async function loadRoster() {
                 card => {
 
 
-                    const matchesFilter =
-                        matchesActiveFilter(
+                                        const matchesFilter =
+                        matchesActiveWrestlerView(
                             card
                         );
 
@@ -1824,7 +1834,7 @@ async function loadRoster() {
         // =================================
 
 
-        filterButtons.forEach(
+                brandButtons.forEach(
             button => {
 
 
@@ -1833,11 +1843,50 @@ async function loadRoster() {
                     () => {
 
 
-                        activeFilter =
-                            button.dataset.filter;
+                        activeBrand =
+                            button.dataset.brand;
 
 
-                        filterButtons.forEach(
+                        brandButtons.forEach(
+                            item => {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        applyFilters();
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        categoryButtons.forEach(
+            button => {
+
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+
+                        activeCategory =
+                            button.dataset.category;
+
+
+                        categoryButtons.forEach(
                             item => {
 
                                 item.classList.remove(
