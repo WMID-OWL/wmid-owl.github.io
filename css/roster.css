@@ -918,15 +918,31 @@
 
 .roster-letter-heading {
 
+    position:
+        sticky;
+
+    top:
+        0;
+
+    z-index:
+        5;
+
     margin:
         0 0 1rem;
 
-    padding-bottom:
-        0.55rem;
+    padding:
+        0.65rem 0 0.55rem;
 
     border-bottom:
         1px solid
         rgba(198, 161, 91, 0.45);
+
+    background:
+        linear-gradient(
+            to bottom,
+            #0b0e10 75%,
+            rgba(11, 14, 16, 0)
+        );
 
     color:
         #c6a15b;
