@@ -899,6 +899,15 @@
 
 .roster-alphabet-nav {
 
+    position:
+        sticky;
+
+    top:
+        84px;
+
+    z-index:
+        40;
+
     display:
         grid;
 
@@ -911,8 +920,14 @@
     gap:
         0.45rem;
 
-    margin-top:
-        1.5rem;
+    width:
+        min(
+            1200px,
+            calc(100% - 48px)
+        );
+
+    margin:
+        0 auto 1rem;
 
     padding:
         1rem;
@@ -923,6 +938,10 @@
     border:
         1px solid
         rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 12px 28px
+        rgba(0, 0, 0, 0.38);
 
 }
 
