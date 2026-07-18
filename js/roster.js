@@ -2217,13 +2217,62 @@ async function loadRoster() {
                         }
 
 
-                        targetGroup.scrollIntoView(
-                            {
-                                behavior:
-                                    "smooth",
+                                                const siteHeader =
+                            document.querySelector(
+                                ".site-header"
+                            );
 
-                                block:
-                                    "start"
+
+                        const siteHeaderHeight =
+                            siteHeader
+
+                                ? siteHeader.offsetHeight
+
+                                : 0;
+
+
+                        const alphabetNavHeight =
+                            alphabetNav.offsetHeight;
+
+
+                        const stickyOffset =
+
+                            siteHeaderHeight
+
+                            +
+
+                            alphabetNavHeight
+
+                            +
+
+                            16;
+
+
+                        const targetPosition =
+
+                            targetGroup
+                                .getBoundingClientRect()
+                                .top
+
+                            +
+
+                            window.scrollY
+
+                            -
+
+                            stickyOffset;
+
+
+                        window.scrollTo(
+                            {
+                                top:
+                                    Math.max(
+                                        0,
+                                        targetPosition
+                                    ),
+
+                                behavior:
+                                    "smooth"
                             }
                         );
 
