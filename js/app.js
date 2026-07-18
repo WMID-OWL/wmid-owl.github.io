@@ -763,3 +763,297 @@ if (
     closeSiteNav();
 
 }
+// =================================
+// SITE-WIDE BACK TO TOP
+// =================================
+
+
+function setupSiteBackToTop() {
+
+
+    if (
+        document.getElementById(
+            "site-back-to-top"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    const style =
+        document.createElement(
+            "style"
+        );
+
+
+    style.textContent = `
+
+        .site-back-to-top {
+
+            position:
+                fixed;
+
+            right:
+                24px;
+
+            bottom:
+                24px;
+
+            z-index:
+                120;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            width:
+                52px;
+
+            height:
+                52px;
+
+            padding:
+                0;
+
+            background:
+                #c6a15b;
+
+            border:
+                1px solid
+                #c6a15b;
+
+            border-radius:
+                50%;
+
+            box-shadow:
+                0 12px 30px
+                rgba(0, 0, 0, 0.42);
+
+            color:
+                #080a0b;
+
+            cursor:
+                pointer;
+
+            font:
+                inherit;
+
+            font-size:
+                1.35rem;
+
+            font-weight:
+                900;
+
+            line-height:
+                1;
+
+            opacity:
+                0;
+
+            pointer-events:
+                none;
+
+            transform:
+                translateY(16px);
+
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease,
+                background 0.2s ease,
+                border-color 0.2s ease;
+
+        }
+
+
+        .site-back-to-top.is-visible {
+
+            opacity:
+                1;
+
+            pointer-events:
+                auto;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        .site-back-to-top:hover {
+
+            background:
+                #f5f5f2;
+
+            border-color:
+                #f5f5f2;
+
+        }
+
+
+        .site-back-to-top:focus-visible {
+
+            outline:
+                3px solid
+                #f5f5f2;
+
+            outline-offset:
+                4px;
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .site-back-to-top {
+
+                right:
+                    16px;
+
+                bottom:
+                    16px;
+
+                width:
+                    46px;
+
+                height:
+                    46px;
+
+                font-size:
+                    1.15rem;
+
+            }
+
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .site-back-to-top {
+
+                transition:
+                    none;
+
+            }
+
+        }
+
+    `;
+
+
+    document.head.appendChild(
+        style
+    );
+
+
+    const button =
+        document.createElement(
+            "button"
+        );
+
+
+    button.id =
+        "site-back-to-top";
+
+
+    button.className =
+        "site-back-to-top";
+
+
+    button.type =
+        "button";
+
+
+    button.textContent =
+        "↑";
+
+
+    button.setAttribute(
+        "aria-label",
+        "Back to top"
+    );
+
+
+    button.title =
+        "Back to top";
+
+
+    document.body.appendChild(
+        button
+    );
+
+
+    function updateSiteBackToTop() {
+
+
+        button.classList.toggle(
+            "is-visible",
+            window.scrollY > 600
+        );
+
+    }
+
+
+    button.addEventListener(
+        "click",
+        () => {
+
+
+            const reduceMotion =
+                window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches;
+
+
+            window.scrollTo(
+                {
+                    top:
+                        0,
+
+                    behavior:
+                        reduceMotion
+                            ? "auto"
+                            : "smooth"
+                }
+            );
+
+        }
+    );
+
+
+    window.addEventListener(
+        "scroll",
+        updateSiteBackToTop,
+        {
+            passive:
+                true
+        }
+    );
+
+
+    updateSiteBackToTop();
+
+}
+
+
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        setupSiteBackToTop
+    );
+
+}
+
+
+else {
+
+    setupSiteBackToTop();
+
+}
