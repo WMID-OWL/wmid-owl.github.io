@@ -26,6 +26,12 @@
 
 }
 
+.roster-card-link[hidden] {
+
+    display:
+        none !important;
+
+}
 
 
 .roster-wrestler-card {
