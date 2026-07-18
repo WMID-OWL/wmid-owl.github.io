@@ -134,19 +134,14 @@ const crEditorFields = {
             "cr-edit-division"
         ),
 
-    finisher:
-    document.getElementById(
-        "cr-edit-finisher"
-    ),
-
-finisher2:
-    document.getElementById(
-        "cr-edit-finisher-two"
-    ),
-
-signatureMoves:
+        finisher:
         document.getElementById(
-            "cr-edit-signatures"
+            "cr-edit-finisher"
+        ),
+
+    finisher2:
+        document.getElementById(
+            "cr-edit-finisher-two"
         ),
 
     whyImHere:
@@ -197,14 +192,11 @@ const crEditorFieldLabels = {
     division:
         "Division",
 
-    finisher:
-    "Finisher 1",
+        finisher:
+        "Finisher",
 
-finisher2:
-    "Finisher 2",
-
-signatureMoves:
-        "Signature Moves",
+    finisher2:
+        "Signature Move",
 
     whyImHere:
         "Why I'm Here",
@@ -367,24 +359,6 @@ function crEditorCreateSlug(
 // =================================
 
 
-function crEditorGetSignatureMoves() {
-
-
-    return crEditorFields.signatureMoves.value
-
-        .split("\n")
-
-        .map(
-            move =>
-                move.trim()
-        )
-
-        .filter(Boolean);
-
-}
-
-
-
 function crEditorGetFormRecord() {
 
 
@@ -419,14 +393,11 @@ function crEditorGetFormRecord() {
         division:
             crEditorFields.division.value,
 
-        finisher:
-    crEditorFields.finisher.value.trim(),
+                finisher:
+            crEditorFields.finisher.value.trim(),
 
-finisher2:
-    crEditorFields.finisher2.value.trim(),
-
-signatureMoves:
-            crEditorGetSignatureMoves(),
+        finisher2:
+            crEditorFields.finisher2.value.trim(),
 
         whyImHere:
             crEditorFields.whyImHere.value.trim(),
@@ -474,20 +445,11 @@ function crEditorGetEditableRecord(
         division:
             wrestler.division || "",
 
-        finisher:
-    wrestler.finisher || "",
+                finisher:
+            wrestler.finisher || "",
 
-finisher2:
-    wrestler.finisher2 || "",
-
-signatureMoves:
-            Array.isArray(
-                wrestler.signatureMoves
-            )
-
-                ? [...wrestler.signatureMoves]
-
-                : [],
+        finisher2:
+            wrestler.finisher2 || "",
 
         whyImHere:
             wrestler.whyImHere || "",
@@ -542,25 +504,12 @@ function crEditorFillForm(
         record.division || "";
 
 
-    crEditorFields.finisher.value =
-    record.finisher || "";
+        crEditorFields.finisher.value =
+        record.finisher || "";
 
 
-crEditorFields.finisher2.value =
-    record.finisher2 || "";
-
-
-crEditorFields.signatureMoves.value =
-
-        Array.isArray(
-            record.signatureMoves
-        )
-
-            ? record.signatureMoves.join(
-                "\n"
-            )
-
-            : "";
+    crEditorFields.finisher2.value =
+        record.finisher2 || "";
 
 
     crEditorFields.whyImHere.value =
@@ -611,14 +560,11 @@ function crEditorClearForm() {
         division:
             "",
 
-        finisher:
-    "",
+                finisher:
+            "",
 
-finisher2:
-    "",
-
-signatureMoves:
-            [],
+        finisher2:
+            "",
 
         whyImHere:
             "",
@@ -2003,20 +1949,20 @@ function crEditorBuildNewWrestler() {
         currentTitle:
             "",
 
-        finisher:
-    form.finisher,
+                finisher:
+            form.finisher,
 
-finisher2:
-    form.finisher2,
+        finisher2:
+            form.finisher2,
 
-finisherGif:
-    "",
+        finisherGif:
+            "",
 
-finisher2Gif:
-    "",
+        finisher2Gif:
+            "",
 
-signatureMoves:
-            form.signatureMoves,
+        signatureMoves:
+            [],
 
         whyImHere:
             form.whyImHere,
