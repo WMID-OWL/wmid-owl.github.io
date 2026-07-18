@@ -255,8 +255,8 @@ async function loadWrestlerProfile() {
 
 
 
-                // ---------------------------------
-        // LEGACY SIGNATURE MOVES SECTION
+                        // ---------------------------------
+        // LEGACY SIGNATURE MOVES LIST
         // ---------------------------------
 
         const signatureList =
@@ -269,19 +269,23 @@ async function loadWrestlerProfile() {
             signatureList
         ) {
 
-            const signatureSection =
-                signatureList.closest(
-                    "section"
-                );
+            const signatureHeading =
+                signatureList.previousElementSibling;
 
 
             if (
-                signatureSection
+                signatureHeading &&
+                signatureHeading.matches(
+                    "h2.subheading"
+                )
             ) {
 
-                signatureSection.remove();
+                signatureHeading.remove();
 
             }
+
+
+            signatureList.remove();
 
         }
 
