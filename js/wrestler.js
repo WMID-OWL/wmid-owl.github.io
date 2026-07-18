@@ -255,8 +255,8 @@ async function loadWrestlerProfile() {
 
 
 
-        // ---------------------------------
-        // SIGNATURE MOVES
+                // ---------------------------------
+        // LEGACY SIGNATURE MOVES SECTION
         // ---------------------------------
 
         const signatureList =
@@ -266,48 +266,22 @@ async function loadWrestlerProfile() {
 
 
         if (
-            wrestler.signatureMoves &&
-            wrestler.signatureMoves.length > 0
+            signatureList
         ) {
 
-            wrestler.signatureMoves.forEach(
-                move => {
-
-
-                    const item =
-                        document.createElement(
-                            "li"
-                        );
-
-
-                    item.textContent =
-                        move;
-
-
-                    signatureList.appendChild(
-                        item
-                    );
-
-                }
-            );
-
-        }
-
-        else {
-
-            const item =
-                document.createElement(
-                    "li"
+            const signatureSection =
+                signatureList.closest(
+                    "section"
                 );
 
 
-            item.textContent =
-                "Signature moves not entered yet.";
+            if (
+                signatureSection
+            ) {
 
+                signatureSection.remove();
 
-            signatureList.appendChild(
-                item
-            );
+            }
 
         }
 
