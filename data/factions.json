@@ -38,5 +38,23 @@
     "whyWereHere": "From the proudly chaotic streets of Deddleyville, USA, The Deddley Sistaz arrive carrying a family tradition of violence, loyalty, and furniture-based problem solving.\n\nMartha May is the powerhouse and loudmouth leader, capable of turning any disagreement into structural damage. Chevonne is the sharper, quicker half of the tag team, giving the family’s destruction rhythm and direction. Little Sami is the undersized singles daredevil, throwing herself into danger with the confidence of someone who knows her family will finish whatever she starts.\n\nThey argue, interrupt each other, and occasionally look one bad decision away from fighting among themselves—but nobody outside the family gets to touch one of them without answering to all three. The Deddley Sistaz are messy, loud, fiercely loyal, and always ready to get the tables.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "her-t-business-the-family",
+    "name": "Her-t Business: The Family",
+    "manager": "MVP - Montel Vontavious Porter",
+    "brand": "Ascension",
+    "logo": "assets/images/factions/her-t-business-the-family.png",
+    "leader": "",
+    "tagTeamId": "her-t-business",
+    "members": [
+      "tiffany-omari-porter",
+      "victoria-imani-porter",
+      "mvp-montel-vontavious-porter"
+    ],
+    "singlesMembers": [],
+    "whyWereHere": "The Porter family has officially opened a new division in OWL.\n\nLed by MVP, The Her-t Business represents legacy, luxury, and calculated violence. Tiffany Omari Porter is T.O.P., the composed strategist who treats the ring like a corporate battlefield. Victoria Imani Porter is V.I.P., the charismatic disruptor who wants every victory to look expensive and every opponent to look beneath her. Together, they are the future of the family brand.\n\nMVP does not stand beside them as a sentimental father figure. He stands there as management. He taught them that presentation matters, leverage matters, and pain is just another form of currency. The Her-t Business is not here to inspire the women’s tag division.\n\nThey are here to acquire it.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]

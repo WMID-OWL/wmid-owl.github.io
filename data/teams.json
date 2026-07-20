@@ -223,5 +223,110 @@
     "whyWereHere": "Martha May and Chevonne Deddley are the tag-team engine of The Deddley Sistaz: one part wrecking ball, one part controlled chaos, and entirely too comfortable around wooden furniture.\n\nMartha May brings the power, the volume, and the kind of aggression that turns a normal match into a family emergency. Chevonne brings speed, timing, and enough awareness to aim that destruction in the right direction. Together, they fight with the natural chemistry of women who have been causing trouble side by side their entire lives.\n\nThey do not want clean victories or polite applause. They want noise, impact, and the sight of another team wondering how everything went wrong so quickly. When Martha and Chevonne arrive, the table is not part of the decoration. It is part of the strategy.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "her-t-business",
+    "name": "Her-t Business",
+    "manager": "MVP - Montel Vontavious Porter",
+    "members": [
+      "victoria-imani-porter",
+      "tiffany-omari-porter"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/her-t-business.png",
+    "finisher": "",
+    "whyWereHere": "The Her-t Business is not a tag team. It is a family investment with fists attached.\n\nTiffany Omari Porter brings structure, strategy, and cold executive control. Victoria Imani Porter brings flair, speed, and the kind of attitude that turns a normal match into personal humiliation. Together, T.O.P. and V.I.P. operate like two sides of their father’s empire: one handles the negotiation, the other handles the damage.\n\nWith MVP at ringside as their manager, the Porters do not enter OWL looking for opportunity. They enter like opportunity has already been purchased. Every match is treated like a business meeting where the opposing team failed to read the fine print.\n\nThe Her-t Business is simple: bring the value, bring the violence, and leave with the win.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "lovers-of-liberty",
+    "name": "Lovers Of Liberty",
+    "manager": "",
+    "members": [
+      "kim-mccratt",
+      "connie-servativv"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/lovers-of-liberty.png",
+    "finisher": "THE SWING STATE",
+    "whyWereHere": "The Lovers of Liberty are chaos in red, white, and bruised. Kim McCratt and Connie Servativv may stand on opposite sides of the aisle, argue every talking point, and disagree on just about everything—but they are perfectly united when it comes to beating people down. Their chemistry comes from conflict: one polished and tactical, the other stern and punishing, both too stubborn to back down from anyone. Together, they weaponize division and turn debate into destruction. Their team identity is built on political theater, verbal jabs, and calculated violence, making them one of the most entertaining and dangerous duos in the division. And once they hit The Swing State—a giant swing into a perfectly timed dropkick—the result is usually bipartisan pain.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "kill-fight-kill-the-owensteens",
+    "name": "Kill Fight Kill: The Owensteens",
+    "manager": "",
+    "members": [
+      "kayla-owensteen",
+      "keva-owensteen"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/kill-fight-kill-the-owensteens.png",
+    "finisher": "PACKAGE PILEDRIVER BRAINBUSTER",
+    "whyWereHere": "The Owensteens are sisterhood weaponized. Keva brings the indie-era brutality: wild brawling, reckless punishment, and a love for turning matches into survival tests. Kayla brings the prizefighter polish: smarter pacing, sharper trash talk, and the ability to steal victory while everyone is watching Keva cause the explosion. Together, they are Kill Fight Kill, a team built on one simple philosophy: hurt them first, hurt them louder, and make sure they remember who did it. They argue, shove each other, and occasionally look one bad decision away from fighting themselves—but once the bell rings, their chemistry becomes terrifying. The Owensteens do not care about being role models. They care about winning, surviving, and leaving bodies behind.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "the-harvey-girlz",
+    "name": "The Harvey Girlz",
+    "manager": "",
+    "members": [
+      "katt-harvey",
+      "jess-harvey"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/the-harvey-girlz.png",
+    "finisher": "POETRY IN MOTION",
+    "whyWereHere": "The Harvey Girlz are what happens when sisterhood meets pure Xtreme obsession. Raised in Cameron, North Carolina, Katt and Jess Harvey grew up idolizing high-risk, high-heart tag team wrestling and built their whole identity around living without fear. Katt brings the grit, leadership, and inventive edge, while Jess brings the reckless fire and thrill-seeking chaos. Together, they are a nonstop storm of dives, grit, and guts. They don’t just wrestle to win — they wrestle to steal the night and make every crowd feel something. Tables, ladders, risks, pain, passion — none of it scares them. The Harvey Girlz live for the rush, the bond, and the belief that the biggest rewards come to the ones willing to crash the hardest. Two sisters, one mission: Xtreme.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "southern-heat",
+    "name": "Southern Heat",
+    "manager": "",
+    "members": [
+      "stormy-frunts",
+      "daisha-dukes"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/southern-heat.png",
+    "finisher": "ANOTHER ROUND",
+    "whyWereHere": "Coming out of Sweetcorn County, Mississippi, Southern Heat are loud, proud, dangerous, and impossible to ignore. They built their name working rough local shows, county-fair cards, biker bars, and late-night spots where the crowd wanted attitude as much as action. Between shifts at the Rusty Nail Gentlemen’s Club and nights in the ring, they learned how to control a room fast — whether with charm, trash talk, or a fist to the mouth. They fight with southern swagger, backroad grit, and just enough wild energy to make every match feel like it could turn into a bar fight. Stormy brings the power and presence, while Daisha brings the mouth, the mayhem, and the sneaky edge. Together, they are Southern Heat — all sass, smoke, and hard-hitting chaos.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "crimson-lotus",
+    "name": "Crimson Lotus",
+    "manager": "",
+    "members": [
+      "hitokiri-sune",
+      "reiyu-hojima"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/crimson-lotus.png",
+    "finisher": "",
+    "whyWereHere": "Crimson Lotus is one of the most unsettling teams in OWL because nobody really knows anything about them. They arrive in a black limo, step out in matching kitsune masks, walk straight to the ring, handle business, and disappear before anyone can stop them. No interviews. No social media. No backstage friendships. No wasted motion. The only time they ever seem to “speak” is when they’re in the middle of a match, exchanging short commands in Japanese as they dissect opponents with eerie precision.\n\nThey carry themselves less like wrestlers and more like collectors sent to retrieve something they believe already belongs to them. Every movement is deliberate, every strike looks practiced, and every victory feels less like celebration and more like punishment delivered on schedule. To Crimson Lotus, the ring is not a stage — it is a hunting ground.\n\nTogether, they feel less like a normal tag team and more like a sealed pact. They barely need words, only glances and instinct. One breaks opponents down, the other capitalizes. One creates fear, the other controls it. Their chemistry is so exact that it feels unnatural, which only adds to the mystique.\n\nCrimson Lotus doesn’t chase approval, and they don’t care about being understood. They are here for domination, and they intend to make the women’s tag division feel watched, hunted, and eventually conquered.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "bad-intentions",
+    "name": "Bad Intentions",
+    "manager": "",
+    "members": [
+      "liv-morgan",
+      "anna-jay"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/bad-intentions.png",
+    "finisher": "",
+    "whyWereHere": "Bad Intentions is exactly what the name says: two women who know how to smile for the camera while planning something ugly behind it. Liv Morgan brings the chaos, mind games, and emotional volatility. Anna Jay brings the colder confidence, ring control, and mean streak. Together, they feel like trouble dressed as star power — the kind of team that can turn a normal tag match into betrayal, humiliation, and violence with one glance across the apron.\n\nThey are not built like a clean babyface friendship or a traditional tag unit. This is chemistry through shared attitude. Liv creates the distraction. Anna lands the punishment. Liv makes it messy. Anna makes it final. Bad Intentions does not need everyone to trust them",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
