@@ -2911,3 +2911,162 @@ body {
 
 
 }
+/* =================================
+   SIGNATURE SE7EN STAKES BADGES
+================================= */
+
+
+.signature-match-card::before {
+
+    content:
+        "";
+
+    position:
+        relative;
+
+    z-index:
+        3;
+
+    align-self:
+        flex-start;
+
+    max-width:
+        calc(
+            100% - 94px
+        );
+
+    margin-bottom:
+        22px;
+
+    padding:
+
+        7px
+        10px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --signature-accent
+            )
+            52%,
+            transparent
+        );
+
+    color:
+        var(
+            --signature-accent
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.28
+        );
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.09em;
+
+    line-height:
+        1.25;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.signature-match-card[href="#love-and-war"]::before {
+
+    content:
+        "STAKE: RUMBLE ENTRY ADVANTAGE";
+
+}
+
+
+
+.signature-match-card[href="#overthrow-rumble"]::before {
+
+    content:
+        "STAKE: FIGHT TO SURVIVE TITLE SHOT";
+
+}
+
+
+
+.signature-match-card[href="#hex-cell-eliminator"]::before {
+
+    content:
+        "STAKE: LAST-CHANCE TITLE SHOT";
+
+}
+
+
+
+.signature-match-card[href="#fates-wheel"]::before {
+
+    content:
+        "STAKE: CASES / FIRING RISK";
+
+}
+
+
+
+.signature-match-card[href="#devils-contract"]::before {
+
+    content:
+        "STAKE: CASH-IN / DEBT CLAUSE";
+
+}
+
+
+
+.signature-match-card[href="#proving-ground"]::before {
+
+    content:
+        "STAKE: TROPHY / DECEMBER TITLE SHOT";
+
+}
+
+
+
+.signature-match-card[href="#ibya"]::before {
+
+    content:
+        "STAKE: PERSONAL GRUDGE FIGHT";
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .signature-match-card::before {
+
+        max-width:
+            100%;
+
+        margin-bottom:
+            18px;
+
+        font-size:
+            0.58rem;
+
+    }
+
+
+}
