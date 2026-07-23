@@ -1450,3 +1450,564 @@ body {
 
 
 }
+/* =================================
+   SIGNATURE SE7EN GENERATED DETAILS
+================================= */
+
+
+.signature-match-details {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    gap:
+        18px;
+
+    margin-top:
+        34px;
+
+}
+
+
+
+.signature-info-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        14px;
+
+}
+
+
+
+.signature-info-card,
+.signature-detail-block,
+.signature-points-block {
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.22
+        );
+
+}
+
+
+
+.signature-info-card {
+
+    padding:
+        18px;
+
+}
+
+
+
+.signature-info-card span {
+
+    display:
+        block;
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.signature-info-card p {
+
+    margin:
+        9px 0 0;
+
+    color:
+        #d7d9d5;
+
+    font-size:
+        0.92rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+
+.signature-detail-block {
+
+    padding:
+        22px;
+
+}
+
+
+
+.signature-detail-block h3 {
+
+    margin:
+        0 0 12px;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+        1.15rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.signature-detail-block p {
+
+    margin:
+        0;
+
+    color:
+        #b7bdbb;
+
+    line-height:
+        1.7;
+
+}
+
+
+
+.signature-detail-stack {
+
+    display:
+        grid;
+
+    gap:
+        14px;
+
+}
+
+
+
+.signature-rules-list {
+
+    display:
+        grid;
+
+    gap:
+        10px;
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+    list-style:
+        none;
+
+}
+
+
+
+.signature-rules-list li {
+
+    position:
+        relative;
+
+    padding-left:
+        20px;
+
+    color:
+        #c8cecb;
+
+    line-height:
+        1.55;
+
+}
+
+
+
+.signature-rules-list li::before {
+
+    content:
+        "✦";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.78rem;
+
+}
+
+
+
+.signature-case-grid .signature-info-card span {
+
+    color:
+        #b996ef;
+
+}
+
+
+
+.signature-debt-clause {
+
+    display:
+        grid;
+
+    gap:
+        14px;
+
+}
+
+
+
+.signature-debt-clause > p {
+
+    padding:
+        16px 18px;
+
+    border:
+        1px solid
+        rgba(
+            189,
+            73,
+            63,
+            0.35
+        );
+
+    color:
+        #f0c0ba;
+
+    background:
+        rgba(
+            189,
+            73,
+            63,
+            0.09
+        );
+
+}
+
+
+
+.signature-combat-points {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        14px;
+
+}
+
+
+
+.signature-points-block {
+
+    padding:
+        18px;
+
+}
+
+
+
+.signature-points-block h4 {
+
+    margin:
+        0 0 12px;
+
+    color:
+        #92d39f;
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.signature-points-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr auto;
+
+    gap:
+        10px;
+
+    align-items:
+        center;
+
+    padding:
+        10px 0;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+
+.signature-points-row:first-of-type {
+
+    border-top:
+        0;
+
+}
+
+
+
+.signature-points-row span {
+
+    color:
+        #d5dbd8;
+
+}
+
+
+
+.signature-points-row strong {
+
+    color:
+        #f5f4ef;
+
+    font-size:
+        1rem;
+
+}
+
+
+
+.signature-points-row small {
+
+    grid-column:
+        1 / -1;
+
+    color:
+        #8f9895;
+
+    font-size:
+        0.75rem;
+
+}
+
+
+
+.signature-rating-grid {
+
+    display:
+        grid;
+
+    gap:
+        10px;
+
+}
+
+
+
+.signature-rating-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(
+            0,
+            1fr
+        )
+        auto;
+
+    gap:
+        18px;
+
+    align-items:
+        center;
+
+    padding:
+        12px 0;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+
+.signature-rating-row:first-child {
+
+    border-top:
+        0;
+
+}
+
+
+
+.signature-rating-row span {
+
+    color:
+        #c8cecb;
+
+    font-weight:
+        800;
+
+}
+
+
+
+.signature-rating-row strong {
+
+    color:
+        #e9cd8a;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+@media (
+    max-width:
+        850px
+) {
+
+
+    .signature-info-grid,
+    .signature-combat-points {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .signature-match-details {
+
+        margin-top:
+            26px;
+
+    }
+
+
+    .signature-detail-block,
+    .signature-info-card,
+    .signature-points-block {
+
+        padding:
+            16px;
+
+    }
+
+
+    .signature-rating-row {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            6px;
+
+    }
+
+
+}
