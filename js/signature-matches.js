@@ -96,7 +96,36 @@
         return grid;
 
     };
+    const createIdentityRibbon = function (match) {
 
+        const ribbon = createElement("div", "signature-identity-ribbon");
+
+        const items = [
+            ["Event / Usage", match.event || match.usage],
+            ["Identity", match.identity],
+            ["Match Type", match.matchType]
+        ];
+
+        items.forEach(function (item) {
+
+            if (!item[1]) {
+
+                return;
+
+            }
+
+            const tile = createElement("div", "signature-identity-tile");
+
+            tile.appendChild(createElement("span", "", item[0]));
+            tile.appendChild(createElement("strong", "", item[1]));
+
+            ribbon.appendChild(tile);
+
+        });
+
+        return ribbon;
+
+    };
 
 
     const createSectionBlock = function (heading, content) {
@@ -299,8 +328,9 @@
 
         section.dataset.signatureRendered = "true";
 
-        const details = createElement("div", "signature-match-details");
+                const details = createElement("div", "signature-match-details");
 
+        details.appendChild(createIdentityRibbon(match));
         details.appendChild(createInfoGrid(match));
 
         if (Array.isArray(match.sections)) {
