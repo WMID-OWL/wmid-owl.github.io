@@ -2058,3 +2058,164 @@ body {
         #e9cd8a;
 
 }
+/* =================================
+   SIGNATURE SE7EN JUMP NAV
+================================= */
+
+
+.signature-se7en-nav {
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    z-index:
+        20;
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        8px;
+
+    margin:
+        18px 0 0;
+
+    padding:
+        12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        rgba(
+            9,
+            11,
+            12,
+            0.88
+        );
+
+    backdrop-filter:
+        blur(
+            14px
+        );
+
+}
+
+
+
+.signature-se7en-nav a {
+
+    flex:
+        1 1 auto;
+
+    min-width:
+        fit-content;
+
+    padding:
+        10px 12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    color:
+        #c8cecb;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    text-align:
+        center;
+
+    text-decoration:
+        none;
+
+    text-transform:
+        uppercase;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
+
+}
+
+
+
+.signature-se7en-nav a:hover {
+
+    border-color:
+        rgba(
+            201,
+            164,
+            92,
+            0.45
+        );
+
+    color:
+        #e9cd8a;
+
+    background:
+        rgba(
+            201,
+            164,
+            92,
+            0.08
+        );
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .signature-se7en-nav {
+
+        position:
+            static;
+
+    }
+
+
+    .signature-se7en-nav a {
+
+        flex:
+            1 1
+            calc(
+                50% - 8px
+            );
+
+    }
+
+
+}
