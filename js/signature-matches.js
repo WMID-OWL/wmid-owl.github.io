@@ -431,3 +431,69 @@
     }
 
 }());
+(function () {
+
+    const nav = document.querySelector(".signature-se7en-nav");
+
+    if (!nav) {
+
+        return;
+
+    }
+
+    const spacer = document.createElement("div");
+
+    spacer.className = "signature-se7en-nav-spacer";
+
+    nav.parentNode.insertBefore(spacer, nav.nextSibling);
+
+
+
+    let navTop = 0;
+
+
+
+    const measureNav = function () {
+
+        nav.classList.remove("is-fixed");
+        spacer.classList.remove("is-active");
+
+        navTop = nav.getBoundingClientRect().top + window.scrollY;
+        spacer.style.height = `${nav.offsetHeight + 18}px`;
+
+    };
+
+
+
+    const updateNav = function () {
+
+        if (window.scrollY >= navTop) {
+
+            nav.classList.add("is-fixed");
+            spacer.classList.add("is-active");
+
+        } else {
+
+            nav.classList.remove("is-fixed");
+            spacer.classList.remove("is-active");
+
+        }
+
+    };
+
+
+
+    measureNav();
+    updateNav();
+
+
+
+    window.addEventListener("scroll", updateNav);
+    window.addEventListener("resize", function () {
+
+        measureNav();
+        updateNav();
+
+    });
+
+}());
