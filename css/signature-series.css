@@ -2201,8 +2201,14 @@ body {
 
     .signature-se7en-nav {
 
-        position:
-            static;
+        top:
+            0;
+
+        overflow-x:
+            auto;
+
+        flex-wrap:
+            nowrap;
 
     }
 
@@ -2210,10 +2216,7 @@ body {
     .signature-se7en-nav a {
 
         flex:
-            1 1
-            calc(
-                50% - 8px
-            );
+            0 0 auto;
 
     }
 
