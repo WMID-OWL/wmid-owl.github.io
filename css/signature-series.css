@@ -2011,3 +2011,50 @@ body {
 
 
 }
+/* =================================
+   SIGNATURE SERIES BACK LINK
+================================= */
+
+
+.signature-series-back-link {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    margin:
+        0 0 18px;
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+
+    text-decoration:
+        none;
+
+}
+
+
+
+.signature-series-back-link:hover {
+
+    color:
+        #e9cd8a;
+
+}
