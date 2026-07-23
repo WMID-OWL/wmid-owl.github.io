@@ -1,0 +1,473 @@
+{
+  "pageTitle": "The Signature Se7en",
+  "pageSubtitle": "OWL’s seven defining specialty-match concepts, each built around stakes, survival, opportunity, or personal violence.",
+  "matches": [
+    {
+      "id": "love-and-war",
+      "name": "Love and War",
+      "tagline": "…All’s Fair…",
+      "matchType": "5-on-5 elimination match",
+      "event": "All Love Lost",
+      "usage": "Annual Signature Match",
+      "shortDescription": "A 5-on-5 elimination war where elite competitors are forced to fight as a team before chasing solo glory at Overthrow.",
+      "identity": "Overthrow entry-position warfare",
+      "participants": "Top 10 eligible men and top 10 eligible women, separated into 5-on-5 teams.",
+      "winCondition": "Eliminate every member of the opposing team by pinfall, submission, or KO.",
+      "prize": "Winning team members are randomly placed within the final 10 Overthrow Rumble entry spots.",
+      "penalty": "Losing team members are randomly placed within the first 10 Overthrow Rumble entry spots.",
+      "rules": [
+        "Two competitors begin the match.",
+        "The remaining competitors enter one at a time every 3 match minutes.",
+        "Eliminations are active from the opening bell.",
+        "Eliminations can happen by pinfall, submission, or KO.",
+        "World champions are excluded from eligibility.",
+        "Midcard champions remain eligible.",
+        "Teams are randomly decided.",
+        "A captain’s advantage match determines which team enters 1st and 3rd."
+      ],
+      "statsTracked": [
+        "Winning team",
+        "Losing team",
+        "Team members",
+        "Captain’s advantage winner",
+        "Elimination order",
+        "Who eliminated whom",
+        "Elimination method",
+        "Survivors",
+        "Overthrow entry range awarded"
+      ],
+      "profileRatings": [
+        { "label": "Prestige", "rating": 5 },
+        { "label": "Strategy", "rating": 5 },
+        { "label": "Teamwork", "rating": 5 },
+        { "label": "Endurance", "rating": 4 },
+        { "label": "Career Impact", "rating": 5 }
+      ],
+      "sections": [
+        {
+          "heading": "What Is Love and War?",
+          "body": "Every February at All Love Lost, OWL’s top eligible competitors are forced into uneasy alliances. Rivals, former partners, and future enemies may all end up wearing the same colors for one night because the reward is too important to ignore."
+        },
+        {
+          "heading": "Why It Matters",
+          "body": "Love and War does not guarantee victory at Overthrow. It guarantees position. Winning means a safer draw. Losing means beginning the Rumble from the danger zone."
+        }
+      ]
+    },
+    {
+      "id": "overthrow-rumble",
+      "name": "Overthrow Rumble",
+      "tagline": "30 enter, 4 remain, 1 with the opportunity to overthrow it all.",
+      "matchType": "30-person over-the-top-rope battle royal with a Final Four Reset",
+      "event": "Overthrow",
+      "usage": "Annual Signature Match",
+      "shortDescription": "Thirty competitors fight through a rumble field before the final four reset the match into an elimination-style Fatal Four-Way.",
+      "identity": "Fight to Survive title-shot path",
+      "participants": "30 men and 30 women in separate Overthrow Rumble matches.",
+      "winCondition": "Survive the rumble phase, reach the final four, then win the Final Four Reset by pinfall, submission, or KO.",
+      "prize": "The winner earns a guaranteed main-title match at Fight to Survive.",
+      "penalty": "No formal penalty beyond losing the opportunity.",
+      "rules": [
+        "Entrants #1 and #2 start the match.",
+        "A new competitor enters every 3 match minutes.",
+        "Standard rumble eliminations are over-the-top-rope only.",
+        "When four competitors remain, the rumble phase ends immediately.",
+        "The final four continue under elimination Fatal Four-Way rules.",
+        "During the Final Four Reset, over-the-top-rope eliminations no longer count.",
+        "Final Four eliminations happen by pinfall, submission, or KO.",
+        "World champions are excluded from eligibility.",
+        "Midcard champions remain eligible.",
+        "Love and War winners draw from the final 10 entry spots.",
+        "Love and War losers draw from the first 10 entry spots."
+      ],
+      "statsTracked": [
+        "Winner",
+        "Entrant order",
+        "Elimination order",
+        "Who eliminated whom",
+        "Time survived",
+        "Fastest elimination",
+        "Ironman or Ironwoman",
+        "Most eliminations",
+        "Final Four",
+        "Final Four elimination order",
+        "Final Four elimination method",
+        "Runner-up"
+      ],
+      "profileRatings": [
+        { "label": "Prestige", "rating": 5 },
+        { "label": "Chaos", "rating": 5 },
+        { "label": "Endurance", "rating": 5 },
+        { "label": "Strategy", "rating": 4 },
+        { "label": "Career Impact", "rating": 5 }
+      ],
+      "sections": [
+        {
+          "heading": "The Final Four Reset",
+          "body": "Overthrow is not won by simply tossing out the final opponent. Once four competitors remain, the match transforms. The ropes no longer decide the winner. The final four must fight until only one survives by pinfall, submission, or KO."
+        },
+        {
+          "heading": "Why It Matters",
+          "body": "Overthrow is one of OWL’s clearest roads to the biggest stage of the year. The winner walks into Fight to Survive with a guaranteed shot at their show’s main championship."
+        }
+      ]
+    },
+    {
+      "id": "hex-cell-eliminator",
+      "name": "Hex-Cell Eliminator",
+      "tagline": "Last Chance. No Doors. No Escape.",
+      "matchType": "6-person cell elimination match",
+      "event": "No Escape",
+      "usage": "Annual Signature Match",
+      "shortDescription": "Six qualifiers enter the cell for the final guaranteed road to a Fight to Survive main-title match.",
+      "identity": "Last-chance title-shot nightmare",
+      "participants": "Six qualifying match winners. Separate men’s and women’s versions.",
+      "winCondition": "Eliminate every other competitor by pinfall, submission, or KO.",
+      "prize": "The winner earns the remaining guaranteed main-title match at Fight to Survive.",
+      "penalty": "No formal penalty, but losing closes the final guaranteed title-shot path before Fight to Survive.",
+      "rules": [
+        "Two competitors begin the match.",
+        "The remaining four competitors enter one at a time every 5 match minutes.",
+        "Entry order is randomly drawn.",
+        "The match takes place inside a cell.",
+        "Eliminations happen by pinfall, submission, or KO.",
+        "The last remaining competitor wins.",
+        "If the Hex-Cell winner is from the same show as the Overthrow winner, they challenge the other show’s main champion.",
+        "If a Hex-Cell winner crosses brands and wins the title, they move to that roster to begin the reign."
+      ],
+      "qualifying": {
+        "summary": "Each show produces three Hex-Cell entrants through four qualifying matches.",
+        "paths": [
+          "Qualifier 1 rewards a top W/L contender path.",
+          "Qualifier 2 rewards another top W/L or Overthrow standout path.",
+          "The Ultimate Wildcard Play-In draws one wrestler ranked #4-#10 against one wrestler ranked #11-#32.",
+          "The Wildcard winner faces the #3 W/L contender later that same night.",
+          "The winner of that final qualifier earns the third show-specific Hex-Cell spot."
+        ]
+      },
+      "statsTracked": [
+        "Participants",
+        "Show or roster affiliation",
+        "Qualifying match won",
+        "Entry order",
+        "Elimination order",
+        "Who eliminated whom",
+        "Elimination method",
+        "Time of elimination",
+        "Total survival time",
+        "Winner",
+        "Winner’s show or roster",
+        "Championship target at Fight to Survive"
+      ],
+      "profileRatings": [
+        { "label": "Prestige", "rating": 5 },
+        { "label": "Danger", "rating": 5 },
+        { "label": "Strategy", "rating": 4 },
+        { "label": "Endurance", "rating": 4 },
+        { "label": "Career Impact", "rating": 5 }
+      ],
+      "sections": [
+        {
+          "heading": "What Is the Hex-Cell Eliminator?",
+          "body": "The Hex-Cell Eliminator is OWL’s last guaranteed path to a main-title match at Fight to Survive. By the time No Escape arrives, one challenger has already been created through Overthrow. Everyone else has one final door left — and OWL locks that door inside the cell."
+        }
+      ]
+    },
+    {
+      "id": "fates-wheel",
+      "name": "Fate’s Wheel",
+      "tagline": "Gold, Glory, or Goodbye.",
+      "matchType": "8-person elimination chaos match",
+      "event": "Survivor’s Remorse",
+      "usage": "Annual Signature Match",
+      "shortDescription": "Eight wrestlers fight through chaos for title opportunities, sealed cases, and the terrifying possibility of career-ending remorse.",
+      "identity": "Season reset and career gamble",
+      "participants": "Four separate matches: Ascension Men, Ascension Women, Revolt Men, and Revolt Women.",
+      "winCondition": "Survive until one winner remains.",
+      "prize": "The overall winner receives an automatic title shot on the next episode of their show. The next five finishers draw Fate cases.",
+      "penalty": "Drawing a Remorse case can force a wrestler into a career-survival match where the loser is fired.",
+      "rules": [
+        "All eight competitors begin in the ring.",
+        "Eliminations can happen by over-the-top-rope, pinfall, submission, or KO.",
+        "The match continues until one overall winner remains.",
+        "The overall winner receives a title shot on the next episode of their show.",
+        "The 2nd through 6th place finishers draw sealed Fate cases.",
+        "Case selection order follows finish order: 2nd picks first, then 3rd, 4th, 5th, and 6th.",
+        "The bottom five wrestlers in that show/division’s rankings are automatically entered.",
+        "The final three spots are filled by 1v1 qualifiers using six randomly drawn wrestlers ranked #11-#28."
+      ],
+      "cases": [
+        {
+          "name": "Main Title Shot",
+          "count": 1,
+          "result": "Earns a main-title match at the following PPV."
+        },
+        {
+          "name": "Midcard Title Shot",
+          "count": 2,
+          "result": "Both case holders face each other on the next episode of their show. The winner receives the actual midcard title match later that same night."
+        },
+        {
+          "name": "Remorse Case",
+          "count": 2,
+          "result": "Both case holders face each other on the next episode of their show. The loser is fired."
+        }
+      ],
+      "statsTracked": [
+        "Overall winner",
+        "Final placement order",
+        "Eliminations",
+        "Who eliminated whom",
+        "Elimination method",
+        "Case-eligible competitors",
+        "Case selection order",
+        "Which case each wrestler drew",
+        "Main-title case holder",
+        "Midcard case holders",
+        "Midcard case playoff winner",
+        "Remorse case holders",
+        "Career-survival match result",
+        "Fired wrestler",
+        "New hire replacement winner"
+      ],
+      "profileRatings": [
+        { "label": "Prestige", "rating": 4 },
+        { "label": "Chaos", "rating": 5 },
+        { "label": "Risk", "rating": 5 },
+        { "label": "Career Impact", "rating": 5 },
+        { "label": "Desperation", "rating": 5 }
+      ],
+      "sections": [
+        {
+          "heading": "What Is Fate’s Wheel?",
+          "body": "Fate’s Wheel is OWL’s great reset. Held at Survivor’s Remorse, it arrives after Fight to Survive, when the previous season is archived, records reset, and struggling wrestlers are forced to confront their future."
+        },
+        {
+          "heading": "New Beginnings",
+          "body": "When a Remorse case causes a firing, the open roster spot can lead to the New Beginnings Invitational, where potential new OWL wrestlers compete for a contract."
+        }
+      ]
+    },
+    {
+      "id": "devils-contract",
+      "name": "The Devil’s Contract",
+      "tagline": "Power Always Comes Due.",
+      "matchType": "6-person no-DQ elimination match",
+      "event": "Deal With The Devil",
+      "usage": "Annual Signature Match",
+      "shortDescription": "A brutal no-DQ elimination match where the winner earns a cash-in contract — and risks paying the debt if the cash-in fails.",
+      "identity": "Cash-in power with consequences",
+      "participants": "Six winners from triple-threat elimination qualifying matches.",
+      "winCondition": "Be the last competitor remaining.",
+      "prize": "The winner earns The Devil’s Contract, which can be cashed in at any time for an immediate title opportunity before the next Deal With The Devil.",
+      "penalty": "A failed cash-in activates the Debt Clause.",
+      "rules": [
+        "All six competitors begin in the ring.",
+        "The match is no disqualification.",
+        "Weapons are legal.",
+        "There are no rope breaks.",
+        "Eliminations happen by pinfall, submission, or KO.",
+        "The last remaining competitor wins The Devil’s Contract.",
+        "The contract must be used before the next Deal With The Devil."
+      ],
+      "debtClause": {
+        "summary": "The Devil’s Contract grants power, but it never grants safety.",
+        "contractHolderLoses": [
+          "The contract burns immediately.",
+          "The contract holder is locked out from challenging for that title for 8 weeks or 2 PPV cycles.",
+          "The contract holder automatically drops 6 spots in the rankings.",
+          "The contract holder must face a randomly selected bottom-10 wrestler in a Devil’s Due Match.",
+          "If the contract holder wins the Devil’s Due Match, they avoid the spot swap but still suffer the 6-spot drop and title lockout.",
+          "If the bottom-10 wrestler wins the Devil’s Due Match, they take the failed contract holder’s current ranking spot."
+        ],
+        "championLoses": [
+          "The champion loses the title immediately.",
+          "The former champion drops 6 spots in the rankings.",
+          "The former champion cannot challenge for that championship again for 8 weeks or 2 PPV cycles."
+        ]
+      },
+      "statsTracked": [
+        "Winner",
+        "Participants",
+        "Qualifier paths",
+        "Elimination order",
+        "Who eliminated whom",
+        "Elimination method",
+        "Contract holder",
+        "Cash-in date",
+        "Cash-in target",
+        "Cash-in result",
+        "Debt Clause activation",
+        "Devil’s Due opponent",
+        "Devil’s Due result",
+        "Ranking penalty"
+      ],
+      "profileRatings": [
+        { "label": "Prestige", "rating": 4 },
+        { "label": "Chaos", "rating": 4 },
+        { "label": "Risk", "rating": 5 },
+        { "label": "Strategy", "rating": 5 },
+        { "label": "Temptation", "rating": 5 }
+      ],
+      "sections": [
+        {
+          "heading": "What Is The Devil’s Contract?",
+          "body": "The Devil’s Contract is OWL’s most dangerous shortcut to championship gold. The winner gains the power to strike whenever they choose, but if the gamble fails, the contract burns and the debt comes due."
+        }
+      ]
+    },
+    {
+      "id": "proving-ground",
+      "name": "The Proving Ground",
+      "fullName": "Proving Grounds Tournament",
+      "tagline": "No Hype. No Shortcuts. Just Proof.",
+      "matchType": "Round-robin singles tournament",
+      "event": "Proving Grounds",
+      "usage": "Annual Signature Tournament",
+      "shortDescription": "A World Cup-style tournament where selected wrestlers earn Combat Points across four weeks before the top two meet at the PPV.",
+      "identity": "World Cup-style points tournament",
+      "participants": "Four entrants per show/division: Ascension Men, Ascension Women, Revolt Men, and Revolt Women.",
+      "winCondition": "Finish in the top two of the points table, then win the PPV final.",
+      "prize": "The winner earns the Proving Ground trophy and a title shot against the champion of their show at December to Remember.",
+      "penalty": "No formal penalty.",
+      "rules": [
+        "Tournament matches are standard 1v1 matches.",
+        "The tournament runs across the four weekly shows leading into Proving Grounds.",
+        "The finals are held at the Proving Grounds PPV.",
+        "Each show/division has a four-person round-robin field.",
+        "Each wrestler faces the other three competitors once.",
+        "The top two point scorers advance to the PPV final.",
+        "Weekly tournament matches do not count toward standard OWL win-loss records.",
+        "Tournament matches have their own standings and record book.",
+        "The PPV final may count toward PPV record."
+      ],
+      "qualification": [
+        "Slot 1: Best W/L average from July-October.",
+        "Slot 2: 2nd-best W/L average from July-October.",
+        "Slot 3: Best PPV performer from July-October.",
+        "Slot 4: Wildcard Play-In winner.",
+        "If the best PPV performer already qualified, the slot goes to the next-best PPV performer.",
+        "The Wildcard Play-In randomly draws four eligible wrestlers ranked #3-#12 who have not already qualified.",
+        "The Wildcard Play-In runs as a one-night mini bracket with two semifinals and a final."
+      ],
+      "combatPoints": {
+        "core": [
+          { "label": "Win", "points": 3 },
+          { "label": "Draw", "points": 1 },
+          { "label": "Loss", "points": 0 }
+        ],
+        "finishBonus": [
+          { "label": "Win by pinfall", "points": 1 },
+          { "label": "Win by submission", "points": 1 },
+          { "label": "Win by KO", "points": 2 },
+          { "label": "Win by count-out", "points": 0, "note": "0 total points" },
+          { "label": "Win by DQ", "points": 0, "note": "0 total points" }
+        ],
+        "speedBonus": [
+          { "label": "Win under 20 minutes", "points": 1 },
+          { "label": "Win under 15 minutes", "points": 2 },
+          { "label": "Win under 10 minutes", "points": 3 }
+        ],
+        "specialBonus": [
+          { "label": "Draw blood", "points": 1, "note": "Can be earned in victory or defeat." }
+        ],
+        "notes": [
+          "Speed bonuses are tiered, not stacked.",
+          "A win under 10 minutes earns +3, not +1 +2 +3.",
+          "Count-out and disqualification wins earn 0 total Combat Points.",
+          "Draw Blood can be earned by a winner or loser."
+        ]
+      },
+      "statsTracked": [
+        "Tournament entrants",
+        "Qualification method",
+        "Block match results",
+        "Combat Points earned per match",
+        "Total Combat Points",
+        "Wins",
+        "Losses",
+        "Draws",
+        "Finish method",
+        "Match time",
+        "Blood bonus earned",
+        "Count-out or DQ zero-point results",
+        "Final standings",
+        "Tiebreakers used",
+        "Finalists",
+        "PPV final winner",
+        "Trophy winner",
+        "December to Remember title challenger"
+      ],
+      "profileRatings": [
+        { "label": "Prestige", "rating": 5 },
+        { "label": "Strategy", "rating": 5 },
+        { "label": "Endurance", "rating": 5 },
+        { "label": "Pure Competition", "rating": 5 },
+        { "label": "Career Impact", "rating": 5 }
+      ],
+      "sections": [
+        {
+          "heading": "What Is The Proving Ground?",
+          "body": "The Proving Ground is OWL’s purest test of competitive merit. No cases. No cash-ins. No shortcuts. Wrestlers earn points through results, finish methods, speed, and damage across a round-robin tournament."
+        }
+      ]
+    },
+    {
+      "id": "ibya",
+      "name": "IBYA",
+      "fullName": "I’ll Beat Your Ass",
+      "tagline": "No Ring. No Rules. No Mercy.",
+      "matchType": "Underground fight-club match",
+      "event": "Not PPV-locked",
+      "usage": "Rare story-based match",
+      "shortDescription": "A rare underground grudge fight used when a rivalry becomes too personal for a normal wrestling match.",
+      "identity": "Underground grudge-fight archive",
+      "participants": "Usually 1v1.",
+      "winCondition": "Win by KO or submission only.",
+      "prize": "No automatic prize. Any title or opportunity stakes are story-specific.",
+      "penalty": "No automatic penalty. The consequences are story-specific.",
+      "rules": [
+        "The match is held in an undisclosed warehouse location.",
+        "Competitors fight inside a 12-sided cage.",
+        "There is no traditional wrestling ring.",
+        "Victory can only happen by KO or submission.",
+        "Pinfalls do not count.",
+        "Count-outs do not exist.",
+        "Disqualifications do not apply.",
+        "The match is used rarely and only when the story demands it."
+      ],
+      "statsTracked": [
+        "Winner",
+        "Loser",
+        "Victory method",
+        "Match time",
+        "Event or show",
+        "Story or rivalry note",
+        "Career IBYA record only if the wrestler has IBYA match history"
+      ],
+      "historyEnabled": true,
+      "careerRecordConditional": true,
+      "profileRatings": [
+        { "label": "Violence", "rating": 5 },
+        { "label": "Personal Stakes", "rating": 5 },
+        { "label": "Rules", "rating": 1 },
+        { "label": "Atmosphere", "rating": 5 },
+        { "label": "Rarity", "rating": 5 }
+      ],
+      "sections": [
+        {
+          "heading": "What Is IBYA?",
+          "body": "IBYA, short for I’ll Beat Your Ass, is OWL’s underground fight-club match. It does not exist for rankings, contracts, or automatic title shots. It exists because sometimes wrestling is not enough."
+        },
+        {
+          "heading": "Story Stakes",
+          "body": "IBYA does not carry automatic rewards or penalties. The stakes depend entirely on the feud. Sometimes it settles a personal rivalry. Sometimes it escalates one. Sometimes an opportunity may be attached because the story demands it."
+        },
+        {
+          "heading": "IBYA Match History",
+          "body": "Because IBYA is used only when a rivalry goes beyond normal competition, every fight is recorded as part of OWL’s special match history."
+        }
+      ]
+    }
+  ]
+}
