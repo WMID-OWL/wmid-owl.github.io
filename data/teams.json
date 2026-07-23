@@ -328,5 +328,65 @@
     "whyWereHere": "Bad Intentions is exactly what the name says: two women who know how to smile for the camera while planning something ugly behind it. Liv Morgan brings the chaos, mind games, and emotional volatility. Anna Jay brings the colder confidence, ring control, and mean streak. Together, they feel like trouble dressed as star power — the kind of team that can turn a normal tag match into betrayal, humiliation, and violence with one glance across the apron.\n\nThey are not built like a clean babyface friendship or a traditional tag unit. This is chemistry through shared attitude. Liv creates the distraction. Anna lands the punishment. Liv makes it messy. Anna makes it final. Bad Intentions does not need everyone to trust them",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "dont-fuck-with-texas",
+    "name": "Dont Fuck With Texas",
+    "manager": "",
+    "members": [
+      "colt-stetson",
+      "buck-austin"
+    ],
+    "brand": "Revolt",
+    "logo": "",
+    "finisher": "TAKE UM OUT BACK",
+    "whyWereHere": "Don’t F*ck With Texas is less of a catchy team name and more of a warning. Hailing from Dallas, Big Tex Colt Stetson and Buck Austin are former ranch-hands who built their lives on hard work, grit, and the kind of toughness you don’t learn in a gym. They don’t care about flash, politics, or who’s trending—they care about respect, pride, and dropping anybody who thinks Texas is just cowboy cosplay. Colt brings the size, power, and intimidating presence of a foreman ready to settle business, while Buck adds raw strength with the agility of a man who spent years taming animals meaner than most wrestlers. Together, they see OWL as a fight for territory, and anybody standing in their way is getting Taken ’Em Out Back.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "house-money",
+    "name": "House Money",
+    "manager": "",
+    "members": [
+      "mikey-millions",
+      "chassion-cash"
+    ],
+    "brand": "Revolt",
+    "logo": "",
+    "finisher": "HOUSE ALWAYS WINS",
+    "whyWereHere": "?",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "the-funky-homosapiens",
+    "name": "The Funky Homosapiens",
+    "manager": "",
+    "members": [
+      "disco-dave",
+      "boogie-down-barry"
+    ],
+    "brand": "Revolt",
+    "logo": "",
+    "finisher": "GROOVE THEORY",
+    "whyWereHere": "?",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "genn-eric-varsity-club",
+    "name": "Genn - Eric Varsity Club",
+    "manager": "",
+    "members": [
+      "allen-genn",
+      "eric-shields"
+    ],
+    "brand": "Revolt",
+    "logo": "",
+    "finisher": "GREAT LAKES LANDING",
+    "whyWereHere": "?",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
