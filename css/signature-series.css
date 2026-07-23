@@ -2346,3 +2346,150 @@ body {
 
 
 }
+/* =================================
+   SIGNATURE SE7EN IDENTITY RIBBON
+================================= */
+
+
+.signature-identity-ribbon {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        10px;
+
+    padding:
+        10px;
+
+    border:
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.18
+        );
+
+    background:
+        rgba(
+            201,
+            164,
+            92,
+            0.055
+        );
+
+}
+
+
+
+.signature-identity-tile {
+
+    min-height:
+        92px;
+
+    padding:
+        16px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.24
+        );
+
+}
+
+
+
+.signature-identity-tile span {
+
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.signature-identity-tile strong {
+
+    display:
+        block;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+        0.95rem;
+
+    font-weight:
+        900;
+
+    line-height:
+        1.25;
+
+}
+
+
+
+@media (
+    max-width:
+        850px
+) {
+
+
+    .signature-identity-ribbon {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .signature-identity-tile {
+
+        min-height:
+            0;
+
+    }
+
+
+}
