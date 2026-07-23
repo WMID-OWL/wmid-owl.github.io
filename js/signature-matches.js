@@ -69,7 +69,7 @@
 
         const items = [
             ["Match Type", match.matchType],
-            ["Held At / Usage", match.event],
+            ["Held At / Usage", [match.event, match.usage].filter(Boolean).join(" • ")],
             ["Participants", match.participants],
             ["Win Condition", match.winCondition],
             ["Prize", match.prize],
@@ -101,7 +101,7 @@
         const ribbon = createElement("div", "signature-identity-ribbon");
 
         const items = [
-            ["Event / Usage", match.event || match.usage],
+            ["Event / Usage", [match.event, match.usage].filter(Boolean).join(" • ")],
             ["Identity", match.identity],
             ["Match Type", match.matchType]
         ];
