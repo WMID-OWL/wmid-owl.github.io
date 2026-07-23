@@ -67,9 +67,7 @@
 
         const grid = createElement("div", "signature-info-grid");
 
-        const items = [
-            ["Match Type", match.matchType],
-            ["Held At / Usage", [match.event, match.usage].filter(Boolean).join(" • ")],
+                const items = [
             ["Participants", match.participants],
             ["Win Condition", match.winCondition],
             ["Prize", match.prize],
