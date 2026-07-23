@@ -2493,3 +2493,421 @@ body {
 
 
 }
+/* =================================
+   SIGNATURE CALENDAR PATH
+================================= */
+
+
+.signature-calendar-path {
+
+    margin-top:
+        22px;
+
+    padding:
+
+        clamp(
+            28px,
+            4vw,
+            46px
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(
+                201,
+                164,
+                92,
+                0.075
+            ),
+            transparent 44%
+        ),
+
+        #101415;
+
+}
+
+
+
+.signature-calendar-heading {
+
+    display:
+        grid;
+
+    gap:
+        12px;
+
+    max-width:
+        860px;
+
+}
+
+
+
+.signature-calendar-heading h2 {
+
+    margin:
+        0;
+
+    font-size:
+
+        clamp(
+            2rem,
+            4vw,
+            3.6rem
+        );
+
+    line-height:
+        0.95;
+
+    letter-spacing:
+        -0.045em;
+
+}
+
+
+
+.signature-calendar-heading p:last-child {
+
+    margin:
+        0;
+
+    color:
+        #a9b0ae;
+
+    line-height:
+        1.7;
+
+}
+
+
+
+.signature-calendar-track {
+
+    position:
+        relative;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            7,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        12px;
+
+    margin-top:
+        30px;
+
+}
+
+
+
+.signature-calendar-track::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        28px;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    height:
+        1px;
+
+    background:
+        rgba(
+            201,
+            164,
+            92,
+            0.28
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+
+.signature-calendar-node {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    align-content:
+        start;
+
+    gap:
+        10px;
+
+    min-height:
+        170px;
+
+    padding:
+        18px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    color:
+        #f5f4ef;
+
+    background:
+        rgba(
+            8,
+            10,
+            11,
+            0.82
+        );
+
+    text-decoration:
+        none;
+
+    transition:
+
+        transform
+        0.18s ease,
+
+        border-color
+        0.18s ease,
+
+        background
+        0.18s ease;
+
+}
+
+
+
+.signature-calendar-node:hover {
+
+    transform:
+        translateY(
+            -4px
+        );
+
+    border-color:
+        rgba(
+            201,
+            164,
+            92,
+            0.50
+        );
+
+    background:
+        rgba(
+            201,
+            164,
+            92,
+            0.08
+        );
+
+}
+
+
+
+.signature-calendar-node span {
+
+    display:
+        inline-grid;
+
+    place-items:
+        center;
+
+    width:
+        58px;
+
+    height:
+        58px;
+
+    border:
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.48
+        );
+
+    border-radius:
+        50%;
+
+    color:
+        #e9cd8a;
+
+    background:
+        #090b0c;
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+
+.signature-calendar-node strong {
+
+    display:
+        block;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+        1rem;
+
+    font-weight:
+        900;
+
+    line-height:
+        1.15;
+
+}
+
+
+
+.signature-calendar-node small {
+
+    color:
+        #9da5a2;
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.07em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.signature-calendar-node-rare span {
+
+    border-color:
+        rgba(
+            227,
+            93,
+            47,
+            0.55
+        );
+
+    color:
+        #ff7a44;
+
+}
+
+
+
+@media (
+    max-width:
+        1100px
+) {
+
+
+    .signature-calendar-track {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+    .signature-calendar-track::before {
+
+        display:
+            none;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .signature-calendar-path {
+
+        padding:
+            24px 18px;
+
+    }
+
+
+    .signature-calendar-track {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .signature-calendar-node {
+
+        min-height:
+            0;
+
+    }
+
+
+}
