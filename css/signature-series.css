@@ -2309,3 +2309,126 @@ body {
 
 
 }
+/* =================================
+   SIGNATURE SE7EN STICKY NAV FINAL OVERRIDE
+================================= */
+
+
+.signature-se7en-nav,
+.signature-se7en-nav.is-fixed {
+
+    position:
+        sticky !important;
+
+    top:
+        84px !important;
+
+    left:
+        auto !important;
+
+    width:
+        auto !important;
+
+    transform:
+        none !important;
+
+    z-index:
+        49;
+
+    margin:
+        18px 0 0 !important;
+
+}
+
+
+
+.signature-se7en-nav.is-fixed {
+
+    box-shadow:
+        0
+        14px
+        34px
+        rgba(
+            0,
+            0,
+            0,
+            0.30
+        );
+
+}
+
+
+
+.signature-se7en-nav-spacer,
+.signature-se7en-nav-spacer.is-active {
+
+    display:
+        none !important;
+
+    height:
+        0 !important;
+
+}
+
+
+
+.signature-series-statement[id] {
+
+    scroll-margin-top:
+        178px;
+
+}
+
+
+
+@media (
+    max-width:
+        820px
+) {
+
+
+    .signature-se7en-nav,
+    .signature-se7en-nav.is-fixed {
+
+        top:
+            84px !important;
+
+        z-index:
+            999;
+
+        overflow-x:
+            auto;
+
+        flex-wrap:
+            nowrap;
+
+    }
+
+
+    .signature-se7en-nav a {
+
+        flex:
+            0 0 auto;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .signature-series-statement[id] {
+
+        scroll-margin-top:
+            160px;
+
+    }
+
+
+}
