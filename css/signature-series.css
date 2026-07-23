@@ -1078,3 +1078,375 @@ body {
 
 
 }
+/* =================================
+   THE SIGNATURE SE7EN PAGE
+================================= */
+
+
+.signature-series-card[href^="#"] {
+
+    min-height:
+        360px;
+
+}
+
+
+
+.signature-series-card[href="#love-and-war"] {
+
+    --signature-accent:
+        #c95c77;
+
+}
+
+
+
+.signature-series-card[href="#overthrow-rumble"] {
+
+    --signature-accent:
+        #d8b45f;
+
+}
+
+
+
+.signature-series-card[href="#hex-cell-eliminator"] {
+
+    --signature-accent:
+        #8c8f99;
+
+}
+
+
+
+.signature-series-card[href="#fates-wheel"] {
+
+    --signature-accent:
+        #9b72d9;
+
+}
+
+
+
+.signature-series-card[href="#devils-contract"] {
+
+    --signature-accent:
+        #bd493f;
+
+}
+
+
+
+.signature-series-card[href="#proving-ground"] {
+
+    --signature-accent:
+        #72ad7e;
+
+}
+
+
+
+.signature-series-card[href="#ibya"] {
+
+    --signature-accent:
+        #e35d2f;
+
+}
+
+
+
+.signature-series-statement[id] {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    scroll-margin-top:
+        95px;
+
+    border-left:
+        0;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(
+                255,
+                255,
+                255,
+                0.035
+            ),
+            transparent 42%
+        ),
+
+        #111516;
+
+}
+
+
+
+.signature-series-statement[id]::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    width:
+        5px;
+
+    height:
+        100%;
+
+    background:
+        #c9a45c;
+
+}
+
+
+
+.signature-series-statement[id]::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    right:
+        -110px;
+
+    bottom:
+        -170px;
+
+    width:
+        320px;
+
+    height:
+        320px;
+
+    border:
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.16
+        );
+
+    transform:
+        rotate(
+            45deg
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+
+.signature-series-statement[id] .signature-series-eyebrow,
+.signature-series-statement[id] h2,
+.signature-series-statement[id] p {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+}
+
+
+
+#love-and-war::before {
+
+    background:
+        #c95c77;
+
+}
+
+
+
+#overthrow-rumble::before {
+
+    background:
+        #d8b45f;
+
+}
+
+
+
+#hex-cell-eliminator::before {
+
+    background:
+        #8c8f99;
+
+}
+
+
+
+#fates-wheel::before {
+
+    background:
+        #9b72d9;
+
+}
+
+
+
+#devils-contract::before {
+
+    background:
+        #bd493f;
+
+}
+
+
+
+#proving-ground::before {
+
+    background:
+        #72ad7e;
+
+}
+
+
+
+#ibya::before {
+
+    background:
+        #e35d2f;
+
+}
+
+
+
+#love-and-war .signature-series-eyebrow {
+
+    color:
+        #c95c77;
+
+}
+
+
+
+#overthrow-rumble .signature-series-eyebrow {
+
+    color:
+        #d8b45f;
+
+}
+
+
+
+#hex-cell-eliminator .signature-series-eyebrow {
+
+    color:
+        #c5c8d1;
+
+}
+
+
+
+#fates-wheel .signature-series-eyebrow {
+
+    color:
+        #b996ef;
+
+}
+
+
+
+#devils-contract .signature-series-eyebrow {
+
+    color:
+        #e06b5f;
+
+}
+
+
+
+#proving-ground .signature-series-eyebrow {
+
+    color:
+        #92d39f;
+
+}
+
+
+
+#ibya .signature-series-eyebrow {
+
+    color:
+        #ff7a44;
+
+}
+
+
+
+@media (
+    min-width:
+        1180px
+) {
+
+
+    .signature-series-card[href^="#"] h2 {
+
+        font-size:
+            clamp(
+                2rem,
+                3vw,
+                3.4rem
+            );
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .signature-series-card[href^="#"] {
+
+        min-height:
+            330px;
+
+    }
+
+
+    .signature-series-statement[id] {
+
+        scroll-margin-top:
+            78px;
+
+    }
+
+
+}
