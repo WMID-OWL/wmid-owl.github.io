@@ -56,5 +56,45 @@
     "whyWereHere": "The Porter family has officially opened a new division in OWL.\n\nLed by MVP, The Her-t Business represents legacy, luxury, and calculated violence. Tiffany Omari Porter is T.O.P., the composed strategist who treats the ring like a corporate battlefield. Victoria Imani Porter is V.I.P., the charismatic disruptor who wants every victory to look expensive and every opponent to look beneath her. Together, they are the future of the family brand.\n\nMVP does not stand beside them as a sentimental father figure. He stands there as management. He taught them that presentation matters, leverage matters, and pain is just another form of currency. The Her-t Business is not here to inspire the women’s tag division.\n\nThey are here to acquire it.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "the-blackpool-catch-club",
+    "name": "The Blackpool Catch Club",
+    "manager": "William Regal",
+    "brand": "Revolt",
+    "logo": "assets/images/factions/the-blackpool-catch-club.png",
+    "leader": "william-regal",
+    "tagTeamId": "paid-in-full",
+    "members": [
+      "claudio-castagnoli",
+      "charlie-dempsey",
+      "william-regal"
+    ],
+    "singlesMembers": [],
+    "whyWereHere": "The Blackpool Catch Club exists to preserve wrestling as a serious craft while reshaping it for a more ruthless generation. William Regal provides the knowledge, strategy and uncompromising standards. Claudio Castagnoli represents the completed philosophy: a wrestler whose strength, conditioning and technique have been refined into an almost perfect competitive weapon. Charlie Dempsey represents what comes next, carrying the traditions of British catch wrestling while fighting to establish an identity beyond his lineage. Together, they operate less like a conventional faction and more like an academy with no room for weak students. Every opponent is studied, every mistake is punished and every victory becomes evidence supporting their methods. They did not come to OWL seeking popularity or chaos. They came to control Revolt through preparation, precision and the quiet certainty that wrestling mastery will always expose imitation.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "perros-del-mal",
+    "name": "Perros Del Mal",
+    "manager": "",
+    "brand": "Revolt",
+    "logo": "assets/images/factions/perros-del-mal.png",
+    "leader": "mike-santana",
+    "tagTeamId": "perros-del-mal",
+    "members": [
+      "trick-williams",
+      "sammy-guevara",
+      "mike-santana",
+      "raquel-rodriguez"
+    ],
+    "singlesMembers": [
+      "mike-santana",
+      "raquel-rodriguez"
+    ],
+    "whyWereHere": "Perros del Mal is a pack for wrestlers who refuse to be respectable for anyone else’s comfort. Mike Santana provides its scars, discipline and direction. Raquel Rodriguez supplies overwhelming force and the certainty that the group cannot be intimidated. Dominik Mysterio turns resentment into strategy, while Sammy Guevara transforms arrogance and risk into sudden violence. They are connected not by identical backgrounds, but by a shared refusal to remain trapped inside expectations created by families, partners, critics or tradition. Santana and Raquel pursue singles dominance while Dominik and Sammy hunt the Twin Talon Championship, allowing the faction to threaten every level of Revolt at once. Perros del Mal did not come to OWL to represent an idealised legacy. They came to corrupt it, weaponise it and prove that loyalty becomes far more dangerous when it belongs to people with nothing to apologise for.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]

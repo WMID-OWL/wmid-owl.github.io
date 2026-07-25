@@ -391,16 +391,16 @@
   },
   {
     "id": "paid-in-full",
-    "name": "Paid In Full",
-    "manager": "",
+    "name": "Blackpool Catch Club",
+    "manager": "William Regal",
     "members": [
-      "fabian-aichner",
-      "trick-williams"
+      "claudio-castagnoli",
+      "charlie-dempsey"
     ],
     "brand": "Revolt",
-    "logo": "",
+    "logo": "assets/images/teams/paid-in-full.png",
     "finisher": "",
-    "whyWereHere": "Some teams fight for survival. Others fight for glory.\n\nPaid In Full fights because they've already bet on themselves—and they always collect.\n\nAR Fox brings breathtaking innovation and impossible athleticism. Trick Williams brings undeniable charisma, swagger, and the confidence of someone who expects to leave every building as the biggest star in it. Together, they don't just win matches—they make every victory look effortless. To them, style is just as important as substance, because true stars don't simply beat people... they make people remember who beat them.\n\nIn OWL, Paid In Full plans to turn highlight reels into championship reigns and prove that talent and swagger are the most valuable currency in professional wrestling. When the dust settles and the cameras stop rolling, they'll be the only team left standing—and everyone else will understand exactly why they're called Paid In Full.",
+    "whyWereHere": "Claudio Castagnoli and Charlie Dempsey form the competitive core of the Blackpool Catch Club, combining proven dominance with emerging technical brilliance. Claudio supplies extraordinary strength, experience and relentless conditioning, while Dempsey brings the specialised grappling instincts of a wrestler raised within the British catch tradition. Their partnership is not based on friendship or shared charisma. It is built on discipline, mutual respect and the belief that every opponent can be broken down through pressure and superior positioning. Under William Regal’s direction, they rarely enter a match without a detailed plan. Claudio creates chaos through power, Dempsey traps opponents within it, and both possess the technique required to finish the job. They came to Revolt to make tag-team wrestling feel less like performance and more like an examination most teams are unqualified to pass.",
     "championshipsHeld": [],
     "awards": []
   },
@@ -428,9 +428,84 @@
       "blake-christian"
     ],
     "brand": "Revolt",
-    "logo": "",
+    "logo": "assets/images/teams/white-men-can-jump.png",
     "finisher": "",
     "whyWereHere": "White Men Can Jump formed because Blake Christian and Austin Theory recognised the same qualities in one another: youth, confidence, charisma and an athletic ceiling few teams can match. They are not bound by shared hardship or manufactured loyalty. Their partnership is built on the belief that combining Blake’s unpredictable aerial offence with Theory’s power, timing and polish creates a team the rest of Revolt is poorly equipped to handle. In a division crowded with bruisers and heavyweight combinations, WMCJ bring speed, movement and constant pressure. Their light-hearted name encourages opponents to underestimate them, but the joke ends once the bell rings. Every dive, counter and tandem sequence is designed to embarrass teams that cannot keep up. White Men Can Jump came to OWL to provide spectacle, win the Twin Talon Championship and prove that the most entertaining team in the division may also be the most dangerous.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "perros-del-mal",
+    "name": "Perros Del Mal",
+    "manager": "",
+    "members": [
+      "trick-williams",
+      "sammy-guevara"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/perros-del-mal.png",
+    "finisher": "",
+    "whyWereHere": "Dominik Mysterio and Sammy Guevara became the tag-team arm of Perros del Mal because they weaponise the same qualities in different ways. Dominik slows matches down, frustrates opponents and searches for the easiest route to control. Sammy accelerates everything, attacks from impossible angles and takes risks before anyone can prepare for them. Together, they create a rhythm designed to keep opponents angry, off balance and vulnerable to mistakes. Their partnership is not built on selfless loyalty. Each understands that the other attracts attention, creates openings and knows how to escape consequences. With Mike Santana directing the larger strategy and Raquel Rodriguez discouraging retaliation, Dominik and Sammy are free to be at their most obnoxious and dangerous. They came to OWL to steal momentum, humiliate established teams and capture the Twin Talon Championship before anyone can agree on how to stop them.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "sons-of-lagos",
+    "name": "Sons Of Lagos",
+    "manager": "",
+    "members": [
+      "omos",
+      "moose"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/sons-of-lagos.png",
+    "finisher": "",
+    "whyWereHere": "Sons of Lagos represents two expressions of Nigerian strength brought together by pride, ambition and physical supremacy. Omos carries Lagos directly into OWL, using unmatched size and reach to reshape every match around his presence. Moose represents Nigerian heritage forged through a different journey, combining heavyweight power with sudden acceleration and years of main-event experience. They are not together simply because they are large. Their abilities solve one another’s weaknesses. Omos traps opponents within a shrinking ring, while Moose attacks the openings created by panic. Moose can increase the pace when teams attempt to out maneuver the giant, and Omos can end any exchange the moment finesse begins to fail. In a Revolt division filled with bruisers, athletes and established combinations, Sons of Lagos came to establish a higher physical standard. They are not hired enforcers or another attraction. They are championship contenders determined to make Nigerian dominance impossible to ignore.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "something-filthy",
+    "name": "Something Filthy",
+    "manager": "",
+    "members": [
+      "jake-something",
+      "tom-lawlor"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/something-filthy.png",
+    "finisher": "",
+    "whyWereHere": "Something Filthy formed because Jake Something and Tom Lawlor share a simple belief: wrestling becomes much easier once opponents stop enjoying it. Jake supplies overwhelming size, explosive power and the ability to turn a single opening into a complete collapse. Lawlor brings submissions, striking experience and the kind of technical control that forces opponents exactly where the larger man wants them. Their styles are different, but their intentions are identical. Neither is interested in polished teamwork, matching smiles or pretending brutality requires an elaborate philosophy. They wear opponents down, isolate weaknesses and make every tag feel like another stage of punishment. In a Revolt division filled with giants, athletes and specialists, Something Filthy offers a particularly miserable combination of power and precision. They came to OWL to win the Twin Talon Championship and leave every team wondering whether the opportunity was worth the beating.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "the-rsclz-rascals",
+    "name": "The RSCLZ (RASCALS)",
+    "manager": "",
+    "members": [
+      "dezmond-xavier",
+      "zachary-wentz"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/the-rsclz-rascals.png",
+    "finisher": "HOT FIRE FLAME",
+    "whyWereHere": "The Rascals are held together by something that cannot be manufactured through matching gear or temporary convenience: genuine history. Dezmond Xavier and Zachary Wentz have travelled, struggled and evolved alongside one another long enough for their teamwork to function almost without communication. Dezmond provides fluid movement, calculated creativity and the ability to connect one sequence seamlessly into the next. Wentz brings volatility, striking aggression and a willingness to push every opening beyond its expected limit. Together, they create a constantly shifting attack that forces opponents to process several threats at once. Their relaxed personalities may encourage larger teams to mistake them for entertainers rather than contenders, but that misjudgement rarely survives the opening bell. The Rascals came to OWL to bring speed and unpredictability to Revolt, reclaim their place among tag wrestling’s elite and prove that friendship becomes a competitive weapon when the chemistry is real.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "creed-brothers",
+    "name": "Creed Brothers",
+    "manager": "",
+    "members": [
+      "julius-creed",
+      "brutus-creed"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/creed-brothers.png",
+    "finisher": "",
+    "whyWereHere": "The Creed Brothers enter OWL as one of the most naturally dangerous tag teams in the division. With elite amateur wrestling credentials, freak strength, and a pace that most powerhouse teams can’t match, Julius and Brutus bring a level of physical control that can overwhelm opponents in a hurry. They aren’t a gimmick team and they aren’t coasting on reputation—they are two highly trained brothers built to dominate through pressure, timing, and violence. Julius gives the team explosive athleticism and big-play danger, while Brutus brings grinding brutality and nonstop force. Together, they create a tag team that can out-muscle smaller teams and outwork bigger ones. In Revolt, they’re here to turn the division into a proving ground and make the Creed Brothers synonymous with dominance.",
     "championshipsHeld": [],
     "awards": []
   }
