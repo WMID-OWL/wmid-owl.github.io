@@ -127,7 +127,7 @@
       "rob-van-dam",
       "matt-riddle"
     ],
-    "brand": "Ascension",
+    "brand": "Revolt",
     "logo": "assets/images/teams/dude-bro.png",
     "finisher": "",
     "whyWereHere": "Dude…Bro sounds like a joke until the bell rings. Rob Van Dam and Matt Riddle might be one of OWL’s most unlikely pairings, but the chemistry is obvious: two laid-back fighters with explosive offense, strange timing, and enough confidence to make chaos look casual.\n\nRVD brings the legendary cool factor, aerial creativity, and educated feet. Riddle brings MMA toughness, barefoot violence, and a reckless kind of joy for combat. Together, they do not move like a traditional tag team. They drift, strike, counter, improvise, and somehow land exactly where they need to be.\n\nOpponents may laugh at the name, the attitude, or the vibe. Then the kicks start flying, the suplexes start landing, and suddenly everyone understands: Dude…Bro is relaxed, not weak.",
@@ -142,7 +142,7 @@
       "mistico",
       "mascara-dorada"
     ],
-    "brand": "Ascension",
+    "brand": "Revolt",
     "logo": "assets/images/teams/idolos-de-oro.png",
     "finisher": "",
     "whyWereHere": "Ídolos de Oro is the kind of team that makes the tag division feel more expensive the second they arrive. Místico and Máscara Dorada bring elegance, speed, tradition, and spectacle wrapped in gold. They are not just two luchadores sharing a corner — they are two generations of lucha brilliance moving with the same purpose.\n\nMístico is the icon: calm, precise, legendary, and impossible to rattle. Máscara Dorada is the golden spark: fearless, explosive, and hungry to prove he belongs beside the best. Together, they can overwhelm teams with speed, confuse them with rhythm, and embarrass them with creativity.\n\nOWL’s tag division has power teams, violent teams, and loud teams. Ídolos de Oro brings something different: magic, legacy, and championship shine.",
@@ -157,7 +157,7 @@
       "samoa-joe",
       "toa-liona"
     ],
-    "brand": "Ascension",
+    "brand": "Revolt",
     "logo": "assets/images/teams/the-forgotten-family.png",
     "finisher": "",
     "whyWereHere": "The Forgotten Family is built on one simple truth: Samoan wrestling history is bigger than the names everyone already knows. Samoa Joe and Toa Liona are not tied to the famous Anoaʻi dynasty, and that is exactly the point. They do not come to OWL carrying someone else’s legacy. They come carrying their own anger, pride, and destruction.\n\nJoe is the cold, calculating killer — a veteran who can break opponents mentally before finishing them physically. Toa is the wrecking ball — pure island power with no interest in slowing down. Together, they are not trying to be accepted into anyone’s bloodline. They are here to carve out their own.\n\nThe Forgotten Family is not a tribute. It is a warning: remember them now, or get remembered for what they did to you.",
@@ -367,7 +367,7 @@
       "disco-dave",
       "boogie-down-barry"
     ],
-    "brand": "Revolt",
+    "brand": "Ascension",
     "logo": "assets/images/teams/the-funky-homosapiens.png",
     "finisher": "GROOVE THEORY",
     "whyWereHere": "Straight out of Harlem, The Funky Homosapiens are what happens when Parliament-Funkadelic, disco nightlife, and professional wrestling collide at full volume. Dynamite Disco Dave and Boogie Down Barry arrive dressed like the party already started three hours ago—and somehow they are still the most dangerous men in the room. Their entrances are loud, their gear is brighter than arena lighting, and there may occasionally be a suspicious dusting of “dance-floor enthusiasm” nearby, but dismissing them as a joke is a fast way to get knocked out. Dave supplies explosive speed and chaotic energy, while Barry brings old-school power, rhythm, and hips with their own gravitational pull. Once Groove Theory connects, the party stops for exactly three seconds.",
@@ -386,6 +386,51 @@
     "logo": "assets/images/teams/genn-eric-varsity-club.png",
     "finisher": "GREAT LAKES LANDING",
     "whyWereHere": "The Genn-Eric Varsity Club believes professional wrestling has forgotten its roots. Allen Genn and Eric Shields aren't interested in catchphrases, viral moments, or winning over crowds—they're here to restore respect for technical wrestling by humiliating anyone who can't survive on the mat.\n\nFormer collegiate stars from Ann Arbor, the pair approaches every match like a championship wrestling tournament. They isolate limbs, grind opponents into exhaustion, and exploit every opening with ruthless efficiency. While fans cheer for spectacular offense, the Varsity Club takes pride in making every contest slow, uncomfortable, and unavoidable.\n\nThey don't call themselves the future of wrestling—they call themselves the standard. And when Great Lakes Landing finally drops an opponent, it's simply the final lesson in why fundamentals always beat flash.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "paid-in-full",
+    "name": "Paid In Full",
+    "manager": "",
+    "members": [
+      "fabian-aichner",
+      "trick-williams"
+    ],
+    "brand": "Revolt",
+    "logo": "",
+    "finisher": "",
+    "whyWereHere": "Some teams fight for survival. Others fight for glory.\n\nPaid In Full fights because they've already bet on themselves—and they always collect.\n\nAR Fox brings breathtaking innovation and impossible athleticism. Trick Williams brings undeniable charisma, swagger, and the confidence of someone who expects to leave every building as the biggest star in it. Together, they don't just win matches—they make every victory look effortless. To them, style is just as important as substance, because true stars don't simply beat people... they make people remember who beat them.\n\nIn OWL, Paid In Full plans to turn highlight reels into championship reigns and prove that talent and swagger are the most valuable currency in professional wrestling. When the dust settles and the cameras stop rolling, they'll be the only team left standing—and everyone else will understand exactly why they're called Paid In Full.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "gold-medal-alchemist",
+    "name": "Gold Medal Alchemist",
+    "manager": "",
+    "members": [
+      "aleister-black",
+      "chad-gable"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/gold-medal-alchemist.png",
+    "finisher": "",
+    "whyWereHere": "Gold Medal Alchemist is built on the belief that mastery takes many forms. Chad Gable represents discipline measured through achievement, refining every technique until it reaches Olympic-level precision. Aleister Black represents transformation, forging strength through patience, focus and calculated violence. Their methods differ, but their destination is the same: perfection. Together they combine elite grappling, suffocating mat control and devastating striking into a style few teams can prepare for. There are no wasted movements, no emotional outbursts and no unnecessary risks. Every exchange is part of a larger strategy designed to break opponents physically and mentally before delivering the finishing blow. In a division filled with powerhouses and brawlers, Gold Medal Alchemist stands apart as a team driven by craft rather than chaos. They did not come to OWL to overpower the competition—they came to outthink, outwork and outclass it.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "white-men-can-jump",
+    "name": "White Men Can Jump",
+    "manager": "",
+    "members": [
+      "austin-theory",
+      "blake-christian"
+    ],
+    "brand": "Revolt",
+    "logo": "",
+    "finisher": "",
+    "whyWereHere": "White Men Can Jump formed because Blake Christian and Austin Theory recognised the same qualities in one another: youth, confidence, charisma and an athletic ceiling few teams can match. They are not bound by shared hardship or manufactured loyalty. Their partnership is built on the belief that combining Blake’s unpredictable aerial offence with Theory’s power, timing and polish creates a team the rest of Revolt is poorly equipped to handle. In a division crowded with bruisers and heavyweight combinations, WMCJ bring speed, movement and constant pressure. Their light-hearted name encourages opponents to underestimate them, but the joke ends once the bell rings. Every dive, counter and tandem sequence is designed to embarrass teams that cannot keep up. White Men Can Jump came to OWL to provide spectacle, win the Twin Talon Championship and prove that the most entertaining team in the division may also be the most dangerous.",
     "championshipsHeld": [],
     "awards": []
   }
