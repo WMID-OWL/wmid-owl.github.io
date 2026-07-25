@@ -116,5 +116,27 @@
     "whyWereHere": "The Powerhouse Girlz were raised in Townsville as three sisters expected to become exceptional. Bloom Bella developed into the calculating leader, Bonnie Blu became the emotional centre, and Bianca Brown grew into the family’s most aggressive protector. Their personalities may differ, but each was taught that the sisters are strongest when no outsider is allowed to come between them. Bloom and Bonnie pursue tag-team dominance through strategy, speed and instinct, while Bianca targets singles championships with direct, unapologetic force. Together, they can influence every level of Revolt’s women’s division while protecting one another from consequences. They do not see themselves as bullies or villains. In their minds, they are simply using their abilities as they were always meant to be used. The Powerhouse Girlz came to OWL to conquer the competition, defend the family name and transform Townsville’s greatest creations into Revolt’s most powerful dynasty.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "the-matriarchy",
+    "name": "The Matriarchy",
+    "manager": "",
+    "brand": "Revolt",
+    "logo": "assets/images/factions/the-matriarchy.png",
+    "leader": "tima-maolosi",
+    "tagTeamId": "the-osus",
+    "members": [
+      "tima-maolosi",
+      "nia-jax",
+      "kaylani-osu",
+      "leilani-osu"
+    ],
+    "singlesMembers": [
+      "tima-maolosi",
+      "nia-jax"
+    ],
+    "whyWereHere": "The Matriarchy is not a collection of allies. It is a family structure built around power, heritage, and unquestioned loyalty. At its head stands Tima Maolosi, the Tribal Queen who believes a dynasty can survive only when one voice gives direction. Nia Jax serves as the family’s overwhelming force, while KayLani and Leilani Osu protect its future through the synchronized violence of The Osus.\n\nThey celebrate their Samoan roots without asking OWL for permission or approval. To them, family is both sanctuary and law: those inside the circle are protected, while anyone who threatens it becomes an enemy of them all. Their unity is genuine, but Tima’s control carries a price. The Matriarchy came to Revolt to take championships, command respect, and establish a women-led dynasty no division can break.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]

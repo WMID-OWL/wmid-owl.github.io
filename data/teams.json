@@ -523,5 +523,20 @@
     "whyWereHere": "Bloom Bella and Bonnie Blu form the tag-team core of the Powerhouse Girlz because their differences create balance. Bloom is analytical, controlled and constantly planning several steps ahead. Bonnie operates through instinct, emotion and explosive movement, attacking openings before opponents realize they exist. Bloom provides the direction that prevents Bonnie’s energy from becoming reckless, while Bonnie gives Bloom the speed and unpredictability required to turn careful strategy into immediate damage. Their bond as sisters allows them to communicate through timing and familiarity rather than shouted instructions. They know when the other needs protection, when a combination is available and when an opponent has been positioned for the finish. Bloom and Bonnie came to OWL to claim the Women’s Twin Talon Championship and prove that intelligence and heart become dangerous weapons when neither is burdened by mercy.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "the-osus",
+    "name": "The Osus",
+    "manager": "",
+    "members": [
+      "kaylani-osu",
+      "leilani-osu"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/the-osus.png",
+    "finisher": "THE 1 - SHE",
+    "whyWereHere": "KayLani and Leilani Osu have spent their entire lives moving as a unit. Known together as The Osus, the twin sisters possess an instinctive chemistry that cannot be taught. A glance, a shift in posture, or a single step is enough for one sister to understand what the other is planning.\n\nKayLani supplies the immediate fire, charging into conflict before it can reach her family. Leilani provides the control, guiding that aggression toward the most damaging result. Their personalities may clash outside the ring, but between the ropes those differences create perfect balance. The Osus overwhelm opponents with rapid exchanges, seamless positioning, and tandem attacks delivered before a defense can form. They do not compete for individual attention. Every victory belongs to the twins, their bloodline, and The Matriarchy.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
