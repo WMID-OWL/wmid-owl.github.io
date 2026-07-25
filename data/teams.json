@@ -508,5 +508,20 @@
     "whyWereHere": "The Creed Brothers enter OWL as one of the most naturally dangerous tag teams in the division. With elite amateur wrestling credentials, freak strength, and a pace that most powerhouse teams can’t match, Julius and Brutus bring a level of physical control that can overwhelm opponents in a hurry. They aren’t a gimmick team and they aren’t coasting on reputation—they are two highly trained brothers built to dominate through pressure, timing, and violence. Julius gives the team explosive athleticism and big-play danger, while Brutus brings grinding brutality and nonstop force. Together, they create a tag team that can out-muscle smaller teams and outwork bigger ones. In Revolt, they’re here to turn the division into a proving ground and make the Creed Brothers synonymous with dominance.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "powerhouse-girlz",
+    "name": "Powerhouse Girlz",
+    "manager": "",
+    "members": [
+      "bloom-bella",
+      "bonnie-blu"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/powerhouse-girlz.png",
+    "finisher": "",
+    "whyWereHere": "Bloom Bella and Bonnie Blu form the tag-team core of the Powerhouse Girlz because their differences create balance. Bloom is analytical, controlled and constantly planning several steps ahead. Bonnie operates through instinct, emotion and explosive movement, attacking openings before opponents realize they exist. Bloom provides the direction that prevents Bonnie’s energy from becoming reckless, while Bonnie gives Bloom the speed and unpredictability required to turn careful strategy into immediate damage. Their bond as sisters allows them to communicate through timing and familiarity rather than shouted instructions. They know when the other needs protection, when a combination is available and when an opponent has been positioned for the finish. Bloom and Bonnie came to OWL to claim the Women’s Twin Talon Championship and prove that intelligence and heart become dangerous weapons when neither is burdened by mercy.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]

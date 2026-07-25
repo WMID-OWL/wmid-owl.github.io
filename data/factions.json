@@ -96,5 +96,25 @@
     "whyWereHere": "Perros del Mal is a pack for wrestlers who refuse to be respectable for anyone else’s comfort. Mike Santana provides its scars, discipline and direction. Raquel Rodriguez supplies overwhelming force and the certainty that the group cannot be intimidated. Dominik Mysterio turns resentment into strategy, while Sammy Guevara transforms arrogance and risk into sudden violence. They are connected not by identical backgrounds, but by a shared refusal to remain trapped inside expectations created by families, partners, critics or tradition. Santana and Raquel pursue singles dominance while Dominik and Sammy hunt the Twin Talon Championship, allowing the faction to threaten every level of Revolt at once. Perros del Mal did not come to OWL to represent an idealised legacy. They came to corrupt it, weaponise it and prove that loyalty becomes far more dangerous when it belongs to people with nothing to apologise for.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "the-powerhouse-girlz",
+    "name": "The Powerhouse Girlz",
+    "manager": "",
+    "brand": "Revolt",
+    "logo": "assets/images/factions/the-powerhouse-girlz.png",
+    "leader": "bloom-bella",
+    "tagTeamId": "powerhouse-girlz",
+    "members": [
+      "bonnie-blu",
+      "bloom-bella",
+      "bianca-brown"
+    ],
+    "singlesMembers": [
+      "bianca-brown"
+    ],
+    "whyWereHere": "The Powerhouse Girlz were raised in Townsville as three sisters expected to become exceptional. Bloom Bella developed into the calculating leader, Bonnie Blu became the emotional centre, and Bianca Brown grew into the family’s most aggressive protector. Their personalities may differ, but each was taught that the sisters are strongest when no outsider is allowed to come between them. Bloom and Bonnie pursue tag-team dominance through strategy, speed and instinct, while Bianca targets singles championships with direct, unapologetic force. Together, they can influence every level of Revolt’s women’s division while protecting one another from consequences. They do not see themselves as bullies or villains. In their minds, they are simply using their abilities as they were always meant to be used. The Powerhouse Girlz came to OWL to conquer the competition, defend the family name and transform Townsville’s greatest creations into Revolt’s most powerful dynasty.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
