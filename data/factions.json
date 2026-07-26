@@ -138,5 +138,25 @@
     "whyWereHere": "The Matriarchy is not a collection of allies. It is a family structure built around power, heritage, and unquestioned loyalty. At its head stands Tima Maolosi, the Tribal Queen who believes a dynasty can survive only when one voice gives direction. Nia Jax serves as the family’s overwhelming force, while KayLani and Leilani Osu protect its future through the synchronized violence of The Osus.\n\nThey celebrate their Samoan roots without asking OWL for permission or approval. To them, family is both sanctuary and law: those inside the circle are protected, while anyone who threatens it becomes an enemy of them all. Their unity is genuine, but Tima’s control carries a price. The Matriarchy came to Revolt to take championships, command respect, and establish a women-led dynasty no division can break.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "pu-y-world-order",
+    "name": "Pu$$y World Order",
+    "manager": "",
+    "brand": "Revolt",
+    "logo": "assets/images/factions/pu-y-world-order.png",
+    "leader": "",
+    "tagTeamId": "p-w-o",
+    "members": [
+      "shayna-baszler",
+      "jordynne-grace",
+      "marina-shafir"
+    ],
+    "singlesMembers": [
+      "jordynne-grace"
+    ],
+    "whyWereHere": "P.W.O. turns its provocative name into a declaration of ownership. It is not sexual and it is not played for cheap shock. Shayna Baszler, Marina Shafir, and Jordynne Grace use it as a confrontational statement that women’s wrestling belongs to women who are powerful enough to define it for themselves.\n\nEach member represents a different form of dominance. Shayna is submission-based cruelty. Marina is calculated violence. Jordynne is overwhelming physical force. Baszler and Shafir pursue tag-team control while Grace hunts singles championships, allowing P.W.O. to attack multiple parts of OWL at once.\n\nThey are not united by matching personalities or blind loyalty to a leader. They are united by the belief that women should never have to minimize their strength, aggression, bodies, or ambition to make anyone else comfortable.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]

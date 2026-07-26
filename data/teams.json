@@ -538,5 +538,95 @@
     "whyWereHere": "KayLani and Leilani Osu have spent their entire lives moving as a unit. Known together as The Osus, the twin sisters possess an instinctive chemistry that cannot be taught. A glance, a shift in posture, or a single step is enough for one sister to understand what the other is planning.\n\nKayLani supplies the immediate fire, charging into conflict before it can reach her family. Leilani provides the control, guiding that aggression toward the most damaging result. Their personalities may clash outside the ring, but between the ropes those differences create perfect balance. The Osus overwhelm opponents with rapid exchanges, seamless positioning, and tandem attacks delivered before a defense can form. They do not compete for individual attention. Every victory belongs to the twins, their bloodline, and The Matriarchy.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "london-town-sex-pistols",
+    "name": "London Town Sex Pistols",
+    "manager": "",
+    "members": [
+      "shelly-rotten",
+      "kris-vicious"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/london-town-sex-pistols.png",
+    "finisher": "SKULL AND BONES",
+    "whyWereHere": "The London Town Sex Pistols combine the precision and chemistry of an elite tag team with the attitude of a punk band that never asked permission to take the stage. Shelly Rotten and Kris Vicious fight at different speeds, but their timing is nearly flawless. Shelly creates openings through technical control, while Kris crashes through them with explosive power.\n\nTheir matches feel like controlled disorder: rapid tags, sudden combinations, hard strikes, and tandem attacks delivered before opponents can reset. Skull and Bones represents everything they are—a coordinated finish built from rebellion, aggression, and complete trust in one another. LTSP came to OWL to bring punk energy into the women’s tag division and prove that anarchy can still operate with perfect teamwork.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "vennym",
+    "name": "VENNYM",
+    "manager": "",
+    "members": [
+      "whideaux",
+      "aeirachna"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/vennym.png",
+    "finisher": "",
+    "whyWereHere": "VENNYM brings Louisiana menace into OWL’s women’s tag division through trickery, submission wrestling, and frightening physical force. Whideaux and Aeirachna operate like two different stages of the same attack: one poisons the opponent’s judgment, while the other destroys whatever remains.\n\nTheir matches are deliberately uncomfortable. Whideaux slows the pace, isolates limbs, and manipulates the referee’s attention. Aeirachna then storms into those openings with crushing strikes and powerhouse offense. Opponents never know whether they are being lured into Whideaux’s Web or positioned beneath Aeirachnaphobia.\n\nVENNYM does not simply want victories. They want opponents trapped, overwhelmed, and fully aware that every escape route was closed before they ever noticed the danger.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "sisterhood-of-the-ankh",
+    "name": "Sisterhood Of the Ankh",
+    "manager": "",
+    "members": [
+      "nefeteri",
+      "isis"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/sisterhood-of-the-ankh.png",
+    "finisher": "FINAL JUDGEMENT",
+    "whyWereHere": "The Sisterhood of the Ankh represents legacy, strength, and the unbreakable bond between two Egyptian sisters determined to carry their heritage onto wrestling’s global stage. Nefeteri and Isis do not present themselves as relics of the past. They are modern competitors who understand that history only matters when someone has the power to continue it.\n\nNefeteri controls matches through patience, precision, and tactical awareness. Isis supplies the force, crushing opponents once her sister has taken away their escape routes. Their offense feels ceremonial only because of how perfectly it is executed—every movement has purpose, and every victory reinforces their name.\n\nThey came to OWL to build a legacy worthy of the symbol they carry: enduring, powerful, and impossible to erase.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "murakami",
+    "name": "Murakami",
+    "manager": "",
+    "members": [
+      "kairi-hojo",
+      "hikaru-shida"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/murakami.png",
+    "finisher": "",
+    "whyWereHere": "Murakami brings together two internationally proven Japanese stars under the identity of the Twin Blades. Hikaru Shida is the Katana: measured, disciplined, and designed to cut directly through resistance. Kairi Sane is the Cutlass: curved, unpredictable, and capable of attacking from almost anywhere.\n\nTheir matches are built around changing rhythm. Shida controls the center of the ring through pressure and precision, while Kairi introduces movement, aerial risk, and sudden momentum shifts. An opponent who adjusts to one blade exposes herself to the other.\n\nMurakami did not form because Kairi and Shida wrestle alike. They formed because their differences create complete coverage. One blade opens the defense; the other delivers the final cut.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "p-w-o",
+    "name": "P.W.O.",
+    "manager": "",
+    "members": [
+      "shayna-baszler",
+      "marina-shafir"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/p-w-o.png",
+    "finisher": "",
+    "whyWereHere": "Shayna Baszler and Marina Shafir operate less like a conventional tag team and more like a coordinated assault. Their shared combat background allows them to communicate through positioning, pressure, and instinct rather than constant instruction. Shayna isolates a limb and forces panic; Marina removes the opponent’s balance and blocks the escape.\n\nTheir matches are designed to become increasingly claustrophobic. Quick tags keep fresh pressure on the legal opponent while the partner on the apron quietly eliminates every safe direction. They do not chase flashy tandem offense when a joint can be damaged or an opponent can be choked into submission.\n\nTogether, Shayna and Marina give P.W.O. control of the women’s tag division through technique, intimidation, and the promise that every match can become a fight their opponents were never prepared to survive.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "fatal-attraction",
+    "name": "Fatal Attraction",
+    "manager": "",
+    "members": [
+      "blake-monroe",
+      "jacy-jayne"
+    ],
+    "brand": "Revolt",
+    "logo": "assets/images/teams/fatal-attraction.png",
+    "finisher": "",
+    "whyWereHere": "Fatal Attraction brings together two women who understand that attention is not given—it is controlled. Jacy Jayne supplies manipulation, tag-team experience, and the ruthless instincts of someone who has led factions and betrayed partners without hesitation. Blake Monroe adds glamour, international polish, and enough physical aggression to punish anyone who mistakes presentation for weakness.\n\nTheir matches are built around arrogance backed by results. Jacy creates openings through distractions, shortcuts, and constant pressure, while Blake turns those openings into sudden bursts of violence. They enjoy embarrassing opponents nearly as much as defeating them, especially when they can make the entire division watch.\n\nFatal Attraction came to OWL to become the team everyone talks about, fears, and eventually resents.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
