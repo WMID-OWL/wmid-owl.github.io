@@ -1,6 +1,6 @@
 (function () {
 
-    const DATA_PATH = "data/power-players.json?v=286d";
+        const DATA_PATH = "data/power-players.json?v=286e";
 
 
 
@@ -93,6 +93,90 @@
     };
 
 
+    const renderActiveEntries = function (data) {
+
+        const board = document.querySelector(".power-players-active-board");
+        const grid = document.querySelector("[data-power-players-active-grid]");
+
+        if (!board || !grid) {
+
+            return;
+
+        }
+
+        const entries = Array.isArray(data.activeEntries)
+            ? data.activeEntries
+            : [];
+
+        board.hidden = entries.length === 0;
+
+        grid.innerHTML = "";
+
+        entries.forEach(function (entry) {
+
+            const card = createElement(
+                "article",
+                `power-players-active-card ${entry.accentClass || ""}`
+            );
+
+            card.appendChild(createElement("span", "power-players-active-type", entry.type || "Active Power"));
+            card.appendChild(createElement("h3", "", entry.name || "Unassigned"));
+            card.appendChild(createElement("p", "", entry.description || ""));
+
+            const meta = createElement("div", "power-players-active-meta");
+
+            const metaItems = [
+                ["Status", entry.status],
+                ["Source", entry.source],
+                ["Brand", entry.brand],
+                ["Division", entry.division],
+                ["Expires", entry.expires]
+            ];
+
+            metaItems.forEach(function (item) {
+
+                if (!item[1]) {
+
+                    return;
+
+                }
+
+                const metaItem = createElement("div", "");
+
+                metaItem.appendChild(createElement("small", "", item[0]));
+                metaItem.appendChild(createElement("strong", "", item[1]));
+
+                meta.appendChild(metaItem);
+
+            });
+
+            if (meta.children.length) {
+
+                card.appendChild(meta);
+
+            }
+
+            if (Array.isArray(entry.notes) && entry.notes.length) {
+
+                const notes = createElement("ul", "power-players-active-notes");
+
+                entry.notes.forEach(function (note) {
+
+                    notes.appendChild(createElement("li", "", note));
+
+                });
+
+                card.appendChild(notes);
+
+            }
+
+            grid.appendChild(card);
+
+        });
+
+    };
+
+
 
     const renderEmptyState = function (data) {
 
@@ -156,8 +240,9 @@
 
                 }
 
-                renderStatus(data);
+                                renderStatus(data);
                 renderCategories(data);
+                renderActiveEntries(data);
                 renderEmptyState(data);
 
             })
