@@ -1,6 +1,6 @@
 (function () {
 
-    const DATA_PATH = "data/proving-ground.json?v=287b";
+        const DATA_PATH = "data/proving-ground.json?v=287c";
 
 
 
@@ -111,6 +111,76 @@
     };
 
 
+    const renderEntries = function (data) {
+
+        const field = document.querySelector(".proving-ground-field");
+        const grid = document.querySelector("[data-proving-ground-field-grid]");
+
+        if (!field || !grid) {
+
+            return;
+
+        }
+
+        const entries = Array.isArray(data.entries)
+            ? data.entries
+            : [];
+
+        field.hidden = entries.length === 0;
+
+        grid.innerHTML = "";
+
+        entries.forEach(function (entry) {
+
+            const card = createElement(
+                "article",
+                `proving-ground-entry-card ${entry.accentClass || ""}`
+            );
+
+            card.appendChild(createElement("span", "proving-ground-entry-brand", entry.brand || ""));
+            card.appendChild(createElement("h3", "", entry.name || "Unassigned"));
+            card.appendChild(createElement("p", "", entry.description || ""));
+
+            const meta = createElement("div", "proving-ground-entry-meta");
+
+            const metaItems = [
+                ["Division", entry.division],
+                ["Qualified By", entry.qualification],
+                ["Record", entry.record],
+                ["Combat Points", entry.points],
+                ["Status", entry.status]
+            ];
+
+            metaItems.forEach(function (item) {
+
+                if (!item[1]) {
+
+                    return;
+
+                }
+
+                const metaItem = createElement("div", "");
+
+                metaItem.appendChild(createElement("small", "", item[0]));
+                metaItem.appendChild(createElement("strong", "", item[1]));
+
+                meta.appendChild(metaItem);
+
+            });
+
+            if (meta.children.length) {
+
+                card.appendChild(meta);
+
+            }
+
+            grid.appendChild(card);
+
+        });
+
+    };
+
+
 
     const renderEmptyState = function (data) {
 
@@ -174,8 +244,9 @@
 
                 }
 
-                renderOverviewStats(data);
+                                renderOverviewStats(data);
                 renderBlocks(data);
+                renderEntries(data);
                 renderCombatPoints(data);
                 renderEmptyState(data);
 
