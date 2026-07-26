@@ -49,6 +49,28 @@
       "accentClass": "proving-ground-revolt"
     }
   ],
+    "qualificationPaths": [
+    {
+      "slot": "Slot 1",
+      "title": "#1 W/L Average",
+      "description": "The top-ranked wrestler by win-loss average from the July–October performance window earns automatic entry."
+    },
+    {
+      "slot": "Slot 2",
+      "title": "#2 W/L Average",
+      "description": "The second-ranked wrestler by win-loss average from the July–October performance window earns automatic entry."
+    },
+    {
+      "slot": "Slot 3",
+      "title": "Best PPV Performer",
+      "description": "The strongest PPV performer from July–October earns entry. If already qualified, the slot rolls to the next-best PPV performer."
+    },
+    {
+      "slot": "Slot 4",
+      "title": "Wildcard Play-In",
+      "description": "Four eligible wrestlers ranked #3–#12 are randomly drawn into a one-night mini bracket. The winner earns the final block spot."
+    }
+  ],
   "combatPoints": [
     {
       "label": "Win",
