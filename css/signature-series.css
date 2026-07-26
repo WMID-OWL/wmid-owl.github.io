@@ -4754,3 +4754,665 @@ body {
 
 
 }
+/* =================================
+   CURRENT POWER PLAYERS PAGE
+================================= */
+
+
+.power-players-hero
+.signature-series-seal strong {
+
+    font-size:
+        3.9rem;
+
+    letter-spacing:
+        -0.1em;
+
+}
+
+
+
+.power-players-intro {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        380px;
+
+    gap:
+        22px;
+
+    align-items:
+        stretch;
+
+    margin-top:
+        22px;
+
+}
+
+
+
+.power-players-intro > div {
+
+    padding:
+
+        clamp(
+            28px,
+            4vw,
+            46px
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        #111516;
+
+}
+
+
+
+.power-players-intro h2 {
+
+    max-width:
+        840px;
+
+    margin:
+        12px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            2rem,
+            4vw,
+            3.9rem
+        );
+
+    line-height:
+        0.96;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+
+.power-players-intro p:last-child {
+
+    max-width:
+        820px;
+
+    margin:
+        22px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.75;
+
+}
+
+
+
+.power-players-status-card {
+
+    display:
+        grid;
+
+    align-content:
+        center;
+
+    border-color:
+        rgba(
+            223,
+            142,
+            63,
+            0.26
+        ) !important;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(
+                223,
+                142,
+                63,
+                0.10
+            ),
+            transparent 48%
+        ),
+
+        #111516 !important;
+
+}
+
+
+
+.power-players-status-card span {
+
+    color:
+        #df8e3f;
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.16em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.power-players-status-card strong {
+
+    display:
+        block;
+
+    margin-top:
+        12px;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+        1.5rem;
+
+    font-weight:
+        950;
+
+    line-height:
+        1.08;
+
+}
+
+
+
+.power-players-status-card p {
+
+    margin:
+        18px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.65;
+
+}
+
+
+
+.power-players-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        18px;
+
+    margin-top:
+        22px;
+
+}
+
+
+
+.power-player-category {
+
+    --power-accent:
+        #df8e3f;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    min-height:
+        300px;
+
+    padding:
+        28px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            color-mix(
+                in srgb,
+                var(
+                    --power-accent
+                )
+                18%,
+                transparent
+            ),
+            transparent 45%
+        ),
+
+        #111516;
+
+}
+
+
+
+.power-player-category::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    right:
+        -72px;
+
+    bottom:
+        -92px;
+
+    width:
+        220px;
+
+    height:
+        220px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --power-accent
+            )
+            32%,
+            transparent
+        );
+
+    transform:
+        rotate(
+            45deg
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+
+.power-player-category > span {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    color:
+        color-mix(
+            in srgb,
+            var(
+                --power-accent
+            )
+            90%,
+            #ffffff
+        );
+
+    font-size:
+        0.7rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+
+.power-player-category h2 {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    margin:
+        28px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            1.7rem,
+            3vw,
+            2.9rem
+        );
+
+    line-height:
+        0.97;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+
+.power-player-category p {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    margin:
+        18px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.65;
+
+}
+
+
+
+.power-player-category small {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        inline-flex;
+
+    margin-top:
+        24px;
+
+    padding:
+        7px 10px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --power-accent
+            )
+            42%,
+            transparent
+        );
+
+    color:
+        var(
+            --power-accent
+        );
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.09em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.power-player-contract {
+
+    --power-accent:
+        #bd493f;
+
+}
+
+
+
+.power-player-overthrow {
+
+    --power-accent:
+        #d8b45f;
+
+}
+
+
+
+.power-player-hex {
+
+    --power-accent:
+        #8c8f99;
+
+}
+
+
+
+.power-player-fate {
+
+    --power-accent:
+        #9b72d9;
+
+}
+
+
+
+.power-player-proving {
+
+    --power-accent:
+        #72ad7e;
+
+}
+
+
+
+.power-player-penalty {
+
+    --power-accent:
+        #e35d2f;
+
+}
+
+
+
+.power-players-empty {
+
+    margin-top:
+        22px;
+
+    padding:
+
+        clamp(
+            30px,
+            5vw,
+            54px
+        );
+
+    border:
+        1px solid
+        rgba(
+            223,
+            142,
+            63,
+            0.24
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(
+                223,
+                142,
+                63,
+                0.09
+            ),
+            transparent 45%
+        ),
+
+        #101415;
+
+}
+
+
+
+.power-players-empty h2 {
+
+    max-width:
+        860px;
+
+    margin:
+        12px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            2rem,
+            4vw,
+            3.8rem
+        );
+
+    line-height:
+        0.98;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+
+.power-players-empty p:last-child {
+
+    max-width:
+        820px;
+
+    margin:
+        22px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.75;
+
+}
+
+
+
+@media (
+    max-width:
+        1050px
+) {
+
+
+    .power-players-intro {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .power-players-grid {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .power-players-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .power-player-category {
+
+        min-height:
+            0;
+
+        padding:
+            24px 20px;
+
+    }
+
+
+}
