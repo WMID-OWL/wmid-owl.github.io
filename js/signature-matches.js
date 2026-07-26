@@ -511,15 +511,7 @@
 
         }
 
-        const ratings = createRatings(match);
-
-        if (ratings) {
-
-            details.appendChild(createSectionBlock("Official Match Profile", ratings));
-
-        }
-
-        section.appendChild(details);
+               section.appendChild(details);
 
     };
 
