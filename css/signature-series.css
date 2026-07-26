@@ -7915,3 +7915,116 @@ body {
 
 
 }
+/* =================================
+   PROVING GROUND COMBAT POINT NOTES
+================================= */
+
+
+.proving-ground-points-grid article {
+
+    align-content:
+        start;
+
+}
+
+
+
+.proving-ground-points-grid article p {
+
+    margin:
+        14px 0 0;
+
+    color:
+        #aeb5b3;
+
+    font-size:
+        0.82rem;
+
+    line-height:
+        1.45;
+
+}
+
+
+
+.proving-ground-points-grid {
+
+    grid-template-columns:
+
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+}
+
+
+
+@media (
+    max-width:
+        1150px
+) {
+
+
+    .proving-ground-points-grid {
+
+        grid-template-columns:
+
+            repeat(
+                3,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        800px
+) {
+
+
+    .proving-ground-points-grid {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .proving-ground-points-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
