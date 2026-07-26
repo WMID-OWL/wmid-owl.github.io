@@ -166,6 +166,60 @@
     };
 
 
+    const createScoutingMeters = function (match) {
+
+        if (!Array.isArray(match.profileRatings) || !match.profileRatings.length) {
+
+            return null;
+
+        }
+
+        const panel = createElement("div", "signature-scouting-meters");
+
+        panel.appendChild(createElement("span", "signature-scouting-label", "Scouting Meters"));
+
+        const grid = createElement("div", "signature-scouting-grid");
+
+        match.profileRatings.forEach(function (item) {
+
+            const rating = Math.max(
+                0,
+                Math.min(
+                    5,
+                    Number(item.rating) || 0
+                )
+            );
+
+            const meter = createElement("div", "signature-scouting-meter");
+
+            const top = createElement("div", "signature-scouting-meter-top");
+
+            top.appendChild(createElement("span", "", item.label));
+            top.appendChild(createElement("strong", "", `${rating}/5`));
+
+            const track = createElement("div", "signature-scouting-meter-track");
+
+            const fill = createElement(
+                "span",
+                `signature-scouting-meter-fill signature-scouting-meter-fill-${rating}`
+            );
+
+            track.appendChild(fill);
+
+            meter.appendChild(top);
+            meter.appendChild(track);
+
+            grid.appendChild(meter);
+
+        });
+
+        panel.appendChild(grid);
+
+        return panel;
+
+    };
+
+
 
     const createSectionBlock = function (heading, content) {
 
@@ -369,13 +423,21 @@
 
                         const details = createElement("div", "signature-match-details");
 
-        details.appendChild(createIdentityRibbon(match));
+               details.appendChild(createIdentityRibbon(match));
 
         const ruleFlow = createRuleFlow(match);
 
         if (ruleFlow) {
 
             details.appendChild(ruleFlow);
+
+        }
+
+        const scoutingMeters = createScoutingMeters(match);
+
+        if (scoutingMeters) {
+
+            details.appendChild(scoutingMeters);
 
         }
 
