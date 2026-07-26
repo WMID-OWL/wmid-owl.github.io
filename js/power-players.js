@@ -1,6 +1,6 @@
 (function () {
 
-            const DATA_PATH = "data/power-players.json?v=286f";
+                const DATA_PATH = "data/power-players.json?v=286g";
 
 
 
