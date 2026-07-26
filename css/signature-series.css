@@ -5416,3 +5416,541 @@ body {
 
 
 }
+/* =================================
+   CURRENT POWER PLAYERS ACTIVE BOARD
+================================= */
+
+
+.power-players-active-board[hidden] {
+
+    display:
+        none !important;
+
+}
+
+
+
+.power-players-active-board {
+
+    display:
+        grid;
+
+    gap:
+        18px;
+
+    margin-top:
+        22px;
+
+    padding:
+
+        clamp(
+            28px,
+            4vw,
+            46px
+        );
+
+    border:
+        1px solid
+        rgba(
+            223,
+            142,
+            63,
+            0.24
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(
+                223,
+                142,
+                63,
+                0.08
+            ),
+            transparent 42%
+        ),
+
+        #101415;
+
+}
+
+
+
+.power-players-active-heading h2 {
+
+    max-width:
+        900px;
+
+    margin:
+        12px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            2rem,
+            4vw,
+            3.8rem
+        );
+
+    line-height:
+        0.98;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+
+.power-players-active-heading p:last-child {
+
+    max-width:
+        820px;
+
+    margin:
+        22px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.75;
+
+}
+
+
+
+.power-players-active-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        16px;
+
+}
+
+
+
+.power-players-active-card {
+
+    --power-accent:
+        #df8e3f;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    padding:
+        24px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --power-accent
+            )
+            28%,
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            )
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            color-mix(
+                in srgb,
+                var(
+                    --power-accent
+                )
+                18%,
+                transparent
+            ),
+            transparent 48%
+        ),
+
+        rgba(
+            8,
+            10,
+            11,
+            0.78
+        );
+
+}
+
+
+
+.power-players-active-card::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    right:
+        -60px;
+
+    bottom:
+        -80px;
+
+    width:
+        190px;
+
+    height:
+        190px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --power-accent
+            )
+            28%,
+            transparent
+        );
+
+    transform:
+        rotate(
+            45deg
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+
+.power-players-active-type {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        inline-flex;
+
+    padding:
+        7px 10px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --power-accent
+            )
+            42%,
+            transparent
+        );
+
+    color:
+        var(
+            --power-accent
+        );
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.power-players-active-card h3 {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    margin:
+        22px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            1.8rem,
+            4vw,
+            3.4rem
+        );
+
+    line-height:
+        0.96;
+
+    letter-spacing:
+        -0.055em;
+
+}
+
+
+
+.power-players-active-card p {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    margin:
+        18px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.65;
+
+}
+
+
+
+.power-players-active-meta {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        10px;
+
+    margin-top:
+        22px;
+
+}
+
+
+
+.power-players-active-meta div {
+
+    padding:
+        13px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.20
+        );
+
+}
+
+
+
+.power-players-active-meta small {
+
+    display:
+        block;
+
+    color:
+        var(
+            --power-accent
+        );
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.power-players-active-meta strong {
+
+    display:
+        block;
+
+    margin-top:
+        6px;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+        0.88rem;
+
+    line-height:
+        1.25;
+
+}
+
+
+
+.power-players-active-notes {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    gap:
+        8px;
+
+    margin:
+        22px 0 0;
+
+    padding:
+        0;
+
+    list-style:
+        none;
+
+}
+
+
+
+.power-players-active-notes li {
+
+    position:
+        relative;
+
+    padding-left:
+        18px;
+
+    color:
+        #c8cecb;
+
+    line-height:
+        1.45;
+
+}
+
+
+
+.power-players-active-notes li::before {
+
+    content:
+        "✦";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    color:
+        var(
+            --power-accent
+        );
+
+}
+
+
+
+@media (
+    max-width:
+        900px
+) {
+
+
+    .power-players-active-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .power-players-active-board {
+
+        padding:
+            24px 18px;
+
+    }
+
+
+    .power-players-active-meta {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
