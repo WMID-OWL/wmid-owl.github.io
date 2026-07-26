@@ -1,0 +1,58 @@
+{
+  "pageTitle": "Current Power Players",
+  "seasonLabel": "Current Season",
+  "status": {
+    "headline": "No active entries recorded yet",
+    "body": "Once OWL results are entered, this page will display active holders, pending title shots, case outcomes, penalties, and completed power history."
+  },
+  "emptyState": {
+    "eyebrow": "POWER BOARD EMPTY",
+    "headline": "No one holds special power yet.",
+    "body": "This page is ready for the first active holder. Once OWL canon produces a contract winner, rumble winner, case holder, tournament winner, or penalty, the board will start filling in."
+  },
+  "categories": [
+    {
+      "number": "01",
+      "title": "Devil’s Contract Holder",
+      "description": "Tracks the active contract holder, cash-in window, target title, cash-in result, and any Debt Clause fallout.",
+      "tag": "Cash-In / Debt Clause",
+      "accentClass": "power-player-contract"
+    },
+    {
+      "number": "02",
+      "title": "Overthrow Winners",
+      "description": "Tracks the men’s and women’s Overthrow Rumble winners and their guaranteed Fight to Survive title matches.",
+      "tag": "Fight to Survive Path",
+      "accentClass": "power-player-overthrow"
+    },
+    {
+      "number": "03",
+      "title": "Hex-Cell Winners",
+      "description": "Tracks the final guaranteed Fight to Survive challengers created at No Escape, including cross-brand title targets.",
+      "tag": "Last-Chance Title Shot",
+      "accentClass": "power-player-hex"
+    },
+    {
+      "number": "04",
+      "title": "Fate’s Wheel Cases",
+      "description": "Tracks main-title cases, midcard case playoffs, Remorse cases, career-survival results, and fired roster spots.",
+      "tag": "Gold / Glory / Goodbye",
+      "accentClass": "power-player-fate"
+    },
+    {
+      "number": "05",
+      "title": "Proving Ground Winners",
+      "description": "Tracks tournament winners, trophy holders, and earned December to Remember title opportunities.",
+      "tag": "Trophy / December Shot",
+      "accentClass": "power-player-proving"
+    },
+    {
+      "number": "06",
+      "title": "Active Penalties & Lockouts",
+      "description": "Tracks failed cash-in penalties, ranking drops, title lockouts, Devil’s Due matches, and other canon fallout.",
+      "tag": "Consequences Board",
+      "accentClass": "power-player-penalty"
+    }
+  ],
+  "activeEntries": []
+}
