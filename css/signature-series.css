@@ -3070,3 +3070,276 @@ body {
 
 
 }
+/* =================================
+   SIGNATURE SE7EN RULE FLOW
+================================= */
+
+
+.signature-rule-flow {
+
+    display:
+        grid;
+
+    gap:
+        14px;
+
+    padding:
+        18px;
+
+    border:
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.18
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(
+                201,
+                164,
+                92,
+                0.07
+            ),
+            transparent 46%
+        ),
+
+        rgba(
+            0,
+            0,
+            0,
+            0.20
+        );
+
+}
+
+
+
+.signature-rule-flow-label {
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.16em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.signature-rule-flow-steps {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            5,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        12px;
+
+}
+
+
+
+.signature-rule-flow-step {
+
+    position:
+        relative;
+
+    min-height:
+        118px;
+
+    padding:
+        16px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        rgba(
+            8,
+            10,
+            11,
+            0.72
+        );
+
+}
+
+
+
+.signature-rule-flow-step:not(:last-child)::after {
+
+    content:
+        "→";
+
+    position:
+        absolute;
+
+    top:
+        50%;
+
+    right:
+        -14px;
+
+    z-index:
+        3;
+
+    color:
+        #c9a45c;
+
+    font-size:
+        1rem;
+
+    font-weight:
+        900;
+
+    transform:
+        translateY(
+            -50%
+        );
+
+}
+
+
+
+.signature-rule-flow-step small {
+
+    display:
+        block;
+
+    margin-bottom:
+        12px;
+
+    color:
+        rgba(
+            201,
+            164,
+            92,
+            0.82
+        );
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.16em;
+
+}
+
+
+
+.signature-rule-flow-step strong {
+
+    display:
+        block;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+        0.92rem;
+
+    font-weight:
+        900;
+
+    line-height:
+        1.25;
+
+}
+
+
+
+@media (
+    max-width:
+        1100px
+) {
+
+
+    .signature-rule-flow-steps {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+    .signature-rule-flow-step:not(:last-child)::after {
+
+        display:
+            none;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .signature-rule-flow {
+
+        padding:
+            14px;
+
+    }
+
+
+    .signature-rule-flow-steps {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .signature-rule-flow-step {
+
+        min-height:
+            0;
+
+    }
+
+
+}
