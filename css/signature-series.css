@@ -1877,85 +1877,6 @@ body {
 
 
 
-.signature-rating-grid {
-
-    display:
-        grid;
-
-    gap:
-        10px;
-
-}
-
-
-
-.signature-rating-row {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        minmax(
-            0,
-            1fr
-        )
-        auto;
-
-    gap:
-        18px;
-
-    align-items:
-        center;
-
-    padding:
-        12px 0;
-
-    border-top:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.08
-        );
-
-}
-
-
-
-.signature-rating-row:first-child {
-
-    border-top:
-        0;
-
-}
-
-
-
-.signature-rating-row span {
-
-    color:
-        #c8cecb;
-
-    font-weight:
-        800;
-
-}
-
-
-
-.signature-rating-row strong {
-
-    color:
-        #e9cd8a;
-
-    letter-spacing:
-        0.08em;
-
-}
-
-
-
 @media (
     max-width:
         850px
@@ -1998,16 +1919,6 @@ body {
 
     }
 
-
-    .signature-rating-row {
-
-        grid-template-columns:
-            1fr;
-
-        gap:
-            6px;
-
-    }
 
 
 }
