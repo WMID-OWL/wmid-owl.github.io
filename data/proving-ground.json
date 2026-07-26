@@ -71,30 +71,66 @@
       "description": "Four eligible wrestlers ranked #3–#12 are randomly drawn into a one-night mini bracket. The winner earns the final block spot."
     }
   ],
-  "combatPoints": [
+    "combatPoints": [
     {
       "label": "Win",
-      "points": "+3"
+      "points": "+3",
+      "note": "Base reward for winning a block match."
     },
     {
       "label": "Draw",
-      "points": "+1"
+      "points": "+1",
+      "note": "Both wrestlers receive one point if the match ends without a winner."
     },
     {
-      "label": "Pinfall",
-      "points": "+1"
+      "label": "Loss",
+      "points": "0",
+      "note": "No points are awarded for losing the match."
     },
     {
-      "label": "Submission",
-      "points": "+1"
+      "label": "Pinfall Win",
+      "points": "+1",
+      "note": "Bonus point added when the winner scores the fall by pin."
     },
     {
-      "label": "KO",
-      "points": "+2"
+      "label": "Submission Win",
+      "points": "+1",
+      "note": "Bonus point added when the winner forces a submission."
     },
     {
-      "label": "Under 10",
-      "points": "+3"
+      "label": "KO Win",
+      "points": "+2",
+      "note": "Bonus reward for ending the match by knockout."
+    },
+    {
+      "label": "Count-Out Win",
+      "points": "0",
+      "note": "A count-out victory gives no total points in Proving Ground scoring."
+    },
+    {
+      "label": "DQ Win",
+      "points": "0",
+      "note": "A disqualification victory gives no total points in Proving Ground scoring."
+    },
+    {
+      "label": "Under 20 Minutes",
+      "points": "+1",
+      "note": "Speed bonus. Time bonuses are tiered, not stacked."
+    },
+    {
+      "label": "Under 15 Minutes",
+      "points": "+2",
+      "note": "Speed bonus. This replaces the under-20 bonus."
+    },
+    {
+      "label": "Under 10 Minutes",
+      "points": "+3",
+      "note": "Maximum speed bonus. This replaces the under-15 and under-20 bonuses."
+    },
+    {
+      "label": "Draw Blood",
+      "points": "+1",
+      "note": "Awarded to any wrestler who makes their opponent bleed, win or lose."
     }
   ],
       "entries": []
