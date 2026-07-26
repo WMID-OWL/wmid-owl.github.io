@@ -1,6 +1,6 @@
 (function () {
 
-        const DATA_PATH = "data/power-players.json?v=286e";
+            const DATA_PATH = "data/power-players.json?v=286f";
 
 
 
@@ -177,6 +177,80 @@
     };
 
 
+    const renderCompletedEntries = function (data) {
+
+        const history = document.querySelector(".power-players-history");
+        const list = document.querySelector("[data-power-players-history-list]");
+
+        if (!history || !list) {
+
+            return;
+
+        }
+
+        const entries = Array.isArray(data.completedEntries)
+            ? data.completedEntries
+            : [];
+
+        history.hidden = entries.length === 0;
+
+        list.innerHTML = "";
+
+        entries.forEach(function (entry) {
+
+            const row = createElement(
+                "article",
+                `power-players-history-row ${entry.accentClass || ""}`
+            );
+
+            const main = createElement("div", "power-players-history-main");
+
+            main.appendChild(createElement("span", "", entry.type || "Completed Power"));
+            main.appendChild(createElement("h3", "", entry.name || "Unassigned"));
+            main.appendChild(createElement("p", "", entry.result || entry.description || ""));
+
+            const meta = createElement("div", "power-players-history-meta");
+
+            const metaItems = [
+                ["Source", entry.source],
+                ["Date", entry.date],
+                ["Brand", entry.brand],
+                ["Division", entry.division],
+                ["Final Status", entry.status]
+            ];
+
+            metaItems.forEach(function (item) {
+
+                if (!item[1]) {
+
+                    return;
+
+                }
+
+                const metaItem = createElement("div", "");
+
+                metaItem.appendChild(createElement("small", "", item[0]));
+                metaItem.appendChild(createElement("strong", "", item[1]));
+
+                meta.appendChild(metaItem);
+
+            });
+
+            row.appendChild(main);
+
+            if (meta.children.length) {
+
+                row.appendChild(meta);
+
+            }
+
+            list.appendChild(row);
+
+        });
+
+    };
+
+
 
     const renderEmptyState = function (data) {
 
@@ -240,9 +314,10 @@
 
                 }
 
-                                renderStatus(data);
+                                                renderStatus(data);
                 renderCategories(data);
                 renderActiveEntries(data);
+                renderCompletedEntries(data);
                 renderEmptyState(data);
 
             })
