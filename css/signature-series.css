@@ -4067,3 +4067,349 @@ body {
 
 
 }
+/* =================================
+   SIGNATURE SERIES HUB FEATURE
+================================= */
+
+
+.signature-hub-feature {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        360px;
+
+    gap:
+        28px;
+
+    align-items:
+        stretch;
+
+    margin-top:
+        22px;
+
+    padding:
+
+        clamp(
+            30px,
+            5vw,
+            58px
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(
+                201,
+                164,
+                92,
+                0.16
+            ),
+            transparent 38%
+        ),
+
+        linear-gradient(
+            135deg,
+            rgba(
+                255,
+                255,
+                255,
+                0.04
+            ),
+            transparent 45%
+        ),
+
+        #101415;
+
+}
+
+
+
+.signature-hub-feature::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    right:
+        -90px;
+
+    bottom:
+        -150px;
+
+    width:
+        300px;
+
+    height:
+        300px;
+
+    border:
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.14
+        );
+
+    transform:
+        rotate(
+            45deg
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+
+.signature-hub-feature-copy {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+}
+
+
+
+.signature-hub-feature-copy h2 {
+
+    max-width:
+        900px;
+
+    margin:
+        12px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            2.2rem,
+            5vw,
+            4.8rem
+        );
+
+    line-height:
+        0.94;
+
+    letter-spacing:
+        -0.055em;
+
+}
+
+
+
+.signature-hub-feature-copy p:last-child {
+
+    max-width:
+        820px;
+
+    margin:
+        24px 0 0;
+
+    color:
+        #aeb5b3;
+
+    font-size:
+        1.02rem;
+
+    line-height:
+        1.75;
+
+}
+
+
+
+.signature-hub-feature-stats {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    gap:
+        12px;
+
+}
+
+
+
+.signature-hub-feature-stats div {
+
+    display:
+        grid;
+
+    align-content:
+        center;
+
+    min-height:
+        122px;
+
+    padding:
+        22px;
+
+    border:
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.22
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.24
+        );
+
+}
+
+
+
+.signature-hub-feature-stats span {
+
+    color:
+        #e9cd8a;
+
+    font-size:
+        2.4rem;
+
+    font-weight:
+        950;
+
+    line-height:
+        1;
+
+    letter-spacing:
+        -0.06em;
+
+}
+
+
+
+.signature-hub-feature-stats strong {
+
+    margin-top:
+        8px;
+
+    color:
+        #c8cecb;
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.11em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+@media (
+    max-width:
+        950px
+) {
+
+
+    .signature-hub-feature {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .signature-hub-feature-stats {
+
+        grid-template-columns:
+
+            repeat(
+                3,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .signature-hub-feature {
+
+        padding:
+            26px 20px;
+
+    }
+
+
+    .signature-hub-feature-stats {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .signature-hub-feature-stats div {
+
+        min-height:
+            0;
+
+    }
+
+
+}
