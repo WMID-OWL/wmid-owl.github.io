@@ -628,5 +628,35 @@
     "whyWereHere": "Fatal Attraction brings together two women who understand that attention is not given—it is controlled. Jacy Jayne supplies manipulation, tag-team experience, and the ruthless instincts of someone who has led factions and betrayed partners without hesitation. Blake Monroe adds glamour, international polish, and enough physical aggression to punish anyone who mistakes presentation for weakness.\n\nTheir matches are built around arrogance backed by results. Jacy creates openings through distractions, shortcuts, and constant pressure, while Blake turns those openings into sudden bursts of violence. They enjoy embarrassing opponents nearly as much as defeating them, especially when they can make the entire division watch.\n\nFatal Attraction came to OWL to become the team everyone talks about, fears, and eventually resents.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "brawlin-bastards",
+    "name": "Brawlin' Bastards",
+    "manager": "",
+    "members": [
+      "pete-dunne",
+      "pac"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/brawlin-bastards.png",
+    "finisher": "",
+    "whyWereHere": "The Brawlin’ Bastards unite two of England’s most unforgiving wrestlers under one simple philosophy: every match should feel like a fight their opponents regret accepting.\n\nPete Dunne controls the close quarters, manipulating joints, grinding opponents down, and punishing anyone foolish enough to grapple with him. PAC supplies the violent acceleration, striking from distance before crashing into the openings Dunne creates. One methodically removes an opponent’s ability to defend himself; the other attacks before he can adjust.\n\nThey do not rely on comedy, fancy coordination, or manufactured friendship. Their chemistry comes from mutual aggression and the understanding that neither man needs to be restrained. The Brawlin’ Bastards came to OWL to make the tag division harsher, meaner, and considerably more painful.",
+    "championshipsHeld": [],
+    "awards": []
+  },
+  {
+    "id": "k-o-k-kings-of-konsequence",
+    "name": "K.O.K : Kings Of Konsequence",
+    "manager": "",
+    "members": [
+      "shane-taylor",
+      "keith-lee"
+    ],
+    "brand": "Ascension",
+    "logo": "assets/images/teams/k-o-k-kings-of-konsequence.png",
+    "finisher": "",
+    "whyWereHere": "Shane Taylor and Keith Lee form a heavyweight team built around intelligence, experience, and overwhelming physical authority. Both men can dominate alone, but together they create the kind of problem that cannot be solved through ordinary tag-team strategy.\n\nTaylor brings aggression, vocal leadership, and the instinct to turn every exchange into a fight. Lee provides extraordinary athleticism, calm control, and power that can change a match instantly. Their frequent tags allow them to maintain constant pressure without sacrificing size, while their contrasting rhythms prevent opponents from developing a reliable defense.\n\nThey do not compete like hired muscle protecting a faction. They operate as kings defending territory. Every victory strengthens the Kings of Konsequence, and every defeat they deliver serves as a warning to the rest of OWL’s tag division.",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]

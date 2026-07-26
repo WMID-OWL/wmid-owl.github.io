@@ -158,5 +158,25 @@
     "whyWereHere": "P.W.O. turns its provocative name into a declaration of ownership. It is not sexual and it is not played for cheap shock. Shayna Baszler, Marina Shafir, and Jordynne Grace use it as a confrontational statement that women’s wrestling belongs to women who are powerful enough to define it for themselves.\n\nEach member represents a different form of dominance. Shayna is submission-based cruelty. Marina is calculated violence. Jordynne is overwhelming physical force. Baszler and Shafir pursue tag-team control while Grace hunts singles championships, allowing P.W.O. to attack multiple parts of OWL at once.\n\nThey are not united by matching personalities or blind loyalty to a leader. They are united by the belief that women should never have to minimize their strength, aggression, bodies, or ambition to make anyone else comfortable.",
     "championshipsHeld": [],
     "awards": []
+  },
+  {
+    "id": "kings-of-konsequence",
+    "name": "Kings Of Konsequence",
+    "manager": "",
+    "brand": "Ascension",
+    "logo": "assets/images/factions/kings-of-konsequence.png",
+    "leader": "",
+    "tagTeamId": "k-o-k-kings-of-konsequence",
+    "members": [
+      "shane-taylor",
+      "royce-keys",
+      "keith-lee"
+    ],
+    "singlesMembers": [
+      "royce-keys"
+    ],
+    "whyWereHere": "The Kings of Konsequence are built on power, pride, accountability, and the refusal to remain quiet while opportunity is distributed according to comfort rather than merit. Shane Taylor, Keith Lee, and Royce Keys do not see themselves as outsiders asking OWL for a place. They believe their presence forces OWL to become something stronger.\n\nTaylor is the voice and strategist, willing to confront anyone who dismisses their message. Lee is the group’s physical standard—a rare athlete whose existence challenges every limitation placed upon heavyweights. Royce is the rising singles weapon, carrying their mission into the future while pursuing individual championship glory.\n\nThey do not demand respect as charity. They impose consequences until respect becomes unavoidable. In OWL, every slight, every obstacle, and every championship decision now carries the same question:\n\nAre you prepared to answer to the Kings?",
+    "championshipsHeld": [],
+    "awards": []
   }
 ]
