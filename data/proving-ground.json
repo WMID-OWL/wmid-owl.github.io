@@ -71,7 +71,7 @@
       "description": "Four eligible wrestlers ranked #3–#12 are randomly drawn into a one-night mini bracket. The winner earns the final block spot."
     }
   ],
-    "combatPoints": [
+   "combatPoints": [
     {
       "label": "Win",
       "points": "+3",
@@ -88,14 +88,9 @@
       "note": "No points are awarded for losing the match."
     },
     {
-      "label": "Pinfall Win",
+      "label": "Pinfall / Submission Win",
       "points": "+1",
-      "note": "Bonus point added when the winner scores the fall by pin."
-    },
-    {
-      "label": "Submission Win",
-      "points": "+1",
-      "note": "Bonus point added when the winner forces a submission."
+      "note": "Bonus point added when the winner scores the fall by pinfall or submission."
     },
     {
       "label": "KO Win",
