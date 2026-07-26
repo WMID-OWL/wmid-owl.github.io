@@ -1,6 +1,6 @@
 (function () {
 
-                    const DATA_PATH = "data/proving-ground.json?v=287f";
+                        const DATA_PATH = "data/proving-ground.json?v=287g";
 
 
 
@@ -128,8 +128,14 @@
 
             const card = createElement("article", "");
 
-            card.appendChild(createElement("span", "", item.label || ""));
+                        card.appendChild(createElement("span", "", item.label || ""));
             card.appendChild(createElement("strong", "", item.points || ""));
+
+            if (item.note) {
+
+                card.appendChild(createElement("p", "", item.note));
+
+            }
 
             grid.appendChild(card);
 
