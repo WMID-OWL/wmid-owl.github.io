@@ -1,0 +1,79 @@
+{
+  "pageTitle": "Proving Ground",
+  "status": {
+    "eyebrow": "TOURNAMENT NOT STARTED",
+    "headline": "No Proving Ground field has been entered yet.",
+    "body": "Once the July–October performance window closes, the four entrants for each show/division can be added here, followed by standings, block results, Combat Points, finalists, and the final December to Remember challenger."
+  },
+  "overviewStats": [
+    {
+      "value": "04",
+      "label": "Entrants per division"
+    },
+    {
+      "value": "06",
+      "label": "Block matches"
+    },
+    {
+      "value": "02",
+      "label": "PPV finalists"
+    }
+  ],
+  "blocks": [
+    {
+      "brand": "ASCENSION",
+      "division": "Men’s Block",
+      "description": "Four Ascension men compete in round-robin block matches.",
+      "status": "Standings pending",
+      "accentClass": ""
+    },
+    {
+      "brand": "ASCENSION",
+      "division": "Women’s Block",
+      "description": "Four Ascension women compete in round-robin block matches.",
+      "status": "Standings pending",
+      "accentClass": ""
+    },
+    {
+      "brand": "REVOLT",
+      "division": "Men’s Block",
+      "description": "Four Revolt men compete in round-robin block matches.",
+      "status": "Standings pending",
+      "accentClass": "proving-ground-revolt"
+    },
+    {
+      "brand": "REVOLT",
+      "division": "Women’s Block",
+      "description": "Four Revolt women compete in round-robin block matches.",
+      "status": "Standings pending",
+      "accentClass": "proving-ground-revolt"
+    }
+  ],
+  "combatPoints": [
+    {
+      "label": "Win",
+      "points": "+3"
+    },
+    {
+      "label": "Draw",
+      "points": "+1"
+    },
+    {
+      "label": "Pinfall",
+      "points": "+1"
+    },
+    {
+      "label": "Submission",
+      "points": "+1"
+    },
+    {
+      "label": "KO",
+      "points": "+2"
+    },
+    {
+      "label": "Under 10",
+      "points": "+3"
+    }
+  ],
+  "entries": []
+}
