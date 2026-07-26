@@ -7088,3 +7088,485 @@ body {
 
 
 }
+/* =================================
+   PROVING GROUND FIELD
+================================= */
+
+
+.proving-ground-field[hidden] {
+
+    display:
+        none !important;
+
+}
+
+
+
+.proving-ground-field {
+
+    display:
+        grid;
+
+    gap:
+        18px;
+
+    margin-top:
+        22px;
+
+    padding:
+
+        clamp(
+            28px,
+            4vw,
+            46px
+        );
+
+    border:
+        1px solid
+        rgba(
+            114,
+            173,
+            126,
+            0.24
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(
+                114,
+                173,
+                126,
+                0.08
+            ),
+            transparent 44%
+        ),
+
+        #101415;
+
+}
+
+
+
+.proving-ground-field-heading h2 {
+
+    max-width:
+        920px;
+
+    margin:
+        12px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            2rem,
+            4vw,
+            3.8rem
+        );
+
+    line-height:
+        0.98;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+
+.proving-ground-field-heading p:last-child {
+
+    max-width:
+        820px;
+
+    margin:
+        22px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.75;
+
+}
+
+
+
+.proving-ground-field-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        16px;
+
+}
+
+
+
+.proving-ground-entry-card {
+
+    --proving-accent:
+        #72ad7e;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    padding:
+        24px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --proving-accent
+            )
+            28%,
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            )
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            color-mix(
+                in srgb,
+                var(
+                    --proving-accent
+                )
+                18%,
+                transparent
+            ),
+            transparent 48%
+        ),
+
+        rgba(
+            8,
+            10,
+            11,
+            0.78
+        );
+
+}
+
+
+
+.proving-ground-entry-card.proving-ground-revolt {
+
+    --proving-accent:
+        #bd493f;
+
+}
+
+
+
+.proving-ground-entry-card::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    right:
+        -60px;
+
+    bottom:
+        -80px;
+
+    width:
+        190px;
+
+    height:
+        190px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --proving-accent
+            )
+            28%,
+            transparent
+        );
+
+    transform:
+        rotate(
+            45deg
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+
+.proving-ground-entry-brand {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        inline-flex;
+
+    padding:
+        7px 10px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --proving-accent
+            )
+            42%,
+            transparent
+        );
+
+    color:
+        var(
+            --proving-accent
+        );
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.proving-ground-entry-card h3 {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    margin:
+        22px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            1.8rem,
+            4vw,
+            3.3rem
+        );
+
+    line-height:
+        0.96;
+
+    letter-spacing:
+        -0.055em;
+
+}
+
+
+
+.proving-ground-entry-card p {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    margin:
+        18px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.65;
+
+}
+
+
+
+.proving-ground-entry-meta {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        10px;
+
+    margin-top:
+        22px;
+
+}
+
+
+
+.proving-ground-entry-meta div {
+
+    padding:
+        13px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.20
+        );
+
+}
+
+
+
+.proving-ground-entry-meta small {
+
+    display:
+        block;
+
+    color:
+        var(
+            --proving-accent
+        );
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.proving-ground-entry-meta strong {
+
+    display:
+        block;
+
+    margin-top:
+        6px;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+        0.88rem;
+
+    line-height:
+        1.25;
+
+}
+
+
+
+@media (
+    max-width:
+        900px
+) {
+
+
+    .proving-ground-field-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .proving-ground-field {
+
+        padding:
+            24px 18px;
+
+    }
+
+
+    .proving-ground-entry-meta {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
