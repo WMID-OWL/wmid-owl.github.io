@@ -1,6 +1,6 @@
 (function () {
 
-    const DATA_PATH = "data/signature-matches.json";
+        const DATA_PATH = "data/signature-matches.json?v=285o";
 
 
 
@@ -121,9 +121,50 @@
 
         });
 
-        return ribbon;
+                return ribbon;
 
     };
+
+
+
+    const createRuleFlow = function (match) {
+
+        if (!Array.isArray(match.ruleFlow) || !match.ruleFlow.length) {
+
+            return null;
+
+        }
+
+        const flow = createElement("div", "signature-rule-flow");
+
+        flow.appendChild(createElement("span", "signature-rule-flow-label", "Rule Flow"));
+
+        const steps = createElement("div", "signature-rule-flow-steps");
+
+        match.ruleFlow.forEach(function (step, index) {
+
+            const item = createElement("div", "signature-rule-flow-step");
+
+            item.appendChild(
+                createElement(
+                    "small",
+                    "",
+                    String(index + 1).padStart(2, "0")
+                )
+            );
+
+            item.appendChild(createElement("strong", "", step));
+
+            steps.appendChild(item);
+
+        });
+
+        flow.appendChild(steps);
+
+        return flow;
+
+    };
+
 
 
     const createSectionBlock = function (heading, content) {
@@ -326,9 +367,18 @@
 
         section.dataset.signatureRendered = "true";
 
-                const details = createElement("div", "signature-match-details");
+                        const details = createElement("div", "signature-match-details");
 
         details.appendChild(createIdentityRibbon(match));
+
+        const ruleFlow = createRuleFlow(match);
+
+        if (ruleFlow) {
+
+            details.appendChild(ruleFlow);
+
+        }
+
         details.appendChild(createInfoGrid(match));
 
         if (Array.isArray(match.sections)) {
