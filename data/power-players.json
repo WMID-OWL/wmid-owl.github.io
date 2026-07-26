@@ -53,6 +53,7 @@
       "tag": "Consequences Board",
       "accentClass": "power-player-penalty"
     }
-  ],
-  "activeEntries": []
+    ],
+  "activeEntries": [],
+  "completedEntries": []
 }
