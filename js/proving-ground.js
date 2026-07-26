@@ -1,6 +1,6 @@
 (function () {
 
-                const DATA_PATH = "data/proving-ground.json?v=287e";
+                    const DATA_PATH = "data/proving-ground.json?v=287f";
 
 
 
@@ -46,6 +46,33 @@
             stat.appendChild(createElement("strong", "", item.label || ""));
 
             stats.appendChild(stat);
+
+        });
+
+    };
+
+
+    const renderQualificationPaths = function (data) {
+
+        const grid = document.querySelector("[data-proving-ground-qualification-grid]");
+
+        if (!grid || !Array.isArray(data.qualificationPaths)) {
+
+            return;
+
+        }
+
+        grid.innerHTML = "";
+
+        data.qualificationPaths.forEach(function (path) {
+
+            const card = createElement("article", "proving-ground-qualification-card");
+
+            card.appendChild(createElement("span", "", path.slot || ""));
+            card.appendChild(createElement("h3", "", path.title || ""));
+            card.appendChild(createElement("p", "", path.description || ""));
+
+            grid.appendChild(card);
 
         });
 
@@ -244,7 +271,8 @@
 
                 }
 
-                                renderOverviewStats(data);
+                                                renderOverviewStats(data);
+                renderQualificationPaths(data);
                 renderBlocks(data);
                 renderEntries(data);
                 renderCombatPoints(data);
