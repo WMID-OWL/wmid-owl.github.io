@@ -52,17 +52,6 @@
 
 
 
-    const createStars = function (rating) {
-
-        const fullStars = "★".repeat(Math.max(0, Math.min(5, Number(rating) || 0)));
-        const emptyStars = "☆".repeat(Math.max(0, 5 - fullStars.length));
-
-        return fullStars + emptyStars;
-
-    };
-
-
-
     const createInfoGrid = function (match) {
 
         const grid = createElement("div", "signature-info-grid");
@@ -240,34 +229,6 @@
         return block;
 
     };
-
-
-
-    const createRatings = function (match) {
-
-        if (!Array.isArray(match.profileRatings) || !match.profileRatings.length) {
-
-            return null;
-
-        }
-
-        const ratings = createElement("div", "signature-rating-grid");
-
-        match.profileRatings.forEach(function (item) {
-
-            const row = createElement("div", "signature-rating-row");
-
-            row.appendChild(createElement("span", "", item.label));
-            row.appendChild(createElement("strong", "", createStars(item.rating)));
-
-            ratings.appendChild(row);
-
-        });
-
-        return ratings;
-
-    };
-
 
 
     const createCaseBreakdown = function (match) {
