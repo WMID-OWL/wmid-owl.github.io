@@ -75,5 +75,28 @@
       "points": "+3"
     }
   ],
-  "entries": []
+    "entries": [
+    {
+      "brand": "ASCENSION",
+      "name": "TEST ASCENSION ENTRANT",
+      "description": "Temporary test entrant used to confirm the Proving Ground field renders correctly.",
+      "division": "Men’s Block",
+      "qualification": "Best W/L average",
+      "record": "0-0-0",
+      "points": "0",
+      "status": "Block pending",
+      "accentClass": ""
+    },
+    {
+      "brand": "REVOLT",
+      "name": "TEST REVOLT ENTRANT",
+      "description": "Temporary test entrant used to confirm Revolt styling renders correctly.",
+      "division": "Women’s Block",
+      "qualification": "Wildcard Play-In",
+      "record": "0-0-0",
+      "points": "0",
+      "status": "Block pending",
+      "accentClass": "proving-ground-revolt"
+    }
+  ]
 }
