@@ -1,7 +1,6 @@
 (function () {
 
-                const DATA_PATH = "data/power-players.json?v=286g";
-
+                    const DATA_PATH = "data/power-players.json?v=286h";
 
 
     const createElement = function (tagName, className, textContent) {
