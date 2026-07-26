@@ -54,34 +54,6 @@
       "accentClass": "power-player-penalty"
     }
     ],
-    "activeEntries": [
-    {
-      "type": "Devil’s Contract Holder",
-      "name": "TEST HOLDER",
-      "description": "Temporary test entry used to confirm the Active Power Board renders correctly.",
-      "status": "Active",
-      "source": "Deal With The Devil",
-      "brand": "Revolt",
-      "division": "Men’s Division",
-      "expires": "Before next Deal With The Devil",
-      "accentClass": "power-player-contract",
-      "notes": [
-        "This is fake test data.",
-        "Remove after visual confirmation."
-      ]
-    }
-  ],
-  "completedEntries": [
-    {
-      "type": "Overthrow Winner",
-      "name": "TEST WINNER",
-      "result": "Temporary test result used to confirm Completed Power History renders correctly.",
-      "source": "Overthrow",
-      "date": "Test Date",
-      "brand": "Ascension",
-      "division": "Women’s Division",
-      "status": "Resolved",
-      "accentClass": "power-player-overthrow"
-    }
-  ]
+      "activeEntries": [],
+  "completedEntries": []
 }
