@@ -3519,3 +3519,350 @@ body {
         );
 
 }
+/* =================================
+   SIGNATURE SE7EN SCOUTING METERS
+================================= */
+
+
+.signature-scouting-meters {
+
+    display:
+        grid;
+
+    gap:
+        14px;
+
+    padding:
+        18px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --signature-section-accent
+            )
+            26%,
+            transparent
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            color-mix(
+                in srgb,
+                var(
+                    --signature-section-accent
+                )
+                9%,
+                transparent
+            ),
+            transparent 44%
+        ),
+
+        rgba(
+            0,
+            0,
+            0,
+            0.18
+        );
+
+}
+
+
+
+.signature-scouting-label {
+
+    color:
+        var(
+            --signature-section-accent
+        );
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.16em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.signature-scouting-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            5,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        12px;
+
+}
+
+
+
+.signature-scouting-meter {
+
+    display:
+        grid;
+
+    gap:
+        12px;
+
+    padding:
+        16px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        rgba(
+            8,
+            10,
+            11,
+            0.72
+        );
+
+}
+
+
+
+.signature-scouting-meter-top {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        12px;
+
+}
+
+
+
+.signature-scouting-meter-top span {
+
+    color:
+        #d6dbd8;
+
+    font-size:
+        0.74rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    line-height:
+        1.2;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.signature-scouting-meter-top strong {
+
+    color:
+        var(
+            --signature-section-accent
+        );
+
+    font-size:
+        0.76rem;
+
+    font-weight:
+        950;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+.signature-scouting-meter-track {
+
+    overflow:
+        hidden;
+
+    height:
+        8px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+}
+
+
+
+.signature-scouting-meter-fill {
+
+    display:
+        block;
+
+    height:
+        100%;
+
+    width:
+        0;
+
+    background:
+        var(
+            --signature-section-accent
+        );
+
+    box-shadow:
+        0
+        0
+        18px
+        color-mix(
+            in srgb,
+            var(
+                --signature-section-accent
+            )
+            55%,
+            transparent
+        );
+
+}
+
+
+
+.signature-scouting-meter-fill-1 {
+
+    width:
+        20%;
+
+}
+
+
+
+.signature-scouting-meter-fill-2 {
+
+    width:
+        40%;
+
+}
+
+
+
+.signature-scouting-meter-fill-3 {
+
+    width:
+        60%;
+
+}
+
+
+
+.signature-scouting-meter-fill-4 {
+
+    width:
+        80%;
+
+}
+
+
+
+.signature-scouting-meter-fill-5 {
+
+    width:
+        100%;
+
+}
+
+
+
+@media (
+    max-width:
+        1100px
+) {
+
+
+    .signature-scouting-grid {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .signature-scouting-meters {
+
+        padding:
+            14px;
+
+    }
+
+
+    .signature-scouting-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
