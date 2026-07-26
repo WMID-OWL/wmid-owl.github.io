@@ -3343,3 +3343,179 @@ body {
 
 
 }
+/* =================================
+   SIGNATURE SE7EN RULE FLOW ACCENTS
+================================= */
+
+
+.signature-series-statement[id] {
+
+    --signature-section-accent:
+        #c9a45c;
+
+}
+
+
+
+#love-and-war {
+
+    --signature-section-accent:
+        #c95c77;
+
+}
+
+
+
+#overthrow-rumble {
+
+    --signature-section-accent:
+        #d8b45f;
+
+}
+
+
+
+#hex-cell-eliminator {
+
+    --signature-section-accent:
+        #8c8f99;
+
+}
+
+
+
+#fates-wheel {
+
+    --signature-section-accent:
+        #9b72d9;
+
+}
+
+
+
+#devils-contract {
+
+    --signature-section-accent:
+        #bd493f;
+
+}
+
+
+
+#proving-ground {
+
+    --signature-section-accent:
+        #72ad7e;
+
+}
+
+
+
+#ibya {
+
+    --signature-section-accent:
+        #e35d2f;
+
+}
+
+
+
+.signature-series-statement[id]
+.signature-rule-flow {
+
+    border-color:
+        color-mix(
+            in srgb,
+            var(
+                --signature-section-accent
+            )
+            32%,
+            transparent
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            color-mix(
+                in srgb,
+                var(
+                    --signature-section-accent
+                )
+                12%,
+                transparent
+            ),
+            transparent 46%
+        ),
+
+        rgba(
+            0,
+            0,
+            0,
+            0.20
+        );
+
+}
+
+
+
+.signature-series-statement[id]
+.signature-rule-flow-label {
+
+    color:
+        var(
+            --signature-section-accent
+        );
+
+}
+
+
+
+.signature-series-statement[id]
+.signature-rule-flow-step {
+
+    border-color:
+        color-mix(
+            in srgb,
+            var(
+                --signature-section-accent
+            )
+            22%,
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            )
+        );
+
+}
+
+
+
+.signature-series-statement[id]
+.signature-rule-flow-step small {
+
+    color:
+        color-mix(
+            in srgb,
+            var(
+                --signature-section-accent
+            )
+            82%,
+            #ffffff
+        );
+
+}
+
+
+
+.signature-series-statement[id]
+.signature-rule-flow-step:not(:last-child)::after {
+
+    color:
+        var(
+            --signature-section-accent
+        );
+
+}
