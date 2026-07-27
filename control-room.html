@@ -32,6 +32,7 @@
     <a class="cr-tool-jump-link" href="#cr-tool-factions">Factions</a>
       <a class="cr-tool-jump-link" href="#cr-tool-events">Events</a>
 <a class="cr-tool-jump-link" href="#cr-tool-tournaments">Tournaments</a>
+<a class="cr-tool-jump-link" href="#cr-tool-signature-series">Signature Series</a>
 <a class="cr-tool-jump-link" href="#cr-tool-media">Media</a>
 <a class="cr-tool-jump-link" href="#cr-tool-booker">Match Booker</a>
    <a class="cr-tool-jump-link" href="#cr-tool-results">Results</a>
@@ -1698,6 +1699,362 @@
                     hidden
                 >
                 </p>
+
+            </div>
+
+                </section>
+
+        <!-- =================================
+             SIGNATURE SERIES MANAGER
+        ================================== -->
+
+        <section
+            id="cr-tool-signature-series"
+            class="control-room-panel"
+        >
+
+            <div class="control-room-panel-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        SIGNATURE SERIES
+                    </p>
+
+                    <h2>
+                        Signature Series Manager
+                    </h2>
+
+                </div>
+
+                <span
+                    id="cr-signature-series-status"
+                    class="control-room-health-summary"
+                >
+                    WAITING
+                </span>
+
+            </div>
+
+            <p class="cr-editor-note">
+                Manage Signature Series outcomes that feed the public Current Power Players and Proving Ground pages.
+            </p>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        CURRENT POWER PLAYERS
+                    </span>
+
+                    <h3>
+                        Active Power Entry
+                    </h3>
+
+                    <p>
+                        Add active contract holders, title-shot winners, case holders, tournament winners, and current penalties.
+                    </p>
+
+                </div>
+
+                <div class="cr-editor-top-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-signature-power-entry-select">
+                            EXISTING ACTIVE ENTRY
+                        </label>
+
+                        <select id="cr-signature-power-entry-select">
+
+                            <option value="">
+                                No active entries loaded
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            ACTIVE ENTRY COUNT
+                        </label>
+
+                        <div
+                            id="cr-signature-power-active-count"
+                            class="cr-current-value"
+                        >
+                            0
+                        </div>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            CLEANUP
+                        </label>
+
+                        <button
+                            id="cr-signature-power-delete-entry"
+                            class="control-room-button control-room-button-secondary cr-tournament-danger-button"
+                            type="button"
+                            disabled
+                        >
+                            Delete Selected Active Entry
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="cr-editor-section cr-signature-power-form-section">
+
+                    <div class="cr-editor-section-heading">
+
+                        <span>
+                            NEW ACTIVE ENTRY
+                        </span>
+
+                        <h3>
+                            Add Power Holder
+                        </h3>
+
+                    </div>
+
+                    <div class="cr-editor-form-grid">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-signature-power-type">
+                                POWER TYPE
+                            </label>
+
+                            <select id="cr-signature-power-type">
+
+                                <option value="devils-contract">
+                                    Devil’s Contract Holder
+                                </option>
+
+                                <option value="overthrow-winner">
+                                    Overthrow Winner
+                                </option>
+
+                                <option value="hex-cell-winner">
+                                    Hex-Cell Winner
+                                </option>
+
+                                <option value="fates-wheel-case">
+                                    Fate’s Wheel Case Holder
+                                </option>
+
+                                <option value="proving-ground-winner">
+                                    Proving Ground Winner
+                                </option>
+
+                                <option value="active-penalty">
+                                    Active Penalty / Lockout
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-signature-power-name">
+                                NAME / HOLDER
+                            </label>
+
+                            <input
+                                id="cr-signature-power-name"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Example: Ricky Sosa"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-signature-power-status">
+                                STATUS
+                            </label>
+
+                            <input
+                                id="cr-signature-power-status"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Example: Active"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-signature-power-source">
+                                SOURCE / EVENT
+                            </label>
+
+                            <input
+                                id="cr-signature-power-source"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Example: Deal With The Devil"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-signature-power-brand">
+                                BRAND
+                            </label>
+
+                            <select id="cr-signature-power-brand">
+
+                                <option value="">
+                                    Not Brand-Specific
+                                </option>
+
+                                <option value="Ascension">
+                                    Ascension
+                                </option>
+
+                                <option value="Revolt">
+                                    Revolt
+                                </option>
+
+                                <option value="Shared">
+                                    Shared
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-signature-power-division">
+                                DIVISION
+                            </label>
+
+                            <select id="cr-signature-power-division">
+
+                                <option value="">
+                                    Not Division-Specific
+                                </option>
+
+                                <option value="Men’s Division">
+                                    Men’s Division
+                                </option>
+
+                                <option value="Women’s Division">
+                                    Women’s Division
+                                </option>
+
+                                <option value="Men’s Tag Team Division">
+                                    Men’s Tag Team Division
+                                </option>
+
+                                <option value="Women’s Tag Team Division">
+                                    Women’s Tag Team Division
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-signature-power-expires">
+                                EXPIRES / DUE
+                            </label>
+
+                            <input
+                                id="cr-signature-power-expires"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Example: Before next Deal With The Devil"
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="cr-form-group cr-editor-spaced-field">
+
+                        <label for="cr-signature-power-description">
+                            DESCRIPTION
+                        </label>
+
+                        <textarea
+                            id="cr-signature-power-description"
+                            rows="4"
+                            placeholder="Explain what this person currently holds or what consequence is active."
+                        ></textarea>
+
+                    </div>
+
+                    <div class="cr-form-group cr-editor-spaced-field">
+
+                        <label for="cr-signature-power-notes">
+                            NOTES — OPTIONAL
+                        </label>
+
+                        <textarea
+                            id="cr-signature-power-notes"
+                            rows="4"
+                            placeholder="One note per line."
+                        ></textarea>
+
+                    </div>
+
+                    <div
+                        id="cr-signature-power-preview"
+                        class="cr-change-preview"
+                        hidden
+                    >
+
+                        <span>
+                            REVIEW ACTIVE POWER ENTRY
+                        </span>
+
+                        <div
+                            id="cr-signature-power-change-list"
+                            class="cr-editor-change-list"
+                        ></div>
+
+                        <p
+                            id="cr-signature-power-error"
+                            class="cr-change-error"
+                            hidden
+                        ></p>
+
+                    </div>
+
+                    <div class="cr-manager-actions">
+
+                        <button
+                            id="cr-signature-power-save"
+                            class="control-room-button control-room-button-primary"
+                            type="button"
+                            disabled
+                        >
+                            Save Active Power Entry
+                        </button>
+
+                    </div>
+
+                    <p
+                        id="cr-signature-power-message"
+                        class="cr-save-message"
+                        hidden
+                    ></p>
+
+                </div>
 
             </div>
 
