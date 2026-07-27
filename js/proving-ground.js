@@ -1,6 +1,6 @@
 (function () {
 
-                        const DATA_PATH = "data/proving-ground.json?v=287i";
+                        const DATA_PATH = "data/proving-ground.json?v=287j";
 
 
 
@@ -132,6 +132,80 @@
             card.appendChild(createElement("small", "", block.status || ""));
 
             grid.appendChild(card);
+
+        });
+
+    };
+
+
+    const renderBlockResults = function (data) {
+
+        const section = document.querySelector(".proving-ground-results");
+        const list = document.querySelector("[data-proving-ground-results-list]");
+
+        if (!section || !list) {
+
+            return;
+
+        }
+
+        const results = Array.isArray(data.blockResults)
+            ? data.blockResults
+            : [];
+
+        section.hidden = results.length === 0;
+
+        list.innerHTML = "";
+
+        results.forEach(function (result) {
+
+            const row = createElement(
+                "article",
+                `proving-ground-result-row ${result.accentClass || ""}`
+            );
+
+            const main = createElement("div", "proving-ground-result-main");
+
+            main.appendChild(createElement("span", "", result.block || "Block Match"));
+            main.appendChild(createElement("h3", "", result.matchup || "Matchup TBD"));
+            main.appendChild(createElement("p", "", result.summary || ""));
+
+            const meta = createElement("div", "proving-ground-result-meta");
+
+            const metaItems = [
+                ["Winner", result.winner],
+                ["Method", result.method],
+                ["Time", result.time],
+                ["Points", result.points],
+                ["Bonus", result.bonus]
+            ];
+
+            metaItems.forEach(function (item) {
+
+                if (!item[1]) {
+
+                    return;
+
+                }
+
+                const metaItem = createElement("div", "");
+
+                metaItem.appendChild(createElement("small", "", item[0]));
+                metaItem.appendChild(createElement("strong", "", item[1]));
+
+                meta.appendChild(metaItem);
+
+            });
+
+            row.appendChild(main);
+
+            if (meta.children.length) {
+
+                row.appendChild(meta);
+
+            }
+
+            list.appendChild(row);
 
         });
 
@@ -304,14 +378,14 @@
 
                 }
 
-                                                                renderOverviewStats(data);
+                renderOverviewStats(data);
                 renderTournamentFlow(data);
                 renderQualificationPaths(data);
                 renderBlocks(data);
                 renderEntries(data);
+                renderBlockResults(data);
                 renderCombatPoints(data);
                 renderEmptyState(data);
-
             })
             .catch(function (error) {
 
