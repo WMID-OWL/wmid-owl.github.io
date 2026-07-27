@@ -1482,7 +1482,81 @@ const tournamentCreateMessage =
     document.getElementById(
         "cr-tournament-create-message"
     );
+const tournamentBracketCreateName =
 
+    document.getElementById(
+        "cr-tournament-bracket-create-name"
+    );
+
+
+const tournamentBracketCreateBrand =
+
+    document.getElementById(
+        "cr-tournament-bracket-create-brand"
+    );
+
+
+const tournamentBracketCreateDivision =
+
+    document.getElementById(
+        "cr-tournament-bracket-create-division"
+    );
+
+
+const tournamentBracketCreateFieldSize =
+
+    document.getElementById(
+        "cr-tournament-bracket-create-field-size"
+    );
+
+
+const tournamentBracketCreateParticipantType =
+
+    document.getElementById(
+        "cr-tournament-bracket-create-participant-type"
+    );
+
+
+const tournamentBracketCreateStatus =
+
+    document.getElementById(
+        "cr-tournament-bracket-create-status"
+    );
+
+
+const tournamentBracketCreatePreview =
+
+    document.getElementById(
+        "cr-tournament-bracket-create-preview"
+    );
+
+
+const tournamentBracketCreateChangeList =
+
+    document.getElementById(
+        "cr-tournament-bracket-create-change-list"
+    );
+
+
+const tournamentBracketCreateError =
+
+    document.getElementById(
+        "cr-tournament-bracket-create-error"
+    );
+
+
+const tournamentBracketCreateSaveButton =
+
+    document.getElementById(
+        "cr-tournament-bracket-create-save"
+    );
+
+
+const tournamentBracketCreateMessage =
+
+    document.getElementById(
+        "cr-tournament-bracket-create-message"
+    );
 
 const tournamentFieldStatus =
 
@@ -8038,6 +8112,720 @@ function populateTournamentBracketSelector() {
 
 }
 
+// =================================
+// TOURNAMENT BRACKET CREATOR
+// =================================
+
+
+function createTournamentBracketSlug(
+    name,
+    tournament
+) {
+
+
+    const baseSlug =
+
+        String(
+            name || ""
+        )
+            .trim()
+            .toLowerCase()
+            .replace(
+                /['’]/g,
+                ""
+            )
+            .replace(
+                /&/g,
+                "and"
+            )
+            .replace(
+                /[^a-z0-9]+/g,
+                "-"
+            )
+            .replace(
+                /^-+|-+$/g,
+                ""
+            )
+
+        ||
+
+        "new-bracket";
+
+
+    const brackets =
+
+        tournament
+
+        &&
+
+        Array.isArray(
+            tournament.brackets
+        )
+
+            ? tournament.brackets
+
+            : [];
+
+
+    let candidate =
+        baseSlug;
+
+
+    let counter =
+        2;
+
+
+    while (
+
+        brackets.some(
+            bracket =>
+                bracket.id ===
+                candidate
+        )
+
+    ) {
+
+
+        candidate =
+            `${baseSlug}-${counter}`;
+
+
+        counter +=
+            1;
+
+    }
+
+
+    return candidate;
+
+}
+
+
+
+function setTournamentBracketCreateMessage(
+    message,
+    type = "success"
+) {
+
+
+    if (!tournamentBracketCreateMessage) {
+
+        return;
+
+    }
+
+
+    tournamentBracketCreateMessage.textContent =
+        message;
+
+
+    tournamentBracketCreateMessage.className =
+
+        `cr-save-message ${
+            type === "error"
+
+                ? "save-error"
+
+                : "save-success"
+        }`;
+
+
+    tournamentBracketCreateMessage.hidden =
+        false;
+
+}
+
+
+
+function getTournamentBracketCreateDraft() {
+
+
+    const tournament =
+        getSelectedControlRoomTournament();
+
+
+    const name =
+
+        tournamentBracketCreateName
+
+            ? tournamentBracketCreateName.value.trim()
+
+            : "";
+
+
+    const fieldSizeValue =
+
+        tournamentBracketCreateFieldSize
+
+            ? tournamentBracketCreateFieldSize.value.trim()
+
+            : "";
+
+
+    const participantType =
+
+        tournamentBracketCreateParticipantType
+
+            ? tournamentBracketCreateParticipantType.value
+
+            : "wrestler";
+
+
+    return {
+
+        id:
+            createTournamentBracketSlug(
+                name,
+                tournament
+            ),
+
+        name,
+
+        brand:
+
+            tournamentBracketCreateBrand
+
+                ? tournamentBracketCreateBrand.value
+
+                : "Ascension",
+
+        division:
+
+            tournamentBracketCreateDivision
+
+                ? tournamentBracketCreateDivision.value
+
+                : "Men's Singles",
+
+        fieldSize:
+
+            fieldSizeValue
+
+                ? Number(
+                    fieldSizeValue
+                )
+
+                : 0,
+
+        fieldUnit:
+
+            participantType === "team"
+
+                ? "Teams"
+
+                : "Competitors",
+
+        participantType,
+
+        participants:
+            [],
+
+        fieldLocked:
+            false,
+
+        bracketSetup: {
+
+            generated:
+                false,
+
+            generatedAt:
+                "",
+
+            rounds:
+                [],
+
+            winnerId:
+                ""
+
+        },
+
+        status:
+
+            tournamentBracketCreateStatus
+
+                ? tournamentBracketCreateStatus.value
+
+                : "Upcoming"
+
+    };
+
+}
+
+
+
+function validateTournamentBracketCreateDraft(
+    draft
+) {
+
+
+    const tournament =
+        getSelectedControlRoomTournament();
+
+
+    if (!tournament) {
+
+        return "Select a tournament before adding a bracket.";
+
+    }
+
+
+    if (!draft.name) {
+
+        return "Bracket name is required.";
+
+    }
+
+
+    if (
+        !Number.isInteger(
+            draft.fieldSize
+        )
+
+        ||
+
+        draft.fieldSize <
+            2
+    ) {
+
+        return "Enter a valid field size of 2 or more.";
+
+    }
+
+
+    return "";
+
+}
+
+
+
+function appendTournamentBracketCreateReviewRow(
+    label,
+    value
+) {
+
+
+    if (!tournamentBracketCreateChangeList) {
+
+        return;
+
+    }
+
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "cr-editor-change-row";
+
+
+    row.innerHTML = `
+
+        <strong>
+            ${label}
+        </strong>
+
+        <span>
+            ${value || "—"}
+        </span>
+
+    `;
+
+
+    tournamentBracketCreateChangeList.appendChild(
+        row
+    );
+
+}
+
+
+
+function renderTournamentBracketCreatePreview() {
+
+
+    if (
+        !tournamentBracketCreatePreview ||
+        !tournamentBracketCreateChangeList ||
+        !tournamentBracketCreateSaveButton
+    ) {
+
+        return;
+
+    }
+
+
+    tournamentBracketCreateChangeList.innerHTML =
+        "";
+
+
+    if (tournamentBracketCreateError) {
+
+        tournamentBracketCreateError.hidden =
+            true;
+
+
+        tournamentBracketCreateError.textContent =
+            "";
+
+    }
+
+
+    const draft =
+        getTournamentBracketCreateDraft();
+
+
+    const validationError =
+        validateTournamentBracketCreateDraft(
+            draft
+        );
+
+
+    appendTournamentBracketCreateReviewRow(
+        "DATABASE ID",
+        draft.id
+    );
+
+
+    appendTournamentBracketCreateReviewRow(
+        "NAME",
+        draft.name
+    );
+
+
+    appendTournamentBracketCreateReviewRow(
+        "BRAND",
+        draft.brand
+    );
+
+
+    appendTournamentBracketCreateReviewRow(
+        "DIVISION",
+        draft.division
+    );
+
+
+    appendTournamentBracketCreateReviewRow(
+        "FIELD SIZE",
+        String(
+            draft.fieldSize || "—"
+        )
+    );
+
+
+    appendTournamentBracketCreateReviewRow(
+        "PARTICIPANTS",
+        draft.participantType
+    );
+
+
+    appendTournamentBracketCreateReviewRow(
+        "STATUS",
+        draft.status
+    );
+
+
+    tournamentBracketCreatePreview.hidden =
+        false;
+
+
+    if (validationError) {
+
+
+        if (tournamentBracketCreateError) {
+
+            tournamentBracketCreateError.textContent =
+                validationError;
+
+
+            tournamentBracketCreateError.hidden =
+                false;
+
+        }
+
+
+        tournamentBracketCreateSaveButton.disabled =
+            true;
+
+
+        return;
+
+    }
+
+
+    tournamentBracketCreateSaveButton.disabled =
+        false;
+
+}
+
+
+
+function resetTournamentBracketCreateForm() {
+
+
+    if (tournamentBracketCreateName) {
+
+        tournamentBracketCreateName.value =
+            "";
+
+    }
+
+
+    if (tournamentBracketCreateBrand) {
+
+        tournamentBracketCreateBrand.value =
+            "Ascension";
+
+    }
+
+
+    if (tournamentBracketCreateDivision) {
+
+        tournamentBracketCreateDivision.value =
+            "Men's Singles";
+
+    }
+
+
+    if (tournamentBracketCreateFieldSize) {
+
+        tournamentBracketCreateFieldSize.value =
+            "";
+
+    }
+
+
+    if (tournamentBracketCreateParticipantType) {
+
+        tournamentBracketCreateParticipantType.value =
+            "wrestler";
+
+    }
+
+
+    if (tournamentBracketCreateStatus) {
+
+        tournamentBracketCreateStatus.value =
+            "Upcoming";
+
+    }
+
+
+    if (tournamentBracketCreatePreview) {
+
+        tournamentBracketCreatePreview.hidden =
+            true;
+
+    }
+
+
+    if (tournamentBracketCreateSaveButton) {
+
+        tournamentBracketCreateSaveButton.disabled =
+            true;
+
+    }
+
+
+    if (tournamentBracketCreateMessage) {
+
+        tournamentBracketCreateMessage.hidden =
+            true;
+
+    }
+
+}
+
+
+
+async function saveNewTournamentBracket() {
+
+
+    try {
+
+
+        const tournament =
+            getSelectedControlRoomTournament();
+
+
+        const draft =
+            getTournamentBracketCreateDraft();
+
+
+        const validationError =
+            validateTournamentBracketCreateDraft(
+                draft
+            );
+
+
+        if (validationError) {
+
+            setTournamentBracketCreateMessage(
+                validationError,
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        const tournamentDatabase =
+            owlControlRoomData.tournaments;
+
+
+        if (
+            !tournamentDatabase
+
+            ||
+
+            Array.isArray(
+                tournamentDatabase
+            )
+
+            ||
+
+            !Array.isArray(
+                tournamentDatabase.tournaments
+            )
+        ) {
+
+
+            setTournamentBracketCreateMessage(
+                "The tournament database is not available.",
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        const selectedTournamentId =
+            tournament.id;
+
+
+        const updatedTournamentDatabase = {
+
+            ...tournamentDatabase,
+
+            tournaments:
+
+                tournamentDatabase.tournaments.map(
+
+                    storedTournament => {
+
+
+                        if (
+                            storedTournament.id !==
+                            selectedTournamentId
+                        ) {
+
+                            return storedTournament;
+
+                        }
+
+
+                        return {
+
+                            ...storedTournament,
+
+                            brackets: [
+
+                                ...(
+                                    Array.isArray(
+                                        storedTournament.brackets
+                                    )
+
+                                        ? storedTournament.brackets
+
+                                        : []
+                                ),
+
+                                draft
+
+                            ]
+
+                        };
+
+                    }
+
+                )
+
+        };
+
+
+        tournamentBracketCreateSaveButton.disabled =
+            true;
+
+
+        await writeTournamentDatabase(
+            updatedTournamentDatabase
+        );
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        if (tournamentSelect) {
+
+            tournamentSelect.value =
+                selectedTournamentId;
+
+
+            populateTournamentBracketSelector();
+
+        }
+
+
+        if (tournamentBracketSelect) {
+
+            tournamentBracketSelect.value =
+                draft.id;
+
+
+            loadTournamentFieldDraft();
+    renderTournamentBracketCreatePreview();
+        }
+
+
+        resetTournamentBracketCreateForm();
+
+
+        setTournamentBracketCreateMessage(
+
+            `${draft.name} was added to ${tournament.name}.`
+
+        );
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "Could not create tournament bracket:",
+            error
+        );
+
+
+        setTournamentBracketCreateMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
 
 // =================================
 // TOURNAMENT CREATOR
@@ -9157,6 +9945,57 @@ if (tournamentCreateSaveButton) {
     tournamentCreateSaveButton.addEventListener(
         "click",
         saveNewTournament
+    );
+
+}
+[
+    tournamentBracketCreateName,
+    tournamentBracketCreateBrand,
+    tournamentBracketCreateDivision,
+    tournamentBracketCreateFieldSize,
+    tournamentBracketCreateParticipantType,
+    tournamentBracketCreateStatus
+].forEach(
+    field => {
+
+
+        if (!field) {
+
+            return;
+
+        }
+
+
+        field.addEventListener(
+            "input",
+            renderTournamentBracketCreatePreview
+        );
+
+
+        field.addEventListener(
+            "change",
+            renderTournamentBracketCreatePreview
+        );
+
+    }
+);
+
+
+if (tournamentBracketCreateSaveButton) {
+
+    tournamentBracketCreateSaveButton.addEventListener(
+        "click",
+        saveNewTournamentBracket
+    );
+
+}
+
+
+if (tournamentSelect) {
+
+    tournamentSelect.addEventListener(
+        "change",
+        renderTournamentBracketCreatePreview
     );
 
 }
