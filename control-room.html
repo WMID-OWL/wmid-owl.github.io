@@ -1109,8 +1109,82 @@
 
                     </div>
 
-                    <p
+                                        <p
                         id="cr-tournament-bracket-create-message"
+                        class="cr-save-message"
+                        hidden
+                    ></p>
+
+                </div>
+
+                <div class="cr-tournament-cleanup-section">
+
+                    <div class="cr-editor-section-heading">
+
+                        <span>
+                            SAFETY TOOLS
+                        </span>
+
+                        <h3>
+                            Clean Up Empty Test Items
+                        </h3>
+
+                        <p>
+                            Use these only for mistaken or temporary tournament setup work.
+                            A bracket must be empty, unlocked, and ungenerated before it can be removed.
+                            A tournament must have no brackets before it can be removed.
+                        </p>
+
+                    </div>
+
+                    <div class="cr-editor-form-grid">
+
+                        <div class="cr-form-group">
+
+                            <label>
+                                SELECTED BRACKET
+                            </label>
+
+                            <button
+                                id="cr-tournament-delete-empty-bracket"
+                                class="control-room-button control-room-button-secondary cr-tournament-danger-button"
+                                type="button"
+                                disabled
+                            >
+                                Delete Selected Empty Bracket
+                            </button>
+
+                            <small class="cr-field-help">
+                                Requires typed confirmation. Disabled unless the selected bracket is safe to remove.
+                            </small>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label>
+                                SELECTED TOURNAMENT
+                            </label>
+
+                            <button
+                                id="cr-tournament-delete-empty-tournament"
+                                class="control-room-button control-room-button-secondary cr-tournament-danger-button"
+                                type="button"
+                                disabled
+                            >
+                                Delete Selected Empty Tournament
+                            </button>
+
+                            <small class="cr-field-help">
+                                Requires typed confirmation. Disabled unless the selected tournament has no brackets.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <p
+                        id="cr-tournament-cleanup-message"
                         class="cr-save-message"
                         hidden
                     ></p>
