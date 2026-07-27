@@ -1,6 +1,6 @@
 (function () {
 
-                        const DATA_PATH = "data/proving-ground.json?v=287l";
+                        const DATA_PATH = "data/proving-ground.json?v=287m";
 
 
 
@@ -212,6 +212,81 @@
     };
 
 
+    const renderFinals = function (data) {
+
+        const section = document.querySelector(".proving-ground-finals");
+        const list = document.querySelector("[data-proving-ground-finals-list]");
+
+        if (!section || !list) {
+
+            return;
+
+        }
+
+        const finals = Array.isArray(data.finals)
+            ? data.finals
+            : [];
+
+        section.hidden = finals.length === 0;
+
+        list.innerHTML = "";
+
+        finals.forEach(function (finalItem) {
+
+            const row = createElement(
+                "article",
+                `proving-ground-final-row ${finalItem.accentClass || ""}`
+            );
+
+            const main = createElement("div", "proving-ground-final-main");
+
+            main.appendChild(createElement("span", "", finalItem.block || "Tournament Final"));
+            main.appendChild(createElement("h3", "", finalItem.matchup || "Finalists TBD"));
+            main.appendChild(createElement("p", "", finalItem.summary || ""));
+
+            const meta = createElement("div", "proving-ground-final-meta");
+
+            const metaItems = [
+                ["Winner", finalItem.winner],
+                ["Runner-Up", finalItem.runnerUp],
+                ["Method", finalItem.method],
+                ["Time", finalItem.time],
+                ["Title Shot", finalItem.titleShot],
+                ["Event", finalItem.event]
+            ];
+
+            metaItems.forEach(function (item) {
+
+                if (!item[1]) {
+
+                    return;
+
+                }
+
+                const metaItem = createElement("div", "");
+
+                metaItem.appendChild(createElement("small", "", item[0]));
+                metaItem.appendChild(createElement("strong", "", item[1]));
+
+                meta.appendChild(metaItem);
+
+            });
+
+            row.appendChild(main);
+
+            if (meta.children.length) {
+
+                row.appendChild(meta);
+
+            }
+
+            list.appendChild(row);
+
+        });
+
+    };
+
+
 
     const renderCombatPoints = function (data) {
 
@@ -326,7 +401,19 @@
 
         }
 
-        const hasEntries = Array.isArray(data.entries) && data.entries.length > 0;
+                const hasEntries =
+            (
+                Array.isArray(data.entries) &&
+                data.entries.length > 0
+            ) ||
+            (
+                Array.isArray(data.blockResults) &&
+                data.blockResults.length > 0
+            ) ||
+            (
+                Array.isArray(data.finals) &&
+                data.finals.length > 0
+            );
 
         emptyState.hidden = hasEntries;
 
@@ -384,6 +471,7 @@
                 renderBlocks(data);
                 renderEntries(data);
                 renderBlockResults(data);
+                renderFinals(data);
                 renderCombatPoints(data);
                 renderEmptyState(data);
             })
