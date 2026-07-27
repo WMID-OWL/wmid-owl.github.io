@@ -8818,3 +8818,394 @@ body {
 
 
 }
+/* =================================
+   PROVING GROUND FINALS
+================================= */
+
+
+.proving-ground-finals[hidden] {
+
+    display:
+        none !important;
+
+}
+
+
+
+.proving-ground-finals {
+
+    display:
+        grid;
+
+    gap:
+        18px;
+
+    margin-top:
+        22px;
+
+    padding:
+
+        clamp(
+            28px,
+            4vw,
+            46px
+        );
+
+    border:
+        1px solid
+        rgba(
+            223,
+            142,
+            63,
+            0.26
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(
+                223,
+                142,
+                63,
+                0.08
+            ),
+            transparent 44%
+        ),
+
+        #101415;
+
+}
+
+
+
+.proving-ground-finals-heading h2 {
+
+    max-width:
+        920px;
+
+    margin:
+        12px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            2rem,
+            4vw,
+            3.8rem
+        );
+
+    line-height:
+        0.98;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+
+.proving-ground-finals-heading p:last-child {
+
+    max-width:
+        820px;
+
+    margin:
+        22px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.75;
+
+}
+
+
+
+.proving-ground-finals-list {
+
+    display:
+        grid;
+
+    gap:
+        12px;
+
+}
+
+
+
+.proving-ground-final-row {
+
+    --proving-accent:
+        #df8e3f;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        minmax(
+            320px,
+            0.8fr
+        );
+
+    gap:
+        18px;
+
+    padding:
+        24px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --proving-accent
+            )
+            28%,
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            )
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            color-mix(
+                in srgb,
+                var(
+                    --proving-accent
+                )
+                16%,
+                transparent
+            ),
+            transparent 48%
+        ),
+
+        rgba(
+            8,
+            10,
+            11,
+            0.78
+        );
+
+}
+
+
+
+.proving-ground-final-main span {
+
+    color:
+        var(
+            --proving-accent
+        );
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.proving-ground-final-main h3 {
+
+    margin:
+        10px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            1.6rem,
+            3vw,
+            3rem
+        );
+
+    line-height:
+        0.98;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+
+.proving-ground-final-main p {
+
+    max-width:
+        760px;
+
+    margin:
+        16px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.65;
+
+}
+
+
+
+.proving-ground-final-meta {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        10px;
+
+}
+
+
+
+.proving-ground-final-meta div {
+
+    padding:
+        12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.18
+        );
+
+}
+
+
+
+.proving-ground-final-meta small {
+
+    display:
+        block;
+
+    color:
+        var(
+            --proving-accent
+        );
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.proving-ground-final-meta strong {
+
+    display:
+        block;
+
+    margin-top:
+        5px;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+        0.84rem;
+
+    line-height:
+        1.25;
+
+}
+
+
+
+@media (
+    max-width:
+        900px
+) {
+
+
+    .proving-ground-final-row {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .proving-ground-finals {
+
+        padding:
+            24px 18px;
+
+    }
+
+
+    .proving-ground-final-meta {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
