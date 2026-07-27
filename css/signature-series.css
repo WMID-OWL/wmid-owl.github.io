@@ -8418,3 +8418,403 @@ body {
 
 
 }
+/* =================================
+   PROVING GROUND BLOCK RESULTS
+================================= */
+
+
+.proving-ground-results[hidden] {
+
+    display:
+        none !important;
+
+}
+
+
+
+.proving-ground-results {
+
+    display:
+        grid;
+
+    gap:
+        18px;
+
+    margin-top:
+        22px;
+
+    padding:
+
+        clamp(
+            28px,
+            4vw,
+            46px
+        );
+
+    border:
+        1px solid
+        rgba(
+            114,
+            173,
+            126,
+            0.22
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(
+                114,
+                173,
+                126,
+                0.075
+            ),
+            transparent 44%
+        ),
+
+        #101415;
+
+}
+
+
+
+.proving-ground-results-heading h2 {
+
+    max-width:
+        920px;
+
+    margin:
+        12px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            2rem,
+            4vw,
+            3.8rem
+        );
+
+    line-height:
+        0.98;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+
+.proving-ground-results-heading p:last-child {
+
+    max-width:
+        820px;
+
+    margin:
+        22px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.75;
+
+}
+
+
+
+.proving-ground-results-list {
+
+    display:
+        grid;
+
+    gap:
+        12px;
+
+}
+
+
+
+.proving-ground-result-row {
+
+    --proving-accent:
+        #72ad7e;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        minmax(
+            300px,
+            0.8fr
+        );
+
+    gap:
+        18px;
+
+    padding:
+        22px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --proving-accent
+            )
+            24%,
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            )
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            color-mix(
+                in srgb,
+                var(
+                    --proving-accent
+                )
+                8%,
+                transparent
+            ),
+            transparent 48%
+        ),
+
+        rgba(
+            8,
+            10,
+            11,
+            0.74
+        );
+
+}
+
+
+
+.proving-ground-result-row.proving-ground-revolt {
+
+    --proving-accent:
+        #bd493f;
+
+}
+
+
+
+.proving-ground-result-main span {
+
+    color:
+        var(
+            --proving-accent
+        );
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.proving-ground-result-main h3 {
+
+    margin:
+        10px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            1.5rem,
+            3vw,
+            2.7rem
+        );
+
+    line-height:
+        0.98;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+
+.proving-ground-result-main p {
+
+    max-width:
+        760px;
+
+    margin:
+        16px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.65;
+
+}
+
+
+
+.proving-ground-result-meta {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        10px;
+
+}
+
+
+
+.proving-ground-result-meta div {
+
+    padding:
+        12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.18
+        );
+
+}
+
+
+
+.proving-ground-result-meta small {
+
+    display:
+        block;
+
+    color:
+        var(
+            --proving-accent
+        );
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.proving-ground-result-meta strong {
+
+    display:
+        block;
+
+    margin-top:
+        5px;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+        0.84rem;
+
+    line-height:
+        1.25;
+
+}
+
+
+
+@media (
+    max-width:
+        900px
+) {
+
+
+    .proving-ground-result-row {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .proving-ground-results {
+
+        padding:
+            24px 18px;
+
+    }
+
+
+    .proving-ground-result-meta {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
