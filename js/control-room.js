@@ -1393,6 +1393,96 @@ function renderHealthCheck(
 // TOURNAMENT FIELD MANAGER
 // =================================
 
+const tournamentManagerMode =
+
+    document.getElementById(
+        "cr-tournament-manager-mode"
+    );
+
+
+const tournamentCreateStatus =
+
+    document.getElementById(
+        "cr-tournament-create-status"
+    );
+
+
+const tournamentCreateForm =
+
+    document.getElementById(
+        "cr-tournament-create-form"
+    );
+
+
+const tournamentCreateName =
+
+    document.getElementById(
+        "cr-tournament-create-name"
+    );
+
+
+const tournamentCreateYear =
+
+    document.getElementById(
+        "cr-tournament-create-year"
+    );
+
+
+const tournamentCreateStatusSelect =
+
+    document.getElementById(
+        "cr-tournament-create-status-select"
+    );
+
+
+const tournamentCreateBadge =
+
+    document.getElementById(
+        "cr-tournament-create-badge"
+    );
+
+
+const tournamentCreatePurpose =
+
+    document.getElementById(
+        "cr-tournament-create-purpose"
+    );
+
+
+const tournamentCreatePreview =
+
+    document.getElementById(
+        "cr-tournament-create-preview"
+    );
+
+
+const tournamentCreateChangeList =
+
+    document.getElementById(
+        "cr-tournament-create-change-list"
+    );
+
+
+const tournamentCreateError =
+
+    document.getElementById(
+        "cr-tournament-create-error"
+    );
+
+
+const tournamentCreateSaveButton =
+
+    document.getElementById(
+        "cr-tournament-create-save"
+    );
+
+
+const tournamentCreateMessage =
+
+    document.getElementById(
+        "cr-tournament-create-message"
+    );
+
 
 const tournamentFieldStatus =
 
@@ -7949,8 +8039,689 @@ function populateTournamentBracketSelector() {
 }
 
 
+// =================================
+// TOURNAMENT CREATOR
+// =================================
+
+
+function createTournamentSlug(
+    name,
+    year
+) {
+
+
+    const baseSlug =
+
+        String(
+            name || ""
+        )
+            .trim()
+            .toLowerCase()
+            .replace(
+                /['’]/g,
+                ""
+            )
+            .replace(
+                /&/g,
+                "and"
+            )
+            .replace(
+                /[^a-z0-9]+/g,
+                "-"
+            )
+            .replace(
+                /^-+|-+$/g,
+                ""
+            )
+
+        ||
+
+        "new-tournament";
+
+
+    const yearSuffix =
+
+        year
+
+            ? `-${year}`
+
+            : "";
+
+
+    let candidate =
+
+        `${baseSlug}${yearSuffix}`;
+
+
+    const tournaments =
+        getControlRoomTournaments();
+
+
+    let counter =
+        2;
+
+
+    while (
+
+        tournaments.some(
+            tournament =>
+                tournament.id ===
+                candidate
+        )
+
+    ) {
+
+
+        candidate =
+
+            `${baseSlug}${yearSuffix}-${counter}`;
+
+
+        counter +=
+            1;
+
+    }
+
+
+    return candidate;
+
+}
+
+
+
+function setTournamentCreateMessage(
+    message,
+    type = "success"
+) {
+
+
+    if (!tournamentCreateMessage) {
+
+        return;
+
+    }
+
+
+    tournamentCreateMessage.textContent =
+        message;
+
+
+    tournamentCreateMessage.className =
+
+        `cr-save-message ${
+            type === "error"
+
+                ? "save-error"
+
+                : "save-success"
+        }`;
+
+
+    tournamentCreateMessage.hidden =
+        false;
+
+}
+
+
+
+function getTournamentCreateDraft() {
+
+
+    const name =
+
+        tournamentCreateName
+
+            ? tournamentCreateName.value.trim()
+
+            : "";
+
+
+    const yearValue =
+
+        tournamentCreateYear
+
+            ? tournamentCreateYear.value.trim()
+
+            : "";
+
+
+    const year =
+
+        yearValue
+
+            ? Number(
+                yearValue
+            )
+
+            : new Date().getFullYear();
+
+
+    const status =
+
+        tournamentCreateStatusSelect
+
+            ? tournamentCreateStatusSelect.value
+
+            : "Upcoming";
+
+
+    const badge =
+
+        tournamentCreateBadge
+
+            ? tournamentCreateBadge.value.trim()
+
+            : "";
+
+
+    const purpose =
+
+        tournamentCreatePurpose
+
+            ? tournamentCreatePurpose.value.trim()
+
+            : "";
+
+
+    return {
+
+        id:
+            createTournamentSlug(
+                name,
+                year
+            ),
+
+        name,
+
+        year,
+
+        status,
+
+        badge,
+
+        purpose,
+
+        image:
+            "",
+
+        directoryStats:
+            [],
+
+        brackets:
+            []
+
+    };
+
+}
+
+
+
+function validateTournamentCreateDraft(
+    draft
+) {
+
+
+    if (!draft.name) {
+
+        return "Tournament name is required.";
+
+    }
+
+
+    if (
+        !Number.isInteger(
+            draft.year
+        )
+
+        ||
+
+        draft.year <
+            2026
+    ) {
+
+        return "Enter a valid tournament year.";
+
+    }
+
+
+    return "";
+
+}
+
+
+
+function appendTournamentCreateReviewRow(
+    label,
+    value
+) {
+
+
+    if (!tournamentCreateChangeList) {
+
+        return;
+
+    }
+
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "cr-editor-change-row";
+
+
+    row.innerHTML = `
+
+        <strong>
+            ${label}
+        </strong>
+
+        <span>
+            ${value || "—"}
+        </span>
+
+    `;
+
+
+    tournamentCreateChangeList.appendChild(
+        row
+    );
+
+}
+
+
+
+function renderTournamentCreatePreview() {
+
+
+    if (
+        !tournamentCreatePreview ||
+        !tournamentCreateChangeList ||
+        !tournamentCreateSaveButton
+    ) {
+
+        return;
+
+    }
+
+
+    tournamentCreateChangeList.innerHTML =
+        "";
+
+
+    if (tournamentCreateError) {
+
+        tournamentCreateError.hidden =
+            true;
+
+
+        tournamentCreateError.textContent =
+            "";
+
+    }
+
+
+    const draft =
+        getTournamentCreateDraft();
+
+
+    const validationError =
+        validateTournamentCreateDraft(
+            draft
+        );
+
+
+    appendTournamentCreateReviewRow(
+        "DATABASE ID",
+        draft.id
+    );
+
+
+    appendTournamentCreateReviewRow(
+        "NAME",
+        draft.name
+    );
+
+
+    appendTournamentCreateReviewRow(
+        "YEAR",
+        String(
+            draft.year
+        )
+    );
+
+
+    appendTournamentCreateReviewRow(
+        "STATUS",
+        draft.status
+    );
+
+
+    appendTournamentCreateReviewRow(
+        "BADGE",
+        draft.badge
+    );
+
+
+    appendTournamentCreateReviewRow(
+        "BRACKETS",
+        "0 — add brackets after creation"
+    );
+
+
+    tournamentCreatePreview.hidden =
+        false;
+
+
+    if (validationError) {
+
+
+        if (tournamentCreateError) {
+
+            tournamentCreateError.textContent =
+                validationError;
+
+
+            tournamentCreateError.hidden =
+                false;
+
+        }
+
+
+        tournamentCreateSaveButton.disabled =
+            true;
+
+
+        if (tournamentCreateStatus) {
+
+            tournamentCreateStatus.textContent =
+                "NEEDS INFO";
+
+        }
+
+
+        return;
+
+    }
+
+
+    tournamentCreateSaveButton.disabled =
+        false;
+
+
+    if (tournamentCreateStatus) {
+
+        tournamentCreateStatus.textContent =
+            "READY TO SAVE";
+
+    }
+
+}
+
+
+
+function resetTournamentCreateForm() {
+
+
+    if (tournamentCreateName) {
+
+        tournamentCreateName.value =
+            "";
+
+    }
+
+
+    if (tournamentCreateYear) {
+
+        tournamentCreateYear.value =
+            String(
+                new Date().getFullYear()
+            );
+
+    }
+
+
+    if (tournamentCreateStatusSelect) {
+
+        tournamentCreateStatusSelect.value =
+            "Upcoming";
+
+    }
+
+
+    if (tournamentCreateBadge) {
+
+        tournamentCreateBadge.value =
+            "";
+
+    }
+
+
+    if (tournamentCreatePurpose) {
+
+        tournamentCreatePurpose.value =
+            "";
+
+    }
+
+
+    if (tournamentCreatePreview) {
+
+        tournamentCreatePreview.hidden =
+            true;
+
+    }
+
+
+    if (tournamentCreateSaveButton) {
+
+        tournamentCreateSaveButton.disabled =
+            true;
+
+    }
+
+
+    if (tournamentCreateMessage) {
+
+        tournamentCreateMessage.hidden =
+            true;
+
+    }
+
+
+    if (tournamentCreateStatus) {
+
+        tournamentCreateStatus.textContent =
+            "READY";
+
+    }
+
+}
+
+
+
+function toggleTournamentCreatorMode() {
+
+
+    const isCreateMode =
+
+        tournamentManagerMode
+
+        &&
+
+        tournamentManagerMode.value ===
+            "create";
+
+
+    if (tournamentCreateForm) {
+
+        tournamentCreateForm.hidden =
+            !isCreateMode;
+
+    }
+
+
+    if (isCreateMode) {
+
+        renderTournamentCreatePreview();
+
+    }
+
+
+    else {
+
+        resetTournamentCreateForm();
+
+    }
+
+}
+
+
+
+async function saveNewTournament() {
+
+
+    try {
+
+
+        const draft =
+            getTournamentCreateDraft();
+
+
+        const validationError =
+            validateTournamentCreateDraft(
+                draft
+            );
+
+
+        if (validationError) {
+
+            setTournamentCreateMessage(
+                validationError,
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        if (
+            !owlControlRoomData.tournaments
+
+            ||
+
+            Array.isArray(
+                owlControlRoomData.tournaments
+            )
+
+            ||
+
+            typeof owlControlRoomData.tournaments !==
+                "object"
+
+            ||
+
+            !Array.isArray(
+                owlControlRoomData.tournaments.tournaments
+            )
+        ) {
+
+
+            owlControlRoomData.tournaments = {
+
+                tournaments:
+                    []
+
+            };
+
+        }
+
+
+        const tournamentDatabase =
+            owlControlRoomData.tournaments;
+
+
+        tournamentDatabase.tournaments.push(
+            draft
+        );
+
+
+        await writeTournamentDatabase(
+            tournamentDatabase
+        );
+
+
+        initializeTournamentFieldManager();
+
+
+        if (tournamentSelect) {
+
+            tournamentSelect.value =
+                draft.id;
+
+
+            populateTournamentBracketSelector();
+
+        }
+
+
+        if (tournamentManagerMode) {
+
+            tournamentManagerMode.value =
+                "edit";
+
+        }
+
+
+        toggleTournamentCreatorMode();
+
+
+        setTournamentCreateMessage(
+
+            `${draft.name} was added to data/tournaments.json.`
+
+        );
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "Could not create tournament:",
+            error
+        );
+
+
+        setTournamentCreateMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
 
 function initializeTournamentFieldManager() {
+
+    if (tournamentManagerMode) {
+
+        tournamentManagerMode.value =
+            "edit";
+
+    }
+
+
+    toggleTournamentCreatorMode();
 
 
     const tournaments =
@@ -8339,6 +9110,56 @@ window.addEventListener(
     initializeTournamentFieldManager
 
 );
+if (tournamentManagerMode) {
+
+    tournamentManagerMode.addEventListener(
+        "change",
+        toggleTournamentCreatorMode
+    );
+
+}
+
+
+[
+    tournamentCreateName,
+    tournamentCreateYear,
+    tournamentCreateStatusSelect,
+    tournamentCreateBadge,
+    tournamentCreatePurpose
+].forEach(
+    field => {
+
+
+        if (!field) {
+
+            return;
+
+        }
+
+
+        field.addEventListener(
+            "input",
+            renderTournamentCreatePreview
+        );
+
+
+        field.addEventListener(
+            "change",
+            renderTournamentCreatePreview
+        );
+
+    }
+);
+
+
+if (tournamentCreateSaveButton) {
+
+    tournamentCreateSaveButton.addEventListener(
+        "click",
+        saveNewTournament
+    );
+
+}
 
 
 tournamentSelect.addEventListener(
