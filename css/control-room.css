@@ -7609,3 +7609,72 @@
         );
 
 }
+/* =================================
+   TOURNAMENT CLEANUP SAFETY TOOLS
+================================= */
+
+
+.cr-tournament-cleanup-section {
+
+    margin-top:
+        1.5rem;
+
+    padding-top:
+        1.5rem;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+
+.cr-tournament-danger-button {
+
+    border-color:
+        rgba(
+            231,
+            139,
+            139,
+            0.36
+        ) !important;
+
+    color:
+        #e78b8b !important;
+
+}
+
+
+
+.cr-tournament-danger-button:hover:not(:disabled) {
+
+    border-color:
+        rgba(
+            231,
+            139,
+            139,
+            0.75
+        ) !important;
+
+    color:
+        #ffb0b0 !important;
+
+}
+
+
+
+.cr-tournament-danger-button:disabled {
+
+    opacity:
+        0.45;
+
+    cursor:
+        not-allowed;
+
+}
