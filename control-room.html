@@ -2146,6 +2146,306 @@
 
             </div>
 
+                    <div class="cr-editor-section cr-signature-proving-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        PROVING GROUND
+                    </span>
+
+                    <h3>
+                        Tournament Field Entries
+                    </h3>
+
+                    <p>
+                        Add wrestlers to each Proving Ground show/division block before recording Combat Points and finals.
+                    </p>
+
+                </div>
+
+                <div class="cr-editor-top-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-proving-entry-select">
+                            EXISTING PROVING ENTRY
+                        </label>
+
+                        <select id="cr-proving-entry-select">
+
+                            <option value="">
+                                No Proving Ground entries loaded
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            ENTRY COUNT
+                        </label>
+
+                        <div
+                            id="cr-proving-entry-count"
+                            class="cr-current-value"
+                        >
+                            0
+                        </div>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            CLEANUP
+                        </label>
+
+                        <button
+                            id="cr-proving-delete-entry"
+                            class="control-room-button control-room-button-secondary cr-tournament-danger-button"
+                            type="button"
+                            disabled
+                        >
+                            Delete Selected Proving Entry
+                        </button>
+
+                        <small class="cr-field-help">
+                            Used for mistaken field entries before block results or finals are recorded.
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <div class="cr-editor-section cr-proving-entry-form-section">
+
+                    <div class="cr-editor-section-heading">
+
+                        <span>
+                            NEW FIELD ENTRY
+                        </span>
+
+                        <h3>
+                            Add Proving Ground Entrant
+                        </h3>
+
+                    </div>
+
+                    <div class="cr-editor-form-grid">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-proving-year">
+                                YEAR
+                            </label>
+
+                            <input
+                                id="cr-proving-year"
+                                type="number"
+                                min="2026"
+                                step="1"
+                                autocomplete="off"
+                                placeholder="2026"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-proving-brand">
+                                SHOW
+                            </label>
+
+                            <select id="cr-proving-brand">
+
+                                <option value="">
+                                    Select Show
+                                </option>
+
+                                <option value="Ascension">
+                                    Ascension
+                                </option>
+
+                                <option value="Revolt">
+                                    Revolt
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-proving-division">
+                                DIVISION
+                            </label>
+
+                            <select id="cr-proving-division">
+
+                                <option value="">
+                                    Select Division
+                                </option>
+
+                                <option value="Men">
+                                    Men
+                                </option>
+
+                                <option value="Women">
+                                    Women
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-proving-slot">
+                                QUALIFICATION SLOT
+                            </label>
+
+                            <select id="cr-proving-slot">
+
+                                <option value="">
+                                    Select Slot
+                                </option>
+
+                                <option value="1">
+                                    Slot 1 — #1 W/L Average
+                                </option>
+
+                                <option value="2">
+                                    Slot 2 — #2 W/L Average
+                                </option>
+
+                                <option value="3">
+                                    Slot 3 — Best PPV Performer
+                                </option>
+
+                                <option value="4">
+                                    Slot 4 — Wildcard Play-In Winner
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-proving-wrestler">
+                                WRESTLER
+                            </label>
+
+                            <select
+                                id="cr-proving-wrestler"
+                                disabled
+                            >
+
+                                <option value="">
+                                    Select Show and Division First
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-proving-status">
+                                STATUS
+                            </label>
+
+                            <select id="cr-proving-status">
+
+                                <option value="Upcoming">
+                                    Upcoming
+                                </option>
+
+                                <option value="Active">
+                                    Active
+                                </option>
+
+                                <option value="Eliminated">
+                                    Eliminated
+                                </option>
+
+                                <option value="Finalist">
+                                    Finalist
+                                </option>
+
+                                <option value="Winner">
+                                    Winner
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="cr-form-group cr-editor-spaced-field">
+
+                        <label for="cr-proving-note">
+                            QUALIFICATION NOTE — OPTIONAL
+                        </label>
+
+                        <textarea
+                            id="cr-proving-note"
+                            rows="4"
+                            placeholder="Example: Qualified as the top July-October W/L performer."
+                        ></textarea>
+
+                    </div>
+
+                    <div
+                        id="cr-proving-preview"
+                        class="cr-change-preview"
+                        hidden
+                    >
+
+                        <span>
+                            REVIEW PROVING GROUND ENTRY
+                        </span>
+
+                        <div
+                            id="cr-proving-change-list"
+                            class="cr-editor-change-list"
+                        ></div>
+
+                        <p
+                            id="cr-proving-error"
+                            class="cr-change-error"
+                            hidden
+                        ></p>
+
+                    </div>
+
+                    <div class="cr-manager-actions">
+
+                        <button
+                            id="cr-proving-save"
+                            class="control-room-button control-room-button-primary"
+                            type="button"
+                            disabled
+                        >
+                            Save Proving Ground Entry
+                        </button>
+
+                    </div>
+
+                    <p
+                        id="cr-proving-message"
+                        class="cr-save-message"
+                        hidden
+                    ></p>
+
+                </div>
+
+            </div>
+
         </section>
 
         <!-- =================================
