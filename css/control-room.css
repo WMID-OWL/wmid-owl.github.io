@@ -7678,3 +7678,29 @@
         not-allowed;
 
 }
+/* =================================
+   SIGNATURE SERIES MANAGER
+================================= */
+
+
+.cr-signature-power-form-section {
+
+    margin-top:
+        1.5rem;
+
+    padding:
+        1.2rem;
+
+    background:
+        #171d20;
+
+    border:
+        1px solid
+        rgba(
+            198,
+            161,
+            91,
+            0.18
+        );
+
+}
