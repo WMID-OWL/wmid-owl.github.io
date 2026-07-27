@@ -54,13 +54,43 @@ const OWL_CONTROL_ROOM_FILES = [
         label: "Announced Matches"
     },
 
-    {
+        {
         key: "tournaments",
         fileName: "tournaments.json",
         label: "Tournaments",
         collectionKey: "tournaments"
-    }
+    },
 
+    {
+        key: "signatureMatches",
+        fileName: "signature-matches.json",
+        label: "Signature Matches",
+        objectFile: true,
+        countKey: "matches"
+    },
+
+    {
+        key: "powerPlayers",
+        fileName: "power-players.json",
+        label: "Current Power Players",
+        objectFile: true,
+        countKeys: [
+            "activeEntries",
+            "completedEntries"
+        ]
+    },
+
+    {
+        key: "provingGround",
+        fileName: "proving-ground.json",
+        label: "Proving Ground",
+        objectFile: true,
+        countKeys: [
+            "entries",
+            "blockResults",
+            "finals"
+        ]
+    }
 ];
 
 
@@ -631,7 +661,107 @@ async function hasRepositoryPermission(
 // =================================
 // READ JSON FILE
 // =================================
+function getObjectFileRecordCount(
+    parsed,
+    databaseFile
+) {
 
+
+    const countKeys =
+
+        Array.isArray(
+            databaseFile.countKeys
+        )
+
+            ? databaseFile.countKeys
+
+            : databaseFile.countKey
+
+                ? [
+                    databaseFile.countKey
+                ]
+
+                : [];
+
+
+    if (
+        countKeys.length === 0
+    ) {
+
+        return Object.keys(
+            parsed || {}
+        ).length;
+
+    }
+
+
+    return countKeys.reduce(
+        (
+            total,
+            key
+        ) => {
+
+
+            const value =
+                parsed[
+                    key
+                ];
+
+
+            return total +
+
+                (
+                    Array.isArray(
+                        value
+                    )
+
+                        ? value.length
+
+                        : 0
+                );
+
+        },
+        0
+    );
+
+}
+
+
+
+function getDefaultControlRoomData(
+    databaseFile
+) {
+
+
+    if (
+        databaseFile.collectionKey
+    ) {
+
+
+        return {
+
+            [
+                databaseFile.collectionKey
+            ]:
+                []
+
+        };
+
+    }
+
+
+    if (
+        databaseFile.objectFile
+    ) {
+
+        return {};
+
+    }
+
+
+    return [];
+
+}
 
 async function readJsonFile(
     dataDirectory,
@@ -706,6 +836,52 @@ async function readJsonFile(
                 parsed[
                     databaseFile.collectionKey
                 ].length
+
+        };
+
+    }
+
+
+        if (
+        databaseFile.objectFile
+    ) {
+
+
+        if (
+            !parsed
+
+            ||
+
+            Array.isArray(
+                parsed
+            )
+
+            ||
+
+            typeof parsed !==
+                "object"
+        ) {
+
+
+            throw new Error(
+
+                `${databaseFile.fileName} must contain a JSON object.`
+
+            );
+
+        }
+
+
+        return {
+
+            data:
+                parsed,
+
+            count:
+                getObjectFileRecordCount(
+                    parsed,
+                    databaseFile
+                )
 
         };
 
@@ -839,21 +1015,12 @@ async function loadRepositoryData(
             catch (error) {
 
 
-                                owlControlRoomData[
+                                               owlControlRoomData[
                     databaseFile.key
                 ] =
-
-                    databaseFile.collectionKey
-
-                        ? {
-
-                            [
-                                databaseFile.collectionKey
-                            ]: []
-
-                        }
-
-                        : [];
+                    getDefaultControlRoomData(
+                        databaseFile
+                    );
 
 
                 fileResults.push({
@@ -6492,7 +6659,114 @@ function updateTournamentFieldLockButton(
         );
 
 }
+async function writeControlRoomJsonFile(
+    fileName,
+    data
+) {
 
+
+    if (
+        !owlRepositoryHandle
+    ) {
+
+        throw new Error(
+            "The OWL repository is not connected."
+        );
+
+    }
+
+
+    const hasPermission =
+        await hasRepositoryPermission(
+            owlRepositoryHandle
+        );
+
+
+    if (
+        !hasPermission
+    ) {
+
+        throw new Error(
+            "Write permission was not granted for the OWL repository."
+        );
+
+    }
+
+
+    const dataDirectory =
+
+        await owlRepositoryHandle.getDirectoryHandle(
+            "data"
+        );
+
+
+    const fileHandle =
+
+        await dataDirectory.getFileHandle(
+            fileName
+        );
+
+
+    const writable =
+
+        await fileHandle.createWritable();
+
+
+    try {
+
+
+        await writable.write(
+
+            `${JSON.stringify(
+                data,
+                null,
+                2
+            )}\n`
+
+        );
+
+
+        await writable.close();
+
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        try {
+
+
+            await writable.abort();
+
+
+        }
+
+
+        catch (
+            abortError
+        ) {
+
+
+            console.warn(
+
+                `Could not abort ${fileName} write:`,
+
+                abortError
+
+            );
+
+        }
+
+
+        throw error;
+
+    }
+
+}
 async function writeTournamentDatabase(
     tournamentDatabase
 ) {
