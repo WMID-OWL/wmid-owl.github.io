@@ -7586,3 +7586,26 @@
         );
 
 }
+/* =================================
+   TOURNAMENT BRACKET CREATOR
+================================= */
+
+
+.cr-tournament-bracket-create-form {
+
+    margin-top:
+        1.5rem;
+
+    padding-top:
+        1.5rem;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
