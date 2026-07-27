@@ -7704,3 +7704,29 @@
         );
 
 }
+/* =================================
+   SIGNATURE SERIES COMPLETED HISTORY
+================================= */
+
+
+.cr-signature-power-complete-section {
+
+    margin-top:
+        1.5rem;
+
+    padding:
+        1.2rem;
+
+    background:
+        #14191c;
+
+    border:
+        1px solid
+        rgba(
+            198,
+            161,
+            91,
+            0.14
+        );
+
+}
