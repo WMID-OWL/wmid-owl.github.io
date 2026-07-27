@@ -49,6 +49,38 @@
       "accentClass": "proving-ground-revolt"
     }
   ],
+    "tournamentFlow": [
+    {
+      "step": "01",
+      "title": "Performance Window",
+      "description": "July through October records, PPV results, and division performance determine the Proving Ground pool."
+    },
+    {
+      "step": "02",
+      "title": "Qualification Slots",
+      "description": "Each show/division fills four spots through W/L average, PPV performance, and the Wildcard Play-In."
+    },
+    {
+      "step": "03",
+      "title": "Round-Robin Block",
+      "description": "Every entrant faces the other three wrestlers in their block, creating six total block matches."
+    },
+    {
+      "step": "04",
+      "title": "Combat Points Table",
+      "description": "Wins, finish methods, speed, blood, and draws shape the standings."
+    },
+    {
+      "step": "05",
+      "title": "PPV Final",
+      "description": "The top two point scorers advance to the Proving Grounds PPV final."
+    },
+    {
+      "step": "06",
+      "title": "December Title Shot",
+      "description": "The tournament winner earns a trophy and a championship opportunity at December to Remember."
+    }
+  ],
     "qualificationPaths": [
     {
       "slot": "Slot 1",
