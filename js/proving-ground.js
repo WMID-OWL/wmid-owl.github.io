@@ -1,6 +1,6 @@
 (function () {
 
-                        const DATA_PATH = "data/proving-ground.json?v=287h";
+                        const DATA_PATH = "data/proving-ground.json?v=287i";
 
 
 
@@ -50,6 +50,33 @@
         });
 
     };
+
+    const renderTournamentFlow = function (data) {
+
+        const track = document.querySelector("[data-proving-ground-flow-track]");
+
+        if (!track || !Array.isArray(data.tournamentFlow)) {
+
+            return;
+
+        }
+
+        track.innerHTML = "";
+
+        data.tournamentFlow.forEach(function (item) {
+
+            const card = createElement("article", "proving-ground-flow-card");
+
+            card.appendChild(createElement("span", "", item.step || ""));
+            card.appendChild(createElement("h3", "", item.title || ""));
+            card.appendChild(createElement("p", "", item.description || ""));
+
+            track.appendChild(card);
+
+        });
+
+    };
+
 
 
     const renderQualificationPaths = function (data) {
@@ -277,7 +304,8 @@
 
                 }
 
-                                                renderOverviewStats(data);
+                                                                renderOverviewStats(data);
+                renderTournamentFlow(data);
                 renderQualificationPaths(data);
                 renderBlocks(data);
                 renderEntries(data);
