@@ -915,8 +915,202 @@
 
                     </div>
 
-                    <p
+                                        <p
                         id="cr-tournament-create-message"
+                        class="cr-save-message"
+                        hidden
+                    ></p>
+
+                </div>
+
+                <div class="cr-tournament-bracket-create-form">
+
+                    <div class="cr-editor-section-heading">
+
+                        <span>
+                            BRACKET DIRECTORY
+                        </span>
+
+                        <h3>
+                            Add Bracket to Selected Tournament
+                        </h3>
+
+                        <p>
+                            Add a new singles or tag-team bracket to the currently selected tournament.
+                        </p>
+
+                    </div>
+
+                    <div class="cr-editor-form-grid">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-tournament-bracket-create-name">
+                                BRACKET NAME
+                            </label>
+
+                            <input
+                                id="cr-tournament-bracket-create-name"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Example: Global Warfare Grand Prix"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-tournament-bracket-create-brand">
+                                BRAND
+                            </label>
+
+                            <select id="cr-tournament-bracket-create-brand">
+
+                                <option value="Ascension">
+                                    Ascension
+                                </option>
+
+                                <option value="Revolt">
+                                    Revolt
+                                </option>
+
+                                <option value="Shared">
+                                    Shared
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-tournament-bracket-create-division">
+                                DIVISION
+                            </label>
+
+                            <select id="cr-tournament-bracket-create-division">
+
+                                <option value="Men's Singles">
+                                    Men's Singles
+                                </option>
+
+                                <option value="Women's Singles">
+                                    Women's Singles
+                                </option>
+
+                                <option value="Men's Tag Teams">
+                                    Men's Tag Teams
+                                </option>
+
+                                <option value="Women's Tag Teams">
+                                    Women's Tag Teams
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-tournament-bracket-create-field-size">
+                                FIELD SIZE
+                            </label>
+
+                            <input
+                                id="cr-tournament-bracket-create-field-size"
+                                type="number"
+                                min="2"
+                                step="1"
+                                autocomplete="off"
+                                placeholder="Example: 16"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-tournament-bracket-create-participant-type">
+                                PARTICIPANT TYPE
+                            </label>
+
+                            <select id="cr-tournament-bracket-create-participant-type">
+
+                                <option value="wrestler">
+                                    Wrestlers
+                                </option>
+
+                                <option value="team">
+                                    Teams
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-tournament-bracket-create-status">
+                                STATUS
+                            </label>
+
+                            <select id="cr-tournament-bracket-create-status">
+
+                                <option value="Upcoming">
+                                    Upcoming
+                                </option>
+
+                                <option value="Active">
+                                    Active
+                                </option>
+
+                                <option value="Completed">
+                                    Completed
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="cr-tournament-bracket-create-preview"
+                        class="cr-change-preview"
+                        hidden
+                    >
+
+                        <span>
+                            REVIEW NEW BRACKET
+                        </span>
+
+                        <div
+                            id="cr-tournament-bracket-create-change-list"
+                            class="cr-editor-change-list"
+                        ></div>
+
+                        <p
+                            id="cr-tournament-bracket-create-error"
+                            class="cr-change-error"
+                            hidden
+                        ></p>
+
+                    </div>
+
+                    <div class="cr-manager-actions">
+
+                        <button
+                            id="cr-tournament-bracket-create-save"
+                            class="control-room-button control-room-button-primary"
+                            type="button"
+                            disabled
+                        >
+                            Save New Bracket
+                        </button>
+
+                    </div>
+
+                    <p
+                        id="cr-tournament-bracket-create-message"
                         class="cr-save-message"
                         hidden
                     ></p>
