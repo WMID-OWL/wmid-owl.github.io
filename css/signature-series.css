@@ -8028,3 +8028,393 @@ body {
 
 
 }
+/* =================================
+   PROVING GROUND TOURNAMENT FLOW
+================================= */
+
+
+.proving-ground-flow {
+
+    display:
+        grid;
+
+    gap:
+        18px;
+
+    margin-top:
+        22px;
+
+    padding:
+
+        clamp(
+            28px,
+            4vw,
+            46px
+        );
+
+    border:
+        1px solid
+        rgba(
+            114,
+            173,
+            126,
+            0.22
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(
+                114,
+                173,
+                126,
+                0.075
+            ),
+            transparent 44%
+        ),
+
+        #101415;
+
+}
+
+
+
+.proving-ground-flow-heading h2 {
+
+    max-width:
+        920px;
+
+    margin:
+        12px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            2rem,
+            4vw,
+            3.8rem
+        );
+
+    line-height:
+        0.98;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+
+.proving-ground-flow-heading p:last-child {
+
+    max-width:
+        820px;
+
+    margin:
+        22px 0 0;
+
+    color:
+        #aeb5b3;
+
+    line-height:
+        1.75;
+
+}
+
+
+
+.proving-ground-flow-track {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            6,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        12px;
+
+}
+
+
+
+.proving-ground-flow-card {
+
+    position:
+        relative;
+
+    min-height:
+        250px;
+
+    padding:
+        22px;
+
+    border:
+        1px solid
+        rgba(
+            114,
+            173,
+            126,
+            0.24
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.20
+        );
+
+}
+
+
+
+.proving-ground-flow-card:not(:last-child)::after {
+
+    content:
+        "→";
+
+    position:
+        absolute;
+
+    top:
+        22px;
+
+    right:
+        -15px;
+
+    z-index:
+        4;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    width:
+        28px;
+
+    height:
+        28px;
+
+    border:
+        1px solid
+        rgba(
+            114,
+            173,
+            126,
+            0.34
+        );
+
+    border-radius:
+        999px;
+
+    background:
+        #101415;
+
+    color:
+        #92d39f;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        950;
+
+}
+
+
+
+.proving-ground-flow-card span {
+
+    display:
+        inline-grid;
+
+    place-items:
+        center;
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    border:
+        1px solid
+        rgba(
+            114,
+            173,
+            126,
+            0.38
+        );
+
+    border-radius:
+        999px;
+
+    color:
+        #92d39f;
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+.proving-ground-flow-card h3 {
+
+    margin:
+        24px 0 0;
+
+    color:
+        #f5f4ef;
+
+    font-size:
+
+        clamp(
+            1.2rem,
+            2vw,
+            1.75rem
+        );
+
+    line-height:
+        1;
+
+    letter-spacing:
+        -0.045em;
+
+}
+
+
+
+.proving-ground-flow-card p {
+
+    margin:
+        16px 0 0;
+
+    color:
+        #aeb5b3;
+
+    font-size:
+        0.88rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+
+@media (
+    max-width:
+        1250px
+) {
+
+
+    .proving-ground-flow-track {
+
+        grid-template-columns:
+
+            repeat(
+                3,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+    .proving-ground-flow-card:nth-child(3)::after {
+
+        display:
+            none;
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        760px
+) {
+
+
+    .proving-ground-flow-track {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .proving-ground-flow-card {
+
+        min-height:
+            0;
+
+    }
+
+
+    .proving-ground-flow-card:not(:last-child)::after {
+
+        top:
+            auto;
+
+        right:
+            auto;
+
+        left:
+            22px;
+
+        bottom:
+            -15px;
+
+        content:
+            "↓";
+
+    }
+
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .proving-ground-flow {
+
+        padding:
+            24px 18px;
+
+    }
+
+
+}
