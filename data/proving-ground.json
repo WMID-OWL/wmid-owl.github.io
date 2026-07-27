@@ -160,7 +160,41 @@
       "note": "Awarded to any wrestler who makes their opponent bleed, win or lose."
     }
   ],
-                 "entries": [],
+                   "recordBook": [
+    {
+      "label": "Entrants",
+      "detail": "Every tournament entrant, division block, brand, and qualification path."
+    },
+    {
+      "label": "Block Records",
+      "detail": "Tournament-only wins, losses, and draws separate from standard OWL records."
+    },
+    {
+      "label": "Match Results",
+      "detail": "Each round-robin result, winner, loser, finish method, and match time."
+    },
+    {
+      "label": "Combat Points",
+      "detail": "Total points, finish bonuses, speed bonuses, blood bonuses, and zero-point wins."
+    },
+    {
+      "label": "Standings",
+      "detail": "Final block tables, point rankings, and any tiebreaker notes."
+    },
+    {
+      "label": "Finalists",
+      "detail": "The top two point scorers who advance to the Proving Grounds PPV final."
+    },
+    {
+      "label": "Tournament Winner",
+      "detail": "The trophy winner and earned December to Remember championship opportunity."
+    },
+    {
+      "label": "Archive Status",
+      "detail": "Completed tournaments remain part of OWL’s permanent Signature Series history."
+    }
+  ],
+  "entries": [],
   "blockResults": [],
   "finals": []
 }
