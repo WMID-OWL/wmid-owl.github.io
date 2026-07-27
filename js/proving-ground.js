@@ -1,6 +1,6 @@
 (function () {
 
-                        const DATA_PATH = "data/proving-ground.json?v=287n";
+                        const DATA_PATH = "data/proving-ground.json?v=287o";
 
 
 
@@ -390,6 +390,32 @@
     };
 
 
+    const renderRecordBook = function (data) {
+
+        const grid = document.querySelector("[data-proving-ground-record-grid]");
+
+        if (!grid || !Array.isArray(data.recordBook)) {
+
+            return;
+
+        }
+
+        grid.innerHTML = "";
+
+        data.recordBook.forEach(function (item) {
+
+            const card = createElement("article", "proving-ground-record-card");
+
+            card.appendChild(createElement("span", "", item.label || ""));
+            card.appendChild(createElement("p", "", item.detail || ""));
+
+            grid.appendChild(card);
+
+        });
+
+    };
+
+
 
     const renderEmptyState = function (data) {
 
@@ -473,6 +499,7 @@
                 renderBlockResults(data);
                 renderFinals(data);
                 renderCombatPoints(data);
+                renderRecordBook(data);
                 renderEmptyState(data);
             })
             .catch(function (error) {
