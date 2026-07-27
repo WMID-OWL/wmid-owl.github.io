@@ -7527,3 +7527,62 @@
         ) !important;
 
 }
+/* =================================
+   TOURNAMENT CREATOR
+================================= */
+
+
+.cr-tournament-creator-section {
+
+    margin-top:
+        1.5rem;
+
+    margin-bottom:
+        1.5rem;
+
+    padding:
+        1.2rem;
+
+    background:
+        #171d20;
+
+    border:
+        1px solid
+        rgba(
+            198,
+            161,
+            91,
+            0.18
+        );
+
+}
+
+
+
+.cr-tournament-create-form[hidden] {
+
+    display:
+        none !important;
+
+}
+
+
+
+.cr-tournament-create-form {
+
+    margin-top:
+        1.25rem;
+
+    padding-top:
+        1.25rem;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
