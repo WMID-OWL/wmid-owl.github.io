@@ -711,9 +711,219 @@
 
             </div>
 
-            <p class="cr-editor-note">
+                        <p class="cr-editor-note">
                 Build and review the participant field for each tournament bracket before generating matchups.
             </p>
+
+            <div class="cr-editor-section cr-tournament-creator-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        TOURNAMENT DIRECTORY
+                    </span>
+
+                    <h3>
+                        Create or Select Tournament
+                    </h3>
+
+                    <p>
+                        Create a new tournament shell in data/tournaments.json, then use the existing field manager to build its brackets and participants.
+                    </p>
+
+                </div>
+
+                <div class="cr-editor-top-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-tournament-manager-mode">
+                            ACTION
+                        </label>
+
+                        <select id="cr-tournament-manager-mode">
+
+                            <option value="edit">
+                                Edit Existing Tournament
+                            </option>
+
+                            <option value="create">
+                                Create New Tournament
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            TARGET FILE
+                        </label>
+
+                        <div class="cr-current-value">
+                            data/tournaments.json
+                        </div>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            CREATE STATUS
+                        </label>
+
+                        <div
+                            id="cr-tournament-create-status"
+                            class="cr-current-value"
+                        >
+                            READY
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="cr-tournament-create-form"
+                    class="cr-tournament-create-form"
+                    hidden
+                >
+
+                    <div class="cr-editor-form-grid">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-tournament-create-name">
+                                TOURNAMENT NAME
+                            </label>
+
+                            <input
+                                id="cr-tournament-create-name"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Example: Global Warfare Grand Prix"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-tournament-create-year">
+                                YEAR
+                            </label>
+
+                            <input
+                                id="cr-tournament-create-year"
+                                type="number"
+                                min="2026"
+                                step="1"
+                                autocomplete="off"
+                                placeholder="Example: 2026"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-tournament-create-status-select">
+                                STATUS
+                            </label>
+
+                            <select id="cr-tournament-create-status-select">
+
+                                <option value="Upcoming">
+                                    Upcoming
+                                </option>
+
+                                <option value="Active">
+                                    Active
+                                </option>
+
+                                <option value="Completed">
+                                    Completed
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-tournament-create-badge">
+                                BADGE
+                            </label>
+
+                            <input
+                                id="cr-tournament-create-badge"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Example: Annual Tournament"
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="cr-form-group cr-editor-spaced-field">
+
+                        <label for="cr-tournament-create-purpose">
+                            PURPOSE
+                        </label>
+
+                        <textarea
+                            id="cr-tournament-create-purpose"
+                            rows="5"
+                            placeholder="Explain what this tournament decides or why it exists."
+                        ></textarea>
+
+                    </div>
+
+                    <div
+                        id="cr-tournament-create-preview"
+                        class="cr-change-preview"
+                        hidden
+                    >
+
+                        <span>
+                            REVIEW NEW TOURNAMENT
+                        </span>
+
+                        <div
+                            id="cr-tournament-create-change-list"
+                            class="cr-editor-change-list"
+                        ></div>
+
+                        <p
+                            id="cr-tournament-create-error"
+                            class="cr-change-error"
+                            hidden
+                        ></p>
+
+                    </div>
+
+                    <div class="cr-manager-actions">
+
+                        <button
+                            id="cr-tournament-create-save"
+                            class="control-room-button control-room-button-primary"
+                            type="button"
+                            disabled
+                        >
+                            Save New Tournament
+                        </button>
+
+                    </div>
+
+                    <p
+                        id="cr-tournament-create-message"
+                        class="cr-save-message"
+                        hidden
+                    ></p>
+
+                </div>
+
+            </div>
 
             <div class="cr-editor-top-grid">
 
