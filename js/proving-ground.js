@@ -1,6 +1,6 @@
 (function () {
 
-                        const DATA_PATH = "data/proving-ground.json?v=287k";
+                        const DATA_PATH = "data/proving-ground.json?v=287l";
 
 
 
