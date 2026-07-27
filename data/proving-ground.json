@@ -160,6 +160,29 @@
       "note": "Awarded to any wrestler who makes their opponent bleed, win or lose."
     }
   ],
-        "entries": [],
-  "blockResults": []
+          "entries": [],
+  "blockResults": [
+    {
+      "block": "ASCENSION MEN’S BLOCK",
+      "matchup": "TEST WRESTLER A vs TEST WRESTLER B",
+      "summary": "Temporary test result used to confirm the Block Results section renders correctly.",
+      "winner": "TEST WRESTLER A",
+      "method": "Pinfall",
+      "time": "12:44",
+      "points": "+6",
+      "bonus": "Under 15 Minutes",
+      "accentClass": ""
+    },
+    {
+      "block": "REVOLT WOMEN’S BLOCK",
+      "matchup": "TEST WRESTLER C vs TEST WRESTLER D",
+      "summary": "Temporary test result used to confirm Revolt result styling renders correctly.",
+      "winner": "TEST WRESTLER D",
+      "method": "KO",
+      "time": "18:21",
+      "points": "+6",
+      "bonus": "Under 20 Minutes",
+      "accentClass": "proving-ground-revolt"
+    }
+  ]
 }
