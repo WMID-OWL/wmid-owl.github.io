@@ -160,7 +160,20 @@
       "note": "Awarded to any wrestler who makes their opponent bleed, win or lose."
     }
   ],
-              "entries": [],
+                "entries": [],
   "blockResults": [],
-  "finals": []
+  "finals": [
+    {
+      "block": "ASCENSION MEN’S FINAL",
+      "matchup": "TEST FINALIST A vs TEST FINALIST B",
+      "summary": "Temporary test final used to confirm the Tournament Final section renders correctly.",
+      "winner": "TEST FINALIST A",
+      "runnerUp": "TEST FINALIST B",
+      "method": "Submission",
+      "time": "21:09",
+      "titleShot": "December to Remember",
+      "event": "Proving Grounds",
+      "accentClass": ""
+    }
+  ]
 }
