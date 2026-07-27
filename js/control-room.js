@@ -1555,7 +1555,1141 @@ function renderHealthCheck(
 
 }
 
+// =================================
+// SIGNATURE SERIES MANAGER
+// =================================
 
+
+const signatureSeriesStatus =
+
+    document.getElementById(
+        "cr-signature-series-status"
+    );
+
+
+const signaturePowerEntrySelect =
+
+    document.getElementById(
+        "cr-signature-power-entry-select"
+    );
+
+
+const signaturePowerActiveCount =
+
+    document.getElementById(
+        "cr-signature-power-active-count"
+    );
+
+
+const signaturePowerDeleteButton =
+
+    document.getElementById(
+        "cr-signature-power-delete-entry"
+    );
+
+
+const signaturePowerType =
+
+    document.getElementById(
+        "cr-signature-power-type"
+    );
+
+
+const signaturePowerName =
+
+    document.getElementById(
+        "cr-signature-power-name"
+    );
+
+
+const signaturePowerStatus =
+
+    document.getElementById(
+        "cr-signature-power-status"
+    );
+
+
+const signaturePowerSource =
+
+    document.getElementById(
+        "cr-signature-power-source"
+    );
+
+
+const signaturePowerBrand =
+
+    document.getElementById(
+        "cr-signature-power-brand"
+    );
+
+
+const signaturePowerDivision =
+
+    document.getElementById(
+        "cr-signature-power-division"
+    );
+
+
+const signaturePowerExpires =
+
+    document.getElementById(
+        "cr-signature-power-expires"
+    );
+
+
+const signaturePowerDescription =
+
+    document.getElementById(
+        "cr-signature-power-description"
+    );
+
+
+const signaturePowerNotes =
+
+    document.getElementById(
+        "cr-signature-power-notes"
+    );
+
+
+const signaturePowerPreview =
+
+    document.getElementById(
+        "cr-signature-power-preview"
+    );
+
+
+const signaturePowerChangeList =
+
+    document.getElementById(
+        "cr-signature-power-change-list"
+    );
+
+
+const signaturePowerError =
+
+    document.getElementById(
+        "cr-signature-power-error"
+    );
+
+
+const signaturePowerSaveButton =
+
+    document.getElementById(
+        "cr-signature-power-save"
+    );
+
+
+const signaturePowerMessage =
+
+    document.getElementById(
+        "cr-signature-power-message"
+    );
+// =================================
+// SIGNATURE SERIES HELPERS
+// =================================
+
+
+function getPowerPlayersDatabase() {
+
+
+    const database =
+        owlControlRoomData.powerPlayers;
+
+
+    if (
+        !database
+
+        ||
+
+        Array.isArray(
+            database
+        )
+
+        ||
+
+        typeof database !==
+            "object"
+    ) {
+
+
+        return {
+
+            activeEntries:
+                [],
+
+            completedEntries:
+                []
+
+        };
+
+    }
+
+
+    return {
+
+        ...database,
+
+        activeEntries:
+
+            Array.isArray(
+                database.activeEntries
+            )
+
+                ? database.activeEntries
+
+                : [],
+
+        completedEntries:
+
+            Array.isArray(
+                database.completedEntries
+            )
+
+                ? database.completedEntries
+
+                : []
+
+    };
+
+}
+
+
+
+function getSignaturePowerTypeMeta(
+    type
+) {
+
+
+    const typeMap = {
+
+        "devils-contract": {
+
+            label:
+                "Devil’s Contract Holder",
+
+            accentClass:
+                "power-player-contract"
+
+        },
+
+        "overthrow-winner": {
+
+            label:
+                "Overthrow Winner",
+
+            accentClass:
+                "power-player-overthrow"
+
+        },
+
+        "hex-cell-winner": {
+
+            label:
+                "Hex-Cell Winner",
+
+            accentClass:
+                "power-player-hex"
+
+        },
+
+        "fates-wheel-case": {
+
+            label:
+                "Fate’s Wheel Case Holder",
+
+            accentClass:
+                "power-player-fate"
+
+        },
+
+        "proving-ground-winner": {
+
+            label:
+                "Proving Ground Winner",
+
+            accentClass:
+                "power-player-proving"
+
+        },
+
+        "active-penalty": {
+
+            label:
+                "Active Penalty / Lockout",
+
+            accentClass:
+                "power-player-penalty"
+
+        }
+
+    };
+
+
+    return typeMap[
+        type
+    ]
+
+    ||
+
+    typeMap[
+        "devils-contract"
+    ];
+
+}
+
+
+
+function createSignatureEntrySlug(
+    name,
+    type
+) {
+
+
+    const baseSlug =
+
+        String(
+            `${type || "power"}-${name || "entry"}`
+        )
+            .trim()
+            .toLowerCase()
+            .replace(
+                /['’]/g,
+                ""
+            )
+            .replace(
+                /&/g,
+                "and"
+            )
+            .replace(
+                /[^a-z0-9]+/g,
+                "-"
+            )
+            .replace(
+                /^-+|-+$/g,
+                ""
+            )
+
+        ||
+
+        "power-entry";
+
+
+    const database =
+        getPowerPlayersDatabase();
+
+
+    const allEntries = [
+
+        ...database.activeEntries,
+
+        ...database.completedEntries
+
+    ];
+
+
+    let candidate =
+        baseSlug;
+
+
+    let counter =
+        2;
+
+
+    while (
+
+        allEntries.some(
+            entry =>
+                entry.id ===
+                candidate
+        )
+
+    ) {
+
+
+        candidate =
+            `${baseSlug}-${counter}`;
+
+
+        counter +=
+            1;
+
+    }
+
+
+    return candidate;
+
+}
+
+
+
+function setSignaturePowerMessage(
+    message,
+    type = "success"
+) {
+
+
+    if (!signaturePowerMessage) {
+
+        return;
+
+    }
+
+
+    signaturePowerMessage.textContent =
+        message;
+
+
+    signaturePowerMessage.className =
+
+        `cr-save-message ${
+            type === "error"
+
+                ? "save-error"
+
+                : "save-success"
+        }`;
+
+
+    signaturePowerMessage.hidden =
+        false;
+
+}
+
+
+
+function appendSignaturePowerReviewRow(
+    label,
+    value
+) {
+
+
+    if (!signaturePowerChangeList) {
+
+        return;
+
+    }
+
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "cr-editor-change-row";
+
+
+    row.innerHTML = `
+
+        <strong>
+            ${label}
+        </strong>
+
+        <span>
+            ${value || "—"}
+        </span>
+
+    `;
+
+
+    signaturePowerChangeList.appendChild(
+        row
+    );
+
+}
+
+
+
+function getSignaturePowerDraft() {
+
+
+    const selectedType =
+
+        signaturePowerType
+
+            ? signaturePowerType.value
+
+            : "devils-contract";
+
+
+    const typeMeta =
+        getSignaturePowerTypeMeta(
+            selectedType
+        );
+
+
+    const name =
+
+        signaturePowerName
+
+            ? signaturePowerName.value.trim()
+
+            : "";
+
+
+    const notes =
+
+        signaturePowerNotes
+
+            ? signaturePowerNotes.value
+                .split(
+                    "\n"
+                )
+                .map(
+                    note =>
+                        note.trim()
+                )
+                .filter(Boolean)
+
+            : [];
+
+
+    return {
+
+        id:
+            createSignatureEntrySlug(
+                name,
+                selectedType
+            ),
+
+        type:
+            typeMeta.label,
+
+        name,
+
+        description:
+
+            signaturePowerDescription
+
+                ? signaturePowerDescription.value.trim()
+
+                : "",
+
+        status:
+
+            signaturePowerStatus
+
+                ? signaturePowerStatus.value.trim()
+
+                : "",
+
+        source:
+
+            signaturePowerSource
+
+                ? signaturePowerSource.value.trim()
+
+                : "",
+
+        brand:
+
+            signaturePowerBrand
+
+                ? signaturePowerBrand.value
+
+                : "",
+
+        division:
+
+            signaturePowerDivision
+
+                ? signaturePowerDivision.value
+
+                : "",
+
+        expires:
+
+            signaturePowerExpires
+
+                ? signaturePowerExpires.value.trim()
+
+                : "",
+
+        accentClass:
+            typeMeta.accentClass,
+
+        notes
+
+    };
+
+}
+
+
+
+function validateSignaturePowerDraft(
+    draft
+) {
+
+
+    if (!draft.name) {
+
+        return "Name / holder is required.";
+
+    }
+
+
+    if (!draft.description) {
+
+        return "Description is required.";
+
+    }
+
+
+    return "";
+
+}
+
+
+
+function renderSignaturePowerPreview() {
+
+
+    if (
+        !signaturePowerPreview ||
+        !signaturePowerChangeList ||
+        !signaturePowerSaveButton
+    ) {
+
+        return;
+
+    }
+
+
+    signaturePowerChangeList.innerHTML =
+        "";
+
+
+    if (signaturePowerError) {
+
+        signaturePowerError.hidden =
+            true;
+
+
+        signaturePowerError.textContent =
+            "";
+
+    }
+
+
+    const draft =
+        getSignaturePowerDraft();
+
+
+    const validationError =
+        validateSignaturePowerDraft(
+            draft
+        );
+
+
+    appendSignaturePowerReviewRow(
+        "DATABASE ID",
+        draft.id
+    );
+
+
+    appendSignaturePowerReviewRow(
+        "TYPE",
+        draft.type
+    );
+
+
+    appendSignaturePowerReviewRow(
+        "NAME",
+        draft.name
+    );
+
+
+    appendSignaturePowerReviewRow(
+        "STATUS",
+        draft.status
+    );
+
+
+    appendSignaturePowerReviewRow(
+        "SOURCE",
+        draft.source
+    );
+
+
+    appendSignaturePowerReviewRow(
+        "BRAND",
+        draft.brand
+    );
+
+
+    appendSignaturePowerReviewRow(
+        "DIVISION",
+        draft.division
+    );
+
+
+    appendSignaturePowerReviewRow(
+        "EXPIRES",
+        draft.expires
+    );
+
+
+    appendSignaturePowerReviewRow(
+        "NOTES",
+        draft.notes.length
+
+            ? `${draft.notes.length} note(s)`
+
+            : "—"
+    );
+
+
+    signaturePowerPreview.hidden =
+        false;
+
+
+    if (validationError) {
+
+
+        if (signaturePowerError) {
+
+            signaturePowerError.textContent =
+                validationError;
+
+
+            signaturePowerError.hidden =
+                false;
+
+        }
+
+
+        signaturePowerSaveButton.disabled =
+            true;
+
+
+        return;
+
+    }
+
+
+    signaturePowerSaveButton.disabled =
+        false;
+
+}
+
+
+
+function resetSignaturePowerForm() {
+
+
+    if (signaturePowerType) {
+
+        signaturePowerType.value =
+            "devils-contract";
+
+    }
+
+
+    [
+        signaturePowerName,
+        signaturePowerStatus,
+        signaturePowerSource,
+        signaturePowerExpires,
+        signaturePowerDescription,
+        signaturePowerNotes
+    ].forEach(
+        field => {
+
+
+            if (field) {
+
+                field.value =
+                    "";
+
+            }
+
+        }
+    );
+
+
+    if (signaturePowerBrand) {
+
+        signaturePowerBrand.value =
+            "";
+
+    }
+
+
+    if (signaturePowerDivision) {
+
+        signaturePowerDivision.value =
+            "";
+
+    }
+
+
+    if (signaturePowerPreview) {
+
+        signaturePowerPreview.hidden =
+            true;
+
+    }
+
+
+    if (signaturePowerSaveButton) {
+
+        signaturePowerSaveButton.disabled =
+            true;
+
+    }
+
+}
+
+
+
+function renderSignaturePowerEntrySelect() {
+
+
+    if (
+        !signaturePowerEntrySelect ||
+        !signaturePowerActiveCount ||
+        !signaturePowerDeleteButton
+    ) {
+
+        return;
+
+    }
+
+
+    const database =
+        getPowerPlayersDatabase();
+
+
+    signaturePowerEntrySelect.innerHTML =
+        "";
+
+
+    const placeholder =
+        document.createElement(
+            "option"
+        );
+
+
+    placeholder.value =
+        "";
+
+
+    placeholder.textContent =
+
+        database.activeEntries.length
+
+            ? "Select Active Entry"
+
+            : "No Active Entries";
+
+
+    signaturePowerEntrySelect.appendChild(
+        placeholder
+    );
+
+
+    database.activeEntries.forEach(
+        entry => {
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                entry.id;
+
+
+            option.textContent =
+                `${entry.type || "Power"} — ${entry.name || "Unnamed"}`;
+
+
+            signaturePowerEntrySelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    signaturePowerEntrySelect.disabled =
+        database.activeEntries.length === 0;
+
+
+    signaturePowerActiveCount.textContent =
+        String(
+            database.activeEntries.length
+        );
+
+
+    signaturePowerDeleteButton.disabled =
+        true;
+
+}
+
+
+
+function updateSignaturePowerDeleteButton() {
+
+
+    if (
+        !signaturePowerDeleteButton ||
+        !signaturePowerEntrySelect
+    ) {
+
+        return;
+
+    }
+
+
+    signaturePowerDeleteButton.disabled =
+        !signaturePowerEntrySelect.value;
+
+}
+
+
+
+async function saveSignaturePowerEntry() {
+
+
+    try {
+
+
+        const draft =
+            getSignaturePowerDraft();
+
+
+        const validationError =
+            validateSignaturePowerDraft(
+                draft
+            );
+
+
+        if (validationError) {
+
+            setSignaturePowerMessage(
+                validationError,
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        const database =
+            getPowerPlayersDatabase();
+
+
+        const updatedDatabase = {
+
+            ...database,
+
+            activeEntries: [
+
+                ...database.activeEntries,
+
+                draft
+
+            ]
+
+        };
+
+
+        signaturePowerSaveButton.disabled =
+            true;
+
+
+        await writeControlRoomJsonFile(
+            "power-players.json",
+            updatedDatabase
+        );
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        resetSignaturePowerForm();
+
+
+        setSignaturePowerMessage(
+
+            `${draft.name} was added to Current Power Players.`
+
+        );
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "Could not save Signature Series power entry:",
+            error
+        );
+
+
+        setSignaturePowerMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+
+async function deleteSelectedSignaturePowerEntry() {
+
+
+    try {
+
+
+        if (
+            !signaturePowerEntrySelect ||
+            !signaturePowerEntrySelect.value
+        ) {
+
+            setSignaturePowerMessage(
+                "Select an active entry first.",
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        const database =
+            getPowerPlayersDatabase();
+
+
+        const selectedEntry =
+            database.activeEntries.find(
+                entry =>
+                    entry.id ===
+                    signaturePowerEntrySelect.value
+            );
+
+
+        if (!selectedEntry) {
+
+            setSignaturePowerMessage(
+                "Selected active entry was not found.",
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        const confirmation =
+            window.prompt(
+                `Type DELETE POWER to remove "${selectedEntry.name}".`
+            );
+
+
+        if (
+            confirmation !==
+            "DELETE POWER"
+        ) {
+
+            setSignaturePowerMessage(
+                "Active entry deletion cancelled.",
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        const updatedDatabase = {
+
+            ...database,
+
+            activeEntries:
+
+                database.activeEntries.filter(
+                    entry =>
+                        entry.id !==
+                        selectedEntry.id
+                )
+
+        };
+
+
+        await writeControlRoomJsonFile(
+            "power-players.json",
+            updatedDatabase
+        );
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        setSignaturePowerMessage(
+
+            `${selectedEntry.name} was removed from Current Power Players.`
+
+        );
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "Could not delete Signature Series power entry:",
+            error
+        );
+
+
+        setSignaturePowerMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+
+function initializeSignatureSeriesManager() {
+
+
+    if (signatureSeriesStatus) {
+
+        signatureSeriesStatus.textContent =
+            "READY";
+
+    }
+
+
+    renderSignaturePowerEntrySelect();
+
+
+    resetSignaturePowerForm();
+
+}
 // =================================
 // TOURNAMENT FIELD MANAGER
 // =================================
@@ -10656,6 +11790,13 @@ window.addEventListener(
     "owl-control-room-data-loaded",
 
     initializeTournamentFieldManager
+
+);
+window.addEventListener(
+
+    "owl-control-room-data-loaded",
+
+    initializeSignatureSeriesManager
 
 );
 if (tournamentManagerMode) {
