@@ -1563,7 +1563,25 @@ const tournamentFieldStatus =
     document.getElementById(
         "cr-tournament-field-status"
     );
+const tournamentDeleteEmptyBracketButton =
 
+    document.getElementById(
+        "cr-tournament-delete-empty-bracket"
+    );
+
+
+const tournamentDeleteEmptyTournamentButton =
+
+    document.getElementById(
+        "cr-tournament-delete-empty-tournament"
+    );
+
+
+const tournamentCleanupMessage =
+
+    document.getElementById(
+        "cr-tournament-cleanup-message"
+    );
 
 const tournamentSelect =
 
@@ -8070,8 +8088,11 @@ function populateTournamentBracketSelector() {
     ) {
 
 
-        tournamentBracketSelect.disabled =
+                tournamentBracketSelect.disabled =
             true;
+
+
+        updateTournamentCleanupTools();
 
 
         return;
@@ -8107,8 +8128,11 @@ function populateTournamentBracketSelector() {
     );
 
 
-    tournamentBracketSelect.disabled =
+        tournamentBracketSelect.disabled =
         false;
+
+
+    updateTournamentCleanupTools();
 
 }
 
@@ -8817,6 +8841,465 @@ async function saveNewTournamentBracket() {
 
 
         setTournamentBracketCreateMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+// =================================
+// TOURNAMENT CLEANUP TOOLS
+// =================================
+
+
+function setTournamentCleanupMessage(
+    message,
+    type = "success"
+) {
+
+
+    if (!tournamentCleanupMessage) {
+
+        return;
+
+    }
+
+
+    tournamentCleanupMessage.textContent =
+        message;
+
+
+    tournamentCleanupMessage.className =
+
+        `cr-save-message ${
+            type === "error"
+
+                ? "save-error"
+
+                : "save-success"
+        }`;
+
+
+    tournamentCleanupMessage.hidden =
+        false;
+
+}
+
+
+
+function tournamentBracketCanBeDeleted(
+    bracket
+) {
+
+
+    if (!bracket) {
+
+        return false;
+
+    }
+
+
+    const participants =
+
+        Array.isArray(
+            bracket.participants
+        )
+
+            ? bracket.participants
+
+            : [];
+
+
+    const bracketSetup =
+        getTournamentBracketSetup(
+            bracket
+        );
+
+
+    const rounds =
+
+        Array.isArray(
+            bracketSetup.rounds
+        )
+
+            ? bracketSetup.rounds
+
+            : [];
+
+
+    return (
+
+        participants.length === 0
+
+        &&
+
+        !bracket.fieldLocked
+
+        &&
+
+        !bracketSetup.generated
+
+        &&
+
+        rounds.length === 0
+
+    );
+
+}
+
+
+
+function tournamentCanBeDeleted(
+    tournament
+) {
+
+
+    if (!tournament) {
+
+        return false;
+
+    }
+
+
+    const brackets =
+
+        Array.isArray(
+            tournament.brackets
+        )
+
+            ? tournament.brackets
+
+            : [];
+
+
+    return brackets.length === 0;
+
+}
+
+
+
+function updateTournamentCleanupTools() {
+
+
+    const tournament =
+        getSelectedControlRoomTournament();
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    if (tournamentDeleteEmptyBracketButton) {
+
+        tournamentDeleteEmptyBracketButton.disabled =
+            !tournamentBracketCanBeDeleted(
+                bracket
+            );
+
+    }
+
+
+    if (tournamentDeleteEmptyTournamentButton) {
+
+        tournamentDeleteEmptyTournamentButton.disabled =
+            !tournamentCanBeDeleted(
+                tournament
+            );
+
+    }
+
+}
+
+
+
+async function deleteSelectedEmptyBracket() {
+
+
+    try {
+
+
+        const tournament =
+            getSelectedControlRoomTournament();
+
+
+        const bracket =
+            getSelectedControlRoomBracket();
+
+
+        if (
+            !tournament ||
+            !bracket
+        ) {
+
+            setTournamentCleanupMessage(
+                "Select a tournament and bracket first.",
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        if (
+            !tournamentBracketCanBeDeleted(
+                bracket
+            )
+        ) {
+
+            setTournamentCleanupMessage(
+                "This bracket is not empty, is locked, or already has a generated setup.",
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        const confirmation =
+            window.prompt(
+                `Type DELETE BRACKET to remove "${bracket.name}".`
+            );
+
+
+        if (
+            confirmation !==
+            "DELETE BRACKET"
+        ) {
+
+            setTournamentCleanupMessage(
+                "Bracket deletion cancelled.",
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        const tournamentDatabase =
+            owlControlRoomData.tournaments;
+
+
+        const updatedTournamentDatabase = {
+
+            ...tournamentDatabase,
+
+            tournaments:
+
+                tournamentDatabase.tournaments.map(
+                    storedTournament => {
+
+
+                        if (
+                            storedTournament.id !==
+                            tournament.id
+                        ) {
+
+                            return storedTournament;
+
+                        }
+
+
+                        return {
+
+                            ...storedTournament,
+
+                            brackets:
+
+                                (
+                                    Array.isArray(
+                                        storedTournament.brackets
+                                    )
+
+                                        ? storedTournament.brackets
+
+                                        : []
+                                ).filter(
+                                    storedBracket =>
+
+                                        storedBracket.id !==
+                                        bracket.id
+                                )
+
+                        };
+
+                    }
+                )
+
+        };
+
+
+        await writeTournamentDatabase(
+            updatedTournamentDatabase
+        );
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        if (tournamentSelect) {
+
+            tournamentSelect.value =
+                tournament.id;
+
+
+            populateTournamentBracketSelector();
+
+        }
+
+
+        updateTournamentCleanupTools();
+
+
+        setTournamentCleanupMessage(
+            `${bracket.name} was removed from ${tournament.name}.`
+        );
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "Could not delete tournament bracket:",
+            error
+        );
+
+
+        setTournamentCleanupMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+
+async function deleteSelectedEmptyTournament() {
+
+
+    try {
+
+
+        const tournament =
+            getSelectedControlRoomTournament();
+
+
+        if (!tournament) {
+
+            setTournamentCleanupMessage(
+                "Select a tournament first.",
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        if (
+            !tournamentCanBeDeleted(
+                tournament
+            )
+        ) {
+
+            setTournamentCleanupMessage(
+                "This tournament still has brackets. Delete empty brackets first.",
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        const confirmation =
+            window.prompt(
+                `Type DELETE TOURNAMENT to remove "${tournament.name}".`
+            );
+
+
+        if (
+            confirmation !==
+            "DELETE TOURNAMENT"
+        ) {
+
+            setTournamentCleanupMessage(
+                "Tournament deletion cancelled.",
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        const tournamentDatabase =
+            owlControlRoomData.tournaments;
+
+
+        const updatedTournamentDatabase = {
+
+            ...tournamentDatabase,
+
+            tournaments:
+
+                tournamentDatabase.tournaments.filter(
+                    storedTournament =>
+
+                        storedTournament.id !==
+                        tournament.id
+                )
+
+        };
+
+
+        await writeTournamentDatabase(
+            updatedTournamentDatabase
+        );
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        updateTournamentCleanupTools();
+
+
+        setTournamentCleanupMessage(
+            `${tournament.name} was removed from data/tournaments.json.`
+        );
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "Could not delete tournament:",
+            error
+        );
+
+
+        setTournamentCleanupMessage(
             error.message,
             "error"
         );
@@ -9600,13 +10083,16 @@ function initializeTournamentFieldManager() {
     resetTournamentFieldOverview();
 
 
-    tournamentFieldStatus.textContent =
+        tournamentFieldStatus.textContent =
 
         tournaments.length > 0
 
             ? "READY"
 
             : "NO DATA";
+
+
+    updateTournamentCleanupTools();
 
 }
 
@@ -9989,7 +10475,44 @@ if (tournamentBracketCreateSaveButton) {
     );
 
 }
+if (tournamentDeleteEmptyBracketButton) {
 
+    tournamentDeleteEmptyBracketButton.addEventListener(
+        "click",
+        deleteSelectedEmptyBracket
+    );
+
+}
+
+
+if (tournamentDeleteEmptyTournamentButton) {
+
+    tournamentDeleteEmptyTournamentButton.addEventListener(
+        "click",
+        deleteSelectedEmptyTournament
+    );
+
+}
+
+
+if (tournamentSelect) {
+
+    tournamentSelect.addEventListener(
+        "change",
+        updateTournamentCleanupTools
+    );
+
+}
+
+
+if (tournamentBracketSelect) {
+
+    tournamentBracketSelect.addEventListener(
+        "change",
+        updateTournamentCleanupTools
+    );
+
+}
 
 if (tournamentSelect) {
 
