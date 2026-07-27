@@ -12038,6 +12038,73 @@ tournamentLoadMatchBookerButton.addEventListener(
 
 
 
+[
+    signaturePowerType,
+    signaturePowerName,
+    signaturePowerStatus,
+    signaturePowerSource,
+    signaturePowerBrand,
+    signaturePowerDivision,
+    signaturePowerExpires,
+    signaturePowerDescription,
+    signaturePowerNotes
+].forEach(
+    field => {
+
+
+        if (!field) {
+
+            return;
+
+        }
+
+
+        field.addEventListener(
+            "input",
+            renderSignaturePowerPreview
+        );
+
+
+        field.addEventListener(
+            "change",
+            renderSignaturePowerPreview
+        );
+
+    }
+);
+
+
+if (signaturePowerSaveButton) {
+
+    signaturePowerSaveButton.addEventListener(
+        "click",
+        saveSignaturePowerEntry
+    );
+
+}
+
+
+if (signaturePowerEntrySelect) {
+
+    signaturePowerEntrySelect.addEventListener(
+        "change",
+        updateSignaturePowerDeleteButton
+    );
+
+}
+
+
+if (signaturePowerDeleteButton) {
+
+    signaturePowerDeleteButton.addEventListener(
+        "click",
+        deleteSelectedSignaturePowerEntry
+    );
+
+}
+
+
+
 // =================================
 // START
 // =================================
