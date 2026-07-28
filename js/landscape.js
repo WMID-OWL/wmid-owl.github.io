@@ -497,6 +497,76 @@
 
             </span>
 
+                `;
+
+    }
+
+
+
+    function showLogoMarkup(
+        showId,
+        modifierClass
+    ) {
+
+
+        const show =
+            showForId(
+                showId
+            );
+
+
+        const logoPath =
+
+            String(
+                show?.logo || ""
+            )
+                .trim();
+
+
+        if (!logoPath) {
+
+            return "";
+
+        }
+
+
+        const showName =
+
+            show?.shortName
+
+            ||
+
+            show?.name
+
+            ||
+
+            showId
+
+            ||
+
+            "Weekly Show";
+
+
+        return `
+
+            <span
+                class="landscape-promotion-logo-frame ${escapeHtml(
+                    modifierClass || ""
+                )}"
+            >
+
+                <img
+                    src="${escapeHtml(
+                        logoPath
+                    )}"
+                    alt="${escapeHtml(
+                        showName
+                    )} logo"
+                    onerror="this.parentElement.hidden = true;"
+                >
+
+            </span>
+
         `;
 
     }
@@ -1666,24 +1736,7 @@
                                 );
 
 
-                            const showCompanyId =
-
-                                show?.companyId
-
-                                ||
-
-                                show?.promotionId
-
-                                ||
-
-                                item.companyId
-
-                                ||
-
-                                "";
-
-
-                            return `
+                                                        return `
 
                                 <article class="landscape-show-row ${rowClass}">
 
@@ -1699,9 +1752,9 @@
                                                                         <div class="landscape-show-identity">
 
 
-                                        ${promotionLogoMarkup(
+                                                                                ${showLogoMarkup(
 
-                                            showCompanyId,
+                                            item.showId,
 
                                             "landscape-promotion-logo-show"
 
