@@ -7777,3 +7777,50 @@
         );
 
 }
+/* =================================
+   PROVING GROUND BLOCK RESULTS
+================================= */
+
+
+.cr-proving-result-section {
+
+    margin-top:
+        1.5rem;
+
+    padding-top:
+        1.5rem;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+
+.cr-proving-result-form-section {
+
+    margin-top:
+        1.5rem;
+
+    padding:
+        1.2rem;
+
+    background:
+        #14191c;
+
+    border:
+        1px solid
+        rgba(
+            114,
+            173,
+            126,
+            0.18
+        );
+
+}
