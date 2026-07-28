@@ -80,8 +80,9 @@
         "wwe-elimination-chamber",
         "wwe-wrestlemania",
         "wwe-summerslam"
-      ]
-    },
+      ],
+    "logo": "assets/images/landscape/promotion-logos/wwe.png"
+},
     {
       "id": "nxt",
       "name": "NXT",
@@ -242,8 +243,9 @@
         "aew-double-or-nothing",
         "aew-all-out",
         "aew-all-in"
-      ]
-    },
+      ],
+    "logo": "assets/images/landscape/promotion-logos/aew.png"
+},
     {
       "id": "roh",
       "name": "ROH",
@@ -643,7 +645,8 @@
         "owl-survivors-remorse",
         "owl-proving-ground",
         "owl-fight-to-survive"
-      ]
-    }
+      ],
+    "logo": "assets/images/landscape/promotion-logos/owl.png"
+}
   ]
 }
