@@ -344,7 +344,7 @@
             );
 
 
-        const displayName =
+                const displayName =
 
             company.calendarName
 
@@ -362,7 +362,42 @@
 
             ||
 
-            "Company";
+            "Promotion";
+
+
+        const logoPath =
+
+            String(
+                company.logo || ""
+            )
+                .trim();
+
+
+        const logoMarkup =
+
+            logoPath
+
+                ? `
+
+                    <span class="landscape-calendar-company-logo">
+
+                        <img
+                            src="${escapeHtml(
+                                logoPath
+                            )}"
+                            alt="${escapeHtml(
+                                company.shortName ||
+                                company.name ||
+                                displayName
+                            )} logo"
+                            onerror="this.parentElement.hidden = true;"
+                        >
+
+                    </span>
+
+                `
+
+                : "";
 
 
         return `
@@ -375,29 +410,38 @@
                 <div class="landscape-calendar-company-heading">
 
 
-                    <div>
+                                        <div class="landscape-calendar-company-identity">
 
 
-                        <span>
-
-                            CORE COMPANY
-                            ${String(
-                                index + 1
-                            ).padStart(
-                                2,
-                                "0"
-                            )}
-
-                        </span>
+                        ${logoMarkup}
 
 
-                        <h3>
+                        <div>
 
-                            ${escapeHtml(
-                                displayName
-                            )}
 
-                        </h3>
+                            <span>
+
+                                CORE PROMOTION
+                                ${String(
+                                    index + 1
+                                ).padStart(
+                                    2,
+                                    "0"
+                                )}
+
+                            </span>
+
+
+                            <h3>
+
+                                ${escapeHtml(
+                                    displayName
+                                )}
+
+                            </h3>
+
+
+                        </div>
 
 
                     </div>
@@ -586,7 +630,7 @@
                 calendarGrid.innerHTML = `
 
                     <div class="landscape-calendar-empty">
-                        No core-company calendars are currently available.
+                        No core-promotion calendars are currently available.
                     </div>
 
                 `;
