@@ -107,6 +107,45 @@ pathFields: [
         },
 
 
+               landscapePromotions: {
+
+            label:
+                "Landscape Promotion Logo",
+
+            dataKey:
+                "landscapePromotions",
+
+            dataFolderPath: [
+
+                "landscape"
+
+            ],
+
+            dataFileName:
+                "companies.json",
+
+            folderPath: [
+
+                "landscape",
+                "promotion-logos"
+
+            ],
+
+            writeField:
+                "logo",
+
+            pathFields: [
+
+                "logo"
+
+            ],
+
+            landscapePromotionMode:
+                true
+
+        },
+
+
         factions: {
 
             label:
@@ -284,8 +323,12 @@ pathFields: [
 
 
 
-    let selectedFile =
+        let selectedFile =
         null;
+
+
+    let landscapePromotionRecords =
+        [];
 
 
 
@@ -524,21 +567,125 @@ pathFields: [
     }
 
 
+    async function loadLandscapePromotionRecords() {
 
-    function recordsForConfig(
+
+        if (
+            typeof owlRepositoryHandle ===
+                "undefined"
+
+            ||
+
+            !owlRepositoryHandle
+        ) {
+
+
+            landscapePromotionRecords =
+                [];
+
+
+            return;
+
+        }
+
+
+        const dataDirectory =
+
+            await owlRepositoryHandle.getDirectoryHandle(
+                "data"
+            );
+
+
+        const landscapeDirectory =
+
+            await dataDirectory.getDirectoryHandle(
+                "landscape"
+            );
+
+
+        const companiesHandle =
+
+            await landscapeDirectory.getFileHandle(
+                "companies.json"
+            );
+
+
+        const companiesFile =
+
+            await companiesHandle.getFile();
+
+
+        const companiesText =
+
+            await companiesFile.text();
+
+
+        const companiesDatabase =
+
+            JSON.parse(
+                companiesText
+            );
+
+
+        if (
+            !companiesDatabase
+
+            ||
+
+            !Array.isArray(
+                companiesDatabase.companies
+            )
+        ) {
+
+
+            throw new Error(
+
+                "data/landscape/companies.json must contain a companies array."
+
+            );
+
+        }
+
+
+        landscapePromotionRecords =
+
+            companiesDatabase.companies;
+
+    }
+
+
+
+        function recordsForConfig(
         config
     ) {
 
 
+        if (!config) {
+
+            return [];
+
+        }
+
+
         if (
+            config.landscapePromotionMode
+        ) {
 
-            !config
 
-            ||
+            return Array.isArray(
+                landscapePromotionRecords
+            )
 
+                ? landscapePromotionRecords
+
+                : [];
+
+        }
+
+
+        if (
             typeof owlControlRoomData ===
             "undefined"
-
         ) {
 
 
@@ -884,9 +1031,33 @@ pathFields: [
     }
 
 
+        const folderPath =
+
+        Array.isArray(
+            config.folderPath
+        )
+
+        &&
+
+        config.folderPath.length > 0
+
+            ? config.folderPath.join(
+                "/"
+            )
+
+            : config.folder;
+
+
+    if (!folderPath) {
+
+        return "";
+
+    }
+
+
     return (
 
-        `assets/images/${config.folder}/${record.id}.${extension}`
+        `assets/images/${folderPath}/${record.id}.${extension}`
 
     );
 
@@ -1367,18 +1538,63 @@ pathFields: [
             );
 
 
-        const destinationDirectory =
+                const destinationFolders =
 
-            await imagesDirectory.getDirectoryHandle(
+            Array.isArray(
+                config.folderPath
+            )
 
-                config.folder,
+            &&
 
-                {
-                    create:
-                        true
-                }
+            config.folderPath.length > 0
 
-            );
+                ? config.folderPath
+
+                : [
+                    config.folder
+                ];
+
+
+        let destinationDirectory =
+            imagesDirectory;
+
+
+        for (
+            const folderName
+            of destinationFolders
+        ) {
+
+
+            if (
+                !cleanText(
+                    folderName
+                )
+            ) {
+
+
+                throw new Error(
+
+                    "The media destination folder could not be determined."
+
+                );
+
+            }
+
+
+            destinationDirectory =
+
+                await destinationDirectory.getDirectoryHandle(
+
+                    folderName,
+
+                    {
+                        create:
+                            true
+                    }
+
+                );
+
+        }
 
 
         const fileName =
@@ -1470,12 +1686,51 @@ pathFields: [
             );
 
 
+                const dataFolders =
+
+            Array.isArray(
+                config.dataFolderPath
+            )
+
+                ? config.dataFolderPath
+
+                : [];
+
+
+        let targetDataDirectory =
+            dataDirectory;
+
+
+        for (
+            const folderName
+            of dataFolders
+        ) {
+
+
+            targetDataDirectory =
+
+                await targetDataDirectory.getDirectoryHandle(
+                    folderName
+                );
+
+        }
+
+
+        const dataFileName =
+
+            cleanText(
+                config.dataFileName
+            )
+
+            ||
+
+            `${config.dataKey}.json`;
+
+
         const fileHandle =
 
-            await dataDirectory.getFileHandle(
-
-                `${config.dataKey}.json`
-
+            await targetDataDirectory.getFileHandle(
+                dataFileName
             );
 
 
@@ -1682,9 +1937,19 @@ pathFields: [
             );
 
 
-            await loadRepositoryData(
+                        await loadRepositoryData(
                 owlRepositoryHandle
             );
+
+
+            if (
+                config.landscapePromotionMode
+            ) {
+
+
+                await loadLandscapePromotionRecords();
+
+            }
 
 
             mediaTypeSelect.value =
@@ -2449,16 +2714,85 @@ setStatus(
     }
 
 
+    async function handleMediaTypeChange() {
+
+
+        clearMessage();
+
+
+        const config =
+            selectedConfig();
+
+
+        if (
+            config?.landscapePromotionMode
+        ) {
+
+
+            setStatus(
+                "LOADING PROMOTIONS"
+            );
+
+
+            try {
+
+
+                await loadLandscapePromotionRecords();
+
+            }
+
+
+            catch (error) {
+
+
+                console.error(
+
+                    "Could not load Landscape promotions:",
+                    error
+
+                );
+
+
+                landscapePromotionRecords =
+                    [];
+
+
+                populateRecordOptions();
+
+
+                showError(
+
+                    error.message
+
+                    ||
+
+                    "The Landscape promotion database could not be loaded."
+
+                );
+
+
+                return;
+
+            }
+
+        }
+
+
+        populateRecordOptions();
+
+    }
+
+
 
     // =================================
     // EVENTS
     // =================================
 
 
-    mediaTypeSelect.addEventListener(
+        mediaTypeSelect.addEventListener(
 
         "change",
-        populateRecordOptions
+        handleMediaTypeChange
 
     );
 
@@ -2499,7 +2833,7 @@ window.addEventListener(
             ) {
 
 
-                populateRecordOptions();
+                handleMediaTypeChange();
 
             }
 
