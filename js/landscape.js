@@ -4107,8 +4107,14 @@
 
                                     <h3>
 
-                                        ${escapeHtml(
+                                                                                ${escapeHtml(
+
+                                            company.shortName
+
+                                            ||
+
                                             company.name
+
                                         )}
 
                                     </h3>
