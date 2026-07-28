@@ -2825,8 +2825,354 @@
 
                         </div>
 
-                        <p
+                                                <p
                             id="cr-proving-result-message"
+                            class="cr-save-message"
+                            hidden
+                        ></p>
+
+                    </div>
+
+                </div>
+
+                <div class="cr-editor-section cr-proving-final-section">
+
+                    <div class="cr-editor-section-heading">
+
+                        <span>
+                            PPV FINAL
+                        </span>
+
+                        <h3>
+                            Record Proving Ground Final
+                        </h3>
+
+                        <p>
+                            Select a completed tournament block, confirm its two finalists, and record the Proving Grounds PPV winner.
+                        </p>
+
+                    </div>
+
+                    <div class="cr-editor-top-grid">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-proving-final-select">
+                                EXISTING FINAL
+                            </label>
+
+                            <select
+                                id="cr-proving-final-select"
+                                disabled
+                            >
+
+                                <option value="">
+                                    No finals loaded
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label>
+                                FINAL COUNT
+                            </label>
+
+                            <div
+                                id="cr-proving-final-count"
+                                class="cr-current-value"
+                            >
+                                0
+                            </div>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label>
+                                CLEANUP
+                            </label>
+
+                            <button
+                                id="cr-proving-delete-final"
+                                class="control-room-button control-room-button-secondary cr-tournament-danger-button"
+                                type="button"
+                                disabled
+                            >
+                                Delete Selected Final
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="cr-editor-section cr-proving-final-form-section">
+
+                        <div class="cr-editor-section-heading">
+
+                            <span>
+                                NEW PPV FINAL
+                            </span>
+
+                            <h3>
+                                Final Match Information
+                            </h3>
+
+                        </div>
+
+                        <div class="cr-editor-form-grid">
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-final-year">
+                                    YEAR
+                                </label>
+
+                                <input
+                                    id="cr-proving-final-year"
+                                    type="number"
+                                    min="2026"
+                                    step="1"
+                                    autocomplete="off"
+                                    placeholder="2026"
+                                >
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-final-block">
+                                    TOURNAMENT BLOCK
+                                </label>
+
+                                <select
+                                    id="cr-proving-final-block"
+                                    disabled
+                                >
+
+                                    <option value="">
+                                        Complete block results first
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-final-date">
+                                    FINAL DATE
+                                </label>
+
+                                <input
+                                    id="cr-proving-final-date"
+                                    type="date"
+                                >
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-final-match-time">
+                                    MATCH TIME
+                                </label>
+
+                                <input
+                                    id="cr-proving-final-match-time"
+                                    type="text"
+                                    autocomplete="off"
+                                    placeholder="Example: 18:46"
+                                >
+
+                            </div>
+
+                        </div>
+
+                        <div class="cr-editor-form-grid">
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-finalist-one">
+                                    FINALIST 1
+                                </label>
+
+                                <select
+                                    id="cr-proving-finalist-one"
+                                    disabled
+                                >
+
+                                    <option value="">
+                                        Select Tournament Block First
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-finalist-two">
+                                    FINALIST 2
+                                </label>
+
+                                <select
+                                    id="cr-proving-finalist-two"
+                                    disabled
+                                >
+
+                                    <option value="">
+                                        Select Tournament Block First
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-final-winner">
+                                    FINAL WINNER
+                                </label>
+
+                                <select
+                                    id="cr-proving-final-winner"
+                                    disabled
+                                >
+
+                                    <option value="">
+                                        Select Both Finalists First
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-final-method">
+                                    FINISH METHOD
+                                </label>
+
+                                <select id="cr-proving-final-method">
+
+                                    <option value="">
+                                        Select Finish Method
+                                    </option>
+
+                                    <option value="Pinfall">
+                                        Pinfall
+                                    </option>
+
+                                    <option value="Submission">
+                                        Submission
+                                    </option>
+
+                                    <option value="KO">
+                                        KO
+                                    </option>
+
+                                    <option value="Count-Out">
+                                        Count-Out
+                                    </option>
+
+                                    <option value="Disqualification">
+                                        Disqualification
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="cr-editor-form-grid">
+
+                            <div class="cr-form-group">
+
+                                <label>
+                                    TROPHY WINNER
+                                </label>
+
+                                <div
+                                    id="cr-proving-final-trophy-winner"
+                                    class="cr-current-value"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label>
+                                    DECEMBER TITLE SHOT
+                                </label>
+
+                                <div
+                                    id="cr-proving-final-title-shot"
+                                    class="cr-current-value"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="cr-form-group cr-editor-spaced-field">
+
+                            <label for="cr-proving-final-note">
+                                FINAL NOTE — OPTIONAL
+                            </label>
+
+                            <textarea
+                                id="cr-proving-final-note"
+                                rows="4"
+                                placeholder="Optional final-match context, tiebreaker note, or tournament summary."
+                            ></textarea>
+
+                        </div>
+
+                        <div
+                            id="cr-proving-final-preview"
+                            class="cr-change-preview"
+                            hidden
+                        >
+
+                            <span>
+                                REVIEW PROVING GROUND FINAL
+                            </span>
+
+                            <div
+                                id="cr-proving-final-change-list"
+                                class="cr-editor-change-list"
+                            ></div>
+
+                            <p
+                                id="cr-proving-final-error"
+                                class="cr-change-error"
+                                hidden
+                            ></p>
+
+                        </div>
+
+                        <div class="cr-manager-actions">
+
+                            <button
+                                id="cr-proving-final-save"
+                                class="control-room-button control-room-button-primary"
+                                type="button"
+                                disabled
+                            >
+                                Save Proving Ground Final
+                            </button>
+
+                        </div>
+
+                        <p
+                            id="cr-proving-final-message"
                             class="cr-save-message"
                             hidden
                         ></p>
