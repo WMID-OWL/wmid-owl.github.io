@@ -3889,7 +3889,57 @@
             `;
 
     }
-    
+        function titleLogoMarkup(
+        title
+    ) {
+
+
+        const logoPath =
+
+            String(
+                title?.logo || ""
+            )
+                .trim();
+
+
+        if (!logoPath) {
+
+            return "";
+
+        }
+
+
+        const titleName =
+
+            title?.name
+
+            ||
+
+            "Championship";
+
+
+        return `
+
+            <div class="landscape-title-logo-frame">
+
+                <img
+                    src="${escapeHtml(
+                        logoPath
+                    )}"
+                    alt="${escapeHtml(
+                        titleName
+                    )} logo"
+                    onerror="this.parentElement.hidden = true;"
+                >
+
+            </div>
+
+        `;
+
+    }
+
+
+
           // =================================
     // CHAMPIONS
     // =================================
@@ -3994,18 +4044,29 @@
                                                         : title.championName;
 
 
-                                                return `
+                                                                                                return `
 
                                                     <div class="landscape-title-holder">
 
 
-                                                        <span>
+                                                        <div class="landscape-title-identity">
 
-                                                            ${escapeHtml(
-                                                                title.name || "CHAMPIONSHIP"
+
+                                                            ${titleLogoMarkup(
+                                                                title
                                                             )}
 
-                                                        </span>
+
+                                                            <span>
+
+                                                                ${escapeHtml(
+                                                                    title.name || "CHAMPIONSHIP"
+                                                                )}
+
+                                                            </span>
+
+
+                                                        </div>
 
 
                                                         <strong>
@@ -4020,7 +4081,6 @@
                                                     </div>
 
                                                 `;
-
                                             }
 
                                         )
