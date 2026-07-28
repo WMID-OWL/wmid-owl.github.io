@@ -111,16 +111,15 @@
       "rankingEligible": true,
     "logo": "assets/images/landscape/show-logos/wwe-smackdown.png"
 },
-    {
-      "id": "cmll-super-viernes",
-      "name": "CMLL Super Viernes",
-      "shortName": "Super Viernes",
-      "companyId": "cmll",
+        {
+      "id": "mlw-fusion",
+      "name": "MLW Fusion",
+      "shortName": "Fusion",
+      "companyId": "mlw",
       "day": "Friday",
-      "dayOrder": 5,
-      "showOrder": 2,
-      "rankingEligible": true,
-    "logo": "assets/images/landscape/show-logos/cmll-super-viernes.png"
-}
+      "dayOrder": 6,
+      "showOrder": 1,
+      "rankingEligible": true
+    }
   ]
 }
