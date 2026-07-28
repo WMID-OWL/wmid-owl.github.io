@@ -6537,30 +6537,22 @@ body.landscape-page {
         0 0 auto;
 
     display:
-        grid;
+        flex;
 
-    place-items:
+    align-items:
+        center;
+
+    justify-content:
         center;
 
     overflow:
-        hidden;
+        visible;
 
     border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.1
-        );
+        0;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.035
-        );
+        transparent;
 
 }
 
@@ -6572,13 +6564,22 @@ body.landscape-page {
         block;
 
     width:
-        100%;
+        auto;
 
     height:
+        auto;
+
+    max-width:
+        100%;
+
+    max-height:
         100%;
 
     object-fit:
         contain;
+
+    object-position:
+        center;
 
 }
 
@@ -6620,7 +6621,7 @@ body.landscape-page {
         90px;
 
     padding:
-        10px;
+        0;
 
 }
 
@@ -6653,7 +6654,7 @@ body.landscape-page {
         40px;
 
     padding:
-        5px;
+        0;
 
 }
 
@@ -6686,7 +6687,7 @@ body.landscape-page {
         34px;
 
     padding:
-        4px;
+        0;
 
 }
 
@@ -6714,30 +6715,30 @@ body.landscape-page {
 
     .landscape-promotion-logo-throne {
 
-        width:
-            104px;
+    width:
+        104px;
 
-        height:
-            68px;
+    height:
+        68px;
 
-        padding:
-            7px;
+    padding:
+        0;
 
-    }
+}
 
 
     .landscape-promotion-logo-ranking {
 
-        width:
-            46px;
+    width:
+        46px;
 
-        height:
-            32px;
+    height:
+        32px;
 
-        padding:
-            3px;
+    padding:
+        0;
 
-    }
+}
 
 
     .landscape-power-identity {
@@ -6759,16 +6760,16 @@ body.landscape-page {
 
     .landscape-promotion-logo-show {
 
-        width:
-            42px;
+    width:
+        42px;
 
-        height:
-            30px;
+    height:
+        30px;
 
-        padding:
-            3px;
+    padding:
+        0;
 
-    }
+}
 
 
     .landscape-show-identity {
