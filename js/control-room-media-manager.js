@@ -2869,7 +2869,7 @@ setStatus(
     }
 
 
-    a    async function handleMediaTypeChange() {
+       async function handleMediaTypeChange() {
 
 
         clearMessage();
