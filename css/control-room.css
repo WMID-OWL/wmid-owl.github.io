@@ -7871,3 +7871,103 @@
         );
 
 }
+/* =================================
+   SIGNATURE SE7EN RULEBOOK EDITOR
+================================= */
+
+
+.cr-signature-rulebook-section {
+
+    margin-bottom:
+        1.5rem;
+
+}
+
+
+
+.cr-signature-rulebook-form-section {
+
+    margin-top:
+        1.5rem;
+
+    padding:
+        1.2rem;
+
+    background:
+        #14191c;
+
+    border:
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.2
+        );
+
+}
+
+
+
+.cr-signature-special-data-notice {
+
+    margin-top:
+        1.25rem;
+
+    padding:
+        1rem;
+
+    border:
+        1px solid
+        rgba(
+            201,
+            164,
+            92,
+            0.22
+        );
+
+    background:
+        rgba(
+            201,
+            164,
+            92,
+            0.06
+        );
+
+}
+
+
+
+.cr-signature-special-data-notice strong {
+
+    display:
+        block;
+
+    margin-bottom:
+        0.4rem;
+
+    color:
+        #e1c172;
+
+    font-size:
+        0.72rem;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+.cr-signature-special-data-notice p {
+
+    margin:
+        0;
+
+    color:
+        #bfc5c2;
+
+    line-height:
+        1.6;
+
+}
