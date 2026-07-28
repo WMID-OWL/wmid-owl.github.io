@@ -291,22 +291,75 @@ async function loadTeamProfile() {
 
 
 
-        // =================================
+               // =================================
         // FINISHER
         // =================================
 
 
-                if (team.finisher) {
+        const finisherSection =
+            document.getElementById(
+                "team-finisher-section"
+            );
 
+
+        const finisherName =
             document.getElementById(
                 "team-finisher"
-            ).textContent =
+            );
+
+
+        const finisherGifBox =
+            document.getElementById(
+                "team-finisher-gif-box"
+            );
+
+
+        const finisherGif =
+            document.getElementById(
+                "team-finisher-gif"
+            );
+
+
+        if (
+            team.finisher
+        ) {
+
+
+            finisherName.textContent =
                 team.finisher;
 
 
-            document.getElementById(
-                "team-finisher-section"
-            ).hidden =
+            finisherSection.hidden =
+                false;
+
+        }
+
+
+        if (
+            team.finisherGif &&
+            finisherGifBox &&
+            finisherGif
+        ) {
+
+
+            finisherGif.src =
+                team.finisherGif;
+
+
+            finisherGif.alt =
+
+                team.finisher
+
+                    ? `${team.name} performing ${team.finisher}`
+
+                    : `${team.name} team finisher`;
+
+
+            finisherGifBox.hidden =
+                false;
+
+
+            finisherSection.hidden =
                 false;
 
         }
