@@ -487,8 +487,9 @@
         "mlw-superfight",
         "mlw-battle-riot",
         "mlw-fightland"
-      ]
-    },
+      ],
+    "logo": "assets/images/landscape/promotion-logos/mlw.png"
+},
     {
       "id": "aaa",
       "name": "AAA",
