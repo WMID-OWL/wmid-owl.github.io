@@ -68,31 +68,252 @@
 
 
 /* =================================
-   CURRENT CHAMPIONS
+   HOW OWL SIMULATES
 ================================= */
 
 
-.home-champions-grid {
+.home-simulation-feature {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0, 1.05fr)
+        minmax(360px, 0.95fr);
+
+    border:
+        1px solid
+        rgba(198, 161, 91, 0.34);
+
+    background:
+
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(198, 161, 91, 0.14),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            130deg,
+            #141718,
+            #0c1012 58%,
+            #101416
+        );
+
+}
+
+
+.home-simulation-feature::after {
+
+    content:
+        "SIMULATION";
+
+    position:
+        absolute;
+
+    left:
+        -1rem;
+
+    bottom:
+        -1.5rem;
+
+    color:
+        rgba(255, 255, 255, 0.025);
+
+    font-size:
+        clamp(
+            4rem,
+            10vw,
+            9rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        0.8;
+
+    pointer-events:
+        none;
+
+}
+
+
+.home-simulation-copy {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    min-width:
+        0;
+
+    padding:
+        clamp(
+            2rem,
+            5vw,
+            4.5rem
+        );
+
+}
+
+
+.home-simulation-copy h2 {
+
+    max-width:
+        760px;
+
+    margin:
+        0.55rem 0 1.25rem;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        clamp(
+            2.8rem,
+            6vw,
+            5.8rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        0.88;
+
+    letter-spacing:
+        -0.045em;
+
+}
+
+
+.home-simulation-copy > p:not(.eyebrow) {
+
+    max-width:
+        680px;
+
+    margin:
+        0;
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.75;
+
+}
+
+
+.home-simulation-facts {
 
     display:
         grid;
 
     grid-template-columns:
         repeat(
-            auto-fit,
-            minmax(260px, 1fr)
+            3,
+            minmax(0, 1fr)
         );
 
-    gap:
-        1rem;
+    margin-top:
+        2.25rem;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
 
 }
 
 
-.home-champion-card {
+.home-simulation-facts article {
+
+    display:
+        grid;
+
+    align-content:
+        center;
 
     min-height:
-        230px;
+        120px;
+
+    padding:
+        1.25rem;
+
+    border-right:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+}
+
+
+.home-simulation-facts article:last-child {
+
+    border-right:
+        0;
+
+}
+
+
+.home-simulation-facts strong {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        clamp(
+            1.8rem,
+            4vw,
+            3rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        1;
+
+}
+
+
+.home-simulation-facts span {
+
+    margin-top:
+        0.55rem;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.home-simulation-rules {
+
+    position:
+        relative;
+
+    z-index:
+        2;
 
     display:
         flex;
@@ -101,101 +322,125 @@
         column;
 
     padding:
-        1.5rem;
+        clamp(
+            2rem,
+            4vw,
+            3.5rem
+        );
 
     background:
-        #111517;
+        rgba(5, 7, 8, 0.48);
 
-    border:
+    border-left:
         1px solid
-        rgba(255, 255, 255, 0.12);
+        rgba(255, 255, 255, 0.1);
 
 }
 
 
-.home-champion-brand {
-
-    color:
-        #c6a15b;
-
-    font-size:
-        0.68rem;
-
-    font-weight:
-        900;
-
-    text-transform:
-        uppercase;
-
-    letter-spacing:
-        0.1em;
-
-}
-
-
-.home-champion-card h3 {
+.home-simulation-label {
 
     margin:
-        0.65rem 0 1.5rem;
-
-    font-size:
-        1.5rem;
-
-    line-height:
-        1.1;
-
-}
-
-
-.home-champion-card h3 a {
-
-    color:
-        #f5f5f2;
-
-}
-
-
-.home-champion-card h3 a:hover {
+        0;
 
     color:
         #c6a15b;
 
-}
-
-
-.home-champion-label {
-
-    color:
-        #a7b0b3;
-
     font-size:
-        0.62rem;
+        0.66rem;
 
     font-weight:
         900;
-
-    text-transform:
-        uppercase;
 
     letter-spacing:
-        0.1em;
+        0.12em;
 
 }
 
 
-.home-champion-name {
+.home-simulation-rule-list {
 
     display:
-        inline-block;
+        grid;
 
-    margin-top:
-        0.4rem;
+    gap:
+        0;
+
+    margin:
+        1.25rem 0 0;
+
+    padding:
+        0;
+
+    list-style:
+        none;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+}
+
+
+.home-simulation-rule-list li {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        52px
+        minmax(0, 1fr);
+
+    align-items:
+        center;
+
+    gap:
+        1rem;
+
+    min-height:
+        68px;
+
+    padding:
+        0.85rem 0;
 
     color:
-        #f5f5f2;
+        #d8dcdd;
 
     font-size:
-        1.25rem;
+        0.88rem;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.45;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+}
+
+
+.home-simulation-rule-list strong {
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    min-height:
+        38px;
+
+    color:
+        #080a0b;
+
+    background:
+        #c6a15b;
+
+    font-size:
+        0.85rem;
 
     font-weight:
         900;
@@ -203,51 +448,122 @@
 }
 
 
-.home-champion-name:hover {
+.home-simulation-stack-note {
+
+    margin:
+        1.5rem 0 0;
 
     color:
-        #c6a15b;
+        #f5f5f2;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.65;
 
 }
 
 
-.home-champion-name.vacant {
+.home-simulation-environment {
 
-    color:
-        #a7b0b3;
-
-}
-
-
-.home-champion-stats {
-
-    margin-top:
-        auto;
+    margin:
+        auto 0 0;
 
     padding-top:
         1.5rem;
 
+    color:
+        #717d82;
+
+    font-size:
+        0.76rem;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.65;
+
 }
 
 
-.home-champion-stats span {
+@media (
+    max-width:
+        900px
+) {
 
-    color:
-        #a7b0b3;
+    .home-simulation-feature {
 
-    font-size:
-        0.8rem;
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .home-simulation-rules {
+
+        border-top:
+            1px solid
+            rgba(255, 255, 255, 0.1);
+
+        border-left:
+            0;
+
+    }
 
 }
 
 
-.home-champion-stats strong {
+@media (
+    max-width:
+        600px
+) {
 
-    color:
-        #f5f5f2;
+    .home-simulation-facts {
 
-    font-size:
-        1.4rem;
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .home-simulation-facts article {
+
+        min-height:
+            95px;
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.1);
+
+    }
+
+
+    .home-simulation-facts article:last-child {
+
+        border-bottom:
+            0;
+
+    }
+
+
+    .home-simulation-rule-list li {
+
+        grid-template-columns:
+            46px
+            minmax(0, 1fr);
+
+        gap:
+            0.8rem;
+
+    }
 
 }
 
