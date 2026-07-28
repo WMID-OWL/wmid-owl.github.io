@@ -338,8 +338,8 @@ const COMPANY_STRENGTH = {
         0.36,
 
 
-    cmll:
-        0.30,
+    mlw:
+    0.30,
 
 
     aaa:
