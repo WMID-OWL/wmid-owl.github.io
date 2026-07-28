@@ -1,4 +1,19 @@
 {
   "version": 1,
-  "changes": []
+  "changes": [
+    {
+      "id": "change-1785260746113-1",
+      "titleId": "wwe-test-title",
+      "companyId": "wwe",
+      "titleName": "test title",
+      "previousChampionName": "",
+      "newChampionName": "rob bobby",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "2026-07-23",
+      "recordedAt": "2026-07-28T17:45:46.113Z"
+    }
+  ]
 }
