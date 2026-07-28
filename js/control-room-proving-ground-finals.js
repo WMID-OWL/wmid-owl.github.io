@@ -3,7 +3,7 @@
     "use strict";
 
 
-    // =================================
+    // =================================x
     // PAGE ELEMENTS
     // =================================
 
@@ -231,7 +231,298 @@
     }
 
 
+    // =================================
+    // CURRENT POWER PLAYERS HELPERS
+    // =================================
 
+
+    function getPowerPlayersDatabase() {
+
+
+        const database =
+            owlControlRoomData.powerPlayers;
+
+
+        if (
+            !database ||
+            Array.isArray(
+                database
+            ) ||
+            typeof database !==
+                "object"
+        ) {
+
+            return {
+
+                activeEntries:
+                    [],
+
+                completedEntries:
+                    []
+
+            };
+
+        }
+
+
+        return {
+
+            ...database,
+
+            activeEntries:
+
+                Array.isArray(
+                    database.activeEntries
+                )
+
+                    ? database.activeEntries
+
+                    : [],
+
+            completedEntries:
+
+                Array.isArray(
+                    database.completedEntries
+                )
+
+                    ? database.completedEntries
+
+                    : []
+
+        };
+
+    }
+
+
+
+    function getLinkedPowerEntryState(
+        finalId
+    ) {
+
+
+        const database =
+            getPowerPlayersDatabase();
+
+
+        return {
+
+            database,
+
+            active:
+
+                database.activeEntries.find(
+                    entry =>
+
+                        entry.linkedProvingGroundFinalId ===
+                            finalId
+                ) || null,
+
+            completed:
+
+                database.completedEntries.find(
+                    entry =>
+
+                        entry.linkedProvingGroundFinalId ===
+                            finalId
+                ) || null
+
+        };
+
+    }
+
+
+
+    function getPowerDivisionLabel(
+        division
+    ) {
+
+
+        if (
+            division ===
+            "Men"
+        ) {
+
+            return "Men’s Division";
+
+        }
+
+
+        if (
+            division ===
+            "Women"
+        ) {
+
+            return "Women’s Division";
+
+        }
+
+
+        return "";
+
+    }
+
+
+
+    function createProvingGroundPowerEntry(
+        finalRecord
+    ) {
+
+
+        const id =
+
+            [
+                "proving-ground-winner",
+                finalRecord.year,
+                finalRecord.blockId
+            ]
+
+                .join(
+                    "-"
+                )
+
+                .toLowerCase()
+
+                .replace(
+                    /[^a-z0-9]+/g,
+                    "-"
+                )
+
+                .replace(
+                    /^-+|-+$/g,
+                    ""
+                );
+
+
+        return {
+
+            id,
+
+            type:
+                "Proving Ground Winner",
+
+            name:
+                finalRecord.winnerName,
+
+            description:
+                finalRecord.titleShotDescription,
+
+            status:
+                "Active",
+
+            source:
+                `${finalRecord.year} Proving Grounds`,
+
+            brand:
+                finalRecord.brand,
+
+            division:
+                getPowerDivisionLabel(
+                    finalRecord.division
+                ),
+
+            expires:
+                `December to Remember ${finalRecord.year}`,
+
+            accentClass:
+                "power-player-proving",
+
+            notes: [
+
+                `Won the ${finalRecord.blockLabel} Proving Ground final.`,
+
+                `Defeated ${finalRecord.loserName} by ${finalRecord.method} at ${finalRecord.matchTime}.`
+
+            ],
+
+            linkedProvingGroundFinalId:
+                finalRecord.id,
+
+            linkedProvingGroundEntryId:
+                finalRecord.winnerEntryId,
+
+            createdAt:
+                new Date().toISOString()
+
+        };
+
+    }
+
+
+
+    async function writeFinalAndPowerPlayers(
+        previousProvingGroundDatabase,
+        updatedProvingGroundDatabase,
+        updatedPowerPlayersDatabase
+    ) {
+
+
+        let provingGroundWritten =
+            false;
+
+
+        try {
+
+
+            await writeControlRoomJsonFile(
+                "proving-ground.json",
+                updatedProvingGroundDatabase
+            );
+
+
+            provingGroundWritten =
+                true;
+
+
+            await writeControlRoomJsonFile(
+                "power-players.json",
+                updatedPowerPlayersDatabase
+            );
+
+        }
+
+
+        catch (error) {
+
+
+            if (provingGroundWritten) {
+
+
+                try {
+
+
+                    await writeControlRoomJsonFile(
+                        "proving-ground.json",
+                        previousProvingGroundDatabase
+                    );
+
+                }
+
+
+                catch (rollbackError) {
+
+
+                    console.error(
+                        "Could not roll back Proving Ground after linked Power Players failure:",
+                        rollbackError
+                    );
+
+
+                    throw new Error(
+
+                        `${error.message} The Proving Ground rollback also failed. Check both JSON files before continuing.`
+
+                    );
+
+                }
+
+            }
+
+
+            throw error;
+
+        }
+
+    }
     function getEntryBlockId(
         entry
     ) {
@@ -2537,12 +2828,52 @@
                 );
 
 
+                        const powerPlayersDatabase =
+                getPowerPlayersDatabase();
+
+
+            const linkedPowerState =
+                getLinkedPowerEntryState(
+                    draft.id
+                );
+
+
+            if (
+                linkedPowerState.active ||
+                linkedPowerState.completed
+            ) {
+
+
+                showMessage(
+                    "A Current Power Players entry is already linked to this Proving Ground final.",
+                    "error"
+                );
+
+
+                renderPreview();
+
+
+                return;
+
+            }
+
+
+            const powerEntry =
+                createProvingGroundPowerEntry(
+                    draft
+                );
+
+
+            const savedAt =
+                new Date().toISOString();
+
+
             const updatedDatabase = {
 
                 ...database,
 
                 updatedAt:
-                    new Date().toISOString(),
+                    savedAt,
 
                 entries:
                     updatedEntries,
@@ -2558,13 +2889,36 @@
             };
 
 
+            const updatedPowerPlayersDatabase = {
+
+                ...powerPlayersDatabase,
+
+                updatedAt:
+                    savedAt,
+
+                activeEntries: [
+
+                    ...powerPlayersDatabase.activeEntries,
+
+                    powerEntry
+
+                ]
+
+            };
+
+
             saveButton.disabled =
                 true;
 
 
-            await writeControlRoomJsonFile(
-                "proving-ground.json",
-                updatedDatabase
+            await writeFinalAndPowerPlayers(
+
+                database,
+
+                updatedDatabase,
+
+                updatedPowerPlayersDatabase
+
             );
 
 
@@ -2576,9 +2930,9 @@
             resetForm();
 
 
-            showMessage(
+                        showMessage(
 
-                `${draft.winnerName} won the ${draft.year} ${draft.blockLabel} Proving Ground final and earned the ${draft.titleShotTitle} opportunity at December to Remember.`
+                `${draft.winnerName} won the ${draft.year} ${draft.blockLabel} Proving Ground final and was added to Current Power Players.`
 
             );
 
@@ -2642,11 +2996,33 @@
                 );
 
 
-            if (!selectedFinal) {
+                        if (!selectedFinal) {
 
 
                 showMessage(
                     "Select a Proving Ground final first.",
+                    "error"
+                );
+
+
+                return;
+
+            }
+
+
+            const linkedPowerState =
+                getLinkedPowerEntryState(
+                    selectedFinal.id
+                );
+
+
+            if (
+                linkedPowerState.completed
+            ) {
+
+
+                showMessage(
+                    "This final’s title opportunity is already stored in completed Power Players history and the final cannot be deleted.",
                     "error"
                 );
 
@@ -2694,12 +3070,16 @@
                 );
 
 
+                        const savedAt =
+                new Date().toISOString();
+
+
             const updatedDatabase = {
 
                 ...database,
 
                 updatedAt:
-                    new Date().toISOString(),
+                    savedAt,
 
                 entries:
                     updatedEntries,
@@ -2715,20 +3095,65 @@
             };
 
 
-            await writeControlRoomJsonFile(
-                "proving-ground.json",
-                updatedDatabase
-            );
+            if (
+                linkedPowerState.active
+            ) {
+
+
+                const updatedPowerPlayersDatabase = {
+
+                    ...linkedPowerState.database,
+
+                    updatedAt:
+                        savedAt,
+
+                    activeEntries:
+
+                        linkedPowerState.database.activeEntries.filter(
+                            entry =>
+
+                                entry.id !==
+                                    linkedPowerState.active.id
+                        )
+
+                };
+
+
+                await writeFinalAndPowerPlayers(
+
+                    database,
+
+                    updatedDatabase,
+
+                    updatedPowerPlayersDatabase
+
+                );
+
+            }
+
+
+            else {
+
+
+                await writeControlRoomJsonFile(
+                    "proving-ground.json",
+                    updatedDatabase
+                );
+
+            }
 
 
             await loadRepositoryData(
                 owlRepositoryHandle
             );
 
+                        showMessage(
 
-            showMessage(
+                linkedPowerState.active
 
-                `${selectedFinal.finalistOneName} vs ${selectedFinal.finalistTwoName} was removed from the Proving Ground final history.`
+                    ? `${selectedFinal.finalistOneName} vs ${selectedFinal.finalistTwoName} and its linked Current Power Players entry were removed.`
+
+                    : `${selectedFinal.finalistOneName} vs ${selectedFinal.finalistTwoName} was removed from the Proving Ground final history.`
 
             );
 
