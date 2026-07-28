@@ -53,7 +53,7 @@ pathFields: [
         },
 
 
-        teams: {
+                teams: {
 
             label:
                 "Team Logo",
@@ -62,18 +62,47 @@ pathFields: [
                 "teams",
 
             folder:
-    "teams",
+                "teams",
 
-writeField:
-    "logo",
+            writeField:
+                "logo",
 
-pathFields: [
+            pathFields: [
 
                 "logo",
                 "image",
                 "logoPath"
 
             ]
+
+        },
+
+
+        teamFinishers: {
+
+            label:
+                "Team Finisher GIF",
+
+            dataKey:
+                "teams",
+
+            folder:
+                "team-finishers",
+
+            writeField:
+                "finisherGif",
+
+            pathFields: [
+
+                "finisherGif"
+
+            ],
+
+            teamFinisherMode:
+                true,
+
+            gifOnly:
+                true
 
         },
 
@@ -669,7 +698,7 @@ pathFields: [
     }
 
 
-    return (
+        const record =
 
         recordsForConfig(
             config
@@ -677,10 +706,10 @@ pathFields: [
 
             .find(
 
-                record =>
+                item =>
 
                     String(
-                        record.id
+                        item.id
                     )
 
                     ===
@@ -691,9 +720,47 @@ pathFields: [
 
         ||
 
-        null
+        null;
 
-    );
+
+    if (!record) {
+
+        return null;
+
+    }
+
+
+    if (
+        config.teamFinisherMode
+    ) {
+
+
+        const finisherName =
+
+            cleanText(
+                record.finisher
+            );
+
+
+        if (!finisherName) {
+
+            return null;
+
+        }
+
+
+        return {
+
+            ...record,
+
+            finisherName
+
+        };
+
+    }
+
+
+    return record;
 
 }
 
@@ -768,6 +835,19 @@ pathFields: [
 
     ) {
 
+
+        return "";
+
+    }
+
+    if (
+        config.gifOnly
+
+        &&
+
+        extension !==
+            "gif"
+    ) {
 
         return "";
 
@@ -1911,7 +1991,33 @@ const records =
 
             )
 
-            : sourceRecords
+                        : config.teamFinisherMode
+
+                ? sourceRecords
+
+                    .filter(
+                        team =>
+
+                            cleanText(
+                                team.finisher
+                            )
+                    )
+
+                    .map(
+                        team => ({
+
+                            ...team,
+
+                            finisherName:
+
+                                cleanText(
+                                    team.finisher
+                                )
+
+                        })
+                    )
+
+                : sourceRecords
 
     )
 
@@ -1985,7 +2091,10 @@ const records =
 
 fileInput.accept =
 
-    config.finisherMode
+    (
+        config.finisherMode ||
+        config.gifOnly
+    )
 
         ? "image/gif"
 
@@ -2072,23 +2181,27 @@ setStatus(
 
 fileInput.accept =
 
-    config.finisherMode
+    (
+        config.finisherMode ||
+        config.gifOnly
+    )
 
         ? "image/gif"
 
         : "image/png,image/jpeg,image/webp,image/gif";
 
-
 setStatus(
 
-    config.finisherMode
+    (
+        config.finisherMode ||
+        config.gifOnly
+    )
 
         ? "SELECT GIF"
 
         : "SELECT IMAGE"
 
 );
-
     }
 
 
@@ -2180,15 +2293,17 @@ setStatus(
         }
 if (
 
-    config.finisherMode
+    (
+        config.finisherMode ||
+        config.gifOnly
+    )
 
     &&
 
     extension !==
-    "gif"
+        "gif"
 
 ) {
-
 
     selectedFile =
         null;
@@ -2245,9 +2360,13 @@ if (
                         </div>
 
 
-            ${config.finisherMode
+                        ${
+                (
+                    config.finisherMode ||
+                    config.teamFinisherMode
+                )
 
-                ? `
+                    ? `
 
                     <div class="cr-editor-change-row">
 
