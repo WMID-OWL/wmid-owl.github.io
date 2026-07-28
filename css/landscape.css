@@ -6526,3 +6526,256 @@ body.landscape-page {
 
 
 }
+/* =================================
+   LANDSCAPE PROMOTION LOGOS
+================================= */
+
+
+.landscape-promotion-logo-frame {
+
+    flex:
+        0 0 auto;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
+
+}
+
+
+
+.landscape-promotion-logo-frame img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
+
+}
+
+
+
+.landscape-throne-promotion {
+
+    min-width:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        22px;
+
+}
+
+
+
+.landscape-throne-promotion > div {
+
+    min-width:
+        0;
+
+}
+
+
+
+.landscape-promotion-logo-throne {
+
+    width:
+        140px;
+
+    height:
+        90px;
+
+    padding:
+        10px;
+
+}
+
+
+
+.landscape-power-identity {
+
+    min-width:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+}
+
+
+
+.landscape-promotion-logo-ranking {
+
+    width:
+        58px;
+
+    height:
+        40px;
+
+    padding:
+        5px;
+
+}
+
+
+
+.landscape-show-identity {
+
+    min-width:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+}
+
+
+
+.landscape-promotion-logo-show {
+
+    width:
+        50px;
+
+    height:
+        34px;
+
+    padding:
+        4px;
+
+}
+
+
+
+@media (
+    max-width:
+        680px
+) {
+
+
+    .landscape-throne-promotion {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            14px;
+
+    }
+
+
+    .landscape-promotion-logo-throne {
+
+        width:
+            104px;
+
+        height:
+            68px;
+
+        padding:
+            7px;
+
+    }
+
+
+    .landscape-promotion-logo-ranking {
+
+        width:
+            46px;
+
+        height:
+            32px;
+
+        padding:
+            3px;
+
+    }
+
+
+    .landscape-power-identity {
+
+        gap:
+            9px;
+
+    }
+
+}
+
+
+
+@media (
+    max-width:
+        460px
+) {
+
+
+    .landscape-promotion-logo-show {
+
+        width:
+            42px;
+
+        height:
+            30px;
+
+        padding:
+            3px;
+
+    }
+
+
+    .landscape-show-identity {
+
+        gap:
+            8px;
+
+    }
+
+}
