@@ -433,6 +433,75 @@
     }
 
 
+    function promotionLogoMarkup(
+        companyId,
+        modifierClass
+    ) {
+
+
+        const company =
+            companyForId(
+                companyId
+            );
+
+
+        const logoPath =
+
+            String(
+                company?.logo || ""
+            )
+                .trim();
+
+
+        if (!logoPath) {
+
+            return "";
+
+        }
+
+
+        const companyName =
+
+            company?.shortName
+
+            ||
+
+            company?.name
+
+            ||
+
+            companyId
+
+            ||
+
+            "Promotion";
+
+
+        return `
+
+            <span
+                class="landscape-promotion-logo-frame ${escapeHtml(
+                    modifierClass || ""
+                )}"
+            >
+
+                <img
+                    src="${escapeHtml(
+                        logoPath
+                    )}"
+                    alt="${escapeHtml(
+                        companyName
+                    )} logo"
+                    onerror="this.parentElement.hidden = true;"
+                >
+
+            </span>
+
+        `;
+
+    }
+
+
 
     function formatScore(
         value
@@ -895,31 +964,45 @@
                 <div class="landscape-throne-identity">
 
 
-                    <div>
+                                        <div class="landscape-throne-promotion">
 
 
-                        <span class="landscape-throne-label">
+                        ${promotionLogoMarkup(
 
-                            THE THRONE
-                            ·
-                            ${escapeHtml(
-                                leaderMovement.label
-                            )}
+                            leader.companyId,
 
-                        </span>
+                            "landscape-promotion-logo-throne"
+
+                        )}
 
 
-                        <h3 class="landscape-throne-name">
+                        <div>
 
-                            ${escapeHtml(
-                                leader.companyName
-                            )}
 
-                        </h3>
+                            <span class="landscape-throne-label">
+
+                                THE THRONE
+                                ·
+                                ${escapeHtml(
+                                    leaderMovement.label
+                                )}
+
+                            </span>
+
+
+                            <h3 class="landscape-throne-name">
+
+                                ${escapeHtml(
+                                    leader.companyName
+                                )}
+
+                            </h3>
+
+
+                        </div>
 
 
                     </div>
-
 
 
                     <div class="landscape-throne-score">
@@ -1101,24 +1184,39 @@
 
 
 
-                                    <div class="landscape-power-name">
+                                                                       <div class="landscape-power-identity">
 
 
-                                        <strong>
+                                        ${promotionLogoMarkup(
 
-                                            ${escapeHtml(
-                                                item.companyName
-                                            )}
+                                            item.companyId,
 
-                                        </strong>
+                                            "landscape-promotion-logo-ranking"
+
+                                        )}
 
 
-                                        <small>
+                                        <div class="landscape-power-name">
 
-                                            ${item.weeklyEventsRecorded}
-                                            weekly records
 
-                                        </small>
+                                            <strong>
+
+                                                ${escapeHtml(
+                                                    item.companyName
+                                                )}
+
+                                            </strong>
+
+
+                                            <small>
+
+                                                ${item.weeklyEventsRecorded}
+                                                weekly records
+
+                                            </small>
+
+
+                                        </div>
 
 
                                     </div>
@@ -1541,7 +1639,7 @@
                                 );
 
 
-                            const rowClass =
+                                                        const rowClass =
 
     item.rank === 1
 
@@ -1562,6 +1660,29 @@
                     : "";
 
 
+                            const show =
+                                showForId(
+                                    item.showId
+                                );
+
+
+                            const showCompanyId =
+
+                                show?.companyId
+
+                                ||
+
+                                show?.promotionId
+
+                                ||
+
+                                item.companyId
+
+                                ||
+
+                                "";
+
+
                             return `
 
                                 <article class="landscape-show-row ${rowClass}">
@@ -1575,29 +1696,44 @@
 
 
 
-                                    <div class="landscape-show-info">
+                                                                        <div class="landscape-show-identity">
 
 
-                                        <strong>
+                                        ${promotionLogoMarkup(
 
-                                            ${escapeHtml(
-                                                item.showName
-                                            )}
+                                            showCompanyId,
 
-                                        </strong>
+                                            "landscape-promotion-logo-show"
+
+                                        )}
 
 
-                                        <small>
+                                        <div class="landscape-show-info">
 
-                                            OVERALL
-                                            ${item.overallAverage ?? "—"}
 
-                                            ·
+                                            <strong>
 
-                                            IN-RING
-                                            ${item.matchAverage ?? "—"}
+                                                ${escapeHtml(
+                                                    item.showName
+                                                )}
 
-                                        </small>
+                                            </strong>
+
+
+                                            <small>
+
+                                                OVERALL
+                                                ${item.overallAverage ?? "—"}
+
+                                                ·
+
+                                                IN-RING
+                                                ${item.matchAverage ?? "—"}
+
+                                            </small>
+
+
+                                        </div>
 
 
                                     </div>
