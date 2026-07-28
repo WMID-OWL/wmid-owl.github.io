@@ -145,6 +145,44 @@ pathFields: [
 
         },
 
+        landscapeShows: {
+
+            label:
+                "Landscape Show Logo",
+
+            dataKey:
+                "landscapeShows",
+
+            dataFolderPath: [
+
+                "landscape"
+
+            ],
+
+            dataFileName:
+                "shows.json",
+
+            folderPath: [
+
+                "landscape",
+                "show-logos"
+
+            ],
+
+            writeField:
+                "logo",
+
+            pathFields: [
+
+                "logo"
+
+            ],
+
+            landscapeShowMode:
+                true
+
+        },
+
 
         factions: {
 
@@ -327,7 +365,11 @@ pathFields: [
         null;
 
 
-    let landscapePromotionRecords =
+        let landscapePromotionRecords =
+        [];
+
+
+    let landscapeShowRecords =
         [];
 
 
@@ -652,6 +694,93 @@ pathFields: [
             companiesDatabase.companies;
 
     }
+    async function loadLandscapeShowRecords() {
+
+
+        if (
+            typeof owlRepositoryHandle ===
+                "undefined"
+
+            ||
+
+            !owlRepositoryHandle
+        ) {
+
+
+            landscapeShowRecords =
+                [];
+
+
+            return;
+
+        }
+
+
+        const dataDirectory =
+
+            await owlRepositoryHandle.getDirectoryHandle(
+                "data"
+            );
+
+
+        const landscapeDirectory =
+
+            await dataDirectory.getDirectoryHandle(
+                "landscape"
+            );
+
+
+        const showsHandle =
+
+            await landscapeDirectory.getFileHandle(
+                "shows.json"
+            );
+
+
+        const showsFile =
+
+            await showsHandle.getFile();
+
+
+        const showsText =
+
+            await showsFile.text();
+
+
+        const showsDatabase =
+
+            JSON.parse(
+                showsText
+            );
+
+
+        if (
+            !showsDatabase
+
+            ||
+
+            !Array.isArray(
+                showsDatabase.shows
+            )
+        ) {
+
+
+            throw new Error(
+
+                "data/landscape/shows.json must contain a shows array."
+
+            );
+
+        }
+
+
+        landscapeShowRecords =
+
+            showsDatabase.shows;
+
+    }
+
+
 
 
 
@@ -667,7 +796,7 @@ pathFields: [
         }
 
 
-        if (
+                if (
             config.landscapePromotionMode
         ) {
 
@@ -677,6 +806,22 @@ pathFields: [
             )
 
                 ? landscapePromotionRecords
+
+                : [];
+
+        }
+
+
+        if (
+            config.landscapeShowMode
+        ) {
+
+
+            return Array.isArray(
+                landscapeShowRecords
+            )
+
+                ? landscapeShowRecords
 
                 : [];
 
@@ -1942,12 +2087,22 @@ pathFields: [
             );
 
 
-            if (
+                        if (
                 config.landscapePromotionMode
             ) {
 
 
                 await loadLandscapePromotionRecords();
+
+            }
+
+
+            if (
+                config.landscapeShowMode
+            ) {
+
+
+                await loadLandscapeShowRecords();
 
             }
 
@@ -2714,7 +2869,7 @@ setStatus(
     }
 
 
-    async function handleMediaTypeChange() {
+    a    async function handleMediaTypeChange() {
 
 
         clearMessage();
@@ -2726,18 +2881,51 @@ setStatus(
 
         if (
             config?.landscapePromotionMode
+
+            ||
+
+            config?.landscapeShowMode
         ) {
 
 
+            const isShowMode =
+                Boolean(
+                    config.landscapeShowMode
+                );
+
+
             setStatus(
-                "LOADING PROMOTIONS"
+
+                isShowMode
+
+                    ? "LOADING SHOWS"
+
+                    : "LOADING PROMOTIONS"
+
             );
 
 
             try {
 
 
-                await loadLandscapePromotionRecords();
+                if (
+                    config.landscapePromotionMode
+                ) {
+
+
+                    await loadLandscapePromotionRecords();
+
+                }
+
+
+                if (
+                    config.landscapeShowMode
+                ) {
+
+
+                    await loadLandscapeShowRecords();
+
+                }
 
             }
 
@@ -2747,14 +2935,35 @@ setStatus(
 
                 console.error(
 
-                    "Could not load Landscape promotions:",
+                    isShowMode
+
+                        ? "Could not load Landscape shows:"
+
+                        : "Could not load Landscape promotions:",
+
                     error
 
                 );
 
 
-                landscapePromotionRecords =
-                    [];
+                if (
+                    isShowMode
+                ) {
+
+
+                    landscapeShowRecords =
+                        [];
+
+                }
+
+
+                else {
+
+
+                    landscapePromotionRecords =
+                        [];
+
+                }
 
 
                 populateRecordOptions();
@@ -2766,7 +2975,13 @@ setStatus(
 
                     ||
 
-                    "The Landscape promotion database could not be loaded."
+                    (
+                        isShowMode
+
+                            ? "The Landscape show database could not be loaded."
+
+                            : "The Landscape promotion database could not be loaded."
+                    )
 
                 );
 
