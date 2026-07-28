@@ -601,20 +601,20 @@
           "month": "05",
           "name": "Fight to Survive"
         },
-        {
+                {
           "id": "owl-survivors-remorse",
           "month": "06",
-          "name": "Survivors Remorse"
-        },
-        {
-          "id": "owl-proving-ground",
-          "month": "07",
-          "name": "Proving Ground"
+          "name": "Survivor's Remorse"
         },
         {
           "id": "owl-blood-on-the-sand",
-          "month": "08",
+          "month": "07",
           "name": "Blood on the Sand"
+        },
+        {
+          "id": "owl-game-over",
+          "month": "08",
+          "name": "Game Over"
         },
         {
           "id": "owl-global-warfare",
@@ -627,9 +627,9 @@
           "name": "Deal with the Devil"
         },
         {
-          "id": "owl-game-over",
+          "id": "owl-proving-ground",
           "month": "11",
-          "name": "Game Over"
+          "name": "Proving Grounds"
         },
         {
           "id": "owl-december-to-remember",
