@@ -610,6 +610,213 @@
 
   }
 
+  // =================================
+  // TITLE LOGO HELPERS
+  // =================================
+
+  function titleLogoExtension(
+    file
+  ) {
+
+    const extensions = {
+
+      "image/png":
+        "png",
+
+      "image/jpeg":
+        "jpg",
+
+      "image/webp":
+        "webp"
+
+    };
+
+
+    return (
+
+      extensions[
+        file?.type
+      ]
+
+      ||
+
+      ""
+
+    );
+
+  }
+
+
+  function buildTitleLogoPath(
+    titleId,
+    file
+  ) {
+
+    const extension =
+      titleLogoExtension(
+        file
+      );
+
+
+    if (
+      !titleId
+
+      ||
+
+      !extension
+    ) {
+
+      return "";
+
+    }
+
+
+    return (
+
+      `assets/images/landscape/title-logos/${titleId}.${extension}`
+
+    );
+
+  }
+
+
+  async function writeTitleLogoFile(
+    file,
+    newPath
+  ) {
+
+    if (
+      !file
+
+      ||
+
+      !titleLogoExtension(
+        file
+      )
+
+      ||
+
+      !newPath
+    ) {
+
+      throw new Error(
+        "A valid title-logo image could not be prepared."
+      );
+
+    }
+
+
+    const assetsDirectory =
+
+      await owlRepositoryHandle
+        .getDirectoryHandle(
+
+          "assets",
+
+          {
+            create:
+              true
+          }
+
+        );
+
+
+    const imagesDirectory =
+
+      await assetsDirectory
+        .getDirectoryHandle(
+
+          "images",
+
+          {
+            create:
+              true
+          }
+
+        );
+
+
+    const landscapeDirectory =
+
+      await imagesDirectory
+        .getDirectoryHandle(
+
+          "landscape",
+
+          {
+            create:
+              true
+          }
+
+        );
+
+
+    const titleLogoDirectory =
+
+      await landscapeDirectory
+        .getDirectoryHandle(
+
+          "title-logos",
+
+          {
+            create:
+              true
+          }
+
+        );
+
+
+    const fileName =
+
+      newPath
+        .split(
+          "/"
+        )
+        .pop();
+
+
+    if (
+      !fileName
+    ) {
+
+      throw new Error(
+        "The title-logo filename could not be created."
+      );
+
+    }
+
+
+    const fileHandle =
+
+      await titleLogoDirectory
+        .getFileHandle(
+
+          fileName,
+
+          {
+            create:
+              true
+          }
+
+        );
+
+
+    const writable =
+
+      await fileHandle
+        .createWritable();
+
+
+    await writable.write(
+      file
+    );
+
+
+    await writable.close();
+
+  }
+
+
 
   // =================================
   // TITLE STATUS MODE
@@ -705,8 +912,20 @@
       record.wonEventId || "";
 
 
-    const wonDate =
+        const wonDate =
       record.wonDate || "";
+
+
+    const logoPath =
+      record.logo || "";
+
+
+    card.dataset.logoPath =
+      logoPath;
+
+
+    card._titleLogoFile =
+      null;
 
 
     card.innerHTML = `
@@ -836,7 +1055,7 @@
         </div>
 
 
-        <div class="cr-form-group">
+                <div class="cr-form-group">
 
           <label>
             WON / CHANGE DATE
@@ -847,6 +1066,33 @@
             class="cr-landscape-title-date"
             value="${escapeHtml(wonDate)}"
           >
+
+        </div>
+
+
+        <div class="cr-form-group cr-landscape-title-logo-group">
+
+          <label>
+            TITLE LOGO — OPTIONAL
+          </label>
+
+          <input
+            type="file"
+            class="cr-landscape-title-logo-file"
+            accept="image/png,image/jpeg,image/webp"
+          >
+
+          <small class="cr-landscape-title-logo-readout">
+            ${
+              logoPath
+
+                ? escapeHtml(
+                    logoPath
+                  )
+
+                : "No logo assigned"
+            }
+          </small>
 
         </div>
 
@@ -874,9 +1120,21 @@
       );
 
 
-    const removeButton =
+        const removeButton =
       card.querySelector(
         ".cr-landscape-remove-title"
+      );
+
+
+    const logoInput =
+      card.querySelector(
+        ".cr-landscape-title-logo-file"
+      );
+
+
+    const logoReadout =
+      card.querySelector(
+        ".cr-landscape-title-logo-readout"
       );
 
 
@@ -932,8 +1190,8 @@
 
     card
 
-      .querySelectorAll(
-        "input, select"
+            .querySelectorAll(
+        "input:not([type='file']), select"
       )
 
       .forEach(
@@ -955,6 +1213,117 @@
 
         }
       );
+
+    logoInput?.addEventListener(
+
+      "change",
+
+      () => {
+
+        const file =
+
+          logoInput.files?.[0]
+
+          ||
+
+          null;
+
+
+        if (
+          !file
+        ) {
+
+          card._titleLogoFile =
+            null;
+
+
+          if (
+            logoReadout
+          ) {
+
+            logoReadout.textContent =
+
+              card.dataset.logoPath
+
+              ||
+
+              "No logo assigned";
+
+          }
+
+
+          setStatus(
+            "CHANGES READY"
+          );
+
+
+          return;
+
+        }
+
+
+        if (
+          !titleLogoExtension(
+            file
+          )
+        ) {
+
+          card._titleLogoFile =
+            null;
+
+
+          logoInput.value =
+            "";
+
+
+          if (
+            logoReadout
+          ) {
+
+            logoReadout.textContent =
+
+              card.dataset.logoPath
+
+              ||
+
+              "No logo assigned";
+
+          }
+
+
+          setStatus(
+            "TITLE LOGO MUST BE PNG, JPG, OR WEBP"
+          );
+
+
+          return;
+
+        }
+
+
+        card._titleLogoFile =
+          file;
+
+
+        if (
+          logoReadout
+        ) {
+
+          logoReadout.textContent =
+
+            `Selected: ${file.name}`;
+
+        }
+
+
+        setStatus(
+          "CHANGES READY"
+        );
+
+      }
+
+    );
+
 
 
     removeButton?.addEventListener(
@@ -1461,6 +1830,10 @@
       ];
 
 
+        const logoImports =
+      [];
+
+
     const titles =
       cards.map(
         card => {
@@ -1572,7 +1945,7 @@
           }
 
 
-          const existingId =
+                    const existingId =
             card.dataset.titleId || "";
 
 
@@ -1588,7 +1961,53 @@
             );
 
 
-          return {
+          const selectedLogoFile =
+
+            card._titleLogoFile
+
+            ||
+
+            null;
+
+
+          const logoPath =
+
+            selectedLogoFile
+
+              ? buildTitleLogoPath(
+                  id,
+                  selectedLogoFile
+                )
+
+              : String(
+                  card.dataset.logoPath || ""
+                )
+                  .trim();
+
+
+          if (
+            selectedLogoFile
+
+            &&
+
+            logoPath
+          ) {
+
+            logoImports.push({
+
+              file:
+                selectedLogoFile,
+
+              path:
+                logoPath
+
+            });
+
+          }
+
+
+          const titleRecord = {
+
             id,
             companyId,
             name,
@@ -1607,7 +2026,21 @@
                 : "",
 
             wonDate
+
           };
+
+
+          if (
+            logoPath
+          ) {
+
+            titleRecord.logo =
+              logoPath;
+
+          }
+
+
+          return titleRecord;
 
         }
       );
@@ -1657,7 +2090,12 @@
     }
 
 
-    return titles;
+        return {
+
+      titles,
+      logoImports
+
+    };
 
   }
 
@@ -1905,7 +2343,14 @@
       }
 
 
-      const nextCompanyTitles =
+            const {
+
+        titles:
+          nextCompanyTitles,
+
+        logoImports
+
+      } =
         collectCompanyTitles();
 
 
@@ -2149,9 +2594,40 @@
           );
 
 
-      historyData.changes.push(
+            historyData.changes.push(
         ...newHistoryEntries
       );
+
+
+      if (
+        logoImports.length > 0
+      ) {
+
+        setStatus(
+          "IMPORTING TITLE LOGOS"
+        );
+
+
+        for (
+          const logoImport
+          of logoImports
+        ) {
+
+          await writeTitleLogoFile(
+
+            logoImport.file,
+            logoImport.path
+
+          );
+
+        }
+
+
+        setStatus(
+          "SAVING"
+        );
+
+      }
 
 
       let championshipsWritten =
