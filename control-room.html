@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/control-room.css?v=293a">
+    <link rel="stylesheet" href="css/control-room.css?v=293c">
 </head>
 
 <body class="control-room-body">
@@ -2436,11 +2436,402 @@
 
                     </div>
 
-                    <p
+                                        <p
                         id="cr-proving-message"
                         class="cr-save-message"
                         hidden
                     ></p>
+
+                </div>
+
+                <div class="cr-editor-section cr-proving-result-section">
+
+                    <div class="cr-editor-section-heading">
+
+                        <span>
+                            BLOCK RESULTS
+                        </span>
+
+                        <h3>
+                            Record Round-Robin Match
+                        </h3>
+
+                        <p>
+                            Record a completed block match and calculate the Combat Points earned by both competitors.
+                        </p>
+
+                    </div>
+
+                    <div class="cr-editor-top-grid">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-proving-result-select">
+                                EXISTING BLOCK RESULT
+                            </label>
+
+                            <select
+                                id="cr-proving-result-select"
+                                disabled
+                            >
+
+                                <option value="">
+                                    No block results loaded
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label>
+                                RESULT COUNT
+                            </label>
+
+                            <div
+                                id="cr-proving-result-count"
+                                class="cr-current-value"
+                            >
+                                0
+                            </div>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label>
+                                CLEANUP
+                            </label>
+
+                            <button
+                                id="cr-proving-delete-result"
+                                class="control-room-button control-room-button-secondary cr-tournament-danger-button"
+                                type="button"
+                                disabled
+                            >
+                                Delete Selected Block Result
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="cr-editor-section cr-proving-result-form-section">
+
+                        <div class="cr-editor-section-heading">
+
+                            <span>
+                                NEW BLOCK RESULT
+                            </span>
+
+                            <h3>
+                                Match Information
+                            </h3>
+
+                        </div>
+
+                        <div class="cr-editor-form-grid">
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-result-year">
+                                    YEAR
+                                </label>
+
+                                <input
+                                    id="cr-proving-result-year"
+                                    type="number"
+                                    min="2026"
+                                    step="1"
+                                    autocomplete="off"
+                                    placeholder="2026"
+                                >
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-result-block">
+                                    TOURNAMENT BLOCK
+                                </label>
+
+                                <select
+                                    id="cr-proving-result-block"
+                                    disabled
+                                >
+
+                                    <option value="">
+                                        Add Proving Ground entries first
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-result-date">
+                                    MATCH DATE
+                                </label>
+
+                                <input
+                                    id="cr-proving-result-date"
+                                    type="date"
+                                >
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-result-match-time">
+                                    MATCH TIME
+                                </label>
+
+                                <input
+                                    id="cr-proving-result-match-time"
+                                    type="text"
+                                    autocomplete="off"
+                                    placeholder="Example: 14:32"
+                                >
+
+                            </div>
+
+                        </div>
+
+                        <div class="cr-editor-form-grid">
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-result-competitor-one">
+                                    COMPETITOR 1
+                                </label>
+
+                                <select
+                                    id="cr-proving-result-competitor-one"
+                                    disabled
+                                >
+
+                                    <option value="">
+                                        Select Tournament Block First
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-result-competitor-two">
+                                    COMPETITOR 2
+                                </label>
+
+                                <select
+                                    id="cr-proving-result-competitor-two"
+                                    disabled
+                                >
+
+                                    <option value="">
+                                        Select Tournament Block First
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-result-outcome">
+                                    MATCH OUTCOME
+                                </label>
+
+                                <select id="cr-proving-result-outcome">
+
+                                    <option value="">
+                                        Select Outcome
+                                    </option>
+
+                                    <option value="competitor-one">
+                                        Competitor 1 Wins
+                                    </option>
+
+                                    <option value="competitor-two">
+                                        Competitor 2 Wins
+                                    </option>
+
+                                    <option value="draw">
+                                        Draw
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-result-method">
+                                    FINISH METHOD
+                                </label>
+
+                                <select id="cr-proving-result-method">
+
+                                    <option value="">
+                                        Select Finish Method
+                                    </option>
+
+                                    <option value="Pinfall">
+                                        Pinfall
+                                    </option>
+
+                                    <option value="Submission">
+                                        Submission
+                                    </option>
+
+                                    <option value="KO">
+                                        KO
+                                    </option>
+
+                                    <option value="Count-Out">
+                                        Count-Out
+                                    </option>
+
+                                    <option value="Disqualification">
+                                        Disqualification
+                                    </option>
+
+                                    <option value="Time-Limit Draw">
+                                        Time-Limit Draw
+                                    </option>
+
+                                    <option value="Other Draw">
+                                        Other Draw
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="cr-editor-form-grid">
+
+                            <div class="cr-form-group">
+
+                                <label for="cr-proving-result-blood">
+                                    DRAW BLOOD BONUS
+                                </label>
+
+                                <select id="cr-proving-result-blood">
+
+                                    <option value="none">
+                                        No Blood Bonus
+                                    </option>
+
+                                    <option value="competitor-one">
+                                        Competitor 1 Earned Bonus
+                                    </option>
+
+                                    <option value="competitor-two">
+                                        Competitor 2 Earned Bonus
+                                    </option>
+
+                                    <option value="both">
+                                        Both Competitors Earned Bonus
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label>
+                                    COMPETITOR 1 POINTS
+                                </label>
+
+                                <div
+                                    id="cr-proving-result-points-one"
+                                    class="cr-current-value"
+                                >
+                                    0
+                                </div>
+
+                            </div>
+
+                            <div class="cr-form-group">
+
+                                <label>
+                                    COMPETITOR 2 POINTS
+                                </label>
+
+                                <div
+                                    id="cr-proving-result-points-two"
+                                    class="cr-current-value"
+                                >
+                                    0
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="cr-form-group cr-editor-spaced-field">
+
+                            <label for="cr-proving-result-note">
+                                RESULT NOTE — OPTIONAL
+                            </label>
+
+                            <textarea
+                                id="cr-proving-result-note"
+                                rows="4"
+                                placeholder="Optional tournament context, upset note, or tiebreaker information."
+                            ></textarea>
+
+                        </div>
+
+                        <div
+                            id="cr-proving-result-preview"
+                            class="cr-change-preview"
+                            hidden
+                        >
+
+                            <span>
+                                REVIEW BLOCK RESULT
+                            </span>
+
+                            <div
+                                id="cr-proving-result-change-list"
+                                class="cr-editor-change-list"
+                            ></div>
+
+                            <p
+                                id="cr-proving-result-error"
+                                class="cr-change-error"
+                                hidden
+                            ></p>
+
+                        </div>
+
+                        <div class="cr-manager-actions">
+
+                            <button
+                                id="cr-proving-result-save"
+                                class="control-room-button control-room-button-primary"
+                                type="button"
+                                disabled
+                            >
+                                Save Block Result
+                            </button>
+
+                        </div>
+
+                        <p
+                            id="cr-proving-result-message"
+                            class="cr-save-message"
+                            hidden
+                        ></p>
+
+                    </div>
 
                 </div>
 
