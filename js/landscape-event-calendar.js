@@ -67,7 +67,7 @@
     };
 
 
-    const companyOrder = [
+        const companyOrder = [
 
         "owl",
         "wwe",
@@ -76,7 +76,7 @@
         "roh",
         "nxt",
         "aaa",
-        "cmll"
+        "mlw"
 
     ];
 
