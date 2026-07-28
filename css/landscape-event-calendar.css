@@ -847,3 +847,128 @@
     }
 
 }
+/* =================================
+   CALENDAR PROMOTION LOGOS
+================================= */
+
+
+.landscape-calendar-company-identity {
+
+    min-width:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+}
+
+
+
+.landscape-calendar-company-identity > div {
+
+    min-width:
+        0;
+
+}
+
+
+
+.landscape-calendar-company-logo {
+
+    flex:
+        0 0 104px;
+
+    width:
+        104px;
+
+    height:
+        62px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    padding:
+        7px;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.11
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
+
+}
+
+
+
+.landscape-calendar-company-logo img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
+
+}
+
+
+
+@media (
+    max-width:
+        650px
+) {
+
+
+    .landscape-calendar-company-logo {
+
+        flex-basis:
+            86px;
+
+        width:
+            86px;
+
+        height:
+            52px;
+
+        padding:
+            5px;
+
+    }
+
+
+    .landscape-calendar-company-identity {
+
+        gap:
+            11px;
+
+    }
+
+}
