@@ -1,17 +1,4 @@
 {
   "version": 1,
-  "titles": [
-    {
-      "id": "wwe-test-title",
-      "companyId": "wwe",
-      "name": "test title",
-      "championName": "rob bobby",
-      "status": "active",
-      "wonPeriodId": "",
-      "wonEventId": "",
-      "wonEventName": "",
-      "wonDate": "2026-07-23",
-      "logo": "assets/images/landscape/title-logos/wwe-test-title.png"
-    }
-  ]
+  "titles": []
 }
