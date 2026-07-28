@@ -9,8 +9,9 @@
       "day": "Monday",
       "dayOrder": 1,
       "showOrder": 1,
-      "rankingEligible": true
-    },
+      "rankingEligible": true,
+    "logo": "assets/images/landscape/show-logos/wwe-raw.png"
+},
     {
       "id": "aaa-lucha-libre",
       "name": "AAA Lucha Libre",
@@ -19,8 +20,9 @@
       "day": "Monday",
       "dayOrder": 1,
       "showOrder": 2,
-      "rankingEligible": true
-    },
+      "rankingEligible": true,
+    "logo": "assets/images/landscape/show-logos/aaa-lucha-libre.png"
+},
     {
       "id": "nxt-on-cw",
       "name": "NXT on CW",
@@ -29,8 +31,9 @@
       "day": "Tuesday",
       "dayOrder": 2,
       "showOrder": 1,
-      "rankingEligible": true
-    },
+      "rankingEligible": true,
+    "logo": "assets/images/landscape/show-logos/nxt-on-cw.png"
+},
     {
       "id": "owl-ascension",
       "name": "OWL Ascension",
@@ -39,8 +42,9 @@
       "day": "Tuesday",
       "dayOrder": 2,
       "showOrder": 2,
-      "rankingEligible": true
-    },
+      "rankingEligible": true,
+    "logo": "assets/images/landscape/show-logos/owl-ascension.png"
+},
     {
       "id": "aew-dynamite",
       "name": "AEW Dynamite",
@@ -49,8 +53,9 @@
       "day": "Wednesday",
       "dayOrder": 3,
       "showOrder": 1,
-      "rankingEligible": true
-    },
+      "rankingEligible": true,
+    "logo": "assets/images/landscape/show-logos/aew-dynamite.png"
+},
     {
       "id": "owl-revolt",
       "name": "OWL Revolt",
@@ -59,8 +64,9 @@
       "day": "Wednesday",
       "dayOrder": 3,
       "showOrder": 2,
-      "rankingEligible": true
-    },
+      "rankingEligible": true,
+    "logo": "assets/images/landscape/show-logos/owl-revolt.png"
+},
     {
       "id": "tna-impact",
       "name": "TNA Impact",
@@ -69,8 +75,9 @@
       "day": "Thursday",
       "dayOrder": 4,
       "showOrder": 1,
-      "rankingEligible": true
-    },
+      "rankingEligible": true,
+    "logo": "assets/images/landscape/show-logos/tna-impact.png"
+},
     {
       "id": "roh-on-honorclub",
       "name": "ROH on HonorClub",
@@ -79,8 +86,9 @@
       "day": "Thursday",
       "dayOrder": 4,
       "showOrder": 2,
-      "rankingEligible": true
-    },
+      "rankingEligible": true,
+    "logo": "assets/images/landscape/show-logos/roh-on-honorclub.png"
+},
     {
       "id": "aew-collision",
       "name": "AEW Collision",
@@ -89,8 +97,9 @@
       "day": "Thursday",
       "dayOrder": 4,
       "showOrder": 3,
-      "rankingEligible": true
-    },
+      "rankingEligible": true,
+    "logo": "assets/images/landscape/show-logos/aew-collision.png"
+},
     {
       "id": "wwe-smackdown",
       "name": "WWE SmackDown",
@@ -99,8 +108,9 @@
       "day": "Friday",
       "dayOrder": 5,
       "showOrder": 1,
-      "rankingEligible": true
-    },
+      "rankingEligible": true,
+    "logo": "assets/images/landscape/show-logos/wwe-smackdown.png"
+},
     {
       "id": "cmll-super-viernes",
       "name": "CMLL Super Viernes",
@@ -109,7 +119,8 @@
       "day": "Friday",
       "dayOrder": 5,
       "showOrder": 2,
-      "rankingEligible": true
-    }
+      "rankingEligible": true,
+    "logo": "assets/images/landscape/show-logos/cmll-super-viernes.png"
+}
   ]
 }

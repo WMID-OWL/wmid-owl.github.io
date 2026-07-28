@@ -220,11 +220,12 @@
     ],
     "brand": "Ascension",
     "logo": "assets/images/teams/deddley-sistaz.png",
-    "finisher": "3-SHE",
+    "finisher": "SHE - D",
     "whyWereHere": "Martha May and Chevonne Deddley are the tag-team engine of The Deddley Sistaz: one part wrecking ball, one part controlled chaos, and entirely too comfortable around wooden furniture.\n\nMartha May brings the power, the volume, and the kind of aggression that turns a normal match into a family emergency. Chevonne brings speed, timing, and enough awareness to aim that destruction in the right direction. Together, they fight with the natural chemistry of women who have been causing trouble side by side their entire lives.\n\nThey do not want clean victories or polite applause. They want noise, impact, and the sight of another team wondering how everything went wrong so quickly. When Martha and Chevonne arrive, the table is not part of the decoration. It is part of the strategy.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/deddley-sistaz.gif"
+},
   {
     "id": "her-t-business",
     "name": "Her-t Business",
@@ -253,8 +254,9 @@
     "finisher": "THE SWING STATE",
     "whyWereHere": "The Lovers of Liberty are chaos in red, white, and bruised. Kim McCratt and Connie Servativv may stand on opposite sides of the aisle, argue every talking point, and disagree on just about everything—but they are perfectly united when it comes to beating people down. Their chemistry comes from conflict: one polished and tactical, the other stern and punishing, both too stubborn to back down from anyone. Together, they weaponize division and turn debate into destruction. Their team identity is built on political theater, verbal jabs, and calculated violence, making them one of the most entertaining and dangerous duos in the division. And once they hit The Swing State—a giant swing into a perfectly timed dropkick—the result is usually bipartisan pain.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/lovers-of-liberty.gif"
+},
   {
     "id": "kill-fight-kill-the-owensteens",
     "name": "Kill Fight Kill: The Owensteens",
@@ -268,8 +270,9 @@
     "finisher": "PACKAGE PILEDRIVER BRAINBUSTER",
     "whyWereHere": "The Owensteens are sisterhood weaponized. Keva brings the indie-era brutality: wild brawling, reckless punishment, and a love for turning matches into survival tests. Kayla brings the prizefighter polish: smarter pacing, sharper trash talk, and the ability to steal victory while everyone is watching Keva cause the explosion. Together, they are Kill Fight Kill, a team built on one simple philosophy: hurt them first, hurt them louder, and make sure they remember who did it. They argue, shove each other, and occasionally look one bad decision away from fighting themselves—but once the bell rings, their chemistry becomes terrifying. The Owensteens do not care about being role models. They care about winning, surviving, and leaving bodies behind.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/kill-fight-kill-the-owensteens.gif"
+},
   {
     "id": "the-harvey-girlz",
     "name": "The Harvey Girlz",
@@ -283,8 +286,9 @@
     "finisher": "POETRY IN MOTION",
     "whyWereHere": "The Harvey Girlz are what happens when sisterhood meets pure Xtreme obsession. Raised in Cameron, North Carolina, Katt and Jess Harvey grew up idolizing high-risk, high-heart tag team wrestling and built their whole identity around living without fear. Katt brings the grit, leadership, and inventive edge, while Jess brings the reckless fire and thrill-seeking chaos. Together, they are a nonstop storm of dives, grit, and guts. They don’t just wrestle to win — they wrestle to steal the night and make every crowd feel something. Tables, ladders, risks, pain, passion — none of it scares them. The Harvey Girlz live for the rush, the bond, and the belief that the biggest rewards come to the ones willing to crash the hardest. Two sisters, one mission: Xtreme.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/the-harvey-girlz.gif"
+},
   {
     "id": "southern-heat",
     "name": "Southern Heat",
@@ -298,8 +302,9 @@
     "finisher": "ANOTHER ROUND",
     "whyWereHere": "Coming out of Sweetcorn County, Mississippi, Southern Heat are loud, proud, dangerous, and impossible to ignore. They built their name working rough local shows, county-fair cards, biker bars, and late-night spots where the crowd wanted attitude as much as action. Between shifts at the Rusty Nail Gentlemen’s Club and nights in the ring, they learned how to control a room fast — whether with charm, trash talk, or a fist to the mouth. They fight with southern swagger, backroad grit, and just enough wild energy to make every match feel like it could turn into a bar fight. Stormy brings the power and presence, while Daisha brings the mouth, the mayhem, and the sneaky edge. Together, they are Southern Heat — all sass, smoke, and hard-hitting chaos.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/southern-heat.gif"
+},
   {
     "id": "crimson-lotus",
     "name": "Crimson Lotus",
@@ -343,8 +348,9 @@
     "finisher": "TAKE UM OUT BACK",
     "whyWereHere": "Don’t F*ck With Texas is less of a catchy team name and more of a warning. Hailing from Dallas, Big Tex Colt Stetson and Buck Austin are former ranch-hands who built their lives on hard work, grit, and the kind of toughness you don’t learn in a gym. They don’t care about flash, politics, or who’s trending—they care about respect, pride, and dropping anybody who thinks Texas is just cowboy cosplay. Colt brings the size, power, and intimidating presence of a foreman ready to settle business, while Buck adds raw strength with the agility of a man who spent years taming animals meaner than most wrestlers. Together, they see OWL as a fight for territory, and anybody standing in their way is getting Taken ’Em Out Back.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/dont-fuck-with-texas.gif"
+},
   {
     "id": "house-money",
     "name": "House Money",
@@ -358,8 +364,9 @@
     "finisher": "HOUSE ALWAYS WINS",
     "whyWereHere": "House Money is what happens when two arrogant high rollers decide the rules only apply to everyone else. Mikey “Makin’” Millions and Chassion Cash walk into OWL dressed like the afterparty, talking like kings, and treating the tag division like their personal casino floor. To them, every opponent is just another sucker sitting down at the table thinking they’ve got a chance. Mikey brings the loud charisma and headline energy, while Cash brings the cool, calculated edge that makes the team even more dangerous. Together they fight with the confidence of men who believe they can never truly lose, because in their minds they’re never risking anything—they’re playing with House Money. And once they hit House Always Wins, the night is over and the debt is collected.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/house-money.gif"
+},
   {
     "id": "the-funky-homosapiens",
     "name": "The Funky Homosapiens",
@@ -373,8 +380,9 @@
     "finisher": "GROOVE THEORY",
     "whyWereHere": "Straight out of Harlem, The Funky Homosapiens are what happens when Parliament-Funkadelic, disco nightlife, and professional wrestling collide at full volume. Dynamite Disco Dave and Boogie Down Barry arrive dressed like the party already started three hours ago—and somehow they are still the most dangerous men in the room. Their entrances are loud, their gear is brighter than arena lighting, and there may occasionally be a suspicious dusting of “dance-floor enthusiasm” nearby, but dismissing them as a joke is a fast way to get knocked out. Dave supplies explosive speed and chaotic energy, while Barry brings old-school power, rhythm, and hips with their own gravitational pull. Once Groove Theory connects, the party stops for exactly three seconds.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/the-funky-homosapiens.gif"
+},
   {
     "id": "genn-eric-varsity-club",
     "name": "Genn - Eric Varsity Club",
@@ -388,8 +396,9 @@
     "finisher": "GREAT LAKES LANDING",
     "whyWereHere": "The Genn-Eric Varsity Club believes professional wrestling has forgotten its roots. Allen Genn and Eric Shields aren't interested in catchphrases, viral moments, or winning over crowds—they're here to restore respect for technical wrestling by humiliating anyone who can't survive on the mat.\n\nFormer collegiate stars from Ann Arbor, the pair approaches every match like a championship wrestling tournament. They isolate limbs, grind opponents into exhaustion, and exploit every opening with ruthless efficiency. While fans cheer for spectacular offense, the Varsity Club takes pride in making every contest slow, uncomfortable, and unavoidable.\n\nThey don't call themselves the future of wrestling—they call themselves the standard. And when Great Lakes Landing finally drops an opponent, it's simply the final lesson in why fundamentals always beat flash.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/genn-eric-varsity-club.gif"
+},
   {
     "id": "paid-in-full",
     "name": "Blackpool Catch Club",
@@ -493,8 +502,9 @@
     "finisher": "HOT FIRE FLAME",
     "whyWereHere": "The Rascals are held together by something that cannot be manufactured through matching gear or temporary convenience: genuine history. Dezmond Xavier and Zachary Wentz have travelled, struggled and evolved alongside one another long enough for their teamwork to function almost without communication. Dezmond provides fluid movement, calculated creativity and the ability to connect one sequence seamlessly into the next. Wentz brings volatility, striking aggression and a willingness to push every opening beyond its expected limit. Together, they create a constantly shifting attack that forces opponents to process several threats at once. Their relaxed personalities may encourage larger teams to mistake them for entertainers rather than contenders, but that misjudgement rarely survives the opening bell. The Rascals came to OWL to bring speed and unpredictability to Revolt, reclaim their place among tag wrestling’s elite and prove that friendship becomes a competitive weapon when the chemistry is real.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/the-rsclz-rascals.gif"
+},
   {
     "id": "creed-brothers",
     "name": "Creed Brothers",
@@ -538,8 +548,9 @@
     "finisher": "THE 1 - SHE",
     "whyWereHere": "KayLani and Leilani Osu have spent their entire lives moving as a unit. Known together as The Osus, the twin sisters possess an instinctive chemistry that cannot be taught. A glance, a shift in posture, or a single step is enough for one sister to understand what the other is planning.\n\nKayLani supplies the immediate fire, charging into conflict before it can reach her family. Leilani provides the control, guiding that aggression toward the most damaging result. Their personalities may clash outside the ring, but between the ropes those differences create perfect balance. The Osus overwhelm opponents with rapid exchanges, seamless positioning, and tandem attacks delivered before a defense can form. They do not compete for individual attention. Every victory belongs to the twins, their bloodline, and The Matriarchy.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/the-osus.gif"
+},
   {
     "id": "london-town-sex-pistols",
     "name": "London Town Sex Pistols",
@@ -550,11 +561,12 @@
     ],
     "brand": "Revolt",
     "logo": "assets/images/teams/london-town-sex-pistols.png",
-    "finisher": "SKULL AND BONES",
+    "finisher": "GURLL AND BONES",
     "whyWereHere": "The London Town Sex Pistols combine the precision and chemistry of an elite tag team with the attitude of a punk band that never asked permission to take the stage. Shelly Rotten and Kris Vicious fight at different speeds, but their timing is nearly flawless. Shelly creates openings through technical control, while Kris crashes through them with explosive power.\n\nTheir matches feel like controlled disorder: rapid tags, sudden combinations, hard strikes, and tandem attacks delivered before opponents can reset. Skull and Bones represents everything they are—a coordinated finish built from rebellion, aggression, and complete trust in one another. LTSP came to OWL to bring punk energy into the women’s tag division and prove that anarchy can still operate with perfect teamwork.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/london-town-sex-pistols.gif"
+},
   {
     "id": "vennym",
     "name": "VENNYM",
@@ -583,8 +595,9 @@
     "finisher": "FINAL JUDGEMENT",
     "whyWereHere": "The Sisterhood of the Ankh represents legacy, strength, and the unbreakable bond between two Egyptian sisters determined to carry their heritage onto wrestling’s global stage. Nefeteri and Isis do not present themselves as relics of the past. They are modern competitors who understand that history only matters when someone has the power to continue it.\n\nNefeteri controls matches through patience, precision, and tactical awareness. Isis supplies the force, crushing opponents once her sister has taken away their escape routes. Their offense feels ceremonial only because of how perfectly it is executed—every movement has purpose, and every victory reinforces their name.\n\nThey came to OWL to build a legacy worthy of the symbol they carry: enduring, powerful, and impossible to erase.",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "finisherGif": "assets/images/team-finishers/sisterhood-of-the-ankh.gif"
+},
   {
     "id": "murakami",
     "name": "Murakami",

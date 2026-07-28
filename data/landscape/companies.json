@@ -162,8 +162,9 @@
         "nxt-the-great-american-bash",
         "nxt-halloween-havoc",
         "nxt-stand-and-deliver"
-      ]
-    },
+      ],
+    "logo": "assets/images/landscape/promotion-logos/nxt.png"
+},
     {
       "id": "aew",
       "name": "AEW",
@@ -324,8 +325,9 @@
         "roh-supercard-of-honor",
         "roh-death-before-dishonor",
         "roh-final-battle"
-      ]
-    },
+      ],
+    "logo": "assets/images/landscape/promotion-logos/roh.png"
+},
     {
       "id": "tna",
       "name": "TNA",
@@ -404,8 +406,9 @@
         "tna-rebellion",
         "tna-slammiversary",
         "tna-bound-for-glory"
-      ]
-    },
+      ],
+    "logo": "assets/images/landscape/promotion-logos/tna.png"
+},
     {
       "id": "cmll",
       "name": "CMLL",
@@ -484,8 +487,9 @@
         "cmll-homenaje-a-dos-leyendes",
         "cmll-grand-prix-internacional",
         "cmll-aniverserio"
-      ]
-    },
+      ],
+    "logo": "assets/images/landscape/promotion-logos/cmll.png"
+},
     {
       "id": "aaa",
       "name": "AAA",
@@ -564,8 +568,9 @@
         "aaa-rey-de-reyes",
         "aaa-verano-de-escandalo",
         "aaa-triplemania"
-      ]
-    },
+      ],
+    "logo": "assets/images/landscape/promotion-logos/aaa.png"
+},
     {
       "id": "owl",
       "name": "OWL",
