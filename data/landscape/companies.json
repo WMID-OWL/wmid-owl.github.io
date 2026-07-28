@@ -409,87 +409,86 @@
       ],
     "logo": "assets/images/landscape/promotion-logos/tna.png"
 },
-    {
-      "id": "cmll",
-      "name": "CMLL",
-      "shortName": "CMLL",
+        {
+      "id": "mlw",
+      "name": "Major League Wrestling",
+      "shortName": "MLW",
       "type": "core",
       "rankingEligible": true,
       "braggingRightsEligible": true,
       "shows": [
-        "cmll-super-viernes"
+        "mlw-fusion"
       ],
       "eventCalendar": [
         {
-          "id": "cmll-sin-salida",
+          "id": "mlw-never-say-never",
           "month": "01",
-          "name": "Sin Salida"
+          "name": "Never Say Never"
         },
         {
-          "id": "cmll-que-no-te-ganen-tus-monstrous",
+          "id": "mlw-kings-of-colosseum",
           "month": "02",
-          "name": "Que No Te Ganen Tus Monstrous"
+          "name": "Kings Of Colosseum"
         },
         {
-          "id": "cmll-homenaje-a-dos-leyendes",
+          "id": "mlw-fury-road",
           "month": "03",
-          "name": "Homenaje A Dos Leyendes"
+          "name": "Fury Road"
         },
         {
-          "id": "cmll-aniversario-arena-mexico",
+          "id": "mlw-war-chamber",
           "month": "04",
-          "name": "Aniversario Arena Mexico"
+          "name": "War Chamber"
         },
         {
-          "id": "cmll-fantastica-mania",
+          "id": "mlw-battle-riot",
           "month": "05",
-          "name": "Fantastica Mania"
+          "name": "Battle Riot"
         },
         {
-          "id": "cmll-sabados-de-coliseo",
+          "id": "mlw-the-opera-cup",
           "month": "06",
-          "name": "Sabados de Coliseo"
+          "name": "The Opera Cup"
         },
         {
-          "id": "cmll-grand-prix-internacional",
+          "id": "mlw-blood-and-thunder",
           "month": "07",
-          "name": "Grand Prix Internacional"
+          "name": "Blood & Thunder"
         },
         {
-          "id": "cmll-noche-de-campeones",
+          "id": "mlw-summer-of-the-beasts",
           "month": "08",
-          "name": "Noche de Campeones"
+          "name": "Summer Of The Beasts"
         },
         {
-          "id": "cmll-aniverserio",
+          "id": "mlw-fightland",
           "month": "09",
-          "name": "Aniverserio"
+          "name": "Fightland"
         },
         {
-          "id": "cmll-grand-prix-de-amazonas",
+          "id": "mlw-slaughterhouse",
           "month": "10",
-          "name": "Grand Prix de Amazonas"
+          "name": "Slaughterhouse"
         },
         {
-          "id": "cmll-dia-de-muertos",
+          "id": "mlw-superfight",
           "month": "11",
-          "name": "Dia de Muertos"
+          "name": "SuperFight"
         },
         {
-          "id": "cmll-espectacular-funcion-de-fin-de-ano",
+          "id": "mlw-intimidation-games",
           "month": "12",
-          "name": "Espectacular Funcion de Fin de Ano"
+          "name": "Intimidation Games"
         }
       ],
-      "flagshipEventId": "cmll-aniverserio",
+      "flagshipEventId": "mlw-battle-riot",
       "majorEventIds": [
-        "cmll-fantastica-mania",
-        "cmll-homenaje-a-dos-leyendes",
-        "cmll-grand-prix-internacional",
-        "cmll-aniverserio"
-      ],
-    "logo": "assets/images/landscape/promotion-logos/cmll.png"
-},
+        "mlw-kings-of-colosseum",
+        "mlw-superfight",
+        "mlw-battle-riot",
+        "mlw-fightland"
+      ]
+    },
     {
       "id": "aaa",
       "name": "AAA",
