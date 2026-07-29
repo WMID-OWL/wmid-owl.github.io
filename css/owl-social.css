@@ -7741,7 +7741,82 @@ h2.social-destination-logo-heading {
         0;
 
 }
+/* =================================
+   AFTER DARK HERO BRANDING
+================================= */
 
+
+.after-dark-hero-brand-row {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+
+        clamp(
+            20px,
+            3vw,
+            36px
+        );
+
+    min-height:
+        126px;
+
+}
+
+
+.after-dark-hero-logo {
+
+    display:
+        block;
+
+    flex:
+        0 0 auto;
+
+    width:
+
+        clamp(
+            150px,
+            16vw,
+            245px
+        );
+
+    max-height:
+        138px;
+
+    object-fit:
+        contain;
+
+    object-position:
+        left center;
+
+    filter:
+
+        drop-shadow(
+            0
+            0
+            22px
+            rgba(
+                171,
+                73,
+                235,
+                0.24
+            )
+        );
+
+}
+
+
+.after-dark-hero-brand-row
+.after-dark-kicker {
+
+    max-width:
+        340px;
+
+}
 
 .after-dark-kicker {
 
@@ -9249,7 +9324,39 @@ h2.social-destination-logo-heading {
         700px
 ) {
 
-    .after-dark-page {
+    .after-dark-page {     .after-dark-hero-brand-row {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            12px;
+
+        min-height:
+            0;
+
+        margin-bottom:
+            16px;
+
+    }
+
+
+    .after-dark-hero-logo {
+
+        width:
+
+            min(
+                220px,
+                72vw
+            );
+
+        max-height:
+            128px;
+
+    }
 
         padding-top:
             12px;
@@ -9806,7 +9913,82 @@ h2.social-destination-logo-heading {
         0;
 
 }
+/* =================================
+   SUNDAY DISSERVICE HERO BRANDING
+================================= */
 
+
+.sunday-disservice-hero-brand-row {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+
+        clamp(
+            20px,
+            3vw,
+            38px
+        );
+
+    min-height:
+        148px;
+
+}
+
+
+.sunday-disservice-hero-logo {
+
+    display:
+        block;
+
+    flex:
+        0 0 auto;
+
+    width:
+
+        clamp(
+            155px,
+            17vw,
+            250px
+        );
+
+    max-height:
+        172px;
+
+    object-fit:
+        contain;
+
+    object-position:
+        left center;
+
+    filter:
+
+        drop-shadow(
+            0
+            0
+            22px
+            rgba(
+                225,
+                189,
+                112,
+                0.18
+            )
+        );
+
+}
+
+
+.sunday-disservice-hero-brand-row
+.sunday-disservice-kicker {
+
+    max-width:
+        320px;
+
+}
 
 .sunday-disservice-kicker {
 
@@ -11424,7 +11606,39 @@ h2.social-destination-logo-heading {
         700px
 ) {
 
-    .sunday-disservice-page {
+    .sunday-disservice-page {    .sunday-disservice-hero-brand-row {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            12px;
+
+        min-height:
+            0;
+
+        margin-bottom:
+            16px;
+
+    }
+
+
+    .sunday-disservice-hero-logo {
+
+        width:
+
+            min(
+                220px,
+                72vw
+            );
+
+        max-height:
+            150px;
+
+    }
 
         padding-top:
             12px;
