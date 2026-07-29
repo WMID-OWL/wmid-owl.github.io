@@ -1428,10 +1428,12 @@ function sundayDisservicePublisherRenderPreview() {
             validationError;
 
 
-    sundayDisservicePublisherEls
+        sundayDisservicePublisherEls
         .publishButton
         .disabled =
-            true;
+            Boolean(
+                validationError
+            );
 
 
     sundayDisservicePublisherSetStatus(
@@ -1466,12 +1468,11 @@ function sundayDisservicePublisherRenderPreview() {
         else {
 
 
-            sundayDisservicePublisherEls
+                        sundayDisservicePublisherEls
                 .message
                 .textContent =
 
-                    "Sermon preview is valid. Publishing will be activated in the next step.";
-
+                    "Sermon preview is valid and ready to publish.";
 
             sundayDisservicePublisherEls
                 .message
@@ -1656,7 +1657,578 @@ async function initializeSundayDisservicePublisher() {
 }
 
 
+// =================================
+// SAVED SERMON RECORD
+// =================================
 
+
+function sundayDisservicePublisherCreateSermonRecord(
+    draft
+) {
+
+
+    return {
+
+        id:
+            draft.id,
+
+
+        sermon:
+            draft.sermon,
+
+
+        deliveryDate:
+            draft.deliveryDate,
+
+
+        label:
+            draft.label,
+
+
+        host:
+            draft.host,
+
+
+        headline:
+            draft.headline,
+
+
+        deck:
+            draft.deck,
+
+
+        argument: {
+
+            title:
+                draft.argument.title,
+
+            body: [
+                ...draft.argument.body
+            ]
+
+        },
+
+
+        praise: [
+            ...draft.praise
+        ],
+
+
+        condemnation: [
+            ...draft.condemnation
+        ],
+
+
+        favorites: [
+            ...draft.favorites
+        ],
+
+
+        blindSpots: [
+            ...draft.blindSpots
+        ],
+
+
+        references: [
+            ...draft.references
+        ],
+
+
+        closingWord:
+            draft.closingWord
+
+    };
+
+}
+
+
+
+// =================================
+// ARCHIVE ENTRY
+// =================================
+
+
+function sundayDisservicePublisherCreateArchiveEntry(
+    draft
+) {
+
+
+    return {
+
+        id:
+            draft.id,
+
+
+        sermon:
+            draft.sermon,
+
+
+        deliveryDate:
+            draft.deliveryDate,
+
+
+        label:
+            draft.label,
+
+
+        headline:
+            draft.headline,
+
+
+        file:
+            draft.file
+
+    };
+
+}
+
+
+
+// =================================
+// WRITE PERMISSION
+// =================================
+
+
+async function sundayDisservicePublisherEnsureWritePermission() {
+
+
+    if (
+        !owlRepositoryHandle
+    ) {
+
+
+        return false;
+
+    }
+
+
+    const options = {
+
+        mode:
+            "readwrite"
+
+    };
+
+
+    if (
+
+        typeof owlRepositoryHandle
+            .queryPermission !==
+            "function"
+
+    ) {
+
+
+        return true;
+
+    }
+
+
+    const currentPermission =
+
+        await owlRepositoryHandle
+            .queryPermission(
+                options
+            );
+
+
+    if (
+        currentPermission ===
+        "granted"
+    ) {
+
+
+        return true;
+
+    }
+
+
+    if (
+
+        typeof owlRepositoryHandle
+            .requestPermission !==
+            "function"
+
+    ) {
+
+
+        return false;
+
+    }
+
+
+    const requestedPermission =
+
+        await owlRepositoryHandle
+            .requestPermission(
+                options
+            );
+
+
+    return requestedPermission ===
+        "granted";
+
+}
+
+
+
+// =================================
+// WRITE JSON
+// =================================
+
+
+async function sundayDisservicePublisherWriteJson(
+    directoryHandle,
+    fileName,
+    value
+) {
+
+
+    const fileHandle =
+
+        await directoryHandle
+            .getFileHandle(
+
+                fileName,
+
+                {
+                    create:
+                        true
+                }
+
+            );
+
+
+    const writable =
+
+        await fileHandle
+            .createWritable();
+
+
+    await writable.write(
+
+        `${JSON.stringify(
+
+            value,
+
+            null,
+
+            4
+
+        )}\n`
+
+    );
+
+
+    await writable.close();
+
+}
+
+
+
+// =================================
+// PUBLISH
+// =================================
+
+
+async function sundayDisservicePublisherPublish() {
+
+
+    const draft =
+
+        sundayDisservicePublisherDraft();
+
+
+    const validationError =
+
+        sundayDisservicePublisherValidate(
+            draft
+        );
+
+
+    if (
+        validationError
+    ) {
+
+
+        sundayDisservicePublisherRenderPreview();
+
+
+        return;
+
+    }
+
+
+    sundayDisservicePublisherEls
+        .publishButton
+        .disabled =
+            true;
+
+
+    sundayDisservicePublisherSetStatus(
+        "PUBLISHING"
+    );
+
+
+    sundayDisservicePublisherEls
+        .message
+        .hidden =
+            true;
+
+
+    sundayDisservicePublisherEls
+        .error
+        .hidden =
+            true;
+
+
+    try {
+
+
+        const hasPermission =
+
+            await sundayDisservicePublisherEnsureWritePermission();
+
+
+        if (
+            !hasPermission
+        ) {
+
+
+            throw new Error(
+
+                "Write permission was not granted."
+
+            );
+
+        }
+
+
+        const dataDirectory =
+
+            await owlRepositoryHandle
+                .getDirectoryHandle(
+
+                    "data",
+
+                    {
+                        create:
+                            true
+                    }
+
+                );
+
+
+        const sundayDirectory =
+
+            await dataDirectory
+                .getDirectoryHandle(
+
+                    "sunday-disservice",
+
+                    {
+                        create:
+                            true
+                    }
+
+                );
+
+
+        const sermonRecord =
+
+            sundayDisservicePublisherCreateSermonRecord(
+                draft
+            );
+
+
+        const archiveEntry =
+
+            sundayDisservicePublisherCreateArchiveEntry(
+                draft
+            );
+
+
+        const existingSermons =
+
+            sundayDisservicePublisherArray(
+
+                sundayDisservicePublisherState
+                    .archiveIndex
+                    .sermons
+
+            );
+
+
+        const updatedIndex = {
+
+            version:
+
+                Number(
+
+                    sundayDisservicePublisherState
+                        .archiveIndex
+                        .version
+
+                    ||
+
+                    1
+
+                ),
+
+
+            sermons: [
+
+                ...existingSermons,
+
+                archiveEntry
+
+            ]
+
+                .sort(
+
+                    (
+                        a,
+                        b
+                    ) =>
+
+                        String(
+                            b.id || ""
+                        )
+
+                            .localeCompare(
+
+                                String(
+                                    a.id || ""
+                                )
+
+                            )
+
+                )
+
+        };
+
+
+        await sundayDisservicePublisherWriteJson(
+
+            sundayDirectory,
+
+            `${draft.id}.json`,
+
+            sermonRecord
+
+        );
+
+
+        await sundayDisservicePublisherWriteJson(
+
+            sundayDirectory,
+
+            "archive-index.json",
+
+            updatedIndex
+
+        );
+
+
+        sundayDisservicePublisherState
+            .archiveIndex =
+                updatedIndex;
+
+
+        sundayDisservicePublisherSetStatus(
+            "SAVED"
+        );
+
+
+        sundayDisservicePublisherEls
+            .message
+            .textContent =
+
+                `Sermon ${draft.sermon} was published. Review ${draft.file} and data/sunday-disservice/archive-index.json in GitHub Desktop before committing.`;
+
+
+        sundayDisservicePublisherEls
+            .message
+            .className =
+
+                "cr-save-message save-success";
+
+
+        sundayDisservicePublisherEls
+            .message
+            .hidden =
+                false;
+
+
+        sundayDisservicePublisherEls
+            .publishButton
+            .disabled =
+                true;
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        console.error(
+
+            "Could not publish Sunday Disservice:",
+
+            error
+
+        );
+
+
+        sundayDisservicePublisherSetStatus(
+            "SAVE FAILED"
+        );
+
+
+        sundayDisservicePublisherEls
+            .error
+            .textContent =
+
+                error.message
+
+                ||
+
+                "Sunday Disservice could not be published.";
+
+
+        sundayDisservicePublisherEls
+            .error
+            .hidden =
+                false;
+
+
+        sundayDisservicePublisherEls
+            .publishButton
+            .disabled =
+                false;
+
+    }
+
+}
+
+
+
+// =================================
+// PUBLISH BUTTON
+// =================================
+
+
+sundayDisservicePublisherEls
+    .publishButton
+    ?.addEventListener(
+
+        "click",
+
+        sundayDisservicePublisherPublish
+
+    );
 // =================================
 // CONTROL ROOM DATA EVENT
 // =================================
