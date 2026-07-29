@@ -11891,3 +11891,17 @@ h2.social-destination-logo-heading {
     }
 
 }
+/* INNANET CARD LOGO SIZE OVERRIDE */
+
+.innanet-card .social-destination-logo {
+
+    width:
+        min(260px, 100%);
+
+    max-width:
+        260px;
+
+    max-height:
+        110px;
+
+}
