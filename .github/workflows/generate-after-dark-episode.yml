@@ -1,0 +1,215 @@
+name: Generate After Dark Episode
+
+
+on:
+
+  workflow_run:
+
+    workflows:
+
+      - Build After Dark Context
+
+    types:
+
+      - completed
+
+
+  workflow_dispatch:
+
+    inputs:
+
+      max_weeks:
+
+        description:
+          "Number of pending After Dark weeks to generate"
+
+        required:
+          true
+
+        default:
+          "1"
+
+
+permissions:
+
+  contents:
+    write
+
+  models:
+    read
+
+
+concurrency:
+
+  group:
+    after-dark-writer
+
+  cancel-in-progress:
+    false
+
+
+jobs:
+
+  generate-episode:
+
+    if: >
+
+      github.event_name == 'workflow_dispatch'
+
+      ||
+
+      github.event.workflow_run.conclusion == 'success'
+
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+        with:
+
+          ref:
+            main
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+      - name: Check After Dark writer syntax
+
+        run: |
+
+          node --check scripts/write-after-dark-episode.mjs
+
+
+      - name: Read After Dark generation queue
+
+        id:
+          queue
+
+        run: |
+
+          COUNT=$(node -e "
+
+          const fs = require('fs');
+
+          const queue = JSON.parse(
+
+              fs.readFileSync(
+
+                  'data/after-dark/generation-queue.json',
+
+                  'utf8'
+
+              )
+
+          );
+
+          process.stdout.write(
+
+              String(
+
+                  Number(
+
+                      queue.pendingWeekCount || 0
+
+                  )
+
+              )
+
+          );
+
+          ")
+
+
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+
+
+          echo "Pending After Dark weeks: $COUNT"
+
+
+      - name: Generate After Dark episode
+
+        if: >
+
+          steps.queue.outputs.count != '0'
+
+        env:
+
+          GITHUB_TOKEN:
+            ${{ secrets.GITHUB_TOKEN }}
+
+          MAX_WEEKS:
+            ${{ github.event_name == 'workflow_dispatch' && inputs.max_weeks || steps.queue.outputs.count }}
+
+          AFTER_DARK_MODEL:
+            openai/gpt-4o-mini
+
+          AFTER_DARK_REQUEST_GAP_MS:
+            "20000"
+
+
+        run: |
+
+          node scripts/write-after-dark-episode.mjs
+
+
+      - name: Refresh After Dark generation queue
+
+        if: >
+
+          always()
+
+          &&
+
+          steps.queue.outputs.count != '0'
+
+        run: |
+
+          node scripts/build-after-dark-context.mjs
+
+
+      - name: Commit generated After Dark content
+
+        if:
+          always()
+
+        run: |
+
+          git add data/after-dark
+
+
+          if git diff --cached --quiet; then
+
+            echo "No After Dark content changes to commit."
+
+            exit 0
+
+          fi
+
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          git commit \
+            -m "Publish OWL After Dark episode"
+
+
+          git push
