@@ -144,7 +144,51 @@ function installOwlMediaNavigation() {
         || "index.html";
 
 
+    const legacyOwlSocialLinks =
 
+        document.querySelectorAll(
+            'a[href="owl-social.html"]'
+        );
+
+
+    legacyOwlSocialLinks.forEach(
+
+        link => {
+
+
+            const originalLabel =
+
+                link.textContent
+                    .trim();
+
+
+            link.href =
+                "owl-media.html";
+
+
+            if (
+                originalLabel
+                    .toLowerCase()
+
+                ===
+                "owl social"
+            ) {
+
+
+                link.textContent =
+
+                    originalLabel ===
+                    originalLabel.toUpperCase()
+
+                        ? "OWL MEDIA"
+
+                        : "OWL Media";
+
+            }
+
+        }
+
+    );
     const owlMediaPages = [
 
         "owl-media.html",
