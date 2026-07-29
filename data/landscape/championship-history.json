@@ -378,6 +378,76 @@
       "eventName": "",
       "wonDate": "",
       "recordedAt": "2026-07-29T04:17:29.202Z"
+    },
+    {
+      "id": "change-1785299104282-1",
+      "titleId": "aaa-mega-championship",
+      "companyId": "aaa",
+      "titleName": "Mega Championship",
+      "previousChampionName": "",
+      "newChampionName": "El Grande Americano",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:25:04.282Z"
+    },
+    {
+      "id": "change-1785299104282-2",
+      "titleId": "aaa-latin-american-championship",
+      "companyId": "aaa",
+      "titleName": "Latin American Championship",
+      "previousChampionName": "",
+      "newChampionName": "El Hijo Del Vikingo",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:25:04.282Z"
+    },
+    {
+      "id": "change-1785299104282-3",
+      "titleId": "aaa-reina-de-reines-championship",
+      "companyId": "aaa",
+      "titleName": "Reina De Reines Championship",
+      "previousChampionName": "",
+      "newChampionName": "Flammer",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:25:04.282Z"
+    },
+    {
+      "id": "change-1785299104282-4",
+      "titleId": "aaa-world-tag-team-championships",
+      "companyId": "aaa",
+      "titleName": "World Tag Team Championships",
+      "previousChampionName": "",
+      "newChampionName": "The War Raiders",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:25:04.282Z"
+    },
+    {
+      "id": "change-1785299104282-7",
+      "titleId": "aaa-world-trios-championships",
+      "companyId": "aaa",
+      "titleName": "World Trios Championships",
+      "previousChampionName": "",
+      "newChampionName": "Psycho Circus",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:25:04.282Z"
     }
   ]
 }
