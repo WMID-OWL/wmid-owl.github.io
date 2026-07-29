@@ -34,6 +34,7 @@
 <a class="cr-tool-jump-link" href="#cr-tool-tournaments">Tournaments</a>
 <a class="cr-tool-jump-link" href="#cr-tool-signature-series">Signature Series</a>
 <a class="cr-tool-jump-link" href="#cr-tool-after-dark">After Dark</a>
+<a class="cr-tool-jump-link" href="#cr-tool-sunday-disservice">Sunday Disservice</a>
 <a class="cr-tool-jump-link" href="#cr-tool-media">Media</a>
 <a class="cr-tool-jump-link" href="#cr-tool-booker">Match Booker</a>
    <a class="cr-tool-jump-link" href="#cr-tool-results">Results</a>
@@ -3624,6 +3625,467 @@
 
             <p
                 id="cr-after-dark-message"
+                class="cr-save-message"
+                hidden
+            ></p>
+
+        </section>
+                <!-- =================================
+             SUNDAY DISSERVICE PUBLISHER
+        ================================== -->
+
+        <section
+            id="cr-tool-sunday-disservice"
+            class="control-room-panel"
+        >
+
+            <div class="control-room-panel-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        WEEKLY EDITORIAL
+                    </p>
+
+                    <h2>
+                        Sunday Disservice Publisher
+                    </h2>
+
+                </div>
+
+                <span
+                    id="cr-sunday-disservice-status"
+                    class="control-room-health-summary"
+                >
+                    READY
+                </span>
+
+            </div>
+
+
+            <p class="cr-editor-note">
+
+                Write and publish Trey Wise’s weekly sermon.
+                The publisher preserves the argument as authored
+                rather than generating opinions automatically.
+
+            </p>
+
+
+            <!-- =================================
+                 SERMON IDENTITY
+            ================================== -->
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        SERMON
+                    </span>
+
+                    <h3>
+                        Publication Identity
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-editor-form-grid">
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-sunday-disservice-sermon">
+                            SERMON NUMBER
+                        </label>
+
+                        <input
+                            id="cr-sunday-disservice-sermon"
+                            type="number"
+                            min="1"
+                            step="1"
+                        >
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-sunday-disservice-date">
+                            DELIVERY DATE
+                        </label>
+
+                        <input
+                            id="cr-sunday-disservice-date"
+                            type="date"
+                        >
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            HOST
+                        </label>
+
+                        <div class="cr-current-value">
+                            Trey Wise
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="cr-form-group cr-editor-spaced-field">
+
+                    <label for="cr-sunday-disservice-headline">
+                        SERMON HEADLINE
+                    </label>
+
+                    <input
+                        id="cr-sunday-disservice-headline"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="The main proclamation of the week"
+                    >
+
+                </div>
+
+
+                <div class="cr-form-group cr-editor-spaced-field">
+
+                    <label for="cr-sunday-disservice-deck">
+                        OPENING DECLARATION
+                    </label>
+
+                    <textarea
+                        id="cr-sunday-disservice-deck"
+                        rows="5"
+                        placeholder="The short introduction shown beneath the sermon headline."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 WEEKLY ARGUMENT
+            ================================== -->
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        THIS WEEK’S GOSPEL
+                    </span>
+
+                    <h3>
+                        The Main Argument
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-form-group">
+
+                    <label for="cr-sunday-disservice-argument-title">
+                        ARGUMENT TITLE
+                    </label>
+
+                    <input
+                        id="cr-sunday-disservice-argument-title"
+                        type="text"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="cr-form-group cr-editor-spaced-field">
+
+                    <label for="cr-sunday-disservice-argument-body">
+                        FULL ARGUMENT
+                    </label>
+
+                    <textarea
+                        id="cr-sunday-disservice-argument-body"
+                        rows="16"
+                        placeholder="Separate paragraphs with a blank line."
+                    ></textarea>
+
+                    <small class="cr-field-help">
+
+                        Blank lines create separate published
+                        paragraphs. Trey’s wording will be preserved
+                        exactly as entered.
+
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 PRAISE AND CONDEMNATION
+            ================================== -->
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        WEEKLY VERDICTS
+                    </span>
+
+                    <h3>
+                        Praise and Condemnation
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-editor-form-grid">
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-sunday-disservice-praise">
+                            WHAT TREY PRAISED
+                        </label>
+
+                        <textarea
+                            id="cr-sunday-disservice-praise"
+                            rows="9"
+                            placeholder="One entry per line. Example: Wrestler or moment | Trey’s explanation"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-sunday-disservice-condemnation">
+                            HERESY OF THE WEEK
+                        </label>
+
+                        <textarea
+                            id="cr-sunday-disservice-condemnation"
+                            rows="9"
+                            placeholder="One entry per line. Example: Wrestler, decision, or opinion | Trey’s condemnation"
+                        ></textarea>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 FAVOURITES AND BLIND SPOTS
+            ================================== -->
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        EDITORIAL BIAS
+                    </span>
+
+                    <h3>
+                        Favourites and Blind Spots
+                    </h3>
+
+                </div>
+
+
+                <p class="cr-editor-note">
+
+                    These fields make Trey’s evolving loyalties
+                    visible without requiring him to admit that
+                    they are loyalties.
+
+                </p>
+
+
+                <div class="cr-editor-form-grid">
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-sunday-disservice-favorites">
+                            TREY’S FAVOURITES
+                        </label>
+
+                        <textarea
+                            id="cr-sunday-disservice-favorites"
+                            rows="8"
+                            placeholder="One entry per line. Example: Wrestler | Why Trey continues defending them"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-sunday-disservice-blind-spots">
+                            TREY’S BLIND SPOTS
+                        </label>
+
+                        <textarea
+                            id="cr-sunday-disservice-blind-spots"
+                            rows="8"
+                            placeholder="One entry per line. Example: Subject | The contradiction Trey refuses to recognise"
+                        ></textarea>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 REFERENCES
+            ================================== -->
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        CITED FROM THE PULPIT
+                    </span>
+
+                    <h3>
+                        Referenced This Week
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-form-group">
+
+                    <label for="cr-sunday-disservice-references">
+                        WRESTLERS, EVENTS, TEAMS, OR STORIES
+                    </label>
+
+                    <textarea
+                        id="cr-sunday-disservice-references"
+                        rows="9"
+                        placeholder="One reference per line. TYPE | Display Label | Optional link"
+                    ></textarea>
+
+                    <small class="cr-field-help">
+
+                        Example:
+                        WRESTLER | Trey Wise’s chosen favourite |
+                        wrestler.html?id=example-wrestler
+
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 BENEDICTION
+            ================================== -->
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        THE BENEDICTION
+                    </span>
+
+                    <h3>
+                        Closing Word
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-form-group">
+
+                    <label for="cr-sunday-disservice-closing-word">
+                        FINAL PROCLAMATION
+                    </label>
+
+                    <textarea
+                        id="cr-sunday-disservice-closing-word"
+                        rows="7"
+                        placeholder="Trey’s final word on the week."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 REVIEW
+            ================================== -->
+
+
+            <div
+                id="cr-sunday-disservice-preview"
+                class="cr-change-preview"
+                hidden
+            >
+
+                <span>
+                    REVIEW SUNDAY DISSERVICE SERMON
+                </span>
+
+                <div
+                    id="cr-sunday-disservice-change-list"
+                    class="cr-editor-change-list"
+                ></div>
+
+                <p
+                    id="cr-sunday-disservice-error"
+                    class="cr-change-error"
+                    hidden
+                ></p>
+
+            </div>
+
+
+            <div class="cr-manager-actions">
+
+                <button
+                    id="cr-sunday-disservice-publish"
+                    class="control-room-button control-room-button-primary"
+                    type="button"
+                    disabled
+                >
+                    Publish Sunday Disservice
+                </button>
+
+            </div>
+
+
+            <p
+                id="cr-sunday-disservice-message"
                 class="cr-save-message"
                 hidden
             ></p>
