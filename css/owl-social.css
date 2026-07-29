@@ -428,7 +428,115 @@ body {
         0.98;
 
 }
+/* =================================
+   MEDIA DESTINATION LOGOS
+================================= */
 
+
+.social-destination-card
+h2.social-destination-logo-heading {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    min-height:
+        142px;
+
+    margin:
+
+        24px
+        0
+        0;
+
+    font-size:
+        0;
+
+    line-height:
+        1;
+
+}
+
+
+.social-destination-logo {
+
+    display:
+        block;
+
+    width:
+        auto;
+
+    max-width:
+        100%;
+
+    height:
+        auto;
+
+    object-fit:
+        contain;
+
+    object-position:
+        left center;
+
+}
+
+
+/* THE INNANET */
+
+
+.social-destination-logo-innanet {
+
+    max-width:
+        390px;
+
+    max-height:
+        126px;
+
+}
+
+
+/* WWOW */
+
+
+.social-destination-logo-wwow {
+
+    max-width:
+        500px;
+
+    max-height:
+        132px;
+
+}
+
+
+/* OWL AFTER DARK */
+
+
+.social-destination-logo-after-dark {
+
+    max-width:
+        440px;
+
+    max-height:
+        138px;
+
+}
+
+
+/* SUNDAY DISSERVICE */
+
+
+.social-destination-logo-sunday {
+
+    max-width:
+        470px;
+
+    max-height:
+        142px;
+
+}
 
 .social-destination-card p {
 
@@ -1916,7 +2024,48 @@ body {
 
     .social-hub-page,
     .social-app-page {
+    .social-destination-card
+    h2.social-destination-logo-heading {
 
+        min-height:
+            104px;
+
+        margin-top:
+            20px;
+
+    }
+
+
+    .social-destination-logo-innanet {
+
+        max-height:
+            92px;
+
+    }
+
+
+    .social-destination-logo-wwow {
+
+        max-height:
+            100px;
+
+    }
+
+
+    .social-destination-logo-after-dark {
+
+        max-height:
+            104px;
+
+    }
+
+
+    .social-destination-logo-sunday {
+
+        max-height:
+            108px;
+
+    }
         width:
             calc(
                 100% - 20px
