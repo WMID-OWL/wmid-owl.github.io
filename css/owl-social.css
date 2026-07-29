@@ -1036,7 +1036,58 @@ body {
         #d65a50;
 
 }
+.after-dark-card
+.button-primary {
 
+    border-color:
+        #c98cff;
+
+    color:
+        #120b17;
+
+    background:
+        #c98cff;
+
+}
+
+
+.after-dark-card
+.button-primary:hover {
+
+    border-color:
+        #e1b7ff;
+
+    background:
+        #e1b7ff;
+
+}
+
+
+.sunday-disservice-card
+.button-primary {
+
+    border-color:
+        #e1bd70;
+
+    color:
+        #1b1209;
+
+    background:
+        #e1bd70;
+
+}
+
+
+.sunday-disservice-card
+.button-primary:hover {
+
+    border-color:
+        #f2d89b;
+
+    background:
+        #f2d89b;
+
+}
 
 
 /* STRONGER CARD HOVER GLOW */
