@@ -2038,10 +2038,12 @@ function afterDarkPublisherRenderPreview() {
             validationError;
 
 
-    afterDarkPublisherEls
+      afterDarkPublisherEls
         .publishButton
         .disabled =
-            true;
+            Boolean(
+                validationError
+            );
 
 
     afterDarkPublisherSetStatus(
@@ -2074,11 +2076,11 @@ function afterDarkPublisherRenderPreview() {
         else {
 
 
-            afterDarkPublisherEls
+                        afterDarkPublisherEls
                 .message
                 .textContent =
 
-                    "Episode preview is valid. Publishing will be activated in the next step.";
+                    "Episode preview is valid and ready to publish.";
 
 
             afterDarkPublisherEls
@@ -2398,7 +2400,845 @@ async function initializeAfterDarkPublisher() {
 }
 
 
+// =================================
+// SAVED MATCH VALUES
+// =================================
 
+
+function afterDarkPublisherSavedRating(
+    match
+) {
+
+
+    const rating =
+
+        Number(
+            match?.rating
+        );
+
+
+    return Number.isFinite(
+        rating
+    )
+
+        ? rating
+
+        : null;
+
+}
+
+
+
+function afterDarkPublisherSavedStars(
+    match
+) {
+
+
+    const stars =
+
+        Number(
+
+            match?.starRating
+
+            ??
+
+            match?.stars
+
+        );
+
+
+    return Number.isFinite(
+        stars
+    )
+
+        ? stars
+
+        : null;
+
+}
+
+
+
+// =================================
+// SAVED RESULT
+// =================================
+
+
+function afterDarkPublisherCreateResult(
+    match
+) {
+
+
+    return {
+
+        matchType:
+
+            match?.matchType
+
+            ||
+
+            match?.stipulation
+
+            ||
+
+            "MATCH",
+
+
+        match:
+
+            afterDarkPublisherMatchText(
+                match
+            ),
+
+
+        winner:
+
+            afterDarkPublisherWinnerText(
+                match
+            ),
+
+
+        rating:
+
+            afterDarkPublisherSavedRating(
+                match
+            ),
+
+
+        stars:
+
+            afterDarkPublisherSavedStars(
+                match
+            )
+
+    };
+
+}
+
+
+
+// =================================
+// SAVED SHOW RECAP
+// =================================
+
+
+function afterDarkPublisherCreateShow(
+    event,
+    summary
+) {
+
+
+    return {
+
+        eventId:
+
+            event?.id
+
+            ||
+
+            "",
+
+
+        name:
+
+            event?.name
+
+            ||
+
+            "OWL Weekly Event",
+
+
+        date:
+
+            event?.date
+
+            ||
+
+            "",
+
+
+        dateLabel:
+
+            event?.date
+
+                ? afterDarkPublisherFormatDate(
+                    event.date
+                )
+
+                : "",
+
+
+        summary:
+
+            summary
+
+            ||
+
+            "",
+
+
+        results:
+
+            event?.id
+
+                ? afterDarkPublisherEventMatches(
+                    event.id
+                )
+                    .map(
+                        afterDarkPublisherCreateResult
+                    )
+
+                : []
+
+    };
+
+}
+
+
+
+// =================================
+// SAVED EPISODE
+// =================================
+
+
+function afterDarkPublisherCreateEpisodeRecord(
+    draft
+) {
+
+
+    const featuredMatch =
+
+        draft.matchOfWeek;
+
+
+    return {
+
+        id:
+            draft.id,
+
+
+        episode:
+            draft.episode,
+
+
+        airDate:
+            draft.airDate,
+
+
+        label:
+            draft.label,
+
+
+        coverageLabel:
+            draft.coverageLabel,
+
+
+        headline:
+            draft.headline,
+
+
+        deck:
+            draft.deck,
+
+
+        ascension:
+
+            afterDarkPublisherCreateShow(
+
+                draft.ascensionEvent,
+
+                draft.ascensionSummary
+
+            ),
+
+
+        revolt:
+
+            afterDarkPublisherCreateShow(
+
+                draft.revoltEvent,
+
+                draft.revoltSummary
+
+            ),
+
+
+        matchOfWeek:
+
+            featuredMatch
+
+                ? {
+
+                    eventId:
+
+                        featuredMatch
+                            .event
+                            ?.id
+
+                        ||
+
+                        "",
+
+
+                    eventName:
+
+                        featuredMatch
+                            .event
+                            ?.name
+
+                        ||
+
+                        "OWL Event",
+
+
+                    match:
+
+                        afterDarkPublisherMatchText(
+
+                            featuredMatch.match
+
+                        ),
+
+
+                    summary:
+
+                        draft.matchSummary,
+
+
+                    rating:
+
+                        afterDarkPublisherSavedRating(
+
+                            featuredMatch.match
+
+                        ),
+
+
+                    stars:
+
+                        afterDarkPublisherSavedStars(
+
+                            featuredMatch.match
+
+                        )
+
+                }
+
+                : null,
+
+
+        titleChanges: [
+
+            ...draft.automaticTitleChanges,
+
+            ...draft.additionalTitleChanges
+
+        ],
+
+
+        storyFallout:
+            draft.storyFallout,
+
+
+        powerShifts:
+            draft.powerShifts,
+
+
+        closingNote:
+            draft.closingNote
+
+    };
+
+}
+
+
+
+// =================================
+// ARCHIVE ENTRY
+// =================================
+
+
+function afterDarkPublisherCreateArchiveEntry(
+    draft
+) {
+
+
+    return {
+
+        id:
+            draft.id,
+
+
+        episode:
+            draft.episode,
+
+
+        airDate:
+            draft.airDate,
+
+
+        label:
+            draft.label,
+
+
+        headline:
+            draft.headline,
+
+
+        file:
+            draft.file
+
+    };
+
+}
+
+
+
+// =================================
+// WRITE PERMISSION
+// =================================
+
+
+async function afterDarkPublisherEnsureWritePermission() {
+
+
+    if (
+        !owlRepositoryHandle
+    ) {
+
+
+        return false;
+
+    }
+
+
+    const options = {
+
+        mode:
+            "readwrite"
+
+    };
+
+
+    if (
+
+        typeof owlRepositoryHandle
+            .queryPermission !==
+            "function"
+
+    ) {
+
+
+        return true;
+
+    }
+
+
+    const currentPermission =
+
+        await owlRepositoryHandle
+            .queryPermission(
+                options
+            );
+
+
+    if (
+        currentPermission ===
+        "granted"
+    ) {
+
+
+        return true;
+
+    }
+
+
+    if (
+
+        typeof owlRepositoryHandle
+            .requestPermission !==
+            "function"
+
+    ) {
+
+
+        return false;
+
+    }
+
+
+    const requestedPermission =
+
+        await owlRepositoryHandle
+            .requestPermission(
+                options
+            );
+
+
+    return requestedPermission ===
+        "granted";
+
+}
+
+
+
+// =================================
+// WRITE JSON
+// =================================
+
+
+async function afterDarkPublisherWriteJson(
+    directoryHandle,
+    fileName,
+    value
+) {
+
+
+    const fileHandle =
+
+        await directoryHandle
+            .getFileHandle(
+
+                fileName,
+
+                {
+                    create:
+                        true
+                }
+
+            );
+
+
+    const writable =
+
+        await fileHandle
+            .createWritable();
+
+
+    await writable.write(
+
+        `${JSON.stringify(
+
+            value,
+
+            null,
+
+            4
+
+        )}\n`
+
+    );
+
+
+    await writable.close();
+
+}
+
+
+
+// =================================
+// PUBLISH
+// =================================
+
+
+async function afterDarkPublisherPublish() {
+
+
+    const draft =
+
+        afterDarkPublisherDraft();
+
+
+    const validationError =
+
+        afterDarkPublisherValidate(
+            draft
+        );
+
+
+    if (
+        validationError
+    ) {
+
+
+        afterDarkPublisherRenderPreview();
+
+
+        return;
+
+    }
+
+
+    afterDarkPublisherEls
+        .publishButton
+        .disabled =
+            true;
+
+
+    afterDarkPublisherSetStatus(
+        "PUBLISHING"
+    );
+
+
+    afterDarkPublisherEls
+        .message
+        .hidden =
+            true;
+
+
+    afterDarkPublisherEls
+        .error
+        .hidden =
+            true;
+
+
+    try {
+
+
+        const hasPermission =
+
+            await afterDarkPublisherEnsureWritePermission();
+
+
+        if (
+            !hasPermission
+        ) {
+
+
+            throw new Error(
+
+                "Write permission was not granted."
+
+            );
+
+        }
+
+
+        const dataDirectory =
+
+            await owlRepositoryHandle
+                .getDirectoryHandle(
+
+                    "data",
+
+                    {
+                        create:
+                            true
+                    }
+
+                );
+
+
+        const afterDarkDirectory =
+
+            await dataDirectory
+                .getDirectoryHandle(
+
+                    "after-dark",
+
+                    {
+                        create:
+                            true
+                    }
+
+                );
+
+
+        const episodeRecord =
+
+            afterDarkPublisherCreateEpisodeRecord(
+                draft
+            );
+
+
+        const archiveEntry =
+
+            afterDarkPublisherCreateArchiveEntry(
+                draft
+            );
+
+
+        const existingEpisodes =
+
+            afterDarkPublisherArray(
+
+                afterDarkPublisherState
+                    .archiveIndex
+                    .episodes
+
+            );
+
+
+        const updatedIndex = {
+
+            version:
+
+                Number(
+
+                    afterDarkPublisherState
+                        .archiveIndex
+                        .version
+
+                    ||
+
+                    1
+
+                ),
+
+
+            episodes: [
+
+                ...existingEpisodes,
+
+                archiveEntry
+
+            ]
+
+                .sort(
+
+                    (
+                        a,
+                        b
+                    ) =>
+
+                        String(
+                            b.id || ""
+                        )
+
+                            .localeCompare(
+
+                                String(
+                                    a.id || ""
+                                )
+
+                            )
+
+                )
+
+        };
+
+
+        await afterDarkPublisherWriteJson(
+
+            afterDarkDirectory,
+
+            `${draft.id}.json`,
+
+            episodeRecord
+
+        );
+
+
+        await afterDarkPublisherWriteJson(
+
+            afterDarkDirectory,
+
+            "archive-index.json",
+
+            updatedIndex
+
+        );
+
+
+        afterDarkPublisherState
+            .archiveIndex =
+                updatedIndex;
+
+
+        afterDarkPublisherSetStatus(
+            "SAVED"
+        );
+
+
+        afterDarkPublisherEls
+            .message
+            .textContent =
+
+                `Episode ${draft.episode} was published. Review ${draft.file} and data/after-dark/archive-index.json in GitHub Desktop before committing.`;
+
+
+        afterDarkPublisherEls
+            .message
+            .className =
+
+                "cr-save-message save-success";
+
+
+        afterDarkPublisherEls
+            .message
+            .hidden =
+                false;
+
+
+        afterDarkPublisherEls
+            .publishButton
+            .disabled =
+                true;
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        console.error(
+
+            "Could not publish OWL After Dark:",
+
+            error
+
+        );
+
+
+        afterDarkPublisherSetStatus(
+            "SAVE FAILED"
+        );
+
+
+        afterDarkPublisherEls
+            .error
+            .textContent =
+
+                error.message
+
+                ||
+
+                "OWL After Dark could not be published.";
+
+
+        afterDarkPublisherEls
+            .error
+            .hidden =
+                false;
+
+
+        afterDarkPublisherEls
+            .publishButton
+            .disabled =
+                false;
+
+    }
+
+}
+
+
+
+// =================================
+// PUBLISH BUTTON
+// =================================
+
+
+afterDarkPublisherEls
+    .publishButton
+    ?.addEventListener(
+
+        "click",
+
+        afterDarkPublisherPublish
+
+    );
 // =================================
 // CONTROL ROOM DATA EVENT
 // =================================
