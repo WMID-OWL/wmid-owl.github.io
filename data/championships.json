@@ -6,7 +6,7 @@
     "division": "Men",
     "type": "Singles",
     "tier": "World",
-    "image": "",
+    "image": "assets/images/championships/owl-world-championship.png",
     "description": ""
   },
   {
@@ -16,7 +16,7 @@
     "division": "Women",
     "type": "Singles",
     "tier": "World",
-    "image": "",
+    "image": "assets/images/championships/owl-womens-world-championship.png",
     "description": ""
   },
   {
@@ -26,7 +26,7 @@
     "division": "Men",
     "type": "Singles",
     "tier": "Midcard",
-    "image": "",
+    "image": "assets/images/championships/ascension-championship.png",
     "description": ""
   },
   {
@@ -36,7 +36,7 @@
     "division": "Women",
     "type": "Singles",
     "tier": "Midcard",
-    "image": "",
+    "image": "assets/images/championships/womens-ascension-championship.png",
     "description": ""
   },
   {
@@ -46,7 +46,7 @@
     "division": "Men",
     "type": "Singles",
     "tier": "World",
-    "image": "",
+    "image": "assets/images/championships/owl-heavyweight-championship.png",
     "description": ""
   },
   {
@@ -56,7 +56,7 @@
     "division": "Women",
     "type": "Singles",
     "tier": "World",
-    "image": "",
+    "image": "assets/images/championships/owl-womens-heavyweight-championship.png",
     "description": ""
   },
   {
@@ -66,7 +66,7 @@
     "division": "Men",
     "type": "Singles",
     "tier": "Midcard",
-    "image": "",
+    "image": "assets/images/championships/revolt-championship.png",
     "description": ""
   },
   {
@@ -76,7 +76,7 @@
     "division": "Women",
     "type": "Singles",
     "tier": "Midcard",
-    "image": "",
+    "image": "assets/images/championships/womens-revolt-championship.png",
     "description": ""
   },
   {
@@ -86,7 +86,7 @@
     "division": "Men",
     "type": "Tag Team",
     "tier": "Tag Team",
-    "image": "",
+    "image": "assets/images/championships/twin-talon-tag-team-championship.png",
     "description": ""
   },
   {
@@ -96,7 +96,7 @@
     "division": "Women",
     "type": "Tag Team",
     "tier": "Tag Team",
-    "image": "",
+    "image": "assets/images/championships/womens-twin-talon-tag-team-championship.png",
     "description": ""
   }
 ]
