@@ -518,6 +518,48 @@
       "eventName": "",
       "wonDate": "",
       "recordedAt": "2026-07-29T04:29:44.690Z"
+    },
+    {
+      "id": "change-1785299720707-6",
+      "titleId": "roh-women-s-television-championship",
+      "companyId": "roh",
+      "titleName": "Women's Television Championship",
+      "previousChampionName": "",
+      "newChampionName": "Red Velvet",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:35:20.707Z"
+    },
+    {
+      "id": "change-1785299720707-7",
+      "titleId": "roh-six-man-tag-team-championships",
+      "companyId": "roh",
+      "titleName": "Six Man Tag Team Championships",
+      "previousChampionName": "",
+      "newChampionName": "The Outrunners & Dalton Castle",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:35:20.707Z"
+    },
+    {
+      "id": "change-1785299720707-8",
+      "titleId": "roh-women-s-pure-championship",
+      "companyId": "roh",
+      "titleName": "Women's Pure Championship",
+      "previousChampionName": "",
+      "newChampionName": "Deonna Purrazzo",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:35:20.707Z"
     }
   ]
 }
