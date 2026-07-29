@@ -9109,3 +9109,2185 @@ body {
     }
 
 }
+/* =================================
+   SUNDAY DISSERVICE
+================================= */
+
+
+.sunday-disservice-body {
+
+    background:
+        #080706;
+
+    color:
+        #f5efe2;
+
+}
+
+
+.sunday-disservice-page {
+
+    width:
+        100%;
+
+    padding:
+        34px 0 80px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% -8%,
+            rgba(
+                132,
+                36,
+                42,
+                0.22
+            ),
+            transparent 36%
+        ),
+
+        linear-gradient(
+            180deg,
+            #0b0808,
+            #080706 52%,
+            #0c0908
+        );
+
+}
+
+
+.sunday-disservice-shell {
+
+    width:
+
+        min(
+            1440px,
+            calc(
+                100% - 30px
+            )
+        );
+
+    margin:
+        0 auto;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.22
+        );
+
+    background:
+        #120e0d;
+
+    box-shadow:
+
+        0
+        38px
+        110px
+        rgba(
+            0,
+            0,
+            0,
+            0.62
+        );
+
+}
+
+
+
+/* =================================
+   PROGRAM BAR
+================================= */
+
+
+.sunday-disservice-program-bar {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        24px;
+
+    min-height:
+        48px;
+
+    padding:
+        0 24px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.16
+        );
+
+    background:
+        #0b0908;
+
+}
+
+
+.sunday-disservice-program-bar > div {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        16px;
+
+}
+
+
+.sunday-disservice-program-type {
+
+    color:
+        #e1bd70;
+
+    font-size:
+        0.6rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.15em;
+
+}
+
+
+.sunday-disservice-current-label {
+
+    color:
+        #8d7e70;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.sunday-disservice-program-nav {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+}
+
+
+.sunday-disservice-program-nav a {
+
+    color:
+        #b9aa98;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    text-decoration:
+        none;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.sunday-disservice-program-nav a:hover {
+
+    color:
+        #e1bd70;
+
+}
+
+
+
+/* =================================
+   MASTHEAD
+================================= */
+
+
+.sunday-disservice-masthead {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        290px;
+
+    gap:
+        clamp(
+            34px,
+            6vw,
+            90px
+        );
+
+    align-items:
+        end;
+
+    min-height:
+        540px;
+
+    padding:
+
+        clamp(
+            48px,
+            8vw,
+            105px
+        )
+
+        clamp(
+            30px,
+            7vw,
+            92px
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.17
+        );
+
+    background:
+
+        linear-gradient(
+            110deg,
+            rgba(
+                111,
+                23,
+                30,
+                0.72
+            ),
+            rgba(
+                62,
+                18,
+                21,
+                0.34
+            )
+            46%,
+            transparent 72%
+        ),
+
+        radial-gradient(
+            circle at 88% 18%,
+            rgba(
+                225,
+                189,
+                112,
+                0.19
+            ),
+            transparent 34%
+        ),
+
+        #18100f;
+
+}
+
+
+.sunday-disservice-masthead::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    opacity:
+        0.24;
+
+    pointer-events:
+        none;
+
+    background:
+
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 74px,
+            rgba(
+                225,
+                189,
+                112,
+                0.06
+            )
+            75px,
+            transparent 76px
+        ),
+
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 74px,
+            rgba(
+                225,
+                189,
+                112,
+                0.045
+            )
+            75px,
+            transparent 76px
+        );
+
+}
+
+
+.sunday-disservice-masthead::after {
+
+    content:
+        "THE GOSPEL ACCORDING TO TREY WISE";
+
+    position:
+        absolute;
+
+    right:
+        -1rem;
+
+    bottom:
+        -1rem;
+
+    color:
+        rgba(
+            255,
+            239,
+            205,
+            0.025
+        );
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            3.5rem,
+            8vw,
+            8.5rem
+        );
+
+    font-weight:
+        900;
+
+    font-style:
+        italic;
+
+    line-height:
+        0.78;
+
+    letter-spacing:
+        -0.05em;
+
+    text-align:
+        right;
+
+    pointer-events:
+        none;
+
+}
+
+
+.sunday-disservice-masthead-copy {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    min-width:
+        0;
+
+}
+
+
+.sunday-disservice-kicker {
+
+    margin:
+        0;
+
+    color:
+        #e1bd70;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.17em;
+
+}
+
+
+.sunday-disservice-masthead-copy h1 {
+
+    max-width:
+        1000px;
+
+    margin:
+        18px 0 0;
+
+    color:
+        #f7ead0;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            4rem,
+            8.5vw,
+            8.8rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        0.83;
+
+    letter-spacing:
+        -0.06em;
+
+}
+
+
+.sunday-disservice-subtitle {
+
+    margin:
+        24px 0 0;
+
+    color:
+        #e1bd70;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            1.1rem,
+            2vw,
+            1.55rem
+        );
+
+    font-style:
+        italic;
+
+    font-weight:
+        700;
+
+}
+
+
+.sunday-disservice-intro {
+
+    max-width:
+        750px;
+
+    margin:
+        24px 0 0;
+
+    color:
+        #c3b6a5;
+
+    font-size:
+        clamp(
+            1rem,
+            1.55vw,
+            1.18rem
+        );
+
+    line-height:
+        1.78;
+
+}
+
+
+.sunday-disservice-host-card {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    align-self:
+        end;
+
+    padding:
+        26px;
+
+    border:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.32
+        );
+
+    border-top:
+        5px solid
+        #e1bd70;
+
+    background:
+        rgba(
+            16,
+            11,
+            10,
+            0.9
+        );
+
+    box-shadow:
+
+        0
+        20px
+        50px
+        rgba(
+            0,
+            0,
+            0,
+            0.34
+        ),
+
+        inset
+        0
+        0
+        40px
+        rgba(
+            225,
+            189,
+            112,
+            0.04
+        );
+
+}
+
+
+.sunday-disservice-host-card > span {
+
+    color:
+        #9b7f4d;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.15em;
+
+}
+
+
+.sunday-disservice-host-card > strong {
+
+    display:
+        block;
+
+    margin-top:
+        10px;
+
+    color:
+        #f7ead0;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        2rem;
+
+    line-height:
+        1;
+
+}
+
+
+.sunday-disservice-host-card p {
+
+    margin:
+        18px 0 0;
+
+    color:
+        #aa9e8f;
+
+    font-size:
+        0.85rem;
+
+    line-height:
+        1.65;
+
+}
+
+
+.sunday-disservice-host-card small {
+
+    display:
+        block;
+
+    margin-top:
+        22px;
+
+    padding-top:
+        14px;
+
+    border-top:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.18
+        );
+
+    color:
+        #e1bd70;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+
+/* =================================
+   CURRENT SERMON
+================================= */
+
+
+.sunday-disservice-current-section {
+
+    background:
+        #120e0d;
+
+}
+
+
+.sunday-disservice-sermon-package {
+
+    display:
+        grid;
+
+}
+
+
+.sunday-disservice-sermon-hero {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        265px;
+
+    gap:
+        clamp(
+            34px,
+            6vw,
+            90px
+        );
+
+    align-items:
+        end;
+
+    padding:
+
+        clamp(
+            40px,
+            7vw,
+            84px
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.16
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 88% 12%,
+            rgba(
+                225,
+                189,
+                112,
+                0.1
+            ),
+            transparent 32%
+        ),
+
+        linear-gradient(
+            120deg,
+            rgba(
+                102,
+                24,
+                29,
+                0.27
+            ),
+            transparent 58%
+        ),
+
+        #171110;
+
+}
+
+
+.sunday-disservice-sermon-number {
+
+    color:
+        #e1bd70;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.15em;
+
+}
+
+
+.sunday-disservice-sermon-hero h2 {
+
+    max-width:
+        980px;
+
+    margin:
+        17px 0 0;
+
+    color:
+        #f8ecd4;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            3rem,
+            6.5vw,
+            6.6rem
+        );
+
+    line-height:
+        0.9;
+
+    letter-spacing:
+        -0.052em;
+
+}
+
+
+.sunday-disservice-sermon-hero > div > p {
+
+    max-width:
+        780px;
+
+    margin:
+        25px 0 0;
+
+    color:
+        #b7aa9a;
+
+    font-size:
+        1.02rem;
+
+    line-height:
+        1.78;
+
+}
+
+
+.sunday-disservice-sermon-meta {
+
+    padding:
+        22px;
+
+    border-left:
+        4px solid
+        #e1bd70;
+
+    background:
+        #0c0908;
+
+}
+
+
+.sunday-disservice-sermon-meta span,
+.sunday-disservice-sermon-meta strong,
+.sunday-disservice-sermon-meta small {
+
+    display:
+        block;
+
+}
+
+
+.sunday-disservice-sermon-meta span {
+
+    color:
+        #8e7a5b;
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.sunday-disservice-sermon-meta strong {
+
+    margin-top:
+        9px;
+
+    color:
+        #f6ead3;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        1.08rem;
+
+}
+
+
+.sunday-disservice-sermon-meta small {
+
+    margin-top:
+        17px;
+
+    color:
+        #e1bd70;
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        900;
+
+    line-height:
+        1.45;
+
+    letter-spacing:
+        0.09em;
+
+}
+
+
+
+/* =================================
+   MAIN ARGUMENT
+================================= */
+
+
+.sunday-disservice-main-argument {
+
+    padding:
+
+        clamp(
+            48px,
+            8vw,
+            105px
+        )
+
+        clamp(
+            30px,
+            8vw,
+            120px
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.16
+        );
+
+    background:
+        #f0e5cf;
+
+    color:
+        #241a16;
+
+}
+
+
+.sunday-disservice-main-argument > span {
+
+    color:
+        #8b232a;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.16em;
+
+}
+
+
+.sunday-disservice-main-argument h3 {
+
+    max-width:
+        1050px;
+
+    margin:
+        16px 0 0;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            2.8rem,
+            6vw,
+            6rem
+        );
+
+    line-height:
+        0.94;
+
+    letter-spacing:
+        -0.045em;
+
+}
+
+
+.sunday-disservice-main-argument > div {
+
+    max-width:
+        850px;
+
+    margin-top:
+        42px;
+
+}
+
+
+.sunday-disservice-main-argument p {
+
+    margin:
+        0 0 27px;
+
+    color:
+        #44362e;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            1.03rem,
+            1.4vw,
+            1.2rem
+        );
+
+    line-height:
+        1.9;
+
+}
+
+
+.sunday-disservice-main-argument p:first-child::first-letter {
+
+    float:
+        left;
+
+    margin:
+
+        8px
+        11px
+        0
+        0;
+
+    color:
+        #8b232a;
+
+    font-size:
+        5rem;
+
+    font-weight:
+        900;
+
+    line-height:
+        0.72;
+
+}
+
+
+
+/* =================================
+   EDITORIAL COLLECTIONS
+================================= */
+
+
+.sunday-disservice-verdict-grid,
+.sunday-disservice-bias-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.15
+        );
+
+}
+
+
+.sunday-disservice-collection {
+
+    min-width:
+        0;
+
+    padding:
+
+        clamp(
+            34px,
+            5vw,
+            64px
+        );
+
+    background:
+        #15100f;
+
+}
+
+
+.sunday-disservice-collection:first-child {
+
+    border-right:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.14
+        );
+
+}
+
+
+.sunday-disservice-bias-grid
+.sunday-disservice-collection {
+
+    background:
+        #100c0b;
+
+}
+
+
+.sunday-disservice-collection header {
+
+    padding-bottom:
+        22px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.16
+        );
+
+}
+
+
+.sunday-disservice-collection header span {
+
+    color:
+        #e1bd70;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.sunday-disservice-collection header h3 {
+
+    margin:
+        9px 0 0;
+
+    color:
+        #f5e9d1;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            1.8rem,
+            3.2vw,
+            3.3rem
+        );
+
+    line-height:
+        1;
+
+}
+
+
+.sunday-disservice-collection-list {
+
+    display:
+        grid;
+
+    gap:
+        16px;
+
+    margin-top:
+        26px;
+
+}
+
+
+.sunday-disservice-collection-list article {
+
+    padding:
+        20px;
+
+    border:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.13
+        );
+
+    border-left:
+        4px solid
+        #7f2228;
+
+    background:
+        #0d0a09;
+
+}
+
+
+.sunday-disservice-collection-list h4 {
+
+    margin:
+        0;
+
+    color:
+        #ede1cb;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        1.05rem;
+
+    line-height:
+        1.3;
+
+}
+
+
+.sunday-disservice-collection-list p {
+
+    margin:
+        10px 0 0;
+
+    color:
+        #9d9182;
+
+    font-size:
+        0.82rem;
+
+    line-height:
+        1.65;
+
+}
+
+
+.sunday-disservice-list-empty {
+
+    margin:
+        25px 0 0;
+
+    color:
+        #7f7469;
+
+    font-size:
+        0.82rem;
+
+    font-style:
+        italic;
+
+}
+
+
+
+/* =================================
+   REFERENCES
+================================= */
+
+
+.sunday-disservice-references {
+
+    padding:
+
+        clamp(
+            40px,
+            7vw,
+            80px
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.16
+        );
+
+    background:
+
+        linear-gradient(
+            115deg,
+            rgba(
+                104,
+                24,
+                30,
+                0.28
+            ),
+            transparent 60%
+        ),
+
+        #17110f;
+
+}
+
+
+.sunday-disservice-references > span {
+
+    color:
+        #e1bd70;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.sunday-disservice-references > h3 {
+
+    margin:
+        9px 0 0;
+
+    color:
+        #f6ead3;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            4rem
+        );
+
+}
+
+
+.sunday-disservice-references > div {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            auto-fit,
+            minmax(
+                220px,
+                1fr
+            )
+        );
+
+    gap:
+        14px;
+
+    margin-top:
+        30px;
+
+}
+
+
+.sunday-disservice-references a,
+.sunday-disservice-references > div > div {
+
+    display:
+        grid;
+
+    gap:
+        7px;
+
+    padding:
+        19px;
+
+    border:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.18
+        );
+
+    color:
+        inherit;
+
+    background:
+        #0c0908;
+
+    text-decoration:
+        none;
+
+}
+
+
+.sunday-disservice-references a:hover {
+
+    border-color:
+        #e1bd70;
+
+}
+
+
+.sunday-disservice-references a span,
+.sunday-disservice-references > div > div span {
+
+    color:
+        #9d804c;
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+.sunday-disservice-references a strong,
+.sunday-disservice-references > div > div strong {
+
+    color:
+        #ece0ca;
+
+    font-size:
+        0.88rem;
+
+}
+
+
+
+/* =================================
+   BENEDICTION
+================================= */
+
+
+.sunday-disservice-closing-word {
+
+    padding:
+
+        clamp(
+            44px,
+            8vw,
+            95px
+        );
+
+    border-left:
+        7px solid
+        #e1bd70;
+
+    background:
+
+        radial-gradient(
+            circle at 88% 20%,
+            rgba(
+                225,
+                189,
+                112,
+                0.11
+            ),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            110deg,
+            rgba(
+                111,
+                24,
+                31,
+                0.38
+            ),
+            transparent 65%
+        ),
+
+        #100c0b;
+
+}
+
+
+.sunday-disservice-closing-word > span {
+
+    color:
+        #e1bd70;
+
+    font-size:
+        0.6rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.15em;
+
+}
+
+
+.sunday-disservice-closing-word p {
+
+    max-width:
+        1050px;
+
+    margin:
+        18px 0 0;
+
+    color:
+        #eadcc4;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            1.3rem,
+            2.6vw,
+            2rem
+        );
+
+    font-style:
+        italic;
+
+    line-height:
+        1.65;
+
+}
+
+
+.sunday-disservice-closing-word strong {
+
+    display:
+        block;
+
+    margin-top:
+        23px;
+
+    color:
+        #e1bd70;
+
+    font-size:
+        0.67rem;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+
+/* =================================
+   SERMON ARCHIVE
+================================= */
+
+
+.sunday-disservice-archive-section {
+
+    padding:
+
+        clamp(
+            40px,
+            7vw,
+            82px
+        );
+
+    background:
+        #090706;
+
+}
+
+
+.sunday-disservice-archive-heading {
+
+    display:
+        flex;
+
+    align-items:
+        end;
+
+    justify-content:
+        space-between;
+
+    gap:
+        32px;
+
+    padding-bottom:
+        26px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.18
+        );
+
+}
+
+
+.sunday-disservice-archive-heading span {
+
+    color:
+        #e1bd70;
+
+    font-size:
+        0.6rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.15em;
+
+}
+
+
+.sunday-disservice-archive-heading h2 {
+
+    margin:
+        9px 0 0;
+
+    color:
+        #f5e9d1;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            2.5rem,
+            5.2vw,
+            5.3rem
+        );
+
+    line-height:
+        0.95;
+
+}
+
+
+.sunday-disservice-archive-heading p {
+
+    max-width:
+        410px;
+
+    margin:
+        0;
+
+    color:
+        #8f8376;
+
+    line-height:
+        1.65;
+
+}
+
+
+.sunday-disservice-archive-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            auto-fill,
+            minmax(
+                250px,
+                1fr
+            )
+        );
+
+    gap:
+        18px;
+
+    margin-top:
+        30px;
+
+}
+
+
+.sunday-disservice-archive-card {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    min-height:
+        300px;
+
+    padding:
+        26px;
+
+    border:
+        1px solid
+        rgba(
+            225,
+            189,
+            112,
+            0.22
+        );
+
+    border-top:
+        5px solid
+        #7e2228;
+
+    color:
+        inherit;
+
+    background:
+
+        radial-gradient(
+            circle at 85% 10%,
+            rgba(
+                225,
+                189,
+                112,
+                0.14
+            ),
+            transparent 32%
+        ),
+
+        linear-gradient(
+            145deg,
+            rgba(
+                106,
+                24,
+                30,
+                0.28
+            ),
+            transparent 58%
+        ),
+
+        #15100e;
+
+    text-decoration:
+        none;
+
+    transition:
+
+        transform 0.18s ease,
+        border-color 0.18s ease;
+
+}
+
+
+.sunday-disservice-archive-card:hover {
+
+    transform:
+        translateY(
+            -4px
+        );
+
+    border-color:
+        #e1bd70;
+
+}
+
+
+.sunday-disservice-archive-card.active {
+
+    box-shadow:
+
+        inset
+        0
+        0
+        0
+        2px
+        #e1bd70;
+
+}
+
+
+.sunday-disservice-archive-card > span {
+
+    color:
+        #e1bd70;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.sunday-disservice-archive-card h3 {
+
+    margin:
+        24px 0 0;
+
+    color:
+        #f3e5cc;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        1.65rem;
+
+    line-height:
+        1.08;
+
+}
+
+
+.sunday-disservice-archive-card p {
+
+    margin:
+        14px 0 0;
+
+    color:
+        #8f8275;
+
+    font-size:
+        0.81rem;
+
+}
+
+
+.sunday-disservice-archive-card > strong {
+
+    margin-top:
+        auto;
+
+    padding-top:
+        30px;
+
+    color:
+        #e1bd70;
+
+    font-size:
+        0.62rem;
+
+    letter-spacing:
+        0.09em;
+
+}
+
+
+
+/* =================================
+   EMPTY STATES
+================================= */
+
+
+.sunday-disservice-empty-state {
+
+    margin:
+        0;
+
+    padding:
+
+        clamp(
+            48px,
+            8vw,
+            105px
+        );
+
+    color:
+        #9b8e7e;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(
+                225,
+                189,
+                112,
+                0.07
+            ),
+            transparent 38%
+        ),
+
+        #130f0d;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        1.05rem;
+
+    font-style:
+        italic;
+
+    text-align:
+        center;
+
+}
+
+
+
+/* =================================
+   SUNDAY DISSERVICE RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        950px
+) {
+
+    .sunday-disservice-masthead,
+    .sunday-disservice-sermon-hero {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .sunday-disservice-host-card,
+    .sunday-disservice-sermon-meta {
+
+        max-width:
+            360px;
+
+    }
+
+
+    .sunday-disservice-verdict-grid,
+    .sunday-disservice-bias-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .sunday-disservice-collection:first-child {
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            rgba(
+                225,
+                189,
+                112,
+                0.14
+            );
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        700px
+) {
+
+    .sunday-disservice-page {
+
+        padding-top:
+            12px;
+
+    }
+
+
+    .sunday-disservice-shell {
+
+        width:
+            calc(
+                100% - 12px
+            );
+
+    }
+
+
+    .sunday-disservice-program-bar {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        padding:
+            14px 16px;
+
+    }
+
+
+    .sunday-disservice-program-bar > div {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            5px;
+
+    }
+
+
+    .sunday-disservice-program-nav {
+
+        width:
+            100%;
+
+        justify-content:
+            space-between;
+
+        gap:
+            8px;
+
+    }
+
+
+    .sunday-disservice-program-nav a {
+
+        font-size:
+            0.52rem;
+
+    }
+
+
+    .sunday-disservice-masthead {
+
+        min-height:
+            0;
+
+    }
+
+
+    .sunday-disservice-masthead-copy h1 {
+
+        font-size:
+            clamp(
+                3.4rem,
+                17vw,
+                5.8rem
+            );
+
+    }
+
+
+    .sunday-disservice-archive-heading {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .sunday-disservice-archive-heading p {
+
+        max-width:
+            none;
+
+    }
+
+
+    .sunday-disservice-main-argument {
+
+        padding-left:
+            24px;
+
+        padding-right:
+            24px;
+
+    }
+
+
+    .sunday-disservice-main-argument p:first-child::first-letter {
+
+        font-size:
+            4rem;
+
+    }
+
+}
