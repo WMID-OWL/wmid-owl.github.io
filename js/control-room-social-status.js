@@ -111,6 +111,68 @@ const crSocialElements = {
         ),
 
 
+    // OWL AFTER DARK
+
+
+    latestAfterDark:
+
+        document.getElementById(
+            "cr-social-latest-after-dark"
+        ),
+
+
+    latestAfterDarkDate:
+
+        document.getElementById(
+            "cr-social-latest-after-dark-date"
+        ),
+
+
+    latestAfterDarkTitle:
+
+        document.getElementById(
+            "cr-social-latest-after-dark-title"
+        ),
+
+
+    afterDarkCount:
+
+        document.getElementById(
+            "cr-social-after-dark-count"
+        ),
+
+
+
+    // SUNDAY DISSERVICE
+
+
+    latestSermon:
+
+        document.getElementById(
+            "cr-social-latest-sermon"
+        ),
+
+
+    latestSermonDate:
+
+        document.getElementById(
+            "cr-social-latest-sermon-date"
+        ),
+
+
+    latestSermonTitle:
+
+        document.getElementById(
+            "cr-social-latest-sermon-title"
+        ),
+
+
+    sermonCount:
+
+        document.getElementById(
+            "cr-social-sermon-count"
+        ),
+
 
     // HISTORY
 
@@ -154,10 +216,19 @@ const crSocialElements = {
         ),
 
 
-    healthWwow:
+    
+
+    healthAfterDark:
 
         document.getElementById(
-            "cr-social-health-wwow"
+            "cr-social-health-after-dark"
+        ),
+
+
+    healthSundayDisservice:
+
+        document.getElementById(
+            "cr-social-health-sunday-disservice"
         ),
 
 
@@ -1132,7 +1203,228 @@ function crSocialRenderWwow(
 }
 
 
+// =================================
+// LATEST ARCHIVE ENTRY
+// =================================
 
+
+function crSocialLatestArchiveEntry(
+    entries
+) {
+
+
+    return [...entries]
+
+        .sort(
+
+            (
+                a,
+                b
+            ) =>
+
+                String(
+                    b.id || ""
+                )
+
+                    .localeCompare(
+
+                        String(
+                            a.id || ""
+                        )
+
+                    )
+
+        )[0]
+
+        ||
+
+        null;
+
+}
+
+
+
+// =================================
+// RENDER OWL AFTER DARK
+// =================================
+
+
+function crSocialRenderAfterDark(
+    episodes
+) {
+
+
+    const latestEpisode =
+
+        crSocialLatestArchiveEntry(
+            episodes
+        );
+
+
+    crSocialElements
+        .afterDarkCount
+        .textContent =
+            String(
+                episodes.length
+            );
+
+
+    if (
+        latestEpisode
+    ) {
+
+
+        crSocialElements
+            .latestAfterDark
+            .textContent =
+
+                latestEpisode.episode
+
+                    ? `Episode ${latestEpisode.episode}`
+
+                    : "Latest Episode";
+
+
+        crSocialElements
+            .latestAfterDarkDate
+            .textContent =
+
+                crSocialFormatDate(
+                    latestEpisode.airDate
+                );
+
+
+        crSocialElements
+            .latestAfterDarkTitle
+            .textContent =
+
+                latestEpisode.headline
+
+                ||
+
+                "OWL After Dark";
+
+    }
+
+
+    else {
+
+
+        crSocialElements
+            .latestAfterDark
+            .textContent =
+                "No Episodes Published";
+
+
+        crSocialElements
+            .latestAfterDarkDate
+            .textContent =
+                "—";
+
+
+        crSocialElements
+            .latestAfterDarkTitle
+            .textContent =
+                "—";
+
+    }
+
+
+    return latestEpisode;
+
+}
+
+
+
+// =================================
+// RENDER SUNDAY DISSERVICE
+// =================================
+
+
+function crSocialRenderSundayDisservice(
+    sermons
+) {
+
+
+    const latestSermon =
+
+        crSocialLatestArchiveEntry(
+            sermons
+        );
+
+
+    crSocialElements
+        .sermonCount
+        .textContent =
+            String(
+                sermons.length
+            );
+
+
+    if (
+        latestSermon
+    ) {
+
+
+        crSocialElements
+            .latestSermon
+            .textContent =
+
+                latestSermon.sermon
+
+                    ? `Sermon ${latestSermon.sermon}`
+
+                    : "Latest Sermon";
+
+
+        crSocialElements
+            .latestSermonDate
+            .textContent =
+
+                crSocialFormatDate(
+                    latestSermon.deliveryDate
+                );
+
+
+        crSocialElements
+            .latestSermonTitle
+            .textContent =
+
+                latestSermon.headline
+
+                ||
+
+                "The Gospel According to Trey Wise";
+
+    }
+
+
+    else {
+
+
+        crSocialElements
+            .latestSermon
+            .textContent =
+                "No Sermons Published";
+
+
+        crSocialElements
+            .latestSermonDate
+            .textContent =
+                "—";
+
+
+        crSocialElements
+            .latestSermonTitle
+            .textContent =
+                "—";
+
+    }
+
+
+    return latestSermon;
+
+}
 // =================================
 // RENDER HISTORY
 // =================================
@@ -1334,6 +1626,10 @@ function crSocialRenderHealth({
 
     latestIssue,
 
+    latestAfterDark,
+
+    latestSermon,
+
     latestSnapshot,
 
     snapshotCount
@@ -1424,6 +1720,81 @@ function crSocialRenderHealth({
         crSocialSetBadge(
 
             crSocialElements.healthWwow,
+
+            "WAITING",
+
+            "neutral"
+
+        );
+
+    }
+
+
+    // OWL AFTER DARK
+
+
+    if (
+        latestAfterDark
+    ) {
+
+
+        crSocialSetBadge(
+
+            crSocialElements.healthAfterDark,
+
+            "ACTIVE",
+
+            "good"
+
+        );
+
+    }
+
+
+    else {
+
+
+        crSocialSetBadge(
+
+            crSocialElements.healthAfterDark,
+
+            "WAITING",
+
+            "neutral"
+
+        );
+
+    }
+
+
+
+    // SUNDAY DISSERVICE
+
+
+    if (
+        latestSermon
+    ) {
+
+
+        crSocialSetBadge(
+
+            crSocialElements.healthSundayDisservice,
+
+            "ACTIVE",
+
+            "good"
+
+        );
+
+    }
+
+
+    else {
+
+
+        crSocialSetBadge(
+
+            crSocialElements.healthSundayDisservice,
 
             "WAITING",
 
@@ -1641,13 +2012,17 @@ async function crSocialLoadStatus() {
     try {
 
 
-        const [
+                const [
 
             innanetIndex,
 
             queue,
 
             wwowIndex,
+
+            afterDarkIndex,
+
+            sundayDisserviceIndex,
 
             historyIndex
 
@@ -1695,6 +2070,29 @@ async function crSocialLoadStatus() {
 
             crSocialFetchJson(
 
+                "data/after-dark/archive-index.json",
+
+                {
+                    episodes:
+                        []
+                }
+
+            ),
+
+
+            crSocialFetchJson(
+
+                "data/sunday-disservice/archive-index.json",
+
+                {
+                    sermons:
+                        []
+                }
+
+            ),
+
+            crSocialFetchJson(
+
                 "data/history/archive-index.json",
 
                 {
@@ -1729,7 +2127,26 @@ async function crSocialLoadStatus() {
 
                 : [];
 
+        const afterDarkEpisodes =
 
+            Array.isArray(
+                afterDarkIndex.episodes
+            )
+
+                ? afterDarkIndex.episodes
+
+                : [];
+
+
+        const sundayDisserviceSermons =
+
+            Array.isArray(
+                sundayDisserviceIndex.sermons
+            )
+
+                ? sundayDisserviceIndex.sermons
+
+                : [];
         const snapshots =
 
             Array.isArray(
@@ -1779,7 +2196,22 @@ async function crSocialLoadStatus() {
             );
 
 
+        const latestAfterDark =
 
+            crSocialRenderAfterDark(
+
+                afterDarkEpisodes
+
+            );
+
+
+        const latestSermon =
+
+            crSocialRenderSundayDisservice(
+
+                sundayDisserviceSermons
+
+            );
         const latestSnapshot =
 
             crSocialRenderHistory(
@@ -1800,12 +2232,17 @@ async function crSocialLoadStatus() {
                 wwowStatus.state,
 
 
-            latestIssue:
+                        latestIssue:
                 wwowStatus.latestIssue,
 
 
-            latestSnapshot,
+            latestAfterDark,
 
+
+            latestSermon,
+
+
+            latestSnapshot,
 
             snapshotCount:
                 snapshots.length
@@ -1815,7 +2252,7 @@ async function crSocialLoadStatus() {
 
         console.log(
 
-            "OWL Social system status loaded."
+            "OWL Media system status loaded."
 
         );
 
@@ -1829,7 +2266,7 @@ async function crSocialLoadStatus() {
 
         console.error(
 
-            "Could not load OWL Social system status:",
+            "Could not load OWL Media system status:"
 
             error
 
@@ -1848,9 +2285,13 @@ async function crSocialLoadStatus() {
         [
 
 
-            crSocialElements.healthQueue,
+                        crSocialElements.healthQueue,
 
             crSocialElements.healthWwow,
+
+            crSocialElements.healthAfterDark,
+
+            crSocialElements.healthSundayDisservice,
 
             crSocialElements.healthHistory,
 
