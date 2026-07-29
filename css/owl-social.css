@@ -7103,3 +7103,2009 @@ body {
 
 
 }
+/* =================================
+   OWL AFTER DARK
+================================= */
+
+
+.after-dark-body {
+
+    background:
+        #07070c;
+
+    color:
+        #f5f2f8;
+
+}
+
+
+.after-dark-page {
+
+    width:
+        100%;
+
+    padding:
+        34px 0 80px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% -5%,
+            rgba(
+                176,
+                68,
+                255,
+                0.15
+            ),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            180deg,
+            #090810,
+            #07070c 48%,
+            #09090e
+        );
+
+}
+
+
+.after-dark-shell {
+
+    width:
+
+        min(
+            1440px,
+            calc(
+                100% - 30px
+            )
+        );
+
+    margin:
+        0 auto;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(
+            209,
+            146,
+            255,
+            0.18
+        );
+
+    background:
+        #0c0c13;
+
+    box-shadow:
+
+        0
+        35px
+        100px
+        rgba(
+            0,
+            0,
+            0,
+            0.58
+        );
+
+}
+
+
+
+/* =================================
+   PROGRAM BAR
+================================= */
+
+
+.after-dark-program-bar {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        24px;
+
+    min-height:
+        48px;
+
+    padding:
+        0 24px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    background:
+        #09090e;
+
+}
+
+
+.after-dark-program-bar > div {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        16px;
+
+}
+
+
+.after-dark-program-type {
+
+    color:
+        #d59cff;
+
+    font-size:
+        0.6rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.after-dark-current-label {
+
+    color:
+        #777582;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.after-dark-program-nav {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+}
+
+
+.after-dark-program-nav a {
+
+    color:
+        #aaa6b2;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    text-decoration:
+        none;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.after-dark-program-nav a:hover {
+
+    color:
+        #d59cff;
+
+}
+
+
+
+/* =================================
+   MASTHEAD
+================================= */
+
+
+.after-dark-masthead {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        270px;
+
+    gap:
+        clamp(
+            30px,
+            5vw,
+            80px
+        );
+
+    align-items:
+        end;
+
+    min-height:
+        470px;
+
+    padding:
+
+        clamp(
+            46px,
+            8vw,
+            100px
+        )
+
+        clamp(
+            30px,
+            7vw,
+            90px
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    background:
+
+        linear-gradient(
+            110deg,
+            rgba(
+                96,
+                31,
+                145,
+                0.64
+            ),
+            rgba(
+                36,
+                15,
+                55,
+                0.28
+            )
+            43%,
+            transparent 70%
+        ),
+
+        radial-gradient(
+            circle at 86% 24%,
+            rgba(
+                216,
+                145,
+                255,
+                0.24
+            ),
+            transparent 34%
+        ),
+
+        #10101a;
+
+}
+
+
+.after-dark-masthead::after {
+
+    content:
+        "AFTER DARK";
+
+    position:
+        absolute;
+
+    right:
+        -1.5rem;
+
+    bottom:
+        -2.2rem;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    font-size:
+        clamp(
+            5rem,
+            12vw,
+            12rem
+        );
+
+    font-weight:
+        1000;
+
+    line-height:
+        0.75;
+
+    letter-spacing:
+        -0.07em;
+
+    pointer-events:
+        none;
+
+    white-space:
+        nowrap;
+
+}
+
+
+.after-dark-masthead-copy {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    min-width:
+        0;
+
+}
+
+
+.after-dark-kicker {
+
+    margin:
+        0;
+
+    color:
+        #d59cff;
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.16em;
+
+}
+
+
+.after-dark-masthead-copy h1 {
+
+    margin:
+        16px 0 0;
+
+    color:
+        #f6f2f8;
+
+    font-size:
+        clamp(
+            4rem,
+            9vw,
+            9rem
+        );
+
+    font-weight:
+        1000;
+
+    line-height:
+        0.78;
+
+    letter-spacing:
+        -0.065em;
+
+}
+
+
+.after-dark-masthead-copy h1 span {
+
+    display:
+        block;
+
+    color:
+        #d59cff;
+
+    font-size:
+        0.36em;
+
+    letter-spacing:
+        0.1em;
+
+    line-height:
+        1.2;
+}
+
+
+.after-dark-masthead-copy > p:last-child {
+
+    max-width:
+        720px;
+
+    margin:
+        30px 0 0;
+
+    color:
+        #bbb5c3;
+
+    font-size:
+        clamp(
+            1rem,
+            1.6vw,
+            1.2rem
+        );
+
+    line-height:
+        1.75;
+
+}
+
+
+.after-dark-masthead-mark {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    gap:
+        8px;
+
+    align-self:
+        end;
+
+    padding:
+        24px;
+
+    border-top:
+        4px solid
+        #d59cff;
+
+    background:
+        rgba(
+            8,
+            8,
+            14,
+            0.78
+        );
+
+    box-shadow:
+
+        0
+        0
+        45px
+        rgba(
+            171,
+            73,
+            235,
+            0.16
+        );
+
+}
+
+
+.after-dark-masthead-mark span {
+
+    color:
+        #8f8997;
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.after-dark-masthead-mark strong {
+
+    color:
+        #f6f2f8;
+
+    font-size:
+        1.15rem;
+
+    line-height:
+        1.1;
+}
+
+
+.after-dark-masthead-mark small {
+
+    color:
+        #d59cff;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+/* =================================
+   CURRENT EPISODE
+================================= */
+
+
+.after-dark-current-section {
+
+    background:
+        #0c0c13;
+
+}
+
+
+.after-dark-episode-package {
+
+    display:
+        grid;
+}
+
+
+.after-dark-episode-hero {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        250px;
+
+    gap:
+        clamp(
+            30px,
+            6vw,
+            80px
+        );
+
+    align-items:
+        end;
+
+    padding:
+
+        clamp(
+            38px,
+            6vw,
+            78px
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 88% 14%,
+            rgba(
+                192,
+                104,
+                255,
+                0.13
+            ),
+            transparent 34%
+        ),
+
+        #11111a;
+
+}
+
+
+.after-dark-episode-number {
+
+    color:
+        #d59cff;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.15em;
+
+}
+
+
+.after-dark-episode-hero h2 {
+
+    max-width:
+        900px;
+
+    margin:
+        15px 0 0;
+
+    color:
+        #f4f0f6;
+
+    font-size:
+        clamp(
+            2.8rem,
+            6vw,
+            6.2rem
+        );
+
+    line-height:
+        0.9;
+
+    letter-spacing:
+        -0.05em;
+
+}
+
+
+.after-dark-episode-hero > div > p {
+
+    max-width:
+        760px;
+
+    margin:
+        24px 0 0;
+
+    color:
+        #aca7b3;
+
+    line-height:
+        1.75;
+
+}
+
+
+.after-dark-episode-meta {
+
+    padding:
+        20px;
+
+    border-left:
+        3px solid
+        #d59cff;
+
+    background:
+        #0b0b11;
+
+}
+
+
+.after-dark-episode-meta span,
+.after-dark-episode-meta strong,
+.after-dark-episode-meta small {
+
+    display:
+        block;
+
+}
+
+
+.after-dark-episode-meta span {
+
+    color:
+        #817c88;
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+.after-dark-episode-meta strong {
+
+    margin-top:
+        8px;
+
+    color:
+        #f2edf5;
+
+    font-size:
+        1.1rem;
+
+}
+
+
+.after-dark-episode-meta small {
+
+    margin-top:
+        14px;
+
+    color:
+        #d59cff;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+
+/* =================================
+   MATCH OF THE WEEK
+================================= */
+
+
+.after-dark-match-of-week {
+
+    padding:
+
+        clamp(
+            36px,
+            6vw,
+            72px
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    background:
+
+        linear-gradient(
+            120deg,
+            rgba(
+                112,
+                40,
+                164,
+                0.42
+            ),
+            transparent 58%
+        ),
+
+        #12121b;
+
+}
+
+
+.after-dark-match-of-week > span {
+
+    color:
+        #e3b5ff;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.15em;
+
+}
+
+
+.after-dark-match-of-week h2 {
+
+    max-width:
+        1000px;
+
+    margin:
+        14px 0 0;
+
+    color:
+        #ffffff;
+
+    font-size:
+        clamp(
+            2.4rem,
+            5vw,
+            5.4rem
+        );
+
+    line-height:
+        0.94;
+
+}
+
+
+.after-dark-match-of-week p {
+
+    max-width:
+        820px;
+
+    margin:
+        22px 0 0;
+
+    color:
+        #bbb4c3;
+
+    line-height:
+        1.75;
+
+}
+
+
+.after-dark-match-of-week > div {
+
+    display:
+        flex;
+
+    gap:
+        10px;
+
+    margin-top:
+        26px;
+
+}
+
+
+.after-dark-match-of-week > div strong {
+
+    padding:
+        10px 14px;
+
+    color:
+        #17101c;
+
+    background:
+        #d59cff;
+
+    font-size:
+        0.85rem;
+
+}
+
+
+
+/* =================================
+   WEEKLY SHOW RECAPS
+================================= */
+
+
+.after-dark-show-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+.after-dark-show-card {
+
+    min-width:
+        0;
+
+    padding:
+
+        clamp(
+            30px,
+            5vw,
+            58px
+        );
+
+    background:
+        #0f0f17;
+
+}
+
+
+.after-dark-show-card:first-child {
+
+    border-right:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+.after-dark-show-heading {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        24px;
+
+    align-items:
+        flex-start;
+
+    padding-bottom:
+        22px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+}
+
+
+.after-dark-show-heading span {
+
+    color:
+        #b47ee0;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+.after-dark-show-heading h3 {
+
+    margin:
+        7px 0 0;
+
+    color:
+        #f4eff7;
+
+    font-size:
+        clamp(
+            1.8rem,
+            3vw,
+            3.3rem
+        );
+
+}
+
+
+.after-dark-show-meta {
+
+    display:
+        grid;
+
+    justify-items:
+        end;
+
+    gap:
+        9px;
+
+    text-align:
+        right;
+
+}
+
+
+.after-dark-show-meta strong {
+
+    color:
+        #aaa4b0;
+
+    font-size:
+        0.69rem;
+
+}
+
+
+.after-dark-show-meta a {
+
+    color:
+        #d59cff;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+    text-decoration:
+        none;
+
+}
+
+
+.after-dark-show-summary {
+
+    margin:
+        24px 0 0;
+
+    color:
+        #aaa5b1;
+
+    line-height:
+        1.7;
+
+}
+
+
+.after-dark-result-list {
+
+    display:
+        grid;
+
+    gap:
+        12px;
+
+    margin-top:
+        28px;
+
+}
+
+
+.after-dark-result-card {
+
+    padding:
+        18px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    background:
+        #0b0b11;
+
+}
+
+
+.after-dark-result-type {
+
+    color:
+        #b47ee0;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+}
+
+
+.after-dark-result-card h4 {
+
+    margin:
+        8px 0 0;
+
+    color:
+        #eeeaf1;
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.35;
+
+}
+
+
+.after-dark-result-card p {
+
+    margin:
+        11px 0 0;
+
+    color:
+        #85808c;
+
+    font-size:
+        0.78rem;
+
+}
+
+
+.after-dark-result-card p strong {
+
+    color:
+        #d5cfda;
+
+}
+
+
+.after-dark-result-ratings {
+
+    display:
+        flex;
+
+    gap:
+        8px;
+
+    margin-top:
+        15px;
+
+}
+
+
+.after-dark-result-ratings span {
+
+    padding:
+        6px 8px;
+
+    color:
+        #ded7e3;
+
+    background:
+        #17121c;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+}
+
+
+
+/* =================================
+   WEEKLY FALLOUT
+================================= */
+
+
+.after-dark-fallout-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+.after-dark-fallout-panel {
+
+    padding:
+
+        clamp(
+            28px,
+            4vw,
+            46px
+        );
+
+    background:
+        #111119;
+
+    border-right:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+.after-dark-fallout-panel:last-child {
+
+    border-right:
+        0;
+
+}
+
+
+.after-dark-fallout-panel > span {
+
+    color:
+        #d59cff;
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+.after-dark-fallout-panel > h3 {
+
+    margin:
+        8px 0 0;
+
+    color:
+        #f1edf3;
+
+    font-size:
+        1.45rem;
+}
+
+
+.after-dark-story-list {
+
+    display:
+        grid;
+
+    gap:
+        18px;
+
+    margin-top:
+        25px;
+
+}
+
+
+.after-dark-story-list article {
+
+    padding-top:
+        17px;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+.after-dark-story-list h4 {
+
+    margin:
+        0;
+
+    color:
+        #ddd7e1;
+
+    font-size:
+        0.9rem;
+
+}
+
+
+.after-dark-story-list p {
+
+    margin:
+        8px 0 0;
+
+    color:
+        #8e8994;
+
+    font-size:
+        0.79rem;
+
+    line-height:
+        1.6;
+
+}
+
+
+.after-dark-list-empty {
+
+    margin:
+        24px 0 0;
+
+    color:
+        #706b77;
+
+    font-size:
+        0.8rem;
+
+    font-style:
+        italic;
+
+}
+
+
+
+/* =================================
+   FINAL WORD
+================================= */
+
+
+.after-dark-closing-note {
+
+    padding:
+
+        clamp(
+            34px,
+            6vw,
+            72px
+        );
+
+    border-left:
+        6px solid
+        #d59cff;
+
+    background:
+
+        linear-gradient(
+            110deg,
+            rgba(
+                113,
+                38,
+                163,
+                0.28
+            ),
+            transparent 65%
+        ),
+
+        #0e0e15;
+
+}
+
+
+.after-dark-closing-note span {
+
+    color:
+        #d59cff;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.after-dark-closing-note p {
+
+    max-width:
+        980px;
+
+    margin:
+        14px 0 0;
+
+    color:
+        #d3cdd7;
+
+    font-size:
+        clamp(
+            1.1rem,
+            2vw,
+            1.45rem
+        );
+
+    line-height:
+        1.7;
+
+}
+
+
+
+/* =================================
+   EPISODE ARCHIVE
+================================= */
+
+
+.after-dark-archive-section {
+
+    padding:
+
+        clamp(
+            38px,
+            6vw,
+            76px
+        );
+
+    background:
+        #08080d;
+
+}
+
+
+.after-dark-archive-heading {
+
+    display:
+        flex;
+
+    align-items:
+        end;
+
+    justify-content:
+        space-between;
+
+    gap:
+        30px;
+
+    padding-bottom:
+        24px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.11
+        );
+
+}
+
+
+.after-dark-archive-heading span {
+
+    color:
+        #d59cff;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.after-dark-archive-heading h2 {
+
+    margin:
+        8px 0 0;
+
+    color:
+        #f1edf4;
+
+    font-size:
+        clamp(
+            2.4rem,
+            5vw,
+            5rem
+        );
+
+}
+
+
+.after-dark-archive-heading p {
+
+    max-width:
+        380px;
+
+    margin:
+        0;
+
+    color:
+        #817c88;
+
+    line-height:
+        1.6;
+
+}
+
+
+.after-dark-archive-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            auto-fill,
+            minmax(
+                245px,
+                1fr
+            )
+        );
+
+    gap:
+        18px;
+
+    margin-top:
+        28px;
+
+}
+
+
+.after-dark-archive-card {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    min-height:
+        275px;
+
+    padding:
+        24px;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            156,
+            255,
+            0.2
+        );
+
+    color:
+        inherit;
+
+    background:
+
+        radial-gradient(
+            circle at 85% 12%,
+            rgba(
+                213,
+                156,
+                255,
+                0.16
+            ),
+            transparent 32%
+        ),
+
+        #111119;
+
+    text-decoration:
+        none;
+
+    transition:
+
+        transform 0.18s ease,
+        border-color 0.18s ease;
+
+}
+
+
+.after-dark-archive-card:hover {
+
+    transform:
+        translateY(
+            -4px
+        );
+
+    border-color:
+        #d59cff;
+
+}
+
+
+.after-dark-archive-card.active {
+
+    box-shadow:
+
+        inset
+        0
+        0
+        0
+        2px
+        #d59cff;
+
+}
+
+
+.after-dark-archive-card > span {
+
+    color:
+        #d59cff;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+.after-dark-archive-card h3 {
+
+    margin:
+        22px 0 0;
+
+    color:
+        #f3eef6;
+
+    font-size:
+        1.55rem;
+
+    line-height:
+        1.08;
+
+}
+
+
+.after-dark-archive-card p {
+
+    margin:
+        13px 0 0;
+
+    color:
+        #817c88;
+
+    font-size:
+        0.8rem;
+
+}
+
+
+.after-dark-archive-card > strong {
+
+    margin-top:
+        auto;
+
+    padding-top:
+        28px;
+
+    color:
+        #d59cff;
+
+    font-size:
+        0.62rem;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+
+/* =================================
+   EMPTY STATES
+================================= */
+
+
+.after-dark-empty-state {
+
+    margin:
+        0;
+
+    padding:
+
+        clamp(
+            44px,
+            8vw,
+            100px
+        );
+
+    color:
+        #8c8792;
+
+    background:
+        #101017;
+
+    font-size:
+        1rem;
+
+    font-style:
+        italic;
+
+    text-align:
+        center;
+
+}
+
+
+
+/* =================================
+   OWL AFTER DARK RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        950px
+) {
+
+    .after-dark-masthead,
+    .after-dark-episode-hero {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .after-dark-masthead-mark,
+    .after-dark-episode-meta {
+
+        max-width:
+            330px;
+
+    }
+
+
+    .after-dark-show-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .after-dark-show-card:first-child {
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            );
+
+    }
+
+
+    .after-dark-fallout-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .after-dark-fallout-panel {
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            );
+
+    }
+
+
+    .after-dark-fallout-panel:last-child {
+
+        border-bottom:
+            0;
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        700px
+) {
+
+    .after-dark-page {
+
+        padding-top:
+            12px;
+
+    }
+
+
+    .after-dark-shell {
+
+        width:
+            calc(
+                100% - 12px
+            );
+
+    }
+
+
+    .after-dark-program-bar {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        padding:
+            14px 16px;
+
+    }
+
+
+    .after-dark-program-bar > div {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            5px;
+
+    }
+
+
+    .after-dark-program-nav {
+
+        width:
+            100%;
+
+        justify-content:
+            space-between;
+
+        gap:
+            8px;
+
+    }
+
+
+    .after-dark-program-nav a {
+
+        font-size:
+            0.53rem;
+
+    }
+
+
+    .after-dark-masthead {
+
+        min-height:
+            0;
+
+    }
+
+
+    .after-dark-masthead-copy h1 {
+
+        font-size:
+            clamp(
+                3.6rem,
+                18vw,
+                6rem
+            );
+
+    }
+
+
+    .after-dark-show-heading,
+    .after-dark-archive-heading {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .after-dark-show-meta {
+
+        justify-items:
+            start;
+
+        text-align:
+            left;
+
+    }
+
+
+    .after-dark-archive-heading p {
+
+        max-width:
+            none;
+
+    }
+
+}
