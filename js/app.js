@@ -128,6 +128,103 @@ installOwlFavicon();
 
 
 // =================================
+// OWL MEDIA NAVIGATION
+// =================================
+
+
+function installOwlMediaNavigation() {
+
+
+    const currentPage =
+
+        window.location.pathname
+            .split("/")
+            .pop()
+
+        || "index.html";
+
+
+
+    const owlMediaPages = [
+
+        "owl-media.html",
+
+        "innanet.html",
+
+        "wwow.html",
+
+        "owl-after-dark.html",
+
+        "sunday-disservice.html"
+
+    ];
+
+
+
+    const navigationBars =
+
+        document.querySelectorAll(
+            ".site-nav, .landscape-main-nav"
+        );
+
+
+
+    navigationBars.forEach(
+
+        navigationBar => {
+
+
+            const owlMediaLink =
+
+                navigationBar.querySelector(
+
+                    'a[href="owl-media.html"], ' +
+                    'a[href="owl-social.html"]'
+
+                );
+
+
+            if (
+                !owlMediaLink
+            ) {
+
+                return;
+
+            }
+
+
+
+            owlMediaLink.href =
+                "owl-media.html";
+
+
+            owlMediaLink.textContent =
+                "OWL Media";
+
+
+            owlMediaLink.classList.toggle(
+
+                "active",
+
+                owlMediaPages.includes(
+                    currentPage
+                )
+
+            );
+
+        }
+
+    );
+
+}
+
+
+
+installOwlMediaNavigation();
+
+
+
+// =================================
 // OWL SIGNATURE SERIES NAVIGATION
 // =================================
 
@@ -142,12 +239,40 @@ function installSignatureSeriesNavigation() {
         );
 
 
+    const currentPage =
+
+        window.location.pathname
+            .split("/")
+            .pop()
+
+        || "index.html";
+
+
+
+    const signatureSeriesPages = [
+
+        "signature-series.html",
+
+        "one-off-tournaments.html",
+
+        "tournament.html",
+
+        "signature-matches.html",
+
+        "power-players.html",
+
+        "proving-ground.html"
+
+    ];
+
+
+
     navigationBars.forEach(
 
         navigationBar => {
 
 
-            const existingLink =
+            let signatureSeriesLink =
 
                 navigationBar.querySelector(
                     'a[href="signature-series.html"]'
@@ -155,95 +280,71 @@ function installSignatureSeriesNavigation() {
 
 
             if (
-                existingLink
+                !signatureSeriesLink
             ) {
 
-                return;
+
+                signatureSeriesLink =
+
+                    document.createElement(
+                        "a"
+                    );
+
+
+                signatureSeriesLink.href =
+                    "signature-series.html";
+
+
+                signatureSeriesLink.textContent =
+                    "SIGNATURE SERIES";
+
+
+
+                const owlMediaLink =
+
+                    navigationBar.querySelector(
+                        'a[href="owl-media.html"]'
+                    );
+
+
+                if (
+                    owlMediaLink
+                ) {
+
+
+                    navigationBar.insertBefore(
+
+                        signatureSeriesLink,
+
+                        owlMediaLink
+
+                    );
+
+                }
+
+
+                else {
+
+
+                    navigationBar.appendChild(
+                        signatureSeriesLink
+                    );
+
+                }
 
             }
 
 
-            const signatureSeriesLink =
 
-                document.createElement(
-                    "a"
-                );
+            signatureSeriesLink.classList.toggle(
 
+                "active",
 
-            signatureSeriesLink.href =
-                "signature-series.html";
-
-
-            signatureSeriesLink.textContent =
-    "SIGNATURE SERIES";
-
-
-            const currentPage =
-
-                window.location.pathname
-                    .split("/")
-                    .pop();
-
-
-                        const signatureSeriesPages = [
-
-                "signature-series.html",
-
-                "one-off-tournaments.html",
-
-                "tournament.html",
-
-                "signature-matches.html",
-
-                "power-players.html",
-
-                "proving-ground.html"
-
-            ];
-
-
-            if (
                 signatureSeriesPages.includes(
                     currentPage
                 )
-            ) {
 
-                signatureSeriesLink.classList.add(
-                    "active"
-                );
-
-            }
-
-
-            const owlSocialLink =
-
-                navigationBar.querySelector(
-                    'a[href="owl-social.html"]'
-                );
-
-
-            if (
-                owlSocialLink
-            ) {
-
-                navigationBar.insertBefore(
-
-                    signatureSeriesLink,
-
-                    owlSocialLink
-
-                );
-
-            }
-
-
-            else {
-
-                navigationBar.appendChild(
-                    signatureSeriesLink
-                );
-
-            }
+            );
 
         }
 
