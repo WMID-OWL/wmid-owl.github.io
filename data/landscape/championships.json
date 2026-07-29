@@ -122,6 +122,78 @@
       "logo": "assets/images/landscape/title-logos/aew-world-trios-championship.png"
     },
     {
+      "id": "mlw-national-openweight-championship",
+      "companyId": "mlw",
+      "name": "National Openweight Championship",
+      "championName": "Austin Aries",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/mlw-national-openweight-championship.png"
+    },
+    {
+      "id": "mlw-southern-cross-championship",
+      "companyId": "mlw",
+      "name": "Southern Cross Championship",
+      "championName": "Joe Coffey",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/mlw-southern-cross-championship.png"
+    },
+    {
+      "id": "mlw-women-s-world-featherweight-championship",
+      "companyId": "mlw",
+      "name": "Women's World Featherweight Championship",
+      "championName": "Shotzi Blackheart",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/mlw-women-s-world-featherweight-championship.png"
+    },
+    {
+      "id": "mlw-world-heavyweight-championship",
+      "companyId": "mlw",
+      "name": "World Heavyweight Championship",
+      "championName": "Killer Kross",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/mlw-world-heavyweight-championship.png"
+    },
+    {
+      "id": "mlw-world-middleweight-championship",
+      "companyId": "mlw",
+      "name": "World Middleweight Championship",
+      "championName": "KUSHIDA",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/mlw-world-middleweight-championship.png"
+    },
+    {
+      "id": "mlw-world-tag-team-championships",
+      "companyId": "mlw",
+      "name": "World Tag Team Championships",
+      "championName": "The Skyscrapers",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/mlw-world-tag-team-championships.png"
+    },
+    {
       "id": "tna-international-championship",
       "companyId": "tna",
       "name": "International Championship",
