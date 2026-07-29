@@ -33,6 +33,7 @@
       <a class="cr-tool-jump-link" href="#cr-tool-events">Events</a>
 <a class="cr-tool-jump-link" href="#cr-tool-tournaments">Tournaments</a>
 <a class="cr-tool-jump-link" href="#cr-tool-signature-series">Signature Series</a>
+<a class="cr-tool-jump-link" href="#cr-tool-after-dark">After Dark</a>
 <a class="cr-tool-jump-link" href="#cr-tool-media">Media</a>
 <a class="cr-tool-jump-link" href="#cr-tool-booker">Match Booker</a>
    <a class="cr-tool-jump-link" href="#cr-tool-results">Results</a>
@@ -3184,7 +3185,450 @@
             </div>
 
         </section>
+        <!-- =================================
+             OWL AFTER DARK PUBLISHER
+        ================================== -->
 
+        <section
+            id="cr-tool-after-dark"
+            class="control-room-panel"
+        >
+
+            <div class="control-room-panel-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        WEEKLY MEDIA
+                    </p>
+
+                    <h2>
+                        OWL After Dark Publisher
+                    </h2>
+
+                </div>
+
+                <span
+                    id="cr-after-dark-status"
+                    class="control-room-health-summary"
+                >
+                    READY
+                </span>
+
+            </div>
+
+
+            <p class="cr-editor-note">
+
+                Build the weekly post-show from completed
+                Ascension and Revolt events, then add the
+                editorial fallout that connects both broadcasts.
+
+            </p>
+
+
+            <!-- EPISODE IDENTITY -->
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        EPISODE
+                    </span>
+
+                    <h3>
+                        Broadcast Identity
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-after-dark-episode">
+                            EPISODE NUMBER
+                        </label>
+
+                        <input
+                            id="cr-after-dark-episode"
+                            type="number"
+                            min="1"
+                            step="1"
+                        >
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-after-dark-air-date">
+                            AIR DATE
+                        </label>
+
+                        <input
+                            id="cr-after-dark-air-date"
+                            type="date"
+                        >
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-after-dark-coverage-label">
+                            COVERAGE LABEL
+                        </label>
+
+                        <input
+                            id="cr-after-dark-coverage-label"
+                            type="text"
+                            autocomplete="off"
+                            value="ASCENSION + REVOLT"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="cr-form-group cr-editor-spaced-field">
+
+                    <label for="cr-after-dark-headline">
+                        EPISODE HEADLINE
+                    </label>
+
+                    <input
+                        id="cr-after-dark-headline"
+                        type="text"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="cr-form-group cr-editor-spaced-field">
+
+                    <label for="cr-after-dark-deck">
+                        EPISODE INTRODUCTION
+                    </label>
+
+                    <textarea
+                        id="cr-after-dark-deck"
+                        rows="5"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- WEEKLY SHOWS -->
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        THIS WEEK
+                    </span>
+
+                    <h3>
+                        Ascension and Revolt
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-after-dark-ascension-event">
+                            ASCENSION EVENT
+                        </label>
+
+                        <select id="cr-after-dark-ascension-event">
+
+                            <option value="">
+                                Select Completed Ascension
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-after-dark-revolt-event">
+                            REVOLT EVENT
+                        </label>
+
+                        <select id="cr-after-dark-revolt-event">
+
+                            <option value="">
+                                Select Completed Revolt
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="cr-editor-form-grid cr-editor-spaced-field">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-after-dark-ascension-summary">
+                            ASCENSION SUMMARY
+                        </label>
+
+                        <textarea
+                            id="cr-after-dark-ascension-summary"
+                            rows="7"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-after-dark-revolt-summary">
+                            REVOLT SUMMARY
+                        </label>
+
+                        <textarea
+                            id="cr-after-dark-revolt-summary"
+                            rows="7"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MATCH OF THE WEEK -->
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        FEATURED MATCH
+                    </span>
+
+                    <h3>
+                        Match of the Week
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-form-group">
+
+                    <label>
+                        AUTOMATIC SELECTION
+                    </label>
+
+                    <div
+                        id="cr-after-dark-match-of-week"
+                        class="cr-current-value"
+                    >
+                        Select both weekly events first.
+                    </div>
+
+                    <small class="cr-field-help">
+
+                        The highest-rated match across the selected
+                        Ascension and Revolt events will be chosen
+                        automatically.
+
+                    </small>
+
+                </div>
+
+
+                <div class="cr-form-group cr-editor-spaced-field">
+
+                    <label for="cr-after-dark-match-summary">
+                        MATCH OF THE WEEK ANALYSIS
+                    </label>
+
+                    <textarea
+                        id="cr-after-dark-match-summary"
+                        rows="6"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- WEEKLY FALLOUT -->
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        FALLOUT
+                    </span>
+
+                    <h3>
+                        What Changed
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-form-group">
+
+                    <label for="cr-after-dark-title-changes">
+                        CHAMPIONSHIP MOVEMENT
+                    </label>
+
+                    <textarea
+                        id="cr-after-dark-title-changes"
+                        rows="6"
+                        placeholder="One entry per line. Example: New champion crowned | Brief explanation"
+                    ></textarea>
+
+                    <small class="cr-field-help">
+
+                        Confirmed title changes from the selected
+                        events will be detected automatically.
+                        Use this field for additional explanation.
+
+                    </small>
+
+                </div>
+
+
+                <div class="cr-form-group cr-editor-spaced-field">
+
+                    <label for="cr-after-dark-story-fallout">
+                        STORY FALLOUT
+                    </label>
+
+                    <textarea
+                        id="cr-after-dark-story-fallout"
+                        rows="7"
+                        placeholder="One entry per line. Example: Rivalry escalates | What happened and why it matters"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="cr-form-group cr-editor-spaced-field">
+
+                    <label for="cr-after-dark-power-shifts">
+                        POWER SHIFTS
+                    </label>
+
+                    <textarea
+                        id="cr-after-dark-power-shifts"
+                        rows="7"
+                        placeholder="One entry per line. Example: Wrestler stock rising | Explanation"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- FINAL WORD -->
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        SIGN-OFF
+                    </span>
+
+                    <h3>
+                        Final Word
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-form-group">
+
+                    <label for="cr-after-dark-closing-note">
+                        CLOSING NOTE
+                    </label>
+
+                    <textarea
+                        id="cr-after-dark-closing-note"
+                        rows="6"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- REVIEW -->
+
+
+            <div
+                id="cr-after-dark-preview"
+                class="cr-change-preview"
+                hidden
+            >
+
+                <span>
+                    REVIEW AFTER DARK EPISODE
+                </span>
+
+                <div
+                    id="cr-after-dark-change-list"
+                    class="cr-editor-change-list"
+                ></div>
+
+                <p
+                    id="cr-after-dark-error"
+                    class="cr-change-error"
+                    hidden
+                ></p>
+
+            </div>
+
+
+            <div class="cr-manager-actions">
+
+                <button
+                    id="cr-after-dark-publish"
+                    class="control-room-button control-room-button-primary"
+                    type="button"
+                    disabled
+                >
+                    Publish OWL After Dark
+                </button>
+
+            </div>
+
+
+            <p
+                id="cr-after-dark-message"
+                class="cr-save-message"
+                hidden
+            ></p>
+
+        </section>
         <!-- =================================
              MEDIA MANAGER
         ================================== -->
