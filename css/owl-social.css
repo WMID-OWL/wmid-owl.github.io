@@ -253,7 +253,82 @@ body {
         #121617;
 
 }
+.after-dark-card {
 
+    background:
+
+        radial-gradient(
+
+            circle at 85% 18%,
+
+            rgba(
+                180,
+                68,
+                255,
+                0.16
+            ),
+
+            transparent 32%
+
+        ),
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(
+                61,
+                29,
+                90,
+                0.34
+            ),
+
+            transparent 52%
+
+        ),
+
+        #101315;
+
+}
+
+
+.sunday-disservice-card {
+
+    background:
+
+        radial-gradient(
+
+            circle at 88% 15%,
+
+            rgba(
+                201,
+                164,
+                92,
+                0.17
+            ),
+
+            transparent 32%
+
+        ),
+
+        linear-gradient(
+
+            145deg,
+
+            rgba(
+                103,
+                25,
+                29,
+                0.25
+            ),
+
+            transparent 52%
+
+        ),
+
+        #121514;
+
+}
 
 .social-destination-topline {
 
@@ -293,7 +368,22 @@ body {
         #c9a45c;
 
 }
+.after-dark-card
+.social-destination-tag {
 
+    color:
+        #c98cff;
+
+}
+
+
+.sunday-disservice-card
+.social-destination-tag {
+
+    color:
+        #e1bd70;
+
+}
 
 .social-destination-status {
 
@@ -301,7 +391,22 @@ body {
         #7f8785;
 
 }
+.after-dark-card
+.social-destination-status {
 
+    color:
+        #a875c9;
+
+}
+
+
+.sunday-disservice-card
+.social-destination-status {
+
+    color:
+        #a98555;
+
+}
 
 .social-destination-card h2 {
 
@@ -346,7 +451,33 @@ body {
         1.7;
 
 }
+.social-destination-subtitle {
 
+    margin-top:
+        10px !important;
+
+    color:
+        #e1bd70 !important;
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        1rem !important;
+
+    font-style:
+        italic;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.35 !important;
+
+}
 
 .social-destination-features {
 
@@ -410,8 +541,104 @@ body {
         auto;
 
 }
+.social-destination-coming-soon {
+
+    cursor:
+        default;
+
+    opacity:
+        0.72;
+
+    pointer-events:
+        none;
+
+}
 
 
+.after-dark-card
+.social-destination-coming-soon {
+
+    border-color:
+        rgba(
+            201,
+            140,
+            255,
+            0.45
+        );
+
+    color:
+        #d6a5ff;
+
+}
+
+
+.sunday-disservice-card
+.social-destination-coming-soon {
+
+    border-color:
+        rgba(
+            225,
+            189,
+            112,
+            0.45
+        );
+
+    color:
+        #e1bd70;
+
+}
+.social-destination-card {
+
+    transition:
+
+        transform 0.18s ease,
+        border-color 0.18s ease;
+
+}
+
+
+.social-destination-card:hover {
+
+    transform:
+        translateY(
+            -4px
+        );
+
+    border-color:
+        rgba(
+            201,
+            164,
+            92,
+            0.36
+        );
+
+}
+
+
+.after-dark-card:hover {
+
+    border-color:
+        rgba(
+            201,
+            140,
+            255,
+            0.48
+        );
+
+}
+
+
+.sunday-disservice-card:hover {
+
+    border-color:
+        rgba(
+            225,
+            189,
+            112,
+            0.48
+        );
+
+}
 
 /* =================================
    MEMORY SECTION
