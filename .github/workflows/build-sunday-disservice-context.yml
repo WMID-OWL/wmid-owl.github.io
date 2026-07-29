@@ -1,0 +1,116 @@
+name: Build Sunday Disservice Context
+
+
+on:
+
+  workflow_run:
+
+    workflows:
+
+      - Generate After Dark Episode
+
+    types:
+
+      - completed
+
+
+  workflow_dispatch:
+
+
+permissions:
+
+  contents:
+    write
+
+
+concurrency:
+
+  group:
+    sunday-disservice-context
+
+  cancel-in-progress:
+    false
+
+
+jobs:
+
+  build-context:
+
+    if: >
+
+      github.event_name == 'workflow_dispatch'
+
+      ||
+
+      github.event.workflow_run.conclusion == 'success'
+
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+        with:
+
+          ref:
+            main
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+      - name: Check Sunday Disservice context-builder syntax
+
+        run: |
+
+          node --check scripts/build-sunday-disservice-context.mjs
+
+
+      - name: Build Sunday Disservice generation context
+
+        run: |
+
+          node scripts/build-sunday-disservice-context.mjs
+
+
+      - name: Commit updated Sunday Disservice queue
+
+        run: |
+
+          git add data/sunday-disservice/generation-queue.json
+
+
+          if git diff --cached --quiet; then
+
+            echo "No Sunday Disservice context changes to commit."
+
+            exit 0
+
+          fi
+
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          git commit \
+            -m "Update Sunday Disservice generation context"
+
+
+          git push
