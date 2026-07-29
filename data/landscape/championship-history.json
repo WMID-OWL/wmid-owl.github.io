@@ -1,4 +1,117 @@
 {
   "version": 1,
-  "changes": []
+  "changes": [
+    {
+      "id": "change-1785295970735-1",
+      "titleId": "wwe-wwe-undisputed-championship",
+      "companyId": "wwe",
+      "titleName": "WWE Undisputed Championship",
+      "previousChampionName": "",
+      "newChampionName": "CM Punk",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T03:32:50.735Z"
+    },
+    {
+      "id": "change-1785296735603-3",
+      "titleId": "wwe-wwe-women-s-championship",
+      "companyId": "wwe",
+      "titleName": "WWE Women's Championship",
+      "previousChampionName": "",
+      "newChampionName": "Rhea Ripley",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T03:45:35.603Z"
+    },
+    {
+      "id": "change-1785296735603-4",
+      "titleId": "wwe-wwe-world-heavyweight-championship",
+      "companyId": "wwe",
+      "titleName": "WWE World Heavyweight Championship",
+      "previousChampionName": "",
+      "newChampionName": "Roman Reigns",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T03:45:35.603Z"
+    },
+    {
+      "id": "change-1785296735603-5",
+      "titleId": "wwe-wwe-united-states-championship",
+      "companyId": "wwe",
+      "titleName": "WWE United States Championship",
+      "previousChampionName": "",
+      "newChampionName": "Trick Williams",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T03:45:35.603Z"
+    },
+    {
+      "id": "change-1785296735603-7",
+      "titleId": "wwe-wwe-intercontinental-championship",
+      "companyId": "wwe",
+      "titleName": "WWE Intercontinental Championship",
+      "previousChampionName": "",
+      "newChampionName": "Penta",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T03:45:35.603Z"
+    },
+    {
+      "id": "change-1785296735603-8",
+      "titleId": "wwe-wwe-tag-team-championships",
+      "companyId": "wwe",
+      "titleName": "WWE Tag Team Championships",
+      "previousChampionName": "",
+      "newChampionName": "R Truth & Damian Priest",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T03:45:35.603Z"
+    },
+    {
+      "id": "change-1785296735603-9",
+      "titleId": "wwe-wwe-women-s-united-states-championship",
+      "companyId": "wwe",
+      "titleName": "WWE Women's United States Championship",
+      "previousChampionName": "",
+      "newChampionName": "Tiffany Stratton",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T03:45:35.603Z"
+    },
+    {
+      "id": "change-1785296735603-11",
+      "titleId": "wwe-wwe-women-s-tag-team-championships",
+      "companyId": "wwe",
+      "titleName": "WWE Women's Tag Team Championships",
+      "previousChampionName": "",
+      "newChampionName": "Fatal Influence (L. Reid & F. Henley)",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T03:45:35.603Z"
+    }
+  ]
 }

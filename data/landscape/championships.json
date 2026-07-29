@@ -1,4 +1,137 @@
 {
   "version": 1,
-  "titles": []
+  "titles": [
+    {
+      "id": "wwe-wwe-intercontinental-championship",
+      "companyId": "wwe",
+      "name": "WWE Intercontinental Championship",
+      "championName": "Penta",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/wwe-wwe-intercontinental-championship.png"
+    },
+    {
+      "id": "wwe-wwe-tag-team-championships",
+      "companyId": "wwe",
+      "name": "WWE Tag Team Championships",
+      "championName": "R Truth & Damian Priest",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/wwe-wwe-tag-team-championships.png"
+    },
+    {
+      "id": "wwe-wwe-undisputed-championship",
+      "companyId": "wwe",
+      "name": "WWE Undisputed Championship",
+      "championName": "CM Punk",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/wwe-wwe-undisputed-championship.png"
+    },
+    {
+      "id": "wwe-wwe-united-states-championship",
+      "companyId": "wwe",
+      "name": "WWE United States Championship",
+      "championName": "Trick Williams",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/wwe-wwe-united-states-championship.png"
+    },
+    {
+      "id": "wwe-wwe-women-s-championship",
+      "companyId": "wwe",
+      "name": "WWE Women's Championship",
+      "championName": "Rhea Ripley",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/wwe-wwe-women-s-championship.png"
+    },
+    {
+      "id": "wwe-wwe-women-s-intercontinental-championship",
+      "companyId": "wwe",
+      "name": "WWE Women's Intercontinental Championship",
+      "championName": "",
+      "status": "vacant",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/wwe-wwe-women-s-intercontinental-championship.png"
+    },
+    {
+      "id": "wwe-wwe-women-s-tag-team-championships",
+      "companyId": "wwe",
+      "name": "WWE Women's Tag Team Championships",
+      "championName": "Fatal Influence (L. Reid & F. Henley)",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/wwe-wwe-women-s-tag-team-championships.png"
+    },
+    {
+      "id": "wwe-wwe-women-s-united-states-championship",
+      "companyId": "wwe",
+      "name": "WWE Women's United States Championship",
+      "championName": "Tiffany Stratton",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/wwe-wwe-women-s-united-states-championship.png"
+    },
+    {
+      "id": "wwe-wwe-women-s-world-championship",
+      "companyId": "wwe",
+      "name": "WWE Women's World Championship",
+      "championName": "",
+      "status": "vacant",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/wwe-wwe-women-s-world-championship.png"
+    },
+    {
+      "id": "wwe-wwe-world-heavyweight-championship",
+      "companyId": "wwe",
+      "name": "WWE World Heavyweight Championship",
+      "championName": "Roman Reigns",
+      "status": "active",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/wwe-wwe-world-heavyweight-championship.png"
+    },
+    {
+      "id": "wwe-wwe-world-tag-team-championships",
+      "companyId": "wwe",
+      "name": "WWE World Tag Team Championships",
+      "championName": "",
+      "status": "vacant",
+      "wonPeriodId": "",
+      "wonEventId": "",
+      "wonEventName": "",
+      "wonDate": "",
+      "logo": "assets/images/landscape/title-logos/wwe-wwe-world-tag-team-championships.png"
+    }
+  ]
 }
