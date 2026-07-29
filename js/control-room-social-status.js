@@ -209,14 +209,19 @@ const crSocialElements = {
     // HEALTH
 
 
-    healthQueue:
+        healthQueue:
 
         document.getElementById(
             "cr-social-health-queue"
         ),
 
 
-    
+    healthWwow:
+
+        document.getElementById(
+            "cr-social-health-wwow"
+        ),
+
 
     healthAfterDark:
 
@@ -2264,14 +2269,13 @@ async function crSocialLoadStatus() {
     ) {
 
 
-        console.error(
+                console.error(
 
-            "Could not load OWL Media system status:"
+            "Could not load OWL Media system status:",
 
             error
 
         );
-
 
         crSocialSetOverall(
 
