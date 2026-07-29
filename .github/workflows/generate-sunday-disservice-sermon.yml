@@ -1,0 +1,215 @@
+name: Generate Sunday Disservice Sermon
+
+
+on:
+
+  workflow_run:
+
+    workflows:
+
+      - Build Sunday Disservice Context
+
+    types:
+
+      - completed
+
+
+  workflow_dispatch:
+
+    inputs:
+
+      max_weeks:
+
+        description:
+          "Number of pending Sunday Disservice weeks to generate"
+
+        required:
+          true
+
+        default:
+          "1"
+
+
+permissions:
+
+  contents:
+    write
+
+  models:
+    read
+
+
+concurrency:
+
+  group:
+    sunday-disservice-writer
+
+  cancel-in-progress:
+    false
+
+
+jobs:
+
+  generate-sermon:
+
+    if: >
+
+      github.event_name == 'workflow_dispatch'
+
+      ||
+
+      github.event.workflow_run.conclusion == 'success'
+
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+        with:
+
+          ref:
+            main
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+      - name: Check Sunday Disservice writer syntax
+
+        run: |
+
+          node --check scripts/write-sunday-disservice-sermon.mjs
+
+
+      - name: Read Sunday Disservice generation queue
+
+        id:
+          queue
+
+        run: |
+
+          COUNT=$(node -e "
+
+          const fs = require('fs');
+
+          const queue = JSON.parse(
+
+              fs.readFileSync(
+
+                  'data/sunday-disservice/generation-queue.json',
+
+                  'utf8'
+
+              )
+
+          );
+
+          process.stdout.write(
+
+              String(
+
+                  Number(
+
+                      queue.pendingWeekCount || 0
+
+                  )
+
+              )
+
+          );
+
+          ")
+
+
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+
+
+          echo "Pending Sunday Disservice weeks: $COUNT"
+
+
+      - name: Generate Sunday Disservice sermon
+
+        if: >
+
+          steps.queue.outputs.count != '0'
+
+        env:
+
+          GITHUB_TOKEN:
+            ${{ secrets.GITHUB_TOKEN }}
+
+          MAX_WEEKS:
+            ${{ github.event_name == 'workflow_dispatch' && inputs.max_weeks || steps.queue.outputs.count }}
+
+          SUNDAY_DISSERVICE_MODEL:
+            openai/gpt-4o-mini
+
+          SUNDAY_DISSERVICE_REQUEST_GAP_MS:
+            "20000"
+
+
+        run: |
+
+          node scripts/write-sunday-disservice-sermon.mjs
+
+
+      - name: Refresh Sunday Disservice generation queue
+
+        if: >
+
+          always()
+
+          &&
+
+          steps.queue.outputs.count != '0'
+
+        run: |
+
+          node scripts/build-sunday-disservice-context.mjs
+
+
+      - name: Commit generated Sunday Disservice content
+
+        if:
+          always()
+
+        run: |
+
+          git add data/sunday-disservice
+
+
+          if git diff --cached --quiet; then
+
+            echo "No Sunday Disservice content changes to commit."
+
+            exit 0
+
+          fi
+
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          git commit \
+            -m "Publish Sunday Disservice sermon"
+
+
+          git push
