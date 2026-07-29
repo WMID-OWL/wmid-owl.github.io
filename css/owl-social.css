@@ -437,13 +437,32 @@ body {
 h2.social-destination-logo-heading {
 
     display:
-        flex;
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            130px,
+            180px
+        )
+
+        minmax(
+            0,
+            1fr
+        );
 
     align-items:
         center;
 
+    gap:
+        clamp(
+            20px,
+            3vw,
+            34px
+        );
+
     min-height:
-        142px;
+        138px;
 
     margin:
 
@@ -451,11 +470,30 @@ h2.social-destination-logo-heading {
         0
         0;
 
-    font-size:
+    line-height:
+        0.95;
+
+}
+
+
+.social-destination-logo-heading span {
+
+    min-width:
         0;
 
-    line-height:
-        1;
+    font-size:
+
+        clamp(
+            2rem,
+            3.4vw,
+            3.8rem
+        );
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -0.045em;
 
 }
 
@@ -466,13 +504,10 @@ h2.social-destination-logo-heading {
         block;
 
     width:
-        auto;
-
-    max-width:
         100%;
 
     height:
-        auto;
+        125px;
 
     object-fit:
         contain;
@@ -488,11 +523,8 @@ h2.social-destination-logo-heading {
 
 .social-destination-logo-innanet {
 
-    max-width:
-        390px;
-
-    max-height:
-        126px;
+    height:
+        112px;
 
 }
 
@@ -502,11 +534,8 @@ h2.social-destination-logo-heading {
 
 .social-destination-logo-wwow {
 
-    max-width:
-        500px;
-
-    max-height:
-        132px;
+    height:
+        116px;
 
 }
 
@@ -516,11 +545,8 @@ h2.social-destination-logo-heading {
 
 .social-destination-logo-after-dark {
 
-    max-width:
-        440px;
-
-    max-height:
-        138px;
+    height:
+        132px;
 
 }
 
@@ -530,11 +556,8 @@ h2.social-destination-logo-heading {
 
 .social-destination-logo-sunday {
 
-    max-width:
-        470px;
-
-    max-height:
-        142px;
+    height:
+        138px;
 
 }
 
@@ -2024,11 +2047,26 @@ h2.social-destination-logo-heading {
 
     .social-hub-page,
     .social-app-page {
-    .social-destination-card
+        .social-destination-card
     h2.social-destination-logo-heading {
 
+        grid-template-columns:
+
+            minmax(
+                90px,
+                120px
+            )
+
+            minmax(
+                0,
+                1fr
+            );
+
+        gap:
+            16px;
+
         min-height:
-            104px;
+            108px;
 
         margin-top:
             20px;
@@ -2036,34 +2074,55 @@ h2.social-destination-logo-heading {
     }
 
 
+    .social-destination-logo-heading span {
+
+        font-size:
+
+            clamp(
+                1.65rem,
+                8vw,
+                2.55rem
+            );
+
+    }
+
+
+    .social-destination-logo {
+
+        height:
+            96px;
+
+    }
+
+
     .social-destination-logo-innanet {
 
-        max-height:
-            92px;
+        height:
+            82px;
 
     }
 
 
     .social-destination-logo-wwow {
 
-        max-height:
-            100px;
+        height:
+            86px;
 
     }
 
 
     .social-destination-logo-after-dark {
 
-        max-height:
-            104px;
+        height:
+            100px;
 
     }
 
 
     .social-destination-logo-sunday {
 
-        max-height:
-            108px;
+        height:
+            104px;
 
     }
         width:
