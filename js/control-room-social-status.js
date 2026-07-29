@@ -1,8 +1,7 @@
 // =================================
 // OWL CONTROL ROOM
-// SOCIAL SYSTEM STATUS
+// MEDIA SYSTEM STATUS
 // =================================
-
 
 // =================================
 // ELEMENTS
