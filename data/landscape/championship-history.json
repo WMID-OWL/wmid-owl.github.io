@@ -448,6 +448,76 @@
       "eventName": "",
       "wonDate": "",
       "recordedAt": "2026-07-29T04:25:04.282Z"
+    },
+    {
+      "id": "change-1785299384690-1",
+      "titleId": "nxt-nxt-championship",
+      "companyId": "nxt",
+      "titleName": "NXT Championship",
+      "previousChampionName": "",
+      "newChampionName": "Tony D'Angelo",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:29:44.690Z"
+    },
+    {
+      "id": "change-1785299384690-3",
+      "titleId": "nxt-north-american-championship",
+      "companyId": "nxt",
+      "titleName": "North American Championship",
+      "previousChampionName": "",
+      "newChampionName": "Myles Borne",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:29:44.690Z"
+    },
+    {
+      "id": "change-1785299384690-4",
+      "titleId": "nxt-tag-team-championships",
+      "companyId": "nxt",
+      "titleName": "Tag Team Championships",
+      "previousChampionName": "",
+      "newChampionName": "Swipe Right",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:29:44.690Z"
+    },
+    {
+      "id": "change-1785299384690-6",
+      "titleId": "nxt-men-s-speed-championship",
+      "companyId": "nxt",
+      "titleName": "Men's Speed Championship",
+      "previousChampionName": "",
+      "newChampionName": "Lexis King",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:29:44.690Z"
+    },
+    {
+      "id": "change-1785299384690-7",
+      "titleId": "nxt-women-s-speed-championship",
+      "companyId": "nxt",
+      "titleName": "Women's Speed Championship",
+      "previousChampionName": "",
+      "newChampionName": "Wren Sinclair",
+      "changeType": "initial-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-07-29T04:29:44.690Z"
     }
   ]
 }
