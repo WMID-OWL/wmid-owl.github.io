@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/control-room.css?v=309a">
+    <link rel="stylesheet" href="css/control-room.css?v=309b">
 </head>
 
 <body class="control-room-body">
@@ -3641,7 +3641,338 @@
                 </article>
 
             </div>
+            <div class="cr-editor-section">
 
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        OFFICIAL RECORD CREATION
+                    </span>
+
+                    <h3>
+                        Create Injury Record
+                    </h3>
+
+                </div>
+
+                <p class="cr-editor-note">
+
+                    Select a confirmed standard injury evaluation, complete
+                    the remaining medical and scheduling details, then save
+                    it as an official INJURED record.
+
+                </p>
+
+                <div class="cr-form-group">
+
+                    <label for="cr-injury-create-evaluation">
+                        CONFIRMED INJURY EVALUATION
+                    </label>
+
+                    <select id="cr-injury-create-evaluation">
+
+                        <option value="">
+                            No eligible evaluations available
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div
+                    id="cr-injury-create-form"
+                    hidden
+                >
+
+                    <div class="cr-injury-create-readout-grid">
+
+                        <div>
+
+                            <span>
+                                WRESTLER
+                            </span>
+
+                            <strong id="cr-injury-create-wrestler">
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                PRIMARY ROLL
+                            </span>
+
+                            <strong id="cr-injury-create-roll">
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                STANDARD ABSENCE
+                            </span>
+
+                            <strong id="cr-injury-create-absence">
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                POST-RETURN LOW PERIOD
+                            </span>
+
+                            <strong id="cr-injury-create-recovery">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <div class="cr-form-group cr-editor-spaced-field">
+
+                        <label for="cr-injury-create-crit-cause">
+                            RECORDED CRIT CAUSE
+                        </label>
+
+                        <textarea
+                            id="cr-injury-create-crit-cause"
+                            rows="3"
+                            readonly
+                        ></textarea>
+
+                    </div>
+
+                    <div class="cr-editor-form-grid cr-editor-spaced-field">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-injury-create-diagnosis">
+                                DIAGNOSIS
+                            </label>
+
+                            <input
+                                id="cr-injury-create-diagnosis"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Enter the approved diagnosis"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-injury-create-body-part">
+                                AFFECTED FIRE PRO BODY PART
+                            </label>
+
+                            <input
+                                id="cr-injury-create-body-part"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Enter the affected endurance area"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-injury-create-prior-endurance">
+                                PRIOR ENDURANCE STATE
+                            </label>
+
+                            <select id="cr-injury-create-prior-endurance">
+
+                                <option value="">
+                                    Select Prior State
+                                </option>
+
+                                <option value="Low">
+                                    Low
+                                </option>
+
+                                <option value="Medium">
+                                    Medium
+                                </option>
+
+                                <option value="High">
+                                    High
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-injury-create-championship-status">
+                                CHAMPIONSHIP STATUS
+                            </label>
+
+                            <select id="cr-injury-create-championship-status">
+
+                                <option value="Not Champion">
+                                    Not Champion
+                                </option>
+
+                                <option value="Current Champion">
+                                    Current Champion
+                                </option>
+
+                                <option value="Interim Champion">
+                                    Interim Champion
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="cr-editor-form-grid cr-editor-spaced-field">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-injury-create-start-week">
+                                INJURY START WEEK
+                            </label>
+
+                            <input
+                                id="cr-injury-create-start-week"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Example: July 2027 — Week 3"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-injury-create-return-week">
+                                EXPECTED RETURN WEEK
+                            </label>
+
+                            <input
+                                id="cr-injury-create-return-week"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Enter the calculated OWL return week"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-injury-create-clearance-week">
+                                EXPECTED FULL-CLEARANCE WEEK
+                            </label>
+
+                            <input
+                                id="cr-injury-create-clearance-week"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Return week plus recovery period"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-injury-create-event-id">
+                                EVENT ID — OPTIONAL
+                            </label>
+
+                            <input
+                                id="cr-injury-create-event-id"
+                                type="text"
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-injury-create-match-id">
+                                MATCH ID — OPTIONAL
+                            </label>
+
+                            <input
+                                id="cr-injury-create-match-id"
+                                type="text"
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="cr-form-group cr-editor-spaced-field">
+
+                        <label for="cr-injury-create-note">
+                            COMMISSIONER NOTE — OPTIONAL
+                        </label>
+
+                        <textarea
+                            id="cr-injury-create-note"
+                            rows="4"
+                            placeholder="Internal Control Room note"
+                        ></textarea>
+
+                    </div>
+
+                    <div
+                        id="cr-injury-create-preview"
+                        class="cr-change-preview"
+                        hidden
+                    >
+
+                        <span>
+                            REVIEW OFFICIAL INJURY RECORD
+                        </span>
+
+                        <div
+                            id="cr-injury-create-preview-list"
+                            class="cr-editor-change-list"
+                        ></div>
+
+                        <p
+                            id="cr-injury-create-error"
+                            class="cr-change-error"
+                            hidden
+                        ></p>
+
+                    </div>
+
+                    <div class="cr-manager-actions">
+
+                        <button
+                            id="cr-injury-create-save"
+                            class="control-room-button control-room-button-primary"
+                            type="button"
+                            disabled
+                        >
+                            Save Official Injury
+                        </button>
+
+                    </div>
+
+                    <p
+                        id="cr-injury-create-message"
+                        class="cr-save-message"
+                        hidden
+                    ></p>
+
+                </div>
+
+            </div>
+            
             <div class="cr-editor-section">
 
                 <div class="cr-editor-section-heading">
@@ -6487,7 +6818,8 @@
 <script src="js/app.js?v=site-back-to-top-1"></script>
 <script src="js/control-room.js?v=293g"></script>
 <script src="js/control-room-generator.js?v=308c"></script>
-<script src="js/control-room-injuries.js?v=309a"></script>
+<script src="js/control-room-injuries.js?v=309b"></script>
+<script src="js/control-room-injury-create.js?v=309b"></script>
 <script src="js/control-room-after-dark.js?v=300e"></script>
 <script src="js/control-room-sunday-disservice.js?v=301e"></script>
 <script src="js/control-room-proving-ground.js?v=293b"></script>
