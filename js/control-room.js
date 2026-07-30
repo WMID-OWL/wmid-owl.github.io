@@ -80,7 +80,7 @@ const OWL_CONTROL_ROOM_FILES = [
         ]
     },
 
-    {
+        {
         key: "provingGround",
         fileName: "proving-ground.json",
         label: "Proving Ground",
@@ -90,6 +90,22 @@ const OWL_CONTROL_ROOM_FILES = [
             "blockResults",
             "finals"
         ]
+    },
+
+    {
+        key: "generatorHistory",
+        fileName: "generator-history.json",
+        label: "Generator History",
+        objectFile: true,
+        countKey: "results"
+    },
+
+    {
+        key: "injuries",
+        fileName: "injuries.json",
+        label: "Injury Records",
+        objectFile: true,
+        countKey: "injuries"
     }
 ];
 
