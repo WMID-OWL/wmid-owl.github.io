@@ -11905,3 +11905,96 @@ h2.social-destination-logo-heading {
         130px;
 
 }
+/* =================================
+   SUNDAY DISSERVICE AUDIO
+================================= */
+
+.sunday-disservice-audio-panel {
+    margin: 0;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-top: 1px solid rgba(242, 207, 117, 0.38);
+    border-bottom: 1px solid rgba(242, 207, 117, 0.38);
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(242, 207, 117, 0.13),
+            transparent 42%
+        ),
+        rgba(11, 9, 8, 0.96);
+}
+
+.sunday-disservice-audio-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-bottom: 0.85rem;
+}
+
+.sunday-disservice-audio-heading span {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: #f2cf75;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+.sunday-disservice-audio-heading h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+    line-height: 1.15;
+}
+
+.sunday-disservice-audio-heading > strong {
+    flex: 0 0 auto;
+    padding: 0.42rem 0.65rem;
+    border: 1px solid rgba(242, 207, 117, 0.48);
+    color: #f2cf75;
+    font-size: 0.65rem;
+    letter-spacing: 0.13em;
+}
+
+.sunday-disservice-audio-panel > p {
+    max-width: 760px;
+    margin: 0 0 1rem;
+    color: rgba(255, 255, 255, 0.76);
+    line-height: 1.65;
+}
+
+.sunday-disservice-audio-panel audio {
+    display: block;
+    width: 100%;
+    margin: 0;
+}
+
+.sunday-disservice-audio-note {
+    display: block;
+    margin-top: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.72rem;
+    line-height: 1.5;
+}
+
+.sunday-disservice-archive-audio-badge {
+    display: inline-flex;
+    width: fit-content;
+    margin: 0.15rem 0 0.7rem;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid rgba(242, 207, 117, 0.42);
+    color: #f2cf75;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.sunday-disservice-archive-card.has-audio {
+    border-color: rgba(242, 207, 117, 0.48);
+}
+
+@media (max-width: 640px) {
+    .sunday-disservice-audio-heading {
+        flex-direction: column;
+    }
+}
