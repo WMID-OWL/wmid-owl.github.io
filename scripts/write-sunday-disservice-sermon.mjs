@@ -549,7 +549,7 @@ function retryDelayFromHeaders(
 async function callModel(
     systemPrompt,
     userPrompt,
-    maxTokens = 4200
+    maxTokens = 1800
 ) {
 
 
@@ -878,7 +878,7 @@ async function callModel(
 async function callModelSafely(
     systemPrompt,
     userPrompt,
-    maxTokens = 4200
+    maxTokens = 1800
 ) {
 
 
@@ -1121,9 +1121,42 @@ RETURN JSON ONLY with exactly this shape:
 // =================================
 
 
+function compactPromptJson(
+    value
+) {
+
+
+    return JSON.stringify(
+        value
+    );
+
+}
+
+
+
 function buildPromptPackage(
     weekPackage
 ) {
+
+
+    const editorialMemory =
+
+        weekPackage
+            ?.mediaMemory
+            ?.treyEditorialMemory
+
+        ||
+
+        {};
+
+
+    const worldHistory =
+
+        weekPackage.worldHistoryMemory
+
+        ||
+
+        {};
 
 
     return {
@@ -1187,7 +1220,7 @@ function buildPromptPackage(
 
                 ).slice(
                     0,
-                    24
+                    12
                 ),
 
 
@@ -1201,55 +1234,203 @@ function buildPromptPackage(
 
                 ).slice(
                     0,
-                    6
+                    3
                 ),
 
 
-            treyEditorialMemory:
+            treyEditorialMemory: {
 
-                weekPackage
-                    ?.mediaMemory
-                    ?.treyEditorialMemory
+                sermonCount:
 
-                ||
+                    Number(
+                        editorialMemory.sermonCount || 0
+                    ),
 
-                {
+                previousClaims:
 
-                    sermonCount:
+                    array(
+                        editorialMemory.previousClaims
+                    ).slice(
                         0,
+                        4
+                    ),
 
-                    previousClaims:
-                        [],
+                favoritesEvidence:
 
-                    favoritesEvidence:
-                        [],
+                    array(
+                        editorialMemory.favoritesEvidence
+                    ).slice(
+                        0,
+                        8
+                    ),
 
-                    blindSpotEvidence:
-                        []
+                blindSpotEvidence:
 
-                }
+                    array(
+                        editorialMemory.blindSpotEvidence
+                    ).slice(
+                        0,
+                        8
+                    ),
+
+                rule:
+                    editorialMemory.rule || ""
+
+            }
 
         },
 
 
-        worldHistoryMemory:
+        worldHistoryMemory: {
 
-            weekPackage.worldHistoryMemory
+            months:
 
-            ||
+                array(
+                    worldHistory.months
+                ).slice(
+                    0,
+                    3
+                ),
 
-            {
+            entityHistories:
 
-                months:
-                    [],
+                array(
+                    worldHistory.entityHistories
+                ).slice(
+                    0,
+                    8
+                ),
 
-                entityHistories:
-                    [],
+            companyHistory:
 
-                companyHistory:
-                    []
+                array(
+                    worldHistory.companyHistory
+                ).slice(
+                    0,
+                    4
+                )
+
+        }
+
+    };
+
+}
+
+
+
+function buildAuditPackage(
+    promptPackage
+) {
+
+
+    const editorialMemory =
+
+        promptPackage
+            ?.mediaMemory
+            ?.treyEditorialMemory
+
+        ||
+
+        {};
+
+
+    return {
+
+
+        identity:
+            promptPackage.identity,
+
+
+        rules:
+            promptPackage.rules,
+
+
+        weeklyCanon:
+            promptPackage.weeklyCanon,
+
+
+        mediaMemory: {
+
+            afterDarkEpisode:
+
+                promptPackage
+                    ?.mediaMemory
+                    ?.afterDarkEpisode
+
+                ||
+
+                null,
+
+
+            innanetReaction:
+
+                array(
+
+                    promptPackage
+                        ?.mediaMemory
+                        ?.innanetReaction
+
+                ).slice(
+                    0,
+                    8
+                ),
+
+
+            priorSermons:
+
+                array(
+
+                    promptPackage
+                        ?.mediaMemory
+                        ?.priorSermons
+
+                ).slice(
+                    0,
+                    2
+                ),
+
+
+            treyEditorialMemory: {
+
+                sermonCount:
+
+                    Number(
+                        editorialMemory.sermonCount || 0
+                    ),
+
+                previousClaims:
+
+                    array(
+                        editorialMemory.previousClaims
+                    ).slice(
+                        0,
+                        3
+                    ),
+
+                favoritesEvidence:
+
+                    array(
+                        editorialMemory.favoritesEvidence
+                    ).slice(
+                        0,
+                        6
+                    ),
+
+                blindSpotEvidence:
+
+                    array(
+                        editorialMemory.blindSpotEvidence
+                    ).slice(
+                        0,
+                        6
+                    ),
+
+                rule:
+                    editorialMemory.rule || ""
 
             }
+
+        }
 
     };
 
@@ -2053,6 +2234,13 @@ for (
         );
 
 
+    const auditPackage =
+
+        buildAuditPackage(
+            promptPackage
+        );
+
+
     const draft =
 
         await callModelSafely(
@@ -2061,15 +2249,11 @@ for (
 
             `Write the complete Sunday Disservice sermon from this verified weekly package.
 
-${JSON.stringify(
+${compactPromptJson(
+    promptPackage
+)}`,
 
-    promptPackage,
-
-    null,
-
-    2
-
-)}`
+            1800
 
         );
 
@@ -2096,27 +2280,17 @@ ${JSON.stringify(
 
 VERIFIED PACKAGE:
 
-${JSON.stringify(
-
-    promptPackage,
-
-    null,
-
-    2
-
+${compactPromptJson(
+    auditPackage
 )}
 
 SERMON TO AUDIT:
 
-${JSON.stringify(
+${compactPromptJson(
+    cleanedDraft
+)}`,
 
-    cleanedDraft,
-
-    null,
-
-    2
-
-)}`
+            1600
 
         );
 
