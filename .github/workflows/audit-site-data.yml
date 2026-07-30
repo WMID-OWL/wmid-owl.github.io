@@ -1,0 +1,68 @@
+name: Audit Site Data
+
+
+on:
+
+  workflow_dispatch:
+
+
+permissions:
+
+  contents:
+    read
+
+
+concurrency:
+
+  group:
+    site-data-audit
+
+  cancel-in-progress:
+    true
+
+
+jobs:
+
+  audit-data:
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+        with:
+
+          ref:
+            main
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+      - name: Check site-data audit syntax
+
+        run: |
+
+          node --check scripts/audit-site-data.mjs
+
+
+      - name: Audit site data
+
+        run: |
+
+          node scripts/audit-site-data.mjs
