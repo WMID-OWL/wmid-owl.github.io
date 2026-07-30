@@ -601,6 +601,40 @@ async function resolveTarget(
         );
 
 
+    const sourceExtension =
+
+        path.extname(
+            sourceRelativePath
+        ).toLowerCase();
+
+
+    const isJavaScriptDocumentReference =
+
+        sourceExtension === ".js"
+
+        &&
+
+        filePart
+
+        &&
+
+        !filePart.startsWith(
+            "/"
+        )
+
+        &&
+
+        !filePart.startsWith(
+            "./"
+        )
+
+        &&
+
+        !filePart.startsWith(
+            "../"
+        );
+
+
     let targetRelativePath;
 
 
@@ -627,6 +661,26 @@ async function resolveTarget(
             filePart.replace(
                 /^\/+/,
                 ""
+            );
+
+    }
+
+
+    else if (
+        isJavaScriptDocumentReference
+    ) {
+
+
+        /*
+         * Links placed into page markup by JavaScript resolve
+         * relative to the loaded HTML document, not relative
+         * to the JavaScript file inside the js directory.
+         */
+
+        targetRelativePath =
+
+            path.normalize(
+                filePart
             );
 
     }
