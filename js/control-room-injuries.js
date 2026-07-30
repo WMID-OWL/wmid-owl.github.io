@@ -1224,3 +1224,11 @@ window.addEventListener(
     renderInjuryTracker
 
 );
+
+window.addEventListener(
+
+    "owl-injuries-updated",
+
+    renderInjuryTracker
+
+);
