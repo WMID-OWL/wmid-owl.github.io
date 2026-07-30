@@ -3261,9 +3261,9 @@
                             Custom Pool Draw
                         </option>
 
-                        <option value="injury-evaluation" disabled>
-                            Injury Evaluation — Coming Next
-                        </option>
+                        <option value="injury-evaluation">
+    Injury Evaluation
+</option>
 
                         <option value="fates-wheel" disabled>
                             Fate’s Wheel Cases — Planned
@@ -3308,11 +3308,57 @@
             </div>
 
             <p
-                id="cr-generator-mode-note"
-                class="cr-generator-mode-note"
-            ></p>
+    id="cr-generator-mode-note"
+    class="cr-generator-mode-note"
+></p>
 
-            <div class="cr-generator-detail-grid">
+<div
+    id="cr-generator-injury-fields"
+    class="cr-generator-injury-grid"
+    hidden
+>
+
+    <div class="cr-form-group">
+
+        <label for="cr-generator-injury-wrestler">
+            WRESTLER WHO RECEIVED THE CRIT
+        </label>
+
+        <select id="cr-generator-injury-wrestler">
+
+            <option value="">
+                Select Wrestler
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="cr-form-group">
+
+        <label for="cr-generator-injury-crit-cause">
+            CRIT CAUSE
+        </label>
+
+        <input
+            id="cr-generator-injury-crit-cause"
+            type="text"
+            autocomplete="off"
+            placeholder="Example: Head strike, submission, avalanche move"
+        >
+
+        <small class="cr-field-help">
+
+            Record what caused the CRIT. Body-part mapping and diagnosis
+            will be handled by the Injury Tracker after those rules are approved.
+
+        </small>
+
+    </div>
+
+</div>
+
+<div class="cr-generator-detail-grid">
 
                 <div class="cr-form-group">
 
@@ -3346,7 +3392,10 @@
 
             </div>
 
-            <div class="cr-generator-pool-grid">
+            <div
+    id="cr-generator-pool-fields"
+    class="cr-generator-pool-grid"
+>
 
                 <div class="cr-form-group">
 
@@ -3378,7 +3427,10 @@
 
             </div>
 
-            <div class="cr-generator-count-grid">
+            <div
+    id="cr-generator-count-fields"
+    class="cr-generator-count-grid"
+>
 
                 <article>
 
@@ -6251,7 +6303,7 @@
 
 <script src="js/app.js?v=site-back-to-top-1"></script>
 <script src="js/control-room.js?v=293g"></script>
-<script src="js/control-room-generator.js?v=308b"></script>
+<script src="js/control-room-generator.js?v=308c"></script>
 <script src="js/control-room-after-dark.js?v=300e"></script>
 <script src="js/control-room-sunday-disservice.js?v=301e"></script>
 <script src="js/control-room-proving-ground.js?v=293b"></script>
