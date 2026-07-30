@@ -862,8 +862,13 @@ function renderInjuryRecordCard(
         );
 
 
-    card.className =
+        card.className =
         "cr-injury-card";
+
+
+    card.dataset.injuryId =
+        injury.id ||
+        "";
 
 
     const expectedReturn =
@@ -1008,7 +1013,7 @@ function renderInjuryRecordCard(
 
             </div>
 
-            <div>
+                        <div>
 
                 <span>
                     CURRENT ENDURANCE
@@ -1025,6 +1030,108 @@ function renderInjuryRecordCard(
             </div>
 
         </div>
+
+        ${
+            injury.id
+            &&
+            status ===
+                "INJURED"
+
+                ? `
+
+                    <div class="cr-injury-action-bar">
+
+                        <div>
+
+                            <strong>
+                                RETURN ACTION
+                            </strong>
+
+                            <p>
+
+                                When the absence has been served, set
+                                ${injuryEscape(
+                                    injuryText(
+                                        injury.affectedBodyPart
+                                    )
+                                )}
+                                to Low endurance in Fire Pro.
+
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="control-room-button control-room-button-primary"
+                            type="button"
+                            data-injury-action="return"
+                            data-injury-id="${injuryEscape(
+                                injury.id
+                            )}"
+                        >
+                            Confirm Return
+                        </button>
+
+                    </div>
+
+                `
+
+                : ""
+        }
+
+        ${
+            injury.id
+            &&
+            status ===
+                "RECOVERING"
+
+                ? `
+
+                    <div class="cr-injury-action-bar">
+
+                        <div>
+
+                            <strong>
+                                CLEARANCE ACTION
+                            </strong>
+
+                            <p>
+
+                                When the recovery window ends, restore
+                                ${injuryEscape(
+                                    injuryText(
+                                        injury.affectedBodyPart
+                                    )
+                                )}
+                                to
+                                ${injuryEscape(
+                                    injuryText(
+                                        injury.priorEnduranceState
+                                    )
+                                )}
+                                endurance in Fire Pro.
+
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="control-room-button control-room-button-primary"
+                            type="button"
+                            data-injury-action="clear"
+                            data-injury-id="${injuryEscape(
+                                injury.id
+                            )}"
+                        >
+                            Confirm Full Clearance
+                        </button>
+
+                    </div>
+
+                `
+
+                : ""
+        }
 
     `;
 
