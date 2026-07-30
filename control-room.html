@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/control-room.css?v=308b">
+    <link rel="stylesheet" href="css/control-room.css?v=309a">
 </head>
 
 <body class="control-room-body">
@@ -34,6 +34,7 @@
 <a class="cr-tool-jump-link" href="#cr-tool-tournaments">Tournaments</a>
 <a class="cr-tool-jump-link" href="#cr-tool-signature-series">Signature Series</a>
 <a class="cr-tool-jump-link" href="#cr-tool-generator">Generator</a>
+<a class="cr-tool-jump-link" href="#cr-tool-injuries">Injuries</a>
 <a class="cr-tool-jump-link" href="#cr-tool-after-dark">After Dark Fallback</a>
 <a class="cr-tool-jump-link" href="#cr-tool-sunday-disservice">Sunday Fallback</a>
 <a class="cr-tool-jump-link" href="#cr-tool-media">Media</a>
@@ -3549,6 +3550,188 @@
             </div>
 
         </section>
+                <!-- =================================
+             INJURY TRACKER
+        ================================== -->
+
+        <section
+            id="cr-tool-injuries"
+            class="control-room-panel"
+        >
+
+            <div class="control-room-panel-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        AVAILABILITY AND RECOVERY
+                    </p>
+
+                    <h2>
+                        Injury Tracker
+                    </h2>
+
+                </div>
+
+                <span
+                    id="cr-injury-tracker-status"
+                    class="control-room-health-summary"
+                >
+                    WAITING
+                </span>
+
+            </div>
+
+            <p class="cr-editor-note">
+
+                Confirmed injury evaluations appear here before becoming
+                official injury records. This foundation is read-only and
+                does not create, modify, or clear any injuries.
+
+            </p>
+
+            <div class="cr-injury-summary-grid">
+
+                <article>
+
+                    <span>
+                        PENDING EVALUATIONS
+                    </span>
+
+                    <strong id="cr-injury-count-pending">
+                        0
+                    </strong>
+
+                </article>
+
+                <article class="cr-injury-summary-injured">
+
+                    <span>
+                        INJURED
+                    </span>
+
+                    <strong id="cr-injury-count-injured">
+                        0
+                    </strong>
+
+                </article>
+
+                <article class="cr-injury-summary-recovering">
+
+                    <span>
+                        RECOVERING
+                    </span>
+
+                    <strong id="cr-injury-count-recovering">
+                        0
+                    </strong>
+
+                </article>
+
+                <article class="cr-injury-summary-cleared">
+
+                    <span>
+                        CLEARED
+                    </span>
+
+                    <strong id="cr-injury-count-cleared">
+                        0
+                    </strong>
+
+                </article>
+
+            </div>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        GENERATOR HANDOFF
+                    </span>
+
+                    <h3>
+                        Pending Injury Evaluations
+                    </h3>
+
+                </div>
+
+                <p class="cr-editor-note">
+
+                    Only confirmed Canon Mode evaluations that produced
+                    an absence appear here. Test results and rolls producing
+                    no absence are excluded automatically.
+
+                </p>
+
+                <div
+                    id="cr-injury-pending-list"
+                    class="cr-injury-list"
+                >
+
+                    <p class="cr-injury-empty">
+                        Connect the OWL folder to load injury evaluations.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        CURRENT AVAILABILITY
+                    </span>
+
+                    <h3>
+                        Active Injury Cases
+                    </h3>
+
+                </div>
+
+                <div
+                    id="cr-injury-active-list"
+                    class="cr-injury-list"
+                >
+
+                    <p class="cr-injury-empty">
+                        Connect the OWL folder to load active injuries.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        PERMANENT RECORD
+                    </span>
+
+                    <h3>
+                        Cleared Injury History
+                    </h3>
+
+                </div>
+
+                <div
+                    id="cr-injury-cleared-list"
+                    class="cr-injury-list"
+                >
+
+                    <p class="cr-injury-empty">
+                        Connect the OWL folder to load cleared injuries.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
         <!-- =================================
              OWL AFTER DARK PUBLISHER
         ================================== -->
@@ -6304,6 +6487,7 @@
 <script src="js/app.js?v=site-back-to-top-1"></script>
 <script src="js/control-room.js?v=293g"></script>
 <script src="js/control-room-generator.js?v=308c"></script>
+<script src="js/control-room-injuries.js?v=309a"></script>
 <script src="js/control-room-after-dark.js?v=300e"></script>
 <script src="js/control-room-sunday-disservice.js?v=301e"></script>
 <script src="js/control-room-proving-ground.js?v=293b"></script>
