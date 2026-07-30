@@ -75,6 +75,9 @@ jobs:
           ref:
             main
 
+          fetch-depth:
+            2
+
 
       - name: Set up Node
 
