@@ -1,0 +1,483 @@
+name: Test OWL Media End to End
+
+
+on:
+
+  workflow_dispatch:
+
+    inputs:
+
+      action:
+
+        description:
+          "Generate or remove the disposable OWL Media test"
+
+        required:
+          true
+
+        type:
+          choice
+
+        default:
+          generate
+
+        options:
+
+          - generate
+
+          - cleanup
+
+
+permissions:
+
+  contents:
+    write
+
+  models:
+    read
+
+
+concurrency:
+
+  group:
+    owl-media-end-to-end-test
+
+  cancel-in-progress:
+    false
+
+
+jobs:
+
+  media-test:
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+        with:
+
+          ref:
+            main
+
+          fetch-depth:
+            2
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+      - name: Check smoke-test and production script syntax
+
+        run: |
+
+          node --check scripts/manage-media-automation-smoke-test.mjs
+
+          node --check scripts/build-after-dark-context.mjs
+
+          node --check scripts/write-after-dark-episode.mjs
+
+          node --check scripts/build-sunday-disservice-context.mjs
+
+          node --check scripts/write-sunday-disservice-sermon.mjs
+
+          node --check scripts/generate-sunday-disservice-audio.mjs
+
+
+      - name: Seed disposable media facts in runner only
+
+        if: ${{ inputs.action == 'generate' }}
+
+        env:
+
+          SMOKE_TEST_ACTION:
+            seed
+
+        run: |
+
+          node scripts/manage-media-automation-smoke-test.mjs
+
+
+      - name: Build disposable After Dark context
+
+        if: ${{ inputs.action == 'generate' }}
+
+        run: |
+
+          node scripts/build-after-dark-context.mjs
+
+
+      - name: Verify disposable After Dark queue
+
+        if: ${{ inputs.action == 'generate' }}
+
+        run: |
+
+          node -e "
+
+          const fs = require('fs');
+
+          const queue = JSON.parse(
+
+              fs.readFileSync(
+
+                  'data/after-dark/generation-queue.json',
+
+                  'utf8'
+
+              )
+
+          );
+
+          const found = (
+
+              queue.pendingWeeks || []
+
+          ).some(
+
+              week =>
+
+                  week.id ===
+
+                  'after-dark-2200-01-01'
+
+          );
+
+          if (!found) {
+
+              throw new Error(
+
+                  'Disposable After Dark week was not queued.'
+
+              );
+
+          }
+
+          console.log(
+
+              'Disposable After Dark week is queued.'
+
+          );
+
+          "
+
+
+      - name: Generate disposable After Dark episode
+
+        if: ${{ inputs.action == 'generate' }}
+
+        env:
+
+          GITHUB_TOKEN:
+            ${{ secrets.GITHUB_TOKEN }}
+
+          MAX_WEEKS:
+            "1"
+
+          AFTER_DARK_MODEL:
+            openai/gpt-4o-mini
+
+          AFTER_DARK_REQUEST_GAP_MS:
+            "20000"
+
+        run: |
+
+          node scripts/write-after-dark-episode.mjs
+
+
+      - name: Refresh After Dark queue
+
+        if: ${{ inputs.action == 'generate' }}
+
+        run: |
+
+          node scripts/build-after-dark-context.mjs
+
+
+      - name: Build disposable Sunday Disservice context
+
+        if: ${{ inputs.action == 'generate' }}
+
+        run: |
+
+          node scripts/build-sunday-disservice-context.mjs
+
+
+      - name: Verify disposable Sunday Disservice queue
+
+        if: ${{ inputs.action == 'generate' }}
+
+        run: |
+
+          node -e "
+
+          const fs = require('fs');
+
+          const queue = JSON.parse(
+
+              fs.readFileSync(
+
+                  'data/sunday-disservice/generation-queue.json',
+
+                  'utf8'
+
+              )
+
+          );
+
+          const found = (
+
+              queue.pendingWeeks || []
+
+          ).some(
+
+              week =>
+
+                  week.id ===
+
+                  'sunday-disservice-2200-01-05'
+
+          );
+
+          if (!found) {
+
+              throw new Error(
+
+                  'Disposable Sunday Disservice week was not queued.'
+
+              );
+
+          }
+
+          console.log(
+
+              'Disposable Sunday Disservice week is queued.'
+
+          );
+
+          "
+
+
+      - name: Generate disposable Sunday Disservice sermon
+
+        if: ${{ inputs.action == 'generate' }}
+
+        env:
+
+          GITHUB_TOKEN:
+            ${{ secrets.GITHUB_TOKEN }}
+
+          MAX_WEEKS:
+            "1"
+
+          SUNDAY_DISSERVICE_MODEL:
+            openai/gpt-4o-mini
+
+          SUNDAY_DISSERVICE_REQUEST_GAP_MS:
+            "20000"
+
+        run: |
+
+          node scripts/write-sunday-disservice-sermon.mjs
+
+
+      - name: Refresh Sunday Disservice queue
+
+        if: ${{ inputs.action == 'generate' }}
+
+        run: |
+
+          node scripts/build-sunday-disservice-context.mjs
+
+
+      - name: Generate disposable Sunday Disservice audio
+
+        if: ${{ inputs.action == 'generate' }}
+
+        env:
+
+          ELEVENLABS_API_KEY:
+            ${{ secrets.ELEVENLABS_API_KEY }}
+
+          TREY_WISE_VOICE_ID:
+            ${{ secrets.TREY_WISE_VOICE_ID }}
+
+          TARGET_SERMON_ID:
+            sunday-disservice-2200-01-05
+
+          SUNDAY_DISSERVICE_AUDIO_MODEL:
+            eleven_flash_v2_5
+
+          SUNDAY_DISSERVICE_AUDIO_FORMAT:
+            mp3_44100_128
+
+        run: |
+
+          node scripts/generate-sunday-disservice-audio.mjs
+
+
+      - name: Verify all disposable outputs
+
+        if: ${{ inputs.action == 'generate' }}
+
+        run: |
+
+          node -e "
+
+          const fs = require('fs');
+
+          const required = [
+
+              'data/after-dark/after-dark-2200-01-01.json',
+
+              'data/sunday-disservice/sunday-disservice-2200-01-05.json',
+
+              'assets/audio/sunday-disservice/sunday-disservice-2200-01-05.mp3'
+
+          ];
+
+          for (const file of required) {
+
+              if (!fs.existsSync(file)) {
+
+                  throw new Error(
+
+                      'Missing test output: ' + file
+
+                  );
+
+              }
+
+          }
+
+          const sermon = JSON.parse(
+
+              fs.readFileSync(
+
+                  'data/sunday-disservice/sunday-disservice-2200-01-05.json',
+
+                  'utf8'
+
+              )
+
+          );
+
+          if (
+
+              sermon.audio?.status !==
+
+              'published'
+
+          ) {
+
+              throw new Error(
+
+                  'Test sermon does not contain published audio metadata.'
+
+              );
+
+          }
+
+          console.log(
+
+              'After Dark, Sunday Disservice, and audio outputs all exist.'
+
+          );
+
+          "
+
+
+      - name: Restore uncommitted core databases
+
+        if: ${{ inputs.action == 'generate' }}
+
+        run: |
+
+          git checkout -- \
+
+            data/events.json \
+
+            data/matches.json \
+
+            data/segments.json \
+
+            data/wrestlers.json
+
+
+      - name: Remove disposable media outputs
+
+        if: ${{ inputs.action == 'cleanup' }}
+
+        env:
+
+          SMOKE_TEST_ACTION:
+            cleanup
+
+        run: |
+
+          node scripts/manage-media-automation-smoke-test.mjs
+
+
+      - name: Commit smoke-test result
+
+        run: |
+
+          git add -A -- \
+
+            data/after-dark \
+
+            data/sunday-disservice
+
+
+          git add -A -- \
+
+            assets/audio/sunday-disservice \
+
+            || true
+
+
+          if git diff --cached --quiet; then
+
+            echo "No OWL Media smoke-test changes to commit."
+
+            exit 0
+
+          fi
+
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          if [ "${{ inputs.action }}" = "cleanup" ]; then
+
+            MESSAGE="Remove disposable OWL Media smoke test"
+
+          else
+
+            MESSAGE="Publish disposable OWL Media smoke test"
+
+          fi
+
+
+          git commit \
+            -m "$MESSAGE"
+
+
+          git push
