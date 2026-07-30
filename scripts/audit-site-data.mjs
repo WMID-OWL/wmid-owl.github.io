@@ -465,9 +465,97 @@ function inspectQueueConsistency(
 
     if (
         !relativePath.endsWith(
-            "generation-queue.json"
+            "queue.json"
         )
     ) {
+
+        return failures;
+
+    }
+
+
+    const queueSchemas = [
+
+        {
+            countKey:
+                "pendingEventCount",
+
+            arrayKey:
+                "pendingEvents"
+        },
+
+        {
+            countKey:
+                "pendingWeekCount",
+
+            arrayKey:
+                "pendingWeeks"
+        },
+
+        {
+            countKey:
+                "pendingSermonCount",
+
+            arrayKey:
+                "pendingSermons"
+        },
+
+        {
+            countKey:
+                "pendingPulseCount",
+
+            arrayKey:
+                "pendingPulses"
+        },
+
+        {
+            countKey:
+                "pendingIssueCount",
+
+            arrayKey:
+                "pendingIssues"
+        }
+
+    ];
+
+
+    const schema =
+
+        queueSchemas.find(
+
+            candidate =>
+
+                Object.prototype.hasOwnProperty.call(
+
+                    value || {},
+
+                    candidate.countKey
+
+                )
+
+                ||
+
+                Object.prototype.hasOwnProperty.call(
+
+                    value || {},
+
+                    candidate.arrayKey
+
+                )
+
+        );
+
+
+    if (
+        !schema
+    ) {
+
+        failures.push(
+
+            "Queue does not use a recognized OWL pending-count and pending-items schema."
+
+        );
+
 
         return failures;
 
@@ -476,52 +564,48 @@ function inspectQueueConsistency(
 
     const queueArray =
 
-        Array.isArray(
-            value?.pendingWeeks
-        )
-
-            ? value.pendingWeeks
-
-            : Array.isArray(
-                value?.pendingSermons
-            )
-
-                ? value.pendingSermons
-
-                : null;
+        value[
+            schema.arrayKey
+        ];
 
 
     const declaredCount =
 
-        Number.isFinite(
+        value[
+            schema.countKey
+        ];
+
+
+    if (
+        !Array.isArray(
+            queueArray
+        )
+    ) {
+
+        failures.push(
+
+            `${schema.arrayKey} must be an array.`
+
+        );
+
+
+        return failures;
+
+    }
+
+
+    if (
+        !Number.isFinite(
             Number(
-                value?.pendingWeekCount
+                declaredCount
             )
         )
-
-            ? Number(
-                value.pendingWeekCount
-            )
-
-            : Number.isFinite(
-                Number(
-                    value?.pendingSermonCount
-                )
-            )
-
-                ? Number(
-                    value.pendingSermonCount
-                )
-
-                : null;
-
-
-    if (
-        queueArray === null
     ) {
 
         failures.push(
-            "Queue does not contain pendingWeeks or pendingSermons."
+
+            `${schema.countKey} must be numeric.`
+
         );
 
 
@@ -531,25 +615,17 @@ function inspectQueueConsistency(
 
 
     if (
-        declaredCount === null
+        Number(
+            declaredCount
+        ) !== queueArray.length
     ) {
 
         failures.push(
-            "Queue does not contain a numeric pending count."
-        );
 
+            `${schema.countKey} is ${Number(
+                declaredCount
+            )}, but ${schema.arrayKey} contains ${queueArray.length} item(s).`
 
-        return failures;
-
-    }
-
-
-    if (
-        declaredCount !== queueArray.length
-    ) {
-
-        failures.push(
-            `Declared pending count is ${declaredCount}, but the queue contains ${queueArray.length} item(s).`
         );
 
     }
