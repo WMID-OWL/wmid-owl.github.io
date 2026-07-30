@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/control-room.css?v=293e">
+    <link rel="stylesheet" href="css/control-room.css?v=308b">
 </head>
 
 <body class="control-room-body">
@@ -33,6 +33,7 @@
       <a class="cr-tool-jump-link" href="#cr-tool-events">Events</a>
 <a class="cr-tool-jump-link" href="#cr-tool-tournaments">Tournaments</a>
 <a class="cr-tool-jump-link" href="#cr-tool-signature-series">Signature Series</a>
+<a class="cr-tool-jump-link" href="#cr-tool-generator">Generator</a>
 <a class="cr-tool-jump-link" href="#cr-tool-after-dark">After Dark Fallback</a>
 <a class="cr-tool-jump-link" href="#cr-tool-sunday-disservice">Sunday Fallback</a>
 <a class="cr-tool-jump-link" href="#cr-tool-media">Media</a>
@@ -3186,6 +3187,316 @@
             </div>
 
         </section>
+                <!-- =================================
+             GENERATOR HUB
+        ================================== -->
+
+        <section
+            id="cr-tool-generator"
+            class="control-room-panel"
+        >
+
+            <div class="control-room-panel-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        OFFICIAL RANDOMIZATION
+                    </p>
+
+                    <h2>
+                        Generator Hub
+                    </h2>
+
+                </div>
+
+                <span
+                    id="cr-generator-status"
+                    class="control-room-health-summary"
+                >
+                    WAITING
+                </span>
+
+            </div>
+
+            <p class="cr-editor-note">
+
+                Run test draws without changing official data, or generate
+                a canon result that remains pending until you deliberately
+                confirm it. Only confirmed canon results enter Generator History.
+
+            </p>
+
+            <div class="cr-generator-control-grid">
+
+                <div class="cr-form-group">
+
+                    <label for="cr-generator-mode">
+                        MODE
+                    </label>
+
+                    <select id="cr-generator-mode">
+
+                        <option value="test">
+                            Test Mode — Never Saved
+                        </option>
+
+                        <option value="canon">
+                            Canon Mode — Confirmation Required
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label for="cr-generator-type">
+                        GENERATOR TYPE
+                    </label>
+
+                    <select id="cr-generator-type">
+
+                        <option value="custom-pool-draw">
+                            Custom Pool Draw
+                        </option>
+
+                        <option value="injury-evaluation" disabled>
+                            Injury Evaluation — Coming Next
+                        </option>
+
+                        <option value="fates-wheel" disabled>
+                            Fate’s Wheel Cases — Planned
+                        </option>
+
+                        <option value="hex-cell-order" disabled>
+                            Hex-Cell Entry Order — Planned
+                        </option>
+
+                        <option value="wildcard-play-in" disabled>
+                            Wildcard Play-In Selection — Planned
+                        </option>
+
+                        <option value="ranking-selection" disabled>
+                            Ranking Position Selection — Planned
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label for="cr-generator-method">
+                        DRAW METHOD
+                    </label>
+
+                    <select id="cr-generator-method">
+
+                        <option value="single">
+                            Select One
+                        </option>
+
+                        <option value="order">
+                            Create Full Random Order
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <p
+                id="cr-generator-mode-note"
+                class="cr-generator-mode-note"
+            ></p>
+
+            <div class="cr-generator-detail-grid">
+
+                <div class="cr-form-group">
+
+                    <label for="cr-generator-label">
+                        DRAW LABEL — OPTIONAL
+                    </label>
+
+                    <input
+                        id="cr-generator-label"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="Example: Overthrow Final Ten Selection"
+                    >
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label for="cr-generator-context">
+                        RELATED EVENT / CONTEXT — OPTIONAL
+                    </label>
+
+                    <input
+                        id="cr-generator-context"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="Example: Overthrow 2027 — Revolt Men"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="cr-generator-pool-grid">
+
+                <div class="cr-form-group">
+
+                    <label for="cr-generator-pool">
+                        ELIGIBLE POOL — ONE ENTRY PER LINE
+                    </label>
+
+                    <textarea
+                        id="cr-generator-pool"
+                        rows="10"
+                        placeholder="Enter each eligible wrestler, team, case, number, or option on its own line."
+                    ></textarea>
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label for="cr-generator-exclusions">
+                        EXCLUSIONS — ONE ENTRY PER LINE
+                    </label>
+
+                    <textarea
+                        id="cr-generator-exclusions"
+                        rows="10"
+                        placeholder="Optional. Entries matching the eligible pool will be removed before the draw."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+            <div class="cr-generator-count-grid">
+
+                <article>
+
+                    <span>
+                        ELIGIBLE AFTER EXCLUSIONS
+                    </span>
+
+                    <strong id="cr-generator-eligible-count">
+                        0
+                    </strong>
+
+                </article>
+
+                <article>
+
+                    <span>
+                        APPLIED EXCLUSIONS
+                    </span>
+
+                    <strong id="cr-generator-excluded-count">
+                        0
+                    </strong>
+
+                </article>
+
+            </div>
+
+            <div
+                id="cr-generator-stage"
+                class="cr-generator-stage"
+                aria-live="polite"
+            >
+
+                <span id="cr-generator-stage-state">
+                    WAITING
+                </span>
+
+                <strong id="cr-generator-stage-result">
+                    Connect the OWL folder to begin.
+                </strong>
+
+                <ol id="cr-generator-stage-list"></ol>
+
+            </div>
+
+            <div class="cr-generator-actions">
+
+                <button
+                    id="cr-generator-generate"
+                    class="control-room-button control-room-button-primary"
+                    type="button"
+                    disabled
+                >
+                    Generate Result
+                </button>
+
+                <button
+                    id="cr-generator-confirm"
+                    class="control-room-button"
+                    type="button"
+                    disabled
+                >
+                    Confirm Canon Result
+                </button>
+
+                <button
+                    id="cr-generator-discard"
+                    class="control-room-button control-room-button-secondary"
+                    type="button"
+                    disabled
+                >
+                    Discard Result
+                </button>
+
+            </div>
+
+            <p
+                id="cr-generator-message"
+                class="cr-save-message"
+                hidden
+            ></p>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading cr-generator-history-heading">
+
+                    <div>
+
+                        <span>
+                            OFFICIAL RECORD
+                        </span>
+
+                        <h3>
+                            Generator History
+                        </h3>
+
+                    </div>
+
+                    <strong id="cr-generator-history-count">
+                        0 CONFIRMED
+                    </strong>
+
+                </div>
+
+                <div
+                    id="cr-generator-history"
+                    class="cr-generator-history"
+                >
+
+                    <p class="cr-generator-history-empty">
+                        Connect the OWL folder to load confirmed results.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
         <!-- =================================
              OWL AFTER DARK PUBLISHER
         ================================== -->
@@ -5940,6 +6251,7 @@
 
 <script src="js/app.js?v=site-back-to-top-1"></script>
 <script src="js/control-room.js?v=293g"></script>
+<script src="js/control-room-generator.js?v=308b"></script>
 <script src="js/control-room-after-dark.js?v=300e"></script>
 <script src="js/control-room-sunday-disservice.js?v=301e"></script>
 <script src="js/control-room-proving-ground.js?v=293b"></script>
