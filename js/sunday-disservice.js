@@ -156,7 +156,162 @@ function sundayDisserviceArray(
         : [];
 
 }
+// =================================
+// PUBLISHED AUDIO
+// =================================
 
+
+function sundayDisservicePublishedAudio(
+    sermon
+) {
+
+
+    const audio =
+
+        sermon?.audio
+
+        ||
+
+        {};
+
+
+    const status =
+
+        String(
+            audio.status || ""
+        )
+            .trim()
+            .toLowerCase();
+
+
+    const file =
+
+        String(
+            audio.file || ""
+        ).trim();
+
+
+    if (
+        status !== "published"
+
+        ||
+
+        !file
+    ) {
+
+
+        return null;
+
+    }
+
+
+    return {
+
+        ...audio,
+
+        file
+
+    };
+
+}
+
+
+
+function sundayDisserviceAudioHtml(
+    sermon
+) {
+
+
+    const audio =
+
+        sundayDisservicePublishedAudio(
+            sermon
+        );
+
+
+    if (
+        !audio
+    ) {
+
+
+        return "";
+
+    }
+
+
+    return `
+
+        <section
+            class="sunday-disservice-audio-panel"
+            aria-label="Sunday Disservice audio sermon"
+        >
+
+
+            <div class="sunday-disservice-audio-heading">
+
+
+                <div>
+
+
+                    <span>
+                        AUDIO SERMON
+                    </span>
+
+
+                    <h3>
+                        Hear the Gospel According to Trey Wise
+                    </h3>
+
+
+                </div>
+
+
+                <strong>
+                    NOW PLAYING
+                </strong>
+
+
+            </div>
+
+
+            <p>
+
+                Listen to Trey Wise deliver this week’s complete
+                Sunday Disservice sermon.
+
+            </p>
+
+
+            <audio
+                controls
+                preload="metadata"
+            >
+
+                <source
+                    src="${sundayDisserviceEscape(
+                        audio.file
+                    )}"
+                    type="audio/mpeg"
+                >
+
+                Your browser does not support audio playback.
+
+            </audio>
+
+
+            <small class="sunday-disservice-audio-note">
+
+                Audio is generated only after the verified sermon
+                has been written, audited, and published.
+
+            </small>
+
+
+        </section>
+
+    `;
+
+}
 
 
 // =================================
@@ -665,7 +820,12 @@ function sundayDisserviceRenderSermon(
             </aside>
 
 
-        </header>
+                </header>
+
+
+        ${sundayDisserviceAudioHtml(
+            sermon
+        )}
 
 
         <section class="sunday-disservice-main-argument">
@@ -842,14 +1002,43 @@ function sundayDisserviceRenderArchive(
                 );
 
 
-            link.className =
+                        const hasAudio =
+
+                Boolean(
+
+                    sundayDisservicePublishedAudio(
+                        sermon
+                    )
+
+                );
+
+
+            link.className = [
+
+                "sunday-disservice-archive-card",
 
                 sermon.id ===
                 activeSermonId
 
-                    ? "sunday-disservice-archive-card active"
+                    ? "active"
 
-                    : "sunday-disservice-archive-card";
+                    : "",
+
+                hasAudio
+
+                    ? "has-audio"
+
+                    : ""
+
+            ]
+
+                .filter(
+                    Boolean
+                )
+
+                .join(
+                    " "
+                );
 
 
             link.href =
@@ -896,8 +1085,31 @@ function sundayDisserviceRenderArchive(
                 </p>
 
 
+                                ${
+                    hasAudio
+
+                        ? `
+
+                            <small class="sunday-disservice-archive-audio-badge">
+                                AUDIO AVAILABLE
+                            </small>
+
+                        `
+
+                        : ""
+                }
+
+
                 <strong>
-                    READ THE SERMON →
+
+                    ${
+                        hasAudio
+
+                            ? "LISTEN & READ →"
+
+                            : "READ THE SERMON →"
+                    }
+
                 </strong>
 
             `;
