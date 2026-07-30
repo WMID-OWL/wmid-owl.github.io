@@ -47,16 +47,33 @@ concurrency:
 
 jobs:
 
+  audio-disabled:
+
+    if: ${{ vars.SUNDAY_DISSERVICE_AUDIO_ENABLED != 'true' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Confirm Sunday Disservice audio is disabled
+
+        run: |
+
+          echo "Sunday Disservice audio generation is currently disabled."
+
+          echo "Written sermons will continue publishing normally."
+
+          echo "ElevenLabs was not contacted."
+
+          echo "Credits used by this workflow: 0."
+
+
   generate-audio:
 
-    if: >
-
-      github.event_name == 'workflow_dispatch'
-
-      ||
-
-      github.event.workflow_run.conclusion == 'success'
-
+    if: ${{ vars.SUNDAY_DISSERVICE_AUDIO_ENABLED == 'true' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
 
     runs-on:
       ubuntu-latest
@@ -192,7 +209,6 @@ jobs:
 
           SUNDAY_DISSERVICE_AUDIO_FORMAT:
             mp3_44100_128
-
 
         run: |
 
