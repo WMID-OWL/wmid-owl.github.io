@@ -402,7 +402,7 @@ jobs:
           "
 
 
-           - name: Restore uncommitted core databases
+      - name: Restore uncommitted core databases
 
         if: ${{ inputs.action == 'generate' }}
 
