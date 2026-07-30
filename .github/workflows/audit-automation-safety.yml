@@ -1,0 +1,68 @@
+name: Audit Automation Safety
+
+
+on:
+
+  workflow_dispatch:
+
+
+permissions:
+
+  contents:
+    read
+
+
+concurrency:
+
+  group:
+    automation-safety-audit
+
+  cancel-in-progress:
+    true
+
+
+jobs:
+
+  audit-automation:
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+        with:
+
+          ref:
+            main
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+      - name: Check automation-safety audit syntax
+
+        run: |
+
+          node --check scripts/audit-automation-safety.mjs
+
+
+      - name: Audit automation safety
+
+        run: |
+
+          node scripts/audit-automation-safety.mjs
