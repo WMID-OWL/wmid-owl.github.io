@@ -1,0 +1,68 @@
+name: Audit Site Links
+
+
+on:
+
+  workflow_dispatch:
+
+
+permissions:
+
+  contents:
+    read
+
+
+concurrency:
+
+  group:
+    site-link-audit
+
+  cancel-in-progress:
+    true
+
+
+jobs:
+
+  audit-links:
+
+    runs-on:
+      ubuntu-latest
+
+
+    steps:
+
+
+      - name: Check out repository
+
+        uses:
+          actions/checkout@v4
+
+        with:
+
+          ref:
+            main
+
+
+      - name: Set up Node
+
+        uses:
+          actions/setup-node@v4
+
+        with:
+
+          node-version:
+            "20"
+
+
+      - name: Check link-audit script syntax
+
+        run: |
+
+          node --check scripts/audit-site-links.mjs
+
+
+      - name: Audit local site links
+
+        run: |
+
+          node scripts/audit-site-links.mjs
