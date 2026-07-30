@@ -8712,3 +8712,461 @@
     }
 
 }
+/* =================================
+   CONTROL ROOM INJURY TRACKER
+================================= */
+
+
+.cr-injury-summary-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap:
+        1rem;
+
+    margin-top:
+        1.4rem;
+
+}
+
+
+.cr-injury-summary-grid article {
+
+    min-height:
+        125px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    padding:
+        1rem;
+
+    background:
+        #171d20;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-top:
+        3px solid
+        #c6a15b;
+
+}
+
+
+.cr-injury-summary-grid article.cr-injury-summary-injured {
+
+    border-top-color:
+        #e78b8b;
+
+}
+
+
+.cr-injury-summary-grid article.cr-injury-summary-recovering {
+
+    border-top-color:
+        #dfbd78;
+
+}
+
+
+.cr-injury-summary-grid article.cr-injury-summary-cleared {
+
+    border-top-color:
+        #8bd5a5;
+
+}
+
+
+.cr-injury-summary-grid span {
+
+    color:
+        #899397;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    line-height:
+        1.4;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+.cr-injury-summary-grid strong {
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        2.6rem;
+
+    line-height:
+        1;
+
+}
+
+
+.cr-injury-list {
+
+    display:
+        grid;
+
+    gap:
+        0.85rem;
+
+}
+
+
+.cr-injury-empty {
+
+    margin:
+        0;
+
+    padding:
+        1rem;
+
+    background:
+        #171d20;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+
+    color:
+        #899397;
+
+    line-height:
+        1.55;
+
+}
+
+
+.cr-injury-card {
+
+    padding:
+        1rem;
+
+    background:
+        #171d20;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+.cr-injury-pending-card {
+
+    border-left:
+        3px solid
+        #c6a15b;
+
+}
+
+
+.cr-injury-pending-card.requires-rule-review {
+
+    border-left-color:
+        #e78b8b;
+
+}
+
+
+.cr-injury-card-heading {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    gap:
+        1rem;
+
+}
+
+
+.cr-injury-card-heading span {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+}
+
+
+.cr-injury-card-heading h4 {
+
+    margin:
+        0.35rem 0 0;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        1.3rem;
+
+}
+
+
+.cr-injury-status-badge {
+
+    flex:
+        0 0 auto;
+
+    padding:
+        0.4rem 0.55rem;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.07em;
+
+}
+
+
+.cr-injury-status-pending {
+
+    background:
+        rgba(198, 161, 91, 0.12);
+
+    border-color:
+        rgba(198, 161, 91, 0.35);
+
+    color:
+        #dfbd78;
+
+}
+
+
+.cr-injury-status-review,
+.cr-injury-status-injured {
+
+    background:
+        rgba(180, 70, 70, 0.13);
+
+    border-color:
+        rgba(231, 139, 139, 0.38);
+
+    color:
+        #e78b8b;
+
+}
+
+
+.cr-injury-status-recovering {
+
+    background:
+        rgba(198, 161, 91, 0.12);
+
+    border-color:
+        rgba(198, 161, 91, 0.35);
+
+    color:
+        #dfbd78;
+
+}
+
+
+.cr-injury-status-cleared {
+
+    background:
+        rgba(90, 180, 120, 0.12);
+
+    border-color:
+        rgba(139, 213, 165, 0.35);
+
+    color:
+        #8bd5a5;
+
+}
+
+
+.cr-injury-detail-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap:
+        0.7rem;
+
+    margin-top:
+        1rem;
+
+}
+
+
+.cr-injury-detail-grid div {
+
+    padding:
+        0.8rem;
+
+    background:
+        #111517;
+
+}
+
+
+.cr-injury-detail-grid span {
+
+    display:
+        block;
+
+    color:
+        #899397;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.07em;
+
+}
+
+
+.cr-injury-detail-grid strong {
+
+    display:
+        block;
+
+    margin-top:
+        0.4rem;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        0.82rem;
+
+    line-height:
+        1.4;
+
+    overflow-wrap:
+        anywhere;
+
+}
+
+
+.cr-injury-review-note,
+.cr-injury-ready-note {
+
+    margin:
+        0.9rem 0 0;
+
+    padding:
+        0.8rem 0.9rem;
+
+    font-size:
+        0.78rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+.cr-injury-review-note {
+
+    background:
+        rgba(180, 70, 70, 0.08);
+
+    border-left:
+        2px solid
+        #e78b8b;
+
+    color:
+        #e7b2b2;
+
+}
+
+
+.cr-injury-ready-note {
+
+    background:
+        rgba(90, 180, 120, 0.07);
+
+    border-left:
+        2px solid
+        #8bd5a5;
+
+    color:
+        #b9d8c4;
+
+}
+
+
+@media (max-width: 1000px) {
+
+    .cr-injury-summary-grid,
+    .cr-injury-detail-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .cr-injury-summary-grid,
+    .cr-injury-detail-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-injury-card-heading {
+
+        flex-direction:
+            column;
+
+    }
+
+}
