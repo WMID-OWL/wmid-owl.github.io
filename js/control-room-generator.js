@@ -1,6 +1,6 @@
 // =================================
 // CONTROL ROOM GENERATOR HUB
-// FOUNDATION
+// CUSTOM DRAW + INJURY EVALUATION
 // =================================
 
 
@@ -36,6 +36,16 @@ const generatorEls = {
             "cr-generator-context"
         ),
 
+    poolFields:
+        document.getElementById(
+            "cr-generator-pool-fields"
+        ),
+
+    countFields:
+        document.getElementById(
+            "cr-generator-count-fields"
+        ),
+
     pool:
         document.getElementById(
             "cr-generator-pool"
@@ -54,6 +64,21 @@ const generatorEls = {
     excludedCount:
         document.getElementById(
             "cr-generator-excluded-count"
+        ),
+
+    injuryFields:
+        document.getElementById(
+            "cr-generator-injury-fields"
+        ),
+
+    injuryWrestler:
+        document.getElementById(
+            "cr-generator-injury-wrestler"
+        ),
+
+    injuryCritCause:
+        document.getElementById(
+            "cr-generator-injury-crit-cause"
         ),
 
     modeNote:
@@ -416,6 +441,40 @@ function generatorCreateId() {
 }
 
 
+function getGeneratorType() {
+
+    return generatorEls.type?.value ||
+        "custom-pool-draw";
+
+}
+
+
+function getGeneratorTypeLabel(
+    type
+) {
+
+    const labels = {
+
+        "custom-pool-draw":
+            "Custom Pool Draw",
+
+        "injury-evaluation":
+            "Injury Evaluation"
+
+    };
+
+
+    return labels[
+        type
+    ]
+
+    ||
+
+    "Generator Result";
+
+}
+
+
 // =================================
 // DATABASE
 // =================================
@@ -561,7 +620,7 @@ async function writeGeneratorHistoryDatabase(
 
         catch {
 
-            // No additional action is required.
+            // No additional action required.
 
         }
 
@@ -574,7 +633,7 @@ async function writeGeneratorHistoryDatabase(
 
 
 // =================================
-// POOL STATE
+// CUSTOM POOL STATE
 // =================================
 
 
@@ -626,6 +685,239 @@ function getGeneratorPoolState() {
         exclusions,
         eligible,
         appliedExclusions
+    };
+
+}
+
+
+// =================================
+// INJURY STATE
+// =================================
+
+
+function populateGeneratorWrestlers() {
+
+    if (
+        !generatorEls.injuryWrestler
+    ) {
+
+        return;
+
+    }
+
+
+    const previousValue =
+        generatorEls.injuryWrestler.value;
+
+
+    const wrestlers =
+
+        generatorArray(
+            owlControlRoomData
+                ?.wrestlers
+        )
+            .filter(
+                wrestler =>
+                    wrestler
+                    &&
+                    wrestler.id
+                    &&
+                    wrestler.name
+            )
+            .sort(
+                (
+                    a,
+                    b
+                ) =>
+                    String(
+                        a.name
+                    ).localeCompare(
+                        String(
+                            b.name
+                        )
+                    )
+            );
+
+
+    generatorEls.injuryWrestler.innerHTML =
+        "";
+
+
+    const defaultOption =
+        document.createElement(
+            "option"
+        );
+
+
+    defaultOption.value =
+        "";
+
+
+    defaultOption.textContent =
+        "Select Wrestler";
+
+
+    generatorEls.injuryWrestler.appendChild(
+        defaultOption
+    );
+
+
+    wrestlers.forEach(
+        wrestler => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                wrestler.id;
+
+
+            option.textContent =
+                wrestler.name;
+
+
+            option.dataset.name =
+                wrestler.name;
+
+
+            generatorEls.injuryWrestler.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    if (
+        wrestlers.some(
+            wrestler =>
+                wrestler.id ===
+                previousValue
+        )
+    ) {
+
+        generatorEls.injuryWrestler.value =
+            previousValue;
+
+    }
+
+}
+
+
+function getSelectedInjuryWrestler() {
+
+    const select =
+        generatorEls.injuryWrestler;
+
+
+    if (
+        !select
+        ||
+        !select.value
+    ) {
+
+        return null;
+
+    }
+
+
+    const option =
+        select.selectedOptions[0];
+
+
+    return {
+
+        id:
+            select.value,
+
+        name:
+            option?.dataset?.name ||
+            option?.textContent ||
+            select.value
+
+    };
+
+}
+
+
+function getInjuryOutcome(
+    roll
+) {
+
+    if (
+        roll <= 3
+    ) {
+
+        return {
+
+            absenceWeeks:
+                0,
+
+            outcomeLabel:
+                "No injury absence",
+
+            severeReviewRequired:
+                false
+
+        };
+
+    }
+
+
+    if (
+        roll <= 6
+    ) {
+
+        return {
+
+            absenceWeeks:
+                1,
+
+            outcomeLabel:
+                "1 week unavailable",
+
+            severeReviewRequired:
+                false
+
+        };
+
+    }
+
+
+    if (
+        roll <= 9
+    ) {
+
+        return {
+
+            absenceWeeks:
+                2,
+
+            outcomeLabel:
+                "2 weeks unavailable",
+
+            severeReviewRequired:
+                false
+
+        };
+
+    }
+
+
+    return {
+
+        absenceWeeks:
+            3,
+
+        outcomeLabel:
+            "3 weeks unavailable",
+
+        severeReviewRequired:
+            true
+
     };
 
 }
@@ -783,6 +1075,95 @@ function resetGeneratorResult(
 }
 
 
+function renderGeneratorTypeState() {
+
+    const isInjury =
+        getGeneratorType() ===
+        "injury-evaluation";
+
+
+    if (
+        generatorEls.injuryFields
+    ) {
+
+        generatorEls.injuryFields.hidden =
+            !isInjury;
+
+    }
+
+
+    if (
+        generatorEls.poolFields
+    ) {
+
+        generatorEls.poolFields.hidden =
+            isInjury;
+
+    }
+
+
+    if (
+        generatorEls.countFields
+    ) {
+
+        generatorEls.countFields.hidden =
+            isInjury;
+
+    }
+
+
+    if (
+        generatorEls.method
+    ) {
+
+        generatorEls.method.disabled =
+            isInjury;
+
+
+        if (
+            isInjury
+        ) {
+
+            generatorEls.method.value =
+                "single";
+
+        }
+
+    }
+
+
+    if (
+        generatorEls.label
+    ) {
+
+        generatorEls.label.placeholder =
+
+            isInjury
+
+                ? "Example: Revolt Week 3 Injury Evaluation"
+
+                : "Example: Overthrow Final Ten Selection";
+
+    }
+
+
+    if (
+        generatorEls.context
+    ) {
+
+        generatorEls.context.placeholder =
+
+            isInjury
+
+                ? "Example: Revolt — July Week 3 — Match ID"
+
+                : "Example: Overthrow 2027 — Revolt Men";
+
+    }
+
+}
+
+
 function renderGeneratorModeNote() {
 
     if (
@@ -799,7 +1180,12 @@ function renderGeneratorModeNote() {
         "canon";
 
 
-    generatorEls.modeNote.textContent =
+    const isInjury =
+        getGeneratorType() ===
+        "injury-evaluation";
+
+
+    const modeText =
 
         isCanon
 
@@ -807,10 +1193,27 @@ function renderGeneratorModeNote() {
 
             : "Test mode demonstrates the generator only. Test results can never be written to official history.";
 
+
+    const typeText =
+
+        isInjury
+
+            ? " Injury Evaluation currently performs the approved primary d10 roll only. A roll of 10 flags severe-injury review instead of inventing unfinished rules."
+
+            : "";
+
+
+    generatorEls.modeNote.textContent =
+        `${modeText}${typeText}`;
+
 }
 
 
 function renderGeneratorControls() {
+
+    const type =
+        getGeneratorType();
+
 
     const poolState =
         getGeneratorPoolState();
@@ -842,15 +1245,45 @@ function renderGeneratorControls() {
         );
 
 
+    let requiredInputsReady =
+        false;
+
+
+    if (
+        type ===
+        "injury-evaluation"
+    ) {
+
+        requiredInputsReady =
+            Boolean(
+                getSelectedInjuryWrestler()
+            )
+            &&
+            Boolean(
+                generatorCleanText(
+                    generatorEls
+                        .injuryCritCause
+                        ?.value
+                )
+            );
+
+    }
+
+    else {
+
+        requiredInputsReady =
+            poolState.eligible.length >
+            0;
+
+    }
+
+
     const canGenerate =
         connected
         &&
         !generatorIsRolling
         &&
-        poolState.eligible.length > 0
-        &&
-        generatorEls.type?.value ===
-            "custom-pool-draw";
+        requiredInputsReady;
 
 
     if (
@@ -1017,7 +1450,7 @@ function renderGeneratorHistory() {
                         <h4>
                             ${generatorEscape(
                                 result.label ||
-                                "Untitled Draw"
+                                "Untitled Result"
                             )}
                         </h4>
 
@@ -1077,21 +1510,49 @@ function renderGeneratorHistory() {
                         ${generatorEscape(
                             result.methodLabel ||
                             result.method ||
-                            "Draw"
+                            "Generator"
                         )}
                     </span>
 
-                    <span>
-                        ${generatorArray(
-                            result.eligiblePool
-                        ).length} eligible
-                    </span>
+                    ${
+                        result.injuryEvaluation
 
-                    <span>
-                        ${generatorArray(
-                            result.excludedEntries
-                        ).length} excluded
-                    </span>
+                            ? `
+
+                                <span>
+                                    Roll ${generatorEscape(
+                                        result
+                                            .injuryEvaluation
+                                            .primaryRoll
+                                    )} / 10
+                                </span>
+
+                                <span>
+                                    ${generatorEscape(
+                                        result
+                                            .injuryEvaluation
+                                            .absenceWeeks
+                                    )} week absence
+                                </span>
+
+                            `
+
+                            : `
+
+                                <span>
+                                    ${generatorArray(
+                                        result.eligiblePool
+                                    ).length} eligible
+                                </span>
+
+                                <span>
+                                    ${generatorArray(
+                                        result.excludedEntries
+                                    ).length} excluded
+                                </span>
+
+                            `
+                    }
 
                 </div>
 
@@ -1109,29 +1570,284 @@ function renderGeneratorHistory() {
 
 
 // =================================
-// GENERATION
+// GENERATION BUILDERS
 // =================================
 
 
-async function animateGenerator(
-    eligible
-) {
+function buildCustomPoolResult() {
 
-    if (
-        generatorEls.stage
-    ) {
+    const poolState =
+        getGeneratorPoolState();
 
-        generatorEls.stage.classList.add(
-            "is-rolling"
+
+    const method =
+        generatorEls.method?.value ||
+        "single";
+
+
+    const result =
+
+        method === "order"
+
+            ? generatorShuffle(
+                poolState.eligible
+            )
+
+            : [
+                poolState.eligible[
+                    generatorRandomIndex(
+                        poolState.eligible.length
+                    )
+                ]
+            ];
+
+
+    return {
+
+        id:
+            generatorCreateId(),
+
+        generatorKey:
+            "custom-pool-draw",
+
+        generatorType:
+            "Custom Pool Draw",
+
+        mode:
+            generatorEls.mode?.value ||
+            "test",
+
+        method,
+
+        methodLabel:
+
+            method === "order"
+
+                ? "Full Random Order"
+
+                : "Select One",
+
+        label:
+            generatorCleanText(
+                generatorEls.label?.value
+            )
+            ||
+            "Custom Pool Draw",
+
+        relatedContext:
+            generatorCleanText(
+                generatorEls.context?.value
+            ),
+
+        result,
+
+        eligiblePool:
+            [
+                ...poolState.eligible
+            ],
+
+        excludedEntries:
+            [
+                ...poolState.appliedExclusions
+            ],
+
+        generatedAt:
+            new Date().toISOString(),
+
+        confirmed:
+            false,
+
+        confirmedAt:
+            null
+
+    };
+
+}
+
+
+function buildInjuryEvaluationResult() {
+
+    const wrestler =
+        getSelectedInjuryWrestler();
+
+
+    const critCause =
+        generatorCleanText(
+            generatorEls
+                .injuryCritCause
+                ?.value
         );
 
 
-        generatorEls.stage.classList.remove(
-            "has-result"
+    if (
+        !wrestler
+    ) {
+
+        throw new Error(
+            "Select the wrestler who received the CRIT."
         );
 
     }
 
+
+    if (
+        !critCause
+    ) {
+
+        throw new Error(
+            "Enter the cause of the CRIT."
+        );
+
+    }
+
+
+    const primaryRoll =
+        generatorRandomIndex(
+            10
+        ) + 1;
+
+
+    const outcome =
+        getInjuryOutcome(
+            primaryRoll
+        );
+
+
+    const result = [
+
+        `${wrestler.name} received a primary injury roll of ${primaryRoll} out of 10.`,
+
+        outcome.outcomeLabel,
+
+        `CRIT cause: ${critCause}`
+
+    ];
+
+
+    if (
+        outcome.severeReviewRequired
+    ) {
+
+        result.push(
+
+            "Severe-injury review required. The standard result is three weeks unavailable, but no severe outcome will be generated until the remaining severe-injury rules are approved."
+
+        );
+
+    }
+
+    else if (
+        outcome.absenceWeeks ===
+        0
+    ) {
+
+        result.push(
+
+            "No injury record should be created from this evaluation."
+
+        );
+
+    }
+
+    else {
+
+        result.push(
+
+            "This result may be transferred into the Injury Tracker after canon confirmation."
+
+        );
+
+    }
+
+
+    return {
+
+        id:
+            generatorCreateId(),
+
+        generatorKey:
+            "injury-evaluation",
+
+        generatorType:
+            "Injury Evaluation",
+
+        mode:
+            generatorEls.mode?.value ||
+            "test",
+
+        method:
+            "primary-d10",
+
+        methodLabel:
+            "Primary Injury d10",
+
+        label:
+            generatorCleanText(
+                generatorEls.label?.value
+            )
+            ||
+            `Injury Evaluation — ${wrestler.name}`,
+
+        relatedContext:
+            generatorCleanText(
+                generatorEls.context?.value
+            ),
+
+        result,
+
+        eligiblePool:
+            [
+                wrestler.name
+            ],
+
+        excludedEntries:
+            [],
+
+        injuryEvaluation: {
+
+            wrestlerId:
+                wrestler.id,
+
+            wrestlerName:
+                wrestler.name,
+
+            critCause,
+
+            primaryRoll,
+
+            absenceWeeks:
+                outcome.absenceWeeks,
+
+            outcomeLabel:
+                outcome.outcomeLabel,
+
+            severeReviewRequired:
+                outcome.severeReviewRequired
+
+        },
+
+        generatedAt:
+            new Date().toISOString(),
+
+        confirmed:
+            false,
+
+        confirmedAt:
+            null
+
+    };
+
+}
+
+
+// =================================
+// ANIMATION
+// =================================
+
+
+async function animateCustomPoolGenerator(
+    eligible
+) {
 
     for (
         let cycle = 0;
@@ -1165,6 +1881,45 @@ async function animateGenerator(
 }
 
 
+async function animateInjuryGenerator() {
+
+    for (
+        let cycle = 0;
+        cycle < 18;
+        cycle += 1
+    ) {
+
+        const previewRoll =
+            generatorRandomIndex(
+                10
+            ) + 1;
+
+
+        setGeneratorStage(
+            "ROLLING PRIMARY INJURY d10",
+            String(
+                previewRoll
+            ),
+            []
+        );
+
+
+        await generatorDelay(
+            60 + (
+                cycle * 4
+            )
+        );
+
+    }
+
+}
+
+
+// =================================
+// GENERATION
+// =================================
+
+
 async function generateGeneratorResult() {
 
     if (
@@ -1176,16 +1931,49 @@ async function generateGeneratorResult() {
     }
 
 
+    const type =
+        getGeneratorType();
+
+
     const poolState =
         getGeneratorPoolState();
 
 
     if (
+        type ===
+        "custom-pool-draw"
+        &&
         !poolState.eligible.length
     ) {
 
         setGeneratorMessage(
             "Add at least one eligible pool entry before generating.",
+            "error"
+        );
+
+
+        return;
+
+    }
+
+
+    if (
+        type ===
+        "injury-evaluation"
+        &&
+        (
+            !getSelectedInjuryWrestler()
+            ||
+            !generatorCleanText(
+                generatorEls
+                    .injuryCritCause
+                    ?.value
+            )
+        )
+    ) {
+
+        setGeneratorMessage(
+            "Select a wrestler and enter the CRIT cause before generating.",
             "error"
         );
 
@@ -1211,92 +1999,46 @@ async function generateGeneratorResult() {
 
     try {
 
-        await animateGenerator(
-            poolState.eligible
-        );
+        if (
+            generatorEls.stage
+        ) {
+
+            generatorEls.stage.classList.add(
+                "is-rolling"
+            );
 
 
-        const method =
-            generatorEls.method?.value ||
-            "single";
+            generatorEls.stage.classList.remove(
+                "has-result"
+            );
+
+        }
 
 
-        const result =
+        if (
+            type ===
+            "injury-evaluation"
+        ) {
 
-            method === "order"
-
-                ? generatorShuffle(
-                    poolState.eligible
-                )
-
-                : [
-                    poolState.eligible[
-                        generatorRandomIndex(
-                            poolState.eligible.length
-                        )
-                    ]
-                ];
+            await animateInjuryGenerator();
 
 
-        generatorCurrentResult = {
+            generatorCurrentResult =
+                buildInjuryEvaluationResult();
 
-            id:
-                generatorCreateId(),
+        }
 
-            generatorKey:
-                "custom-pool-draw",
+        else {
 
-            generatorType:
-                "Custom Pool Draw",
+            await animateCustomPoolGenerator(
+                poolState.eligible
+            );
 
-            mode:
-                generatorEls.mode?.value ||
-                "test",
 
-            method,
+            generatorCurrentResult =
+                buildCustomPoolResult();
 
-            methodLabel:
-
-                method === "order"
-
-                    ? "Full Random Order"
-
-                    : "Select One",
-
-            label:
-                generatorCleanText(
-                    generatorEls.label?.value
-                )
-                ||
-                "Custom Pool Draw",
-
-            relatedContext:
-                generatorCleanText(
-                    generatorEls.context?.value
-                ),
-
-            result,
-
-            eligiblePool:
-                [
-                    ...poolState.eligible
-                ],
-
-            excludedEntries:
-                [
-                    ...poolState.appliedExclusions
-                ],
-
-            generatedAt:
-                new Date().toISOString(),
-
-            confirmed:
-                false,
-
-            confirmedAt:
-                null
-
-        };
+        }
 
 
         if (
@@ -1315,6 +2057,32 @@ async function generateGeneratorResult() {
         }
 
 
+        const isInjury =
+            Boolean(
+                generatorCurrentResult
+                    .injuryEvaluation
+            );
+
+
+        const injuryData =
+            generatorCurrentResult
+                .injuryEvaluation;
+
+
+        const resultText =
+
+            isInjury
+
+                ? `ROLL ${injuryData.primaryRoll} — ${injuryData.outcomeLabel.toUpperCase()}`
+
+                : generatorCurrentResult.method ===
+                    "order"
+
+                    ? `${generatorCurrentResult.result.length} entries ordered`
+
+                    : generatorCurrentResult.result[0];
+
+
         setGeneratorStage(
             generatorCurrentResult.mode ===
                 "canon"
@@ -1323,14 +2091,15 @@ async function generateGeneratorResult() {
 
                 : "TEST RESULT — NOT SAVED",
 
-            method === "order"
+            resultText,
 
-                ? `${result.length} entries ordered`
+            isInjury
+            ||
+            generatorCurrentResult.method ===
+                "order"
 
-                : result[0],
+                ? generatorCurrentResult.result
 
-            method === "order"
-                ? result
                 : []
         );
 
@@ -1432,6 +2201,7 @@ async function confirmGeneratorResult() {
 
 
         const confirmedResult = {
+
             ...generatorCurrentResult,
 
             confirmed:
@@ -1439,10 +2209,12 @@ async function confirmGeneratorResult() {
 
             confirmedAt:
                 new Date().toISOString()
+
         };
 
 
         const updatedDatabase = {
+
             ...database,
 
             version:
@@ -1451,13 +2223,17 @@ async function confirmGeneratorResult() {
                 ),
 
             results: [
+
                 confirmedResult,
+
                 ...database.results.filter(
                     result =>
                         result.id !==
                         confirmedResult.id
                 )
+
             ]
+
         };
 
 
@@ -1513,6 +2289,34 @@ async function confirmGeneratorResult() {
 
 
 // =================================
+// CHANGE HANDLING
+// =================================
+
+
+function handleGeneratorSettingChange(
+    message
+) {
+
+    if (
+        generatorCurrentResult
+    ) {
+
+        resetGeneratorResult(
+            message
+        );
+
+    }
+
+
+    renderGeneratorTypeState();
+
+
+    renderGeneratorControls();
+
+}
+
+
+// =================================
 // INITIALIZATION
 // =================================
 
@@ -1535,11 +2339,17 @@ function initializeGeneratorHub() {
     clearGeneratorMessage();
 
 
+    populateGeneratorWrestlers();
+
+
+    renderGeneratorTypeState();
+
+
     renderGeneratorHistory();
 
 
     resetGeneratorResult(
-        "Enter a pool and generate a result."
+        "Choose a generator and enter the required information."
     );
 
 
@@ -1548,12 +2358,46 @@ function initializeGeneratorHub() {
 }
 
 
+generatorEls.mode?.addEventListener(
+    "change",
+    () => {
+
+        handleGeneratorSettingChange(
+            "Mode changed. Generate a new result."
+        );
+
+    }
+);
+
+
+generatorEls.type?.addEventListener(
+    "change",
+    () => {
+
+        handleGeneratorSettingChange(
+            "Generator type changed. Generate a new result."
+        );
+
+    }
+);
+
+
+generatorEls.method?.addEventListener(
+    "change",
+    () => {
+
+        handleGeneratorSettingChange(
+            "Draw method changed. Generate a new result."
+        );
+
+    }
+);
+
+
 [
-    generatorEls.mode,
-    generatorEls.type,
-    generatorEls.method,
     generatorEls.pool,
-    generatorEls.exclusions
+    generatorEls.exclusions,
+    generatorEls.injuryCritCause
 ]
     .filter(
         Boolean
@@ -1562,55 +2406,30 @@ function initializeGeneratorHub() {
         element => {
 
             element.addEventListener(
-                "change",
+                "input",
                 () => {
 
-                    if (
-                        generatorCurrentResult
-                    ) {
-
-                        resetGeneratorResult(
-                            "Settings changed. Generate a new result."
-                        );
-
-                    }
-
-
-                    renderGeneratorControls();
+                    handleGeneratorSettingChange(
+                        "Generator information changed. Generate a new result."
+                    );
 
                 }
             );
 
-
-            if (
-                element.tagName ===
-                "TEXTAREA"
-            ) {
-
-                element.addEventListener(
-                    "input",
-                    () => {
-
-                        if (
-                            generatorCurrentResult
-                        ) {
-
-                            resetGeneratorResult(
-                                "Pool changed. Generate a new result."
-                            );
-
-                        }
-
-
-                        renderGeneratorControls();
-
-                    }
-                );
-
-            }
-
         }
     );
+
+
+generatorEls.injuryWrestler?.addEventListener(
+    "change",
+    () => {
+
+        handleGeneratorSettingChange(
+            "Selected wrestler changed. Generate a new result."
+        );
+
+    }
+);
 
 
 [
