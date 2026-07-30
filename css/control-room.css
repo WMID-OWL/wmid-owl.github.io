@@ -8653,3 +8653,62 @@
     }
 
 }
+/* =================================
+   GENERATOR INJURY EVALUATION
+================================= */
+
+
+.cr-generator-injury-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap:
+        1rem;
+
+    margin-top:
+        1rem;
+
+    padding:
+        1rem;
+
+    background:
+        rgba(180, 70, 70, 0.06);
+
+    border:
+        1px solid
+        rgba(231, 139, 139, 0.22);
+
+}
+
+
+.cr-generator-injury-grid[hidden] {
+
+    display:
+        none;
+
+}
+
+
+#cr-generator-pool-fields[hidden],
+#cr-generator-count-fields[hidden] {
+
+    display:
+        none;
+
+}
+
+
+@media (max-width: 850px) {
+
+    .cr-generator-injury-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
