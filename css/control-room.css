@@ -9291,3 +9291,117 @@
     }
 
 }
+/* =================================
+   INJURY STATUS ACTIONS
+================================= */
+
+
+.cr-injury-action-bar {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        1rem;
+
+    margin-top:
+        1rem;
+
+    padding:
+        1rem;
+
+    background:
+        rgba(198, 161, 91, 0.07);
+
+    border:
+        1px solid
+        rgba(198, 161, 91, 0.24);
+
+}
+
+
+.cr-injury-action-bar > div {
+
+    min-width:
+        0;
+
+}
+
+
+.cr-injury-action-bar strong {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+.cr-injury-action-bar p {
+
+    margin:
+        0.4rem 0 0;
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.8rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+.cr-injury-action-bar .control-room-button {
+
+    flex:
+        0 0 auto;
+
+}
+
+
+#cr-injury-action-message {
+
+    margin-top:
+        1rem;
+
+}
+
+
+@media (max-width: 750px) {
+
+    .cr-injury-action-bar {
+
+        align-items:
+            stretch;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .cr-injury-action-bar .control-room-button {
+
+        width:
+            100%;
+
+    }
+
+}
