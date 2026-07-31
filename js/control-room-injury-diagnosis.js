@@ -1126,7 +1126,7 @@
             };
     }
 
-    function scheduleCreatorSync() {
+        function scheduleCreatorSync() {
         window.requestAnimationFrame(
             () =>
                 syncOfficialCreator(
@@ -1134,6 +1134,25 @@
                 )
         );
     }
+
+
+    window.owlInjuryDiagnosisAPI =
+        Object.freeze({
+
+            isReady:
+                () =>
+                    Boolean(
+                        catalog
+                    ),
+
+            getMapping,
+
+            diagnosisPool,
+
+            sanitize
+
+        });
+
 
     createPanel();
     loadCatalog();
