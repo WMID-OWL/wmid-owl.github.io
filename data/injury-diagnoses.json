@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "terminology": {
+    "wordingRule": "Use bruise terminology only"
+  },
+  "areas": {
+    "Neck": {
+      "subAreas": {
+        "Head": {
+          "1": ["Head bruise", "Minor concussion"],
+          "2": ["Mild concussion", "Concussion with lingering headaches"],
+          "3": ["Concussion with delayed clearance", "Persistent concussion symptoms"],
+          "8": ["Prolonged post-concussion symptoms"],
+          "12": ["Post-concussion syndrome"],
+          "16": ["Severe post-concussion syndrome requiring extended clearance"]
+        },
+        "Face": {
+          "1": ["Facial laceration", "Orbital bruise", "Nasal bruise"],
+          "2": ["Nondisplaced nasal fracture", "Significant facial bruise"],
+          "3": ["Fractured nose", "Nondisplaced orbital fracture"],
+          "8": ["Orbital-floor fracture", "Nondisplaced jaw fracture"],
+          "12": ["Displaced jaw fracture", "Multiple facial fractures"],
+          "16": ["Complex facial fracture requiring surgery"]
+        },
+        "Neck": {
+          "1": ["Cervical stinger", "Minor neck strain", "Neck bruise"],
+          "2": ["Moderate cervical strain", "Whiplash injury", "Pinched cervical nerve"],
+          "3": ["Grade-two cervical sprain", "Cervical disc irritation", "Significant trapezius strain"],
+          "8": ["Cervical disc herniation", "Cervical nerve-root injury"],
+          "12": ["Significant cervical ligament tear", "Cervical disc herniation with nerve compression"],
+          "16": ["Major cervical disc injury requiring surgery", "High-grade cervical ligament injury"]
+        }
+      }
+    },
+    "Arms": {
+      "subAreas": {
+        "Shoulder": {
+          "1": ["Shoulder bruise", "Minor rotator-cuff strain", "Mild shoulder sprain"],
+          "2": ["Grade-one AC-joint sprain", "Moderate rotator-cuff strain", "Mild shoulder subluxation"],
+          "3": ["Grade-two AC-joint sprain", "Partial shoulder separation", "Significant rotator-cuff strain"],
+          "8": ["Shoulder dislocation", "Partial rotator-cuff tear", "Grade-three AC-joint separation"],
+          "12": ["Labral tear requiring surgery", "Full-thickness rotator-cuff tear", "Recurrent shoulder instability"],
+          "16": ["Major rotator-cuff repair", "Shoulder-stabilization surgery", "Major labral reconstruction"]
+        },
+        "Upper Arm": {
+          "1": ["Biceps bruise", "Minor biceps strain", "Minor triceps strain"],
+          "2": ["Moderate biceps strain", "Moderate triceps strain", "Deep upper-arm bruise"],
+          "3": ["Grade-two biceps strain", "Grade-two triceps strain", "Partial muscle tear"],
+          "8": ["Partial biceps-tendon tear", "Partial triceps tear", "Nondisplaced humerus fracture"],
+          "12": ["Biceps-tendon rupture", "Triceps-tendon rupture", "Displaced humerus fracture"],
+          "16": ["Distal biceps repair", "Triceps-tendon repair", "Humerus fracture requiring surgery"]
+        },
+        "Elbow": {
+          "1": ["Elbow bruise", "Mild elbow sprain", "Minor hyperextension"],
+          "2": ["Moderate elbow sprain", "Hyperextension injury", "Ulnar-nerve irritation"],
+          "3": ["Grade-two elbow sprain", "Significant hyperextension injury", "Triceps-tendon strain"],
+          "8": ["Elbow dislocation", "Radial-head fracture", "High-grade ligament sprain"],
+          "12": ["Major elbow-ligament tear", "Complex elbow dislocation", "UCL tear requiring surgery"],
+          "16": ["Elbow-ligament reconstruction", "Complex fracture-dislocation requiring surgery"]
+        },
+        "Forearm": {
+          "1": ["Forearm bruise", "Minor forearm strain"],
+          "2": ["Moderate forearm strain", "Wrist-extensor strain"],
+          "3": ["Grade-two forearm strain", "Significant flexor-tendon strain"],
+          "8": ["Nondisplaced radius fracture", "Nondisplaced ulna fracture", "High-grade forearm muscle tear"],
+          "12": ["Displaced radius fracture", "Displaced ulna fracture", "Severe flexor-tendon tear"],
+          "16": ["Both-bone forearm fracture requiring surgery", "Major forearm-tendon reconstruction"]
+        },
+        "Wrist / Hand": {
+          "1": ["Mild wrist sprain", "Hand bruise", "Jammed finger"],
+          "2": ["Moderate wrist sprain", "Thumb sprain", "Nondisplaced finger fracture"],
+          "3": ["Grade-two wrist sprain", "Finger dislocation", "Significant thumb-ligament sprain"],
+          "8": ["Metacarpal fracture", "Severe wrist-ligament tear", "Scaphoid fracture"],
+          "12": ["Thumb UCL tear requiring surgery", "Scaphoid fracture with delayed healing", "Complex metacarpal fracture"],
+          "16": ["Wrist-ligament reconstruction", "Complex hand fracture requiring surgery", "Scaphoid nonunion surgery"]
+        }
+      }
+    },
+    "Back": {
+      "subAreas": {
+        "Chest": {
+          "1": ["Chest-wall bruise", "Minor pectoral strain", "Sternum bruise"],
+          "2": ["Moderate pectoral strain", "Deep chest-wall bruising"],
+          "3": ["Grade-two pectoral strain", "Significant sternum bruise"],
+          "8": ["Partial pectoral tear", "Nondisplaced sternum fracture", "High-grade chest-wall strain"],
+          "12": ["Pectoral-tendon tear", "Displaced sternum fracture"],
+          "16": ["Pectoral-tendon repair", "Major chest-wall reconstruction"]
+        },
+        "Ribs": {
+          "1": ["Rib bruise", "Minor intercostal strain"],
+          "2": ["Deep rib bruising", "Moderate intercostal strain", "Costal-cartilage sprain"],
+          "3": ["Nondisplaced rib fracture", "Grade-two intercostal strain", "Rib-cartilage injury"],
+          "8": ["Multiple nondisplaced rib fractures", "Rib-cartilage tear"],
+          "12": ["Multiple displaced rib fractures", "Rib fractures with delayed healing"],
+          "16": ["Surgical stabilization of multiple rib fractures", "Complex sternum-fracture repair"]
+        },
+        "Abdomen / Core": {
+          "1": ["Abdominal bruise", "Minor abdominal strain", "Minor oblique strain"],
+          "2": ["Moderate abdominal strain", "Moderate oblique strain", "Abdominal-wall strain"],
+          "3": ["Grade-two abdominal strain", "Partial oblique tear", "Abdominal-wall tear"],
+          "8": ["Partial abdominal-muscle tear", "Sports hernia", "High-grade oblique tear"],
+          "12": ["Abdominal-muscle tear requiring surgery", "Sports-hernia repair", "Major oblique tear"],
+          "16": ["Abdominal-wall reconstruction", "Major sports-hernia repair", "Rectus-abdominis repair"]
+        },
+        "Upper Back": {
+          "1": ["Thoracic bruise", "Minor thoracic strain", "Rhomboid strain"],
+          "2": ["Moderate thoracic strain", "Thoracic-facet sprain", "Scapular-region strain"],
+          "3": ["Grade-two thoracic strain", "Thoracic-ligament sprain", "Significant rhomboid tear"],
+          "8": ["Thoracic-disc herniation", "High-grade thoracic strain", "Nondisplaced scapular fracture"],
+          "12": ["Thoracic-disc herniation with nerve compression", "Severe scapular fracture"],
+          "16": ["Thoracic-disc surgery", "Major thoracic-ligament reconstruction", "Scapular-fracture surgery"]
+        },
+        "Lower Back": {
+          "1": ["Minor lumbar strain", "Lower-back bruise", "Back spasms"],
+          "2": ["Moderate lumbar strain", "Sacroiliac-joint sprain", "Lumbar-facet irritation"],
+          "3": ["Grade-two lumbar strain", "Lumbar-ligament sprain", "Lumbar-disc irritation"],
+          "8": ["Lumbar-disc herniation", "High-grade sacroiliac sprain", "Lumbar nerve-root irritation"],
+          "12": ["Lumbar-disc herniation with nerve compression", "Significant lumbar-ligament tear", "Lumbar decompression surgery"],
+          "16": ["Lumbar-disc surgery", "Major lumbar-ligament reconstruction", "Complex lower-back surgery"]
+        }
+      }
+    },
+    "Legs": {
+      "subAreas": {
+        "Hip": {
+          "1": ["Hip bruise", "Minor hip-flexor strain"],
+          "2": ["Moderate hip-flexor strain", "Hip-joint sprain"],
+          "3": ["Grade-two hip-flexor strain", "Hip-labrum irritation"],
+          "8": ["Hip-labral tear", "High-grade hip-flexor tear"],
+          "12": ["Hip-labral repair", "Significant hip-joint injury"],
+          "16": ["Major hip-labral reconstruction", "Hip surgery"]
+        },
+        "Thigh": {
+          "1": ["Thigh bruise", "Minor quadriceps strain", "Minor hamstring strain"],
+          "2": ["Moderate quadriceps strain", "Moderate hamstring strain", "Deep thigh bruise"],
+          "3": ["Grade-two quadriceps strain", "Grade-two hamstring strain", "Partial muscle tear"],
+          "8": ["Partial quadriceps tear", "Partial hamstring tear"],
+          "12": ["Quadriceps-tendon tear", "Hamstring-tendon tear"],
+          "16": ["Quadriceps-tendon repair", "Hamstring-tendon repair", "Femur fracture requiring surgery"]
+        },
+        "Knee": {
+          "1": ["Knee bruise", "Mild knee sprain", "Patellar irritation"],
+          "2": ["Moderate knee sprain", "Mild MCL sprain", "Knee hyperextension"],
+          "3": ["Grade-two MCL sprain", "Meniscus irritation", "Patellar-tendon strain"],
+          "8": ["Meniscus tear", "Grade-three MCL sprain", "Patellar dislocation"],
+          "12": ["ACL tear", "Meniscus repair", "Patellar-tendon tear"],
+          "16": ["ACL reconstruction", "Multi-ligament knee reconstruction", "Patellar-tendon repair"]
+        },
+        "Lower Leg": {
+          "1": ["Calf bruise", "Minor calf strain", "Shin bruise"],
+          "2": ["Moderate calf strain", "Peroneal-muscle strain", "Shin-splint aggravation"],
+          "3": ["Grade-two calf strain", "Partial calf tear", "High-grade shin bruise"],
+          "8": ["Nondisplaced fibula fracture", "High-grade calf tear"],
+          "12": ["Displaced fibula fracture", "Tibia fracture", "Major calf-muscle tear"],
+          "16": ["Tibia-fibula fracture requiring surgery", "Major lower-leg reconstruction"]
+        },
+        "Ankle": {
+          "1": ["Mild ankle sprain", "Rolled ankle"],
+          "2": ["Moderate ankle sprain", "Achilles strain"],
+          "3": ["Grade-two ankle sprain", "Partial ankle-ligament tear", "Significant Achilles strain"],
+          "8": ["Severe ankle-ligament tear", "Nondisplaced ankle fracture", "Partial Achilles tear"],
+          "12": ["Achilles rupture", "Complex ankle-ligament injury", "Displaced ankle fracture"],
+          "16": ["Achilles repair", "Ankle reconstruction", "Complex ankle-fracture surgery"]
+        },
+        "Foot": {
+          "1": ["Foot bruise", "Heel bruise", "Jammed toe"],
+          "2": ["Midfoot sprain", "Moderate toe sprain", "Plantar-fascia strain"],
+          "3": ["Significant midfoot sprain", "Nondisplaced toe fracture", "High-grade plantar-fascia strain"],
+          "8": ["Metatarsal fracture", "Lisfranc sprain", "Multiple toe fractures"],
+          "12": ["Complex metatarsal fracture", "Lisfranc injury requiring surgery"],
+          "16": ["Lisfranc reconstruction", "Complex foot-fracture surgery"]
+        }
+      }
+    }
+  }
+}
