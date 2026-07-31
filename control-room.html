@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/control-room.css?v=309k">
+    <link rel="stylesheet" href="css/control-room.css?v=309l1">
 </head>
 
 <body class="control-room-body">
@@ -35,6 +35,7 @@
 <a class="cr-tool-jump-link" href="#cr-tool-signature-series">Signature Series</a>
 <a class="cr-tool-jump-link" href="#cr-tool-generator">Generator</a>
 <a class="cr-tool-jump-link" href="#cr-tool-injuries">Injuries</a>
+<a class="cr-tool-jump-link" href="#cr-tool-endurance">Endurance</a>
 <a class="cr-tool-jump-link" href="#cr-tool-after-dark">After Dark Fallback</a>
 <a class="cr-tool-jump-link" href="#cr-tool-sunday-disservice">Sunday Fallback</a>
 <a class="cr-tool-jump-link" href="#cr-tool-media">Media</a>
@@ -4062,7 +4063,340 @@
 
             </div>
 
+               </section>
+
+        <!-- =================================
+             ENDURANCE PROFILE MANAGER
+        ================================== -->
+
+        <section
+            id="cr-tool-endurance"
+            class="control-room-panel"
+        >
+
+            <div class="control-room-panel-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        FIRE PRO DURABILITY
+                    </p>
+
+                    <h2>
+                        Endurance Profile Manager
+                    </h2>
+
+                </div>
+
+                <span
+                    id="cr-endurance-status"
+                    class="control-room-health-summary"
+                >
+                    WAITING
+                </span>
+
+            </div>
+
+            <p class="cr-editor-note">
+
+                Record each wrestler’s real Fire Pro endurance settings.
+                Unsaved wrestlers display Normal as an editable starting
+                point, but no profile becomes canon until Save Endurance
+                Profile is confirmed.
+
+            </p>
+
+            <div class="cr-endurance-summary-grid">
+
+                <article>
+
+                    <span>
+                        PROFILES RECORDED
+                    </span>
+
+                    <strong id="cr-endurance-profile-count">
+                        0
+                    </strong>
+
+                </article>
+
+                <article>
+
+                    <span>
+                        PROFILES MISSING
+                    </span>
+
+                    <strong id="cr-endurance-missing-count">
+                        0
+                    </strong>
+
+                </article>
+
+                <article>
+
+                    <span>
+                        MILESTONES READY
+                    </span>
+
+                    <strong id="cr-endurance-ready-count">
+                        0
+                    </strong>
+
+                </article>
+
+                <article>
+
+                    <span>
+                        MILESTONES PENDING
+                    </span>
+
+                    <strong id="cr-endurance-pending-count">
+                        0
+                    </strong>
+
+                </article>
+
+            </div>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        CANONICAL PROFILE
+                    </span>
+
+                    <h3>
+                        Fire Pro Endurance Settings
+                    </h3>
+
+                </div>
+
+                <div class="cr-editor-top-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-endurance-wrestler">
+                            WRESTLER
+                        </label>
+
+                        <select id="cr-endurance-wrestler">
+
+                            <option value="">
+                                Select Wrestler
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            COMPLETED OWL MATCHES
+                        </label>
+
+                        <div
+                            id="cr-endurance-match-count"
+                            class="cr-current-value"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            CURRENT HIGH AREAS
+                        </label>
+
+                        <div
+                            id="cr-endurance-high-count"
+                            class="cr-current-value"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <p
+                    id="cr-endurance-profile-note"
+                    class="cr-endurance-profile-note"
+                    hidden
+                ></p>
+
+                <div
+                    id="cr-endurance-area-grid"
+                    class="cr-endurance-area-grid"
+                    hidden
+                >
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-endurance-neck">
+                            NECK
+                        </label>
+
+                        <select id="cr-endurance-neck">
+
+                            <option value="Low">
+                                Low
+                            </option>
+
+                            <option value="Normal">
+                                Normal
+                            </option>
+
+                            <option value="High">
+                                High
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-endurance-arms">
+                            ARMS
+                        </label>
+
+                        <select id="cr-endurance-arms">
+
+                            <option value="Low">
+                                Low
+                            </option>
+
+                            <option value="Normal">
+                                Normal
+                            </option>
+
+                            <option value="High">
+                                High
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-endurance-back">
+                            BACK
+                        </label>
+
+                        <select id="cr-endurance-back">
+
+                            <option value="Low">
+                                Low
+                            </option>
+
+                            <option value="Normal">
+                                Normal
+                            </option>
+
+                            <option value="High">
+                                High
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-endurance-legs">
+                            LEGS
+                        </label>
+
+                        <select id="cr-endurance-legs">
+
+                            <option value="Low">
+                                Low
+                            </option>
+
+                            <option value="Normal">
+                                Normal
+                            </option>
+
+                            <option value="High">
+                                High
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <p
+                    id="cr-endurance-validation"
+                    class="cr-change-error"
+                    hidden
+                ></p>
+
+                <div class="cr-manager-actions">
+
+                    <button
+                        id="cr-endurance-save"
+                        class="control-room-button control-room-button-primary"
+                        type="button"
+                        disabled
+                    >
+                        Save Endurance Profile
+                    </button>
+
+                </div>
+
+                <p
+                    id="cr-endurance-message"
+                    class="cr-save-message"
+                    hidden
+                ></p>
+
+            </div>
+
+            <div
+                id="cr-endurance-milestones"
+                class="cr-editor-section"
+                hidden
+            >
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        DURABILITY PROGRESSION
+                    </span>
+
+                    <h3>
+                        High Endurance Milestones
+                    </h3>
+
+                </div>
+
+                <div class="cr-endurance-milestone-grid">
+
+                    <article
+                        id="cr-endurance-milestone-30"
+                        class="cr-endurance-milestone-card"
+                    >
+                    </article>
+
+                    <article
+                        id="cr-endurance-milestone-75"
+                        class="cr-endurance-milestone-card"
+                    >
+                    </article>
+
+                </div>
+
+            </div>
+
         </section>
+
         <!-- =================================
              OWL AFTER DARK PUBLISHER
         ================================== -->
@@ -6816,13 +7150,18 @@
 </footer>
 
 <script src="js/app.js?v=site-back-to-top-1"></script>
-<script src="js/control-room.js?v=293g"></script>
+<script src="js/control-room.js?v=309l1"></script>
+
 <script src="js/control-room-generator.js?v=308c"></script>
+
 <script src="js/control-room-injuries.js?v=309c"></script>
 <script src="js/control-room-injury-create.js?v=309b"></script>
+<script src="js/control-room-injury-actions.js?v=309c"></script>
 <script src="js/control-room-injury-severe.js?v=309i"></script>
 <script src="js/control-room-injury-diagnosis.js?v=309j"></script>
 <script src="js/control-room-injury-reinjury.js?v=309k"></script>
+
+<script src="js/control-room-endurance.js?v=309l1"></script>
 <script src="js/control-room-after-dark.js?v=300e"></script>
 <script src="js/control-room-sunday-disservice.js?v=301e"></script>
 <script src="js/control-room-proving-ground.js?v=293b"></script>
@@ -6833,6 +7172,9 @@
 <script src="js/control-room-team-editor.js?v=manager-1"></script>
 <script src="js/control-room-faction-editor.js?v=manager-1"></script>
 <script src="js/control-room-event-editor.js"></script>
+
+<script src="js/control-room-match-booker.js"></script>
+<script src="js/control-room-injury-availability.js?v=309d"></script>
 <script src="js/control-room-tournament-injury-availability.js?v=309f"></script>
 <script src="js/control-room-results-wizard.js"></script>
 <script src="js/control-room-segment-recorder.js"></script>
