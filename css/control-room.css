@@ -9736,3 +9736,319 @@
     }
 
 }
+/* =================================
+   ENDURANCE PROFILE MANAGER
+================================= */
+
+
+#cr-tool-endurance {
+
+    scroll-margin-top:
+        100px;
+
+}
+
+
+.cr-endurance-summary-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        1rem;
+
+    margin-top:
+        1.25rem;
+
+}
+
+
+.cr-endurance-summary-grid article {
+
+    padding:
+        1rem;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+}
+
+
+.cr-endurance-summary-grid span {
+
+    display:
+        block;
+
+    color:
+        #899397;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+}
+
+
+.cr-endurance-summary-grid strong {
+
+    display:
+        block;
+
+    margin-top:
+        0.45rem;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        2rem;
+
+}
+
+
+.cr-endurance-area-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        1rem;
+
+    margin-top:
+        1.25rem;
+
+}
+
+
+.cr-endurance-area-grid[hidden],
+#cr-endurance-milestones[hidden] {
+
+    display:
+        none;
+
+}
+
+
+.cr-endurance-profile-note {
+
+    margin:
+        1rem 0 0;
+
+    padding:
+        0.85rem 1rem;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+    font-size:
+        0.78rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+.cr-endurance-profile-note.is-recorded {
+
+    background:
+        rgba(34, 156, 85, 0.08);
+
+    border-color:
+        rgba(79, 212, 131, 0.28);
+
+    color:
+        #8de3ae;
+
+}
+
+
+.cr-endurance-profile-note.is-missing {
+
+    background:
+        rgba(198, 161, 91, 0.08);
+
+    border-color:
+        rgba(198, 161, 91, 0.3);
+
+    color:
+        #dfbd78;
+
+}
+
+
+.cr-endurance-milestone-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        1rem;
+
+}
+
+
+.cr-endurance-milestone-card {
+
+    padding:
+        1.1rem;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+    border-left:
+        4px solid
+        #6f787c;
+
+}
+
+
+.cr-endurance-milestone-card.is-ready {
+
+    border-left-color:
+        #4fd483;
+
+}
+
+
+.cr-endurance-milestone-card.is-pending {
+
+    border-left-color:
+        #dfbd78;
+
+}
+
+
+.cr-endurance-milestone-card.is-satisfied {
+
+    border-left-color:
+        #c6a15b;
+
+}
+
+
+.cr-endurance-milestone-heading {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        1rem;
+
+}
+
+
+.cr-endurance-milestone-heading span,
+.cr-endurance-milestone-heading strong {
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+.cr-endurance-milestone-heading span {
+
+    color:
+        #899397;
+
+}
+
+
+.cr-endurance-milestone-heading strong {
+
+    color:
+        #f5f5f2;
+
+}
+
+
+.cr-endurance-milestone-card p {
+
+    margin:
+        0.8rem 0 0;
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.8rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+@media (max-width: 900px) {
+
+    .cr-endurance-summary-grid,
+    .cr-endurance-area-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .cr-endurance-summary-grid,
+    .cr-endurance-area-grid,
+    .cr-endurance-milestone-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
