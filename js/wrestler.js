@@ -31,7 +31,7 @@ async function loadWrestlerProfile() {
             );
 
 
-        const matchResponse =
+               const matchResponse =
             await fetch(
                 "data/matches.json",
                 {
@@ -40,9 +40,18 @@ async function loadWrestlerProfile() {
             );
 
 
-        if (
+        const injuryResponse =
+            await fetch(
+                "data/injuries.json",
+                {
+                    cache: "no-store"
+                }
+            );
+
+                if (
             !wrestlerResponse.ok ||
-            !matchResponse.ok
+            !matchResponse.ok ||
+            !injuryResponse.ok
         ) {
 
             throw new Error(
@@ -56,8 +65,29 @@ async function loadWrestlerProfile() {
             await wrestlerResponse.json();
 
 
-        const matches =
+                const matches =
             await matchResponse.json();
+
+
+        const injuryDatabase =
+            await injuryResponse.json();
+
+
+        const injuries =
+
+            Array.isArray(
+                injuryDatabase
+            )
+
+                ? injuryDatabase
+
+                : Array.isArray(
+                    injuryDatabase?.injuries
+                )
+
+                    ? injuryDatabase.injuries
+
+                    : [];
 
 
 
@@ -239,7 +269,634 @@ async function loadWrestlerProfile() {
         }
 
 
+        // ---------------------------------
+        // PUBLIC INJURY / RECOVERY STATUS
+        // ---------------------------------
 
+
+        function normalizeInjuryStatus(
+            value
+        ) {
+
+            return String(
+                value || ""
+            )
+                .trim()
+                .toUpperCase();
+
+        }
+
+
+        function formatInjuryPeriod(
+            value
+        ) {
+
+            if (
+                !value
+            ) {
+
+                return "To be announced";
+
+            }
+
+
+            if (
+                typeof value ===
+                "string"
+            ) {
+
+                return value.trim() ||
+                    "To be announced";
+
+            }
+
+
+            if (
+                typeof value !==
+                "object"
+            ) {
+
+                return String(
+                    value
+                );
+
+            }
+
+
+            const year =
+                value.year ||
+                value.owlYear ||
+                "";
+
+
+            const month =
+                value.month ||
+                value.owlMonth ||
+                "";
+
+
+            const week =
+                value.week ||
+                value.owlWeek ||
+                "";
+
+
+            const parts =
+                [];
+
+
+            if (
+                year
+            ) {
+
+                parts.push(
+                    String(
+                        year
+                    )
+                );
+
+            }
+
+
+            if (
+                month
+            ) {
+
+                parts.push(
+                    `Month ${month}`
+                );
+
+            }
+
+
+            if (
+                week
+            ) {
+
+                parts.push(
+                    `Week ${week}`
+                );
+
+            }
+
+
+            return parts.join(
+                " · "
+            )
+
+            ||
+
+            "To be announced";
+
+        }
+
+
+        function appendPublicInjuryDetail(
+            container,
+            label,
+            value
+        ) {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            const labelElement =
+                document.createElement(
+                    "span"
+                );
+
+
+            labelElement.textContent =
+                label;
+
+
+            const valueElement =
+                document.createElement(
+                    "strong"
+                );
+
+
+            valueElement.textContent =
+                String(
+                    value || "—"
+                );
+
+
+            item.append(
+                labelElement,
+                valueElement
+            );
+
+
+            container.appendChild(
+                item
+            );
+
+        }
+
+
+        const activeInjuries =
+
+            injuries
+
+                .filter(
+                    injury => {
+
+                        const status =
+                            normalizeInjuryStatus(
+
+                                injury?.status
+                                ||
+                                injury?.currentStatus
+
+                            );
+
+
+                        return (
+
+                            injury?.wrestlerId ===
+                                wrestler.id
+
+                            &&
+
+                            (
+                                status ===
+                                    "INJURED"
+
+                                ||
+
+                                status ===
+                                    "RECOVERING"
+                            )
+
+                        );
+
+                    }
+                )
+
+                .sort(
+                    (
+                        firstInjury,
+                        secondInjury
+                    ) => {
+
+                        const firstStatus =
+                            normalizeInjuryStatus(
+
+                                firstInjury.status
+                                ||
+                                firstInjury.currentStatus
+
+                            );
+
+
+                        const secondStatus =
+                            normalizeInjuryStatus(
+
+                                secondInjury.status
+                                ||
+                                secondInjury.currentStatus
+
+                            );
+
+
+                        if (
+                            firstStatus !==
+                            secondStatus
+                        ) {
+
+                            return firstStatus ===
+                                "INJURED"
+
+                                ? -1
+
+                                : 1;
+
+                        }
+
+
+                        return String(
+
+                            secondInjury.updatedAt
+                            ||
+                            secondInjury.createdAt
+                            ||
+                            ""
+
+                        ).localeCompare(
+
+                            String(
+
+                                firstInjury.updatedAt
+                                ||
+                                firstInjury.createdAt
+                                ||
+                                ""
+
+                            )
+
+                        );
+
+                    }
+                );
+
+
+        if (
+            activeInjuries.length >
+            0
+        ) {
+
+            const injurySection =
+                document.getElementById(
+                    "injury-status-section"
+                );
+
+
+            const injurySummary =
+                document.getElementById(
+                    "injury-status-summary"
+                );
+
+
+            const injuryList =
+                document.getElementById(
+                    "injury-status-list"
+                );
+
+
+            const hasUnavailableInjury =
+                activeInjuries.some(
+                    injury =>
+
+                        normalizeInjuryStatus(
+
+                            injury.status
+                            ||
+                            injury.currentStatus
+
+                        ) ===
+                        "INJURED"
+                );
+
+
+            injurySummary.textContent =
+
+                hasUnavailableInjury
+
+                    ? "INJURED — UNAVAILABLE"
+
+                    : "RECOVERING — ACTIVE";
+
+
+            injurySummary.className =
+
+                `profile-injury-summary ${
+                    hasUnavailableInjury
+
+                        ? "profile-injury-summary-injured"
+
+                        : "profile-injury-summary-recovering"
+                }`;
+
+
+            injuryList.innerHTML =
+                "";
+
+
+            activeInjuries.forEach(
+                injury => {
+
+                    const status =
+                        normalizeInjuryStatus(
+
+                            injury.status
+                            ||
+                            injury.currentStatus
+
+                        );
+
+
+                    const absenceWeeks =
+                        Number(
+                            injury.absenceWeeks ||
+                            0
+                        );
+
+
+                    const lowEnduranceWeeks =
+                        Number(
+                            injury.postReturnLowWeeks ||
+                            0
+                        );
+
+
+                    const card =
+                        document.createElement(
+                            "article"
+                        );
+
+
+                    card.className =
+
+                        `profile-injury-card ${
+                            status ===
+                                "INJURED"
+
+                                ? "profile-injury-card-injured"
+
+                                : "profile-injury-card-recovering"
+                        }`;
+
+
+                    const heading =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    heading.className =
+                        "profile-injury-card-heading";
+
+
+                    const headingCopy =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    const diagnosisLabel =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    diagnosisLabel.textContent =
+                        "DIAGNOSIS";
+
+
+                    const diagnosis =
+                        document.createElement(
+                            "h3"
+                        );
+
+
+                    diagnosis.textContent =
+                        injury.diagnosis ||
+                        "Medical evaluation";
+
+
+                    headingCopy.append(
+                        diagnosisLabel,
+                        diagnosis
+                    );
+
+
+                    const badge =
+                        document.createElement(
+                            "strong"
+                        );
+
+
+                    badge.className =
+
+                        `profile-injury-badge ${
+                            status ===
+                                "INJURED"
+
+                                ? "profile-injury-badge-injured"
+
+                                : "profile-injury-badge-recovering"
+                        }`;
+
+
+                    badge.textContent =
+                        status;
+
+
+                    heading.append(
+                        headingCopy,
+                        badge
+                    );
+
+
+                    const detailGrid =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    detailGrid.className =
+                        "profile-injury-detail-grid";
+
+
+                    appendPublicInjuryDetail(
+
+                        detailGrid,
+
+                        "AFFECTED AREA",
+
+                        injury.affectedBodyPart ||
+                        injury.fireProBodyPart ||
+                        injury.bodyArea ||
+                        "To be announced"
+
+                    );
+
+
+                    appendPublicInjuryDetail(
+
+                        detailGrid,
+
+                        status ===
+                            "INJURED"
+
+                            ? "AVAILABILITY"
+
+                            : "CURRENT AVAILABILITY",
+
+                        status ===
+                            "INJURED"
+
+                            ? "Unavailable for competition"
+
+                            : "Active while recovering"
+
+                    );
+
+
+                    appendPublicInjuryDetail(
+
+                        detailGrid,
+
+                        "ABSENCE",
+
+                        absenceWeeks > 0
+
+                            ? `${absenceWeeks} week${
+                                absenceWeeks === 1
+
+                                    ? ""
+
+                                    : "s"
+                            }`
+
+                            : "No additional absence"
+
+                    );
+
+
+                    appendPublicInjuryDetail(
+
+                        detailGrid,
+
+                        status ===
+                            "INJURED"
+
+                            ? "EXPECTED RETURN"
+
+                            : "RETURN WEEK",
+
+                        formatInjuryPeriod(
+
+                            injury.expectedReturnWeek
+                            ||
+                            injury.expectedReturnPeriod
+                            ||
+                            injury.returnWeek
+
+                        )
+
+                    );
+
+
+                    appendPublicInjuryDetail(
+
+                        detailGrid,
+
+                        "POST-RETURN RECOVERY",
+
+                        lowEnduranceWeeks > 0
+
+                            ? `${lowEnduranceWeeks} week${
+                                lowEnduranceWeeks === 1
+
+                                    ? ""
+
+                                    : "s"
+                            } at Low endurance`
+
+                            : "No recovery period recorded"
+
+                    );
+
+
+                    appendPublicInjuryDetail(
+
+                        detailGrid,
+
+                        "EXPECTED FULL CLEARANCE",
+
+                        formatInjuryPeriod(
+
+                            injury.expectedClearanceWeek
+                            ||
+                            injury.expectedClearancePeriod
+                            ||
+                            injury.clearanceWeek
+
+                        )
+
+                    );
+
+
+                    const note =
+                        document.createElement(
+                            "p"
+                        );
+
+
+                    note.className =
+                        "profile-injury-public-note";
+
+
+                    note.textContent =
+
+                        status ===
+                            "INJURED"
+
+                            ? "This wrestler is currently unavailable for OWL competition. After returning, the affected area will remain at Low endurance during the listed recovery window."
+
+                            : "This wrestler has returned to active competition, but the affected area remains at Low endurance until the listed full-clearance period.";
+
+
+                    card.append(
+                        heading,
+                        detailGrid,
+                        note
+                    );
+
+
+                    injuryList.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+
+            injurySection.hidden =
+                false;
+
+        }
+
+
+
+        // ---------------------------------
+        // FINISHER
+        // ---------------------------------
         // ---------------------------------
         // FINISHER
         // ---------------------------------
