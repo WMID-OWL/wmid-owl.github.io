@@ -1198,3 +1198,76 @@
     }
 
 }
+/* =================================
+   PUBLIC ROSTER INJURY STATUS
+================================= */
+
+
+.roster-injury-badge {
+
+    align-self:
+        flex-start;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    min-height:
+        24px;
+
+    margin:
+        0 0 0.7rem;
+
+    padding:
+        0.25rem 0.45rem;
+
+    border:
+        1px solid
+        transparent;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        1000;
+
+    line-height:
+        1;
+
+    letter-spacing:
+        0.09em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.roster-injury-badge-injured {
+
+    background:
+        rgba(180, 70, 70, 0.16);
+
+    border-color:
+        rgba(231, 139, 139, 0.42);
+
+    color:
+        #f09a9a;
+
+}
+
+
+.roster-injury-badge-recovering {
+
+    background:
+        rgba(198, 161, 91, 0.15);
+
+    border-color:
+        rgba(223, 189, 120, 0.42);
+
+    color:
+        #dfbd78;
+
+}
