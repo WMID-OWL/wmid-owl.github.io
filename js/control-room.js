@@ -108,14 +108,14 @@ const OWL_CONTROL_ROOM_FILES = [
         countKey: "injuries"
     },
 
-    {
+        {
         key: "enduranceProfiles",
         fileName: "endurance-profiles.json",
         label: "Endurance Profiles",
-           },
-
-    {
-        key: "enduranceProfiles",
+        objectFile: true,
+        countKey: "profiles"
+    }
+];
         fileName: "endurance-profiles.json",
         objectFile: true,
         countKey: "profiles"
