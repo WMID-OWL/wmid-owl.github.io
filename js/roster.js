@@ -35,7 +35,7 @@ async function loadRoster() {
             );
 
 
-        const matchResponse =
+                const matchResponse =
             await fetch(
                 "data/matches.json",
                 {
@@ -44,11 +44,21 @@ async function loadRoster() {
             );
 
 
-        if (
+        const injuryResponse =
+            await fetch(
+                "data/injuries.json",
+                {
+                    cache: "no-store"
+                }
+            );
+
+
+                if (
             !wrestlerResponse.ok ||
             !teamResponse.ok ||
             !factionResponse.ok ||
-            !matchResponse.ok
+            !matchResponse.ok ||
+            !injuryResponse.ok
         ) {
 
             throw new Error(
@@ -56,7 +66,6 @@ async function loadRoster() {
             );
 
         }
-
 
         const wrestlers =
             await wrestlerResponse.json();
@@ -70,8 +79,29 @@ async function loadRoster() {
             await factionResponse.json();
 
 
-        const matches =
+                const matches =
             await matchResponse.json();
+
+
+        const injuryDatabase =
+            await injuryResponse.json();
+
+
+        const injuries =
+
+            Array.isArray(
+                injuryDatabase
+            )
+
+                ? injuryDatabase
+
+                : Array.isArray(
+                    injuryDatabase?.injuries
+                )
+
+                    ? injuryDatabase.injuries
+
+                    : [];
 
 
 
@@ -233,7 +263,7 @@ async function loadRoster() {
 
 
 
-        function getInitials(name) {
+               function getInitials(name) {
 
             return name
                 .split(" ")
@@ -246,6 +276,189 @@ async function loadRoster() {
                 .toUpperCase();
 
         }
+
+
+        function getPublicInjuryStatus(
+            wrestlerId
+        ) {
+
+            const activeInjuries =
+
+                injuries
+
+                    .filter(
+                        injury => {
+
+                            const status =
+                                normalize(
+
+                                    injury?.status
+                                    ||
+                                    injury?.currentStatus
+
+                                );
+
+
+                            return (
+
+                                injury?.wrestlerId ===
+                                    wrestlerId
+
+                                &&
+
+                                (
+                                    status ===
+                                        "injured"
+
+                                    ||
+
+                                    status ===
+                                        "recovering"
+                                )
+
+                            );
+
+                        }
+                    )
+
+                    .sort(
+                        (
+                            firstInjury,
+                            secondInjury
+                        ) =>
+
+                            String(
+
+                                secondInjury.updatedAt
+                                ||
+                                secondInjury.createdAt
+                                ||
+                                ""
+
+                            ).localeCompare(
+
+                                String(
+
+                                    firstInjury.updatedAt
+                                    ||
+                                    firstInjury.createdAt
+                                    ||
+                                    ""
+
+                                )
+
+                            )
+                    );
+
+
+            const injuredRecord =
+                activeInjuries.find(
+                    injury =>
+
+                        normalize(
+
+                            injury.status
+                            ||
+                            injury.currentStatus
+
+                        ) ===
+                        "injured"
+                );
+
+
+            if (
+                injuredRecord
+            ) {
+
+                return injuredRecord;
+
+            }
+
+
+            return activeInjuries.find(
+                injury =>
+
+                    normalize(
+
+                        injury.status
+                        ||
+                        injury.currentStatus
+
+                    ) ===
+                    "recovering"
+            )
+
+            ||
+
+            null;
+
+        }
+
+
+        function getPublicInjuryBadgeTitle(
+            injury
+        ) {
+
+            const status =
+                normalize(
+
+                    injury?.status
+                    ||
+                    injury?.currentStatus
+
+                );
+
+
+            const diagnosis =
+                String(
+                    injury?.diagnosis ||
+                    "Medical status"
+                ).trim();
+
+
+            if (
+                status ===
+                "injured"
+            ) {
+
+                const expectedReturn =
+                    String(
+
+                        injury?.expectedReturnWeek
+                        ||
+                        injury?.expectedReturnPeriod
+                        ||
+                        injury?.returnWeek
+                        ||
+                        "return date pending"
+
+                    ).trim();
+
+
+                return `${diagnosis}. Unavailable until ${expectedReturn}.`;
+
+            }
+
+
+            const expectedClearance =
+                String(
+
+                    injury?.expectedClearanceWeek
+                    ||
+                    injury?.expectedClearancePeriod
+                    ||
+                    injury?.clearanceWeek
+                    ||
+                    "full-clearance date pending"
+
+                ).trim();
+
+
+            return `${diagnosis}. Active but recovering until ${expectedClearance}.`;
+
+        }
+
+
         function getAlphabetLetter(
             name
         ) {
@@ -695,9 +908,80 @@ async function loadRoster() {
                 wrestler.brand || "OWL";
 
 
-            info.appendChild(
+                        info.appendChild(
                 brand
             );
+
+
+            const activeInjury =
+                getPublicInjuryStatus(
+                    wrestler.id
+                );
+
+
+            if (
+                activeInjury
+            ) {
+
+                const injuryStatus =
+                    normalize(
+
+                        activeInjury.status
+                        ||
+                        activeInjury.currentStatus
+
+                    );
+
+
+                const injuryBadge =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                injuryBadge.className =
+
+                    `roster-injury-badge ${
+                        injuryStatus ===
+                            "injured"
+
+                            ? "roster-injury-badge-injured"
+
+                            : "roster-injury-badge-recovering"
+                    }`;
+
+
+                injuryBadge.textContent =
+
+                    injuryStatus ===
+                        "injured"
+
+                        ? "INJURED"
+
+                        : "RECOVERING";
+
+
+                const injuryDescription =
+                    getPublicInjuryBadgeTitle(
+                        activeInjury
+                    );
+
+
+                injuryBadge.title =
+                    injuryDescription;
+
+
+                injuryBadge.setAttribute(
+                    "aria-label",
+                    injuryDescription
+                );
+
+
+                info.appendChild(
+                    injuryBadge
+                );
+
+            }
 
 
 
