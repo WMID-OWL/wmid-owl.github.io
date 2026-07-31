@@ -1,4 +1,10 @@
 {
   "version": 1,
+  "defaultAreas": {
+    "Neck": "Normal",
+    "Arms": "Normal",
+    "Back": "Normal",
+    "Legs": "Normal"
+  },
   "profiles": []
 }
