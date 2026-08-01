@@ -10620,3 +10620,15 @@
     }
 
 }
+/* =================================
+   TROPHY ROOM CONDITIONAL FIELDS
+================================= */
+
+#cr-trophy-existing-row[hidden],
+#cr-trophy-wrestler-row[hidden],
+#cr-trophy-external-row[hidden] {
+
+    display:
+        none !important;
+
+}
