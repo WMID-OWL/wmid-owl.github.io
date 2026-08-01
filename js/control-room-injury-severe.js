@@ -13,7 +13,12 @@
 
         ||
 
-        typeof injuryCreateGetDraft !==
+                typeof injuryCreateGetDraft !==
+            "function"
+
+        ||
+
+        typeof injuryCreateSave !==
             "function"
     ) {
 
@@ -29,8 +34,16 @@
     }
 
 
-    const originalInjuryCreateGetDraft =
+        const originalInjuryCreateGetDraft =
         injuryCreateGetDraft;
+
+
+    const originalInjuryCreateSave =
+        injuryCreateSave;
+
+
+    let severePendingTitleDecision =
+        "";
 
 
     // =================================
@@ -611,12 +624,368 @@
                     evaluation.severeDurationRoll ??
                     null,
 
-                requiredChampionshipAction
+                                requiredChampionshipAction,
+
+                titleDecision:
+
+                    severePendingTitleDecision
+
+                    ||
+
+                    draft.titleDecision
+
+                    ||
+
+                    ""
 
             };
 
         };
+    // =================================
+    // SEVERE CHAMPIONSHIP DECISION
+    // =================================
 
+
+    function severeGetTitleDecisionRequirements(
+        draft
+    ) {
+
+        const classification =
+            String(
+                draft?.classification || ""
+            )
+                .trim()
+                .toUpperCase();
+
+
+        const championshipStatus =
+            String(
+                draft
+                    ?.championshipStatusAtInjury
+                ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+
+        const isChampion =
+
+            championshipStatus ===
+                "current champion"
+
+            ||
+
+            championshipStatus ===
+                "interim champion";
+
+
+        if (
+            classification !==
+                "SEVERE"
+
+            ||
+
+            !isChampion
+        ) {
+
+            return {
+
+                required:
+                    false,
+
+                allowed:
+                    [],
+
+                prompt:
+                    ""
+
+            };
+
+        }
+
+
+        const absenceWeeks =
+            Number(
+                draft.absenceWeeks ||
+                0
+            );
+
+
+        if (
+            absenceWeeks ===
+            8
+        ) {
+
+            return {
+
+                required:
+                    true,
+
+                allowed: [
+                    "RETAINED",
+                    "INTERIM",
+                    "VACATED"
+                ],
+
+                prompt:
+
+                    `SEVERE CHAMPION INJURY — 8 WEEKS\n\n` +
+
+                    `${draft.wrestlerName} may retain the championship, ` +
+                    `an interim championship may be created, or the title may be vacated.\n\n` +
+
+                    `Complete the championship decision first, then type one of these exact responses:\n\n` +
+
+                    `RETAINED\nINTERIM\nVACATED`
+
+            };
+
+        }
+
+
+        if (
+            absenceWeeks ===
+            12
+        ) {
+
+            return {
+
+                required:
+                    true,
+
+                allowed: [
+                    "INTERIM",
+                    "VACATED"
+                ],
+
+                prompt:
+
+                    `SEVERE CHAMPION INJURY — 12 WEEKS\n\n` +
+
+                    `${draft.wrestlerName}'s championship cannot remain inactive.\n\n` +
+
+                    `Create an interim championship or complete the vacancy in the championship databases first. ` +
+                    `Then type one of these exact responses:\n\n` +
+
+                    `INTERIM\nVACATED`
+
+            };
+
+        }
+
+
+        if (
+            absenceWeeks ===
+            16
+        ) {
+
+            return {
+
+                required:
+                    true,
+
+                allowed: [
+                    "VACATED"
+                ],
+
+                prompt:
+
+                    `SEVERE CHAMPION INJURY — 16 WEEKS\n\n` +
+
+                    `${draft.wrestlerName}'s championship must be vacated.\n\n` +
+
+                    `Complete the vacancy in the championship databases first, then type:\n\n` +
+
+                    `VACATED`
+
+            };
+
+        }
+
+
+        return {
+
+            required:
+                true,
+
+            allowed: [
+                "REVIEWED"
+            ],
+
+            prompt:
+
+                `A commissioner championship review is required for ${draft.wrestlerName}.\n\n` +
+
+                `Complete the decision first, then type:\n\n` +
+
+                `REVIEWED`
+
+        };
+
+    }
+
+
+    function severeFormatTitleDecision(
+        response
+    ) {
+
+        const decisions = {
+
+            RETAINED:
+                "Championship retained without an interim champion",
+
+            INTERIM:
+                "Interim championship created",
+
+            VACATED:
+                "Championship vacated",
+
+            REVIEWED:
+                "Commissioner championship review completed"
+
+        };
+
+
+        return decisions[
+            response
+        ]
+
+        ||
+
+        response;
+
+    }
+
+
+    injuryCreateEls
+        .save
+        ?.removeEventListener(
+            "click",
+            originalInjuryCreateSave
+        );
+
+
+    injuryCreateSave =
+        async function () {
+
+            const draft =
+                injuryCreateGetDraft();
+
+
+            const validationError =
+                injuryCreateValidateDraft(
+                    draft
+                );
+
+
+            if (
+                validationError
+            ) {
+
+                await originalInjuryCreateSave();
+
+
+                return;
+
+            }
+
+
+            const requirements =
+                severeGetTitleDecisionRequirements(
+                    draft
+                );
+
+
+            if (
+                requirements.required
+            ) {
+
+                const response =
+                    window.prompt(
+                        requirements.prompt
+                    );
+
+
+                if (
+                    response ===
+                    null
+                ) {
+
+                    injuryCreateSetMessage(
+
+                        "The severe championship decision was not confirmed.",
+
+                        "error"
+
+                    );
+
+
+                    return;
+
+                }
+
+
+                const normalizedResponse =
+                    String(
+                        response
+                    )
+                        .trim()
+                        .toUpperCase();
+
+
+                if (
+                    !requirements
+                        .allowed
+                        .includes(
+                            normalizedResponse
+                        )
+                ) {
+
+                    injuryCreateSetMessage(
+
+                        `Enter one of the required championship decisions: ${requirements.allowed.join(", ")}.`,
+
+                        "error"
+
+                    );
+
+
+                    return;
+
+                }
+
+
+                severePendingTitleDecision =
+                    severeFormatTitleDecision(
+                        normalizedResponse
+                    );
+
+            }
+
+
+            try {
+
+                await originalInjuryCreateSave();
+
+            }
+
+            finally {
+
+                severePendingTitleDecision =
+                    "";
+
+            }
+
+        };
+
+
+    injuryCreateEls
+        .save
+        ?.addEventListener(
+            "click",
+            injuryCreateSave
+        );
 
     // =================================
     // PREVIEW ENHANCEMENT
