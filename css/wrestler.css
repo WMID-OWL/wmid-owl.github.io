@@ -660,3 +660,346 @@
     }
 
 }
+/* =================================
+   WRESTLER TROPHY CASE
+================================= */
+
+
+.profile-trophy-section-heading {
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        space-between;
+
+    gap:
+        1rem;
+
+    margin-bottom:
+        1.5rem;
+
+}
+
+
+.profile-trophy-section-heading h2 {
+
+    margin-bottom:
+        0;
+
+}
+
+
+.profile-trophy-count {
+
+    flex:
+        0 0 auto;
+
+    padding:
+        0.55rem 0.7rem;
+
+    background:
+        rgba(198, 161, 91, 0.12);
+
+    border:
+        1px solid
+        rgba(198, 161, 91, 0.35);
+
+    color:
+        #dfbd78;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+}
+
+
+.profile-trophy-list {
+
+    display:
+        grid;
+
+    gap:
+        1.25rem;
+
+}
+
+
+.profile-trophy-card {
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    border-left:
+        4px solid
+        #c6a15b;
+
+    overflow:
+        hidden;
+
+}
+
+
+.profile-trophy-card.is-featured {
+
+    border-color:
+        rgba(223, 189, 120, 0.55);
+
+    border-left-color:
+        #dfbd78;
+
+    box-shadow:
+        0 0 0 1px
+        rgba(223, 189, 120, 0.08);
+
+}
+
+
+.profile-trophy-card.has-image {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(
+            170px,
+            230px
+        )
+        minmax(
+            0,
+            1fr
+        );
+
+}
+
+
+.profile-trophy-media {
+
+    min-height:
+        240px;
+
+    background:
+        #080a0b;
+
+}
+
+
+.profile-trophy-media img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+}
+
+
+.profile-trophy-body {
+
+    padding:
+        1.4rem;
+
+}
+
+
+.profile-trophy-heading {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    gap:
+        1rem;
+
+}
+
+
+.profile-trophy-heading span {
+
+    display:
+        block;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.profile-trophy-heading h3 {
+
+    margin:
+        0.4rem 0 0;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        clamp(
+            1.5rem,
+            4vw,
+            2.35rem
+        );
+
+    line-height:
+        1.05;
+
+}
+
+
+.profile-trophy-heading > strong {
+
+    flex:
+        0 0 auto;
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.75rem;
+
+    text-align:
+        right;
+
+}
+
+
+.profile-trophy-source {
+
+    margin:
+        1rem 0 0;
+
+    color:
+        #dfbd78;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        900;
+
+}
+
+
+.profile-trophy-description {
+
+    margin:
+        0.85rem 0 0;
+
+    color:
+        #a7b0b3;
+
+    line-height:
+        1.65;
+
+}
+
+
+.profile-trophy-link {
+
+    display:
+        inline-block;
+
+    margin-top:
+        1rem;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        900;
+
+    text-decoration:
+        none;
+
+}
+
+
+.profile-trophy-link:hover {
+
+    color:
+        #dfbd78;
+
+}
+
+
+@media (max-width: 700px) {
+
+    .profile-trophy-section-heading,
+    .profile-trophy-heading {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .profile-trophy-card.has-image {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .profile-trophy-media {
+
+        min-height:
+            320px;
+
+        max-height:
+            520px;
+
+    }
+
+
+    .profile-trophy-heading > strong {
+
+        text-align:
+            left;
+
+    }
+
+}
