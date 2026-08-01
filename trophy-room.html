@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Trophy Room | OWL Wrestling</title>
+
+
+    <link
+        rel="stylesheet"
+        href="css/style.css?v=global-nav-1"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="css/trophy-room.css?v=311b"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+
+    <a
+        class="brand"
+        href="index.html"
+        aria-label="OWL Wrestling Home"
+    >
+
+        <span class="brand-mark">
+            OWL
+        </span>
+
+        <span class="brand-sub">
+            WRESTLING
+        </span>
+
+    </a>
+
+
+    <button
+        class="nav-toggle"
+        aria-label="Toggle navigation"
+    >
+        ☰
+    </button>
+
+
+    <nav class="site-nav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="roster.html">
+            Roster
+        </a>
+
+        <a href="groups.html">
+            Teams
+        </a>
+
+        <a href="champions.html">
+            Champions
+        </a>
+
+        <a href="events.html">
+            Events
+        </a>
+
+        <a href="shows.html">
+            Shows
+        </a>
+
+        <a href="power-rankings.html">
+            Power Rankings
+        </a>
+
+        <a href="landscape.html">
+            The Landscape
+        </a>
+
+        <a href="owl-social.html">
+            OWL Social
+        </a>
+
+        <a
+            href="trophy-room.html"
+            class="active"
+        >
+            Trophy Room
+        </a>
+
+        <a href="records.html">
+            Cagematch.owl
+        </a>
+
+    </nav>
+
+
+</header>
+
+
+
+<main class="trophy-room-page">
+
+
+    <!-- =================================
+         PAGE HERO
+    ================================== -->
+
+
+    <section class="page-hero trophy-room-hero">
+
+        <p class="eyebrow">
+            THE OWL ARCHIVES
+        </p>
+
+        <h1>
+            Trophy Room
+        </h1>
+
+        <p>
+
+            Championships tell only part of the story.
+            The Trophy Room preserves the rare accomplishments,
+            opportunities, milestones, and moments that become part
+            of an OWL career’s permanent legacy.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =================================
+         ARCHIVE SUMMARY
+    ================================== -->
+
+
+    <section class="trophy-section trophy-summary-section">
+
+        <div class="trophy-summary-grid">
+
+
+            <article class="trophy-summary-card">
+
+                <span>
+                    PUBLIC ACHIEVEMENTS
+                </span>
+
+                <strong id="trophy-total-count">
+                    0
+                </strong>
+
+                <small>
+                    Recorded in the public archive
+                </small>
+
+            </article>
+
+
+            <article class="trophy-summary-card">
+
+                <span>
+                    HONORED WRESTLERS
+                </span>
+
+                <strong id="trophy-wrestler-count">
+                    0
+                </strong>
+
+                <small>
+                    OWL careers represented
+                </small>
+
+            </article>
+
+
+            <article class="trophy-summary-card">
+
+                <span>
+                    EXTERNAL ARCHIVE
+                </span>
+
+                <strong id="trophy-external-count">
+                    0
+                </strong>
+
+                <small>
+                    Outside winners and recipients
+                </small>
+
+            </article>
+
+
+            <article class="trophy-summary-card">
+
+                <span>
+                    FEATURED LEGACIES
+                </span>
+
+                <strong id="trophy-featured-count">
+                    0
+                </strong>
+
+                <small>
+                    Prominent Trophy Room honors
+                </small>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         FEATURED ACHIEVEMENTS
+    ================================== -->
+
+
+    <section
+        id="trophy-featured-section"
+        class="trophy-section trophy-featured-section"
+        hidden
+    >
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    FEATURED LEGACIES
+                </p>
+
+                <h2>
+                    Center Display
+                </h2>
+
+            </div>
+
+            <span
+                id="trophy-featured-summary"
+                class="trophy-result-count"
+            >
+                0 featured
+            </span>
+
+        </div>
+
+
+        <div
+            id="trophy-featured-list"
+            class="trophy-featured-grid"
+        >
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         ARCHIVE FILTERS
+    ================================== -->
+
+
+    <section class="trophy-section trophy-filter-section">
+
+        <div class="trophy-filter-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    SEARCH THE ARCHIVE
+                </p>
+
+                <h2>
+                    Find an Achievement
+                </h2>
+
+            </div>
+
+            <button
+                id="trophy-reset-filters"
+                class="button button-ghost"
+                type="button"
+            >
+                Reset Filters
+            </button>
+
+        </div>
+
+
+        <div class="trophy-filter-grid">
+
+
+            <div class="trophy-filter-field">
+
+                <label for="trophy-search">
+                    SEARCH
+                </label>
+
+                <input
+                    id="trophy-search"
+                    type="search"
+                    autocomplete="off"
+                    placeholder="Recipient, achievement, project, or description"
+                >
+
+            </div>
+
+
+            <div class="trophy-filter-field">
+
+                <label for="trophy-category-filter">
+                    CATEGORY
+                </label>
+
+                <select id="trophy-category-filter">
+
+                    <option value="">
+                        All Categories
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="trophy-filter-field">
+
+                <label for="trophy-year-filter">
+                    YEAR
+                </label>
+
+                <select id="trophy-year-filter">
+
+                    <option value="">
+                        All Years
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="trophy-filter-field">
+
+                <label for="trophy-recipient-filter">
+                    RECIPIENT TYPE
+                </label>
+
+                <select id="trophy-recipient-filter">
+
+                    <option value="">
+                        All Recipients
+                    </option>
+
+                    <option value="wrestler">
+                        OWL Wrestlers
+                    </option>
+
+                    <option value="external">
+                        External Archive
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         FULL ARCHIVE
+    ================================== -->
+
+
+    <section class="trophy-section trophy-archive-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    PERMANENT RECORD
+                </p>
+
+                <h2>
+                    Achievement Archive
+                </h2>
+
+            </div>
+
+            <span
+                id="trophy-result-count"
+                class="trophy-result-count"
+            >
+                0 achievements
+            </span>
+
+        </div>
+
+
+        <div
+            id="trophy-archive-list"
+            class="trophy-archive-grid"
+        >
+        </div>
+
+
+        <div
+            id="trophy-empty-state"
+            class="trophy-empty-state"
+        >
+
+            <strong>
+                THE TROPHY ROOM IS WAITING
+            </strong>
+
+            <p>
+
+                No public career achievements have been
+                recorded yet.
+
+            </p>
+
+        </div>
+
+
+        <div
+            id="trophy-filter-empty-state"
+            class="trophy-empty-state"
+            hidden
+        >
+
+            <strong>
+                NO MATCHING ACHIEVEMENTS
+            </strong>
+
+            <p>
+
+                No Trophy Room entries match the selected
+                search and filters.
+
+            </p>
+
+        </div>
+
+
+        <div
+            id="trophy-error-state"
+            class="trophy-empty-state trophy-error-state"
+            hidden
+        >
+
+            <strong>
+                TROPHY ROOM UNAVAILABLE
+            </strong>
+
+            <p>
+
+                The career-achievement archive could not
+                be loaded.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<footer class="site-footer">
+
+    <div>
+
+        <strong>
+            OWL Wrestling
+        </strong>
+
+        <p>
+            Ascension. Revolt. One world.
+        </p>
+
+    </div>
+
+    <p class="footer-note">
+        A fan-made efed universe.
+    </p>
+
+</footer>
+
+
+
+<script src="js/app.js"></script>
+
+<script src="js/trophy-room.js?v=311b"></script>
+
+</body>
+
+</html>
