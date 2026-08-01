@@ -10052,3 +10052,258 @@
     }
 
 }
+/* =================================
+   HIGH ENDURANCE MILESTONES
+================================= */
+
+
+.cr-generator-high-endurance-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        1rem;
+
+    margin:
+        1.25rem 0;
+
+}
+
+
+.cr-generator-high-endurance-grid[hidden] {
+
+    display:
+        none;
+
+}
+
+
+.cr-endurance-milestone-card
+.control-room-button {
+
+    margin-top:
+        1rem;
+
+}
+
+
+.cr-endurance-selected-area {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        1rem;
+
+    margin-top:
+        1rem;
+
+    padding:
+        0.75rem 0.85rem;
+
+    background:
+        rgba(198, 161, 91, 0.08);
+
+    border:
+        1px solid
+        rgba(198, 161, 91, 0.25);
+
+}
+
+
+.cr-endurance-selected-area span {
+
+    color:
+        #899397;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+}
+
+
+.cr-endurance-selected-area strong {
+
+    color:
+        #dfbd78;
+
+    font-size:
+        0.8rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.cr-endurance-restoration-section {
+
+    margin-top:
+        1.25rem;
+
+}
+
+
+.cr-endurance-restoration-section[hidden] {
+
+    display:
+        none;
+
+}
+
+
+.cr-endurance-restoration-list {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        1rem;
+
+}
+
+
+.cr-endurance-restoration-card {
+
+    padding:
+        1.1rem;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+    border-left:
+        4px solid
+        #dfbd78;
+
+}
+
+
+.cr-endurance-restoration-card.is-ready {
+
+    border-left-color:
+        #4fd483;
+
+}
+
+
+.cr-endurance-restoration-card.is-satisfied {
+
+    border-left-color:
+        #c6a15b;
+
+}
+
+
+.cr-endurance-restoration-card p {
+
+    margin:
+        0.8rem 0 0;
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.8rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+.cr-endurance-restoration-card
+.control-room-button {
+
+    margin-top:
+        1rem;
+
+}
+
+
+.cr-endurance-restoration-requirements {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        0.55rem;
+
+    margin-top:
+        1rem;
+
+}
+
+
+.cr-endurance-restoration-requirements span {
+
+    padding:
+        0.4rem 0.55rem;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        800;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+@media (max-width: 850px) {
+
+    .cr-generator-high-endurance-grid,
+    .cr-endurance-restoration-list {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
