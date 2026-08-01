@@ -13307,6 +13307,23 @@ if (signaturePowerCompleteButton) {
 
 // =================================
 // START
+// WAIT UNTIL EVERY CONTROL ROOM
+// MODULE HAS LOADED
 // =================================
 
-initializeControlRoom();
+window.addEventListener(
+
+    "load",
+
+    () => {
+
+        initializeControlRoom();
+
+    },
+
+    {
+        once:
+            true
+    }
+
+);
