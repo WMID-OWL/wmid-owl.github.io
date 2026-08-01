@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "releaseSchedule": {
+    "month": 4,
+    "week": 4
+  },
+  "formula": {
+    "performance": 0.5,
+    "prominence": 0.25,
+    "companyPrestige": 0.15,
+    "randomness": 0.1
+  },
+  "editions": []
+}
