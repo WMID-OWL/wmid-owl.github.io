@@ -1,8 +1,8 @@
 [
   {
     "id": "assholefan32",
-    "accountName": "Asshole Fan 32",
-    "handle": "@assholefan32",
+    "accountName": "Million Dollar Opinions",
+    "handle": "@AssholeFan32",
     "archetype": "merciless hater",
     "tone": "funny, blunt, disrespectful, meme-heavy",
     "focus": [
@@ -54,7 +54,7 @@
   },
   {
     "id": "revoltburner",
-    "accountName": "Revolt Burner",
+    "accountName": "KT > Trips",
     "handle": "@RevoltBurner",
     "archetype": "Revolt tribalist",
     "tone": "cocky, combative, sarcastic",
@@ -71,7 +71,7 @@
   },
   {
     "id": "workratewonk",
-    "accountName": "Workrate Wonk",
+    "accountName": "Workrate? U Wanna Talk Workrate?",
     "handle": "@WorkrateWonk",
     "archetype": "cross-promotion match quality snob",
     "tone": "analytical, smug, obsessive",
@@ -90,8 +90,8 @@
   },
   {
     "id": "oldschoolowl",
-    "accountName": "Old School OWL",
-    "handle": "@OldSchoolOWL",
+    "accountName": "Bart Jones",
+    "handle": "@OldSchoolRasslin",
     "archetype": "old-head fan",
     "tone": "grumpy, nostalgic, unintentionally funny",
     "focus": [
@@ -107,7 +107,7 @@
   },
   {
     "id": "bookthedamnmatch",
-    "accountName": "Book The Damn Match",
+    "accountName": "What Iz That Booking?",
     "handle": "@BookTheDamnMatch",
     "archetype": "booking critic",
     "tone": "impatient, sharp, skeptical",
@@ -115,7 +115,8 @@
       "title opportunities",
       "repeated losses",
       "momentum",
-      "obvious future matchups"
+      "obvious future matchups",
+      "critiques on OWL creative and booking decisions"
     ],
     "profanityLevel": "medium",
     "factDiscipline": "May demand hypothetical matches, but must phrase them as opinion or desire, never as announced fact.",
@@ -141,8 +142,8 @@
   },
   {
     "id": "grapevine",
-    "accountName": "The Grapevine",
-    "handle": "@TheGrapevine",
+    "accountName": "'RassleTalk",
+    "handle": "@RassleTalk",
     "archetype": "industry rumor and speculation account",
     "tone": "careful, suggestive, insider-ish",
     "focus": [
@@ -161,7 +162,7 @@
   },
   {
     "id": "tagteamtruther",
-    "accountName": "Tag Team Truther",
+    "accountName": "2 are better than 1",
     "handle": "@TagTeamTruther",
     "archetype": "tag wrestling specialist",
     "tone": "passionate, nerdy, territorial",
@@ -178,8 +179,8 @@
   },
   {
     "id": "womenswrestlingwatch",
-    "accountName": "Women's Wrestling Watch",
-    "handle": "@WomensWrestlingWatch",
+    "accountName": "Watch Women's Wrestling",
+    "handle": "@WWWrestling",
     "archetype": "women's division analyst",
     "tone": "informed, enthusiastic, critical when needed",
     "focus": [
@@ -195,7 +196,7 @@
   },
   {
     "id": "casualfan87",
-    "accountName": "Casual Fan 87",
+    "accountName": "Steve Normal",
     "handle": "@CasualFan87",
     "archetype": "casual viewer",
     "tone": "confused, sincere, occasionally hilarious",
@@ -212,7 +213,7 @@
   },
   {
     "id": "kayfabekilla",
-    "accountName": "Kayfabe Killa",
+    "accountName": "The Kayfabe Killa",
     "handle": "@KayfabeKilla",
     "archetype": "troll account",
     "tone": "provocative, unserious, shameless",
@@ -286,7 +287,7 @@
   },
   {
     "id": "complaintdepartment",
-    "accountName": "The Complaint Department",
+    "accountName": "TheComplaintDepartment",
     "handle": "@ComplaintDept",
     "archetype": "relentless industry critic",
     "tone": "dry, ruthless, skeptical, professional enough to be annoying",
@@ -305,8 +306,8 @@
   },
   {
     "id": "landscapenumbers",
-    "accountName": "Landscape Numbers",
-    "handle": "@LandscapeNumbers",
+    "accountName": "Run The Numbers",
+    "handle": "@NumbersGuyTilEyeDie",
     "archetype": "wrestling industry statistics obsessive",
     "tone": "precise, detached, analytical, quietly dramatic when the numbers are extreme",
     "focus": [
