@@ -116,12 +116,20 @@ const OWL_CONTROL_ROOM_FILES = [
         countKey: "profiles"
     },
 
-    {
+        {
         key: "careerAchievements",
         fileName: "career-achievements.json",
         label: "Career Achievements",
         objectFile: true,
         countKey: "achievements"
+    },
+
+    {
+        key: "annualCovers",
+        fileName: "annual-covers.json",
+        label: "Annual Video-Game Covers",
+        objectFile: true,
+        countKey: "editions"
     }
 ];
 
