@@ -1,7 +1,7 @@
 # OWL Simulation Rulebook
 
 **Status:** Active internal rulebook  
-**Last revised:** July 30, 2026  
+**Last revised:** August 1, 2026
 **Applies to:** OWL Wrestling simulation, progression, injuries, recovery, and Control Room automation
 
 ---
@@ -994,9 +994,17 @@ High may return after both requirements are satisfied:
 8 completed OWL matches
 ```
 
-The healthy-week count resets if another injury occurs before restoration.
+The High-restoration eligibility period begins when the wrestler is fully `CLEARED`, the affected area is restored from Low to Normal, and the High-restoration record is created.
 
-The match count includes only completed official OWL matches after the wrestler’s return from the relevant injury.
+Only completed official OWL matches after that full-clearance timestamp count toward the restoration requirement.
+
+If another injury occurs before High is restored:
+
+- High restoration remains pending while the wrestler is `INJURED` or `RECOVERING`
+- The healthy-week count restarts from the wrestler’s latest full-clearance timestamp
+- Completed qualifying matches already earned toward the restoration requirement remain counted
+
+The healthy-week requirement measures uninterrupted healthy time. The completed-match requirement measures proven post-clearance durability.
 
 Until both requirements are satisfied, the affected area remains:
 
@@ -1010,7 +1018,7 @@ Restoring a previously earned High setting does not count as a new High mileston
 
 ## 34. Generator Hub Procedures
 
-The Control Room Generator Hub supports:
+The current Control Room Generator Hub supports:
 
 - Canon Mode
 - Test Mode
@@ -1022,11 +1030,16 @@ The Control Room Generator Hub supports:
 - Diagnosis selection
 - Same-area reinjury advantage roll
 - High-endurance milestone selection
-- Fate’s Wheel cases
+
+Approved dedicated presets that remain future Generator work include:
+
+- Fate’s Wheel cases and case outcomes
 - Hex-Cell entry order
 - Wildcard Play-In selections
 - Ranking-position selections
-- Other approved random decisions
+- Other approved recurring random decisions
+
+Until a dedicated preset is implemented, an approved decision may use the Custom Pool Draw when that method can preserve the complete eligible pool, exclusions, and confirmed result.
 
 ### Canon Mode
 
@@ -1034,9 +1047,11 @@ Canon Mode creates a pending official result.
 
 It becomes official only after confirmation.
 
+A confirmed result enters Generator History but does not automatically perform a related Fire Pro, injury, endurance, championship, or scheduling edit unless that specific workflow explicitly supports the edit and requires separate confirmation.
+
 ### Test Mode
 
-Test Mode demonstrates the generator without changing official data.
+Test Mode demonstrates the Generator without changing official data.
 
 Test results must never:
 
@@ -1046,7 +1061,6 @@ Test results must never:
 - Change availability
 - Trigger a milestone
 - Alter championship data
-
 ---
 
 ## 35. Generator History
@@ -1197,28 +1211,83 @@ The code does not privately redefine it.
 
 ---
 
-## 39. Implementation Requirements Still Remaining
+## 39. Implementation Status
 
-The governing rules are finalized.
+As of August 1, 2026, the approved OWL injury and endurance system has been implemented.
 
-The remaining work is implementation:
+Completed components include:
 
-- Build `data/injury-diagnoses.json`
-- Add severe rolls to the Generator
-- Add CRIT body-area determination
-- Add diagnosis generation
-- Add reinjury evaluation and independent-area tracking
-- Replace legacy `Medium` endurance values with `Normal`
-- Add High milestone tracking
-- Add High-restoration tracking
-- Add title-action prompts for severe champion injuries
-- Validate all standard, severe, reinjury, and milestone paths
+- CRIT-only injury evaluation
+- Standard one-, two-, and three-week injury outcomes
+- Severe-injury checks
+- Eight-, twelve-, and sixteen-week severe durations
+- Severe championship-action requirements
+- Severe champion title-decision confirmation
+- CRIT cause-to-body-area determination
+- Fire Pro Neck, Arms, Back, and Legs mapping
+- Duration-based diagnosis generation from `data/injury-diagnoses.json`
+- Required use of “bruise” instead of “contusion”
+- Official injury-record creation
+- INJURED, RECOVERING, and CLEARED status transitions
+- Return and clearance Fire Pro confirmations
+- Standard and severe Low-endurance recovery periods
+- Match Booker injury protection
+- Tournament injury protection
+- Public roster and wrestler-profile medical statuses
+- Same-area two-d10 reinjury evaluation
+- Same-area Low-period aggravation
+- Independent different-area injuries
+- Multiple-active-injury handling
+- Global Normal endurance baseline
+- Individual endurance overrides and history
+- Thirty- and seventy-five-match High milestones
+- Two-area High maximum
+- High milestone eligibility holds
+- Random eligible Normal-area selection
+- High-restoration tracking
+- Healthy-week restoration resets after later injuries
+- Standard and severe High-restoration requirements
+- Test and Canon Generator boundaries
+- Permanent Generator History
 
-These are implementation tasks, not unresolved rule decisions.
+### Validation status
 
+The clean OWL repository has passed:
+
+```text
+16 of 16 Control Room databases healthy
+218 wrestlers using the global Normal baseline
+0 unnecessary individual endurance records
+0 fake matches
+0 fake injuries
+0 fake milestone activations
+0 fake Generator History entries
 ---
 
 ## 40. Revision Log
+
+### August 1, 2026
+
+Completed the Control Room implementation of the OWL injury and endurance system.
+
+Added or finalized:
+
+- Severe-injury Generator rolls and durations
+- Championship-action classification and confirmation
+- CRIT body-area mapping
+- Duration-based diagnosis catalog integration
+- Official injury-record creation
+- Injury return and clearance actions
+- Match Booker and tournament availability protection
+- Public INJURED and RECOVERING presentation
+- Same-area and different-area reinjury handling
+- Global Normal endurance baseline
+- Thirty- and seventy-five-match High milestones
+- Generator-based High-area selection
+- High-restoration tracking
+- Healthy-week restoration resets after later injuries
+- Complete module-order and empty-state validation
+- Removal of obsolete implementation-pending language
 
 ### July 31, 2026
 
