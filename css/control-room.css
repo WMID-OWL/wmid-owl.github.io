@@ -10307,3 +10307,316 @@
     }
 
 }
+/* =================================
+   TROPHY ROOM MANAGER
+================================= */
+
+
+.cr-trophy-feature-check {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        0.8rem;
+
+    margin-top:
+        1.25rem;
+
+    padding:
+        1rem;
+
+    background:
+        rgba(198, 161, 91, 0.07);
+
+    border:
+        1px solid
+        rgba(198, 161, 91, 0.25);
+
+    cursor:
+        pointer;
+
+}
+
+
+.cr-trophy-feature-check input {
+
+    width:
+        1.15rem;
+
+    height:
+        1.15rem;
+
+    margin-top:
+        0.1rem;
+
+    accent-color:
+        #c6a15b;
+
+}
+
+
+.cr-trophy-feature-check span {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        0.35rem;
+
+}
+
+
+.cr-trophy-feature-check strong {
+
+    color:
+        #dfbd78;
+
+    font-size:
+        0.72rem;
+
+    letter-spacing:
+        0.09em;
+
+}
+
+
+.cr-trophy-feature-check small {
+
+    color:
+        #909b9f;
+
+    font-size:
+        0.75rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+.cr-trophy-archive-section {
+
+    margin-top:
+        1.5rem;
+
+}
+
+
+.cr-trophy-archive-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        1rem;
+
+}
+
+
+.cr-trophy-archive-card {
+
+    padding:
+        1.15rem;
+
+    background:
+        #111517;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+    border-left:
+        4px solid
+        #c6a15b;
+
+}
+
+
+.cr-trophy-archive-heading {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    gap:
+        1rem;
+
+}
+
+
+.cr-trophy-archive-heading span {
+
+    display:
+        block;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.cr-trophy-archive-heading h4 {
+
+    margin:
+        0.35rem 0 0;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        1.25rem;
+
+    line-height:
+        1.15;
+
+}
+
+
+.cr-trophy-archive-heading > strong {
+
+    flex:
+        0 0 auto;
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.72rem;
+
+    text-align:
+        right;
+
+}
+
+
+.cr-trophy-recipient {
+
+    margin:
+        0.85rem 0 0;
+
+    color:
+        #dfbd78;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        900;
+
+}
+
+
+.cr-trophy-archive-card > p:not(.cr-trophy-recipient) {
+
+    color:
+        #9ba5a9;
+
+    font-size:
+        0.8rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+.cr-trophy-archive-meta {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        0.45rem;
+
+    margin:
+        1rem 0;
+
+}
+
+
+.cr-trophy-archive-meta span {
+
+    padding:
+        0.35rem 0.5rem;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    color:
+        #909b9f;
+
+    font-size:
+        0.6rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+@media (max-width: 850px) {
+
+    .cr-trophy-archive-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-trophy-archive-heading {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .cr-trophy-archive-heading > strong {
+
+        text-align:
+            left;
+
+    }
+
+}
