@@ -767,7 +767,89 @@
 
         null;
     }
+    function restorationHealthyClockStart(
+        wrestlerId,
+        restoration
+    ) {
 
+        const originalStart =
+            date(
+                restoration?.startedAt
+            );
+
+
+        if (
+            !originalStart
+        ) {
+
+            return null;
+
+        }
+
+
+        const laterClearances =
+
+            wrestlerInjuries(
+                wrestlerId
+            )
+                .map(
+                    injury => ({
+
+                        occurredAt:
+                            date(
+
+                                injury.generatorConfirmedAt
+
+                                ||
+
+                                injury.createdAt
+
+                                ||
+
+                                injury.updatedAt
+
+                            ),
+
+                        clearedAt:
+                            date(
+                                injury.clearedAt
+                            )
+
+                    })
+                )
+                .filter(
+                    item =>
+
+                        item.occurredAt
+
+                        &&
+
+                        item.occurredAt >
+                            originalStart
+
+                        &&
+
+                        item.clearedAt
+                )
+                .sort(
+                    (
+                        first,
+                        second
+                    ) =>
+
+                        second.clearedAt -
+                        first.clearedAt
+                );
+
+
+        return laterClearances[0]
+            ?.clearedAt
+
+        ||
+
+        originalStart;
+
+    }
 
     // =================================
     // HIGH AREA STATE
@@ -1314,9 +1396,16 @@
             };
         }
 
-        const startedAt =
+                const startedAt =
             date(
                 restoration.startedAt
+            );
+
+
+        const healthyClockStartedAt =
+            restorationHealthyClockStart(
+                wrestlerId,
+                restoration
             );
 
         const requiredMatches =
@@ -1337,9 +1426,9 @@
                 startedAt
             );
 
-        const healthyWeeks =
+                const healthyWeeks =
             weeksSince(
-                startedAt
+                healthyClockStartedAt
             );
 
         if (
@@ -3057,10 +3146,36 @@
                         threshold
                     ].targetHighCount,
 
-                completedMatchCount:
+                                completedMatchCount:
                     completedMatchCount(
                         wrestler.id
                     ),
+
+                existingHighAreas: [
+
+                    ...effectiveHighAreas(
+                        profileFor(
+                            wrestler.id
+                        )
+                    )
+
+                ],
+
+                activationRequirements: {
+
+                    requiredMedicalStatus:
+                        "CLEARED",
+
+                    minimumMatchesSinceMostRecentInjury:
+                        4,
+
+                    minimumHealthyWeeksSinceMostRecentInjury:
+                        8,
+
+                    maximumHighAreas:
+                        2
+
+                },
 
                 eligibleAreas: [
                     ...evaluation.eligibleAreas
