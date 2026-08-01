@@ -787,30 +787,55 @@
     // =================================
 
 
-    function defaultAreas() {
+        function defaultAreas() {
+
+        const source =
+
+            getDatabase()
+                .defaultAreas
+
+            ||
+
+            {};
+
 
         return {
 
             Neck:
-                "Normal",
+                normalizeEnduranceState(
+                    source.Neck ||
+                    "Normal"
+                ),
 
             Arms:
-                "Normal",
+                normalizeEnduranceState(
+                    source.Arms ||
+                    "Normal"
+                ),
 
             Back:
-                "Normal",
+                normalizeEnduranceState(
+                    source.Back ||
+                    "Normal"
+                ),
 
             Legs:
-                "Normal"
+                normalizeEnduranceState(
+                    source.Legs ||
+                    "Normal"
+                )
 
         };
 
     }
 
-
-    function profileAreas(
+        function profileAreas(
         profile
     ) {
+
+        const baseline =
+            defaultAreas();
+
 
         const source =
             profile?.areas ||
@@ -821,22 +846,26 @@
 
             Neck:
                 normalizeEnduranceState(
-                    source.Neck
+                    source.Neck ||
+                    baseline.Neck
                 ),
 
             Arms:
                 normalizeEnduranceState(
-                    source.Arms
+                    source.Arms ||
+                    baseline.Arms
                 ),
 
             Back:
                 normalizeEnduranceState(
-                    source.Back
+                    source.Back ||
+                    baseline.Back
                 ),
 
             Legs:
                 normalizeEnduranceState(
-                    source.Legs
+                    source.Legs ||
+                    baseline.Legs
                 )
 
         };
@@ -954,25 +983,6 @@
 
         }
 
-
-        if (
-            !profile
-        ) {
-
-            return {
-
-                status:
-                    "PROFILE REQUIRED",
-
-                className:
-                    "pending",
-
-                reason:
-                    "Save the wrestler’s real Fire Pro endurance profile before activating this milestone."
-
-            };
-
-        }
 
 
         const medicalStatus =
@@ -1419,14 +1429,13 @@
             }`;
 
 
-        els.note.textContent =
+                els.note.textContent =
 
             profile
 
-                ? "Canonical endurance profile recorded. Changes must match the current Fire Pro settings."
+                ? "This wrestler has a canonical endurance override or recorded durability history."
 
-                : "No canonical profile exists yet. The displayed Normal values are unsaved defaults, not official data.";
-
+                : "This wrestler uses OWL's official global baseline: Normal endurance for Neck, Arms, Back, and Legs.";
 
         renderMilestoneCard(
 
