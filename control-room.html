@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/control-room.css?v=310a2">
+    <link rel="stylesheet" href="css/control-room.css?v=311a">
 </head>
 
 <body class="control-room-body">
@@ -36,6 +36,7 @@
 <a class="cr-tool-jump-link" href="#cr-tool-generator">Generator</a>
 <a class="cr-tool-jump-link" href="#cr-tool-injuries">Injuries</a>
 <a class="cr-tool-jump-link" href="#cr-tool-endurance">Endurance</a>
+<a class="cr-tool-jump-link" href="#cr-tool-trophy-room">Trophy Room</a>
 <a class="cr-tool-jump-link" href="#cr-tool-after-dark">After Dark Fallback</a>
 <a class="cr-tool-jump-link" href="#cr-tool-sunday-disservice">Sunday Fallback</a>
 <a class="cr-tool-jump-link" href="#cr-tool-media">Media</a>
@@ -4397,7 +4398,607 @@
             </div>
 
         </section>
+        <!-- =================================
+             TROPHY ROOM MANAGER
+        ================================== -->
 
+        <section
+            id="cr-tool-trophy-room"
+            class="control-room-panel"
+        >
+
+            <div class="control-room-panel-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        CAREER LEGACY
+                    </p>
+
+                    <h2>
+                        Trophy Room Manager
+                    </h2>
+
+                </div>
+
+                <span
+                    id="cr-trophy-status"
+                    class="control-room-health-summary"
+                >
+                    WAITING
+                </span>
+
+            </div>
+
+
+            <p class="cr-editor-note">
+
+                Record major OWL career achievements beyond normal
+                championship history. Wrestler entries appear in that
+                wrestler’s public Trophy Case. External entries remain
+                available for the future company-wide Trophy Room archive.
+
+            </p>
+
+
+            <div class="control-room-stat-grid">
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        TOTAL ACHIEVEMENTS
+                    </span>
+
+                    <strong id="cr-trophy-total-count">
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        WRESTLER ENTRIES
+                    </span>
+
+                    <strong id="cr-trophy-wrestler-count">
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        EXTERNAL ARCHIVE
+                    </span>
+
+                    <strong id="cr-trophy-external-count">
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        FEATURED
+                    </span>
+
+                    <strong id="cr-trophy-featured-count">
+                        0
+                    </strong>
+
+                </article>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        ACHIEVEMENT DIRECTORY
+                    </span>
+
+                    <h3>
+                        Create or Edit Achievement
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-editor-top-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-trophy-mode">
+                            ACTION
+                        </label>
+
+                        <select id="cr-trophy-mode">
+
+                            <option value="create">
+                                Add New Achievement
+                            </option>
+
+                            <option value="edit">
+                                Edit Existing Achievement
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div
+                        id="cr-trophy-existing-row"
+                        class="cr-form-group"
+                        hidden
+                    >
+
+                        <label for="cr-trophy-existing">
+                            EXISTING ACHIEVEMENT
+                        </label>
+
+                        <select
+                            id="cr-trophy-existing"
+                            disabled
+                        >
+
+                            <option value="">
+                                Select Achievement
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            DATABASE ID
+                        </label>
+
+                        <div
+                            id="cr-trophy-id-preview"
+                            class="cr-current-value"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        RECIPIENT
+                    </span>
+
+                    <h3>
+                        Who Earned It?
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-trophy-recipient-type">
+                            RECIPIENT TYPE
+                        </label>
+
+                        <select id="cr-trophy-recipient-type">
+
+                            <option value="wrestler">
+                                OWL Wrestler
+                            </option>
+
+                            <option value="external">
+                                External Archive Recipient
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div
+                        id="cr-trophy-wrestler-row"
+                        class="cr-form-group"
+                    >
+
+                        <label for="cr-trophy-wrestler">
+                            WRESTLER
+                        </label>
+
+                        <select id="cr-trophy-wrestler">
+
+                            <option value="">
+                                Select Wrestler
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div
+                        id="cr-trophy-external-row"
+                        class="cr-form-group"
+                        hidden
+                    >
+
+                        <label for="cr-trophy-external-name">
+                            EXTERNAL RECIPIENT
+                        </label>
+
+                        <input
+                            id="cr-trophy-external-name"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="Person, team, or outside company"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <p class="cr-editor-note">
+
+                    External recipients do not receive an OWL wrestler
+                    profile. They are reserved for archive entries such
+                    as a non-OWL annual video-game cover winner.
+
+                </p>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        ACHIEVEMENT
+                    </span>
+
+                    <h3>
+                        Career Accomplishment
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-trophy-category">
+                            CATEGORY
+                        </label>
+
+                        <select id="cr-trophy-category">
+
+                            <option value="video-game-cover">
+                                Video Game Cover
+                            </option>
+
+                            <option value="movie-role">
+                                Movie Role
+                            </option>
+
+                            <option value="television-role">
+                                Television Role
+                            </option>
+
+                            <option value="documentary">
+                                Documentary
+                            </option>
+
+                            <option value="endorsement">
+                                Endorsement
+                            </option>
+
+                            <option value="magazine-cover">
+                                Magazine Cover
+                            </option>
+
+                            <option value="special-award">
+                                Special Award
+                            </option>
+
+                            <option value="career-milestone">
+                                Career Milestone
+                            </option>
+
+                            <option value="other">
+                                Other Achievement
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-trophy-title">
+                            ACHIEVEMENT TITLE
+                        </label>
+
+                        <input
+                            id="cr-trophy-title"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="Example: OWL Wrestling 2027 Cover Star"
+                        >
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-trophy-year">
+                            YEAR
+                        </label>
+
+                        <input
+                            id="cr-trophy-year"
+                            type="number"
+                            min="2026"
+                            step="1"
+                            autocomplete="off"
+                            placeholder="2026"
+                        >
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-trophy-date">
+                            EXACT DATE — OPTIONAL
+                        </label>
+
+                        <input
+                            id="cr-trophy-date"
+                            type="date"
+                        >
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-trophy-source">
+                            SOURCE / PROJECT
+                        </label>
+
+                        <input
+                            id="cr-trophy-source"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="Event, production, award body, or campaign"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="cr-form-group cr-editor-spaced-field">
+
+                    <label for="cr-trophy-description">
+                        DESCRIPTION
+                    </label>
+
+                    <textarea
+                        id="cr-trophy-description"
+                        rows="6"
+                        placeholder="Explain what was achieved and why it belongs in the OWL Trophy Room."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        PRESENTATION
+                    </span>
+
+                    <h3>
+                        Artwork and Visibility
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-trophy-image">
+                            ARTWORK PATH — OPTIONAL
+                        </label>
+
+                        <input
+                            id="cr-trophy-image"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="assets/images/trophy-room/example.png"
+                        >
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-trophy-link">
+                            EXTERNAL SOURCE LINK — OPTIONAL
+                        </label>
+
+                        <input
+                            id="cr-trophy-link"
+                            type="url"
+                            autocomplete="off"
+                            placeholder="https://..."
+                        >
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-trophy-visibility">
+                            PUBLIC VISIBILITY
+                        </label>
+
+                        <select id="cr-trophy-visibility">
+
+                            <option value="public">
+                                Public
+                            </option>
+
+                            <option value="hidden">
+                                Hidden
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <label class="cr-trophy-feature-check">
+
+                    <input
+                        id="cr-trophy-featured"
+                        type="checkbox"
+                    >
+
+                    <span>
+
+                        <strong>
+                            FEATURED ACHIEVEMENT
+                        </strong>
+
+                        <small>
+                            Reserves this achievement for prominent placement
+                            on the future company-wide Trophy Room page.
+                        </small>
+
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <div
+                id="cr-trophy-preview"
+                class="cr-change-preview"
+                hidden
+            >
+
+                <span>
+                    REVIEW TROPHY ROOM ACHIEVEMENT
+                </span>
+
+                <div
+                    id="cr-trophy-preview-list"
+                    class="cr-editor-change-list"
+                ></div>
+
+                <p
+                    id="cr-trophy-error"
+                    class="cr-change-error"
+                    hidden
+                ></p>
+
+            </div>
+
+
+            <div class="cr-manager-actions">
+
+                <button
+                    id="cr-trophy-save"
+                    class="control-room-button control-room-button-primary"
+                    type="button"
+                    disabled
+                >
+                    Save Achievement
+                </button>
+
+                <button
+                    id="cr-trophy-delete"
+                    class="control-room-button control-room-button-secondary cr-tournament-danger-button"
+                    type="button"
+                    disabled
+                >
+                    Delete Achievement
+                </button>
+
+            </div>
+
+
+            <p
+                id="cr-trophy-message"
+                class="cr-save-message"
+                hidden
+            ></p>
+
+
+            <div class="cr-editor-section cr-trophy-archive-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        PERMANENT ARCHIVE
+                    </span>
+
+                    <h3>
+                        Recorded Achievements
+                    </h3>
+
+                </div>
+
+                <div
+                    id="cr-trophy-archive"
+                    class="cr-trophy-archive-grid"
+                >
+
+                    <p class="cr-landscape-entry-empty">
+                        No Trophy Room achievements have been recorded yet.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+        
         <!-- =================================
              OWL AFTER DARK PUBLISHER
         ================================== -->
@@ -7163,6 +7764,7 @@
 
 <script src="js/control-room-endurance.js?v=309l2"></script>
 <script src="js/control-room-endurance-milestones.js?v=309m"></script>
+<script src="js/control-room-trophy-room.js?v=311a"></script>
 <script src="js/control-room-after-dark.js?v=300e"></script>
 <script src="js/control-room-sunday-disservice.js?v=301e"></script>
 <script src="js/control-room-proving-ground.js?v=293b"></script>
