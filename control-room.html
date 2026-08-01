@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/control-room.css?v=311a">
+    <link rel="stylesheet" href="css/control-room.css?v=312a">
 </head>
 
 <body class="control-room-body">
@@ -37,6 +37,7 @@
 <a class="cr-tool-jump-link" href="#cr-tool-injuries">Injuries</a>
 <a class="cr-tool-jump-link" href="#cr-tool-endurance">Endurance</a>
 <a class="cr-tool-jump-link" href="#cr-tool-trophy-room">Trophy Room</a>
+<a class="cr-tool-jump-link" href="#cr-tool-annual-cover">Annual Covers</a>
 <a class="cr-tool-jump-link" href="#cr-tool-after-dark">After Dark Fallback</a>
 <a class="cr-tool-jump-link" href="#cr-tool-sunday-disservice">Sunday Fallback</a>
 <a class="cr-tool-jump-link" href="#cr-tool-media">Media</a>
@@ -4998,6 +4999,551 @@
             </div>
 
         </section>
+                <!-- =================================
+             ANNUAL VIDEO-GAME COVER
+        ================================== -->
+
+        <section
+            id="cr-tool-annual-cover"
+            class="control-room-panel"
+        >
+
+            <div class="control-room-panel-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        ANNUAL CAREER EVENT
+                    </p>
+
+                    <h2>
+                        Video-Game Cover Selection
+                    </h2>
+
+                </div>
+
+                <span
+                    id="cr-cover-status"
+                    class="control-room-health-summary"
+                >
+                    WAITING
+                </span>
+
+            </div>
+
+
+            <p class="cr-editor-note">
+
+                Build the five-man and five-woman candidate fields
+                for OWL’s annual video-game cover. The reveal is
+                permanently scheduled for April, Week 4, shortly
+                before Fight to Survive.
+
+            </p>
+
+
+            <div class="cr-cover-rule-banner">
+
+                <div>
+
+                    <span>
+                        RELEASE
+                    </span>
+
+                    <strong>
+                        APRIL — WEEK 4
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        MEN’S FIELD
+                    </span>
+
+                    <strong>
+                        5 CANDIDATES
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        WOMEN’S FIELD
+                    </span>
+
+                    <strong>
+                        5 CANDIDATES
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        WINNERS
+                    </span>
+
+                    <strong>
+                        NOT FINALIZED HERE
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="control-room-stat-grid">
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        SAVED EDITIONS
+                    </span>
+
+                    <strong id="cr-cover-edition-count">
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        ACTIVE YEAR
+                    </span>
+
+                    <strong id="cr-cover-active-year">
+                        —
+                    </strong>
+
+                </article>
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        MEN CANON-LOCKED
+                    </span>
+
+                    <strong id="cr-cover-men-complete">
+                        0 / 5
+                    </strong>
+
+                </article>
+
+
+                <article class="control-room-stat-card">
+
+                    <span>
+                        WOMEN CANON-LOCKED
+                    </span>
+
+                    <strong id="cr-cover-women-complete">
+                        0 / 5
+                    </strong>
+
+                </article>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        ANNUAL EDITION
+                    </span>
+
+                    <h3>
+                        Load or Create Cover Year
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-cover-edition-select">
+                            SAVED EDITION
+                        </label>
+
+                        <select id="cr-cover-edition-select">
+
+                            <option value="">
+                                Select Saved Edition
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-cover-year">
+                            EDITION YEAR
+                        </label>
+
+                        <input
+                            id="cr-cover-year"
+                            type="number"
+                            min="2026"
+                            step="1"
+                        >
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            EDITION STATUS
+                        </label>
+
+                        <div
+                            id="cr-cover-edition-state"
+                            class="cr-current-value"
+                        >
+                            NEW DRAFT
+                        </div>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            PRESTIGE SNAPSHOT
+                        </label>
+
+                        <div
+                            id="cr-cover-prestige-period"
+                            class="cr-current-value"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="cr-manager-actions">
+
+                    <button
+                        id="cr-cover-load-year"
+                        class="control-room-button control-room-button-secondary"
+                        type="button"
+                    >
+                        Load or Create Year
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="cr-cover-landscape-message"
+                    class="cr-save-message"
+                    hidden
+                ></p>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        LOCKED FORMULA
+                    </span>
+
+                    <h3>
+                        Weighted Cover Score
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-cover-formula-grid">
+
+                    <article>
+
+                        <strong>
+                            50%
+                        </strong>
+
+                        <span>
+                            PERFORMANCE
+                        </span>
+
+                    </article>
+
+
+                    <article>
+
+                        <strong>
+                            25%
+                        </strong>
+
+                        <span>
+                            PROMINENCE / STAR POWER
+                        </span>
+
+                    </article>
+
+
+                    <article>
+
+                        <strong>
+                            15%
+                        </strong>
+
+                        <span>
+                            COMPANY PRESTIGE
+                        </span>
+
+                    </article>
+
+
+                    <article>
+
+                        <strong>
+                            10%
+                        </strong>
+
+                        <span>
+                            RANDOMNESS
+                        </span>
+
+                    </article>
+
+                </div>
+
+
+                <p class="cr-editor-note">
+
+                    Company Prestige uses the latest frozen same-year
+                    YTD Landscape company ranking from January through
+                    March. A period after March cannot influence that
+                    year’s April Week 4 release.
+
+                </p>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        RANDOMNESS CONTROL
+                    </span>
+
+                    <h3>
+                        Test or Canon Draw
+                    </h3>
+
+                </div>
+
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-cover-random-mode">
+                            DRAW MODE
+                        </label>
+
+                        <select id="cr-cover-random-mode">
+
+                            <option value="test">
+                                Test — Never Saved
+                            </option>
+
+                            <option value="canon">
+                                Canon — Permanent Lock
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <p
+                    id="cr-cover-random-mode-note"
+                    class="cr-cover-random-note is-test"
+                >
+
+                    TEST MODE creates temporary preview scores only.
+                    Test results disappear on reload and are never
+                    written to canon.
+
+                </p>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        MEN’S COVER
+                    </span>
+
+                    <h3>
+                        Five-Candidate Ballot
+                    </h3>
+
+                    <p>
+
+                        OWL candidates are selected from the men’s
+                        roster. External candidates require a name
+                        and Landscape company.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="cr-cover-men-candidates"
+                    class="cr-cover-candidate-grid"
+                >
+                </div>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        WOMEN’S COVER
+                    </span>
+
+                    <h3>
+                        Five-Candidate Ballot
+                    </h3>
+
+                    <p>
+
+                        OWL candidates are selected from the women’s
+                        roster. External candidates require a name
+                        and Landscape company.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="cr-cover-women-candidates"
+                    class="cr-cover-candidate-grid"
+                >
+                </div>
+
+            </div>
+
+
+            <div class="cr-manager-actions">
+
+                <button
+                    id="cr-cover-save-draft"
+                    class="control-room-button control-room-button-primary"
+                    type="button"
+                >
+                    Save Annual Cover Draft
+                </button>
+
+            </div>
+
+
+            <p
+                id="cr-cover-message"
+                class="cr-save-message"
+                hidden
+            ></p>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        LIVE SCOREBOARD
+                    </span>
+
+                    <h3>
+                        Men’s Weighted Leaderboard
+                    </h3>
+
+                    <p>
+
+                        Ties are broken by Performance, Prominence,
+                        Company Prestige, Randomness, then alphabetical
+                        order only when every score is identical.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="cr-cover-men-leaderboard"
+                    class="cr-cover-leaderboard"
+                >
+
+                    <p class="cr-landscape-entry-empty">
+                        No candidates have been entered yet.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        LIVE SCOREBOARD
+                    </span>
+
+                    <h3>
+                        Women’s Weighted Leaderboard
+                    </h3>
+
+                </div>
+
+
+                <div
+                    id="cr-cover-women-leaderboard"
+                    class="cr-cover-leaderboard"
+                >
+
+                    <p class="cr-landscape-entry-empty">
+                        No candidates have been entered yet.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
         
         <!-- =================================
              OWL AFTER DARK PUBLISHER
@@ -7765,6 +8311,7 @@
 <script src="js/control-room-endurance.js?v=309l2"></script>
 <script src="js/control-room-endurance-milestones.js?v=309m"></script>
 <script src="js/control-room-trophy-room.js?v=311a"></script>
+<script src="js/control-room-annual-cover.js?v=312a"></script>
 <script src="js/control-room-after-dark.js?v=300e"></script>
 <script src="js/control-room-sunday-disservice.js?v=301e"></script>
 <script src="js/control-room-proving-ground.js?v=293b"></script>
