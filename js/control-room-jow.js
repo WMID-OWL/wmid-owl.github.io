@@ -32,15 +32,6 @@
                 "cr-jow-workspace"
             ),
 
-        shell:
-            document.getElementById(
-            ),
-
-        shell:
-            document.getElementById(
-                "cr-jow-frame-shell"
-            ),
-
         placeholder:
             document.getElementById(
                 "cr-jow-frame-placeholder"
@@ -118,6 +109,8 @@
         !els.panel
         ||
         !els.frame
+        ||
+        !els.start
     ) {
 
         return;
@@ -469,18 +462,21 @@
     function clearLoadTimer() {
 
         if (
-            loadTimer
+            !loadTimer
         ) {
 
-            window.clearTimeout(
-                loadTimer
-            );
-
-
-            loadTimer =
-                null;
+            return;
 
         }
+
+
+        window.clearTimeout(
+            loadTimer
+        );
+
+
+        loadTimer =
+            null;
 
     }
 
@@ -511,7 +507,7 @@
 
                     setMessage(
 
-                        "JoW has not produced a clearly confirmed load result. Inspect the embedded window for a blank page, browser error, login problem, or refused connection.",
+                        "JoW did not produce a clearly confirmed load result. Inspect the embedded window for a blank page, browser error, login problem, or refused connection.",
 
                         "error"
 
@@ -531,24 +527,48 @@
             true;
 
 
-        els.placeholder.hidden =
-            true;
+        if (
+            els.placeholder
+        ) {
+
+            els.placeholder.hidden =
+                true;
+
+        }
 
 
         els.frame.hidden =
             false;
 
 
-        els.reload.disabled =
-            false;
+        if (
+            els.reload
+        ) {
+
+            els.reload.disabled =
+                false;
+
+        }
 
 
-        els.expand.disabled =
-            false;
+        if (
+            els.expand
+        ) {
+
+            els.expand.disabled =
+                false;
+
+        }
 
 
-        els.fail.disabled =
-            false;
+        if (
+            els.fail
+        ) {
+
+            els.fail.disabled =
+                false;
+
+        }
 
 
         setStatus(
@@ -559,7 +579,7 @@
 
         setMessage(
 
-            "Loading Journey of Wrestling. The frame response alone does not prove compatibility—visually confirm the page and complete the checklist."
+            "Loading Journey of Wrestling. Visually confirm what appears inside the embedded window before completing the checklist."
 
         );
 
@@ -609,11 +629,7 @@
             () => {
 
                 els.frame.src =
-                    J        els.frame.src =
-            "about:blank";
-
-
-OW_URL;
+                    JOW_URL;
 
             },
 
@@ -627,9 +643,7 @@ OW_URL;
 
         if (
             !testStarted
-
             ||
-
             els.frame.getAttribute(
                 "src"
             ) ===
@@ -652,7 +666,7 @@ OW_URL;
 
         setMessage(
 
-            "The browser received a frame response. Check the actual window before marking Page visibly loads; blocked pages can still produce a frame event."
+            "The browser received a frame response. Check the actual embedded window before marking Page visibly loads; a blocked page can still trigger this response."
 
         );
 
@@ -668,6 +682,17 @@ OW_URL;
 
 
     function toggleExpandedWindow() {
+
+        if (
+            !els.workspace
+            ||
+            !els.expand
+        ) {
+
+            return;
+
+        }
+
 
         const expanded =
             els.workspace.classList.toggle(
@@ -710,22 +735,26 @@ OW_URL;
 
     function updateVerdictButtons() {
 
-        els
+        if (
+            els.pass
+        ) {
 
-                ? "Exit Expanded Window"
+            els.pass.disabled =
+                !testStarted
+                ||
+                !everyCheckPassed();
 
-                : "Expand Window";
-
-   .pass.disabled =
-            !testStarted
-
-            ||
-
-            !everyCheckPassed();
+        }
 
 
-        els.fail.disabled =
-            !testStarted;
+        if (
+            els.fail
+        ) {
+
+            els.fail.disabled =
+                !testStarted;
+
+        }
 
     }
 
@@ -927,13 +956,13 @@ OW_URL;
     );
 
 
-    els.reload.addEventListener(
+    els.reload?.addEventListener(
         "click",
         reloadEmbeddedTest
     );
 
 
-    els.expand.addEventListener(
+    els.expand?.addEventListener(
         "click",
         toggleExpandedWindow
     );
@@ -945,13 +974,13 @@ OW_URL;
     );
 
 
-    els.pass.addEventListener(
+    els.pass?.addEventListener(
         "click",
         markWorking
     );
 
 
-    els.fail.addEventListener(
+    els.fail?.addEventListener(
         "click",
         markFailed
     );
@@ -960,18 +989,17 @@ OW_URL;
     checklist.forEach(
         item => {
 
-            item.element
-                ?.addEventListener(
-                    "change",
-                    () => {
+            item.element?.addEventListener(
+                "change",
+                () => {
 
-                        saveState();
+                    saveState();
 
 
-                        updateVerdictButtons();
+                    updateVerdictButtons();
 
-                    }
-                );
+                }
+            );
 
         }
     );
