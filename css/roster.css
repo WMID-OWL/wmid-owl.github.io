@@ -1271,20 +1271,3 @@
         #dfbd78;
 
 }
-/* =================================
-   MOBILE ROSTER PORTRAIT FRAMING
-================================= */
-
-@media (max-width: 700px) {
-
-    .roster-portrait img {
-
-        object-fit:
-            contain;
-
-        object-position:
-            center center;
-
-    }
-
-}
