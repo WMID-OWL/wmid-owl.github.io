@@ -1271,3 +1271,62 @@
         #dfbd78;
 
 }
+/* =================================
+   MOBILE ROSTER PORTRAIT CONTROLS
+================================= */
+
+@media (max-width: 700px) {
+
+    .roster-portrait img {
+
+        object-fit:
+            var(
+                --roster-mobile-fit,
+                cover
+            );
+
+        object-position:
+            var(
+                --roster-mobile-x,
+                50%
+            )
+            var(
+                --roster-mobile-y,
+                0%
+            );
+
+        transform:
+            scale(
+                var(
+                    --roster-mobile-scale,
+                    1
+                )
+            );
+
+        transform-origin:
+            var(
+                --roster-mobile-x,
+                50%
+            )
+            var(
+                --roster-mobile-y,
+                0%
+            );
+
+    }
+
+
+    .roster-card-link:hover
+    .roster-portrait img {
+
+        transform:
+            scale(
+                var(
+                    --roster-mobile-scale,
+                    1
+                )
+            );
+
+    }
+
+}
