@@ -1,1334 +1,863 @@
 (() => {
-
-
     "use strict";
 
-
-
     const MEDIA_TYPES = {
-
-
-                wrestlers: {
-
-            label:
-                "Wrestler Photo",
-
-            dataKey:
-                "wrestlers",
-
-            folder:
-    "wrestlers",
-
-writeField:
-    "photo",
-
-pathFields: [
-
+        wrestlers: {
+            label: "Wrestler Photo",
+            dataKey: "wrestlers",
+            folder: "wrestlers",
+            writeField: "photo",
+            pathFields: [
                 "photo",
                 "image",
                 "photoPath"
-
             ]
-
         },
-
 
         finishers: {
-
-            label:
-                "Finisher GIF",
-
-            dataKey:
-                "wrestlers",
-
-            folder:
-                "finishers",
-
-            pathFields:
-                [],
-
-            finisherMode:
-                true
-
+            label: "Finisher GIF",
+            dataKey: "wrestlers",
+            folder: "finishers",
+            pathFields: [],
+            finisherMode: true
         },
 
-
-                teams: {
-
-            label:
-                "Team Logo",
-
-            dataKey:
-                "teams",
-
-            folder:
-                "teams",
-
-            writeField:
-                "logo",
-
+        teams: {
+            label: "Team Logo",
+            dataKey: "teams",
+            folder: "teams",
+            writeField: "logo",
             pathFields: [
-
                 "logo",
                 "image",
                 "logoPath"
-
             ]
-
         },
-
 
         teamFinishers: {
-
-            label:
-                "Team Finisher GIF",
-
-            dataKey:
-                "teams",
-
-            folder:
-                "team-finishers",
-
-            writeField:
-                "finisherGif",
-
+            label: "Team Finisher GIF",
+            dataKey: "teams",
+            folder: "team-finishers",
+            writeField: "finisherGif",
             pathFields: [
-
                 "finisherGif"
-
             ],
-
-            teamFinisherMode:
-                true,
-
-            gifOnly:
-                true
-
+            teamFinisherMode: true,
+            gifOnly: true
         },
 
-
-               landscapePromotions: {
-
-            label:
-                "Landscape Promotion Logo",
-
-            dataKey:
-                "landscapePromotions",
-
+        landscapePromotions: {
+            label: "Landscape Promotion Logo",
+            dataKey: "landscapePromotions",
             dataFolderPath: [
-
                 "landscape"
-
             ],
-
-            dataFileName:
-                "companies.json",
-
+            dataFileName: "companies.json",
+            sourceCollectionKey: "companies",
             folderPath: [
-
                 "landscape",
                 "promotion-logos"
-
             ],
-
-            writeField:
-                "logo",
-
+            writeField: "logo",
             pathFields: [
-
                 "logo"
-
             ],
-
-            landscapePromotionMode:
-                true
-
+            specialSource: true
         },
 
         landscapeShows: {
-
-            label:
-                "Landscape Show Logo",
-
-            dataKey:
-                "landscapeShows",
-
+            label: "Landscape Show Logo",
+            dataKey: "landscapeShows",
             dataFolderPath: [
-
                 "landscape"
-
             ],
-
-            dataFileName:
-                "shows.json",
-
+            dataFileName: "shows.json",
+            sourceCollectionKey: "shows",
             folderPath: [
-
                 "landscape",
                 "show-logos"
-
             ],
-
-            writeField:
-                "logo",
-
+            writeField: "logo",
             pathFields: [
-
                 "logo"
-
             ],
-
-            landscapeShowMode:
-                true
-
+            specialSource: true
         },
 
+        innanetProfiles: {
+            label: "Innanet Profile Picture",
+            dataKey: "innanetAccounts",
+            dataFolderPath: [
+                "innanet"
+            ],
+            dataFileName: "accounts.json",
+            sourceCollectionKey: "",
+            folderPath: [
+                "innanet",
+                "profiles"
+            ],
+            writeField: "profileImage",
+            pathFields: [
+                "profileImage"
+            ],
+            specialSource: true
+        },
 
         factions: {
-
-            label:
-                "Faction Logo",
-
-            dataKey:
-                "factions",
-
-            folder:
-    "factions",
-
-writeField:
-    "logo",
-
-pathFields: [
-
+            label: "Faction Logo",
+            dataKey: "factions",
+            folder: "factions",
+            writeField: "logo",
+            pathFields: [
                 "logo",
                 "image",
                 "logoPath"
-
             ]
-
         },
 
-
         championships: {
-
-            label:
-                "Championship Image",
-
-            dataKey:
-                "championships",
-
-            folder:
-    "championships",
-
-writeField:
-    "image",
-
-pathFields: [
-
+            label: "Championship Image",
+            dataKey: "championships",
+            folder: "championships",
+            writeField: "image",
+            pathFields: [
                 "image",
                 "beltImage",
                 "imagePath"
-
             ]
-
         },
 
-
         events: {
-
-            label:
-                "Event Poster",
-
-            dataKey:
-                "events",
-
-            folder:
-    "events",
-
-writeField:
-    "image",
-
-pathFields: [
-
+            label: "Event Poster",
+            dataKey: "events",
+            folder: "events",
+            writeField: "image",
+            pathFields: [
                 "image",
                 "poster",
                 "posterPath"
-
             ]
-
         }
-
     };
 
 
-
     const mediaTypeSelect =
-
         document.getElementById(
             "cr-media-type"
         );
 
 
     const recordSelect =
-
         document.getElementById(
             "cr-media-record"
         );
 
 
     const currentPath =
-
         document.getElementById(
             "cr-media-current-path"
         );
 
 
     const fileInput =
-
         document.getElementById(
             "cr-media-file"
         );
 
 
     const destinationPath =
-
         document.getElementById(
             "cr-media-destination-path"
         );
 
 
     const review =
-
         document.getElementById(
             "cr-media-review"
         );
 
 
     const reviewList =
-
         document.getElementById(
             "cr-media-review-list"
         );
 
 
     const errorMessage =
-
         document.getElementById(
             "cr-media-error"
         );
 
 
     const saveButton =
-
         document.getElementById(
             "cr-media-save"
         );
 
 
     const status =
-
         document.getElementById(
             "cr-media-status"
         );
 
 
     const message =
-
         document.getElementById(
             "cr-media-message"
         );
 
 
-
     if (
-
         !mediaTypeSelect
-
         ||
-
         !recordSelect
-
         ||
-
         !fileInput
-
     ) {
-
-
         return;
-
     }
 
 
-
-        let selectedFile =
+    let selectedFile =
         null;
 
 
-        let landscapePromotionRecords =
-        [];
-
-
-    let landscapeShowRecords =
-        [];
-
-
-
-    // =================================
-    // BASIC HELPERS
-    // =================================
+    const specialRecords =
+        new Map();
 
 
     function cleanText(
         value
     ) {
-
-
         return String(
             value || ""
-        )
-            .trim();
-
+        ).trim();
     }
-
 
 
     function escapeHtml(
         value
     ) {
-
-
         return String(
             value ?? ""
         )
-
             .replace(
                 /&/g,
                 "&amp;"
             )
-
             .replace(
                 /</g,
                 "&lt;"
             )
-
             .replace(
                 />/g,
                 "&gt;"
             )
-
             .replace(
                 /"/g,
                 "&quot;"
             )
-
             .replace(
                 /'/g,
                 "&#039;"
             );
-
     }
-
 
 
     function setStatus(
         value
     ) {
-
-
         status.textContent =
             value;
-
     }
 
 
-
     function clearMessage() {
-
-
         message.hidden =
             true;
-
 
         message.textContent =
             "";
 
-
         message.className =
             "cr-save-message";
-
     }
-
 
 
     function showError(
         value
     ) {
-
-
         errorMessage.textContent =
             value;
-
 
         errorMessage.hidden =
             false;
 
-
         review.hidden =
             false;
-
 
         saveButton.disabled =
             true;
 
-
         setStatus(
             "CHECK FILE"
         );
-
     }
-
 
 
     function recordLabel(
-    record
-) {
-
-
-    const baseName =
-
-        cleanText(
-            record?.name
-        )
-
-        ||
-
-        cleanText(
-            record?.title
-        )
-
-        ||
-
-        cleanText(
-            record?.eventName
-        )
-
-        ||
-
-        cleanText(
-            record?.id
-        )
-
-        ||
-
-        "Unnamed Record";
-
-
-    const finisherName =
-
-        cleanText(
-            record?.finisherName
-        );
-
-
-    return finisherName
-
-        ? `${baseName} — ${finisherName}`
-
-        : baseName;
-
-}
-    function currentMediaPath(
-    record,
-    config
-) {
-
-
-    if (
-        config?.finisherMode
+        record
     ) {
-
-
-        return cleanText(
-
-            record?.[
-                record.finisherPathField
-            ]
-
-        );
-
-    }
-
-
-    for (
-        const field
-        of config.pathFields
-    ) {
-
-
-        const value =
-
+        const baseName =
             cleanText(
-                record?.[field]
+                record?.name
+            )
+            ||
+            cleanText(
+                record?.accountName
+            )
+            ||
+            cleanText(
+                record?.title
+            )
+            ||
+            cleanText(
+                record?.eventName
+            )
+            ||
+            cleanText(
+                record?.id
+            )
+            ||
+            "Unnamed Record";
+
+
+        const finisherName =
+            cleanText(
+                record?.finisherName
             );
 
 
         if (
-            value
+            finisherName
         ) {
-
-
-            return value;
-
+            return `${baseName} — ${finisherName}`;
         }
 
+
+        const accountHandle =
+            cleanText(
+                record?.handle
+            );
+
+
+        return accountHandle
+            ? `${baseName} — ${accountHandle}`
+            : baseName;
     }
 
 
-    return "";
+    function currentMediaPath(
+        record,
+        config
+    ) {
+        if (
+            config?.finisherMode
+        ) {
+            return cleanText(
+                record?.[
+                    record.finisherPathField
+                ]
+            );
+        }
 
-}
 
+        for (
+            const field
+            of config?.pathFields || []
+        ) {
+            const value =
+                cleanText(
+                    record?.[
+                        field
+                    ]
+                );
+
+
+            if (
+                value
+            ) {
+                return value;
+            }
+        }
+
+
+        return "";
+    }
 
 
     function selectedConfig() {
-
-
-        return (
-
-            MEDIA_TYPES[
-                mediaTypeSelect.value
-            ]
-
-            ||
-
-            null
-
-        );
-
+        return MEDIA_TYPES[
+            mediaTypeSelect.value
+        ] || null;
     }
 
 
-    async function loadLandscapePromotionRecords() {
+    async function getNestedDirectory(
+        root,
+        folders,
+        options = {}
+    ) {
+        let directory =
+            root;
 
 
-        if (
-            typeof owlRepositoryHandle ===
-                "undefined"
-
-            ||
-
-            !owlRepositoryHandle
+        for (
+            const folderName
+            of folders || []
         ) {
+            if (
+                !cleanText(
+                    folderName
+                )
+            ) {
+                throw new Error(
+                    "A required folder name could not be determined."
+                );
+            }
 
 
-            landscapePromotionRecords =
-                [];
-
-
-            return;
-
+            directory =
+                await directory.getDirectoryHandle(
+                    folderName,
+                    options
+                );
         }
 
 
-        const dataDirectory =
-
-            await owlRepositoryHandle.getDirectoryHandle(
-                "data"
-            );
-
-
-        const landscapeDirectory =
-
-            await dataDirectory.getDirectoryHandle(
-                "landscape"
-            );
-
-
-        const companiesHandle =
-
-            await landscapeDirectory.getFileHandle(
-                "companies.json"
-            );
-
-
-        const companiesFile =
-
-            await companiesHandle.getFile();
-
-
-        const companiesText =
-
-            await companiesFile.text();
-
-
-        const companiesDatabase =
-
-            JSON.parse(
-                companiesText
-            );
-
-
-        if (
-            !companiesDatabase
-
-            ||
-
-            !Array.isArray(
-                companiesDatabase.companies
-            )
-        ) {
-
-
-            throw new Error(
-
-                "data/landscape/companies.json must contain a companies array."
-
-            );
-
-        }
-
-
-        landscapePromotionRecords =
-
-            companiesDatabase.companies;
-
-    }
-    async function loadLandscapeShowRecords() {
-
-
-        if (
-            typeof owlRepositoryHandle ===
-                "undefined"
-
-            ||
-
-            !owlRepositoryHandle
-        ) {
-
-
-            landscapeShowRecords =
-                [];
-
-
-            return;
-
-        }
-
-
-        const dataDirectory =
-
-            await owlRepositoryHandle.getDirectoryHandle(
-                "data"
-            );
-
-
-        const landscapeDirectory =
-
-            await dataDirectory.getDirectoryHandle(
-                "landscape"
-            );
-
-
-        const showsHandle =
-
-            await landscapeDirectory.getFileHandle(
-                "shows.json"
-            );
-
-
-        const showsFile =
-
-            await showsHandle.getFile();
-
-
-        const showsText =
-
-            await showsFile.text();
-
-
-        const showsDatabase =
-
-            JSON.parse(
-                showsText
-            );
-
-
-        if (
-            !showsDatabase
-
-            ||
-
-            !Array.isArray(
-                showsDatabase.shows
-            )
-        ) {
-
-
-            throw new Error(
-
-                "data/landscape/shows.json must contain a shows array."
-
-            );
-
-        }
-
-
-        landscapeShowRecords =
-
-            showsDatabase.shows;
-
+        return directory;
     }
 
 
-
-
-
-        function recordsForConfig(
+    async function loadSpecialRecords(
         config
     ) {
-
-
-        if (!config) {
-
-            return [];
-
-        }
-
-
-                if (
-            config.landscapePromotionMode
+        if (
+            !config?.specialSource
         ) {
-
-
-            return Array.isArray(
-                landscapePromotionRecords
-            )
-
-                ? landscapePromotionRecords
-
-                : [];
-
+            return;
         }
 
 
         if (
-            config.landscapeShowMode
+            typeof owlRepositoryHandle ===
+                "undefined"
+            ||
+            !owlRepositoryHandle
         ) {
+            specialRecords.set(
+                config.dataKey,
+                []
+            );
+
+            return;
+        }
 
 
-            return Array.isArray(
-                landscapeShowRecords
+        const dataDirectory =
+            await owlRepositoryHandle
+                .getDirectoryHandle(
+                    "data"
+                );
+
+
+        const targetDirectory =
+            await getNestedDirectory(
+                dataDirectory,
+                config.dataFolderPath || []
+            );
+
+
+        const fileHandle =
+            await targetDirectory
+                .getFileHandle(
+                    config.dataFileName
+                );
+
+
+        const file =
+            await fileHandle.getFile();
+
+
+        const parsed =
+            JSON.parse(
+                await file.text()
+            );
+
+
+        const records =
+            config.sourceCollectionKey
+                ? parsed?.[
+                    config.sourceCollectionKey
+                ]
+                : parsed;
+
+
+        if (
+            !Array.isArray(
+                records
             )
+        ) {
+            const expected =
+                config.sourceCollectionKey
+                    ? `an object containing a ${config.sourceCollectionKey} array`
+                    : "a JSON array";
 
-                ? landscapeShowRecords
 
-                : [];
+            throw new Error(
+                `data/${[
+                    ...(
+                        config.dataFolderPath || []
+                    ),
+                    config.dataFileName
+                ].join("/")} must contain ${expected}.`
+            );
+        }
 
+
+        specialRecords.set(
+            config.dataKey,
+            records
+        );
+    }
+
+
+    function recordsForConfig(
+        config
+    ) {
+        if (
+            !config
+        ) {
+            return [];
+        }
+
+
+        if (
+            config.specialSource
+        ) {
+            return specialRecords.get(
+                config.dataKey
+            ) || [];
         }
 
 
         if (
             typeof owlControlRoomData ===
-            "undefined"
+                "undefined"
         ) {
-
-
             return [];
-
         }
 
 
-        return (
-
-            Array.isArray(
-                owlControlRoomData[
-                    config.dataKey
-                ]
-            )
-
-                ? owlControlRoomData[
-                    config.dataKey
-                ]
-
-                : []
-
-        );
-
+        return Array.isArray(
+            owlControlRoomData[
+                config.dataKey
+            ]
+        )
+            ? owlControlRoomData[
+                config.dataKey
+            ]
+            : [];
     }
-
 
 
     function selectedRecord() {
+        const config =
+            selectedConfig();
 
 
-    const config =
-        selectedConfig();
+        if (
+            !config
+        ) {
+            return null;
+        }
 
 
-    if (
-        !config
-    ) {
-
-
-        return null;
-
-    }
-
-
-    if (
-        config.finisherMode
-    ) {
-
-
-        const [
-
-            wrestlerId,
-            slot
-
-        ] =
-
-            String(
-                recordSelect.value || ""
-            )
-                .split(
+        if (
+            config.finisherMode
+        ) {
+            const [
+                wrestlerId,
+                slot
+            ] =
+                String(
+                    recordSelect.value || ""
+                ).split(
                     "::"
                 );
 
 
-        const wrestler =
-
-            recordsForConfig(
-                config
-            )
-
-                .find(
-
+            const wrestler =
+                recordsForConfig(
+                    config
+                ).find(
                     record =>
-
                         String(
                             record.id
-                        )
-
-                        ===
-
+                        ) ===
                         wrestlerId
-
                 );
 
 
-        if (
-            !wrestler
-        ) {
+            if (
+                !wrestler
+            ) {
+                return null;
+            }
 
 
-            return null;
-
-        }
-
-
-        const isSecond =
-            slot === "2";
+            const isSecond =
+                slot ===
+                "2";
 
 
-        const finisherName =
-
-            cleanText(
-
-                isSecond
-
-                    ? wrestler.finisher2
-
-                    : wrestler.finisher
-
-            );
+            const finisherName =
+                cleanText(
+                    isSecond
+                        ? wrestler.finisher2
+                        : wrestler.finisher
+                );
 
 
-        if (
-            !finisherName
-        ) {
+            if (
+                !finisherName
+            ) {
+                return null;
+            }
 
 
-            return null;
+            return {
+                ...wrestler,
 
-        }
+                mediaSelectionId:
+                    recordSelect.value,
 
+                finisherSlot:
+                    isSecond
+                        ? "2"
+                        : "1",
 
-        return {
-
-
-            ...wrestler,
-
-
-            mediaSelectionId:
-                recordSelect.value,
-
-
-            finisherSlot:
-
-                isSecond
-
-                    ? "2"
-
-                    : "1",
-
-
-            finisherName:
                 finisherName,
 
-
-            finisherPathField:
-
-                isSecond
-
-                    ? "finisher2Gif"
-
-                    : "finisherGif"
-
-        };
-
-    }
+                finisherPathField:
+                    isSecond
+                        ? "finisher2Gif"
+                        : "finisherGif"
+            };
+        }
 
 
         const record =
-
-        recordsForConfig(
-            config
-        )
-
-            .find(
-
+            recordsForConfig(
+                config
+            ).find(
                 item =>
-
                     String(
                         item.id
-                    )
-
-                    ===
-
+                    ) ===
                     recordSelect.value
-
-            )
-
-        ||
-
-        null;
+            ) || null;
 
 
-    if (!record) {
-
-        return null;
-
-    }
-
-
-    if (
-        config.teamFinisherMode
-    ) {
-
-
-        const finisherName =
-
-            cleanText(
-                record.finisher
-            );
-
-
-        if (!finisherName) {
-
+        if (
+            !record
+        ) {
             return null;
-
         }
 
 
-        return {
+        if (
+            config.teamFinisherMode
+        ) {
+            const finisherName =
+                cleanText(
+                    record.finisher
+                );
 
-            ...record,
 
-            finisherName
+            return finisherName
+                ? {
+                    ...record,
+                    finisherName
+                }
+                : null;
+        }
 
-        };
 
+        return record;
     }
-
-
-    return record;
-
-}
 
 
     function fileExtension(
         file
     ) {
-
-
-        const extensionByType = {
-
-
+        return {
             "image/png":
                 "png",
-
 
             "image/jpeg":
                 "jpg",
 
-
             "image/webp":
                 "webp",
 
-
             "image/gif":
                 "gif"
-
-        };
-
-
-        return (
-
-            extensionByType[
-                file?.type
-            ]
-
-            ||
-
-            ""
-
-        );
-
+        }[
+            file?.type
+        ] || "";
     }
 
 
-
-   function buildDestinationPath(
-    config,
-    record,
-    file
-) {
-
-
-    const extension =
-
-        fileExtension(
-            file
-        );
-
-
-    if (
-
-        !config
-
-        ||
-
-        !record?.id
-
-        ||
-
-        !extension
-
+    function buildDestinationPath(
+        config,
+        record,
+        file
     ) {
-
-
-        return "";
-
-    }
-
-    if (
-        config.gifOnly
-
-        &&
-
-        extension !==
-            "gif"
-    ) {
-
-        return "";
-
-    }
-
-
-    if (
-        config.finisherMode
-    ) {
+        const extension =
+            fileExtension(
+                file
+            );
 
 
         if (
-
-            extension !== "gif"
-
+            !config
             ||
-
-            !record.finisherSlot
-
+            !record?.id
+            ||
+            !extension
         ) {
-
-
             return "";
-
         }
 
 
-        return (
-
-            `assets/images/finishers/${record.id}-finisher-${record.finisherSlot}.gif`
-
-        );
-
-    }
-
-
-        const folderPath =
-
-        Array.isArray(
-            config.folderPath
-        )
-
-        &&
-
-        config.folderPath.length > 0
-
-            ? config.folderPath.join(
-                "/"
-            )
-
-            : config.folder;
-
-
-    if (!folderPath) {
-
-        return "";
-
-    }
-
-
-    return (
-
-        `assets/images/${folderPath}/${record.id}.${extension}`
-
-    );
-
-}
-
-    // =================================
-    // MEDIA WRITING
-    // =================================
-
-
-    async function ensureWritePermission() {
+        if (
+            config.gifOnly
+            &&
+            extension !==
+                "gif"
+        ) {
+            return "";
+        }
 
 
         if (
+            config.finisherMode
+        ) {
+            if (
+                extension !==
+                    "gif"
+                ||
+                !record.finisherSlot
+            ) {
+                return "";
+            }
+
+
+            return `assets/images/finishers/${record.id}-finisher-${record.finisherSlot}.gif`;
+        }
+
+
+        const folderPath =
+            Array.isArray(
+                config.folderPath
+            )
+            &&
+            config.folderPath.length
+                ? config.folderPath.join(
+                    "/"
+                )
+                : config.folder;
+
+
+        return folderPath
+            ? `assets/images/${folderPath}/${record.id}.${extension}`
+            : "";
+    }
+
+
+    async function ensureWritePermission() {
+        if (
             typeof owlRepositoryHandle ===
                 "undefined"
-
             ||
-
             !owlRepositoryHandle
         ) {
-
-
             return false;
-
         }
 
 
         const options = {
-
             mode:
                 "readwrite"
-
         };
 
 
-        const currentPermission =
-
-            await owlRepositoryHandle.queryPermission(
-                options
-            );
-
-
         if (
-            currentPermission ===
-            "granted"
+            await owlRepositoryHandle
+                .queryPermission(
+                    options
+                ) ===
+                "granted"
         ) {
-
-
             return true;
-
         }
 
 
-        const requestedPermission =
-
-            await owlRepositoryHandle.requestPermission(
-                options
-            );
-
-
         return (
-
-            requestedPermission ===
+            await owlRepositoryHandle
+                .requestPermission(
+                    options
+                ) ===
             "granted"
-
         );
-
     }
-
 
 
     function selectedWriteField(
         config,
         record
     ) {
-
-
-        if (
-            config?.finisherMode
-        ) {
-
-
-            return cleanText(
+        return config?.finisherMode
+            ? cleanText(
                 record?.finisherPathField
+            )
+            : cleanText(
+                config?.writeField
             );
-
-        }
-
-
-        return cleanText(
-            config?.writeField
-        );
-
     }
-
 
 
     function findRecordObjectBounds(
         text,
         recordId
     ) {
-
-
         const escapedId =
-
             String(
                 recordId
-            )
-                .replace(
-                    /[.*+?^${}()|[\]\\]/g,
-                    "\\$&"
-                );
+            ).replace(
+                /[.*+?^${}()|[\]\\]/g,
+                "\\$&"
+            );
 
 
         const idPattern =
-
             new RegExp(
-
                 `"id"\\s*:\\s*"${escapedId}"`
-
             );
 
 
         const idMatch =
-
             idPattern.exec(
                 text
             );
@@ -1337,19 +866,13 @@ pathFields: [
         if (
             !idMatch
         ) {
-
-
             throw new Error(
-
                 `Could not find database record ${recordId}.`
-
             );
-
         }
 
 
         const start =
-
             text.lastIndexOf(
                 "{",
                 idMatch.index
@@ -1357,21 +880,13 @@ pathFields: [
 
 
         if (
-            start === -1
+            start ===
+                -1
         ) {
-
-
             throw new Error(
-
                 "Could not find the beginning of the database record."
-
             );
-
         }
-
-
-        let end =
-            -1;
 
 
         let depth =
@@ -1387,139 +902,92 @@ pathFields: [
 
 
         for (
-
             let index = start;
-
             index < text.length;
-
             index += 1
-
         ) {
-
-
             const character =
-                text[index];
+                text[
+                    index
+                ];
 
 
             if (
                 escapedCharacter
             ) {
-
-
                 escapedCharacter =
                     false;
 
-
                 continue;
-
             }
 
 
             if (
-
-                character === "\\"
-
+                character ===
+                    "\\"
                 &&
-
                 insideString
-
             ) {
-
-
                 escapedCharacter =
                     true;
 
-
                 continue;
-
             }
 
 
             if (
-                character === "\""
+                character ===
+                    "\""
             ) {
-
-
                 insideString =
                     !insideString;
 
-
                 continue;
-
             }
 
 
             if (
                 insideString
             ) {
-
-
                 continue;
-
             }
 
 
             if (
-                character === "{"
+                character ===
+                    "{"
             ) {
-
-
                 depth +=
                     1;
-
             }
 
 
             if (
-                character === "}"
+                character ===
+                    "}"
             ) {
-
-
                 depth -=
                     1;
 
 
                 if (
-                    depth === 0
+                    depth ===
+                        0
                 ) {
-
-
-                    end =
-                        index;
-
-
-                    break;
-
+                    return {
+                        start,
+                        end:
+                            index
+                    };
                 }
-
             }
-
         }
 
 
-        if (
-            end === -1
-        ) {
-
-
-            throw new Error(
-
-                "Could not find the end of the database record."
-
-            );
-
-        }
-
-
-        return {
-
-            start,
-            end
-
-        };
-
+        throw new Error(
+            "Could not find the end of the database record."
+        );
     }
-
 
 
     function replaceOrAddStringField(
@@ -1527,25 +995,18 @@ pathFields: [
         key,
         value
     ) {
-
-
         const escapedKey =
-
             String(
                 key
-            )
-                .replace(
-                    /[.*+?^${}()|[\]\\]/g,
-                    "\\$&"
-                );
+            ).replace(
+                /[.*+?^${}()|[\]\\]/g,
+                "\\$&"
+            );
 
 
         const pattern =
-
             new RegExp(
-
                 `("${escapedKey}"\\s*:\\s*)("(?:\\\\.|[^"\\\\])*")`
-
             );
 
 
@@ -1554,245 +1015,177 @@ pathFields: [
                 block
             )
         ) {
-
-
             return block.replace(
-
                 pattern,
-
                 (
                     match,
                     prefix
                 ) =>
-
                     prefix
-
                     +
-
                     JSON.stringify(
                         value
                     )
-
             );
-
         }
 
 
         const closingBraceIndex =
-
             block.lastIndexOf(
                 "}"
             );
 
 
         if (
-            closingBraceIndex === -1
+            closingBraceIndex ===
+                -1
         ) {
-
-
             throw new Error(
-
                 `Could not add media field ${key}.`
-
             );
-
         }
 
 
         const beforeClosingBrace =
-
             block.slice(
                 0,
                 closingBraceIndex
-            )
-                .trimEnd();
+            ).trimEnd();
 
 
         const separator =
-
             beforeClosingBrace.endsWith(
                 "{"
             )
-
                 ? ""
-
                 : ",";
 
 
         return (
-
             beforeClosingBrace
-
             +
-
             separator
-
             +
-
             `\n    ${JSON.stringify(
                 key
             )}: ${JSON.stringify(
                 value
             )}\n`
-
             +
-
             block.slice(
                 closingBraceIndex
             )
-
         );
-
     }
-
 
 
     async function writeMediaFile(
         config,
-        record,
         file,
         newPath
     ) {
-
-
         const assetsDirectory =
-
-            await owlRepositoryHandle.getDirectoryHandle(
-
-                "assets",
-
-                {
-                    create:
-                        true
-                }
-
-            );
+            await owlRepositoryHandle
+                .getDirectoryHandle(
+                    "assets",
+                    {
+                        create:
+                            true
+                    }
+                );
 
 
         const imagesDirectory =
-
-            await assetsDirectory.getDirectoryHandle(
-
-                "images",
-
-                {
-                    create:
-                        true
-                }
-
-            );
+            await assetsDirectory
+                .getDirectoryHandle(
+                    "images",
+                    {
+                        create:
+                            true
+                    }
+                );
 
 
-                const destinationFolders =
-
+        const folders =
             Array.isArray(
                 config.folderPath
             )
-
             &&
-
-            config.folderPath.length > 0
-
+            config.folderPath.length
                 ? config.folderPath
-
                 : [
                     config.folder
                 ];
 
 
-        let destinationDirectory =
-            imagesDirectory;
-
-
-        for (
-            const folderName
-            of destinationFolders
-        ) {
-
-
-            if (
-                !cleanText(
-                    folderName
-                )
-            ) {
-
-
-                throw new Error(
-
-                    "The media destination folder could not be determined."
-
-                );
-
-            }
-
-
-            destinationDirectory =
-
-                await destinationDirectory.getDirectoryHandle(
-
-                    folderName,
-
-                    {
-                        create:
-                            true
-                    }
-
-                );
-
-        }
+        const destinationDirectory =
+            await getNestedDirectory(
+                imagesDirectory,
+                folders,
+                {
+                    create:
+                        true
+                }
+            );
 
 
         const fileName =
-
-            newPath
-                .split(
-                    "/"
-                )
-                .pop();
+            newPath.split(
+                "/"
+            ).pop();
 
 
         if (
             !fileName
         ) {
-
-
             throw new Error(
-
                 "The destination filename could not be created."
-
             );
-
         }
 
 
         const destinationHandle =
-
-            await destinationDirectory.getFileHandle(
-
-                fileName,
-
-                {
-                    create:
-                        true
-                }
-
-            );
+            await destinationDirectory
+                .getFileHandle(
+                    fileName,
+                    {
+                        create:
+                            true
+                    }
+                );
 
 
         const writable =
-
-            await destinationHandle.createWritable();
-
-
-        await writable.write(
-            file
-        );
+            await destinationHandle
+                .createWritable();
 
 
-        await writable.close();
+        try {
+            await writable.write(
+                file
+            );
 
+
+            await writable.close();
+        }
+
+
+        catch (
+            error
+        ) {
+            try {
+                await writable.abort();
+            }
+
+
+            catch {
+                // No additional action required.
+            }
+
+
+            throw error;
+        }
     }
-
 
 
     async function updateDatabasePath(
@@ -1800,10 +1193,7 @@ pathFields: [
         record,
         newPath
     ) {
-
-
         const field =
-
             selectedWriteField(
                 config,
                 record
@@ -1813,150 +1203,118 @@ pathFields: [
         if (
             !field
         ) {
-
-
             throw new Error(
-
                 "The database media field could not be determined."
-
             );
-
         }
 
 
         const dataDirectory =
+            await owlRepositoryHandle
+                .getDirectoryHandle(
+                    "data"
+                );
 
-            await owlRepositoryHandle.getDirectoryHandle(
-                "data"
+
+        const targetDataDirectory =
+            await getNestedDirectory(
+                dataDirectory,
+                config.dataFolderPath || []
             );
 
 
-                const dataFolders =
-
-            Array.isArray(
-                config.dataFolderPath
-            )
-
-                ? config.dataFolderPath
-
-                : [];
-
-
-        let targetDataDirectory =
-            dataDirectory;
-
-
-        for (
-            const folderName
-            of dataFolders
-        ) {
-
-
-            targetDataDirectory =
-
-                await targetDataDirectory.getDirectoryHandle(
-                    folderName
-                );
-
-        }
-
-
         const dataFileName =
-
             cleanText(
                 config.dataFileName
             )
-
             ||
-
             `${config.dataKey}.json`;
 
 
         const fileHandle =
-
-            await targetDataDirectory.getFileHandle(
-                dataFileName
-            );
+            await targetDataDirectory
+                .getFileHandle(
+                    dataFileName
+                );
 
 
         const file =
-
             await fileHandle.getFile();
 
 
         const originalText =
-
             await file.text();
 
 
         const bounds =
-
             findRecordObjectBounds(
-
                 originalText,
                 record.id
-
             );
 
 
         const originalBlock =
-
             originalText.slice(
-
                 bounds.start,
                 bounds.end + 1
-
             );
 
 
         const updatedBlock =
-
             replaceOrAddStringField(
-
                 originalBlock,
                 field,
                 newPath
-
             );
 
 
         const updatedText =
-
             originalText.slice(
                 0,
                 bounds.start
             )
-
             +
-
             updatedBlock
-
             +
-
             originalText.slice(
                 bounds.end + 1
             );
 
 
         const writable =
-
-            await fileHandle.createWritable();
-
-
-        await writable.write(
-            updatedText
-        );
+            await fileHandle
+                .createWritable();
 
 
-        await writable.close();
+        try {
+            await writable.write(
+                updatedText
+            );
 
+
+            await writable.close();
+        }
+
+
+        catch (
+            error
+        ) {
+            try {
+                await writable.abort();
+            }
+
+
+            catch {
+                // No additional action required.
+            }
+
+
+            throw error;
+        }
     }
 
 
-
     async function saveSelectedMedia() {
-
-
         const config =
             selectedConfig();
 
@@ -1970,50 +1328,32 @@ pathFields: [
 
 
         if (
-
             !config
-
             ||
-
             !record
-
             ||
-
             !file
-
         ) {
-
-
             return;
-
         }
 
 
         const newPath =
-
             buildDestinationPath(
-
                 config,
                 record,
                 file
-
             );
 
 
         if (
             !newPath
         ) {
-
-
             showError(
-
                 "A valid destination path could not be created."
-
             );
 
-
             return;
-
         }
 
 
@@ -2034,24 +1374,12 @@ pathFields: [
 
 
         try {
-
-
-            const hasPermission =
-
-                await ensureWritePermission();
-
-
             if (
-                !hasPermission
+                !await ensureWritePermission()
             ) {
-
-
                 throw new Error(
-
                     "Write permission was not granted."
-
                 );
-
             }
 
 
@@ -2064,46 +1392,30 @@ pathFields: [
 
 
             await writeMediaFile(
-
                 config,
-                record,
                 file,
                 newPath
-
             );
 
 
             await updateDatabasePath(
-
                 config,
                 record,
                 newPath
-
             );
 
 
-                        await loadRepositoryData(
+            await loadRepositoryData(
                 owlRepositoryHandle
             );
 
 
-                        if (
-                config.landscapePromotionMode
-            ) {
-
-
-                await loadLandscapePromotionRecords();
-
-            }
-
-
             if (
-                config.landscapeShowMode
+                config.specialSource
             ) {
-
-
-                await loadLandscapeShowRecords();
-
+                await loadSpecialRecords(
+                    config
+                );
             }
 
 
@@ -2122,14 +1434,12 @@ pathFields: [
 
 
             message.textContent =
-
                 `${recordLabel(
                     record
                 )} was imported and assigned to ${newPath}. Review the new image file and database change in GitHub Desktop before committing.`;
 
 
             message.className =
-
                 "cr-save-message save-success";
 
 
@@ -2140,35 +1450,25 @@ pathFields: [
             setStatus(
                 "SAVED"
             );
-
-
         }
 
 
         catch (
             error
         ) {
-
-
             console.error(
-
                 "Could not import media:",
                 error
-
             );
 
 
             message.textContent =
-
                 error.message
-
                 ||
-
                 "The media file could not be imported.";
 
 
             message.className =
-
                 "cr-save-message save-error";
 
 
@@ -2183,19 +1483,11 @@ pathFields: [
 
             saveButton.disabled =
                 false;
-
         }
-
     }
-    
-    // =================================
-    // RESET
-    // =================================
 
 
     function resetFileSelection() {
-
-
         selectedFile =
             null;
 
@@ -2229,21 +1521,12 @@ pathFields: [
 
 
         clearMessage();
-
     }
 
 
-
     function resetManager() {
-
-
-        recordSelect.innerHTML = `
-
-            <option value="">
-                Select Media Type First
-            </option>
-
-        `;
+        recordSelect.innerHTML =
+            `<option value="">Select Media Type First</option>`;
 
 
         recordSelect.disabled =
@@ -2264,19 +1547,10 @@ pathFields: [
         setStatus(
             "READY"
         );
-
     }
 
 
-
-    // =================================
-    // RECORD DIRECTORY
-    // =================================
-
-
     function populateRecordOptions() {
-
-
         const config =
             selectedConfig();
 
@@ -2291,258 +1565,172 @@ pathFields: [
         if (
             !config
         ) {
-
-
             resetManager();
 
-
             return;
-
         }
 
 
-        const sourceRecords =
-
-    [
-
-        ...recordsForConfig(
-            config
-        )
-
-    ];
-
-
-const records =
-
-    (
-
-        config.finisherMode
-
-            ? sourceRecords.flatMap(
-
-                wrestler => {
-
-
-                    const options =
-                        [];
-
-
-                    const firstFinisher =
-
-                        cleanText(
-                            wrestler.finisher
-                        );
-
-
-                    const secondFinisher =
-
-                        cleanText(
-                            wrestler.finisher2
-                        );
-
-
-                    if (
-                        firstFinisher
-                    ) {
-
-
-                        options.push({
-
-
-                            ...wrestler,
-
-
-                            mediaSelectionId:
-
-                                `${wrestler.id}::1`,
-
-
-                            finisherSlot:
-                                "1",
-
-
-                            finisherName:
-                                firstFinisher,
-
-
-                            finisherPathField:
-                                "finisherGif"
-
-                        });
-
-                    }
-
-
-                    if (
-                        secondFinisher
-                    ) {
-
-
-                        options.push({
-
-
-                            ...wrestler,
-
-
-                            mediaSelectionId:
-
-                                `${wrestler.id}::2`,
-
-
-                            finisherSlot:
-                                "2",
-
-
-                            finisherName:
-                                secondFinisher,
-
-
-                            finisherPathField:
-                                "finisher2Gif"
-
-                        });
-
-                    }
-
-
-                    return options;
-
-                }
-
+        const sourceRecords = [
+            ...recordsForConfig(
+                config
             )
+        ];
 
-                        : config.teamFinisherMode
 
-                ? sourceRecords
+        const records =
+            (
+                config.finisherMode
+                    ? sourceRecords.flatMap(
+                        wrestler => {
+                            const options =
+                                [];
 
-                    .filter(
-                        team =>
 
-                            cleanText(
-                                team.finisher
-                            )
-                    )
-
-                    .map(
-                        team => ({
-
-                            ...team,
-
-                            finisherName:
-
+                            const firstFinisher =
                                 cleanText(
-                                    team.finisher
-                                )
+                                    wrestler.finisher
+                                );
 
-                        })
+
+                            const secondFinisher =
+                                cleanText(
+                                    wrestler.finisher2
+                                );
+
+
+                            if (
+                                firstFinisher
+                            ) {
+                                options.push({
+                                    ...wrestler,
+
+                                    mediaSelectionId:
+                                        `${wrestler.id}::1`,
+
+                                    finisherSlot:
+                                        "1",
+
+                                    finisherName:
+                                        firstFinisher,
+
+                                    finisherPathField:
+                                        "finisherGif"
+                                });
+                            }
+
+
+                            if (
+                                secondFinisher
+                            ) {
+                                options.push({
+                                    ...wrestler,
+
+                                    mediaSelectionId:
+                                        `${wrestler.id}::2`,
+
+                                    finisherSlot:
+                                        "2",
+
+                                    finisherName:
+                                        secondFinisher,
+
+                                    finisherPathField:
+                                        "finisher2Gif"
+                                });
+                            }
+
+
+                            return options;
+                        }
                     )
-
-                : sourceRecords
-
-    )
-
-        .sort(
-                    (
-                        a,
-                        b
-                    ) =>
-
-                        recordLabel(
-                            a
-                        )
-
-                            .localeCompare(
-
-                                recordLabel(
-                                    b
-                                )
-
+                    : config.teamFinisherMode
+                        ? sourceRecords
+                            .filter(
+                                team =>
+                                    cleanText(
+                                        team.finisher
+                                    )
                             )
+                            .map(
+                                team => ({
+                                    ...team,
 
-                );
+                                    finisherName:
+                                        cleanText(
+                                            team.finisher
+                                        )
+                                })
+                            )
+                        : sourceRecords
+            ).sort(
+                (
+                    a,
+                    b
+                ) =>
+                    recordLabel(
+                        a
+                    ).localeCompare(
+                        recordLabel(
+                            b
+                        )
+                    )
+            );
 
 
         recordSelect.innerHTML = `
-
             <option value="">
                 Select ${escapeHtml(
                     config.label
                 )} Record
             </option>
 
-            ${records
-
-                .map(
-
-                    record => `
-
-                        <option
-                            value="${escapeHtml(
-    record.mediaSelectionId || record.id
-)}"
-                        >
-
-                            ${escapeHtml(
-                                recordLabel(
-                                    record
-                                )
-                            )}
-
-                        </option>
-
-                    `
-
-                )
-
-                .join(
-                    ""
-                )}
-
+            ${records.map(
+                record => `
+                    <option
+                        value="${escapeHtml(
+                            record.mediaSelectionId
+                            ||
+                            record.id
+                        )}"
+                    >
+                        ${escapeHtml(
+                            recordLabel(
+                                record
+                            )
+                        )}
+                    </option>
+                `
+            ).join("")}
         `;
 
 
         recordSelect.disabled =
-            records.length === 0;
+            records.length ===
+                0;
 
 
         fileInput.disabled =
-    true;
+            true;
 
 
-fileInput.accept =
-
-    (
-        config.finisherMode ||
-        config.gifOnly
-    )
-
-        ? "image/gif"
-
-        : "image/png,image/jpeg,image/webp,image/gif";
+        fileInput.accept =
+            config.finisherMode
+            ||
+            config.gifOnly
+                ? "image/gif"
+                : "image/png,image/jpeg,image/webp,image/gif";
 
 
-setStatus(
-
+        setStatus(
             records.length
-
                 ? "SELECT RECORD"
-
                 : "NO RECORDS"
-
         );
-
     }
 
 
-
-    // =================================
-    // SELECT RECORD
-    // =================================
-
-
     function handleRecordChange() {
-
-
         resetFileSelection();
 
 
@@ -2555,16 +1743,10 @@ setStatus(
 
 
         if (
-
             !config
-
             ||
-
             !record
-
         ) {
-
-
             currentPath.textContent =
                 "—";
 
@@ -2579,61 +1761,41 @@ setStatus(
 
 
             return;
-
         }
 
 
         currentPath.textContent =
-
             currentMediaPath(
                 record,
                 config
             )
-
             ||
-
             "No media assigned";
 
 
         fileInput.disabled =
-    false;
+            false;
 
 
-fileInput.accept =
+        fileInput.accept =
+            config.finisherMode
+            ||
+            config.gifOnly
+                ? "image/gif"
+                : "image/png,image/jpeg,image/webp,image/gif";
 
-    (
-        config.finisherMode ||
-        config.gifOnly
-    )
 
-        ? "image/gif"
-
-        : "image/png,image/jpeg,image/webp,image/gif";
-
-setStatus(
-
-    (
-        config.finisherMode ||
-        config.gifOnly
-    )
-
-        ? "SELECT GIF"
-
-        : "SELECT IMAGE"
-
-);
+        setStatus(
+            config.finisherMode
+            ||
+            config.gifOnly
+                ? "SELECT GIF"
+                : "SELECT IMAGE"
+        );
     }
 
 
-
-    // =================================
-    // FILE PREVIEW
-    // =================================
-
-
     function handleFileChange() {
-
-
         clearMessage();
 
 
@@ -2650,39 +1812,25 @@ setStatus(
 
 
         const file =
-
-            fileInput.files?.[0]
-
-            ||
-
-            null;
+            fileInput.files?.[
+                0
+            ] || null;
 
 
         if (
-
             !config
-
             ||
-
             !record
-
             ||
-
             !file
-
         ) {
-
-
             resetFileSelection();
 
-
             return;
-
         }
 
 
         const extension =
-
             fileExtension(
                 file
             );
@@ -2691,8 +1839,6 @@ setStatus(
         if (
             !extension
         ) {
-
-
             selectedFile =
                 null;
 
@@ -2702,60 +1848,50 @@ setStatus(
 
 
             showError(
-
                 "Select a PNG, JPG, WebP, or GIF image."
-
             );
 
 
             return;
-
         }
-if (
-
-    (
-        config.finisherMode ||
-        config.gifOnly
-    )
-
-    &&
-
-    extension !==
-        "gif"
-
-) {
-
-    selectedFile =
-        null;
 
 
-    destinationPath.textContent =
-        "—";
+        if (
+            (
+                config.finisherMode
+                ||
+                config.gifOnly
+            )
+            &&
+            extension !==
+                "gif"
+        ) {
+            selectedFile =
+                null;
 
 
-    showError(
-
-        "Finisher media must be an animated GIF file."
-
-    );
+            destinationPath.textContent =
+                "—";
 
 
-    return;
+            showError(
+                "Finisher media must be an animated GIF file."
+            );
 
-}
+
+            return;
+        }
+
 
         selectedFile =
             file;
 
 
         const newPath =
-
             buildDestinationPath(
-
                 config,
                 record,
                 file
-
             );
 
 
@@ -2764,9 +1900,7 @@ if (
 
 
         reviewList.innerHTML = `
-
             <div class="cr-editor-change-row">
-
                 <strong>RECORD</strong>
 
                 <span>
@@ -2776,37 +1910,27 @@ if (
                         )
                     )}
                 </span>
+            </div>
 
-                        </div>
-
-
-                        ${
-                (
-                    config.finisherMode ||
-                    config.teamFinisherMode
-                )
-
+            ${
+                config.finisherMode
+                ||
+                config.teamFinisherMode
                     ? `
+                        <div class="cr-editor-change-row">
+                            <strong>FINISHER</strong>
 
-                    <div class="cr-editor-change-row">
-
-                        <strong>FINISHER</strong>
-
-                        <span>
-                            ${escapeHtml(
-                                record.finisherName
-                            )}
-                        </span>
-
-                    </div>
-
-                `
-
-                : ""}
-
+                            <span>
+                                ${escapeHtml(
+                                    record.finisherName
+                                )}
+                            </span>
+                        </div>
+                    `
+                    : ""
+            }
 
             <div class="cr-editor-change-row">
-
                 <strong>SELECTED FILE</strong>
 
                 <span>
@@ -2814,34 +1938,24 @@ if (
                         file.name
                     )}
                 </span>
-
             </div>
 
-
             <div class="cr-editor-change-row">
-
                 <strong>CURRENT PATH</strong>
 
                 <span>
                     ${escapeHtml(
-
                         currentMediaPath(
                             record,
                             config
                         )
-
                         ||
-
                         "No media assigned"
-
                     )}
                 </span>
-
             </div>
 
-
             <div class="cr-editor-change-row">
-
                 <strong>NEW PATH</strong>
 
                 <span>
@@ -2849,9 +1963,7 @@ if (
                         newPath
                     )}
                 </span>
-
             </div>
-
         `;
 
 
@@ -2860,18 +1972,16 @@ if (
 
 
         saveButton.disabled =
-    false;
+            false;
 
 
-setStatus(
-    "READY TO IMPORT"
-);
+        setStatus(
+            "READY TO IMPORT"
+        );
     }
 
 
-       async function handleMediaTypeChange() {
-
-
+    async function handleMediaTypeChange() {
         clearMessage();
 
 
@@ -2880,193 +1990,197 @@ setStatus(
 
 
         if (
-            config?.landscapePromotionMode
-
-            ||
-
-            config?.landscapeShowMode
+            config?.specialSource
         ) {
-
-
-            const isShowMode =
-                Boolean(
-                    config.landscapeShowMode
-                );
-
-
             setStatus(
-
-                isShowMode
-
-                    ? "LOADING SHOWS"
-
-                    : "LOADING PROMOTIONS"
-
+                config.dataKey ===
+                    "innanetAccounts"
+                    ? "LOADING ACCOUNTS"
+                    : config.dataKey ===
+                        "landscapeShows"
+                        ? "LOADING SHOWS"
+                        : "LOADING PROMOTIONS"
             );
 
 
             try {
-
-
-                if (
-                    config.landscapePromotionMode
-                ) {
-
-
-                    await loadLandscapePromotionRecords();
-
-                }
-
-
-                if (
-                    config.landscapeShowMode
-                ) {
-
-
-                    await loadLandscapeShowRecords();
-
-                }
-
+                await loadSpecialRecords(
+                    config
+                );
             }
 
 
-            catch (error) {
-
-
+            catch (
+                error
+            ) {
                 console.error(
-
-                    isShowMode
-
-                        ? "Could not load Landscape shows:"
-
-                        : "Could not load Landscape promotions:",
-
+                    `Could not load ${config.label}:`,
                     error
-
                 );
 
 
-                if (
-                    isShowMode
-                ) {
-
-
-                    landscapeShowRecords =
-                        [];
-
-                }
-
-
-                else {
-
-
-                    landscapePromotionRecords =
-                        [];
-
-                }
+                specialRecords.set(
+                    config.dataKey,
+                    []
+                );
 
 
                 populateRecordOptions();
 
 
                 showError(
-
                     error.message
-
                     ||
-
-                    (
-                        isShowMode
-
-                            ? "The Landscape show database could not be loaded."
-
-                            : "The Landscape promotion database could not be loaded."
-                    )
-
+                    `The ${config.label} database could not be loaded.`
                 );
 
 
                 return;
-
             }
-
         }
 
 
         populateRecordOptions();
-
     }
 
 
+    window.owlOpenMediaManager =
+        async function (
+            mediaType,
+            recordId
+        ) {
+            const typeValue =
+                cleanText(
+                    mediaType
+                );
 
-    // =================================
-    // EVENTS
-    // =================================
+
+            const recordValue =
+                cleanText(
+                    recordId
+                );
 
 
-        mediaTypeSelect.addEventListener(
+            if (
+                !typeValue
+                ||
+                !recordValue
+            ) {
+                return false;
+            }
 
+
+            const matchingOption =
+                [
+                    ...mediaTypeSelect.options
+                ].some(
+                    option =>
+                        option.value ===
+                            typeValue
+                );
+
+
+            if (
+                !matchingOption
+            ) {
+                return false;
+            }
+
+
+            mediaTypeSelect.value =
+                typeValue;
+
+
+            await handleMediaTypeChange();
+
+
+            recordSelect.value =
+                recordValue;
+
+
+            if (
+                recordSelect.value !==
+                    recordValue
+            ) {
+                showError(
+                    "The selected Media Manager record could not be loaded."
+                );
+
+
+                return false;
+            }
+
+
+            handleRecordChange();
+
+
+            document.getElementById(
+                "cr-tool-media"
+            )?.scrollIntoView({
+                behavior:
+                    "smooth",
+
+                block:
+                    "start"
+            });
+
+
+            window.setTimeout(
+                () => {
+                    if (
+                        !fileInput.disabled
+                    ) {
+                        fileInput.click();
+                    }
+                },
+                450
+            );
+
+
+            return true;
+        };
+
+
+    mediaTypeSelect.addEventListener(
         "change",
         handleMediaTypeChange
-
     );
 
 
     recordSelect.addEventListener(
-
         "change",
         handleRecordChange
-
     );
 
 
     fileInput.addEventListener(
-
-    "change",
-    handleFileChange
-
-);
+        "change",
+        handleFileChange
+    );
 
 
-saveButton.addEventListener(
-
-    "click",
-    saveSelectedMedia
-
-);
+    saveButton.addEventListener(
+        "click",
+        saveSelectedMedia
+    );
 
 
-window.addEventListener(
-
+    window.addEventListener(
         "owl-control-room-data-loaded",
-
         () => {
-
-
             if (
                 mediaTypeSelect.value
             ) {
-
-
                 handleMediaTypeChange();
-
             }
 
 
             else {
-
-
                 resetManager();
-
             }
-
         }
-
     );
 
 
-
     resetManager();
-
-
 })();
