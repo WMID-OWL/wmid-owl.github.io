@@ -851,23 +851,146 @@ async function loadRoster() {
 
 
                 const image =
-                    document.createElement(
-                        "img"
-                    );
+    document.createElement(
+        "img"
+    );
 
 
-                image.src =
-                    wrestler.photo;
+image.src =
+    wrestler.photo;
 
 
-                image.alt =
-                    wrestler.name;
+image.alt =
+    wrestler.name;
 
 
-                portrait.appendChild(
-                    image
-                );
 
+const mobileFit =
+
+    wrestler.rosterMobileFit ===
+        "contain"
+
+        ? "contain"
+
+        : "cover";
+
+
+
+const mobileXValue =
+    Number(
+        wrestler.rosterMobileX
+    );
+
+
+const mobileYValue =
+    Number(
+        wrestler.rosterMobileY
+    );
+
+
+const mobileScaleValue =
+    Number(
+        wrestler.rosterMobileScale
+    );
+
+
+
+const mobileX =
+
+    Number.isFinite(
+        mobileXValue
+    )
+
+        ? Math.min(
+            100,
+            Math.max(
+                0,
+                mobileXValue
+            )
+        )
+
+        : 50;
+
+
+
+const mobileY =
+
+    Number.isFinite(
+        mobileYValue
+    )
+
+        ? Math.min(
+            100,
+            Math.max(
+                0,
+                mobileYValue
+            )
+        )
+
+        : 0;
+
+
+
+const mobileScale =
+
+    Number.isFinite(
+        mobileScaleValue
+    )
+
+        ? Math.min(
+            1.5,
+            Math.max(
+                0.75,
+                mobileScaleValue
+            )
+        )
+
+        : 1;
+
+
+
+image.style.setProperty(
+
+    "--roster-mobile-fit",
+
+    mobileFit
+
+);
+
+
+image.style.setProperty(
+
+    "--roster-mobile-x",
+
+    `${mobileX}%`
+
+);
+
+
+image.style.setProperty(
+
+    "--roster-mobile-y",
+
+    `${mobileY}%`
+
+);
+
+
+image.style.setProperty(
+
+    "--roster-mobile-scale",
+
+    String(
+        mobileScale
+    )
+
+);
+
+
+
+portrait.appendChild(
+    image
+);
             }
 
 
