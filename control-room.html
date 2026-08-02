@@ -7465,9 +7465,13 @@
     Landscape Show Logo
 </option>
 
+<option value="innanetProfiles">
+    Innanet Profile Picture
+</option>
+
 <option value="factions">
-                            Faction Logo
-                        </option>
+    Faction Logo
+</option>
 
                         <option value="championships">
                             Championship Image
@@ -9231,19 +9235,30 @@
 <div class="cr-form-group">
 
     <label for="cr-account-profile-image">
-        PROFILE PICTURE — OPTIONAL
+        PROFILE PICTURE
     </label>
 
     <input
         id="cr-account-profile-image"
         type="text"
         autocomplete="off"
-        placeholder="assets/images/innanet/profiles/account-name.png"
+        readonly
+        placeholder="No profile picture assigned"
     >
 
     <small class="cr-field-help">
-        Leave empty to use the account’s automatic initials avatar.
+        Images are imported through the Media Manager. Accounts without
+        pictures use their automatic initials avatar.
     </small>
+
+    <button
+        id="cr-account-upload-profile-image"
+        class="control-room-button control-room-button-secondary"
+        type="button"
+        disabled
+    >
+        Upload / Replace Picture
+    </button>
 
 </div>
 
@@ -9315,7 +9330,7 @@
 <script src="js/control-room-proving-ground.js?v=293b"></script>
 <script src="js/control-room-proving-ground-results.js?v=293d"></script>
 <script src="js/control-room-proving-ground-finals.js?v=293g"></script>
-<script src="js/control-room-media-manager.js"></script>
+<script src="js/control-room-media-manager.js?v=314b"></script>
 <script src="js/control-room-wrestler-editor.js?v=manager-1"></script>
 <script src="js/control-room-team-editor.js?v=manager-1"></script>
 <script src="js/control-room-faction-editor.js?v=manager-1"></script>
@@ -9334,7 +9349,7 @@
 <script src="js/control-room-landscape-bragging-rights.js"></script>
 
 <script src="js/control-room-social-status.js?v=303b1"></script>
-<script src="js/control-room-account-manager.js?v=314a"></script>
+<script src="js/control-room-account-manager.js?v=314b"></script>
     
 </body>
 </html>
