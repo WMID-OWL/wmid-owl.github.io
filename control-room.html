@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-   <link rel="stylesheet" href="css/control-room.css?v=312b">
+   <link rel="stylesheet" href="css/control-room.css?v=313a">
 </head>
 
 <body class="control-room-body">
@@ -26,7 +26,8 @@
 </header>
 
 <nav class="cr-tool-jump-bar" aria-label="Control Room sections">
-    <span class="cr-tool-jump-label">JUMP TO</span>
+       <span class="cr-tool-jump-label">JUMP TO</span>
+    <a class="cr-tool-jump-link" href="#cr-tool-runbook">Runbook</a>
     <a class="cr-tool-jump-link" href="#cr-tool-wrestlers">Wrestlers</a>
     <a class="cr-tool-jump-link" href="#cr-tool-teams">Teams</a>
     <a class="cr-tool-jump-link" href="#cr-tool-factions">Factions</a>
@@ -181,7 +182,232 @@
                 </article>
             </div>
         </section>
+        <!-- =================================
+             DYNAMIC WEEKLY RUNBOOK
+        ================================== -->
 
+        <section id="cr-tool-runbook" class="control-room-panel">
+
+            <div class="control-room-panel-heading">
+                <div>
+                    <p class="eyebrow">WEEKLY OPERATIONS</p>
+                    <h2>Dynamic Weekly Runbook</h2>
+                </div>
+
+                <span id="cr-runbook-status" class="control-room-health-summary">
+                    WAITING
+                </span>
+            </div>
+
+            <p class="cr-editor-note">
+                The Runbook builds the recurring Ascension and Revolt workflow for the
+                active Monday–Sunday week, then adds PPV work only when an event in
+                data/events.json actually falls inside that week.
+            </p>
+
+            <div class="cr-runbook-week-banner">
+                <div>
+                    <span>ACTIVE WEEK</span>
+                    <strong id="cr-runbook-current-week">—</strong>
+                    <small id="cr-runbook-today">—</small>
+                </div>
+
+                <div>
+                    <span>EVENT-SPECIFIC WORK</span>
+                    <strong id="cr-runbook-event-summary">—</strong>
+                    <small>Actual event dates override assumed PPV weekdays.</small>
+                </div>
+            </div>
+
+            <div class="cr-runbook-toolbar">
+                <div class="cr-form-group">
+                    <label for="cr-runbook-week-select">WEEK ARCHIVE</label>
+                    <select id="cr-runbook-week-select"></select>
+                </div>
+
+                <button
+                    id="cr-runbook-current-week-button"
+                    class="control-room-button control-room-button-secondary"
+                    type="button"
+                >
+                    Return to Current Week
+                </button>
+            </div>
+
+            <p
+                id="cr-runbook-archive-notice"
+                class="cr-runbook-archive-notice"
+                hidden
+            >
+                ARCHIVED WEEK — task history is read-only.
+            </p>
+
+            <div class="cr-runbook-stat-grid">
+                <article>
+                    <span>NEXT ACTION</span>
+                    <strong id="cr-runbook-next-count">0</strong>
+                </article>
+
+                <article>
+                    <span>DUE TODAY</span>
+                    <strong id="cr-runbook-due-count">0</strong>
+                </article>
+
+                <article>
+                    <span>BLOCKED</span>
+                    <strong id="cr-runbook-blocked-count">0</strong>
+                </article>
+
+                <article>
+                    <span>FAILED AUTOMATIONS</span>
+                    <strong id="cr-runbook-failed-count">0</strong>
+                </article>
+
+                <article>
+                    <span>COMPLETED</span>
+                    <strong id="cr-runbook-completed-count">0</strong>
+                </article>
+            </div>
+
+            <div class="cr-runbook-type-legend">
+                <span>
+                    <strong>AUTOMATIC</strong>
+                    verified from OWL data
+                </span>
+
+                <span>
+                    <strong>MANUAL CONFIRMATION</strong>
+                    requires your checkoff
+                </span>
+
+                <span>
+                    <strong>CONDITIONAL</strong>
+                    complete it or mark Not Needed
+                </span>
+            </div>
+
+            <div
+                id="cr-runbook-board"
+                class="cr-runbook-board"
+            ></div>
+
+            <div
+                id="cr-runbook-custom-section"
+                class="cr-editor-section"
+            >
+                <div class="cr-editor-section-heading">
+                    <span>WEEK-SPECIFIC EXCEPTION</span>
+                    <h3>Add a Custom Task</h3>
+
+                    <p>
+                        Add one-off work without changing the recurring Runbook template.
+                    </p>
+                </div>
+
+                <div class="cr-editor-form-grid">
+                    <div class="cr-form-group">
+                        <label for="cr-runbook-custom-title">
+                            TASK
+                        </label>
+
+                        <input
+                            id="cr-runbook-custom-title"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="Example: Record special Fight to Survive promo"
+                        >
+                    </div>
+
+                    <div class="cr-form-group">
+                        <label for="cr-runbook-custom-category">
+                            CATEGORY
+                        </label>
+
+                        <select id="cr-runbook-custom-category">
+                            <option value="booking">
+                                Booking / Preparation
+                            </option>
+
+                            <option value="production">
+                                Match Production
+                            </option>
+
+                            <option value="website">
+                                Website Processing
+                            </option>
+
+                            <option value="media">
+                                OWL Media Publishing
+                            </option>
+
+                            <option value="youtube">
+                                YouTube Publishing
+                            </option>
+
+                            <option value="closeout">
+                                Week Closeout
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="cr-form-group">
+                        <label for="cr-runbook-custom-type">
+                            TASK TYPE
+                        </label>
+
+                        <select id="cr-runbook-custom-type">
+                            <option value="manual">
+                                Manual Confirmation
+                            </option>
+
+                            <option value="conditional">
+                                Conditional
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="cr-form-group">
+                        <label for="cr-runbook-custom-due">
+                            DUE DATE
+                        </label>
+
+                        <input
+                            id="cr-runbook-custom-due"
+                            type="date"
+                        >
+                    </div>
+                </div>
+
+                <div class="cr-form-group cr-editor-spaced-field">
+                    <label for="cr-runbook-custom-note">
+                        NOTE — OPTIONAL
+                    </label>
+
+                    <textarea
+                        id="cr-runbook-custom-note"
+                        rows="3"
+                    ></textarea>
+                </div>
+
+                <div class="cr-manager-actions">
+                    <button
+                        id="cr-runbook-add-custom"
+                        class="control-room-button control-room-button-primary"
+                        type="button"
+                    >
+                        Add Task to Current Week
+                    </button>
+                </div>
+            </div>
+
+            <p
+                id="cr-runbook-message"
+                class="cr-save-message"
+                hidden
+            ></p>
+
+        </section>
+        
         <!-- =================================
              WRESTLER MANAGER
         ================================== -->
@@ -8604,7 +8830,8 @@
 </footer>
 
 <script src="js/app.js?v=site-back-to-top-1"></script>
-<script src="js/control-room.js?v=309l1b"></script>
+<script src="js/control-room.js?v=313a"></script>
+<script src="js/control-room-weekly-runbook.js?v=313a"></script>
 
 <script src="js/control-room-generator.js?v=308c"></script>
 
