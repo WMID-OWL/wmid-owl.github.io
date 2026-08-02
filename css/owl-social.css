@@ -11774,22 +11774,46 @@ h2.social-destination-logo-heading {
 
 .innanet-wordmark {
 
+    position:
+        relative;
+
+    display:
+        block;
+
+    width:
+        240px;
+
     min-width:
-        0;
+        240px;
+
+    height:
+        70px;
+
+    overflow:
+        hidden;
 
 }
 
 
 .innanet-topbar-logo {
 
+    position:
+        absolute;
+
+    top:
+        50%;
+
+    left:
+        0;
+
     display:
         block;
 
     width:
-        auto;
+        195px;
 
     max-width:
-        195px;
+        none;
 
     height:
         44px;
@@ -11800,8 +11824,14 @@ h2.social-destination-logo-heading {
     object-position:
         left center;
 
-}
+    transform:
+        translateY(-50%)
+        scale(3.15);
 
+    transform-origin:
+        left center;
+
+}
 
 /* WWOW */
 
@@ -11865,13 +11895,34 @@ h2.social-destination-logo-heading {
         760px
 ) {
 
+    .innanet-wordmark {
+
+        width:
+            180px;
+
+        min-width:
+            180px;
+
+        height:
+            54px;
+
+    }
+
+
     .innanet-topbar-logo {
 
-        max-width:
+        width:
             155px;
+
+        max-width:
+            none;
 
         height:
             36px;
+
+        transform:
+            translateY(-50%)
+            scale(2.8);
 
     }
 
