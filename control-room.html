@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/control-room.css?v=312a">
+   <link rel="stylesheet" href="css/control-room.css?v=312b">
 </head>
 
 <body class="control-room-body">
@@ -5530,7 +5530,7 @@
                 </div>
 
 
-                <div
+                                <div
                     id="cr-cover-women-leaderboard"
                     class="cr-cover-leaderboard"
                 >
@@ -5543,8 +5543,315 @@
 
             </div>
 
+
+            <div class="cr-editor-section cr-cover-finalization-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        WINNER FINALIZATION
+                    </span>
+
+                    <h3>
+                        Confirm the Two Cover Stars
+                    </h3>
+
+                    <p>
+
+                        Finalization is available only after all five
+                        candidates in that division have permanent
+                        canon scores. The winner is calculated
+                        automatically and cannot be manually replaced.
+
+                    </p>
+
+                </div>
+
+
+                <div class="cr-cover-publication-banner">
+
+                    <div>
+
+                        <span>
+                            EDITION
+                        </span>
+
+                        <strong id="cr-cover-public-year">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            PUBLICATION STATUS
+                        </span>
+
+                        <strong id="cr-cover-finalization-status">
+                            NO SAVED EDITION
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="cr-cover-winner-grid">
+
+
+                    <article
+                        id="cr-cover-final-men-card"
+                        class="cr-cover-winner-card"
+                    >
+
+                        <div class="cr-cover-winner-heading">
+
+                            <div>
+
+                                <span>
+                                    MEN’S COVER
+                                </span>
+
+                                <h4 id="cr-cover-final-men-name">
+                                    Winner Pending
+                                </h4>
+
+                            </div>
+
+                            <strong
+                                id="cr-cover-final-men-state"
+                                class="cr-cover-winner-state"
+                            >
+                                BLOCKED
+                            </strong>
+
+                        </div>
+
+
+                        <p
+                            id="cr-cover-final-men-company"
+                            class="cr-cover-winner-company"
+                        >
+                            Complete all five canon scores.
+                        </p>
+
+
+                        <div class="cr-cover-winner-score">
+
+                            <span>
+                                WEIGHTED SCORE
+                            </span>
+
+                            <strong id="cr-cover-final-men-score">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <button
+                            id="cr-cover-finalize-men"
+                            class="control-room-button control-room-button-primary"
+                            type="button"
+                            disabled
+                        >
+                            Finalize Men’s Winner
+                        </button>
+
+                    </article>
+
+
+                    <article
+                        id="cr-cover-final-women-card"
+                        class="cr-cover-winner-card"
+                    >
+
+                        <div class="cr-cover-winner-heading">
+
+                            <div>
+
+                                <span>
+                                    WOMEN’S COVER
+                                </span>
+
+                                <h4 id="cr-cover-final-women-name">
+                                    Winner Pending
+                                </h4>
+
+                            </div>
+
+                            <strong
+                                id="cr-cover-final-women-state"
+                                class="cr-cover-winner-state"
+                            >
+                                BLOCKED
+                            </strong>
+
+                        </div>
+
+
+                        <p
+                            id="cr-cover-final-women-company"
+                            class="cr-cover-winner-company"
+                        >
+                            Complete all five canon scores.
+                        </p>
+
+
+                        <div class="cr-cover-winner-score">
+
+                            <span>
+                                WEIGHTED SCORE
+                            </span>
+
+                            <strong id="cr-cover-final-women-score">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <button
+                            id="cr-cover-finalize-women"
+                            class="control-room-button control-room-button-primary"
+                            type="button"
+                            disabled
+                        >
+                            Finalize Women’s Winner
+                        </button>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        COVER PRESENTATION
+                    </span>
+
+                    <h3>
+                        Finished Cover Artwork
+                    </h3>
+
+                    <p>
+
+                        Enter the public artwork path for each finished
+                        cover. Both images are required before the
+                        annual edition can be published.
+
+                    </p>
+
+                </div>
+
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-cover-men-art">
+                            MEN’S COVER ARTWORK
+                        </label>
+
+                        <input
+                            id="cr-cover-men-art"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="assets/images/trophy-room/annual-cover-men-2026.png"
+                        >
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-cover-women-art">
+                            WOMEN’S COVER ARTWORK
+                        </label>
+
+                        <input
+                            id="cr-cover-women-art"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="assets/images/trophy-room/annual-cover-women-2026.png"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="cr-manager-actions">
+
+                    <button
+                        id="cr-cover-save-presentation"
+                        class="control-room-button control-room-button-secondary"
+                        type="button"
+                        disabled
+                    >
+                        Save Cover Artwork
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="cr-editor-section cr-cover-publish-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        PUBLIC RELEASE
+                    </span>
+
+                    <h3>
+                        Publish April Week 4 Edition
+                    </h3>
+
+                    <p>
+
+                        Publishing creates the permanent Trophy Room
+                        archive records and activates the homepage
+                        cover reveal. OWL winners also receive the
+                        achievement on their wrestler profile.
+
+                    </p>
+
+                </div>
+
+
+                <div class="cr-manager-actions">
+
+                    <button
+                        id="cr-cover-publish"
+                        class="control-room-button control-room-button-primary"
+                        type="button"
+                        disabled
+                    >
+                        Publish Annual Covers
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="cr-cover-publish-message"
+                    class="cr-save-message"
+                    hidden
+                ></p>
+
+            </div>
+
         </section>
-        
         <!-- =================================
              OWL AFTER DARK PUBLISHER
         ================================== -->
@@ -8311,7 +8618,8 @@
 <script src="js/control-room-endurance.js?v=309l2"></script>
 <script src="js/control-room-endurance-milestones.js?v=309m"></script>
 <script src="js/control-room-trophy-room.js?v=311a"></script>
-<script src="js/control-room-annual-cover.js?v=312a"></script>
+<script src="js/control-room-annual-cover.js?v=312b"></script>
+<script src="js/control-room-annual-cover-publish.js?v=312b"></script>
 <script src="js/control-room-after-dark.js?v=300e"></script>
 <script src="js/control-room-sunday-disservice.js?v=301e"></script>
 <script src="js/control-room-proving-ground.js?v=293b"></script>
