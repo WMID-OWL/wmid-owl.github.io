@@ -79,7 +79,22 @@ const crEditorMessage =
     document.getElementById(
         "cr-wrestler-editor-message"
     );
+const crEditorMobilePreviewImage =
+    document.getElementById(
+        "cr-mobile-roster-preview-image"
+    );
 
+
+const crEditorMobilePreviewName =
+    document.getElementById(
+        "cr-mobile-roster-preview-name"
+    );
+
+
+const crEditorMobilePreviewEmpty =
+    document.getElementById(
+        "cr-mobile-roster-preview-empty"
+    );
 
 
 // =================================
@@ -520,7 +535,101 @@ function crEditorNormalizeMobilePosition(
     );
 
 }
+function crEditorUpdateMobilePreview() {
 
+
+    if (
+        !crEditorMobilePreviewImage
+
+        ||
+
+        !crEditorMobilePreviewName
+
+        ||
+
+        !crEditorMobilePreviewEmpty
+    ) {
+
+        return;
+
+    }
+
+
+    const record =
+        crEditorGetFormRecord();
+
+
+    crEditorMobilePreviewName.textContent =
+        record.name ||
+        "Wrestler Preview";
+
+
+    if (!record.photo) {
+
+
+        crEditorMobilePreviewImage.hidden =
+            true;
+
+
+        crEditorMobilePreviewImage.removeAttribute(
+            "src"
+        );
+
+
+        crEditorMobilePreviewEmpty.hidden =
+            false;
+
+
+        crEditorMobilePreviewEmpty.textContent =
+            "Select a wrestler with a photo path.";
+
+
+        return;
+
+    }
+
+
+    crEditorMobilePreviewImage.style.objectFit =
+        record.rosterMobileFit;
+
+
+    crEditorMobilePreviewImage.style.objectPosition =
+        `${record.rosterMobileX}% ${record.rosterMobileY}%`;
+
+
+    crEditorMobilePreviewImage.style.transform =
+        `scale(${record.rosterMobileScale})`;
+
+
+    crEditorMobilePreviewImage.style.transformOrigin =
+        `${record.rosterMobileX}% ${record.rosterMobileY}%`;
+
+
+    if (
+        crEditorMobilePreviewImage.getAttribute(
+            "src"
+        )
+
+        !==
+
+        record.photo
+    ) {
+
+
+        crEditorMobilePreviewImage.src =
+            record.photo;
+
+    }
+
+
+    crEditorMobilePreviewImage.hidden =
+        false;
+
+
+    crEditorMobilePreviewEmpty.hidden =
+        true;
+
+}
 
 
 function crEditorGetFormRecord() {
@@ -751,13 +860,16 @@ function crEditorFillForm(
         );
 
 
-    crEditorFields.rosterMobileY.value =
+        crEditorFields.rosterMobileY.value =
         String(
             crEditorNormalizeMobilePosition(
                 record.rosterMobileY,
                 0
             )
         );
+
+
+    crEditorUpdateMobilePreview();
 
 }
 
@@ -1250,6 +1362,9 @@ function crEditorReviewChanges() {
 
 
     crEditorHideMessage();
+
+
+    crEditorUpdateMobilePreview();
 
 
 
