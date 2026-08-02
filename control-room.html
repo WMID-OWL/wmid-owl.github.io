@@ -568,9 +568,153 @@
 </div>
 
             <div class="cr-editor-section">
-                <div class="cr-editor-section-heading"><span>MEDIA</span><h3>Wrestler Photo</h3></div>
-                <div class="cr-form-group"><label for="cr-edit-photo">PHOTO PATH</label><input id="cr-edit-photo" type="text" autocomplete="off" placeholder="assets/images/wrestlers/example.png"><small class="cr-field-help">Direct file selection and image importing will be added in the Media Manager.</small></div>
-            </div>
+
+    <div class="cr-editor-section-heading">
+
+        <span>
+            MEDIA
+        </span>
+
+        <h3>
+            Wrestler Photo
+        </h3>
+
+    </div>
+
+
+    <div class="cr-form-group">
+
+        <label for="cr-edit-photo">
+            PHOTO PATH
+        </label>
+
+        <input
+            id="cr-edit-photo"
+            type="text"
+            autocomplete="off"
+            placeholder="assets/images/wrestlers/example.png"
+        >
+
+        <small class="cr-field-help">
+            Direct file selection and image importing will be added in the Media Manager.
+        </small>
+
+    </div>
+
+
+    <div class="cr-editor-section-heading cr-editor-spaced-field">
+
+        <span>
+            MOBILE ROSTER CARD
+        </span>
+
+        <h3>
+            Portrait Framing
+        </h3>
+
+        <p>
+            Adjust only how this wrestler’s image appears on mobile roster cards.
+            Desktop portraits are not affected.
+        </p>
+
+    </div>
+
+
+    <div class="cr-editor-form-grid">
+
+        <div class="cr-form-group">
+
+            <label for="cr-edit-roster-mobile-fit">
+                IMAGE FIT
+            </label>
+
+            <select id="cr-edit-roster-mobile-fit">
+
+                <option value="cover">
+                    Cover — Fill Frame
+                </option>
+
+                <option value="contain">
+                    Contain — Show Full Image
+                </option>
+
+            </select>
+
+            <small class="cr-field-help">
+                Cover is the normal OWL roster-card setting. Use Contain only when the original image is being cropped too heavily.
+            </small>
+
+        </div>
+
+
+        <div class="cr-form-group">
+
+            <label for="cr-edit-roster-mobile-scale">
+                ZOOM
+            </label>
+
+            <input
+                id="cr-edit-roster-mobile-scale"
+                type="number"
+                min="0.75"
+                max="1.50"
+                step="0.05"
+                value="1"
+            >
+
+            <small class="cr-field-help">
+                1 is normal size. Lower values zoom out; higher values zoom in.
+            </small>
+
+        </div>
+
+
+        <div class="cr-form-group">
+
+            <label for="cr-edit-roster-mobile-x">
+                HORIZONTAL POSITION
+            </label>
+
+            <input
+                id="cr-edit-roster-mobile-x"
+                type="number"
+                min="0"
+                max="100"
+                step="1"
+                value="50"
+            >
+
+            <small class="cr-field-help">
+                0 moves the portrait left, 50 centers it, and 100 moves it right.
+            </small>
+
+        </div>
+
+
+        <div class="cr-form-group">
+
+            <label for="cr-edit-roster-mobile-y">
+                VERTICAL POSITION
+            </label>
+
+            <input
+                id="cr-edit-roster-mobile-y"
+                type="number"
+                min="0"
+                max="100"
+                step="1"
+                value="0"
+            >
+
+            <small class="cr-field-help">
+                0 anchors the portrait at the top. Higher values move the visible crop downward.
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
 
             <div id="cr-wrestler-change-preview" class="cr-change-preview" hidden>
                 <span>REVIEW CHANGES</span>
