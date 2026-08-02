@@ -653,8 +653,12 @@
     "faction": "Los Ingobernables: Plata o Plomo",
     "factionId": "los-ingobernables-plata-o-plomo",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "rosterMobileFit": "contain",
+    "rosterMobileScale": 1.5,
+    "rosterMobileX": 60,
+    "rosterMobileY": 6
+},
   {
     "id": "finn-balor",
     "name": "Finn Balor",
@@ -679,8 +683,9 @@
     "faction": "",
     "factionId": "",
     "championshipsHeld": [],
-    "awards": []
-  },
+    "awards": [],
+    "rosterMobileY": 8
+},
   {
     "id": "yoshiki-inamura",
     "name": "Yoshiki Inamura",
