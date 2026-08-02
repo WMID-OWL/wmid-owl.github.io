@@ -111,12 +111,19 @@ const crAccountFields = {
 
     handle:
 
-        document.getElementById(
-            "cr-account-handle"
-        ),
+    document.getElementById(
+        "cr-account-handle"
+    ),
 
 
-    status:
+profileImage:
+
+    document.getElementById(
+        "cr-account-profile-image"
+    ),
+
+
+status:
 
         document.getElementById(
             "cr-account-account-status"
@@ -188,10 +195,14 @@ const crAccountLabels = {
 
 
     handle:
-        "Handle",
+    "Handle",
 
 
-    status:
+profileImage:
+    "Profile Picture",
+
+
+status:
         "Status",
 
 
@@ -456,7 +467,86 @@ function crAccountValueText(
     );
 
 }
+// =================================
+// ACCOUNT AVATAR
+// =================================
 
+
+function crAccountInitials(
+    account
+) {
+
+
+    const source =
+
+        String(
+
+            account?.accountName
+
+            ||
+
+            account?.handle
+
+            ||
+
+            account?.id
+
+            ||
+
+            "IN"
+
+        )
+
+            .replace(
+                /^@/,
+                ""
+            )
+
+            .trim();
+
+
+    const words =
+
+        source
+
+            .split(
+                /\s+/
+            )
+
+            .filter(
+                Boolean
+            );
+
+
+    if (
+        words.length >=
+            2
+    ) {
+
+
+        return (
+
+            words[0][0]
+
+            +
+
+            words[1][0]
+
+        ).toUpperCase();
+
+    }
+
+
+    return source
+
+        .slice(
+            0,
+            2
+        )
+
+        .toUpperCase();
+
+}
 
 
 // =================================
@@ -531,10 +621,18 @@ function crAccountGetFormRecord() {
 
 
         handle:
-            cleanHandle,
+    cleanHandle,
 
 
-        status:
+profileImage:
+
+    crAccountFields
+        .profileImage
+        .value
+        .trim(),
+
+
+status:
 
             crAccountFields
                 .status
@@ -621,11 +719,15 @@ function crAccountClearForm() {
 
 
     crAccountFields.handle.value =
-        "";
+    "";
 
 
-    crAccountFields.status.value =
-        "active";
+crAccountFields.profileImage.value =
+    "";
+
+
+crAccountFields.status.value =
+    "active";
 
 
     crAccountFields.archetype.value =
@@ -1167,7 +1269,8 @@ function crAccountRenderDirectory() {
 
 
                 if (
-                    statusCompare !== 0
+                    statusCompare !==
+                        0
                 ) {
 
 
@@ -1204,6 +1307,20 @@ function crAccountRenderDirectory() {
                     );
 
 
+                const profileImage =
+
+                    String(
+                        account.profileImage || ""
+                    ).trim();
+
+
+                const initials =
+
+                    crAccountInitials(
+                        account
+                    );
+
+
                 const card =
 
                     document.createElement(
@@ -1220,27 +1337,76 @@ function crAccountRenderDirectory() {
 
                     <div class="cr-account-card-top">
 
-                        <div>
 
-                            <strong>
-                                ${crAccountEscapeHtml(
-                                    account.accountName || account.id
-                                )}
-                            </strong>
+                        <div class="cr-account-card-identity">
 
-                            <span>
-                                ${crAccountEscapeHtml(
-                                    account.handle || ""
-                                )}
-                            </span>
+
+                            <div
+                                class="cr-account-avatar ${
+                                    profileImage
+                                        ? "has-profile-image"
+                                        : ""
+                                }"
+                            >
+
+                                <span class="cr-account-avatar-fallback">
+
+                                    ${crAccountEscapeHtml(
+                                        initials
+                                    )}
+
+                                </span>
+
+
+                                ${
+                                    profileImage
+
+                                        ? `
+
+                                            <img
+                                                class="cr-account-avatar-image"
+                                                src="${crAccountEscapeHtml(
+                                                    profileImage
+                                                )}"
+                                                alt=""
+                                                loading="lazy"
+                                                decoding="async"
+                                            >
+
+                                        `
+
+                                        : ""
+                                }
+
+                            </div>
+
+
+                            <div class="cr-account-card-copy">
+
+                                <strong>
+                                    ${crAccountEscapeHtml(
+                                        account.accountName || account.id
+                                    )}
+                                </strong>
+
+                                <span>
+                                    ${crAccountEscapeHtml(
+                                        account.handle || ""
+                                    )}
+                                </span>
+
+                            </div>
+
 
                         </div>
+
 
                         <b class="cr-account-card-status">
 
                             ${status.toUpperCase()}
 
                         </b>
+
 
                     </div>
 
@@ -1266,6 +1432,16 @@ function crAccountRenderDirectory() {
                             ${crAccountEscapeHtml(
                                 account.profanityLevel || "none"
                             )} profanity
+                        </span>
+
+                        <span>
+                            ${
+                                profileImage
+
+                                    ? "Custom profile picture"
+
+                                    : "Automatic initials avatar"
+                            }
                         </span>
 
                     </div>
@@ -1294,6 +1470,53 @@ function crAccountRenderDirectory() {
 
 
     crAccountDirectory
+
+        .querySelectorAll(
+            ".cr-account-avatar-image"
+        )
+
+        .forEach(
+
+            image => {
+
+
+                image.addEventListener(
+
+                    "error",
+
+                    () => {
+
+
+                        const avatar =
+
+                            image.closest(
+                                ".cr-account-avatar"
+                            );
+
+
+                        avatar?.classList.remove(
+                            "has-profile-image"
+                        );
+
+
+                        image.remove();
+
+                    },
+
+                    {
+                        once:
+                            true
+                    }
+
+                );
+
+            }
+
+        );
+
+
+    crAccountDirectory
+
         .querySelectorAll(
             ".cr-account-edit-button"
         )
@@ -1486,14 +1709,23 @@ function crAccountLoadSelected() {
 
     crAccountFields.handle.value =
 
-        account.handle
+    account.handle
 
-        ||
+    ||
 
-        "";
+    "";
 
 
-    crAccountFields.status.value =
+crAccountFields.profileImage.value =
+
+    account.profileImage
+
+    ||
+
+    "";
+
+
+crAccountFields.status.value =
 
         crAccountNormalizeStatus(
             account
@@ -1993,16 +2225,24 @@ function crAccountReview() {
 
                     const oldValue =
 
-                        key === "status"
+    key === "status"
 
-                            ? crAccountNormalizeStatus(
-                                crAccountOriginalRecord
-                            )
+        ? crAccountNormalizeStatus(
+            crAccountOriginalRecord
+        )
 
-                            : crAccountOriginalRecord[
-                                key
-                            ];
+        : key === "profileImage"
 
+            ? crAccountOriginalRecord
+                .profileImage
+
+                ||
+
+                ""
+
+            : crAccountOriginalRecord[
+                key
+            ];
 
                     const newValue =
 
@@ -2255,13 +2495,23 @@ async function crAccountSaveRecord() {
 
 
             if (
-                newAccount.status === "active"
-            ) {
+    newAccount.status === "active"
+) {
 
 
-                delete newAccount.status;
+    delete newAccount.status;
 
-            }
+}
+
+
+if (
+    !newAccount.profileImage
+) {
+
+
+    delete newAccount.profileImage;
+
+}
 
 
 
@@ -2333,15 +2583,27 @@ async function crAccountSaveRecord() {
 
 
             if (
-                record.status === "active"
-            ) {
+    record.status === "active"
+) {
 
 
-                delete updatedAccounts[
-                    existingIndex
-                ].status;
+    delete updatedAccounts[
+        existingIndex
+    ].status;
 
-            }
+}
+
+
+if (
+    !record.profileImage
+) {
+
+
+    delete updatedAccounts[
+        existingIndex
+    ].profileImage;
+
+}
 
         }
 
