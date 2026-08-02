@@ -12050,3 +12050,209 @@ h2.social-destination-logo-heading {
         font-size: 1.2rem;
     }
 }
+/* =================================
+   INNANET IDENTITY UPGRADE
+================================= */
+
+
+/* LARGER TOP-LEFT APP BRAND */
+
+
+.innanet-app-topbar {
+
+    grid-template-columns:
+
+        280px
+
+        minmax(
+            280px,
+            1fr
+        )
+
+        220px;
+
+    min-height:
+        88px;
+
+    padding:
+        0 24px;
+
+}
+
+
+.innanet-wordmark {
+
+    min-width:
+        0;
+
+}
+
+
+.innanet-topbar-logo {
+
+    display:
+        block;
+
+    width:
+        190px;
+
+    height:
+        58px;
+
+    max-width:
+        100%;
+
+    object-fit:
+        contain;
+
+    object-position:
+        left center;
+
+}
+
+
+/* POST PROFILE PICTURES */
+
+
+.innanet-avatar {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    isolation:
+        isolate;
+
+}
+
+
+.innanet-avatar-fallback {
+
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    display:
+        grid;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    place-items:
+        center;
+
+    transition:
+        opacity 0.15s ease;
+
+}
+
+
+.innanet-avatar-image {
+
+    position:
+        absolute;
+
+    z-index:
+        2;
+
+    inset:
+        0;
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+
+}
+
+
+.innanet-avatar.has-profile-image
+.innanet-avatar-fallback {
+
+    opacity:
+        0;
+
+}
+
+
+@media (
+    max-width:
+        1120px
+) {
+
+    .innanet-app-topbar {
+
+        grid-template-columns:
+
+            250px
+
+            minmax(
+                220px,
+                1fr
+            )
+
+            150px;
+
+    }
+
+
+    .innanet-topbar-logo {
+
+        width:
+            175px;
+
+        height:
+            54px;
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        760px
+) {
+
+    .innanet-app-topbar {
+
+        grid-template-columns:
+            1fr auto;
+
+        min-height:
+            70px;
+
+        padding:
+            0 16px;
+
+    }
+
+
+    .innanet-topbar-logo {
+
+        width:
+            155px;
+
+        height:
+            47px;
+
+    }
+
+}
