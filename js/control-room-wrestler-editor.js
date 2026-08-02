@@ -94,7 +94,7 @@ const crEditorFields = {
             "cr-edit-name"
         ),
 
-        nickname:
+    nickname:
         document.getElementById(
             "cr-edit-nickname"
         ),
@@ -134,7 +134,7 @@ const crEditorFields = {
             "cr-edit-division"
         ),
 
-        finisher:
+    finisher:
         document.getElementById(
             "cr-edit-finisher"
         ),
@@ -152,6 +152,26 @@ const crEditorFields = {
     photo:
         document.getElementById(
             "cr-edit-photo"
+        ),
+
+    rosterMobileFit:
+        document.getElementById(
+            "cr-edit-roster-mobile-fit"
+        ),
+
+    rosterMobileScale:
+        document.getElementById(
+            "cr-edit-roster-mobile-scale"
+        ),
+
+    rosterMobileX:
+        document.getElementById(
+            "cr-edit-roster-mobile-x"
+        ),
+
+    rosterMobileY:
+        document.getElementById(
+            "cr-edit-roster-mobile-y"
         )
 
 };
@@ -168,7 +188,7 @@ const crEditorFieldLabels = {
     name:
         "Name",
 
-       nickname:
+    nickname:
         "Nickname",
 
     manager:
@@ -192,7 +212,7 @@ const crEditorFieldLabels = {
     division:
         "Division",
 
-        finisher:
+    finisher:
         "Finisher",
 
     finisher2:
@@ -202,7 +222,19 @@ const crEditorFieldLabels = {
         "Why I'm Here",
 
     photo:
-        "Photo Path"
+        "Photo Path",
+
+    rosterMobileFit:
+        "Mobile Image Fit",
+
+    rosterMobileScale:
+        "Mobile Zoom",
+
+    rosterMobileX:
+        "Mobile Horizontal Position",
+
+    rosterMobileY:
+        "Mobile Vertical Position"
 
 };
 
@@ -347,7 +379,6 @@ function crEditorCreateSlug(
         .replace(
             /^-+|-+$/g,
             ""
-
         );
 
 }
@@ -359,6 +390,139 @@ function crEditorCreateSlug(
 // =================================
 
 
+function crEditorClampNumber(
+    value,
+    minimum,
+    maximum,
+    fallback
+) {
+
+
+    if (
+        value === ""
+
+        ||
+
+        value === null
+
+        ||
+
+        value === undefined
+    ) {
+
+
+        return fallback;
+
+    }
+
+
+    const numberValue =
+        Number(
+            value
+        );
+
+
+    if (
+        !Number.isFinite(
+            numberValue
+        )
+    ) {
+
+
+        return fallback;
+
+    }
+
+
+    return Math.min(
+
+        maximum,
+
+        Math.max(
+            minimum,
+            numberValue
+        )
+
+    );
+
+}
+
+
+
+function crEditorNormalizeMobileFit(
+    value
+) {
+
+
+    return (
+
+        value === "contain"
+
+            ? "contain"
+
+            : "cover"
+
+    );
+
+}
+
+
+
+function crEditorNormalizeMobileScale(
+    value
+) {
+
+
+    const scale =
+        crEditorClampNumber(
+
+            value,
+            0.75,
+            1.5,
+            1
+
+        );
+
+
+    return (
+
+        Math.round(
+            scale * 100
+        )
+
+        /
+
+        100
+
+    );
+
+}
+
+
+
+function crEditorNormalizeMobilePosition(
+    value,
+    fallback
+) {
+
+
+    return Math.round(
+
+        crEditorClampNumber(
+
+            value,
+            0,
+            100,
+            fallback
+
+        )
+
+    );
+
+}
+
+
+
 function crEditorGetFormRecord() {
 
 
@@ -367,7 +531,7 @@ function crEditorGetFormRecord() {
         name:
             crEditorFields.name.value.trim(),
 
-               nickname:
+        nickname:
             crEditorFields.nickname.value.trim(),
 
         manager:
@@ -393,7 +557,7 @@ function crEditorGetFormRecord() {
         division:
             crEditorFields.division.value,
 
-                finisher:
+        finisher:
             crEditorFields.finisher.value.trim(),
 
         finisher2:
@@ -403,7 +567,29 @@ function crEditorGetFormRecord() {
             crEditorFields.whyImHere.value.trim(),
 
         photo:
-            crEditorFields.photo.value.trim()
+            crEditorFields.photo.value.trim(),
+
+        rosterMobileFit:
+            crEditorNormalizeMobileFit(
+                crEditorFields.rosterMobileFit.value
+            ),
+
+        rosterMobileScale:
+            crEditorNormalizeMobileScale(
+                crEditorFields.rosterMobileScale.value
+            ),
+
+        rosterMobileX:
+            crEditorNormalizeMobilePosition(
+                crEditorFields.rosterMobileX.value,
+                50
+            ),
+
+        rosterMobileY:
+            crEditorNormalizeMobilePosition(
+                crEditorFields.rosterMobileY.value,
+                0
+            )
 
     };
 
@@ -421,7 +607,7 @@ function crEditorGetEditableRecord(
         name:
             wrestler.name || "",
 
-                nickname:
+        nickname:
             wrestler.nickname || "",
 
         manager:
@@ -445,7 +631,7 @@ function crEditorGetEditableRecord(
         division:
             wrestler.division || "",
 
-                finisher:
+        finisher:
             wrestler.finisher || "",
 
         finisher2:
@@ -455,7 +641,29 @@ function crEditorGetEditableRecord(
             wrestler.whyImHere || "",
 
         photo:
-            wrestler.photo || ""
+            wrestler.photo || "",
+
+        rosterMobileFit:
+            crEditorNormalizeMobileFit(
+                wrestler.rosterMobileFit
+            ),
+
+        rosterMobileScale:
+            crEditorNormalizeMobileScale(
+                wrestler.rosterMobileScale
+            ),
+
+        rosterMobileX:
+            crEditorNormalizeMobilePosition(
+                wrestler.rosterMobileX,
+                50
+            ),
+
+        rosterMobileY:
+            crEditorNormalizeMobilePosition(
+                wrestler.rosterMobileY,
+                0
+            )
 
     };
 
@@ -472,7 +680,7 @@ function crEditorFillForm(
         record.name || "";
 
 
-        crEditorFields.nickname.value =
+    crEditorFields.nickname.value =
         record.nickname || "";
 
 
@@ -504,7 +712,7 @@ function crEditorFillForm(
         record.division || "";
 
 
-        crEditorFields.finisher.value =
+    crEditorFields.finisher.value =
         record.finisher || "";
 
 
@@ -518,6 +726,38 @@ function crEditorFillForm(
 
     crEditorFields.photo.value =
         record.photo || "";
+
+
+    crEditorFields.rosterMobileFit.value =
+        crEditorNormalizeMobileFit(
+            record.rosterMobileFit
+        );
+
+
+    crEditorFields.rosterMobileScale.value =
+        String(
+            crEditorNormalizeMobileScale(
+                record.rosterMobileScale
+            )
+        );
+
+
+    crEditorFields.rosterMobileX.value =
+        String(
+            crEditorNormalizeMobilePosition(
+                record.rosterMobileX,
+                50
+            )
+        );
+
+
+    crEditorFields.rosterMobileY.value =
+        String(
+            crEditorNormalizeMobilePosition(
+                record.rosterMobileY,
+                0
+            )
+        );
 
 }
 
@@ -536,7 +776,7 @@ function crEditorClearForm() {
         name:
             "",
 
-                nickname:
+        nickname:
             "",
 
         manager:
@@ -560,7 +800,7 @@ function crEditorClearForm() {
         division:
             "",
 
-                finisher:
+        finisher:
             "",
 
         finisher2:
@@ -570,7 +810,19 @@ function crEditorClearForm() {
             "",
 
         photo:
-            ""
+            "",
+
+        rosterMobileFit:
+            "cover",
+
+        rosterMobileScale:
+            1,
+
+        rosterMobileX:
+            50,
+
+        rosterMobileY:
+            0
 
     });
 
@@ -1556,11 +1808,11 @@ function crEditorFindWrestlerObjectBounds(
 
 
 // =================================
-// REPLACE STRING FIELD
+// REPLACE PRIMITIVE FIELD
 // =================================
 
 
-function crEditorReplaceStringField(
+function crEditorReplacePrimitiveField(
     block,
     key,
     value
@@ -1577,7 +1829,7 @@ function crEditorReplaceStringField(
     const pattern =
         new RegExp(
 
-            `("${escapedKey}"\\s*:\\s*)("(?:\\\\.|[^"\\\\])*")`
+            String.raw`("${escapedKey}"\s*:\s*)("(?:\\.|[^"\\])*"|-?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?|true|false|null)`
 
         );
 
@@ -1848,7 +2100,7 @@ async function crEditorWriteExistingWrestler(
 
 
             wrestlerBlock =
-                crEditorReplaceStringField(
+                crEditorReplacePrimitiveField(
 
                     wrestlerBlock,
 
@@ -1919,7 +2171,7 @@ function crEditorBuildNewWrestler() {
         name:
             form.name,
 
-                nickname:
+        nickname:
             form.nickname,
 
         manager:
@@ -1946,10 +2198,22 @@ function crEditorBuildNewWrestler() {
         photo:
             form.photo,
 
+        rosterMobileFit:
+            form.rosterMobileFit,
+
+        rosterMobileScale:
+            form.rosterMobileScale,
+
+        rosterMobileX:
+            form.rosterMobileX,
+
+        rosterMobileY:
+            form.rosterMobileY,
+
         currentTitle:
             "",
 
-                finisher:
+        finisher:
             form.finisher,
 
         finisher2:
