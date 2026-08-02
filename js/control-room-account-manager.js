@@ -4,11 +4,6 @@
 // =================================
 
 
-// =================================
-// ELEMENTS
-// =================================
-
-
 const crAccountStatus =
     document.getElementById(
         "cr-account-status"
@@ -81,6 +76,12 @@ const crAccountError =
     );
 
 
+const crAccountUploadProfileImage =
+    document.getElementById(
+        "cr-account-upload-profile-image"
+    );
+
+
 const crAccountSave =
     document.getElementById(
         "cr-account-save"
@@ -93,93 +94,67 @@ const crAccountMessage =
     );
 
 
-
 // =================================
 // FORM FIELDS
 // =================================
 
 
 const crAccountFields = {
-
-
     accountName:
-
         document.getElementById(
             "cr-account-name"
         ),
 
-
     handle:
+        document.getElementById(
+            "cr-account-handle"
+        ),
 
-    document.getElementById(
-        "cr-account-handle"
-    ),
+    profileImage:
+        document.getElementById(
+            "cr-account-profile-image"
+        ),
 
-
-profileImage:
-
-    document.getElementById(
-        "cr-account-profile-image"
-    ),
-
-
-status:
-
+    status:
         document.getElementById(
             "cr-account-account-status"
         ),
 
-
     archetype:
-
         document.getElementById(
             "cr-account-archetype"
         ),
 
-
     tone:
-
         document.getElementById(
             "cr-account-tone"
         ),
 
-
     focus:
-
         document.getElementById(
             "cr-account-focus"
         ),
 
-
     profanityLevel:
-
         document.getElementById(
             "cr-account-profanity"
         ),
 
-
     frequency:
-
         document.getElementById(
             "cr-account-frequency"
         ),
 
-
     replyStyle:
-
         document.getElementById(
             "cr-account-reply-style"
         ),
 
-
     factDiscipline:
-
         document.getElementById(
             "cr-account-fact-discipline"
         )
-
 };
-
 
 
 // =================================
@@ -188,53 +163,39 @@ status:
 
 
 const crAccountLabels = {
-
-
     accountName:
         "Display Name",
 
-
     handle:
-    "Handle",
+        "Handle",
 
+    profileImage:
+        "Profile Picture",
 
-profileImage:
-    "Profile Picture",
-
-
-status:
+    status:
         "Status",
-
 
     archetype:
         "Archetype",
 
-
     tone:
         "Tone",
-
 
     focus:
         "Focus Areas",
 
-
     profanityLevel:
         "Profanity Level",
-
 
     frequency:
         "Posting Frequency",
 
-
     replyStyle:
         "Reply Style",
 
-
     factDiscipline:
         "Fact Discipline"
-
 };
-
 
 
 // =================================
@@ -250,11 +211,6 @@ let crAccountOriginalRecord =
     null;
 
 
-// EXACT FILE STATE WHEN THE MANAGER FIRST LOADS.
-// THIS LETS A FULL REVERT RESTORE THE ORIGINAL FILE
-// BYTE-FOR-BYTE INSTEAD OF LEAVING FORMATTING CHANGES.
-
-
 let crAccountBaselineRecords =
     [];
 
@@ -263,256 +219,165 @@ let crAccountBaselineText =
     "";
 
 
-
 // =================================
-// BASIC HELPERS
+// HELPERS
 // =================================
 
 
 function crAccountNormalizeStatus(
     account
 ) {
-
-
     return String(
-
-        account?.status
-
-        ||
-
-        "active"
-
+        account?.status || "active"
     )
         .trim()
-        .toLowerCase()
-
-        ===
-
+        .toLowerCase() ===
         "retired"
-
-        ? "retired"
-
-        : "active";
-
+            ? "retired"
+            : "active";
 }
-
 
 
 function crAccountSetStatus(
     text
 ) {
-
-
     if (
         crAccountStatus
     ) {
-
-
         crAccountStatus.textContent =
             text;
-
     }
-
 }
-
 
 
 function crAccountShowMessage(
     message,
     type
 ) {
-
-
     crAccountMessage.textContent =
         message;
 
 
     crAccountMessage.className =
-
         `cr-save-message ${type}`;
 
 
     crAccountMessage.hidden =
         false;
-
 }
 
 
-
 function crAccountHideMessage() {
-
-
     crAccountMessage.textContent =
         "";
 
 
     crAccountMessage.hidden =
         true;
-
 }
-
 
 
 function crAccountCreateId(
     value
 ) {
-
-
     return String(
-
         value || ""
-
     )
-
         .replace(
             /^@/,
             ""
         )
-
         .normalize(
             "NFD"
         )
-
         .replace(
             /[\u0300-\u036f]/g,
             ""
         )
-
         .toLowerCase()
-
         .replace(
             /[^a-z0-9]+/g,
             ""
         )
-
         .slice(
             0,
             40
         );
-
 }
-
 
 
 function crAccountParseFocus(
     value
 ) {
-
-
     return String(
-
         value || ""
-
     )
-
         .split(
             /[\n,]+/
         )
-
         .map(
-
             item =>
                 item.trim()
-
         )
-
         .filter(
             Boolean
         );
-
 }
-
 
 
 function crAccountFormatFocus(
     focus
 ) {
-
-
     return Array.isArray(
         focus
     )
-
         ? focus.join(
             ", "
         )
-
         : "";
-
 }
-
 
 
 function crAccountValueText(
     value
 ) {
-
-
-    if (
-        Array.isArray(
-            value
-        )
-    ) {
-
-
-        return value.join(
+    return Array.isArray(
+        value
+    )
+        ? value.join(
             ", "
+        )
+        : String(
+            value ?? ""
         );
-
-    }
-
-
-    return String(
-        value ?? ""
-    );
-
 }
-// =================================
-// ACCOUNT AVATAR
-// =================================
 
 
 function crAccountInitials(
     account
 ) {
-
-
     const source =
-
         String(
-
             account?.accountName
-
             ||
-
             account?.handle
-
             ||
-
             account?.id
-
             ||
-
             "IN"
-
         )
-
             .replace(
                 /^@/,
                 ""
             )
-
             .trim();
 
 
     const words =
-
         source
-
             .split(
                 /\s+/
             )
-
             .filter(
                 Boolean
             );
@@ -522,30 +387,46 @@ function crAccountInitials(
         words.length >=
             2
     ) {
-
-
-        return (
-
-            words[0][0]
-
-            +
-
-            words[1][0]
-
-        ).toUpperCase();
-
+        return `${words[0][0]}${words[1][0]}`
+            .toUpperCase();
     }
 
 
     return source
-
         .slice(
             0,
             2
         )
-
         .toUpperCase();
+}
 
+
+function crAccountEscapeHtml(
+    value
+) {
+    return String(
+        value || ""
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 }
 
 
@@ -555,10 +436,7 @@ function crAccountInitials(
 
 
 function crAccountGetFormRecord() {
-
-
     const handleValue =
-
         crAccountFields
             .handle
             .value
@@ -566,140 +444,100 @@ function crAccountGetFormRecord() {
 
 
     const cleanHandle =
-
         handleValue
-
             ? handleValue.startsWith(
                 "@"
             )
-
                 ? handleValue
-
                 : `@${handleValue}`
-
             : "";
 
 
     const idSource =
-
         cleanHandle
-
         ||
-
         crAccountFields
             .accountName
             .value;
 
 
     const id =
-
-        crAccountMode.value === "edit"
-
+        crAccountMode.value ===
+            "edit"
             ? crAccountOriginalRecord?.id
-
                 ||
-
                 ""
-
             : crAccountCreateId(
                 idSource
             );
 
 
     return {
-
-
         id,
 
-
         accountName:
-
             crAccountFields
                 .accountName
                 .value
                 .trim(),
 
-
         handle:
-    cleanHandle,
+            cleanHandle,
 
+        profileImage:
+            crAccountFields
+                .profileImage
+                .value
+                .trim(),
 
-profileImage:
-
-    crAccountFields
-        .profileImage
-        .value
-        .trim(),
-
-
-status:
-
+        status:
             crAccountFields
                 .status
                 .value,
 
-
         archetype:
-
             crAccountFields
                 .archetype
                 .value
                 .trim(),
 
-
         tone:
-
             crAccountFields
                 .tone
                 .value
                 .trim(),
 
-
         focus:
-
             crAccountParseFocus(
-
                 crAccountFields
                     .focus
                     .value
-
             ),
 
-
         profanityLevel:
-
             crAccountFields
                 .profanityLevel
                 .value,
 
-
         factDiscipline:
-
             crAccountFields
                 .factDiscipline
                 .value
                 .trim(),
 
-
         replyStyle:
-
             crAccountFields
                 .replyStyle
                 .value
                 .trim(),
 
-
         frequency:
-
             crAccountFields
                 .frequency
                 .value
                 .trim()
-
     };
-
 }
-
 
 
 // =================================
@@ -708,8 +546,6 @@ status:
 
 
 function crAccountClearForm() {
-
-
     crAccountOriginalRecord =
         null;
 
@@ -719,15 +555,15 @@ function crAccountClearForm() {
 
 
     crAccountFields.handle.value =
-    "";
+        "";
 
 
-crAccountFields.profileImage.value =
-    "";
+    crAccountFields.profileImage.value =
+        "";
 
 
-crAccountFields.status.value =
-    "active";
+    crAccountFields.status.value =
+        "active";
 
 
     crAccountFields.archetype.value =
@@ -773,8 +609,14 @@ crAccountFields.status.value =
     crAccountSave.disabled =
         true;
 
-}
 
+    if (
+        crAccountUploadProfileImage
+    ) {
+        crAccountUploadProfileImage.disabled =
+            true;
+    }
+}
 
 
 // =================================
@@ -783,63 +625,42 @@ crAccountFields.status.value =
 
 
 async function crAccountEnsureWritePermission() {
-
-
     if (
         !owlRepositoryHandle
     ) {
-
-
         return false;
-
     }
 
 
     const options = {
-
         mode:
             "readwrite"
-
     };
 
 
     if (
-        await owlRepositoryHandle.queryPermission(
-            options
-        )
-
-        ===
-
-        "granted"
+        await owlRepositoryHandle
+            .queryPermission(
+                options
+            ) ===
+            "granted"
     ) {
-
-
         return true;
-
     }
 
 
     return (
-
-        await owlRepositoryHandle.requestPermission(
-            options
-        )
-
-        ===
-
+        await owlRepositoryHandle
+            .requestPermission(
+                options
+            ) ===
         "granted"
-
     );
-
 }
 
 
-
 async function crAccountGetFileHandle() {
-
-
     const dataDirectory =
-
         await owlRepositoryHandle
             .getDirectoryHandle(
                 "data"
@@ -847,117 +668,100 @@ async function crAccountGetFileHandle() {
 
 
     const innanetDirectory =
-
         await dataDirectory
             .getDirectoryHandle(
                 "innanet"
             );
 
 
-    return await innanetDirectory
+    return innanetDirectory
         .getFileHandle(
             "accounts.json"
         );
-
 }
 
 
-
 async function crAccountReadFile() {
-
-
     const fileHandle =
-
         await crAccountGetFileHandle();
 
 
     const file =
-
-        await fileHandle
-            .getFile();
+        await fileHandle.getFile();
 
 
     const text =
-
         await file.text();
 
 
     return {
-
         fileHandle,
-
         text,
 
         accounts:
-
             JSON.parse(
                 text
             )
-
     };
-
 }
-
 
 
 async function crAccountWriteFile(
     fileHandle,
     accounts
 ) {
-
-
     const writable =
-
         await fileHandle
             .createWritable();
 
 
-
     const matchesOriginalState =
-
         JSON.stringify(
             accounts
-        )
-
-        ===
-
+        ) ===
         JSON.stringify(
             crAccountBaselineRecords
         );
 
 
-
     const outputText =
-
         matchesOriginalState
-
         &&
-
         crAccountBaselineText
-
             ? crAccountBaselineText
-
             : `${JSON.stringify(
-
                 accounts,
-
                 null,
-
                 2
-
             )}\n`;
 
 
+    try {
+        await writable.write(
+            outputText
+        );
 
-    await writable.write(
-        outputText
-    );
+
+        await writable.close();
+    }
 
 
-    await writable.close();
+    catch (
+        error
+    ) {
+        try {
+            await writable.abort();
+        }
 
+
+        catch {
+            // No additional action required.
+        }
+
+
+        throw error;
+    }
 }
-
 
 
 // =================================
@@ -966,78 +770,74 @@ async function crAccountWriteFile(
 
 
 async function crAccountLoadRecords() {
-
-
     if (
         !owlRepositoryHandle
     ) {
-
-
         return;
-
     }
 
 
     try {
-
-
         crAccountSetStatus(
             "LOADING"
         );
 
 
         const file =
-
             await crAccountReadFile();
 
 
-                crAccountRecords =
-
+        crAccountRecords =
             Array.isArray(
                 file.accounts
             )
-
                 ? file.accounts
-
                 : [];
 
 
-
         crAccountBaselineRecords =
-
             structuredClone(
                 crAccountRecords
             );
 
 
-
         crAccountBaselineText =
-
             file.text;
-
 
 
         crAccountRenderAll();
 
 
-        crAccountSetStatus(
-            "READY"
-        );
+        if (
+            crAccountMode.value ===
+                "edit"
+            &&
+            crAccountSelect.value
+            &&
+            crAccountRecords.some(
+                account =>
+                    account.id ===
+                    crAccountSelect.value
+            )
+        ) {
+            crAccountLoadSelected();
+        }
 
+
+        else {
+            crAccountSetStatus(
+                "READY"
+            );
+        }
     }
 
 
     catch (
         error
     ) {
-
-
         console.error(
-
             "Could not load Innanet accounts:",
-
             error
-
         );
 
 
@@ -1047,21 +847,13 @@ async function crAccountLoadRecords() {
 
 
         crAccountShowMessage(
-
             error.message
-
             ||
-
             "Could not load data/innanet/accounts.json.",
-
             "save-error"
-
         );
-
     }
-
 }
-
 
 
 // =================================
@@ -1070,56 +862,35 @@ async function crAccountLoadRecords() {
 
 
 function crAccountRenderCounts() {
-
-
     const activeCount =
-
         crAccountRecords.filter(
-
             account =>
-
                 crAccountNormalizeStatus(
                     account
-                )
-
-                ===
-
+                ) ===
                 "active"
-
         ).length;
 
 
-    const retiredCount =
-
-        crAccountRecords.length
-
-        -
-
-        activeCount;
-
-
     crAccountTotalCount.textContent =
-
         String(
             crAccountRecords.length
         );
 
 
     crAccountActiveCount.textContent =
-
         String(
             activeCount
         );
 
 
     crAccountRetiredCount.textContent =
-
         String(
-            retiredCount
+            crAccountRecords.length
+            -
+            activeCount
         );
-
 }
-
 
 
 // =================================
@@ -1128,48 +899,33 @@ function crAccountRenderCounts() {
 
 
 function crAccountPopulateSelect() {
-
-
     const selectedValue =
-
         crAccountSelect.value;
 
 
     crAccountSelect.innerHTML =
-
         `<option value="">Select Account</option>`;
 
 
-    [...crAccountRecords]
-
+    [
+        ...crAccountRecords
+    ]
         .sort(
-
             (
                 a,
                 b
             ) =>
-
                 String(
                     a.accountName || ""
-                )
-
-                    .localeCompare(
-
-                        String(
-                            b.accountName || ""
-                        )
-
+                ).localeCompare(
+                    String(
+                        b.accountName || ""
                     )
-
+                )
         )
-
         .forEach(
-
             account => {
-
-
                 const option =
-
                     document.createElement(
                         "option"
                     );
@@ -1180,38 +936,27 @@ function crAccountPopulateSelect() {
 
 
                 option.textContent =
-
                     `${account.accountName} — ${account.handle}`;
 
 
                 crAccountSelect.appendChild(
                     option
                 );
-
             }
-
         );
 
 
     if (
         crAccountRecords.some(
-
             account =>
-
                 account.id ===
-                    selectedValue
-
+                selectedValue
         )
     ) {
-
-
         crAccountSelect.value =
             selectedValue;
-
     }
-
 }
-
 
 
 // =================================
@@ -1220,8 +965,6 @@ function crAccountPopulateSelect() {
 
 
 function crAccountRenderDirectory() {
-
-
     crAccountDirectory.innerHTML =
         "";
 
@@ -1229,117 +972,80 @@ function crAccountRenderDirectory() {
     if (
         !crAccountRecords.length
     ) {
-
-
-        crAccountDirectory.innerHTML =
-
-            `<p class="cr-account-directory-empty">
+        crAccountDirectory.innerHTML = `
+            <p class="cr-account-directory-empty">
                 No Innanet accounts found.
-            </p>`;
+            </p>
+        `;
 
 
         return;
-
     }
 
 
-    [...crAccountRecords]
-
+    [
+        ...crAccountRecords
+    ]
         .sort(
-
             (
                 a,
                 b
             ) => {
-
-
                 const statusCompare =
-
                     crAccountNormalizeStatus(
                         a
-                    )
-
-                        .localeCompare(
-
-                            crAccountNormalizeStatus(
-                                b
-                            )
-
-                        );
+                    ).localeCompare(
+                        crAccountNormalizeStatus(
+                            b
+                        )
+                    );
 
 
-                if (
-                    statusCompare !==
-                        0
-                ) {
-
-
-                    return statusCompare;
-
-                }
-
-
-                return String(
-
+                return statusCompare
+                ||
+                String(
                     a.accountName || ""
-
                 ).localeCompare(
-
                     String(
                         b.accountName || ""
                     )
-
                 );
-
             }
-
         )
-
         .forEach(
-
             account => {
-
-
                 const status =
-
                     crAccountNormalizeStatus(
                         account
                     );
 
 
                 const profileImage =
-
                     String(
                         account.profileImage || ""
                     ).trim();
 
 
                 const initials =
-
                     crAccountInitials(
                         account
                     );
 
 
                 const card =
-
                     document.createElement(
                         "article"
                     );
 
 
                 card.className =
-
                     `cr-account-card cr-account-card-${status}`;
 
 
                 card.innerHTML = `
-
                     <div class="cr-account-card-top">
 
-
                         <div class="cr-account-card-identity">
-
 
                             <div
                                 class="cr-account-avatar ${
@@ -1350,19 +1056,14 @@ function crAccountRenderDirectory() {
                             >
 
                                 <span class="cr-account-avatar-fallback">
-
                                     ${crAccountEscapeHtml(
                                         initials
                                     )}
-
                                 </span>
-
 
                                 ${
                                     profileImage
-
                                         ? `
-
                                             <img
                                                 class="cr-account-avatar-image"
                                                 src="${crAccountEscapeHtml(
@@ -1372,20 +1073,19 @@ function crAccountRenderDirectory() {
                                                 loading="lazy"
                                                 decoding="async"
                                             >
-
                                         `
-
                                         : ""
                                 }
 
                             </div>
 
-
                             <div class="cr-account-card-copy">
 
                                 <strong>
                                     ${crAccountEscapeHtml(
-                                        account.accountName || account.id
+                                        account.accountName
+                                        ||
+                                        account.id
                                     )}
                                 </strong>
 
@@ -1397,55 +1097,49 @@ function crAccountRenderDirectory() {
 
                             </div>
 
-
                         </div>
 
-
                         <b class="cr-account-card-status">
-
                             ${status.toUpperCase()}
-
                         </b>
-
 
                     </div>
 
-
                     <p class="cr-account-card-archetype">
-
                         ${crAccountEscapeHtml(
-                            account.archetype || "No archetype"
+                            account.archetype
+                            ||
+                            "No archetype"
                         )}
-
                     </p>
-
 
                     <div class="cr-account-card-meta">
 
                         <span>
                             ${crAccountEscapeHtml(
-                                account.frequency || "Unspecified frequency"
+                                account.frequency
+                                ||
+                                "Unspecified frequency"
                             )}
                         </span>
 
                         <span>
                             ${crAccountEscapeHtml(
-                                account.profanityLevel || "none"
+                                account.profanityLevel
+                                ||
+                                "none"
                             )} profanity
                         </span>
 
                         <span>
                             ${
                                 profileImage
-
                                     ? "Custom profile picture"
-
                                     : "Automatic initials avatar"
                             }
                         </span>
 
                     </div>
-
 
                     <button
                         type="button"
@@ -1456,83 +1150,52 @@ function crAccountRenderDirectory() {
                     >
                         Edit Account
                     </button>
-
                 `;
 
 
                 crAccountDirectory.appendChild(
                     card
                 );
-
             }
-
         );
 
 
     crAccountDirectory
-
         .querySelectorAll(
             ".cr-account-avatar-image"
         )
-
         .forEach(
-
             image => {
-
-
                 image.addEventListener(
-
                     "error",
-
                     () => {
-
-
-                        const avatar =
-
-                            image.closest(
-                                ".cr-account-avatar"
-                            );
-
-
-                        avatar?.classList.remove(
+                        image.closest(
+                            ".cr-account-avatar"
+                        )?.classList.remove(
                             "has-profile-image"
                         );
 
 
                         image.remove();
-
                     },
-
                     {
                         once:
                             true
                     }
-
                 );
-
             }
-
         );
 
 
     crAccountDirectory
-
         .querySelectorAll(
             ".cr-account-edit-button"
         )
-
         .forEach(
-
             button => {
-
-
                 button.addEventListener(
-
                     "click",
-
                     () => {
-
-
                         crAccountMode.value =
                             "edit";
 
@@ -1541,78 +1204,24 @@ function crAccountRenderDirectory() {
 
 
                         crAccountSelect.value =
-
-                            button.dataset
-                                .accountId;
+                            button.dataset.accountId;
 
 
                         crAccountLoadSelected();
 
 
-                        crAccountSelect
-                            .scrollIntoView({
+                        crAccountSelect.scrollIntoView({
+                            behavior:
+                                "smooth",
 
-                                behavior:
-                                    "smooth",
-
-                                block:
-                                    "center"
-
-                            });
-
+                            block:
+                                "center"
+                        });
                     }
-
                 );
-
             }
-
         );
-
 }
-
-
-
-// =================================
-// HTML SAFETY
-// =================================
-
-
-function crAccountEscapeHtml(
-    value
-) {
-
-
-    return String(
-        value || ""
-    )
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
 
 
 // =================================
@@ -1621,8 +1230,6 @@ function crAccountEscapeHtml(
 
 
 function crAccountRenderAll() {
-
-
     crAccountRenderCounts();
 
 
@@ -1630,9 +1237,7 @@ function crAccountRenderAll() {
 
 
     crAccountRenderDirectory();
-
 }
-
 
 
 // =================================
@@ -1641,21 +1246,16 @@ function crAccountRenderAll() {
 
 
 function crAccountLoadSelected() {
-
-
     crAccountHideMessage();
 
 
     const accountId =
-
         crAccountSelect.value;
 
 
     if (
         !accountId
     ) {
-
-
         crAccountClearForm();
 
 
@@ -1665,136 +1265,79 @@ function crAccountLoadSelected() {
 
 
         return;
-
     }
 
 
     const account =
-
         crAccountRecords.find(
-
             item =>
-
                 item.id ===
-                    accountId
-
+                accountId
         );
 
 
     if (
         !account
     ) {
-
-
         return;
-
     }
 
 
     crAccountOriginalRecord =
-
         structuredClone(
             account
         );
 
 
     crAccountFields.accountName.value =
-
-        account.accountName
-
-        ||
-
-        "";
+        account.accountName || "";
 
 
     crAccountFields.handle.value =
-
-    account.handle
-
-    ||
-
-    "";
+        account.handle || "";
 
 
-crAccountFields.profileImage.value =
-
-    account.profileImage
-
-    ||
-
-    "";
+    crAccountFields.profileImage.value =
+        account.profileImage || "";
 
 
-crAccountFields.status.value =
-
+    crAccountFields.status.value =
         crAccountNormalizeStatus(
             account
         );
 
 
     crAccountFields.archetype.value =
-
-        account.archetype
-
-        ||
-
-        "";
+        account.archetype || "";
 
 
     crAccountFields.tone.value =
-
-        account.tone
-
-        ||
-
-        "";
+        account.tone || "";
 
 
     crAccountFields.focus.value =
-
         crAccountFormatFocus(
             account.focus
         );
 
 
     crAccountFields.profanityLevel.value =
-
-        account.profanityLevel
-
-        ||
-
-        "none";
+        account.profanityLevel || "none";
 
 
     crAccountFields.frequency.value =
-
-        account.frequency
-
-        ||
-
-        "";
+        account.frequency || "";
 
 
     crAccountFields.replyStyle.value =
-
-        account.replyStyle
-
-        ||
-
-        "";
+        account.replyStyle || "";
 
 
     crAccountFields.factDiscipline.value =
-
-        account.factDiscipline
-
-        ||
-
-        "";
+        account.factDiscipline || "";
 
 
     crAccountIdPreview.textContent =
-
         account.id;
 
 
@@ -1803,10 +1346,16 @@ crAccountFields.status.value =
     );
 
 
+    if (
+        crAccountUploadProfileImage
+    ) {
+        crAccountUploadProfileImage.disabled =
+            false;
+    }
+
+
     crAccountReview();
-
 }
-
 
 
 // =================================
@@ -1815,8 +1364,6 @@ crAccountFields.status.value =
 
 
 function crAccountChangeMode() {
-
-
     crAccountHideMessage();
 
 
@@ -1824,10 +1371,9 @@ function crAccountChangeMode() {
 
 
     if (
-        crAccountMode.value === "create"
+        crAccountMode.value ===
+            "create"
     ) {
-
-
         crAccountSelectRow.hidden =
             true;
 
@@ -1843,13 +1389,10 @@ function crAccountChangeMode() {
         crAccountSetStatus(
             "NEW ACCOUNT"
         );
-
     }
 
 
     else {
-
-
         crAccountSelectRow.hidden =
             false;
 
@@ -1861,14 +1404,11 @@ function crAccountChangeMode() {
         crAccountSetStatus(
             "SELECT ACCOUNT"
         );
-
     }
 
 
     crAccountReview();
-
 }
-
 
 
 // =================================
@@ -1879,8 +1419,6 @@ function crAccountChangeMode() {
 function crAccountValidate(
     record
 ) {
-
-
     const errors =
         [];
 
@@ -1888,179 +1426,132 @@ function crAccountValidate(
     if (
         !record.accountName
     ) {
-
-
         errors.push(
             "Display name is required."
         );
-
     }
 
 
     if (
         !record.handle
     ) {
-
-
         errors.push(
             "Handle is required."
         );
-
     }
 
 
     if (
         !record.id
     ) {
-
-
         errors.push(
             "A database ID could not be created."
         );
-
     }
 
 
     if (
         !record.archetype
     ) {
-
-
         errors.push(
             "Archetype is required."
         );
-
     }
 
 
     if (
         !record.tone
     ) {
-
-
         errors.push(
             "Tone is required."
         );
-
     }
 
 
     if (
-        record.focus.length === 0
+        record.focus.length ===
+            0
     ) {
-
-
         errors.push(
             "Add at least one focus area."
         );
-
     }
 
 
     if (
         !record.factDiscipline
     ) {
-
-
         errors.push(
             "Fact discipline is required."
         );
-
     }
 
 
     if (
         !record.replyStyle
     ) {
-
-
         errors.push(
             "Reply style is required."
         );
-
     }
 
 
     if (
         !record.frequency
     ) {
-
-
         errors.push(
             "Posting frequency is required."
         );
-
     }
 
 
     const duplicateHandle =
-
         crAccountRecords.find(
-
             account =>
-
                 account.id !==
                     crAccountOriginalRecord?.id
-
                 &&
-
                 String(
                     account.handle || ""
                 )
                     .trim()
-                    .toLowerCase()
-
-                ===
-
+                    .toLowerCase() ===
                 record.handle
                     .toLowerCase()
-
         );
 
 
     if (
         duplicateHandle
     ) {
-
-
         errors.push(
             "Another account already uses that handle."
         );
-
     }
 
 
     if (
-        crAccountMode.value === "create"
-
+        crAccountMode.value ===
+            "create"
         &&
-
         crAccountRecords.some(
-
             account =>
-
                 account.id ===
-                    record.id
-
+                record.id
         )
     ) {
-
-
         errors.push(
             "That database ID already exists."
         );
-
     }
 
 
     return errors;
-
 }
 
 
-
 // =================================
-// REVIEW ROW
+// REVIEW
 // =================================
 
 
@@ -2069,10 +1560,7 @@ function crAccountAddReviewRow(
     oldValue,
     newValue
 ) {
-
-
     const row =
-
         document.createElement(
             "div"
         );
@@ -2083,14 +1571,19 @@ function crAccountAddReviewRow(
 
 
     row.innerHTML = `
-
         <strong>
-            ${crAccountEscapeHtml(label)}
+            ${crAccountEscapeHtml(
+                label
+            )}
         </strong>
 
         <span>
             ${crAccountEscapeHtml(
-                crAccountValueText(oldValue) || "Empty"
+                crAccountValueText(
+                    oldValue
+                )
+                ||
+                "Empty"
             )}
         </span>
 
@@ -2100,45 +1593,32 @@ function crAccountAddReviewRow(
 
         <span>
             ${crAccountEscapeHtml(
-                crAccountValueText(newValue) || "Empty"
+                crAccountValueText(
+                    newValue
+                )
+                ||
+                "Empty"
             )}
         </span>
-
     `;
 
 
     crAccountChangeList.appendChild(
         row
     );
-
 }
 
 
-
-// =================================
-// REVIEW
-// =================================
-
-
 function crAccountReview() {
-
-
     const record =
-
         crAccountGetFormRecord();
 
 
     crAccountIdPreview.textContent =
-
-        record.id
-
-        ||
-
-        "—";
+        record.id || "—";
 
 
     const errors =
-
         crAccountValidate(
             record
         );
@@ -2157,154 +1637,107 @@ function crAccountReview() {
 
 
     if (
-        crAccountMode.value === "create"
+        crAccountMode.value ===
+            "create"
     ) {
-
-
         Object.keys(
             crAccountLabels
-        )
+        ).forEach(
+            key => {
+                const value =
+                    record[
+                        key
+                    ];
 
-            .forEach(
 
-                key => {
-
-
-                    const value =
-
-                        record[
+                if (
+                    crAccountValueText(
+                        value
+                    )
+                ) {
+                    crAccountAddReviewRow(
+                        crAccountLabels[
                             key
-                        ];
+                        ],
+                        "",
+                        value
+                    );
 
 
-                    if (
-                        crAccountValueText(
-                            value
-                        )
-                    ) {
-
-
-                        crAccountAddReviewRow(
-
-                            crAccountLabels[
-                                key
-                            ],
-
-                            "",
-
-                            value
-
-                        );
-
-
-                        changeCount +=
-                            1;
-
-                    }
-
+                    changeCount +=
+                        1;
                 }
-
-            );
-
+            }
+        );
     }
 
 
     else if (
         crAccountOriginalRecord
     ) {
-
-
         Object.keys(
             crAccountLabels
-        )
-
-            .forEach(
-
-                key => {
-
-
-                    const oldValue =
-
-    key === "status"
-
-        ? crAccountNormalizeStatus(
-            crAccountOriginalRecord
-        )
-
-        : key === "profileImage"
-
-            ? crAccountOriginalRecord
-                .profileImage
-
-                ||
-
-                ""
-
-            : crAccountOriginalRecord[
-                key
-            ];
-
-                    const newValue =
-
-                        record[
-                            key
-                        ];
-
-
-                    if (
-                        JSON.stringify(
-                            oldValue
+        ).forEach(
+            key => {
+                const oldValue =
+                    key ===
+                        "status"
+                        ? crAccountNormalizeStatus(
+                            crAccountOriginalRecord
                         )
-
-                        !==
-
-                        JSON.stringify(
-                            newValue
-                        )
-                    ) {
-
-
-                        crAccountAddReviewRow(
-
-                            crAccountLabels[
+                        : key ===
+                            "profileImage"
+                            ? crAccountOriginalRecord
+                                .profileImage || ""
+                            : crAccountOriginalRecord[
                                 key
-                            ],
-
-                            oldValue,
-
-                            newValue
-
-                        );
+                            ];
 
 
-                        changeCount +=
-                            1;
+                const newValue =
+                    record[
+                        key
+                    ];
 
-                    }
 
+                if (
+                    JSON.stringify(
+                        oldValue
+                    ) !==
+                    JSON.stringify(
+                        newValue
+                    )
+                ) {
+                    crAccountAddReviewRow(
+                        crAccountLabels[
+                            key
+                        ],
+                        oldValue,
+                        newValue
+                    );
+
+
+                    changeCount +=
+                        1;
                 }
-
-            );
-
+            }
+        );
     }
 
 
     crAccountPreview.hidden =
-
-        changeCount === 0
-
+        changeCount ===
+            0
         &&
-
-        errors.length === 0;
+        errors.length ===
+            0;
 
 
     if (
-        errors.length > 0
+        errors.length >
+            0
     ) {
-
-
         crAccountError.textContent =
-
             errors.join(
                 " "
             );
@@ -2316,54 +1749,41 @@ function crAccountReview() {
 
         crAccountPreview.hidden =
             false;
-
     }
 
 
-    const canSave =
-
-        errors.length === 0
-
-        &&
-
-        changeCount > 0;
-
-
     crAccountSave.disabled =
-        !canSave;
+        !(
+            errors.length ===
+                0
+            &&
+            changeCount >
+                0
+        );
 
 
     if (
-        errors.length > 0
+        errors.length >
+            0
     ) {
-
-
         crAccountSetStatus(
             "CHECK FORM"
         );
-
     }
 
 
     else if (
-        changeCount > 0
+        changeCount >
+            0
     ) {
-
-
         crAccountSetStatus(
-
-            crAccountMode.value === "create"
-
+            crAccountMode.value ===
+                "create"
                 ? "READY TO CREATE"
-
                 : "CHANGES READY"
-
         );
-
     }
-
 }
-
 
 
 // =================================
@@ -2372,8 +1792,6 @@ function crAccountReview() {
 
 
 async function crAccountSaveRecord() {
-
-
     crAccountSave.disabled =
         true;
 
@@ -2387,176 +1805,121 @@ async function crAccountSaveRecord() {
 
 
     try {
-
-
-        const permission =
-
-            await crAccountEnsureWritePermission();
-
-
         if (
-            !permission
+            !await crAccountEnsureWritePermission()
         ) {
-
-
             throw new Error(
-
                 "Write permission was not granted."
-
             );
-
         }
 
 
         const record =
-
             crAccountGetFormRecord();
 
 
         const errors =
-
             crAccountValidate(
                 record
             );
 
 
         if (
-            errors.length > 0
+            errors.length >
+                0
         ) {
-
-
             throw new Error(
-
                 errors.join(
                     " "
                 )
-
             );
-
         }
 
 
         const file =
-
             await crAccountReadFile();
 
 
         const latestAccounts =
-
             Array.isArray(
                 file.accounts
             )
-
                 ? file.accounts
-
                 : [];
+
+
+        const wasCreate =
+            crAccountMode.value ===
+                "create";
 
 
         let updatedAccounts;
 
 
-                if (
-            crAccountMode.value === "create"
+        if (
+            wasCreate
         ) {
-
-
             if (
                 latestAccounts.some(
-
                     account =>
-
                         account.id ===
-                            record.id
-
+                        record.id
                 )
             ) {
-
-
                 throw new Error(
-
                     "That account ID already exists in accounts.json."
-
                 );
-
             }
 
 
-
             const newAccount =
-
                 structuredClone(
                     record
                 );
 
 
-
-            // ACTIVE IS THE DEFAULT STATE.
-            // ONLY RETIRED ACCOUNTS NEED A STORED STATUS FIELD.
+            if (
+                newAccount.status ===
+                    "active"
+            ) {
+                delete newAccount.status;
+            }
 
 
             if (
-    newAccount.status === "active"
-) {
-
-
-    delete newAccount.status;
-
-}
-
-
-if (
-    !newAccount.profileImage
-) {
-
-
-    delete newAccount.profileImage;
-
-}
-
+                !newAccount.profileImage
+            ) {
+                delete newAccount.profileImage;
+            }
 
 
             updatedAccounts = [
-
                 ...latestAccounts,
-
                 newAccount
-
             ];
-
         }
 
 
         else {
-
-
             const existingIndex =
-
                 latestAccounts.findIndex(
-
                     account =>
-
                         account.id ===
-                            crAccountOriginalRecord?.id
-
+                        crAccountOriginalRecord?.id
                 );
 
 
             if (
-                existingIndex === -1
+                existingIndex ===
+                    -1
             ) {
-
-
                 throw new Error(
-
                     "The selected account could not be found in the latest accounts.json file."
-
                 );
-
             }
 
 
             updatedAccounts =
-
                 structuredClone(
                     latestAccounts
                 );
@@ -2565,54 +1928,36 @@ if (
             updatedAccounts[
                 existingIndex
             ] = {
-
-
                 ...updatedAccounts[
                     existingIndex
                 ],
-
-
                 ...record
-
             };
 
 
-
-            // ACTIVE IS THE DEFAULT STATE.
-            // REMOVE THE STATUS FIELD WHEN AN ACCOUNT IS ACTIVE.
+            if (
+                record.status ===
+                    "active"
+            ) {
+                delete updatedAccounts[
+                    existingIndex
+                ].status;
+            }
 
 
             if (
-    record.status === "active"
-) {
-
-
-    delete updatedAccounts[
-        existingIndex
-    ].status;
-
-}
-
-
-if (
-    !record.profileImage
-) {
-
-
-    delete updatedAccounts[
-        existingIndex
-    ].profileImage;
-
-}
-
+                !record.profileImage
+            ) {
+                delete updatedAccounts[
+                    existingIndex
+                ].profileImage;
+            }
         }
 
+
         await crAccountWriteFile(
-
             file.fileHandle,
-
             updatedAccounts
-
         );
 
 
@@ -2642,36 +1987,25 @@ if (
 
 
         crAccountShowMessage(
-
-            crAccountMode.value === "edit"
-
-                ? "Account saved locally. Review data/innanet/accounts.json in GitHub Desktop before committing."
-
-                : "Account created locally. Review data/innanet/accounts.json in GitHub Desktop before committing.",
-
+            wasCreate
+                ? "Account created locally. Review data/innanet/accounts.json in GitHub Desktop before committing."
+                : "Account saved locally. Review data/innanet/accounts.json in GitHub Desktop before committing.",
             "save-success"
-
         );
 
 
         crAccountSetStatus(
             "SAVED"
         );
-
     }
 
 
     catch (
         error
     ) {
-
-
         console.error(
-
             "Could not save Innanet account:",
-
             error
-
         );
 
 
@@ -2681,106 +2015,137 @@ if (
 
 
         crAccountShowMessage(
-
             error.message
-
             ||
-
             "The Innanet account could not be saved.",
-
             "save-error"
-
         );
 
 
         crAccountReview();
-
     }
-
 }
 
 
+// =================================
+// PROFILE PICTURE UPLOAD
+// =================================
+
+
+async function crAccountUploadPicture() {
+    crAccountHideMessage();
+
+
+    const accountId =
+        crAccountOriginalRecord?.id
+        ||
+        crAccountSelect.value;
+
+
+    if (
+        crAccountMode.value !==
+            "edit"
+        ||
+        !accountId
+    ) {
+        crAccountShowMessage(
+            "Select an existing Innanet account before uploading a profile picture.",
+            "save-error"
+        );
+
+
+        return;
+    }
+
+
+    if (
+        typeof window.owlOpenMediaManager !==
+            "function"
+    ) {
+        crAccountShowMessage(
+            "The Media Manager is not ready.",
+            "save-error"
+        );
+
+
+        return;
+    }
+
+
+    const opened =
+        await window.owlOpenMediaManager(
+            "innanetProfiles",
+            accountId
+        );
+
+
+    if (
+        !opened
+    ) {
+        crAccountShowMessage(
+            "The Innanet profile could not be loaded in the Media Manager.",
+            "save-error"
+        );
+    }
+}
+
 
 // =================================
-// FIELD EVENTS
+// EVENTS
 // =================================
 
 
 Object.values(
     crAccountFields
 )
-
+    .filter(
+        Boolean
+    )
     .forEach(
-
         field => {
-
-
             field.addEventListener(
-
                 "input",
-
                 crAccountReview
-
             );
 
 
             field.addEventListener(
-
                 "change",
-
                 crAccountReview
-
             );
-
         }
-
     );
 
 
-
 crAccountMode.addEventListener(
-
     "change",
-
     crAccountChangeMode
-
 );
-
 
 
 crAccountSelect.addEventListener(
-
     "change",
-
     crAccountLoadSelected
-
 );
-
 
 
 crAccountSave.addEventListener(
-
     "click",
-
     crAccountSaveRecord
-
 );
 
 
-
-// =================================
-// REPOSITORY DATA EVENT
-// =================================
+crAccountUploadProfileImage
+    ?.addEventListener(
+        "click",
+        crAccountUploadPicture
+    );
 
 
 window.addEventListener(
-
     "owl-control-room-data-loaded",
-
     crAccountLoadRecords
-
 );
-
 
 
 // =================================
@@ -2789,36 +2154,22 @@ window.addEventListener(
 
 
 try {
-
-
     if (
         typeof owlRepositoryHandle !==
             "undefined"
-
         &&
-
         owlRepositoryHandle
     ) {
-
-
         crAccountLoadRecords();
-
     }
-
 }
 
 
 catch (
     error
 ) {
-
-
     console.warn(
-
         "Innanet Account Manager waiting for repository connection.",
-
         error
-
     );
-
 }
