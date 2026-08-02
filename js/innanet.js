@@ -65,6 +65,20 @@ const innanetEls = {
 
 
 // =================================
+// PROFILE DIRECTORIES
+// =================================
+
+
+let innanetAccountMap =
+    {};
+
+
+let innanetWrestlerMap =
+    {};
+
+
+
+// =================================
 // HTML SAFETY
 // =================================
 
@@ -146,6 +160,44 @@ async function innanetFetchJson(
 
 
     return response.json();
+
+}
+
+
+
+async function innanetFetchOptionalJson(
+    filePath,
+    fallback
+) {
+
+
+    try {
+
+
+        return await innanetFetchJson(
+            filePath
+        );
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        console.warn(
+
+            `Optional Innanet profile data could not load from ${filePath}:`,
+
+            error
+
+        );
+
+
+        return fallback;
+
+    }
 
 }
 
@@ -282,6 +334,179 @@ function innanetAvatarHue(
     return Math.abs(
         hash
     );
+
+}
+
+
+
+// =================================
+// PROFILE PICTURES
+// =================================
+
+
+function innanetRecordMap(
+    records
+) {
+
+
+    return Object.fromEntries(
+
+        (
+            Array.isArray(
+                records
+            )
+
+                ? records
+
+                : []
+        )
+
+            .filter(
+                record =>
+                    record?.id
+            )
+
+            .map(
+                record => [
+
+                    record.id,
+
+                    record
+
+                ]
+            )
+
+    );
+
+}
+
+
+
+function innanetProfileImage(
+    post
+) {
+
+
+    const directImage =
+
+        String(
+            post?.profileImage || ""
+        ).trim();
+
+
+    if (
+        directImage
+    ) {
+
+
+        return directImage;
+
+    }
+
+
+    if (
+        post?.wrestlerId
+    ) {
+
+
+        return String(
+
+            innanetWrestlerMap[
+                post.wrestlerId
+            ]?.photo
+
+            ||
+
+            ""
+
+        ).trim();
+
+    }
+
+
+    if (
+        post?.accountId
+    ) {
+
+
+        return String(
+
+            innanetAccountMap[
+                post.accountId
+            ]?.profileImage
+
+            ||
+
+            ""
+
+        ).trim();
+
+    }
+
+
+    return "";
+
+}
+
+
+
+function innanetAvatarMarkup(
+    post,
+    initials,
+    avatarHue
+) {
+
+
+    const profileImage =
+
+        innanetProfileImage(
+            post
+        );
+
+
+    return `
+
+        <div
+            class="innanet-avatar ${
+                profileImage
+                    ? "has-profile-image"
+                    : ""
+            }"
+            style="--innanet-avatar-hue: ${avatarHue};"
+        >
+
+            <span class="innanet-avatar-fallback">
+
+                ${innanetEscape(
+                    initials
+                )}
+
+            </span>
+
+
+            ${
+                profileImage
+
+                    ? `
+
+                        <img
+                            class="innanet-avatar-image"
+                            src="${innanetEscape(
+                                profileImage
+                            )}"
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                        >
+
+                    `
+
+                    : ""
+            }
+
+        </div>
+
+    `;
 
 }
 
@@ -541,7 +766,7 @@ function innanetRenderArchive(
                         )}
                     </strong>
 
-                                        <span>
+                    <span>
 
                         ${Number(
                             month.showCount || 0
@@ -685,6 +910,19 @@ function innanetCreatePost(
         );
 
 
+    const avatarMarkup =
+
+        innanetAvatarMarkup(
+
+            post,
+
+            initials,
+
+            avatarHue
+
+        );
+
+
     const replyContext =
 
         parent
@@ -720,16 +958,7 @@ function innanetCreatePost(
 
     article.innerHTML = `
 
-        <div
-            class="innanet-avatar"
-            style="--innanet-avatar-hue: ${avatarHue};"
-        >
-
-            ${innanetEscape(
-                initials
-            )}
-
-        </div>
+        ${avatarMarkup}
 
 
         <div class="innanet-post-content">
@@ -876,6 +1105,51 @@ function innanetCreatePost(
         </div>
 
     `;
+
+
+    const avatarImage =
+
+        article.querySelector(
+            ".innanet-avatar-image"
+        );
+
+
+    if (
+        avatarImage
+    ) {
+
+
+        avatarImage.addEventListener(
+
+            "error",
+
+            () => {
+
+
+                const avatar =
+
+                    avatarImage.closest(
+                        ".innanet-avatar"
+                    );
+
+
+                avatar?.classList.remove(
+                    "has-profile-image"
+                );
+
+
+                avatarImage.remove();
+
+            },
+
+            {
+                once:
+                    true
+            }
+
+        );
+
+    }
 
 
     return article;
@@ -1258,7 +1532,7 @@ function innanetRenderMonth(
 
                 <div>
 
-                                        <span class="innanet-event-live">
+                    <span class="innanet-event-live">
 
                         ${innanetEscape(
 
@@ -1381,12 +1655,56 @@ async function innanetLoad() {
     try {
 
 
-        const index =
+        const [
 
-            await innanetFetchJson(
+            index,
+
+            accounts,
+
+            wrestlers
+
+        ] = await Promise.all([
+
+
+            innanetFetchJson(
 
                 "data/innanet/archive-index.json"
 
+            ),
+
+
+            innanetFetchOptionalJson(
+
+                "data/innanet/accounts.json",
+
+                []
+
+            ),
+
+
+            innanetFetchOptionalJson(
+
+                "data/wrestlers.json",
+
+                []
+
+            )
+
+
+        ]);
+
+
+        innanetAccountMap =
+
+            innanetRecordMap(
+                accounts
+            );
+
+
+        innanetWrestlerMap =
+
+            innanetRecordMap(
+                wrestlers
             );
 
 
