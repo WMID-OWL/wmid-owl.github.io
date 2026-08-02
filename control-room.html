@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-   <link rel="stylesheet" href="css/control-room.css?v=313b">
+   <link rel="stylesheet" href="css/control-room.css?v=314a">
 </head>
 
 <body class="control-room-body">
@@ -9197,9 +9197,58 @@
             <div class="cr-editor-section">
                 <div class="cr-editor-section-heading"><span>IDENTITY</span><h3>Account Information</h3></div>
                 <div class="cr-editor-form-grid">
-                    <div class="cr-form-group"><label for="cr-account-name">DISPLAY NAME</label><input id="cr-account-name" type="text" autocomplete="off"></div>
-                    <div class="cr-form-group"><label for="cr-account-handle">HANDLE</label><input id="cr-account-handle" type="text" autocomplete="off" placeholder="@handle"></div>
-                    <div class="cr-form-group"><label for="cr-account-account-status">ACCOUNT STATUS</label><select id="cr-account-account-status"><option value="active">Active</option><option value="retired">Retired</option></select></div>
+                    <div class="cr-form-group">
+
+    <label for="cr-account-name">
+        DISPLAY NAME
+    </label>
+
+    <input
+        id="cr-account-name"
+        type="text"
+        autocomplete="off"
+    >
+
+</div>
+
+
+<div class="cr-form-group">
+
+    <label for="cr-account-handle">
+        HANDLE
+    </label>
+
+    <input
+        id="cr-account-handle"
+        type="text"
+        autocomplete="off"
+        placeholder="@handle"
+    >
+
+</div>
+
+
+<div class="cr-form-group">
+
+    <label for="cr-account-profile-image">
+        PROFILE PICTURE — OPTIONAL
+    </label>
+
+    <input
+        id="cr-account-profile-image"
+        type="text"
+        autocomplete="off"
+        placeholder="assets/images/innanet/profiles/account-name.png"
+    >
+
+    <small class="cr-field-help">
+        Leave empty to use the account’s automatic initials avatar.
+    </small>
+
+</div>
+
+
+<div class="cr-form-group"><label for="cr-account-account-status">ACCOUNT STATUS</label><select id="cr-account-account-status"><option value="active">Active</option><option value="retired">Retired</option></select></div>
                     <div class="cr-form-group"><label for="cr-account-archetype">ARCHETYPE</label><input id="cr-account-archetype" type="text" autocomplete="off"></div>
                 </div>
             </div>
@@ -9285,7 +9334,7 @@
 <script src="js/control-room-landscape-bragging-rights.js"></script>
 
 <script src="js/control-room-social-status.js?v=303b1"></script>
-<script src="js/control-room-account-manager.js"></script>
+<script src="js/control-room-account-manager.js?v=314a"></script>
     
 </body>
 </html>
