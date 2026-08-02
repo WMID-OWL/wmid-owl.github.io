@@ -1521,7 +1521,7 @@
         renderLeaderboards();
     }
 
-    function buildDraft() {
+        function buildDraft() {
         const year =
             currentYear();
 
@@ -1562,6 +1562,16 @@
         );
 
         return {
+            ...(
+                existing &&
+                typeof existing ===
+                    "object"
+
+                    ? existing
+
+                    : {}
+            ),
+
             id:
                 `annual-cover-${year}`,
 
@@ -1574,6 +1584,9 @@
                 RELEASE.week,
 
             status:
+                text(
+                    existing?.status
+                ) ||
                 "draft",
 
             formula: {
@@ -1582,9 +1595,50 @@
 
             prestigePeriodId:
                 snapshot?.periodId ||
+                existing?.prestigePeriodId ||
                 "",
 
             ballots,
+
+            winners: {
+                ...(
+                    existing?.winners &&
+                    typeof existing.winners ===
+                        "object"
+
+                        ? existing.winners
+
+                        : {}
+                )
+            },
+
+            presentation: {
+
+                men: {
+                    ...(
+                        existing
+                            ?.presentation
+                            ?.men
+
+                        ||
+
+                        {}
+                    )
+                },
+
+                women: {
+                    ...(
+                        existing
+                            ?.presentation
+                            ?.women
+
+                        ||
+
+                        {}
+                    )
+                }
+
+            },
 
             createdAt:
                 existing?.createdAt ||
