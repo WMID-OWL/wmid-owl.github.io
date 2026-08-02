@@ -11696,3 +11696,804 @@
     }
 
 }
+/* =================================
+   DYNAMIC WEEKLY RUNBOOK
+================================= */
+
+
+.cr-runbook-week-banner {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        1rem;
+
+    margin:
+        1.25rem 0;
+
+}
+
+
+.cr-runbook-week-banner > div {
+
+    padding:
+        1.1rem;
+
+    background:
+        #171d20;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-left:
+        4px solid
+        #c6a15b;
+
+}
+
+
+.cr-runbook-week-banner span,
+.cr-runbook-stat-grid span {
+
+    display:
+        block;
+
+    color:
+        #899397;
+
+    font-size:
+        0.6rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+}
+
+
+.cr-runbook-week-banner strong {
+
+    display:
+        block;
+
+    margin-top:
+        0.45rem;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        1.1rem;
+
+    line-height:
+        1.35;
+
+}
+
+
+.cr-runbook-week-banner small {
+
+    display:
+        block;
+
+    margin-top:
+        0.45rem;
+
+    color:
+        #899397;
+
+    font-size:
+        0.7rem;
+
+    line-height:
+        1.45;
+
+}
+
+
+.cr-runbook-toolbar {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(260px, 1fr)
+        auto;
+
+    align-items:
+        end;
+
+    gap:
+        1rem;
+
+}
+
+
+.cr-runbook-archive-notice {
+
+    margin:
+        1rem 0 0;
+
+    padding:
+        0.8rem 1rem;
+
+    background:
+        rgba(198, 161, 91, 0.08);
+
+    border:
+        1px solid
+        rgba(198, 161, 91, 0.28);
+
+    color:
+        #dfbd78;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+.cr-runbook-archive-notice[hidden],
+#cr-runbook-custom-section[hidden] {
+
+    display:
+        none !important;
+
+}
+
+
+.cr-runbook-stat-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            5,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        0.8rem;
+
+    margin-top:
+        1.25rem;
+
+}
+
+
+.cr-runbook-stat-grid article {
+
+    min-height:
+        118px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    padding:
+        1rem;
+
+    background:
+        #171d20;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+.cr-runbook-stat-grid strong {
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        2.3rem;
+
+    line-height:
+        1;
+
+}
+
+
+.cr-runbook-type-legend {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        0.65rem;
+
+    margin-top:
+        1rem;
+
+}
+
+
+.cr-runbook-type-legend span {
+
+    padding:
+        0.55rem 0.65rem;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    color:
+        #899397;
+
+    font-size:
+        0.67rem;
+
+    line-height:
+        1.4;
+
+}
+
+
+.cr-runbook-type-legend strong {
+
+    color:
+        #c6a15b;
+
+}
+
+
+.cr-runbook-board {
+
+    display:
+        grid;
+
+    gap:
+        1rem;
+
+    margin-top:
+        1.5rem;
+
+}
+
+
+.cr-runbook-bucket {
+
+    padding:
+        1rem;
+
+    background:
+        #0d1112;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+.cr-runbook-bucket.is-next {
+
+    border-color:
+        rgba(198, 161, 91, 0.42);
+
+    box-shadow:
+        0 16px 45px
+        rgba(0, 0, 0, 0.18);
+
+}
+
+
+.cr-runbook-bucket.is-failed {
+
+    border-color:
+        rgba(231, 139, 139, 0.35);
+
+}
+
+
+.cr-runbook-bucket-heading {
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        space-between;
+
+    gap:
+        1rem;
+
+    margin-bottom:
+        0.8rem;
+
+}
+
+
+.cr-runbook-bucket-heading span {
+
+    display:
+        block;
+
+    color:
+        #899397;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+}
+
+
+.cr-runbook-bucket-heading h3 {
+
+    margin:
+        0.3rem 0 0;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        1.25rem;
+
+}
+
+
+.cr-runbook-bucket-heading > strong {
+
+    display:
+        grid;
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+    place-items:
+        center;
+
+    background:
+        rgba(198, 161, 91, 0.09);
+
+    border:
+        1px solid
+        rgba(198, 161, 91, 0.28);
+
+    color:
+        #dfbd78;
+
+    font-size:
+        0.8rem;
+
+}
+
+
+.cr-runbook-task-list {
+
+    display:
+        grid;
+
+    gap:
+        0.7rem;
+
+}
+
+
+.cr-runbook-task {
+
+    padding:
+        1rem;
+
+    background:
+        #151a1c;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-left:
+        4px solid
+        #899397;
+
+}
+
+
+.cr-runbook-status-pending {
+
+    border-left-color:
+        #c6a15b;
+
+}
+
+
+.cr-runbook-status-blocked {
+
+    border-left-color:
+        #8290a8;
+
+}
+
+
+.cr-runbook-status-failed {
+
+    border-left-color:
+        #e78b8b;
+
+}
+
+
+.cr-runbook-status-completed,
+.cr-runbook-status-not-needed {
+
+    border-left-color:
+        #8bd5a5;
+
+    opacity:
+        0.8;
+
+}
+
+
+.cr-runbook-task-heading {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    gap:
+        1rem;
+
+}
+
+
+.cr-runbook-task-heading span {
+
+    display:
+        block;
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+.cr-runbook-task-heading h4 {
+
+    margin:
+        0.35rem 0 0;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        1.05rem;
+
+    line-height:
+        1.35;
+
+}
+
+
+.cr-runbook-task-state {
+
+    flex:
+        0 0 auto;
+
+    padding:
+        0.4rem 0.5rem;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.09);
+
+    color:
+        #a7b0b3;
+
+    font-size:
+        0.55rem;
+
+    letter-spacing:
+        0.07em;
+
+}
+
+
+.cr-runbook-status-failed
+.cr-runbook-task-state {
+
+    color:
+        #f09a9a;
+
+    border-color:
+        rgba(231, 139, 139, 0.32);
+
+}
+
+
+.cr-runbook-status-completed
+.cr-runbook-task-state,
+.cr-runbook-status-not-needed
+.cr-runbook-task-state {
+
+    color:
+        #8bd5a5;
+
+    border-color:
+        rgba(139, 213, 165, 0.3);
+
+}
+
+
+.cr-runbook-task-meta {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        0.45rem;
+
+    margin-top:
+        0.8rem;
+
+}
+
+
+.cr-runbook-task-meta span {
+
+    padding:
+        0.35rem 0.5rem;
+
+    background:
+        #0a0d0e;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+
+    color:
+        #899397;
+
+    font-size:
+        0.61rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.cr-runbook-task-meta
+.is-overdue {
+
+    color:
+        #f09a9a;
+
+    border-color:
+        rgba(231, 139, 139, 0.28);
+
+}
+
+
+.cr-runbook-task-note,
+.cr-runbook-task-blocked-note {
+
+    margin:
+        0.8rem 0 0;
+
+    color:
+        #97a1a4;
+
+    font-size:
+        0.75rem;
+
+    line-height:
+        1.55;
+
+}
+
+
+.cr-runbook-task-blocked-note {
+
+    padding:
+        0.7rem 0.8rem;
+
+    background:
+        rgba(130, 144, 168, 0.08);
+
+    border-left:
+        3px solid
+        #8290a8;
+
+}
+
+
+.cr-runbook-task-actions {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        0.55rem;
+
+    margin-top:
+        1rem;
+
+}
+
+
+.cr-runbook-task-actions
+.control-room-button {
+
+    min-height:
+        40px;
+
+    padding:
+        0.6rem 0.75rem;
+
+    font-size:
+        0.62rem;
+
+}
+
+
+.cr-runbook-delete-button {
+
+    margin-left:
+        auto;
+
+    border-color:
+        rgba(231, 139, 139, 0.28);
+
+    color:
+        #e78b8b;
+
+}
+
+
+@media (max-width: 1100px) {
+
+    .cr-runbook-stat-grid {
+
+        grid-template-columns:
+            repeat(
+                3,
+                minmax(0, 1fr)
+            );
+
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .cr-runbook-week-banner,
+    .cr-runbook-toolbar {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-runbook-stat-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+    }
+
+
+    .cr-runbook-toolbar
+    .control-room-button {
+
+        width:
+            100%;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .cr-runbook-stat-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-runbook-task-heading,
+    .cr-runbook-bucket-heading {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .cr-runbook-task-actions {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .cr-runbook-task-actions
+    .control-room-button,
+    .cr-runbook-delete-button {
+
+        width:
+            100%;
+
+        margin-left:
+            0;
+
+    }
+
+}
