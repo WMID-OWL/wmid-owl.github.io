@@ -1555,19 +1555,42 @@
     .home-landscape-copy {
 
         overflow:
-            visible;
+            hidden;
+
+    }
+
+
+    .home-landscape-the {
+
+        font-size:
+            clamp(
+                2.6rem,
+                10vw,
+                3.2rem
+            );
 
     }
 
 
     .home-landscape-name {
 
+        max-width:
+            100%;
+
+        font-size:
+            clamp(
+                2.25rem,
+                11vw,
+                4.1rem
+            );
+
         white-space:
-            normal;
+            nowrap;
 
     }
 
 }
+
 /* =================================
    OWL HOME VENUE
 ================================= */
