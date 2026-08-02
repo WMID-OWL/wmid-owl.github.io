@@ -11998,3 +11998,55 @@ h2.social-destination-logo-heading {
         flex-direction: column;
     }
 }
+/* =================================
+   INNANET TOP-LEFT BRAND SIZE BOOST
+================================= */
+
+.innanet-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    min-width: max-content;
+}
+
+.innanet-wordmark img {
+    display: block;
+    width: auto;
+    height: 42px;
+    max-width: none;
+    object-fit: contain;
+}
+
+.innanet-wordmark .innanet-signal-mark {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    display: grid;
+    place-items: center;
+    font-size: 1.65rem;
+    border-radius: 12px;
+}
+
+.innanet-wordmark span:last-child {
+    font-size: 1.45rem;
+    font-weight: 900;
+    letter-spacing: 0.03em;
+    line-height: 1;
+}
+
+@media (max-width: 900px) {
+    .innanet-wordmark img {
+        height: 36px;
+    }
+
+    .innanet-wordmark .innanet-signal-mark {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        font-size: 1.4rem;
+    }
+
+    .innanet-wordmark span:last-child {
+        font-size: 1.2rem;
+    }
+}
