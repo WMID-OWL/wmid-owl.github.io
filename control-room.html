@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-   <link rel="stylesheet" href="css/control-room.css?v=313a">
+   <link rel="stylesheet" href="css/control-room.css?v=313b">
 </head>
 
 <body class="control-room-body">
@@ -3487,31 +3487,35 @@
 
                     <select id="cr-generator-type">
 
-                        <option value="custom-pool-draw">
-                            Custom Pool Draw
-                        </option>
+    <option value="custom-pool-draw">
+        Custom Pool Draw
+    </option>
 
-                        <option value="injury-evaluation">
-    Injury Evaluation
-</option>
+    <option value="injury-evaluation">
+        Injury Evaluation
+    </option>
 
-                        <option value="fates-wheel" disabled>
-                            Fate’s Wheel Cases — Planned
-                        </option>
+    <option value="fates-wheel">
+        Fate’s Wheel Cases
+    </option>
 
-                        <option value="hex-cell-order" disabled>
-                            Hex-Cell Entry Order — Planned
-                        </option>
+    <option value="hex-cell-order">
+        Hex-Cell Entry Order
+    </option>
 
-                        <option value="wildcard-play-in" disabled>
-                            Wildcard Play-In Selection — Planned
-                        </option>
+    <option value="wildcard-play-in">
+        Wildcard Play-In Selection
+    </option>
 
-                        <option value="ranking-selection" disabled>
-                            Ranking Position Selection — Planned
-                        </option>
+    <option value="ranking-selection">
+        Ranking Position Selection
+    </option>
 
-                    </select>
+    <option value="jow-booking-style">
+        JoW Private Booking Style
+    </option>
+
+</select>
 
                 </div>
 
@@ -3587,7 +3591,416 @@
     </div>
 
 </div>
+<!-- FATE'S WHEEL CASES -->
 
+<div
+    id="cr-generator-fates-fields"
+    class="cr-generator-preset-fields"
+    hidden
+>
+
+    <div class="cr-generator-preset-heading">
+
+        <span>
+            SURVIVOR'S REMORSE
+        </span>
+
+        <h3>
+            Fate’s Wheel Case Assignment
+        </h3>
+
+        <p>
+            Enter the five case-eligible wrestlers in final placement
+            order. The first line is 2nd place and the fifth line is
+            6th place.
+        </p>
+
+    </div>
+
+    <div class="cr-generator-preset-rule">
+
+        <strong>
+            SEALED CASE POOL
+        </strong>
+
+        <span>
+            1 Main Title Shot
+        </span>
+
+        <span>
+            2 Midcard Title Shots
+        </span>
+
+        <span>
+            2 Remorse Cases
+        </span>
+
+    </div>
+
+    <div class="cr-form-group">
+
+        <label for="cr-generator-fates-finishers">
+            CASE-ELIGIBLE FINISHERS — 2ND THROUGH 6TH
+        </label>
+
+        <textarea
+            id="cr-generator-fates-finishers"
+            rows="7"
+            placeholder="2nd-place wrestler&#10;3rd-place wrestler&#10;4th-place wrestler&#10;5th-place wrestler&#10;6th-place wrestler"
+        ></textarea>
+
+        <small class="cr-field-help">
+            Enter exactly five unique wrestlers, one per line.
+        </small>
+
+    </div>
+
+</div>
+
+
+<!-- HEX-CELL ENTRY ORDER -->
+
+<div
+    id="cr-generator-hex-fields"
+    class="cr-generator-preset-fields"
+    hidden
+>
+
+    <div class="cr-generator-preset-heading">
+
+        <span>
+            NO ESCAPE
+        </span>
+
+        <h3>
+            Hex-Cell Entry Order
+        </h3>
+
+        <p>
+            Randomly assign the two opening competitors and the four
+            timed entries.
+        </p>
+
+    </div>
+
+    <div class="cr-generator-preset-rule">
+
+        <strong>
+            ENTRY SCHEDULE
+        </strong>
+
+        <span>
+            2 Opening Starters
+        </span>
+
+        <span>
+            Entry 3 — 5:00
+        </span>
+
+        <span>
+            Entry 4 — 10:00
+        </span>
+
+        <span>
+            Entry 5 — 15:00
+        </span>
+
+        <span>
+            Entry 6 — 20:00
+        </span>
+
+    </div>
+
+    <div class="cr-form-group">
+
+        <label for="cr-generator-hex-entrants">
+            SIX QUALIFIED ENTRANTS
+        </label>
+
+        <textarea
+            id="cr-generator-hex-entrants"
+            rows="8"
+            placeholder="Entrant 1&#10;Entrant 2&#10;Entrant 3&#10;Entrant 4&#10;Entrant 5&#10;Entrant 6"
+        ></textarea>
+
+        <small class="cr-field-help">
+            Enter exactly six unique wrestlers, one per line.
+        </small>
+
+    </div>
+
+</div>
+
+
+<!-- WILDCARD PLAY-IN -->
+
+<div
+    id="cr-generator-wildcard-fields"
+    class="cr-generator-preset-fields"
+    hidden
+>
+
+    <div class="cr-generator-preset-heading">
+
+        <span>
+            COMPETITION SELECTION
+        </span>
+
+        <h3>
+            Wildcard Play-In Selection
+        </h3>
+
+        <p>
+            Choose the applicable OWL wildcard system, then paste the
+            division rankings in order.
+        </p>
+
+    </div>
+
+    <div class="cr-generator-preset-grid">
+
+        <div class="cr-form-group">
+
+            <label for="cr-generator-wildcard-type">
+                WILDCARD SYSTEM
+            </label>
+
+            <select id="cr-generator-wildcard-type">
+
+                <option value="proving-ground">
+                    Proving Ground — Four from #3–#12
+                </option>
+
+                <option value="hex-cell">
+                    Hex-Cell — Split-Ranking Ultimate Wildcard
+                </option>
+
+            </select>
+
+        </div>
+
+        <div
+            id="cr-generator-wildcard-rule"
+            class="cr-generator-preset-readout"
+        >
+            —
+        </div>
+
+    </div>
+
+    <div class="cr-generator-preset-grid">
+
+        <div class="cr-form-group">
+
+            <label for="cr-generator-ranked-pool">
+                COMPLETE RANKED LIST
+            </label>
+
+            <textarea
+                id="cr-generator-ranked-pool"
+                rows="14"
+                placeholder="#1 wrestler goes on line 1&#10;#2 wrestler goes on line 2&#10;#3 wrestler goes on line 3"
+            ></textarea>
+
+            <small class="cr-field-help">
+                Do not type rank numbers. Each wrestler’s line number
+                becomes their ranking position.
+            </small>
+
+        </div>
+
+        <div class="cr-form-group">
+
+            <label for="cr-generator-ranked-exclusions">
+                EXCLUSIONS — ONE WRESTLER PER LINE
+            </label>
+
+            <textarea
+                id="cr-generator-ranked-exclusions"
+                rows="14"
+                placeholder="Already qualified wrestlers&#10;Injured wrestlers&#10;Other ineligible wrestlers"
+            ></textarea>
+
+            <small class="cr-field-help">
+                Only names that also appear inside the applicable ranking
+                range are counted as applied exclusions.
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- GENERIC RANKING SELECTION -->
+
+<div
+    id="cr-generator-ranking-fields"
+    class="cr-generator-preset-fields"
+    hidden
+>
+
+    <div class="cr-generator-preset-heading">
+
+        <span>
+            RANKING RANGE
+        </span>
+
+        <h3>
+            Ranking Position Selection
+        </h3>
+
+        <p>
+            Draw any number of wrestlers from a defined section of a
+            ranked division.
+        </p>
+
+    </div>
+
+    <div class="cr-generator-ranking-number-grid">
+
+        <div class="cr-form-group">
+
+            <label for="cr-generator-rank-min">
+                MINIMUM RANK
+            </label>
+
+            <input
+                id="cr-generator-rank-min"
+                type="number"
+                min="1"
+                step="1"
+                value="1"
+            >
+
+        </div>
+
+        <div class="cr-form-group">
+
+            <label for="cr-generator-rank-max">
+                MAXIMUM RANK
+            </label>
+
+            <input
+                id="cr-generator-rank-max"
+                type="number"
+                min="1"
+                step="1"
+                value="10"
+            >
+
+        </div>
+
+        <div class="cr-form-group">
+
+            <label for="cr-generator-rank-count">
+                NUMBER TO SELECT
+            </label>
+
+            <input
+                id="cr-generator-rank-count"
+                type="number"
+                min="1"
+                step="1"
+                value="1"
+            >
+
+        </div>
+
+    </div>
+
+    <div class="cr-generator-preset-grid">
+
+        <div class="cr-form-group">
+
+            <label for="cr-generator-ranking-pool">
+                COMPLETE RANKED LIST
+            </label>
+
+            <textarea
+                id="cr-generator-ranking-pool"
+                rows="14"
+                placeholder="#1 wrestler goes on line 1&#10;#2 wrestler goes on line 2&#10;#3 wrestler goes on line 3"
+            ></textarea>
+
+            <small class="cr-field-help">
+                Line numbers become ranking positions automatically.
+            </small>
+
+        </div>
+
+        <div class="cr-form-group">
+
+            <label for="cr-generator-ranking-exclusions">
+                EXCLUSIONS — ONE WRESTLER PER LINE
+            </label>
+
+            <textarea
+                id="cr-generator-ranking-exclusions"
+                rows="14"
+                placeholder="Champions&#10;Already selected wrestlers&#10;Injured wrestlers"
+            ></textarea>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- JOW PRIVATE BOOKING STYLE -->
+
+<div
+    id="cr-generator-jow-fields"
+    class="cr-generator-preset-fields"
+    hidden
+>
+
+    <div class="cr-generator-preset-heading">
+
+        <span>
+            JOURNEY OF WRESTLING
+        </span>
+
+        <h3>
+            Private Booking Style
+        </h3>
+
+        <p>
+            Randomly determine which JoW private booking approach will
+            guide the booking session. This tool does not require the
+            removed JoW embed.
+        </p>
+
+    </div>
+
+    <div class="cr-generator-fixed-choice-list">
+
+        <span>
+            Quality
+        </span>
+
+        <span>
+            Standard
+        </span>
+
+        <span>
+            Long Term
+        </span>
+
+        <span>
+            Bizzaro
+        </span>
+
+        <span>
+            Terrible
+        </span>
+
+    </div>
+
+</div>
+            
 <div class="cr-generator-detail-grid">
 
                 <div class="cr-form-group">
@@ -8834,6 +9247,7 @@
 <script src="js/control-room-weekly-runbook.js?v=313a"></script>
 
 <script src="js/control-room-generator.js?v=308c"></script>
+<script src="js/control-room-generator-presets.js?v=308d"></script>
 
 <script src="js/control-room-injuries.js?v=309c"></script>
 <script src="js/control-room-injury-create.js?v=309b"></script>
