@@ -575,7 +575,32 @@ async function loadTitleProfile() {
 
 
         document.title =
-            `${championship.name} | OWL Wrestling`;
+    `${championship.name} | OWL Wrestling`;
+
+
+const championshipBrand =
+    String(
+        championship.brand || "owl"
+    )
+        .trim()
+        .toLowerCase();
+
+
+document.body.dataset.brand =
+
+    championshipBrand.includes(
+        "ascension"
+    )
+
+        ? "ascension"
+
+        : championshipBrand.includes(
+            "revolt"
+        )
+
+            ? "revolt"
+
+            : "owl";
 
 
         document.getElementById(
