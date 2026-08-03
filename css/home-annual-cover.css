@@ -341,3 +341,502 @@
     }
 
 }
+/* =================================
+   STEP 316B7
+   OWL ANNUAL COVER CHAMBER
+================================= */
+
+.home-annual-cover-intro {
+
+    color:
+        #aeb2af;
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.75;
+
+}
+
+
+.home-annual-cover-grid {
+
+    gap:
+        1.5rem;
+
+}
+
+
+.home-cover-card {
+
+    position:
+        relative;
+
+    isolation:
+        isolate;
+
+    min-height:
+        450px;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.34
+        );
+
+    border-left:
+        0;
+
+    background:
+
+        radial-gradient(
+            circle at 88% 18%,
+            rgba(
+                213,
+                170,
+                85,
+                0.1
+            ),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            140deg,
+            #111415,
+            #07090a 60%,
+            #0e0b09
+        );
+
+    box-shadow:
+
+        0
+        24px
+        60px
+        rgba(
+            0,
+            0,
+            0,
+            0.3
+        );
+
+    transition:
+
+        border-color
+        0.2s ease,
+
+        transform
+        0.2s ease,
+
+        box-shadow
+        0.2s ease;
+
+}
+
+
+.home-cover-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    z-index:
+        5;
+
+    height:
+        4px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #6f171c,
+            #efc86f,
+            #b54823
+        );
+
+}
+
+
+.home-cover-card:hover {
+
+    border-color:
+        rgba(
+            239,
+            200,
+            111,
+            0.54
+        );
+
+    transform:
+        translateY(
+            -4px
+        );
+
+    box-shadow:
+
+        0
+        32px
+        72px
+        rgba(
+            0,
+            0,
+            0,
+            0.38
+        ),
+
+        0
+        0
+        24px
+        rgba(
+            213,
+            170,
+            85,
+            0.05
+        );
+
+}
+
+
+.home-cover-image {
+
+    min-height:
+        450px;
+
+    border-right:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.2
+        );
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(
+                213,
+                170,
+                85,
+                0.09
+            ),
+            transparent 44%
+        ),
+
+        #050708;
+
+}
+
+
+.home-cover-image::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        14px;
+
+    z-index:
+        2;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.15
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+.home-cover-placeholder {
+
+    color:
+        rgba(
+            244,
+            242,
+            235,
+            0.1
+        );
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+}
+
+
+.home-cover-copy {
+
+    padding:
+        clamp(
+            1.75rem,
+            4vw,
+            2.75rem
+        );
+
+}
+
+
+.home-cover-copy > span {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        0.65rem;
+
+    color:
+        #efc86f;
+
+    letter-spacing:
+        0.16em;
+
+}
+
+
+.home-cover-copy > span::before {
+
+    content:
+        "";
+
+    width:
+        24px;
+
+    height:
+        2px;
+
+    background:
+        #efc86f;
+
+}
+
+
+.home-cover-copy h3 {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    letter-spacing:
+        -0.055em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.home-cover-copy p {
+
+    color:
+        #9ca29f;
+
+}
+
+
+.home-cover-copy > strong {
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.34
+        );
+
+    background:
+        rgba(
+            213,
+            170,
+            85,
+            0.07
+        );
+
+    color:
+        #efc86f;
+
+}
+
+
+.home-cover-profile-link {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    min-height:
+        42px;
+
+    padding:
+
+        0.65rem
+        0.85rem;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.3
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.2
+        );
+
+    color:
+        #f4f2eb;
+
+}
+
+
+.home-cover-profile-link:hover {
+
+    border-color:
+        #efc86f;
+
+    background:
+        #efc86f;
+
+    color:
+        #080604;
+
+}
+
+
+.home-cover-formula-note {
+
+    margin-top:
+        1.5rem;
+
+    padding:
+
+        1.1rem
+        1.25rem;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.2
+        );
+
+    border-left:
+        4px solid
+        #efc86f;
+
+    background:
+        rgba(
+            213,
+            170,
+            85,
+            0.045
+        );
+
+    color:
+        #909795;
+
+}
+
+
+@media (
+    max-width:
+        650px
+) {
+
+    .home-cover-image {
+
+        min-height:
+            460px;
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            rgba(
+                213,
+                170,
+                85,
+                0.2
+            );
+
+    }
+
+
+    .home-cover-copy {
+
+        min-height:
+            280px;
+
+        padding:
+
+            2rem
+            1.35rem;
+
+    }
+
+
+    .home-cover-profile-link {
+
+        width:
+            100%;
+
+        justify-content:
+            center;
+
+        text-align:
+            center;
+
+    }
+
+}
