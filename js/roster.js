@@ -1429,12 +1429,17 @@ portrait.appendChild(
 
 
             link.href =
-                `team.html?id=${encodeURIComponent(team.id)}`;
+    `team.html?id=${encodeURIComponent(team.id)}`;
 
 
-            link.className =
-                "roster-team-card";
+link.className =
+    "roster-team-card";
 
+
+link.dataset.brand =
+    normalize(
+        team.brand
+    );
 
             const record =
                 calculateTeamRecord(
@@ -1760,11 +1765,17 @@ portrait.appendChild(
 
 
             link.href =
-                `faction.html?id=${encodeURIComponent(faction.id)}`;
+    `faction.html?id=${encodeURIComponent(faction.id)}`;
 
 
-            link.className =
-                "roster-team-card";
+link.className =
+    "roster-team-card";
+
+
+link.dataset.brand =
+    normalize(
+        faction.brand
+    );
 
 
             const memberIds =
@@ -2270,11 +2281,15 @@ portrait.appendChild(
 
 
             teamSection.hidden =
-                false;
+    false;
 
 
-            teamGrid.innerHTML =
-                "";
+teamSection.dataset.brand =
+    activeBrand;
+
+
+teamGrid.innerHTML =
+    "";
 
 
                         const visibleTeams =
@@ -2377,11 +2392,15 @@ portrait.appendChild(
 
 
             factionSection.hidden =
-                false;
+    false;
 
 
-            factionGrid.innerHTML =
-                "";
+factionSection.dataset.brand =
+    activeBrand;
+
+
+factionGrid.innerHTML =
+    "";
 
 
                         const visibleFactions =
