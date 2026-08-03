@@ -211,7 +211,32 @@ async function loadFactionProfile() {
 
 
         document.title =
-            `${faction.name} | OWL Wrestling`;
+    `${faction.name} | OWL Wrestling`;
+
+
+const factionBrand =
+    String(
+        faction.brand || "owl"
+    )
+        .trim()
+        .toLowerCase();
+
+
+document.body.dataset.brand =
+
+    factionBrand.includes(
+        "ascension"
+    )
+
+        ? "ascension"
+
+        : factionBrand.includes(
+            "revolt"
+        )
+
+            ? "revolt"
+
+            : "owl";
 
 
         document.getElementById(
