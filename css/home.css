@@ -8690,8 +8690,8 @@ main .section .eyebrow {
 
 }
 /* =================================
-   STEP 316H-R2
-   HOMEPAGE HERO SCALE CORRECTION
+   STEP 316H-R3
+   HOMEPAGE HERO SCALE + POSITION
    DESKTOP + MOBILE
 ================================= */
 
@@ -8704,14 +8704,48 @@ main .section .eyebrow {
 }
 
 
+.home-hero-logo-title {
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    margin-right:
+        auto;
+
+    margin-left:
+        auto;
+
+    overflow:
+        visible;
+
+}
+
+
+.home-hero-logo {
+
+    display:
+        block;
+
+    margin:
+        0 auto;
+
+    transform-origin:
+        center center;
+
+}
+
+
 /* =================================
-   DESKTOP
+   LARGE DESKTOP
 ================================= */
 
 
 @media (
     min-width:
-        821px
+        1101px
 ) {
 
     .hero-content {
@@ -8745,14 +8779,11 @@ main .section .eyebrow {
                 100%
             );
 
-        margin:
+        margin-top:
+            2rem;
 
-            2rem
-            0
+        margin-bottom:
             2.5rem;
-
-        overflow:
-            visible;
 
     }
 
@@ -8763,23 +8794,14 @@ main .section .eyebrow {
             360px;
 
         transform:
+
+            translateY(
+                54px
+            )
+
             scale(
                 1.55
             );
-
-        transform-origin:
-            center;
-
-    }
-
-
-    .hero-content .eyebrow,
-    .hero-copy,
-    .home-venue-lockup,
-    .hero-actions {
-
-        z-index:
-            3;
 
     }
 
@@ -8799,6 +8821,25 @@ main .section .eyebrow {
         1100px
 ) {
 
+    .hero-content {
+
+        width:
+            min(
+                940px,
+                calc(
+                    100% - 48px
+                )
+            );
+
+        padding:
+
+            3.5rem
+            0
+            4.5rem;
+
+    }
+
+
     .home-hero-logo-title {
 
         width:
@@ -8807,12 +8848,26 @@ main .section .eyebrow {
                 100%
             );
 
+        margin-top:
+            2rem;
+
+        margin-bottom:
+            2.25rem;
+
     }
 
 
     .home-hero-logo {
 
+        max-height:
+            330px;
+
         transform:
+
+            translateY(
+                44px
+            )
+
             scale(
                 1.35
             );
@@ -8828,6 +8883,9 @@ main .section .eyebrow {
 
 
 @media (
+    min-width:
+        551px
+) and (
     max-width:
         820px
 ) {
@@ -8851,14 +8909,11 @@ main .section .eyebrow {
                 100%
             );
 
-        margin:
+        margin-top:
+            2rem;
 
-            1.75rem
-            0
+        margin-bottom:
             2.25rem;
-
-        overflow:
-            visible;
 
     }
 
@@ -8869,23 +8924,14 @@ main .section .eyebrow {
             280px;
 
         transform:
+
+            translateY(
+                34px
+            )
+
             scale(
                 1.4
             );
-
-        transform-origin:
-            center;
-
-    }
-
-
-    .hero-content .eyebrow,
-    .hero-copy,
-    .home-venue-lockup,
-    .hero-actions {
-
-        z-index:
-            3;
 
     }
 
@@ -8918,14 +8964,11 @@ main .section .eyebrow {
         width:
             100%;
 
-        margin:
+        margin-top:
+            2.4rem;
 
-            1.75rem
-            0
+        margin-bottom:
             2.25rem;
-
-        overflow:
-            visible;
 
     }
 
@@ -8936,12 +8979,14 @@ main .section .eyebrow {
             230px;
 
         transform:
+
+            translateY(
+                28px
+            )
+
             scale(
                 1.4
             );
-
-        transform-origin:
-            center;
 
     }
 
