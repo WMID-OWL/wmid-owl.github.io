@@ -5277,3 +5277,704 @@ main .section .eyebrow {
     }
 
 }
+/* =================================
+   STEP 316B4
+   OWL SIMULATION CHAMBER
+================================= */
+
+
+/* =================================
+   MAIN FEATURE FRAME
+================================= */
+
+.home-simulation-feature {
+
+    position:
+        relative;
+
+    isolation:
+        isolate;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.36
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 14% 18%,
+            rgba(
+                213,
+                170,
+                85,
+                0.11
+            ),
+            transparent 34%
+        ),
+
+        radial-gradient(
+            circle at 90% 78%,
+            rgba(
+                111,
+                23,
+                28,
+                0.16
+            ),
+            transparent 36%
+        ),
+
+        linear-gradient(
+            135deg,
+            #101314,
+            #080a0b 54%,
+            #0d0b0a
+        );
+
+    box-shadow:
+
+        0
+        28px
+        70px
+        rgba(
+            0,
+            0,
+            0,
+            0.32
+        ),
+
+        inset
+        0
+        0
+        0
+        1px
+        rgba(
+            255,
+            255,
+            255,
+            0.02
+        );
+
+}
+
+
+/* Gold cap line */
+
+.home-simulation-feature::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    z-index:
+        4;
+
+    height:
+        4px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #6f171c,
+            #d5aa55 36%,
+            #efc86f 50%,
+            #b54823 76%,
+            #6f171c
+        );
+
+    box-shadow:
+
+        0
+        0
+        22px
+        rgba(
+            213,
+            170,
+            85,
+            0.16
+        );
+
+}
+
+
+/* Replace the generic SIMULATION word
+   with a restrained architectural mark */
+
+.home-simulation-feature::after {
+
+    content:
+        "OWL";
+
+    position:
+        absolute;
+
+    right:
+        clamp(
+            1rem,
+            4vw,
+            3rem
+        );
+
+    bottom:
+        clamp(
+            -0.4rem,
+            -1vw,
+            -0.1rem
+        );
+
+    left:
+        auto;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            6rem,
+            14vw,
+            12rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        0.8;
+
+    letter-spacing:
+        -0.1em;
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =================================
+   LEFT-SIDE COPY
+================================= */
+
+.home-simulation-copy {
+
+    padding:
+        clamp(
+            2.5rem,
+            5vw,
+            5rem
+        );
+
+}
+
+
+.home-simulation-copy h2 {
+
+    margin:
+        0.6rem 0 1.5rem;
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            3rem,
+            6vw,
+            5.8rem
+        );
+
+    line-height:
+        0.88;
+
+    letter-spacing:
+        -0.06em;
+
+    text-transform:
+        uppercase;
+
+    text-shadow:
+
+        0
+        16px
+        38px
+        rgba(
+            0,
+            0,
+            0,
+            0.55
+        );
+
+}
+
+
+.home-simulation-copy > p:not(.eyebrow) {
+
+    color:
+        #b5b8b4;
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =================================
+   SIMULATION FACTS
+================================= */
+
+.home-simulation-facts {
+
+    gap:
+        1px;
+
+    margin-top:
+        2.5rem;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.24
+        );
+
+    background:
+        rgba(
+            213,
+            170,
+            85,
+            0.2
+        );
+
+}
+
+
+.home-simulation-facts article {
+
+    position:
+        relative;
+
+    min-height:
+        132px;
+
+    padding:
+        1.35rem;
+
+    border:
+        0;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                15,
+                18,
+                19,
+                0.98
+            ),
+            rgba(
+                7,
+                9,
+                10,
+                0.98
+            )
+        );
+
+}
+
+
+.home-simulation-facts article::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        16px;
+
+    bottom:
+        16px;
+
+    left:
+        0;
+
+    width:
+        2px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            transparent,
+            #d5aa55,
+            transparent
+        );
+
+}
+
+
+.home-simulation-facts strong {
+
+    color:
+        #efc86f;
+
+    text-shadow:
+
+        0
+        0
+        20px
+        rgba(
+            213,
+            170,
+            85,
+            0.12
+        );
+
+}
+
+
+.home-simulation-facts span {
+
+    color:
+        #d8d8d2;
+
+    line-height:
+        1.4;
+
+}
+
+
+/* =================================
+   RULE LEDGER
+================================= */
+
+.home-simulation-rules {
+
+    padding:
+        clamp(
+            2.5rem,
+            4vw,
+            4rem
+        );
+
+    border-left:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.22
+        );
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(
+                3,
+                4,
+                5,
+                0.62
+            ),
+            rgba(
+                8,
+                6,
+                5,
+                0.78
+            )
+        );
+
+    box-shadow:
+
+        inset
+        22px
+        0
+        45px
+        rgba(
+            0,
+            0,
+            0,
+            0.18
+        );
+
+}
+
+
+.home-simulation-label {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        0.75rem;
+
+    color:
+        #efc86f;
+
+    letter-spacing:
+        0.18em;
+
+}
+
+
+.home-simulation-label::before {
+
+    content:
+        "";
+
+    width:
+        28px;
+
+    height:
+        2px;
+
+    background:
+        #efc86f;
+
+}
+
+
+.home-simulation-rule-list {
+
+    margin-top:
+        1.5rem;
+
+    border-top:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.22
+        );
+
+}
+
+
+.home-simulation-rule-list li {
+
+    min-height:
+        72px;
+
+    color:
+        #d1d3cf;
+
+    border-bottom:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.14
+        );
+
+}
+
+
+.home-simulation-rule-list strong {
+
+    min-height:
+        42px;
+
+    color:
+        #090705;
+
+    border:
+        1px solid
+        #efc86f;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #efc86f,
+            #ad7228
+        );
+
+    box-shadow:
+
+        0
+        0
+        18px
+        rgba(
+            213,
+            170,
+            85,
+            0.08
+        );
+
+}
+
+
+.home-simulation-stack-note {
+
+    padding:
+
+        1.25rem
+        1.35rem;
+
+    color:
+        #f0eee8;
+
+    border-left:
+        3px solid
+        #b54823;
+
+    background:
+        rgba(
+            111,
+            23,
+            28,
+            0.12
+        );
+
+}
+
+
+.home-simulation-environment {
+
+    color:
+        #89908e;
+
+}
+
+
+/* =================================
+   RESPONSIVE SIMULATION CHAMBER
+================================= */
+
+@media (
+    max-width:
+        900px
+) {
+
+    .home-simulation-rules {
+
+        border-top:
+            1px solid
+            rgba(
+                213,
+                170,
+                85,
+                0.22
+            );
+
+        border-left:
+            0;
+
+        box-shadow:
+
+            inset
+            0
+            22px
+            45px
+            rgba(
+                0,
+                0,
+                0,
+                0.16
+            );
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        600px
+) {
+
+    .home-simulation-copy,
+    .home-simulation-rules {
+
+        padding:
+
+            2.25rem
+            1.35rem;
+
+    }
+
+
+    .home-simulation-copy h2 {
+
+        font-size:
+            clamp(
+                2.5rem,
+                14vw,
+                3.8rem
+            );
+
+    }
+
+
+    .home-simulation-facts {
+
+        gap:
+            1px;
+
+    }
+
+
+    .home-simulation-facts article {
+
+        min-height:
+            100px;
+
+        border:
+            0;
+
+    }
+
+
+    .home-simulation-rule-list li {
+
+        min-height:
+            68px;
+
+    }
+
+}
