@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-   <link rel="stylesheet" href="css/control-room.css?v=314a">
+   <link rel="stylesheet" href="css/control-room.css?v=317a">
 </head>
 
 <body class="control-room-body">
@@ -7585,7 +7585,7 @@
             ></p>
 
         </section>
-        <!-- =================================
+               <!-- =================================
              MEDIA MANAGER
         ================================== -->
 
@@ -7611,7 +7611,7 @@
                 Import images into the correct OWL asset folder and assign the saved path to its database record.
             </p>
 
-            <div class="cr-editor-top-grid">
+            <div class="cr-editor-top-grid cr-media-top-grid">
 
                 <div class="cr-form-group">
 
@@ -7626,36 +7626,36 @@
                         </option>
 
                         <option value="wrestlers">
-    Wrestler Photo
-</option>
+                            Wrestler Photo
+                        </option>
 
-<option value="finishers">
-    Finisher GIF
-</option>
+                        <option value="finishers">
+                            Finisher GIF
+                        </option>
 
-<option value="teams">
-    Team Logo
-</option>
+                        <option value="teams">
+                            Team Logo
+                        </option>
 
-<option value="teamFinishers">
-    Team Finisher GIF
-</option>
+                        <option value="teamFinishers">
+                            Team Finisher GIF
+                        </option>
 
-<option value="landscapePromotions">
-    Landscape Promotion Logo
-</option>
+                        <option value="landscapePromotions">
+                            Landscape Promotion Logo
+                        </option>
 
-<option value="landscapeShows">
-    Landscape Show Logo
-</option>
+                        <option value="landscapeShows">
+                            Landscape Show Logo
+                        </option>
 
-<option value="innanetProfiles">
-    Innanet Profile Picture
-</option>
+                        <option value="innanetProfiles">
+                            Innanet Profile Picture
+                        </option>
 
-<option value="factions">
-    Faction Logo
-</option>
+                        <option value="factions">
+                            Faction Logo
+                        </option>
 
                         <option value="championships">
                             Championship Image
@@ -7665,11 +7665,18 @@
                             Event Poster
                         </option>
 
+                        <option value="matchCards">
+                            Match Card Graphic
+                        </option>
+
                     </select>
 
                 </div>
 
-                <div class="cr-form-group">
+                <div
+                    id="cr-media-standard-record-field"
+                    class="cr-form-group"
+                >
 
                     <label for="cr-media-record">
                         DATABASE RECORD
@@ -7685,7 +7692,10 @@
 
                 </div>
 
-                <div class="cr-form-group">
+                <div
+                    id="cr-media-standard-path-field"
+                    class="cr-form-group"
+                >
 
                     <label>
                         CURRENT MEDIA PATH
@@ -7702,44 +7712,165 @@
 
             </div>
 
-            <div class="cr-editor-section">
+            <div id="cr-media-standard-workflow">
 
-                <div class="cr-editor-section-heading">
+                <div class="cr-editor-section">
 
-                    <span>IMAGE FILE</span>
-                    <h3>Select New Media</h3>
+                    <div class="cr-editor-section-heading">
 
-                </div>
-
-                <div class="cr-editor-form-grid">
-
-                    <div class="cr-form-group">
-
-                        <label for="cr-media-file">
-                            IMAGE
-                        </label>
-
-                        <input
-                            id="cr-media-file"
-                            type="file"
-                            accept="image/png,image/jpeg,image/webp,image/gif"
-                            disabled
-                        >
-
-                        <small class="cr-field-help">
-                            Supported formats: PNG, JPG, WebP, and GIF.
-                        </small>
+                        <span>IMAGE FILE</span>
+                        <h3>Select New Media</h3>
 
                     </div>
 
-                    <div class="cr-form-group">
+                    <div class="cr-editor-form-grid">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-media-file">
+                                IMAGE
+                            </label>
+
+                            <input
+                                id="cr-media-file"
+                                type="file"
+                                accept="image/png,image/jpeg,image/webp,image/gif"
+                                disabled
+                            >
+
+                            <small class="cr-field-help">
+                                Supported formats: PNG, JPG, WebP, and GIF.
+                            </small>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label>
+                                DESTINATION PATH
+                            </label>
+
+                            <div
+                                id="cr-media-destination-path"
+                                class="cr-current-value"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="cr-media-review"
+                    class="cr-change-preview"
+                    hidden
+                >
+
+                    <span>REVIEW MEDIA IMPORT</span>
+
+                    <div
+                        id="cr-media-review-list"
+                        class="cr-editor-change-list"
+                    >
+                    </div>
+
+                    <p
+                        id="cr-media-error"
+                        class="cr-change-error"
+                        hidden
+                    >
+                    </p>
+
+                </div>
+
+                <div class="cr-manager-actions">
+
+                    <button
+                        id="cr-media-save"
+                        class="control-room-button control-room-button-primary"
+                        type="button"
+                        disabled
+                    >
+                        Import and Assign Image
+                    </button>
+
+                </div>
+
+                <p
+                    id="cr-media-message"
+                    class="cr-save-message"
+                    hidden
+                >
+                </p>
+
+            </div>
+
+            <div
+                id="cr-match-card-workflow"
+                class="cr-match-card-workflow"
+                hidden
+            >
+
+                <div class="cr-editor-section">
+
+                    <div class="cr-editor-section-heading">
+
+                        <span>MATCH ATTACHMENT</span>
+                        <h3>Select Event and Match</h3>
+
+                        <p>
+                            Match graphics stay attached when an announced match becomes an official result.
+                        </p>
+
+                    </div>
+
+                    <div class="cr-editor-form-grid">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-match-card-event">
+                                EVENT
+                            </label>
+
+                            <select id="cr-match-card-event" disabled>
+
+                                <option value="">
+                                    Connect Repository First
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-match-card-match">
+                                MATCH
+                            </label>
+
+                            <select id="cr-match-card-match" disabled>
+
+                                <option value="">
+                                    Select Event First
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="cr-form-group cr-editor-spaced-field">
 
                         <label>
-                            DESTINATION PATH
+                            CURRENT MATCH GRAPHIC
                         </label>
 
                         <div
-                            id="cr-media-destination-path"
+                            id="cr-match-card-current-path"
                             class="cr-current-value"
                         >
                             —
@@ -7749,50 +7880,186 @@
 
                 </div>
 
-            </div>
+                <div class="cr-editor-section">
 
-            <div
-                id="cr-media-review"
-                class="cr-change-preview"
-                hidden
-            >
+                    <div class="cr-editor-section-heading">
 
-                <span>REVIEW MEDIA IMPORT</span>
+                        <span>UPLOAD AND OPTIMIZE</span>
+                        <h3>Prepare Website Graphic</h3>
+
+                        <p>
+                            The full image is preserved. The browser creates a resized WebP copy without cropping the artwork.
+                        </p>
+
+                    </div>
+
+                    <div class="cr-editor-form-grid">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-match-card-file">
+                                SOURCE IMAGE
+                            </label>
+
+                            <input
+                                id="cr-match-card-file"
+                                type="file"
+                                accept="image/png,image/jpeg,image/webp"
+                                disabled
+                            >
+
+                            <small class="cr-field-help">
+                                Upload the original PNG, JPG, or WebP. Large files are resized automatically and never enlarged.
+                            </small>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-match-card-layout">
+                                DISPLAY LAYOUT
+                            </label>
+
+                            <select id="cr-match-card-layout" disabled>
+
+                                <option value="auto">
+                                    Auto — Use Detected Shape
+                                </option>
+
+                                <option value="landscape">
+                                    Landscape
+                                </option>
+
+                                <option value="portrait">
+                                    Portrait
+                                </option>
+
+                                <option value="square">
+                                    Square / Adaptive
+                                </option>
+
+                            </select>
+
+                            <small class="cr-field-help">
+                                Auto is recommended. Override only when the artwork should use a different presentation frame.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="cr-match-card-preview"
+                        class="cr-match-card-preview"
+                    >
+
+                        <div
+                            id="cr-match-card-preview-frame"
+                            class="cr-match-card-preview-frame"
+                            data-orientation="square"
+                        >
+
+                            <img
+                                id="cr-match-card-preview-image"
+                                alt="Selected match-card graphic preview"
+                                hidden
+                            >
+
+                            <span
+                                id="cr-match-card-preview-empty"
+                                class="cr-match-card-preview-empty"
+                            >
+                                Select a match, then upload its graphic.
+                            </span>
+
+                        </div>
+
+                        <div class="cr-match-card-preview-data">
+
+                            <article>
+                                <span>DETECTED SHAPE</span>
+                                <strong id="cr-match-card-detected">—</strong>
+                            </article>
+
+                            <article>
+                                <span>ORIGINAL DIMENSIONS</span>
+                                <strong id="cr-match-card-original-dimensions">—</strong>
+                            </article>
+
+                            <article>
+                                <span>OPTIMIZED DIMENSIONS</span>
+                                <strong id="cr-match-card-optimized-dimensions">—</strong>
+                            </article>
+
+                            <article>
+                                <span>OPTIMIZED FILE SIZE</span>
+                                <strong id="cr-match-card-optimized-size">—</strong>
+                            </article>
+
+                            <article class="cr-match-card-destination-card">
+                                <span>DESTINATION PATH</span>
+                                <strong id="cr-match-card-destination-path">—</strong>
+                            </article>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
                 <div
-                    id="cr-media-review-list"
-                    class="cr-editor-change-list"
+                    id="cr-match-card-review"
+                    class="cr-change-preview"
+                    hidden
                 >
+
+                    <span>REVIEW MATCH GRAPHIC</span>
+
+                    <div
+                        id="cr-match-card-review-list"
+                        class="cr-editor-change-list"
+                    >
+                    </div>
+
+                    <p
+                        id="cr-match-card-error"
+                        class="cr-change-error"
+                        hidden
+                    >
+                    </p>
+
+                </div>
+
+                <div class="cr-manager-actions cr-match-card-actions">
+
+                    <button
+                        id="cr-match-card-remove"
+                        class="control-room-button control-room-button-danger"
+                        type="button"
+                        disabled
+                    >
+                        Remove Match Graphic
+                    </button>
+
+                    <button
+                        id="cr-match-card-save"
+                        class="control-room-button control-room-button-primary"
+                        type="button"
+                        disabled
+                    >
+                        Optimize and Save Graphic
+                    </button>
+
                 </div>
 
                 <p
-                    id="cr-media-error"
-                    class="cr-change-error"
+                    id="cr-match-card-message"
+                    class="cr-save-message"
                     hidden
                 >
                 </p>
 
             </div>
-
-            <div class="cr-manager-actions">
-
-                <button
-                    id="cr-media-save"
-                    class="control-room-button control-room-button-primary"
-                    type="button"
-                    disabled
-                >
-                    Import and Assign Image
-                </button>
-
-            </div>
-
-            <p
-                id="cr-media-message"
-                class="cr-save-message"
-                hidden
-            >
-            </p>
 
         </section>
 
@@ -9515,6 +9782,7 @@
 <script src="js/control-room-proving-ground-results.js?v=293d"></script>
 <script src="js/control-room-proving-ground-finals.js?v=293g"></script>
 <script src="js/control-room-media-manager.js?v=314b"></script>
+<script src="js/control-room-match-card-media.js?v=317a"></script>
 <script src="js/control-room-wrestler-editor.js?v=manager-1"></script>
 <script src="js/control-room-team-editor.js?v=manager-1"></script>
 <script src="js/control-room-faction-editor.js?v=manager-1"></script>
