@@ -13287,3 +13287,351 @@
     }
 
 }
+/* =================================
+   STEP 317A
+   MATCH CARD MEDIA WORKFLOW
+================================= */
+
+
+.control-room-panel.match-card-mode
+.cr-media-top-grid {
+
+    grid-template-columns:
+        minmax(0, 420px);
+
+}
+
+
+.cr-match-card-workflow[hidden],
+#cr-media-standard-workflow[hidden] {
+
+    display:
+        none;
+
+}
+
+
+.cr-match-card-preview {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(280px, 0.65fr);
+
+    gap:
+        1rem;
+
+    margin-top:
+        1.25rem;
+
+}
+
+
+.cr-match-card-preview-frame {
+
+    min-height:
+        380px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    padding:
+        1rem;
+
+    overflow:
+        hidden;
+
+    background:
+        #080a0b;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+}
+
+
+.cr-match-card-preview-frame[data-orientation="portrait"] {
+
+    min-height:
+        520px;
+
+}
+
+
+.cr-match-card-preview-frame img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    max-height:
+        560px;
+
+    margin:
+        0 auto;
+
+    object-fit:
+        contain;
+
+    object-position:
+        center;
+
+}
+
+
+.cr-match-card-preview-frame[data-orientation="portrait"] img {
+
+    max-width:
+        420px;
+
+}
+
+
+.cr-match-card-preview-frame[data-orientation="square"] img {
+
+    max-width:
+        520px;
+
+}
+
+
+.cr-match-card-preview-empty {
+
+    max-width:
+        360px;
+
+    color:
+        #899397;
+
+    font-size:
+        0.8rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.5;
+
+    text-align:
+        center;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+.cr-match-card-preview-data {
+
+    display:
+        grid;
+
+    align-content:
+        start;
+
+    gap:
+        0.75rem;
+
+}
+
+
+.cr-match-card-preview-data article {
+
+    padding:
+        1rem;
+
+    background:
+        #171d20;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+.cr-match-card-preview-data span {
+
+    display:
+        block;
+
+    color:
+        #899397;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+.cr-match-card-preview-data strong {
+
+    display:
+        block;
+
+    margin-top:
+        0.45rem;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        0.95rem;
+
+    line-height:
+        1.45;
+
+    overflow-wrap:
+        anywhere;
+
+}
+
+
+.cr-match-card-destination-card {
+
+    border-left:
+        3px solid
+        #c6a15b !important;
+
+}
+
+
+.cr-match-card-actions {
+
+    justify-content:
+        space-between;
+
+    gap:
+        1rem;
+
+}
+
+
+.control-room-button-danger {
+
+    background:
+        rgba(180, 70, 70, 0.12);
+
+    border-color:
+        rgba(231, 139, 139, 0.4);
+
+    color:
+        #e78b8b;
+
+}
+
+
+.control-room-button-danger:hover {
+
+    background:
+        rgba(180, 70, 70, 0.22);
+
+    border-color:
+        #e78b8b;
+
+    color:
+        #ffd0d0;
+
+}
+
+
+.control-room-button-danger:disabled {
+
+    opacity:
+        0.45;
+
+    cursor:
+        not-allowed;
+
+}
+
+
+@media (max-width: 900px) {
+
+    .cr-match-card-preview {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cr-match-card-preview-frame,
+    .cr-match-card-preview-frame[data-orientation="portrait"] {
+
+        min-height:
+            360px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .control-room-panel.match-card-mode
+    .cr-media-top-grid {
+
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            none;
+
+    }
+
+
+    .cr-match-card-preview-frame,
+    .cr-match-card-preview-frame[data-orientation="portrait"] {
+
+        min-height:
+            280px;
+
+    }
+
+
+    .cr-match-card-preview-frame img {
+
+        max-height:
+            430px;
+
+    }
+
+
+    .cr-match-card-actions {
+
+        flex-direction:
+            column-reverse;
+
+    }
+
+
+    .cr-match-card-actions
+    .control-room-button {
+
+        width:
+            100%;
+
+    }
+
+}
