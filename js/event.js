@@ -474,13 +474,37 @@ function createWrestlerLink(
 
 
         document.title =
-            `${event.name} | OWL Wrestling`;
+    `${event.name} | OWL Wrestling`;
 
 
-        document.getElementById(
-            "event-name"
-        ).textContent =
-            event.name;
+const publicEventBrand =
+    normalize(
+        event.brand ||
+        "owl"
+    );
+
+
+document.body.dataset.brand =
+
+    publicEventBrand.includes(
+        "ascension"
+    )
+
+        ? "ascension"
+
+        : publicEventBrand.includes(
+            "revolt"
+        )
+
+            ? "revolt"
+
+            : "owl";
+
+
+document.getElementById(
+    "event-name"
+).textContent =
+    event.name;
 
 
         document.getElementById(
