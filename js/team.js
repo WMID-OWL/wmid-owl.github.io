@@ -142,7 +142,32 @@ async function loadTeamProfile() {
 
 
         document.title =
-            `${team.name} | OWL Wrestling`;
+    `${team.name} | OWL Wrestling`;
+
+
+const teamBrand =
+    String(
+        team.brand || "owl"
+    )
+        .trim()
+        .toLowerCase();
+
+
+document.body.dataset.brand =
+
+    teamBrand.includes(
+        "ascension"
+    )
+
+        ? "ascension"
+
+        : teamBrand.includes(
+            "revolt"
+        )
+
+            ? "revolt"
+
+            : "owl";
 
 
         document.getElementById(
