@@ -1355,3 +1355,747 @@ and (
 
 
 }
+/* =================================
+   STEP 316C1
+   OWL INTERIOR SITE SHELL
+================================= */
+
+body.owl-interior {
+
+    --owl-black:
+        #040506;
+
+    --owl-black-soft:
+        #090b0c;
+
+    --owl-panel:
+        #0e1112;
+
+    --owl-white:
+        #f4f2eb;
+
+    --owl-muted:
+        #a9aeab;
+
+    --owl-gold:
+        #d5aa55;
+
+    --owl-gold-bright:
+        #efc86f;
+
+    --owl-crimson:
+        #6f171c;
+
+    --owl-ember:
+        #b54823;
+
+    --ascension-blue:
+        #2a4380;
+
+    --ascension-ice:
+        #cde5ee;
+
+    min-height:
+        100vh;
+
+    background:
+
+        radial-gradient(
+            circle at 50% -8%,
+            rgba(
+                213,
+                170,
+                85,
+                0.12
+            ),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 4% 35%,
+            rgba(
+                111,
+                23,
+                28,
+                0.12
+            ),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 96% 64%,
+            rgba(
+                181,
+                72,
+                35,
+                0.08
+            ),
+            transparent 28%
+        ),
+
+        var(
+            --owl-black
+        );
+
+    color:
+        var(
+            --owl-white
+        );
+
+}
+
+
+/* =================================
+   OFFICIAL INTERIOR HEADER
+================================= */
+
+.owl-interior .site-header {
+
+    min-height:
+        92px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(
+                4,
+                5,
+                6,
+                0.99
+            ),
+            rgba(
+                7,
+                8,
+                9,
+                0.97
+            )
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.3
+        );
+
+    box-shadow:
+
+        0
+        14px
+        38px
+        rgba(
+            0,
+            0,
+            0,
+            0.34
+        ),
+
+        inset
+        0
+        -1px
+        0
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+}
+
+
+.owl-interior .site-header::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    right:
+        0;
+
+    bottom:
+        -1px;
+
+    left:
+        0;
+
+    height:
+        1px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(
+                213,
+                170,
+                85,
+                0.82
+            )
+            50%,
+            transparent
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+.owl-interior .brand {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    width:
+        clamp(
+            116px,
+            9vw,
+            148px
+        );
+
+    line-height:
+        1;
+
+}
+
+
+.owl-interior .owl-header-logo {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        auto;
+
+    max-height:
+        54px;
+
+    object-fit:
+        contain;
+
+    object-position:
+        left center;
+
+    filter:
+
+        drop-shadow(
+            0
+            0
+            16px
+            rgba(
+                255,
+                255,
+                255,
+                0.06
+            )
+        );
+
+}
+
+
+.owl-interior .site-nav > a:hover,
+.owl-interior .site-nav > a.active {
+
+    color:
+        var(
+            --owl-gold-bright
+        );
+
+}
+
+
+.owl-interior .site-nav > a::after {
+
+    background:
+        var(
+            --owl-gold-bright
+        );
+
+}
+
+
+/* =================================
+   INTERIOR ARCHITECTURE
+================================= */
+
+.owl-interior main {
+
+    position:
+        relative;
+
+    isolation:
+        isolate;
+
+}
+
+
+.owl-interior main::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        -2;
+
+    background:
+
+        repeating-linear-gradient(
+            90deg,
+            transparent
+            0
+            calc(
+                12.5% - 1px
+            ),
+            rgba(
+                213,
+                170,
+                85,
+                0.022
+            )
+            calc(
+                12.5% - 1px
+            )
+            12.5%
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+.owl-interior main::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        46px;
+
+    left:
+        50%;
+
+    z-index:
+        -1;
+
+    width:
+        min(
+            980px,
+            86vw
+        );
+
+    height:
+        min(
+            720px,
+            72vh
+        );
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.065
+        );
+
+    border-bottom:
+        0;
+
+    border-radius:
+
+        50%
+        50%
+        0
+        0
+
+        /
+
+        24%
+        24%
+        0
+        0;
+
+    transform:
+        translateX(
+            -50%
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =================================
+   INTERIOR EYEBROWS
+================================= */
+
+.owl-interior .eyebrow {
+
+    color:
+        var(
+            --owl-gold-bright
+        );
+
+    font-size:
+        0.67rem;
+
+    letter-spacing:
+        0.24em;
+
+    text-shadow:
+
+        0
+        0
+        18px
+        rgba(
+            213,
+            170,
+            85,
+            0.14
+        );
+
+}
+
+
+/* =================================
+   INTERIOR FOOTER
+================================= */
+
+.owl-interior .site-footer {
+
+    position:
+        relative;
+
+    isolation:
+        isolate;
+
+    width:
+        100%;
+
+    min-height:
+        230px;
+
+    margin:
+        0;
+
+    padding:
+
+        4rem
+
+        max(
+            24px,
+            calc(
+                (
+                    100vw
+                    -
+                    var(
+                        --max
+                    )
+                )
+                /
+                2
+            )
+        );
+
+    overflow:
+        hidden;
+
+    border-top:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.34
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 50% 120%,
+            rgba(
+                213,
+                170,
+                85,
+                0.1
+            ),
+            transparent 42%
+        ),
+
+        linear-gradient(
+            180deg,
+            #07090a,
+            #020303
+        );
+
+}
+
+
+.owl-interior .site-footer::before {
+
+    content:
+        "OWL";
+
+    position:
+        absolute;
+
+    right:
+        clamp(
+            1rem,
+            7vw,
+            7rem
+        );
+
+    bottom:
+        -1.4rem;
+
+    z-index:
+        -1;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            8rem,
+            18vw,
+            16rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        0.8;
+
+    letter-spacing:
+        -0.1em;
+
+}
+
+
+.owl-interior .site-footer::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    height:
+        3px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            var(
+                --owl-crimson
+            )
+            22%,
+            var(
+                --owl-gold-bright
+            )
+            50%,
+            var(
+                --owl-ember
+            )
+            78%,
+            transparent
+        );
+
+}
+
+
+.owl-interior .site-footer strong {
+
+    color:
+        var(
+            --owl-white
+        );
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            1.5rem,
+            3vw,
+            2.3rem
+        );
+
+    letter-spacing:
+        -0.04em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.owl-interior .site-footer div > p {
+
+    color:
+        var(
+            --owl-gold-bright
+        );
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.13em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+@media (
+    max-width:
+        820px
+) {
+
+    .owl-interior .site-header {
+
+        min-height:
+            84px;
+
+    }
+
+
+    .owl-interior .brand {
+
+        width:
+            116px;
+
+    }
+
+
+    .owl-interior .owl-header-logo {
+
+        max-height:
+            46px;
+
+    }
+
+
+    .owl-interior .site-nav {
+
+        background:
+            rgba(
+                4,
+                5,
+                6,
+                0.99
+            );
+
+        border-bottom:
+            1px solid
+            rgba(
+                213,
+                170,
+                85,
+                0.28
+            );
+
+    }
+
+
+    .owl-interior .site-footer {
+
+        padding:
+
+            4rem
+            24px;
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        550px
+) {
+
+    .owl-interior main::before {
+
+        background:
+
+            repeating-linear-gradient(
+                90deg,
+                transparent
+                0
+                calc(
+                    25% - 1px
+                ),
+                rgba(
+                    213,
+                    170,
+                    85,
+                    0.02
+                )
+                calc(
+                    25% - 1px
+                )
+                25%
+            );
+
+    }
+
+}
