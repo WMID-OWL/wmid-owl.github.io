@@ -19,6 +19,15 @@
     "championshipId": "",
     "stipulation": "",
     "status": "announced",
-    "statusNote": "test match"
+    "statusNote": "test match",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/blood-on-the-sand-2026/announced-0001.webp",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 912,
+      "originalWidth": 2406,
+      "originalHeight": 1372,
+      "format": "webp"
+    }
   }
 ]
