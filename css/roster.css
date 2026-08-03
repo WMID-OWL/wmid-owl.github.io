@@ -2441,3 +2441,815 @@
     }
 
 }
+/* =================================
+   STEP 316C1-R1
+   ROSTER TEAM AND FACTION BRANDING
+================================= */
+
+
+/* =================================
+   TEAM / FACTION RESULT SECTION
+================================= */
+
+.roster-team-section {
+
+    position:
+        relative;
+
+    padding:
+        0;
+
+}
+
+
+.roster-section-heading {
+
+    position:
+        relative;
+
+    margin-bottom:
+        2.5rem;
+
+    padding-bottom:
+        1.25rem;
+
+    border-bottom:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.22
+        );
+
+}
+
+
+.roster-section-heading::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    bottom:
+        -1px;
+
+    left:
+        0;
+
+    width:
+        110px;
+
+    height:
+        3px;
+
+}
+
+
+#ascension
+.roster-section-heading::before {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #2a4380,
+            #b9deeb
+        );
+
+}
+
+
+#revolt
+.roster-section-heading::before {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #8c1118,
+            #ef8b45
+        );
+
+}
+
+
+.roster-section-heading h2 {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            2.8rem,
+            7vw,
+            5rem
+        );
+
+    line-height:
+        0.88;
+
+    letter-spacing:
+        -0.06em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+#ascension
+.roster-section-heading h2 {
+
+    color:
+        #b9deeb;
+
+}
+
+
+#revolt
+.roster-section-heading h2 {
+
+    color:
+        #ef8b45;
+
+}
+
+
+.roster-section-heading > span {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    min-height:
+        40px;
+
+    padding:
+
+        0.55rem
+        0.75rem;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.26
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.26
+        );
+
+    color:
+        #efc86f;
+
+}
+
+
+/* =================================
+   TEAM / FACTION GRID
+================================= */
+
+.roster-team-grid {
+
+    gap:
+        1.5rem;
+
+}
+
+
+/* =================================
+   TEAM / FACTION CARDS
+================================= */
+
+.roster-team-card {
+
+    position:
+        relative;
+
+    isolation:
+        isolate;
+
+    min-height:
+        260px;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.22
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 90% 14%,
+            rgba(
+                213,
+                170,
+                85,
+                0.07
+            ),
+            transparent 32%
+        ),
+
+        linear-gradient(
+            140deg,
+            #111415,
+            #07090a 62%,
+            #0d0b09
+        );
+
+    box-shadow:
+
+        0
+        20px
+        48px
+        rgba(
+            0,
+            0,
+            0,
+            0.27
+        );
+
+    transition:
+
+        border-color
+        0.2s ease,
+
+        transform
+        0.2s ease,
+
+        box-shadow
+        0.2s ease;
+
+}
+
+
+.roster-team-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    z-index:
+        4;
+
+    height:
+        4px;
+
+}
+
+
+#ascension
+.roster-team-card::before {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #2a4380,
+            #b9deeb
+        );
+
+}
+
+
+#revolt
+.roster-team-card::before {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #8c1118,
+            #ef8b45
+        );
+
+}
+
+
+.roster-team-card:hover {
+
+    transform:
+        translateY(
+            -4px
+        );
+
+    border-color:
+        rgba(
+            239,
+            200,
+            111,
+            0.52
+        );
+
+    box-shadow:
+
+        0
+        28px
+        62px
+        rgba(
+            0,
+            0,
+            0,
+            0.36
+        );
+
+}
+
+
+/* =================================
+   TEAM / FACTION IMAGE
+================================= */
+
+.roster-team-image {
+
+    position:
+        relative;
+
+    border-right:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.17
+        );
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(
+                213,
+                170,
+                85,
+                0.08
+            ),
+            transparent 46%
+        ),
+
+        #030405;
+
+}
+
+
+#ascension
+.roster-team-image {
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(
+                159,
+                201,
+                218,
+                0.12
+            ),
+            transparent 48%
+        ),
+
+        #05090d;
+
+}
+
+
+#revolt
+.roster-team-image {
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(
+                181,
+                72,
+                35,
+                0.13
+            ),
+            transparent 48%
+        ),
+
+        #0a0504;
+
+}
+
+
+.roster-team-image::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        12px;
+
+    z-index:
+        2;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.12
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+#ascension
+.roster-team-image::after {
+
+    border-color:
+        rgba(
+            159,
+            201,
+            218,
+            0.18
+        );
+
+}
+
+
+#revolt
+.roster-team-image::after {
+
+    border-color:
+        rgba(
+            239,
+            139,
+            69,
+            0.17
+        );
+
+}
+
+
+.roster-team-image img {
+
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    padding:
+        0.7rem;
+
+}
+
+
+/* =================================
+   TEAM / FACTION COPY
+================================= */
+
+.roster-team-body {
+
+    padding:
+        clamp(
+            1.4rem,
+            3vw,
+            2rem
+        );
+
+}
+
+
+.roster-team-topline span,
+.roster-team-topline strong {
+
+    color:
+        #efc86f;
+
+}
+
+
+#ascension
+.roster-team-topline span,
+#ascension
+.roster-team-topline strong {
+
+    color:
+        #9fc9da;
+
+}
+
+
+#revolt
+.roster-team-topline span,
+#revolt
+.roster-team-topline strong {
+
+    color:
+        #ef8b45;
+
+}
+
+
+.roster-team-body h3 {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    letter-spacing:
+        -0.04em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.roster-team-body p {
+
+    color:
+        #aeb2af;
+
+}
+
+
+/* =================================
+   VIEW TEAM / FACTION BUTTON
+================================= */
+
+.roster-view-team {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    align-self:
+        flex-start;
+
+    min-height:
+        40px;
+
+    padding:
+
+        0.6rem
+        0.75rem;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.28
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.22
+        );
+
+    color:
+        #f4f2eb;
+
+    transition:
+
+        color
+        0.18s ease,
+
+        border-color
+        0.18s ease,
+
+        background
+        0.18s ease;
+
+}
+
+
+#ascension
+.roster-view-team {
+
+    border-color:
+        rgba(
+            159,
+            201,
+            218,
+            0.34
+        );
+
+}
+
+
+#revolt
+.roster-view-team {
+
+    border-color:
+        rgba(
+            239,
+            139,
+            69,
+            0.34
+        );
+
+}
+
+
+.roster-team-card:hover
+.roster-view-team {
+
+    border-color:
+        #efc86f;
+
+    background:
+        #efc86f;
+
+    color:
+        #080604;
+
+}
+
+
+#ascension
+.roster-team-card:hover
+.roster-view-team {
+
+    border-color:
+        #b9deeb;
+
+    background:
+        #b9deeb;
+
+    color:
+        #15264f;
+
+}
+
+
+#revolt
+.roster-team-card:hover
+.roster-view-team {
+
+    border-color:
+        #ef8b45;
+
+    background:
+        #ef8b45;
+
+    color:
+        #140403;
+
+}
+
+
+/* =================================
+   MOBILE TEAM / FACTION CARDS
+================================= */
+
+@media (
+    max-width:
+        650px
+) {
+
+    .roster-team-section {
+
+        padding:
+            0;
+
+    }
+
+
+    .roster-team-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .roster-team-card {
+
+        grid-template-columns:
+
+            115px
+            minmax(
+                0,
+                1fr
+            );
+
+        min-height:
+            210px;
+
+    }
+
+
+    .roster-team-body {
+
+        padding:
+            1.1rem;
+
+    }
+
+
+    .roster-team-image img {
+
+        padding:
+            0.4rem;
+
+    }
+
+
+    .roster-view-team {
+
+        width:
+            100%;
+
+        justify-content:
+            center;
+
+        text-align:
+            center;
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        390px
+) {
+
+    .roster-team-card {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .roster-team-image {
+
+        min-height:
+            210px;
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            rgba(
+                213,
+                170,
+                85,
+                0.17
+            );
+
+    }
+
+}
