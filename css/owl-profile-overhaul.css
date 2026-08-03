@@ -1,0 +1,2123 @@
+/* =================================
+   STEP 316E
+   OWL PROFILE FAMILY OVERHAUL
+================================= */
+
+
+/* =================================
+   BRAND VARIABLES
+================================= */
+
+body.owl-profile-page {
+
+    --profile-accent:
+        #efc86f;
+
+    --profile-accent-bright:
+        #ffe29a;
+
+    --profile-accent-dark:
+        #8c5a20;
+
+    --profile-glow:
+        rgba(
+            213,
+            170,
+            85,
+            0.14
+        );
+
+    --profile-panel:
+        #101314;
+
+    --profile-panel-dark:
+        #07090a;
+
+    --profile-line:
+        rgba(
+            213,
+            170,
+            85,
+            0.22
+        );
+
+}
+
+
+body.owl-profile-page[data-brand="ascension"] {
+
+    --profile-accent:
+        #b9deeb;
+
+    --profile-accent-bright:
+        #e5f5fa;
+
+    --profile-accent-dark:
+        #2a4380;
+
+    --profile-glow:
+        rgba(
+            159,
+            201,
+            218,
+            0.16
+        );
+
+    --profile-line:
+        rgba(
+            159,
+            201,
+            218,
+            0.25
+        );
+
+}
+
+
+body.owl-profile-page[data-brand="revolt"] {
+
+    --profile-accent:
+        #ef8b45;
+
+    --profile-accent-bright:
+        #ffc08d;
+
+    --profile-accent-dark:
+        #8c1118;
+
+    --profile-glow:
+        rgba(
+            239,
+            139,
+            69,
+            0.16
+        );
+
+    --profile-line:
+        rgba(
+            239,
+            139,
+            69,
+            0.25
+        );
+
+}
+
+
+/* =================================
+   PAGE CORRIDORS
+================================= */
+
+.owl-profile-page .profile-page,
+.owl-profile-page .team-page,
+.owl-profile-page .title-page {
+
+    position:
+        relative;
+
+    width:
+        min(
+            1240px,
+            calc(
+                100% - 48px
+            )
+        );
+
+    margin:
+        0 auto;
+
+}
+
+
+/* =================================
+   PROFILE HERO FRAMES
+================================= */
+
+.owl-profile-page .profile-header,
+.owl-profile-page .team-header,
+.owl-profile-page .title-header {
+
+    position:
+        relative;
+
+    isolation:
+        isolate;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            300px,
+            410px
+        )
+
+        minmax(
+            0,
+            1fr
+        );
+
+    gap:
+        clamp(
+            2.5rem,
+            5vw,
+            5rem
+        );
+
+    align-items:
+        center;
+
+    margin-top:
+        3rem;
+
+    padding:
+        clamp(
+            2rem,
+            5vw,
+            4rem
+        );
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        var(
+            --profile-line
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 88% 14%,
+            var(
+                --profile-glow
+            ),
+            transparent 34%
+        ),
+
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(
+                213,
+                170,
+                85,
+                0.05
+            ),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            135deg,
+            #111415,
+            #07090a 62%,
+            #0e0b09
+        );
+
+    box-shadow:
+
+        0
+        30px
+        74px
+        rgba(
+            0,
+            0,
+            0,
+            0.36
+        );
+
+}
+
+
+.owl-profile-page .profile-header::before,
+.owl-profile-page .team-header::before,
+.owl-profile-page .title-header::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    z-index:
+        5;
+
+    height:
+        4px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            var(
+                --profile-accent-dark
+            ),
+            var(
+                --profile-accent
+            ),
+            var(
+                --profile-accent-bright
+            )
+        );
+
+}
+
+
+.owl-profile-page .profile-header::after,
+.owl-profile-page .team-header::after,
+.owl-profile-page .title-header::after {
+
+    content:
+        "OWL";
+
+    position:
+        absolute;
+
+    right:
+        clamp(
+            1rem,
+            4vw,
+            4rem
+        );
+
+    bottom:
+        -1.7rem;
+
+    z-index:
+        -1;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.022
+        );
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            7rem,
+            17vw,
+            15rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        0.8;
+
+    letter-spacing:
+        -0.1em;
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =================================
+   IMAGE AND LOGO CHAMBERS
+================================= */
+
+.owl-profile-page .profile-photo,
+.owl-profile-page .team-logo-box,
+.owl-profile-page .title-image-box {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        var(
+            --profile-line
+        );
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            var(
+                --profile-glow
+            ),
+            transparent 48%
+        ),
+
+        #030405;
+
+    box-shadow:
+
+        0
+        20px
+        48px
+        rgba(
+            0,
+            0,
+            0,
+            0.3
+        ),
+
+        inset
+        0
+        0
+        0
+        1px
+        rgba(
+            255,
+            255,
+            255,
+            0.018
+        );
+
+}
+
+
+.owl-profile-page .profile-photo::after,
+.owl-profile-page .team-logo-box::after,
+.owl-profile-page .title-image-box::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        12px;
+
+    z-index:
+        3;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(
+                --profile-accent
+            )
+            28%,
+            transparent
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+.owl-profile-page .profile-photo {
+
+    aspect-ratio:
+        4 / 5;
+
+}
+
+
+.owl-profile-page .team-logo-box,
+.owl-profile-page .title-image-box {
+
+    aspect-ratio:
+        1 / 1;
+
+}
+
+
+.owl-profile-page .profile-photo img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center top;
+
+}
+
+
+.owl-profile-page .team-logo-box img,
+.owl-profile-page .title-image-box img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    padding:
+        1rem;
+
+    object-fit:
+        contain;
+
+    object-position:
+        center;
+
+}
+
+
+.owl-profile-page #photo-placeholder,
+.owl-profile-page #team-logo-placeholder,
+.owl-profile-page #faction-logo-placeholder,
+.owl-profile-page #title-image-placeholder {
+
+    color:
+        rgba(
+            244,
+            242,
+            235,
+            0.1
+        );
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    letter-spacing:
+        -0.08em;
+
+}
+
+
+.owl-profile-page #wrestler-photo[hidden],
+.owl-profile-page #team-logo[hidden],
+.owl-profile-page #faction-logo[hidden],
+.owl-profile-page #title-image[hidden],
+
+.owl-profile-page #photo-placeholder[hidden],
+.owl-profile-page #team-logo-placeholder[hidden],
+.owl-profile-page #faction-logo-placeholder[hidden],
+.owl-profile-page #title-image-placeholder[hidden] {
+
+    display:
+        none !important;
+
+}
+
+
+/* =================================
+   PROFILE IDENTITY
+================================= */
+
+.owl-profile-page .profile-identity,
+.owl-profile-page .team-identity,
+.owl-profile-page .title-identity {
+
+    min-width:
+        0;
+
+}
+
+
+.owl-profile-page .profile-identity h1,
+.owl-profile-page .team-identity h1,
+.owl-profile-page .title-identity h1 {
+
+    margin:
+        0;
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            3.2rem,
+            8vw,
+            7rem
+        );
+
+    line-height:
+        0.86;
+
+    letter-spacing:
+        -0.07em;
+
+    text-transform:
+        uppercase;
+
+    overflow-wrap:
+        anywhere;
+
+    text-shadow:
+
+        0
+        18px
+        44px
+        rgba(
+            0,
+            0,
+            0,
+            0.64
+        );
+
+}
+
+
+.owl-profile-page .nickname,
+.owl-profile-page .team-brand,
+.owl-profile-page .title-brand {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+    text-shadow:
+
+        0
+        0
+        20px
+        var(
+            --profile-glow
+        );
+
+}
+
+
+.owl-profile-page .hometown,
+.owl-profile-page .title-meta {
+
+    color:
+        #aeb2af;
+
+}
+
+
+/* =================================
+   CURRENT CHAMPIONSHIP DISPLAYS
+================================= */
+
+.owl-profile-page .current-title,
+.owl-profile-page .automatic-team-title-display {
+
+    position:
+        relative;
+
+    margin-top:
+        1rem;
+
+    padding:
+        1rem
+        1.2rem;
+
+    border:
+        1px solid
+        var(
+            --profile-line
+        );
+
+    border-left:
+        4px solid
+        var(
+            --profile-accent
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(
+                --profile-glow
+            ),
+            rgba(
+                0,
+                0,
+                0,
+                0.4
+            )
+        );
+
+    color:
+        #f4f2eb;
+
+}
+
+
+.owl-profile-page .automatic-current-title-link,
+.owl-profile-page .automatic-team-title-links
+.automatic-current-title-link {
+
+    color:
+        #f4f2eb;
+
+}
+
+
+.owl-profile-page .automatic-current-title-link:hover,
+.owl-profile-page .automatic-team-title-links
+.automatic-current-title-link:hover {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+.owl-profile-page .automatic-team-title-label,
+.owl-profile-page .automatic-current-title-divider {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+/* =================================
+   RECORD BOXES
+================================= */
+
+.owl-profile-page .record-grid {
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                170px,
+                260px
+            )
+        );
+
+    gap:
+        1rem;
+
+    margin-top:
+        2.25rem;
+
+}
+
+
+.owl-profile-page .record-box {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    padding:
+        1.4rem;
+
+    border:
+        1px solid
+        var(
+            --profile-line
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                255,
+                255,
+                255,
+                0.025
+            ),
+            rgba(
+                0,
+                0,
+                0,
+                0.36
+            )
+        ),
+
+        #090b0c;
+
+}
+
+
+.owl-profile-page .record-box::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    bottom:
+        0;
+
+    left:
+        0;
+
+    width:
+        3px;
+
+    background:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+.owl-profile-page .record-box span {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+.owl-profile-page .record-box strong {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    letter-spacing:
+        -0.04em;
+
+}
+
+
+/* =================================
+   PROFILE SECTIONS
+================================= */
+
+.owl-profile-page .profile-section,
+.owl-profile-page .team-section,
+.owl-profile-page .title-section,
+.owl-profile-page .title-match-history-section {
+
+    position:
+        relative;
+
+    padding:
+
+        clamp(
+            4rem,
+            7vw,
+            6.5rem
+        )
+
+        0;
+
+    border-top:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.14
+        );
+
+}
+
+
+.owl-profile-page .profile-section::before,
+.owl-profile-page .team-section::before,
+.owl-profile-page .title-section::before,
+.owl-profile-page .title-match-history-section::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        -1px;
+
+    left:
+        0;
+
+    width:
+        100px;
+
+    height:
+        3px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            var(
+                --profile-accent-dark
+            ),
+            var(
+                --profile-accent
+            )
+        );
+
+}
+
+
+.owl-profile-page .profile-section h2,
+.owl-profile-page .team-section h2,
+.owl-profile-page .title-section h2,
+.owl-profile-page .title-match-history-section h2 {
+
+    margin:
+        0
+        0
+        1.75rem;
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            2.3rem,
+            6vw,
+            4.5rem
+        );
+
+    line-height:
+        0.92;
+
+    letter-spacing:
+        -0.055em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.owl-profile-page .profile-section > p:not(.eyebrow),
+.owl-profile-page .team-section > p:not(.eyebrow),
+.owl-profile-page .title-section > p:not(.eyebrow) {
+
+    color:
+        #aeb2af;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =================================
+   GENERAL PROFILE CARDS
+================================= */
+
+.owl-profile-page .affiliation-item,
+.owl-profile-page .accomplishment-item,
+.owl-profile-page .team-accomplishment,
+.owl-profile-page .team-member-card,
+.owl-profile-page .faction-member-card,
+.owl-profile-page .official-team-card {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        var(
+            --profile-line
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 88% 14%,
+            var(
+                --profile-glow
+            ),
+            transparent 36%
+        ),
+
+        linear-gradient(
+            145deg,
+            #111415,
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        18px
+        44px
+        rgba(
+            0,
+            0,
+            0,
+            0.23
+        );
+
+}
+
+
+.owl-profile-page .affiliation-item,
+.owl-profile-page .accomplishment-item,
+.owl-profile-page .team-accomplishment {
+
+    padding:
+        1.35rem;
+
+    border-left:
+        4px solid
+        var(
+            --profile-accent
+        );
+
+}
+
+
+.owl-profile-page .team-member-card,
+.owl-profile-page .faction-member-card {
+
+    min-height:
+        150px;
+
+    justify-content:
+        center;
+
+    padding:
+        1.5rem;
+
+    transition:
+
+        border-color
+        0.18s ease,
+
+        transform
+        0.18s ease,
+
+        box-shadow
+        0.18s ease;
+
+}
+
+
+.owl-profile-page .team-member-card::before,
+.owl-profile-page .faction-member-card::before,
+.owl-profile-page .official-team-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    height:
+        3px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            var(
+                --profile-accent-dark
+            ),
+            var(
+                --profile-accent
+            )
+        );
+
+}
+
+
+.owl-profile-page .team-member-card:hover,
+.owl-profile-page .faction-member-card:hover,
+.owl-profile-page .official-team-card:hover {
+
+    transform:
+        translateY(
+            -4px
+        );
+
+    border-color:
+        var(
+            --profile-accent
+        );
+
+    box-shadow:
+
+        0
+        26px
+        58px
+        rgba(
+            0,
+            0,
+            0,
+            0.34
+        );
+
+}
+
+
+.owl-profile-page .team-member-card strong,
+.owl-profile-page .faction-member-card strong,
+.owl-profile-page .official-team-card strong {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    letter-spacing:
+        -0.035em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.owl-profile-page .team-member-card span,
+.owl-profile-page .faction-member-card span,
+.owl-profile-page .official-team-label,
+.owl-profile-page .official-team-link,
+.owl-profile-page .affiliation-item span {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+/* =================================
+   FACTION LEADER
+================================= */
+
+.owl-profile-page .faction-leader-display {
+
+    border:
+        1px solid
+        var(
+            --profile-line
+        );
+
+    border-left:
+        4px solid
+        var(
+            --profile-accent
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(
+                --profile-glow
+            ),
+            rgba(
+                0,
+                0,
+                0,
+                0.38
+            )
+        );
+
+}
+
+
+.owl-profile-page .faction-leader-display span {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+.owl-profile-page .faction-leader-display a {
+
+    color:
+        #f4f2eb;
+
+}
+
+
+.owl-profile-page .faction-leader-display a:hover {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+/* =================================
+   FINISHER CHAMBERS
+================================= */
+
+.owl-profile-page .finisher-showcase,
+.owl-profile-page .team-finisher-gif-box {
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        var(
+            --profile-line
+        );
+
+    border-radius:
+        0;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            var(
+                --profile-glow
+            ),
+            transparent 45%
+        ),
+
+        #030405;
+
+    box-shadow:
+
+        0
+        20px
+        50px
+        rgba(
+            0,
+            0,
+            0,
+            0.28
+        );
+
+}
+
+
+.owl-profile-page .finisher-showcase img,
+.owl-profile-page .team-finisher-gif-box img {
+
+    object-fit:
+        contain;
+
+    background:
+        #030405;
+
+}
+
+
+/* =================================
+   MEDICAL STATUS
+================================= */
+
+.owl-profile-page .injury-status-section {
+
+    padding:
+
+        clamp(
+            2rem,
+            4vw,
+            3rem
+        );
+
+    margin-top:
+        2rem;
+
+    border:
+        1px solid
+        rgba(
+            231,
+            139,
+            139,
+            0.25
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 90% 12%,
+            rgba(
+                180,
+                70,
+                70,
+                0.11
+            ),
+            transparent 36%
+        ),
+
+        linear-gradient(
+            145deg,
+            #100b0b,
+            #07090a
+        );
+
+}
+
+
+.owl-profile-page .profile-injury-card {
+
+    border-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #111415,
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        18px
+        44px
+        rgba(
+            0,
+            0,
+            0,
+            0.22
+        );
+
+}
+
+
+.owl-profile-page .profile-injury-detail-grid div {
+
+    border-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+
+}
+
+
+.owl-profile-page .profile-injury-public-note {
+
+    border-left:
+        3px solid
+        rgba(
+            231,
+            139,
+            139,
+            0.58
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.26
+        );
+
+}
+
+
+/* =================================
+   TROPHY CASE
+================================= */
+
+.owl-profile-page .profile-trophy-count {
+
+    border-color:
+        var(
+            --profile-line
+        );
+
+    background:
+        var(
+            --profile-glow
+        );
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+.owl-profile-page .profile-trophy-card {
+
+    border-color:
+        var(
+            --profile-line
+        );
+
+    border-left-color:
+        var(
+            --profile-accent
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 90% 12%,
+            var(
+                --profile-glow
+            ),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            145deg,
+            #111415,
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        22px
+        54px
+        rgba(
+            0,
+            0,
+            0,
+            0.26
+        );
+
+}
+
+
+.owl-profile-page .profile-trophy-media {
+
+    border-right:
+        1px solid
+        var(
+            --profile-line
+        );
+
+    background:
+        #030405;
+
+}
+
+
+.owl-profile-page .profile-trophy-heading span,
+.owl-profile-page .profile-trophy-source {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+/* =================================
+   AUTOMATIC CHAMPIONSHIP HISTORY
+================================= */
+
+.owl-profile-page .automatic-championship-history {
+
+    border-top-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.14
+        );
+
+}
+
+
+.owl-profile-page .championship-history-card {
+
+    position:
+        relative;
+
+    border-color:
+        var(
+            --profile-line
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #111415,
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        22px
+        54px
+        rgba(
+            0,
+            0,
+            0,
+            0.26
+        );
+
+}
+
+
+.owl-profile-page .championship-history-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    z-index:
+        3;
+
+    height:
+        4px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            var(
+                --profile-accent-dark
+            ),
+            var(
+                --profile-accent
+            ),
+            var(
+                --profile-accent-bright
+            )
+        );
+
+}
+
+
+.owl-profile-page .championship-history-header {
+
+    padding-top:
+        1.8rem;
+
+    border-bottom-color:
+        var(
+            --profile-line
+        );
+
+    background:
+
+        linear-gradient(
+            90deg,
+            var(
+                --profile-glow
+            ),
+            rgba(
+                0,
+                0,
+                0,
+                0.35
+            )
+        );
+
+}
+
+
+.owl-profile-page .championship-history-count,
+.owl-profile-page .championship-reign-topline span {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+.owl-profile-page .championship-history-header h3 a {
+
+    color:
+        #f4f2eb;
+
+}
+
+
+.owl-profile-page .championship-history-header h3 a:hover {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+.owl-profile-page .current-champion-badge {
+
+    background:
+        var(
+            --profile-accent
+        );
+
+    color:
+        #080604;
+
+}
+
+
+.owl-profile-page .championship-reign-item {
+
+    border-bottom-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+}
+
+
+/* =================================
+   CURRENT CHAMPION
+================================= */
+
+.owl-profile-page .current-holder-card {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        var(
+            --profile-line
+        );
+
+    border-left:
+        4px solid
+        var(
+            --profile-accent
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 88% 15%,
+            var(
+                --profile-glow
+            ),
+            transparent 36%
+        ),
+
+        linear-gradient(
+            145deg,
+            #111415,
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        22px
+        54px
+        rgba(
+            0,
+            0,
+            0,
+            0.26
+        );
+
+}
+
+
+.owl-profile-page #current-holder-name {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    letter-spacing:
+        -0.05em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.owl-profile-page #current-holder-name:hover {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+.owl-profile-page .current-reign-stats div {
+
+    border:
+        1px solid
+        var(
+            --profile-line
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.4
+        );
+
+}
+
+
+.owl-profile-page .current-reign-stats span {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+/* =================================
+   DATA TABLES
+================================= */
+
+.owl-profile-page .match-table-wrapper,
+.owl-profile-page .lineage-table-wrapper {
+
+    border:
+        1px solid
+        var(
+            --profile-line
+        );
+
+    box-shadow:
+
+        0
+        20px
+        48px
+        rgba(
+            0,
+            0,
+            0,
+            0.24
+        );
+
+}
+
+
+.owl-profile-page .match-table,
+.owl-profile-page .lineage-table {
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #101314,
+            #07090a
+        );
+
+}
+
+
+.owl-profile-page .match-table th,
+.owl-profile-page .lineage-table th {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+    background:
+
+        linear-gradient(
+            90deg,
+            var(
+                --profile-glow
+            ),
+            rgba(
+                0,
+                0,
+                0,
+                0.24
+            )
+        );
+
+    border-bottom-color:
+        var(
+            --profile-line
+        );
+
+}
+
+
+.owl-profile-page .match-table td,
+.owl-profile-page .lineage-table td {
+
+    border-bottom-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+.owl-profile-page .match-table tbody tr,
+.owl-profile-page .lineage-table tbody tr {
+
+    transition:
+        background
+        0.18s ease;
+
+}
+
+
+.owl-profile-page .match-table tbody tr:hover,
+.owl-profile-page .lineage-table tbody tr:hover {
+
+    background:
+        var(
+            --profile-glow
+        );
+
+}
+
+
+.owl-profile-page .lineage-holder-link,
+.owl-profile-page .title-event-link,
+.owl-profile-page .affiliation-link {
+
+    color:
+        #f4f2eb;
+
+}
+
+
+.owl-profile-page .lineage-holder-link:hover,
+.owl-profile-page .title-event-link:hover,
+.owl-profile-page .affiliation-link:hover {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+.owl-profile-page .finish-text {
+
+    color:
+        var(
+            --profile-accent
+        );
+
+}
+
+
+.owl-profile-page .result-win {
+
+    color:
+        #82d8a2;
+
+}
+
+
+.owl-profile-page .result-loss {
+
+    color:
+        #e48484;
+
+}
+
+
+.owl-profile-page .result-draw,
+.owl-profile-page .result-nc {
+
+    color:
+        #aeb2af;
+
+}
+
+
+/* =================================
+   EMPTY STATES
+================================= */
+
+.owl-profile-page .empty-message {
+
+    padding:
+        1.25rem;
+
+    border:
+        1px dashed
+        var(
+            --profile-line
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.24
+        );
+
+    color:
+        #aeb2af;
+
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (
+    max-width:
+        900px
+) {
+
+    .owl-profile-page .profile-header,
+    .owl-profile-page .team-header,
+    .owl-profile-page .title-header {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .owl-profile-page .profile-photo-column,
+    .owl-profile-page .team-logo-column,
+    .owl-profile-page .title-image-column {
+
+        width:
+            min(
+                100%,
+                520px
+            );
+
+        max-width:
+            none;
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        650px
+) {
+
+    .owl-profile-page .profile-page,
+    .owl-profile-page .team-page,
+    .owl-profile-page .title-page {
+
+        width:
+            calc(
+                100% - 28px
+            );
+
+    }
+
+
+    .owl-profile-page .profile-header,
+    .owl-profile-page .team-header,
+    .owl-profile-page .title-header {
+
+        margin-top:
+            1.5rem;
+
+        padding:
+
+            1.35rem
+            1rem
+            2rem;
+
+    }
+
+
+    .owl-profile-page .profile-identity h1,
+    .owl-profile-page .team-identity h1,
+    .owl-profile-page .title-identity h1 {
+
+        font-size:
+            clamp(
+                2.8rem,
+                16vw,
+                4.7rem
+            );
+
+    }
+
+
+    .owl-profile-page .record-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .owl-profile-page .profile-section,
+    .owl-profile-page .team-section,
+    .owl-profile-page .title-section,
+    .owl-profile-page .title-match-history-section {
+
+        padding:
+
+            3.5rem
+            0;
+
+    }
+
+
+    .owl-profile-page .profile-injury-section-heading,
+    .owl-profile-page .profile-trophy-section-heading {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .owl-profile-page .profile-trophy-card.has-image {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .owl-profile-page .profile-trophy-media {
+
+        min-height:
+            300px;
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            var(
+                --profile-line
+            );
+
+    }
+
+
+    .owl-profile-page .current-reign-stats {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
