@@ -151,7 +151,32 @@ async function loadWrestlerProfile() {
         // ---------------------------------
 
         document.title =
-            `${wrestler.name} | OWL Wrestling`;
+    `${wrestler.name} | OWL Wrestling`;
+
+
+const wrestlerBrand =
+    String(
+        wrestler.brand || "owl"
+    )
+        .trim()
+        .toLowerCase();
+
+
+document.body.dataset.brand =
+
+    wrestlerBrand.includes(
+        "ascension"
+    )
+
+        ? "ascension"
+
+        : wrestlerBrand.includes(
+            "revolt"
+        )
+
+            ? "revolt"
+
+            : "owl";
 
 
 
