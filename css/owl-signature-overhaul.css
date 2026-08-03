@@ -1,0 +1,2603 @@
+/* =================================
+   STEP 316G
+   OWL SIGNATURE SERIES OVERHAUL
+================================= */
+
+
+/* =================================
+   SIGNATURE VARIABLES
+================================= */
+
+.owl-signature-page {
+
+    --signature-gold:
+        #d5aa55;
+
+    --signature-gold-bright:
+        #efc86f;
+
+    --signature-gold-pale:
+        #ffe29a;
+
+    --signature-crimson:
+        #6f171c;
+
+    --signature-orange:
+        #b54823;
+
+    --signature-panel:
+        #101314;
+
+    --signature-panel-dark:
+        #07090a;
+
+    --signature-line:
+        rgba(
+            213,
+            170,
+            85,
+            0.24
+        );
+
+    color:
+        #f4f2eb;
+
+    background:
+
+        radial-gradient(
+            circle at 50% -8%,
+            rgba(
+                213,
+                170,
+                85,
+                0.13
+            ),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 94% 38%,
+            rgba(
+                111,
+                23,
+                28,
+                0.11
+            ),
+            transparent 29%
+        ),
+
+        radial-gradient(
+            circle at 4% 72%,
+            rgba(
+                181,
+                72,
+                35,
+                0.07
+            ),
+            transparent 27%
+        ),
+
+        #040506;
+
+}
+
+
+/* =================================
+   OFFICIAL HEADER LOGO
+================================= */
+
+.owl-signature-page .brand {
+
+    display:
+        inline-flex;
+
+    flex:
+        0 0 auto;
+
+    align-items:
+        center;
+
+    width:
+        clamp(
+            116px,
+            9vw,
+            148px
+        );
+
+    line-height:
+        1;
+
+}
+
+
+.owl-signature-page .owl-header-logo {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        auto;
+
+    max-height:
+        54px;
+
+    object-fit:
+        contain;
+
+    object-position:
+        left center;
+
+    filter:
+
+        drop-shadow(
+            0
+            0
+            16px
+            rgba(
+                255,
+                255,
+                255,
+                0.07
+            )
+        );
+
+}
+
+
+/* =================================
+   PAGE CORRIDORS
+================================= */
+
+.owl-signature-page
+.signature-series-page,
+
+.owl-signature-page
+.tournament-directory-page {
+
+    position:
+        relative;
+
+    width:
+        min(
+            1460px,
+            calc(
+                100% - 48px
+            )
+        );
+
+    padding:
+
+        clamp(
+            2rem,
+            5vw,
+            4rem
+        )
+
+        0
+
+        8rem;
+
+}
+
+
+/* =================================
+   BACK LINKS
+================================= */
+
+.owl-signature-page
+.signature-series-back-link,
+
+.owl-signature-page
+.tournament-directory-back {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    min-height:
+        40px;
+
+    margin-bottom:
+        1.25rem;
+
+    padding:
+
+        0.55rem
+        0.75rem;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.27
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.3
+        );
+
+    color:
+        #efc86f;
+
+    text-decoration:
+        none;
+
+}
+
+
+.owl-signature-page
+.signature-series-back-link:hover,
+
+.owl-signature-page
+.tournament-directory-back:hover {
+
+    border-color:
+        #efc86f;
+
+    background:
+        #efc86f;
+
+    color:
+        #080604;
+
+}
+
+
+/* =================================
+   SIGNATURE HERO
+================================= */
+
+.owl-signature-page
+.signature-series-hero,
+
+.owl-signature-page
+.tournament-directory-hero {
+
+    position:
+        relative;
+
+    isolation:
+        isolate;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.34
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 88% 16%,
+            rgba(
+                181,
+                72,
+                35,
+                0.15
+            ),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 12% 88%,
+            rgba(
+                213,
+                170,
+                85,
+                0.11
+            ),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #111415,
+            #07090a 62%,
+            #0e0b09
+        );
+
+    box-shadow:
+
+        0
+        32px
+        80px
+        rgba(
+            0,
+            0,
+            0,
+            0.4
+        );
+
+}
+
+
+.owl-signature-page
+.signature-series-hero {
+
+    min-height:
+        590px;
+
+}
+
+
+.owl-signature-page
+.tournament-directory-hero {
+
+    min-height:
+        520px;
+
+}
+
+
+.owl-signature-page
+.signature-series-hero::before,
+
+.owl-signature-page
+.tournament-directory-hero::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    z-index:
+        5;
+
+    height:
+        5px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #6f171c,
+            #b54823,
+            #efc86f 50%,
+            #b54823,
+            #6f171c
+        );
+
+}
+
+
+.owl-signature-page
+.signature-series-hero::after {
+
+    right:
+        3%;
+
+    bottom:
+        -44%;
+
+    z-index:
+        -1;
+
+    width:
+        min(
+            620px,
+            52vw
+        );
+
+    height:
+        min(
+            620px,
+            52vw
+        );
+
+    border:
+        1px solid
+        rgba(
+            239,
+            200,
+            111,
+            0.12
+        );
+
+    border-radius:
+
+        50%
+        50%
+        0
+        0
+
+        /
+
+        28%
+        28%
+        0
+        0;
+
+    box-shadow:
+
+        0
+        0
+        120px
+        rgba(
+            213,
+            170,
+            85,
+            0.07
+        );
+
+    transform:
+        none;
+
+}
+
+
+.owl-signature-page
+.tournament-directory-hero::after {
+
+    content:
+        "OWL";
+
+    position:
+        absolute;
+
+    right:
+        clamp(
+            1rem,
+            5vw,
+            5rem
+        );
+
+    bottom:
+        -1.8rem;
+
+    z-index:
+        -1;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            7rem,
+            17vw,
+            15rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        0.8;
+
+    letter-spacing:
+        -0.1em;
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =================================
+   HERO TYPOGRAPHY
+================================= */
+
+.owl-signature-page
+.signature-series-eyebrow,
+
+.owl-signature-page
+.tournament-directory-eyebrow {
+
+    color:
+        #efc86f;
+
+}
+
+
+.owl-signature-page
+.signature-series-hero h1,
+
+.owl-signature-page
+.tournament-directory-hero h1 {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            4rem,
+            10vw,
+            9rem
+        );
+
+    line-height:
+        0.78;
+
+    letter-spacing:
+        -0.075em;
+
+    text-transform:
+        uppercase;
+
+    text-shadow:
+
+        0
+        20px
+        52px
+        rgba(
+            0,
+            0,
+            0,
+            0.66
+        );
+
+}
+
+
+.owl-signature-page
+.signature-series-hero h1 strong,
+
+.owl-signature-page
+.tournament-directory-hero h1 strong {
+
+    color:
+        #efc86f;
+
+    text-shadow:
+
+        0
+        0
+        34px
+        rgba(
+            213,
+            170,
+            85,
+            0.12
+        );
+
+}
+
+
+.owl-signature-page
+.signature-series-intro,
+
+.owl-signature-page
+.tournament-directory-intro {
+
+    color:
+        #b3b8b5;
+
+}
+
+
+/* =================================
+   SIGNATURE SEAL
+================================= */
+
+.owl-signature-page
+.signature-series-seal {
+
+    width:
+        230px;
+
+    height:
+        230px;
+
+    border:
+        1px solid
+        rgba(
+            239,
+            200,
+            111,
+            0.48
+        );
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(
+                213,
+                170,
+                85,
+                0.18
+            ),
+            rgba(
+                213,
+                170,
+                85,
+                0.025
+            )
+            58%,
+            rgba(
+                0,
+                0,
+                0,
+                0.24
+            )
+        );
+
+    box-shadow:
+
+        inset
+        0
+        0
+        0
+        10px
+        rgba(
+            213,
+            170,
+            85,
+            0.025
+        ),
+
+        inset
+        0
+        0
+        0
+        11px
+        rgba(
+            239,
+            200,
+            111,
+            0.12
+        ),
+
+        0
+        24px
+        60px
+        rgba(
+            0,
+            0,
+            0,
+            0.42
+        ),
+
+        0
+        0
+        48px
+        rgba(
+            213,
+            170,
+            85,
+            0.08
+        );
+
+}
+
+
+.owl-signature-page
+.signature-series-seal strong {
+
+    color:
+        #ffe29a;
+
+}
+
+
+/* =================================
+   SHARED CORPORATE PANELS
+================================= */
+
+.owl-signature-page
+.signature-hub-feature,
+
+.owl-signature-page
+.signature-hub-map,
+
+.owl-signature-page
+.signature-calendar-path,
+
+.owl-signature-page
+.signature-series-statement,
+
+.owl-signature-page
+.signature-commissioner-note,
+
+.owl-signature-page
+.power-players-intro,
+
+.owl-signature-page
+.power-players-active-board,
+
+.owl-signature-page
+.power-players-history,
+
+.owl-signature-page
+.power-players-empty,
+
+.owl-signature-page
+.proving-ground-overview,
+
+.owl-signature-page
+.proving-ground-flow,
+
+.owl-signature-page
+.proving-ground-qualification,
+
+.owl-signature-page
+.proving-ground-field,
+
+.owl-signature-page
+.proving-ground-results,
+
+.owl-signature-page
+.proving-ground-finals,
+
+.owl-signature-page
+.proving-ground-points,
+
+.owl-signature-page
+.proving-ground-record-book,
+
+.owl-signature-page
+.proving-ground-empty,
+
+.owl-signature-page
+.tournament-directory-section {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.24
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 92% 8%,
+            rgba(
+                181,
+                72,
+                35,
+                0.08
+            ),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            145deg,
+            #101314,
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        22px
+        54px
+        rgba(
+            0,
+            0,
+            0,
+            0.25
+        );
+
+}
+
+
+/* =================================
+   SHARED PANEL HEADINGS
+================================= */
+
+.owl-signature-page
+.signature-hub-feature h2,
+
+.owl-signature-page
+.signature-hub-map h2,
+
+.owl-signature-page
+.signature-calendar-path h2,
+
+.owl-signature-page
+.signature-series-statement h2,
+
+.owl-signature-page
+.signature-commissioner-note h2,
+
+.owl-signature-page
+.power-players-intro h2,
+
+.owl-signature-page
+.power-players-active-board h2,
+
+.owl-signature-page
+.power-players-history h2,
+
+.owl-signature-page
+.power-players-empty h2,
+
+.owl-signature-page
+.proving-ground-overview h2,
+
+.owl-signature-page
+.proving-ground-flow h2,
+
+.owl-signature-page
+.proving-ground-qualification h2,
+
+.owl-signature-page
+.proving-ground-field h2,
+
+.owl-signature-page
+.proving-ground-results h2,
+
+.owl-signature-page
+.proving-ground-finals h2,
+
+.owl-signature-page
+.proving-ground-points h2,
+
+.owl-signature-page
+.proving-ground-record-book h2,
+
+.owl-signature-page
+.proving-ground-empty h2,
+
+.owl-signature-page
+.tournament-directory-heading h2 {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    line-height:
+        0.94;
+
+    letter-spacing:
+        -0.052em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+/* =================================
+   HUB FEATURE
+================================= */
+
+.owl-signature-page
+.signature-hub-feature {
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.28
+        );
+
+}
+
+
+.owl-signature-page
+.signature-hub-feature::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    height:
+        4px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #6f171c,
+            #efc86f,
+            #b54823
+        );
+
+}
+
+
+.owl-signature-page
+.signature-hub-feature-stats div {
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.25
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                213,
+                170,
+                85,
+                0.08
+            ),
+            rgba(
+                0,
+                0,
+                0,
+                0.3
+            )
+        );
+
+}
+
+
+.owl-signature-page
+.signature-hub-feature-stats span {
+
+    color:
+        #efc86f;
+
+}
+
+
+/* =================================
+   HUB MAP
+================================= */
+
+.owl-signature-page
+.signature-hub-map-heading {
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.24
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                213,
+                170,
+                85,
+                0.07
+            ),
+            rgba(
+                0,
+                0,
+                0,
+                0.32
+            )
+        ),
+
+        #0b0e0f;
+
+}
+
+
+.owl-signature-page
+.signature-hub-map-item {
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.2
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(
+                213,
+                170,
+                85,
+                0.09
+            ),
+            transparent 40%
+        ),
+
+        linear-gradient(
+            145deg,
+            #111516,
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        16px
+        38px
+        rgba(
+            0,
+            0,
+            0,
+            0.22
+        );
+
+}
+
+
+.owl-signature-page
+.signature-hub-map-item:hover {
+
+    border-color:
+        #efc86f;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                213,
+                170,
+                85,
+                0.14
+            ),
+            rgba(
+                0,
+                0,
+                0,
+                0.4
+            )
+        );
+
+}
+
+
+.owl-signature-page
+.signature-hub-map-item span,
+
+.owl-signature-page
+.signature-hub-map-item::after {
+
+    color:
+        #efc86f;
+
+}
+
+
+/* =================================
+   DESTINATION AND MATCH CARDS
+================================= */
+
+.owl-signature-page
+.signature-series-card {
+
+    border-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.11
+        );
+
+    border-top:
+        4px solid
+        var(
+            --signature-accent
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 92% 8%,
+            color-mix(
+                in srgb,
+                var(
+                    --signature-accent
+                )
+                16%,
+                transparent
+            ),
+            transparent 36%
+        ),
+
+        linear-gradient(
+            145deg,
+            #111516,
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        22px
+        54px
+        rgba(
+            0,
+            0,
+            0,
+            0.27
+        );
+
+}
+
+
+.owl-signature-page
+.signature-series-card:hover {
+
+    transform:
+        translateY(
+            -5px
+        );
+
+    box-shadow:
+
+        0
+        30px
+        68px
+        rgba(
+            0,
+            0,
+            0,
+            0.38
+        );
+
+}
+
+
+.owl-signature-page
+.signature-series-card h2 {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.owl-signature-page
+.signature-card-tags span {
+
+    border-color:
+        color-mix(
+            in srgb,
+            var(
+                --signature-accent
+            )
+            30%,
+            transparent
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.25
+        );
+
+}
+
+
+/* =================================
+   CLOSING STATEMENT
+================================= */
+
+.owl-signature-page
+.signature-series-statement:not([id]) {
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.24
+        );
+
+    border-left:
+        5px solid
+        #efc86f;
+
+}
+
+
+/* =================================
+   SIGNATURE SE7EN NAV
+================================= */
+
+.owl-signature-page
+.signature-se7en-nav,
+
+.owl-signature-page
+.signature-se7en-nav.is-fixed {
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.28
+        );
+
+    background:
+        rgba(
+            4,
+            5,
+            6,
+            0.95
+        );
+
+    box-shadow:
+
+        0
+        16px
+        38px
+        rgba(
+            0,
+            0,
+            0,
+            0.32
+        );
+
+}
+
+
+.owl-signature-page
+.signature-se7en-nav a {
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.18
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.28
+        );
+
+}
+
+
+.owl-signature-page
+.signature-se7en-nav a:hover {
+
+    border-color:
+        #efc86f;
+
+    background:
+        #efc86f;
+
+    color:
+        #080604;
+
+}
+
+
+/* =================================
+   SIGNATURE CALENDAR
+================================= */
+
+.owl-signature-page
+.signature-calendar-path {
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.25
+        );
+
+}
+
+
+.owl-signature-page
+.signature-calendar-node {
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.2
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 88% 12%,
+            rgba(
+                213,
+                170,
+                85,
+                0.08
+            ),
+            transparent 40%
+        ),
+
+        #080a0b;
+
+    box-shadow:
+
+        0
+        15px
+        34px
+        rgba(
+            0,
+            0,
+            0,
+            0.22
+        );
+
+}
+
+
+.owl-signature-page
+.signature-calendar-node:hover {
+
+    border-color:
+        #efc86f;
+
+    background:
+        rgba(
+            213,
+            170,
+            85,
+            0.09
+        );
+
+}
+
+
+.owl-signature-page
+.signature-calendar-node span {
+
+    border-color:
+        rgba(
+            239,
+            200,
+            111,
+            0.5
+        );
+
+    color:
+        #ffe29a;
+
+}
+
+
+/* =================================
+   SIGNATURE MATCH DETAIL SECTIONS
+================================= */
+
+.owl-signature-page
+.signature-series-statement[id] {
+
+    border-color:
+        color-mix(
+            in srgb,
+            var(
+                --signature-section-accent
+            )
+            34%,
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            )
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 92% 8%,
+            color-mix(
+                in srgb,
+                var(
+                    --signature-section-accent
+                )
+                11%,
+                transparent
+            ),
+            transparent 36%
+        ),
+
+        linear-gradient(
+            145deg,
+            #111516,
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        22px
+        54px
+        rgba(
+            0,
+            0,
+            0,
+            0.25
+        );
+
+}
+
+
+.owl-signature-page
+.signature-info-card,
+
+.owl-signature-page
+.signature-detail-block,
+
+.owl-signature-page
+.signature-points-block,
+
+.owl-signature-page
+.signature-rule-flow,
+
+.owl-signature-page
+.signature-scouting-meters,
+
+.owl-signature-page
+.signature-identity-tile {
+
+    border-color:
+        color-mix(
+            in srgb,
+            var(
+                --signature-section-accent,
+                #d5aa55
+            )
+            24%,
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            )
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.32
+        );
+
+}
+
+
+/* =================================
+   COMMISSIONER NOTE
+================================= */
+
+.owl-signature-page
+.signature-commissioner-note {
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.26
+        );
+
+    border-left:
+        5px solid
+        #efc86f;
+
+}
+
+
+/* =================================
+   POWER PLAYERS
+================================= */
+
+.power-players-page
+.signature-series-hero {
+
+    background:
+
+        radial-gradient(
+            circle at 88% 16%,
+            rgba(
+                227,
+                93,
+                47,
+                0.16
+            ),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 12% 88%,
+            rgba(
+                223,
+                142,
+                63,
+                0.12
+            ),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #111415,
+            #080708 62%,
+            #120a07
+        );
+
+}
+
+
+.owl-signature-page
+.power-players-status-card {
+
+    border:
+        1px solid
+        rgba(
+            223,
+            142,
+            63,
+            0.34
+        );
+
+    border-left:
+        5px solid
+        #df8e3f;
+
+    background:
+
+        radial-gradient(
+            circle at 88% 12%,
+            rgba(
+                223,
+                142,
+                63,
+                0.13
+            ),
+            transparent 38%
+        ),
+
+        rgba(
+            0,
+            0,
+            0,
+            0.36
+        );
+
+}
+
+
+.owl-signature-page
+.power-player-category {
+
+    border-color:
+        color-mix(
+            in srgb,
+            var(
+                --power-accent
+            )
+            30%,
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            )
+        );
+
+    border-top:
+        4px solid
+        var(
+            --power-accent
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 92% 8%,
+            color-mix(
+                in srgb,
+                var(
+                    --power-accent
+                )
+                16%,
+                transparent
+            ),
+            transparent 36%
+        ),
+
+        linear-gradient(
+            145deg,
+            #111516,
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        18px
+        44px
+        rgba(
+            0,
+            0,
+            0,
+            0.23
+        );
+
+}
+
+
+.owl-signature-page
+.power-player-category h2 {
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.owl-signature-page
+.power-players-active-card,
+
+.owl-signature-page
+.power-players-history-row {
+
+    border-color:
+        color-mix(
+            in srgb,
+            var(
+                --power-accent
+            )
+            30%,
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            )
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 92% 8%,
+            color-mix(
+                in srgb,
+                var(
+                    --power-accent
+                )
+                10%,
+                transparent
+            ),
+            transparent 36%
+        ),
+
+        rgba(
+            0,
+            0,
+            0,
+            0.34
+        );
+
+    box-shadow:
+
+        0
+        16px
+        38px
+        rgba(
+            0,
+            0,
+            0,
+            0.22
+        );
+
+}
+
+
+/* =================================
+   PROVING GROUND
+================================= */
+
+.proving-ground-page
+.signature-series-hero {
+
+    background:
+
+        radial-gradient(
+            circle at 88% 16%,
+            rgba(
+                114,
+                173,
+                126,
+                0.14
+            ),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 12% 88%,
+            rgba(
+                213,
+                170,
+                85,
+                0.1
+            ),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #0f1512,
+            #07090a 62%,
+            #0b0d08
+        );
+
+}
+
+
+.proving-ground-page
+.signature-series-hero h1 strong {
+
+    color:
+        #92d39f;
+
+}
+
+
+.owl-signature-page
+.proving-ground-overview-stats div,
+
+.owl-signature-page
+.proving-ground-flow-step,
+
+.owl-signature-page
+.proving-ground-qualification-card,
+
+.owl-signature-page
+.proving-ground-points-grid article {
+
+    border-color:
+        rgba(
+            114,
+            173,
+            126,
+            0.26
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 88% 12%,
+            rgba(
+                114,
+                173,
+                126,
+                0.09
+            ),
+            transparent 40%
+        ),
+
+        rgba(
+            0,
+            0,
+            0,
+            0.34
+        );
+
+}
+
+
+.owl-signature-page
+.proving-ground-block-card {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    border-color:
+        rgba(
+            159,
+            201,
+            218,
+            0.28
+        );
+
+    border-top:
+        4px solid
+        #b9deeb;
+
+    background:
+
+        radial-gradient(
+            circle at 88% 12%,
+            rgba(
+                159,
+                201,
+                218,
+                0.12
+            ),
+            transparent 38%
+        ),
+
+        linear-gradient(
+            145deg,
+            rgba(
+                42,
+                67,
+                128,
+                0.2
+            ),
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        18px
+        44px
+        rgba(
+            0,
+            0,
+            0,
+            0.23
+        );
+
+}
+
+
+.owl-signature-page
+.proving-ground-block-card > span {
+
+    color:
+        #b9deeb;
+
+}
+
+
+.owl-signature-page
+.proving-ground-block-card.proving-ground-revolt {
+
+    border-color:
+        rgba(
+            239,
+            139,
+            69,
+            0.3
+        );
+
+    border-top-color:
+        #ef8b45;
+
+    background:
+
+        radial-gradient(
+            circle at 88% 12%,
+            rgba(
+                239,
+                139,
+                69,
+                0.13
+            ),
+            transparent 38%
+        ),
+
+        linear-gradient(
+            145deg,
+            rgba(
+                140,
+                17,
+                24,
+                0.22
+            ),
+            #090605
+        );
+
+}
+
+
+.owl-signature-page
+.proving-ground-block-card.proving-ground-revolt > span {
+
+    color:
+        #ef8b45;
+
+}
+
+
+.owl-signature-page
+.proving-ground-points-grid article strong {
+
+    color:
+        #92d39f;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+}
+
+
+/* =================================
+   ONE-OFF TOURNAMENT DIRECTORY
+================================= */
+
+.one-off-tournaments-page
+.tournament-directory-hero {
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.34
+        );
+
+}
+
+
+.owl-signature-page
+.tournament-directory-section {
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.25
+        );
+
+}
+
+
+.owl-signature-page
+.tournament-directory-heading {
+
+    padding-bottom:
+        1.5rem;
+
+    border-bottom:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.22
+        );
+
+}
+
+
+.owl-signature-page
+.tournament-directory-state {
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.24
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.28
+        );
+
+}
+
+
+.owl-signature-page
+.tournament-directory-card {
+
+    position:
+        relative;
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.3
+        );
+
+    border-top:
+        4px solid
+        #efc86f;
+
+    background:
+
+        radial-gradient(
+            circle at 92% 8%,
+            rgba(
+                213,
+                170,
+                85,
+                0.1
+            ),
+            transparent 36%
+        ),
+
+        linear-gradient(
+            145deg,
+            #111516,
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        24px
+        60px
+        rgba(
+            0,
+            0,
+            0,
+            0.3
+        );
+
+}
+
+
+.owl-signature-page
+.tournament-directory-card:hover {
+
+    border-color:
+        #efc86f;
+
+    box-shadow:
+
+        0
+        32px
+        72px
+        rgba(
+            0,
+            0,
+            0,
+            0.4
+        );
+
+}
+
+
+.owl-signature-page
+.tournament-card-visual {
+
+    position:
+        relative;
+
+    border-right-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.18
+        );
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(
+                213,
+                170,
+                85,
+                0.09
+            ),
+            transparent 48%
+        ),
+
+        #030405;
+
+}
+
+
+.owl-signature-page
+.tournament-card-visual::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        12px;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.13
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+.owl-signature-page
+.tournament-card-visual img {
+
+    position:
+        relative;
+
+    z-index:
+        1;
+
+}
+
+
+.owl-signature-page
+.tournament-card-content h3 {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.owl-signature-page
+.tournament-card-stats {
+
+    background:
+        rgba(
+            213,
+            170,
+            85,
+            0.15
+        );
+
+}
+
+
+.owl-signature-page
+.tournament-card-stats div {
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.4
+        );
+
+}
+
+
+.owl-signature-page
+.tournament-card-stats strong,
+
+.owl-signature-page
+.tournament-card-footer > strong,
+
+.owl-signature-page
+.tournament-card-badge {
+
+    color:
+        #efc86f;
+
+}
+
+
+/* =================================
+   FOOTERS
+================================= */
+
+.owl-signature-page
+.site-footer {
+
+    position:
+        relative;
+
+    min-height:
+        190px;
+
+    overflow:
+        hidden;
+
+    border-top-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.32
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 50% 120%,
+            rgba(
+                213,
+                170,
+                85,
+                0.09
+            ),
+            transparent 42%
+        ),
+
+        #030405;
+
+}
+
+
+.owl-signature-page
+.site-footer::after {
+
+    content:
+        "OWL";
+
+    position:
+        absolute;
+
+    right:
+        clamp(
+            1rem,
+            6vw,
+            6rem
+        );
+
+    bottom:
+        -2.2rem;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            7rem,
+            17vw,
+            15rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        0.8;
+
+    letter-spacing:
+        -0.1em;
+
+    pointer-events:
+        none;
+
+}
+
+
+.owl-signature-page
+.site-footer strong {
+
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    color:
+        #efc86f;
+
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (
+    max-width:
+        1050px
+) {
+
+    .owl-signature-page
+    .signature-hub-map {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .owl-signature-page
+    .signature-hub-map-grid {
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        900px
+) {
+
+    .owl-signature-page
+    .signature-series-page,
+
+    .owl-signature-page
+    .tournament-directory-page {
+
+        width:
+            calc(
+                100% - 28px
+            );
+
+    }
+
+
+    .owl-signature-page
+    .signature-series-hero {
+
+        min-height:
+            0;
+
+    }
+
+
+    .owl-signature-page
+    .tournament-directory-hero {
+
+        min-height:
+            0;
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        650px
+) {
+
+    .owl-signature-page
+    .signature-series-page,
+
+    .owl-signature-page
+    .tournament-directory-page {
+
+        width:
+            calc(
+                100% - 20px
+            );
+
+        padding:
+
+            1.25rem
+            0
+            4rem;
+
+    }
+
+
+    .owl-signature-page
+    .signature-series-hero,
+
+    .owl-signature-page
+    .tournament-directory-hero {
+
+        padding:
+
+            2.5rem
+            1.35rem;
+
+    }
+
+
+    .owl-signature-page
+    .signature-series-hero h1,
+
+    .owl-signature-page
+    .tournament-directory-hero h1 {
+
+        font-size:
+            clamp(
+                3.2rem,
+                18vw,
+                5.4rem
+            );
+
+    }
+
+
+    .owl-signature-page
+    .signature-series-seal {
+
+        width:
+            145px;
+
+        height:
+            145px;
+
+    }
+
+
+    .owl-signature-page
+    .signature-series-seal strong {
+
+        font-size:
+            3.2rem;
+
+    }
+
+
+    .owl-signature-page
+    .signature-hub-map-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .owl-signature-page
+    .signature-se7en-nav,
+
+    .owl-signature-page
+    .signature-se7en-nav.is-fixed {
+
+        top:
+            84px !important;
+
+    }
+
+
+    .owl-signature-page
+    .tournament-directory-section {
+
+        padding:
+
+            1.5rem
+            1rem;
+
+    }
+
+
+    .owl-signature-page
+    .tournament-card-visual {
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            rgba(
+                213,
+                170,
+                85,
+                0.18
+            );
+
+    }
+
+}
