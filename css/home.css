@@ -4159,3 +4159,203 @@ body {
     }
 
 }
+/* =================================
+   STEP 316B2-R2
+   PORTAL CLEANUP + ASCENSION BLUE TYPE
+================================= */
+
+
+/* =================================
+   ASCENSION TYPOGRAPHY CORRECTION
+================================= */
+
+.ascension-panel .brand-panel-day {
+
+    color:
+        #2a4380 !important;
+
+}
+
+
+.ascension-panel .brand-panel-copy {
+
+    color:
+        #2a4380 !important;
+
+}
+
+
+.ascension-panel .brand-panel-link {
+
+    color:
+        #2a4380 !important;
+
+    border-color:
+        rgba(
+            42,
+            67,
+            128,
+            0.58
+        ) !important;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        ) !important;
+
+}
+
+
+.ascension-panel .brand-panel-link span,
+.ascension-panel .brand-panel-link strong {
+
+    color:
+        #2a4380 !important;
+
+}
+
+
+.ascension-panel .brand-panel-link:hover {
+
+    color:
+        #ffffff !important;
+
+    border-color:
+        #2a4380 !important;
+
+    background:
+        #2a4380 !important;
+
+    box-shadow:
+
+        0
+        16px
+        32px
+        rgba(
+            42,
+            67,
+            128,
+            0.24
+        ) !important;
+
+}
+
+
+.ascension-panel .brand-panel-link:hover span,
+.ascension-panel .brand-panel-link:hover strong {
+
+    color:
+        #ffffff !important;
+
+}
+
+
+/* =================================
+   REMOVE THE REVOLT LOGO CARD
+================================= */
+
+.revolt-logo-plate {
+
+    min-height:
+        clamp(
+            170px,
+            18vw,
+            245px
+        );
+
+    padding:
+        0;
+
+    overflow:
+        visible;
+
+    border:
+        0 !important;
+
+    background:
+        transparent !important;
+
+    box-shadow:
+        none !important;
+
+}
+
+
+.revolt-logo-plate::before {
+
+    content:
+        none !important;
+
+    display:
+        none !important;
+
+}
+
+
+.revolt-brand-logo {
+
+    width:
+        min(
+            82%,
+            430px
+        );
+
+    max-height:
+        190px;
+
+    filter:
+
+        drop-shadow(
+            0
+            14px
+            24px
+            rgba(
+                0,
+                0,
+                0,
+                0.42
+            )
+        )
+
+        drop-shadow(
+            0
+            0
+            18px
+            rgba(
+                207,
+                54,
+                28,
+                0.18
+            )
+        );
+
+}
+
+
+@media (
+    max-width:
+        550px
+) {
+
+    .revolt-logo-plate {
+
+        min-height:
+            145px;
+
+    }
+
+
+    .revolt-brand-logo {
+
+        width:
+            88%;
+
+        max-height:
+            135px;
+
+    }
+
+}
