@@ -2075,7 +2075,7 @@ body {
             213,
             170,
             85,
-            0.28
+            0.22
         );
 
     border-bottom:
@@ -2103,10 +2103,10 @@ body {
                 50% - 1px
             ),
             rgba(
-                0,
-                0,
-                0,
-                0.72
+                213,
+                170,
+                85,
+                0.08
             )
             50%,
             transparent
@@ -2115,46 +2115,48 @@ body {
             )
         ),
 
-        repeating-conic-gradient(
+        radial-gradient(
+            ellipse at 50% 28%,
+            rgba(
+                255,
+                255,
+                255,
+                0.025
+            ),
+            transparent 42%
+        ),
 
-            from
-            -22deg
-
-            at
-            50%
-            100%,
-
+        radial-gradient(
+            ellipse at 50% 100%,
             rgba(
                 213,
                 170,
                 85,
-                0.065
-            )
-            0deg
-            10deg,
+                0.06
+            ),
+            transparent 52%
+        ),
 
+        linear-gradient(
+            135deg,
             rgba(
                 111,
                 23,
                 28,
-                0.075
-            )
-            10deg
-            21deg,
+                0.08
+            ),
+            transparent 36%
+        ),
 
+        linear-gradient(
+            225deg,
             rgba(
                 181,
                 72,
                 35,
-                0.055
-            )
-            21deg
-            32deg,
-
-            transparent
-            32deg
-            43deg
-
+                0.06
+            ),
+            transparent 40%
         );
 
     box-shadow:
@@ -2167,17 +2169,17 @@ body {
             0,
             0,
             0,
-            0.15
+            0.12
         ),
 
         0
         0
-        80px
+        70px
         rgba(
             213,
             170,
             85,
-            0.08
+            0.05
         ),
 
         inset
@@ -2188,7 +2190,7 @@ body {
             0,
             0,
             0,
-            0.66
+            0.62
         );
 
     transform:
