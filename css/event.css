@@ -1491,16 +1491,27 @@
 
 }
 /* =================================
-   STEP 316D0
-   EVENT HERO IMAGE FIX
+   STEP 316D0-R1
+   EVENT HERO IMAGE FIX REPAIR
 ================================= */
 
 
 /* =================================
-   EVENT HEADER LAYOUT
+   EVENT HEADER REBALANCE
 ================================= */
 
 .event-header {
+
+    grid-template-columns:
+        minmax(520px, 0.95fr)
+        minmax(0, 1.1fr);
+
+    gap:
+        clamp(
+            2rem,
+            4vw,
+            4.5rem
+        );
 
     align-items:
         center;
@@ -1513,11 +1524,14 @@
     width:
         100%;
 
+    min-width:
+        0;
+
 }
 
 
 /* =================================
-   LANDSCAPE EVENT IMAGE BOX
+   LANDSCAPE IMAGE FRAME
 ================================= */
 
 .event-image-box {
@@ -1541,7 +1555,7 @@
         16 / 9;
 
     min-height:
-        0;
+        320px;
 
     overflow:
         hidden;
@@ -1554,7 +1568,7 @@
                 213,
                 170,
                 85,
-                0.08
+                0.06
             ),
             transparent 42%
         ),
@@ -1572,20 +1586,11 @@
             213,
             170,
             85,
-            0.2
+            0.18
         );
 
     box-shadow:
-
-        0
-        24px
-        56px
-        rgba(
-            0,
-            0,
-            0,
-            0.28
-        );
+        0 24px 56px rgba(0, 0, 0, 0.28);
 
 }
 
@@ -1599,7 +1604,7 @@
         absolute;
 
     inset:
-        14px;
+        10px;
 
     border:
         1px solid
@@ -1607,7 +1612,7 @@
             213,
             170,
             85,
-            0.14
+            0.12
         );
 
     pointer-events:
@@ -1617,7 +1622,7 @@
 
 
 /* =================================
-   ACTUAL EVENT IMAGE
+   IMAGE / PLACEHOLDER
 ================================= */
 
 #event-image {
@@ -1638,7 +1643,7 @@
         center;
 
     padding:
-        0.75rem;
+        0;
 
     background:
         transparent;
@@ -1646,9 +1651,13 @@
 }
 
 
-/* =================================
-   PLACEHOLDER
-================================= */
+#event-image[hidden] {
+
+    display:
+        none !important;
+
+}
+
 
 #event-image-placeholder {
 
@@ -1673,7 +1682,6 @@
         );
 
     font-family:
-
         "Arial Black",
         "Helvetica Neue",
         Arial,
@@ -1695,9 +1703,40 @@
 }
 
 
+#event-image-placeholder[hidden] {
+
+    display:
+        none !important;
+
+}
+
+
 /* =================================
-   MOBILE
+   RESPONSIVE REPAIR
 ================================= */
+
+@media (max-width: 1000px) {
+
+    .event-header {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            2.25rem;
+
+    }
+
+
+    .event-image-column {
+
+        max-width:
+            none;
+
+    }
+
+}
+
 
 @media (max-width: 700px) {
 
@@ -1706,13 +1745,8 @@
         aspect-ratio:
             16 / 9;
 
-    }
-
-
-    #event-image {
-
-        padding:
-            0.45rem;
+        min-height:
+            0;
 
     }
 
