@@ -3253,3 +3253,769 @@
     }
 
 }
+/* =================================
+   STEP 316C1-R2
+   CORRECT DYNAMIC BRAND TARGETING
+================================= */
+
+
+/* =================================
+   COMPLETE DYNAMIC SECTION
+================================= */
+
+.roster-team-section {
+
+    position:
+        relative;
+
+    isolation:
+        isolate;
+
+    width:
+        min(
+            1200px,
+            calc(
+                100% - 48px
+            )
+        );
+
+    margin:
+        0 auto;
+
+    padding:
+
+        clamp(
+            4.5rem,
+            7vw,
+            7rem
+        )
+
+        0;
+
+}
+
+
+.roster-team-section::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    bottom:
+        0;
+
+    left:
+        50%;
+
+    z-index:
+        -1;
+
+    width:
+        100vw;
+
+    transform:
+        translateX(
+            -50%
+        );
+
+    border-top:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.14
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            0,
+            0,
+            0,
+            0.8
+        );
+
+}
+
+
+.roster-team-section[data-brand="ascension"]::before {
+
+    background:
+
+        radial-gradient(
+            circle at 8% 8%,
+            rgba(
+                159,
+                201,
+                218,
+                0.13
+            ),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            180deg,
+            #090d10,
+            #050708
+        );
+
+}
+
+
+.roster-team-section[data-brand="revolt"]::before {
+
+    background:
+
+        radial-gradient(
+            circle at 92% 8%,
+            rgba(
+                181,
+                72,
+                35,
+                0.14
+            ),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            180deg,
+            #0d0908,
+            #050708
+        );
+
+}
+
+
+/* =================================
+   SECTION HEADING
+================================= */
+
+.roster-team-section
+.roster-section-heading {
+
+    position:
+        relative;
+
+    margin-bottom:
+        2.75rem;
+
+    padding-bottom:
+        1.4rem;
+
+    border-bottom:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.24
+        );
+
+}
+
+
+.roster-team-section
+.roster-section-heading::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    bottom:
+        -1px;
+
+    left:
+        0;
+
+    width:
+        120px;
+
+    height:
+        3px;
+
+}
+
+
+.roster-team-section[data-brand="ascension"]
+.roster-section-heading::before {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #2a4380,
+            #b9deeb
+        );
+
+}
+
+
+.roster-team-section[data-brand="revolt"]
+.roster-section-heading::before {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #8c1118,
+            #ef8b45
+        );
+
+}
+
+
+.roster-team-section
+.roster-section-heading h2 {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            3.2rem,
+            8vw,
+            6rem
+        );
+
+    line-height:
+        0.88;
+
+    letter-spacing:
+        -0.065em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.roster-team-section[data-brand="ascension"]
+.roster-section-heading h2 {
+
+    color:
+        #b9deeb;
+
+}
+
+
+.roster-team-section[data-brand="revolt"]
+.roster-section-heading h2 {
+
+    color:
+        #ef8b45;
+
+}
+
+
+.roster-team-section
+.roster-section-heading > span {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    min-height:
+        40px;
+
+    padding:
+
+        0.55rem
+        0.75rem;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.26
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.26
+        );
+
+    color:
+        #efc86f;
+
+}
+
+
+.roster-team-section[data-brand="ascension"]
+.roster-section-heading > span {
+
+    border-color:
+        rgba(
+            159,
+            201,
+            218,
+            0.34
+        );
+
+    color:
+        #b9deeb;
+
+}
+
+
+.roster-team-section[data-brand="revolt"]
+.roster-section-heading > span {
+
+    border-color:
+        rgba(
+            239,
+            139,
+            69,
+            0.34
+        );
+
+    color:
+        #ef8b45;
+
+}
+
+
+/* =================================
+   DYNAMIC CARDS
+================================= */
+
+.roster-team-card[data-brand] {
+
+    position:
+        relative;
+
+    isolation:
+        isolate;
+
+    min-height:
+        270px;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.22
+        );
+
+    background:
+
+        linear-gradient(
+            140deg,
+            #111415,
+            #07090a 62%,
+            #0d0b09
+        );
+
+    box-shadow:
+
+        0
+        20px
+        48px
+        rgba(
+            0,
+            0,
+            0,
+            0.28
+        );
+
+}
+
+
+.roster-team-card[data-brand]::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    z-index:
+        4;
+
+    height:
+        4px;
+
+}
+
+
+.roster-team-card[data-brand="ascension"]::before {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #2a4380,
+            #b9deeb
+        );
+
+}
+
+
+.roster-team-card[data-brand="revolt"]::before {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #8c1118,
+            #ef8b45
+        );
+
+}
+
+
+.roster-team-card[data-brand="ascension"] {
+
+    border-color:
+        rgba(
+            159,
+            201,
+            218,
+            0.23
+        );
+
+}
+
+
+.roster-team-card[data-brand="revolt"] {
+
+    border-color:
+        rgba(
+            239,
+            139,
+            69,
+            0.22
+        );
+
+}
+
+
+/* =================================
+   CARD IMAGE CHAMBERS
+================================= */
+
+.roster-team-card[data-brand="ascension"]
+.roster-team-image {
+
+    border-right-color:
+        rgba(
+            159,
+            201,
+            218,
+            0.2
+        );
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(
+                159,
+                201,
+                218,
+                0.14
+            ),
+            transparent 48%
+        ),
+
+        #05090d;
+
+}
+
+
+.roster-team-card[data-brand="revolt"]
+.roster-team-image {
+
+    border-right-color:
+        rgba(
+            239,
+            139,
+            69,
+            0.2
+        );
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(
+                181,
+                72,
+                35,
+                0.16
+            ),
+            transparent 48%
+        ),
+
+        #0a0504;
+
+}
+
+
+.roster-team-card[data-brand="ascension"]
+.roster-team-image::after {
+
+    border-color:
+        rgba(
+            159,
+            201,
+            218,
+            0.2
+        );
+
+}
+
+
+.roster-team-card[data-brand="revolt"]
+.roster-team-image::after {
+
+    border-color:
+        rgba(
+            239,
+            139,
+            69,
+            0.2
+        );
+
+}
+
+
+/* =================================
+   CARD COPY
+================================= */
+
+.roster-team-card[data-brand="ascension"]
+.roster-team-topline span,
+
+.roster-team-card[data-brand="ascension"]
+.roster-team-topline strong {
+
+    color:
+        #9fc9da;
+
+}
+
+
+.roster-team-card[data-brand="revolt"]
+.roster-team-topline span,
+
+.roster-team-card[data-brand="revolt"]
+.roster-team-topline strong {
+
+    color:
+        #ef8b45;
+
+}
+
+
+.roster-team-card[data-brand]
+.roster-team-body h3 {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    letter-spacing:
+        -0.04em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.roster-team-card[data-brand]
+.roster-team-body p {
+
+    color:
+        #aeb2af;
+
+}
+
+
+/* =================================
+   VIEW BUTTONS
+================================= */
+
+.roster-team-card[data-brand="ascension"]
+.roster-view-team {
+
+    border-color:
+        rgba(
+            159,
+            201,
+            218,
+            0.36
+        );
+
+}
+
+
+.roster-team-card[data-brand="revolt"]
+.roster-view-team {
+
+    border-color:
+        rgba(
+            239,
+            139,
+            69,
+            0.36
+        );
+
+}
+
+
+.roster-team-card[data-brand="ascension"]:hover
+.roster-view-team {
+
+    border-color:
+        #b9deeb;
+
+    background:
+        #b9deeb;
+
+    color:
+        #15264f;
+
+}
+
+
+.roster-team-card[data-brand="revolt"]:hover
+.roster-view-team {
+
+    border-color:
+        #ef8b45;
+
+    background:
+        #ef8b45;
+
+    color:
+        #140403;
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (
+    max-width:
+        650px
+) {
+
+    .roster-team-section {
+
+        width:
+            calc(
+                100% - 28px
+            );
+
+    }
+
+
+    .roster-team-section
+    .roster-section-heading {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            0.75rem;
+
+    }
+
+
+    .roster-team-card[data-brand] {
+
+        grid-template-columns:
+
+            115px
+            minmax(
+                0,
+                1fr
+            );
+
+        min-height:
+            210px;
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        390px
+) {
+
+    .roster-team-card[data-brand] {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .roster-team-card[data-brand]
+    .roster-team-image {
+
+        min-height:
+            220px;
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            rgba(
+                213,
+                170,
+                85,
+                0.17
+            );
+
+    }
+
+}
