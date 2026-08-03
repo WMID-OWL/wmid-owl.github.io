@@ -1330,3 +1330,1114 @@
     }
 
 }
+/* =================================
+   STEP 316C1
+   OWL ROSTER OVERHAUL
+================================= */
+
+
+/* =================================
+   ROSTER HERO
+================================= */
+
+.roster-hero {
+
+    width:
+        min(
+            1200px,
+            calc(
+                100% - 48px
+            )
+        );
+
+    margin:
+        0 auto;
+
+    padding:
+
+        clamp(
+            5rem,
+            9vw,
+            8rem
+        )
+
+        0
+
+        clamp(
+            3rem,
+            5vw,
+            4.5rem
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.26
+        );
+
+}
+
+
+.roster-hero h1 {
+
+    margin:
+        0;
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            4.5rem,
+            12vw,
+            9rem
+        );
+
+    font-weight:
+        900;
+
+    line-height:
+        0.82;
+
+    letter-spacing:
+        -0.08em;
+
+    text-transform:
+        uppercase;
+
+    text-shadow:
+
+        0
+        18px
+        44px
+        rgba(
+            0,
+            0,
+            0,
+            0.6
+        );
+
+}
+
+
+.roster-hero > p:last-child {
+
+    max-width:
+        680px;
+
+    margin:
+        1.5rem 0 0;
+
+    color:
+        #aeb2af;
+
+    font-size:
+        1.05rem;
+
+    line-height:
+        1.75;
+
+}
+
+
+/* =================================
+   CONTROL CHAMBER
+================================= */
+
+.roster-controls {
+
+    position:
+        relative;
+
+    margin-top:
+        2.5rem;
+
+    padding:
+        clamp(
+            1.5rem,
+            4vw,
+            2.5rem
+        );
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.3
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 92% 12%,
+            rgba(
+                181,
+                72,
+                35,
+                0.1
+            ),
+            transparent 32%
+        ),
+
+        linear-gradient(
+            135deg,
+            #101314,
+            #07090a 62%,
+            #0e0b09
+        );
+
+    box-shadow:
+
+        0
+        24px
+        60px
+        rgba(
+            0,
+            0,
+            0,
+            0.28
+        );
+
+}
+
+
+.roster-controls::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    height:
+        4px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #2a4380,
+            #d5aa55 48%,
+            #b54823
+        );
+
+}
+
+
+.roster-search-area label {
+
+    color:
+        #efc86f;
+
+    letter-spacing:
+        0.18em;
+
+}
+
+
+#roster-search {
+
+    min-height:
+        54px;
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.25
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.34
+        );
+
+    color:
+        #f4f2eb;
+
+}
+
+
+#roster-search:focus {
+
+    border-color:
+        #efc86f;
+
+    box-shadow:
+
+        0
+        0
+        0
+        3px
+        rgba(
+            213,
+            170,
+            85,
+            0.08
+        );
+
+}
+
+
+.roster-filter {
+
+    min-height:
+        44px;
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.22
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.28
+        );
+
+    color:
+        #aeb2af;
+
+    transition:
+
+        color
+        0.18s ease,
+
+        border-color
+        0.18s ease,
+
+        background
+        0.18s ease,
+
+        transform
+        0.18s ease;
+
+}
+
+
+.roster-filter:hover {
+
+    transform:
+        translateY(
+            -2px
+        );
+
+    border-color:
+        rgba(
+            239,
+            200,
+            111,
+            0.58
+        );
+
+}
+
+
+.roster-brand-filter[data-brand="ascension"].active {
+
+    border-color:
+        #9fc9da;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #e4f3f7,
+            #9fc9da
+        );
+
+    color:
+        #2a4380;
+
+}
+
+
+.roster-brand-filter[data-brand="revolt"].active {
+
+    border-color:
+        #ef8b45;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ef8b45,
+            #a91f19
+        );
+
+    color:
+        #130403;
+
+}
+
+
+.roster-category-filter.active {
+
+    border-color:
+        #efc86f;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #efc86f,
+            #a96d22
+        );
+
+    color:
+        #080604;
+
+}
+
+
+/* =================================
+   ALPHABET COMMAND BAR
+================================= */
+
+.roster-alphabet-nav {
+
+    top:
+        92px;
+
+    margin-top:
+        1.25rem;
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.28
+        );
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(
+                12,
+                15,
+                16,
+                0.98
+            ),
+            rgba(
+                5,
+                7,
+                8,
+                0.98
+            )
+        );
+
+    box-shadow:
+
+        0
+        18px
+        38px
+        rgba(
+            0,
+            0,
+            0,
+            0.42
+        );
+
+    backdrop-filter:
+        blur(
+            14px
+        );
+
+}
+
+
+.roster-alphabet-button {
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.12
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+}
+
+
+.roster-alphabet-button.is-available {
+
+    color:
+        #f4f2eb;
+
+}
+
+
+.roster-alphabet-button.is-available:hover {
+
+    border-color:
+        #efc86f;
+
+    background:
+        #efc86f;
+
+    color:
+        #080604;
+
+}
+
+
+/* =================================
+   BRAND ROSTER SECTIONS
+================================= */
+
+.roster-page-body main > .section {
+
+    position:
+        relative;
+
+    width:
+        min(
+            1200px,
+            calc(
+                100% - 48px
+            )
+        );
+
+    margin:
+        0 auto;
+
+    padding:
+
+        clamp(
+            4.5rem,
+            7vw,
+            7rem
+        )
+
+        0;
+
+}
+
+
+.roster-page-body main > .section::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    bottom:
+        0;
+
+    left:
+        50%;
+
+    z-index:
+        -1;
+
+    width:
+        100vw;
+
+    transform:
+        translateX(
+            -50%
+        );
+
+    border-top:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.14
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            0,
+            0,
+            0,
+            0.8
+        );
+
+}
+
+
+#ascension::before {
+
+    background:
+
+        radial-gradient(
+            circle at 8% 8%,
+            rgba(
+                159,
+                201,
+                218,
+                0.13
+            ),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            180deg,
+            #090d10,
+            #050708
+        );
+
+}
+
+
+#revolt::before {
+
+    background:
+
+        radial-gradient(
+            circle at 92% 8%,
+            rgba(
+                181,
+                72,
+                35,
+                0.13
+            ),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            180deg,
+            #0d0908,
+            #050708
+        );
+
+}
+
+
+.roster-page-body .section-heading {
+
+    position:
+        relative;
+
+    margin-bottom:
+        2.75rem;
+
+    padding-bottom:
+        1.4rem;
+
+    border-bottom:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.24
+        );
+
+}
+
+
+.roster-page-body .section-heading::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    bottom:
+        -1px;
+
+    left:
+        0;
+
+    width:
+        120px;
+
+    height:
+        3px;
+
+}
+
+
+#ascension .section-heading::before {
+
+    background:
+        #9fc9da;
+
+}
+
+
+#revolt .section-heading::before {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #b54823,
+            #ef8b45
+        );
+
+}
+
+
+.roster-page-body .section-heading h2 {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            3.2rem,
+            8vw,
+            6rem
+        );
+
+    line-height:
+        0.88;
+
+    letter-spacing:
+        -0.065em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+#ascension .section-heading h2 {
+
+    color:
+        #b9deeb;
+
+}
+
+
+#revolt .section-heading h2 {
+
+    color:
+        #ef8b45;
+
+}
+
+
+/* =================================
+   WRESTLER CARDS
+================================= */
+
+.roster-wrestler-card {
+
+    position:
+        relative;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            170,
+            85,
+            0.2
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #111415,
+            #07090a
+        );
+
+    box-shadow:
+
+        0
+        18px
+        42px
+        rgba(
+            0,
+            0,
+            0,
+            0.24
+        );
+
+}
+
+
+.roster-wrestler-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
+
+    left:
+        0;
+
+    z-index:
+        3;
+
+    height:
+        3px;
+
+}
+
+
+#ascension .roster-wrestler-card::before {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #2a4380,
+            #b9deeb
+        );
+
+}
+
+
+#revolt .roster-wrestler-card::before {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #8c1118,
+            #ef8b45
+        );
+
+}
+
+
+.roster-card-link:hover
+.roster-wrestler-card {
+
+    border-color:
+        rgba(
+            239,
+            200,
+            111,
+            0.52
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #161a1b,
+            #090b0c
+        );
+
+    box-shadow:
+
+        0
+        26px
+        58px
+        rgba(
+            0,
+            0,
+            0,
+            0.34
+        );
+
+}
+
+
+.roster-portrait {
+
+    border-bottom-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.16
+        );
+
+    background:
+        #030405;
+
+}
+
+
+.roster-card-info {
+
+    padding:
+        1.15rem;
+
+}
+
+
+.roster-card-info h3 {
+
+    color:
+        #f4f2eb;
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    letter-spacing:
+        -0.035em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+#ascension .roster-card-brand,
+#ascension .roster-nickname {
+
+    color:
+        #9fc9da !important;
+
+}
+
+
+#revolt .roster-card-brand,
+#revolt .roster-nickname {
+
+    color:
+        #ef8b45 !important;
+
+}
+
+
+/* =================================
+   LETTER HEADINGS
+================================= */
+
+.roster-letter-heading {
+
+    padding-bottom:
+        0.7rem;
+
+    color:
+        #efc86f;
+
+    border-bottom-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.34
+        );
+
+    font-family:
+
+        "Arial Black",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    letter-spacing:
+        0.04em;
+
+}
+
+
+#ascension .roster-letter-heading {
+
+    color:
+        #9fc9da;
+
+    border-bottom-color:
+        rgba(
+            159,
+            201,
+            218,
+            0.46
+        );
+
+}
+
+
+#revolt .roster-letter-heading {
+
+    color:
+        #ef8b45;
+
+    border-bottom-color:
+        rgba(
+            239,
+            139,
+            69,
+            0.42
+        );
+
+}
+
+
+/* =================================
+   EMPTY AND MEDICAL STATES
+================================= */
+
+.roster-empty-state {
+
+    border-color:
+        rgba(
+            213,
+            170,
+            85,
+            0.24
+        );
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.3
+        );
+
+}
+
+
+.roster-injury-badge {
+
+    box-shadow:
+
+        0
+        0
+        16px
+        rgba(
+            0,
+            0,
+            0,
+            0.16
+        );
+
+}
+
+
+@media (
+    max-width:
+        820px
+) {
+
+    .roster-alphabet-nav {
+
+        top:
+            84px;
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        550px
+) {
+
+    .roster-hero,
+    .roster-controls,
+    .roster-page-body main > .section {
+
+        width:
+            calc(
+                100% - 28px
+            );
+
+    }
+
+
+    .roster-hero {
+
+        padding:
+
+            4rem
+            0
+            3rem;
+
+    }
+
+
+    .roster-hero h1 {
+
+        font-size:
+            clamp(
+                3.8rem,
+                22vw,
+                6rem
+            );
+
+    }
+
+
+    .roster-controls {
+
+        padding:
+
+            1.5rem
+            1rem;
+
+    }
+
+
+    .roster-filter {
+
+        flex:
+            1 1
+            calc(
+                50% - 0.6rem
+            );
+
+        justify-content:
+            center;
+
+    }
+
+}
