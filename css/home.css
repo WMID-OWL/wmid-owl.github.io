@@ -3989,3 +3989,173 @@ body {
     }
 
 }
+/* =================================
+   STEP 316B2-R1
+   ASCENSION PORTAL CORRECTION
+================================= */
+
+
+/* Remove the generic logo card */
+
+.ascension-logo-plate {
+
+    min-height:
+        clamp(
+            170px,
+            18vw,
+            245px
+        );
+
+    padding:
+        0;
+
+    overflow:
+        visible;
+
+    border:
+        0;
+
+    background:
+        transparent;
+
+    box-shadow:
+        none;
+
+}
+
+
+.ascension-logo-plate::before {
+
+    content:
+        none;
+
+    display:
+        none;
+
+}
+
+
+/* Let the official brush logo stand on its own */
+
+.ascension-brand-logo {
+
+    width:
+        min(
+            88%,
+            520px
+        );
+
+    max-height:
+        190px;
+
+    filter:
+
+        drop-shadow(
+            0
+            12px
+            18px
+            rgba(
+                15,
+                39,
+                78,
+                0.16
+            )
+        );
+
+}
+
+
+/* Use the cobalt blue from the Ascension ring mat */
+
+.ascension-panel .brand-panel-day {
+
+    color:
+        #2a4380;
+
+}
+
+
+.ascension-panel .brand-panel-copy {
+
+    color:
+        #2a4380;
+
+}
+
+
+.ascension-panel .brand-panel-link {
+
+    color:
+        #2a4380;
+
+    border-color:
+        rgba(
+            42,
+            67,
+            128,
+            0.58
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.2
+        );
+
+}
+
+
+.ascension-panel .brand-panel-link:hover {
+
+    color:
+        #ffffff;
+
+    border-color:
+        #2a4380;
+
+    background:
+        #2a4380;
+
+    box-shadow:
+
+        0
+        16px
+        32px
+        rgba(
+            42,
+            67,
+            128,
+            0.24
+        );
+
+}
+
+
+/* Mobile logo spacing */
+
+@media (
+    max-width:
+        550px
+) {
+
+    .ascension-logo-plate {
+
+        min-height:
+            145px;
+
+    }
+
+
+    .ascension-brand-logo {
+
+        width:
+            92%;
+
+        max-height:
+            135px;
+
+    }
+
+}
