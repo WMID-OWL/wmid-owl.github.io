@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "id": "announced-0001",
+    "eventId": "blood-on-the-sand-2026",
+    "order": 1,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "aeirachna"
+        ]
+      },
+      {
+        "wrestlers": [
+          "aleister-black"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced",
+    "statusNote": "test match"
+  }
+]
