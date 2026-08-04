@@ -1,466 +1,580 @@
-// =================================
-// OWL CONTROL ROOM
-// EVENT MANAGER
-// =================================
+(() => {
+    "use strict";
+
+    const $ =
+        id =>
+            document.getElementById(
+                id
+            );
 
 
-// =================================
-// ELEMENTS
-// =================================
+    const ui = {
+
+        mode:
+            $(
+                "cr-event-editor-mode"
+            ),
+
+        select:
+            $(
+                "cr-event-editor-select"
+            ),
+
+        selectRow:
+            $(
+                "cr-event-editor-select-row"
+            ),
+
+        idPreview:
+            $(
+                "cr-event-id-preview"
+            ),
+
+        status:
+            $(
+                "cr-event-editor-status"
+            ),
+
+        preview:
+            $(
+                "cr-event-change-preview"
+            ),
+
+        changes:
+            $(
+                "cr-event-change-list"
+            ),
+
+        error:
+            $(
+                "cr-event-conflict-message"
+            ),
+
+        save:
+            $(
+                "cr-save-event"
+            ),
+
+        message:
+            $(
+                "cr-event-editor-message"
+            )
+
+    };
 
 
-const crEventMode =
-    document.getElementById(
-        "cr-event-editor-mode"
-    );
+    const fields = {
 
+        name:
+            $(
+                "cr-event-name"
+            ),
 
-const crEventSelect =
-    document.getElementById(
-        "cr-event-editor-select"
-    );
+        brand:
+            $(
+                "cr-event-brand"
+            ),
 
+        eventType:
+            $(
+                "cr-event-type"
+            ),
 
-const crEventSelectRow =
-    document.getElementById(
-        "cr-event-editor-select-row"
-    );
+        periodId:
+            $(
+                "cr-event-period"
+            ),
 
+        stage:
+            $(
+                "cr-event-stage"
+            ),
 
-const crEventIdPreview =
-    document.getElementById(
-        "cr-event-id-preview"
-    );
+        status:
+            $(
+                "cr-event-status"
+            ),
 
-
-const crEventStatus =
-    document.getElementById(
-        "cr-event-editor-status"
-    );
-
-
-const crEventPreview =
-    document.getElementById(
-        "cr-event-change-preview"
-    );
-
-
-const crEventChangeList =
-    document.getElementById(
-        "cr-event-change-list"
-    );
-
-
-const crEventConflictMessage =
-    document.getElementById(
-        "cr-event-conflict-message"
-    );
-
-
-const crEventSaveButton =
-    document.getElementById(
-        "cr-save-event"
-    );
-
-
-const crEventMessage =
-    document.getElementById(
-        "cr-event-editor-message"
-    );
-
-
-
-// =================================
-// FORM FIELDS
-// =================================
-
-
-const crEventFields = {
-
-    name:
-        document.getElementById(
-            "cr-event-name"
-        ),
-
-    brand:
-        document.getElementById(
-            "cr-event-brand"
-        ),
-
-    eventType:
-        document.getElementById(
-            "cr-event-type"
-        ),
-
-    date:
-        document.getElementById(
-            "cr-event-date"
-        ),
-
-    status:
-        document.getElementById(
-            "cr-event-status"
-        ),
-
-    location:
-        document.getElementById(
-            "cr-event-location"
-        ),
+        location:
+            $(
+                "cr-event-location"
+            ),
 
         image:
-        document.getElementById(
-            "cr-event-image"
-        ),
+            $(
+                "cr-event-image"
+            ),
 
-    youtubeVideoId:
-        document.getElementById(
-            "cr-event-youtube"
-        ),
+        youtubeVideoId:
+            $(
+                "cr-event-youtube"
+            ),
 
-    tagline:
-        document.getElementById(
-            "cr-event-tagline"
-        ),
+        tagline:
+            $(
+                "cr-event-tagline"
+            ),
 
-    description:
-        document.getElementById(
-            "cr-event-description"
+        description:
+            $(
+                "cr-event-description"
+            )
+
+    };
+
+
+    if (
+        Object.values(
+            ui
+        ).some(
+            element =>
+                !element
         )
 
-};
+        ||
+
+        Object.values(
+            fields
+        ).some(
+            element =>
+                !element
+        )
+    ) {
+
+        return;
+
+    }
 
 
+    const labels = {
 
-// =================================
-// LABELS
-// =================================
+        name:
+            "Event Name",
 
+        brand:
+            "Show / Brand",
 
-const crEventLabels = {
+        eventType:
+            "Event Type",
 
-    name:
-        "Event Name",
+        periodId:
+            "Month",
 
-    brand:
-        "Show / Brand",
+        stage:
+            "Week",
 
-    eventType:
-        "Event Type",
+        status:
+            "Status",
 
-    date:
-        "Date",
-
-    status:
-        "Status",
-
-    location:
-        "Location",
+        location:
+            "Location",
 
         image:
-        "Poster Path",
+            "Poster Path",
 
-    youtubeVideoId:
-        "YouTube Video",
+        youtubeVideoId:
+            "YouTube Video",
 
-    tagline:
-        "Tagline",
+        tagline:
+            "Tagline",
 
-    description:
-        "Description"
+        description:
+            "Description"
 
-};
-
-
-
-// =================================
-// STATE
-// =================================
+    };
 
 
-let crEventOriginalRecord =
-    null;
+    let original =
+        null;
 
 
-let crEventPendingSelectionId =
-    "";
-
-
-
-// =================================
-// BASIC HELPERS
-// =================================
-
-
-function crEventSetStatus(
-    text
-) {
-
-    crEventStatus.textContent =
-        text;
-
-}
-
-
-
-function crEventShowMessage(
-    message,
-    type
-) {
-
-    crEventMessage.textContent =
-        message;
-
-
-    crEventMessage.className =
-        `cr-save-message ${type}`;
-
-
-    crEventMessage.hidden =
-        false;
-
-}
-
-
-
-function crEventHideMessage() {
-
-    crEventMessage.textContent =
+    let pendingSelectionId =
         "";
 
 
-    crEventMessage.hidden =
-        true;
 
-}
-
-
-
-function crEventCreateSlug(
-    name
-) {
-
-    return String(
-        name || ""
-    )
-
-        .normalize(
-            "NFD"
-        )
-
-        .replace(
-            /[\u0300-\u036f]/g,
-            ""
-        )
-
-        .toLowerCase()
-
-        .replace(
-            /&/g,
-            " and "
-        )
-
-        .replace(
-            /[^a-z0-9]+/g,
-            "-"
-        )
-
-        .replace(
-            /^-+|-+$/g,
-            ""
-        );
-
-}
-
-
-
-function crEventCreateId(
-    record
-) {
-
-    const slug =
-        crEventCreateSlug(
-            record.name
-        );
-
-
-    if (
-        !slug ||
-        !record.date
-    ) {
-
-        return "";
-
-    }
-
-
-    if (
-        record.eventType === "ppv"
-    ) {
-
-        const year =
-            record.date.slice(
-                0,
-                4
-            );
-
-
-        return `${slug}-${year}`;
-
-    }
-
-
-    return `${slug}-${record.date}`;
-
-}
-
-
-
-function crEventValuesMatch(
-    first,
-    second
-) {
-
-    return (
-
-        JSON.stringify(
-            first
-        )
-
-        ===
-
-        JSON.stringify(
-            second
-        )
-
-    );
-
-}
-
-
-
-function crEventDisplayValue(
-    value
-) {
-
-    if (
-        value === null ||
-        value === undefined ||
-        value === ""
-    ) {
-
-        return "Empty";
-
-    }
-
-
-    return String(
+    function clean(
         value
-    );
+    ) {
 
-}
-
-
-
-// =================================
-// YOUTUBE VIDEO ID
-// =================================
-
-
-function crEventExtractYouTubeId(
-    value
-) {
-
-    const rawValue =
-        String(
+        return String(
             value || ""
         ).trim();
 
-
-    if (!rawValue) {
-
-        return "";
-
     }
 
 
-    const videoIdPattern =
-        /^[A-Za-z0-9_-]{11}$/;
 
-
-    if (
-        videoIdPattern.test(
-            rawValue
-        )
+    function normal(
+        value
     ) {
 
-        return rawValue;
+        return clean(
+            value
+        ).toLowerCase();
 
     }
 
 
-    try {
 
-        const url =
-            new URL(
-                rawValue
+    function escapeHtml(
+        value
+    ) {
+
+        return String(
+            value ?? ""
+        )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
             );
 
-
-        const hostname =
-            url.hostname
-
-                .replace(
-                    /^www\./i,
-                    ""
-                )
-
-                .toLowerCase();
+    }
 
 
-        let videoId =
-            "";
+
+    function calendar() {
+
+        return window.OWLCalendar || null;
+
+    }
+
+
+
+    function normalizeStage(
+        value
+    ) {
+
+        const helper =
+            calendar();
 
 
         if (
-            hostname === "youtu.be"
+            helper
+
+            &&
+
+            typeof helper.normalizeStage ===
+                "function"
         ) {
 
-            videoId =
-                url.pathname
-
-                    .split("/")
-
-                    .filter(
-                        Boolean
-                    )[0]
-
-                ||
-
-                "";
+            return helper.normalizeStage(
+                value
+            );
 
         }
 
 
-        else if (
-            hostname.endsWith(
-                "youtube.com"
+        const match =
+            normal(
+                value
+            )
+                .replace(
+                    /_/g,
+                    "-"
+                )
+                .match(
+                    /^(?:week-?)?([1-4])$/
+                );
+
+
+        return match
+            ? `week-${match[1]}`
+            : "";
+
+    }
+
+
+
+    function formatSlot(
+        record
+    ) {
+
+        const helper =
+            calendar();
+
+
+        if (
+            helper
+
+            &&
+
+            typeof helper.formatEventSlot ===
+                "function"
+        ) {
+
+            return helper.formatEventSlot(
+                record
+            );
+
+        }
+
+
+        return "Schedule Not Set";
+
+    }
+
+
+
+    function compareEvents(
+        eventA,
+        eventB
+    ) {
+
+        const helper =
+            calendar();
+
+
+        if (
+            helper
+
+            &&
+
+            typeof helper.compareEvents ===
+                "function"
+        ) {
+
+            return helper.compareEvents(
+                eventA,
+                eventB
+            );
+
+        }
+
+
+        return clean(
+            eventA?.name
+        ).localeCompare(
+            clean(
+                eventB?.name
+            )
+        );
+
+    }
+
+
+
+    function setStatus(
+        value
+    ) {
+
+        ui.status.textContent =
+            value;
+
+    }
+
+
+
+    function hideMessage() {
+
+        ui.message.hidden =
+            true;
+
+
+        ui.message.textContent =
+            "";
+
+
+        ui.message.className =
+            "cr-save-message";
+
+    }
+
+
+
+    function showMessage(
+        value,
+        type = "success"
+    ) {
+
+        ui.message.textContent =
+            value;
+
+
+        ui.message.className =
+
+            `cr-save-message ${
+                type === "error"
+
+                    ? "save-error"
+
+                    : "save-success"
+            }`;
+
+
+        ui.message.hidden =
+            false;
+
+    }
+
+
+
+    function slugify(
+        value
+    ) {
+
+        return clean(
+            value
+        )
+            .normalize(
+                "NFD"
+            )
+            .replace(
+                /[\u0300-\u036f]/g,
+                ""
+            )
+            .toLowerCase()
+            .replace(
+                /['’]/g,
+                ""
+            )
+            .replace(
+                /&/g,
+                " and "
+            )
+            .replace(
+                /[^a-z0-9]+/g,
+                "-"
+            )
+            .replace(
+                /^-+|-+$/g,
+                ""
+            );
+
+    }
+
+
+
+    function createId(
+        record
+    ) {
+
+        const slug =
+            slugify(
+                record.name
+            );
+
+
+        if (
+            !slug
+
+            ||
+
+            !/^\d{4}-(0[1-9]|1[0-2])$/.test(
+                record.periodId
             )
 
             ||
 
-            hostname.endsWith(
-                "youtube-nocookie.com"
+            !record.stage
+        ) {
+
+            return "";
+
+        }
+
+
+        if (
+            record.eventType ===
+                "ppv"
+        ) {
+
+            return `${slug}-${record.periodId.slice(
+                0,
+                4
+            )}`;
+
+        }
+
+
+        return `${slug}-${record.periodId}-${record.stage}`;
+
+    }
+
+
+
+    function extractYouTubeId(
+        value
+    ) {
+
+        const raw =
+            clean(
+                value
+            );
+
+
+        const pattern =
+            /^[A-Za-z0-9_-]{11}$/;
+
+
+        if (!raw) {
+
+            return "";
+
+        }
+
+
+        if (
+            pattern.test(
+                raw
             )
         ) {
 
+            return raw;
+
+        }
+
+
+        try {
+
+            const url =
+                new URL(
+                    raw
+                );
+
+
+            const host =
+                url.hostname
+                    .replace(
+                        /^www\./i,
+                        ""
+                    )
+                    .toLowerCase();
+
+
+            let id =
+                "";
+
+
             if (
-                url.pathname === "/watch"
+                host ===
+                    "youtu.be"
             ) {
 
-                videoId =
-                    url.searchParams.get(
-                        "v"
-                    )
+                id =
+                    url.pathname
+                        .split(
+                            "/"
+                        )
+                        .filter(
+                            Boolean
+                        )[0]
 
                     ||
 
@@ -469,35 +583,27 @@ function crEventExtractYouTubeId(
             }
 
 
-            else {
+            else if (
+                host.endsWith(
+                    "youtube.com"
+                )
 
-                const pathParts =
-                    url.pathname
+                ||
 
-                        .split("/")
-
-                        .filter(
-                            Boolean
-                        );
-
-
-                const supportedPaths = [
-
-                    "embed",
-                    "shorts",
-                    "live"
-
-                ];
-
+                host.endsWith(
+                    "youtube-nocookie.com"
+                )
+            ) {
 
                 if (
-                    supportedPaths.includes(
-                        pathParts[0]
-                    )
+                    url.pathname ===
+                        "/watch"
                 ) {
 
-                    videoId =
-                        pathParts[1]
+                    id =
+                        url.searchParams.get(
+                            "v"
+                        )
 
                         ||
 
@@ -505,319 +611,976 @@ function crEventExtractYouTubeId(
 
                 }
 
+
+                else {
+
+                    const parts =
+                        url.pathname
+                            .split(
+                                "/"
+                            )
+                            .filter(
+                                Boolean
+                            );
+
+
+                    if (
+                        [
+                            "embed",
+                            "shorts",
+                            "live"
+                        ].includes(
+                            parts[0]
+                        )
+                    ) {
+
+                        id =
+                            parts[1] || "";
+
+                    }
+
+                }
+
             }
+
+
+            return pattern.test(
+                id
+            )
+
+                ? id
+
+                : "";
 
         }
 
 
-        return videoIdPattern.test(
-            videoId
-        )
+        catch {
 
-            ? videoId
+            return "";
 
-            : "";
+        }
 
     }
 
 
-    catch (error) {
 
-        return "";
+    function getForm() {
+
+        return {
+
+            name:
+                fields.name.value.trim(),
+
+            brand:
+                fields.brand.value,
+
+            eventType:
+                fields.eventType.value,
+
+            periodId:
+                fields.periodId.value,
+
+            stage:
+                normalizeStage(
+                    fields.stage.value
+                ),
+
+            status:
+                fields.status.value,
+
+            location:
+                fields.location.value.trim(),
+
+            image:
+                fields.image.value.trim(),
+
+            youtubeVideoId:
+                extractYouTubeId(
+                    fields.youtubeVideoId.value
+                ),
+
+            tagline:
+                fields.tagline.value.trim(),
+
+            description:
+                fields.description.value.trim()
+
+        };
 
     }
 
-}
 
 
-
-// =================================
-// FORM RECORD
-// =================================
-
-
-function crEventGetFormRecord() {
-
-    return {
-
-        name:
-            crEventFields.name.value.trim(),
-
-        brand:
-            crEventFields.brand.value,
-
-        eventType:
-            crEventFields.eventType.value,
-
-        date:
-            crEventFields.date.value,
-
-        status:
-            crEventFields.status.value,
-
-        location:
-            crEventFields.location.value.trim(),
-
-                image:
-            crEventFields.image.value.trim(),
-
-        youtubeVideoId:
-            crEventExtractYouTubeId(
-                crEventFields.youtubeVideoId.value
-            ),
-
-        tagline:
-            crEventFields.tagline.value.trim(),
-
-        description:
-            crEventFields.description.value.trim()
-
-    };
-
-}
-
-
-
-function crEventGetEditableRecord(
-    event
-) {
-
-    return {
-
-        name:
-            event.name || "",
-
-        brand:
-            event.brand || "",
-
-        eventType:
-            event.eventType || "weekly",
-
-        date:
-            event.date || "",
-
-        status:
-            event.status || "upcoming",
-
-        location:
-            event.location || "",
-
-                image:
-            event.image || "",
-
-        youtubeVideoId:
-            crEventExtractYouTubeId(
-                event.youtubeVideoId || ""
-            ),
-
-        tagline:
-            event.tagline || "",
-
-        description:
-            event.description || ""
-
-    };
-
-}
-
-
-
-// =================================
-// FILL FORM
-// =================================
-
-
-function crEventFillForm(
-    record
-) {
-
-    crEventFields.name.value =
-        record.name || "";
-
-
-    crEventFields.brand.value =
-        record.brand || "";
-
-
-    crEventFields.eventType.value =
-        record.eventType || "weekly";
-
-
-    crEventFields.date.value =
-        record.date || "";
-
-
-    crEventFields.status.value =
-        record.status || "upcoming";
-
-
-    crEventFields.location.value =
-        record.location || "";
-
-
-        crEventFields.image.value =
-        record.image || "";
-
-
-    crEventFields.youtubeVideoId.value =
-
-        record.youtubeVideoId
-
-            ? `https://www.youtube.com/watch?v=${record.youtubeVideoId}`
-
-            : "";
-
-
-    crEventFields.tagline.value =
-        record.tagline || "";
-
-
-    crEventFields.description.value =
-        record.description || "";
-
-}
-
-
-
-// =================================
-// CLEAR FORM
-// =================================
-
-
-function crEventClearForm() {
-
-    crEventFillForm({
-
-        name:
-            "",
-
-        brand:
-            "",
-
-        eventType:
-            "weekly",
-
-        date:
-            "",
-
-        status:
-            "upcoming",
-
-        location:
-            "",
-
-                image:
-            "",
-
-        youtubeVideoId:
-            "",
-
-        tagline:
-            "",
-
-        description:
-            ""
-
-    });
-
-
-    crEventOriginalRecord =
-        null;
-
-
-    crEventIdPreview.textContent =
-        "—";
-
-
-    crEventPreview.hidden =
-        true;
-
-
-    crEventConflictMessage.hidden =
-        true;
-
-
-    crEventSaveButton.disabled =
-        true;
-
-}
-
-
-
-// =================================
-// POPULATE EVENT SELECT
-// =================================
-
-
-function crEventPopulateEvents() {
-
-    if (
-        !Array.isArray(
-            owlControlRoomData.events
-        )
+    function editable(
+        event
     ) {
 
-        return;
+        return {
+
+            name:
+                event?.name || "",
+
+            brand:
+                event?.brand || "",
+
+            eventType:
+                event?.eventType || "weekly",
+
+            periodId:
+                event?.periodId || "",
+
+            stage:
+                normalizeStage(
+                    event?.stage
+                ),
+
+            status:
+                event?.status || "upcoming",
+
+            location:
+                event?.location || "",
+
+            image:
+                event?.image || "",
+
+            youtubeVideoId:
+                extractYouTubeId(
+                    event?.youtubeVideoId || ""
+                ),
+
+            tagline:
+                event?.tagline || "",
+
+            description:
+                event?.description || ""
+
+        };
 
     }
 
 
 
-    const desiredSelection =
+    function fill(
+        record
+    ) {
 
-        crEventPendingSelectionId
-
-        ||
-
-        crEventSelect.value;
-
+        fields.name.value =
+            record.name || "";
 
 
-    crEventSelect.innerHTML = `
-
-        <option value="">
-            Select Event
-        </option>
-
-    `;
+        fields.brand.value =
+            record.brand || "";
 
 
+        fields.eventType.value =
+            record.eventType || "weekly";
 
-    const sortedEvents =
-        [...owlControlRoomData.events]
 
-            .sort(
-                (a, b) => {
+        fields.periodId.value =
+            record.periodId || "";
 
-                    const dateDifference =
 
-                        new Date(
-                            `${b.date}T00:00:00`
+        fields.stage.value =
+            normalizeStage(
+                record.stage
+            );
+
+
+        fields.status.value =
+            record.status || "upcoming";
+
+
+        fields.location.value =
+            record.location || "";
+
+
+        fields.image.value =
+            record.image || "";
+
+
+        fields.youtubeVideoId.value =
+
+            record.youtubeVideoId
+
+                ? `https://www.youtube.com/watch?v=${record.youtubeVideoId}`
+
+                : "";
+
+
+        fields.tagline.value =
+            record.tagline || "";
+
+
+        fields.description.value =
+            record.description || "";
+
+    }
+
+
+
+    function clearForm() {
+
+        fill({
+
+            eventType:
+                "weekly",
+
+            status:
+                "upcoming"
+
+        });
+
+
+        original =
+            null;
+
+
+        ui.idPreview.textContent =
+            "—";
+
+
+        ui.preview.hidden =
+            true;
+
+
+        ui.changes.innerHTML =
+            "";
+
+
+        ui.error.hidden =
+            true;
+
+
+        ui.error.textContent =
+            "";
+
+
+        ui.save.disabled =
+            true;
+
+    }
+
+
+
+    function eventData() {
+
+        return (
+
+            typeof owlControlRoomData !==
+                "undefined"
+
+            &&
+
+            Array.isArray(
+                owlControlRoomData.events
+            )
+        )
+
+            ? owlControlRoomData.events
+
+            : [];
+
+    }
+
+
+
+    function populateEvents() {
+
+        const events =
+            [
+                ...eventData()
+            ].sort(
+                compareEvents
+            );
+
+
+        const preferred =
+            pendingSelectionId
+
+            ||
+
+            ui.select.value;
+
+
+        pendingSelectionId =
+            "";
+
+
+        ui.select.innerHTML =
+            `<option value="">Select Event</option>`;
+
+
+        events.forEach(
+            event => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    event.id;
+
+
+                option.textContent =
+                    `${formatSlot(
+                        event
+                    )} — ${event.name || event.id}`;
+
+
+                ui.select.appendChild(
+                    option
+                );
+
+            }
+        );
+
+
+        if (
+            events.some(
+                event =>
+                    event.id ===
+                        preferred
+            )
+        ) {
+
+            ui.select.value =
+                preferred;
+
+        }
+
+
+        if (
+            ui.mode.value ===
+                "edit"
+
+            &&
+
+            ui.select.value
+        ) {
+
+            loadSelected();
+
+        }
+
+
+        else if (
+            ui.mode.value ===
+                "edit"
+        ) {
+
+            clearForm();
+
+
+            setStatus(
+                events.length
+
+                    ? "SELECT EVENT"
+
+                    : "NO EVENTS"
+            );
+
+        }
+
+    }
+
+
+
+    function loadSelected() {
+
+        hideMessage();
+
+
+        const event =
+            eventData().find(
+                item =>
+                    item.id ===
+                        ui.select.value
+            );
+
+
+        if (!event) {
+
+            clearForm();
+
+
+            setStatus(
+                "SELECT EVENT"
+            );
+
+
+            return;
+
+        }
+
+
+        original =
+            editable(
+                event
+            );
+
+
+        fill(
+            original
+        );
+
+
+        ui.idPreview.textContent =
+            event.id;
+
+
+        review();
+
+
+        setStatus(
+            "READY"
+        );
+
+    }
+
+
+
+    function changeMode() {
+
+        hideMessage();
+
+
+        clearForm();
+
+
+        const creating =
+            ui.mode.value ===
+                "create";
+
+
+        ui.selectRow.hidden =
+            creating;
+
+
+        ui.save.textContent =
+
+            creating
+
+                ? "Create Event"
+
+                : "Save Event Changes";
+
+
+        setStatus(
+
+            creating
+
+                ? "NEW EVENT"
+
+                : "SELECT EVENT"
+
+        );
+
+
+        if (creating) {
+
+            review();
+
+        }
+
+
+        else if (
+            ui.select.value
+        ) {
+
+            loadSelected();
+
+        }
+
+    }
+
+
+
+    function displayValue(
+        key,
+        value
+    ) {
+
+        const helper =
+            calendar();
+
+
+        if (
+            key ===
+                "periodId"
+        ) {
+
+            if (
+                helper
+
+                &&
+
+                typeof helper.formatPeriod ===
+                    "function"
+            ) {
+
+                return helper.formatPeriod(
+                    value
+                );
+
+            }
+
+
+            return clean(
+                value
+            ) || "Empty";
+
+        }
+
+
+        if (
+            key ===
+                "stage"
+        ) {
+
+            if (
+                helper
+
+                &&
+
+                typeof helper.formatStage ===
+                    "function"
+            ) {
+
+                return helper.formatStage(
+                    value
+                );
+
+            }
+
+
+            return clean(
+                value
+            ) || "Empty";
+
+        }
+
+
+        return (
+
+            value === ""
+
+            ||
+
+            value === null
+
+            ||
+
+            value === undefined
+        )
+
+            ? "Empty"
+
+            : String(
+                value
+            );
+
+    }
+
+
+
+    function getChanges() {
+
+        if (!original) {
+
+            return {};
+
+        }
+
+
+        const current =
+            getForm();
+
+
+        return Object.keys(
+            labels
+        ).reduce(
+            (
+                changes,
+                key
+            ) => {
+
+
+                if (
+                    JSON.stringify(
+                        current[key]
+                    )
+
+                    !==
+
+                    JSON.stringify(
+                        original[key]
+                    )
+                ) {
+
+                    changes[key] =
+                        current[key];
+
+                }
+
+
+                return changes;
+
+            },
+            {}
+        );
+
+    }
+
+
+
+    function validate(
+        record
+    ) {
+
+        const errors =
+            [];
+
+
+        if (!record.name) {
+
+            errors.push(
+                "Event name is required."
+            );
+
+        }
+
+
+        if (!record.brand) {
+
+            errors.push(
+                "Show / brand is required."
+            );
+
+        }
+
+
+        if (
+            ![
+                "weekly",
+                "ppv"
+            ].includes(
+                record.eventType
+            )
+        ) {
+
+            errors.push(
+                "Select a valid event type."
+            );
+
+        }
+
+
+        if (
+            !/^\d{4}-(0[1-9]|1[0-2])$/.test(
+                record.periodId
+            )
+        ) {
+
+            errors.push(
+                "Select a valid event month."
+            );
+
+        }
+
+
+        if (
+            ![
+                "week-1",
+                "week-2",
+                "week-3",
+                "week-4"
+            ].includes(
+                record.stage
+            )
+        ) {
+
+            errors.push(
+                "Select Week 1, Week 2, Week 3, or Week 4."
+            );
+
+        }
+
+
+        if (
+            ![
+                "upcoming",
+                "completed"
+            ].includes(
+                record.status
+            )
+        ) {
+
+            errors.push(
+                "Select a valid event status."
+            );
+
+        }
+
+
+        if (
+            fields.youtubeVideoId.value.trim()
+
+            &&
+
+            !record.youtubeVideoId
+        ) {
+
+            errors.push(
+                "The YouTube value is not a supported URL or clean video ID."
+            );
+
+        }
+
+
+        return errors;
+
+    }
+
+
+
+    function findConflict(
+        record,
+        currentId = ""
+    ) {
+
+        return eventData().find(
+            event => {
+
+
+                if (
+                    event.id ===
+                        currentId
+
+                    ||
+
+                    event.periodId !==
+                        record.periodId
+                ) {
+
+                    return false;
+
+                }
+
+
+                if (
+                    record.eventType ===
+                        "ppv"
+                ) {
+
+                    return normal(
+                        event.eventType
+                    ) ===
+                        "ppv";
+
+                }
+
+
+                return (
+
+                    normalizeStage(
+                        event.stage
+                    ) ===
+                        record.stage
+
+                    &&
+
+                    normal(
+                        event.eventType
+                    ) ===
+                        "weekly"
+
+                    &&
+
+                    normal(
+                        event.brand
+                    ) ===
+                        normal(
+                            record.brand
                         )
 
-                        -
+                );
 
-                        new Date(
-                            `${a.date}T00:00:00`
-                        );
+            }
+        ) || null;
 
-
-                    if (
-                        dateDifference !== 0
-                    ) {
-
-                        return dateDifference;
-
-                    }
+    }
 
 
-                    return String(
-                        a.name || ""
-                    ).localeCompare(
 
-                        String(
-                            b.name || ""
-                        )
+    function addRow(
+        label,
+        oldValue,
+        newValue,
+        creating
+    ) {
+
+        const row =
+            document.createElement(
+                "div"
+            );
+
+
+        row.className =
+            "cr-editor-change-row";
+
+
+        row.innerHTML =
+
+            creating
+
+                ? `
+                    <strong>
+                        ${escapeHtml(label)}
+                    </strong>
+
+                    <span>
+                        ${escapeHtml(newValue)}
+                    </span>
+                `
+
+                : `
+                    <strong>
+                        ${escapeHtml(label)}
+                    </strong>
+
+                    <span>
+                        ${escapeHtml(oldValue)}
+                        →
+                        ${escapeHtml(newValue)}
+                    </span>
+                `;
+
+
+        ui.changes.appendChild(
+            row
+        );
+
+    }
+
+
+
+    function review() {
+
+        hideMessage();
+
+
+        ui.changes.innerHTML =
+            "";
+
+
+        ui.error.hidden =
+            true;
+
+
+        ui.error.textContent =
+            "";
+
+
+        const record =
+            getForm();
+
+
+        const creating =
+            ui.mode.value ===
+                "create";
+
+
+        const currentId =
+            creating
+                ? ""
+                : ui.select.value;
+
+
+        const errors =
+            validate(
+                record
+            );
+
+
+        const conflict =
+            findConflict(
+                record,
+                currentId
+            );
+
+
+        if (creating) {
+
+            ui.idPreview.textContent =
+                createId(
+                    record
+                ) || "—";
+
+
+            Object.keys(
+                labels
+            ).forEach(
+                key => {
+
+                    addRow(
+
+                        labels[key],
+
+                        "",
+
+                        displayValue(
+                            key,
+                            record[key]
+                        ),
+
+                        true
+
+                    );
+
+                }
+            );
+
+        }
+
+
+        else if (original) {
+
+            ui.idPreview.textContent =
+                ui.select.value || "—";
+
+
+            const changes =
+                getChanges();
+
+
+            Object.entries(
+                changes
+            ).forEach(
+                (
+                    [
+                        key,
+                        value
+                    ]
+                ) => {
+
+                    addRow(
+
+                        labels[key],
+
+                        displayValue(
+                            key,
+                            original[key]
+                        ),
+
+                        displayValue(
+                            key,
+                            value
+                        ),
+
+                        false
 
                     );
 
@@ -825,1779 +1588,727 @@ function crEventPopulateEvents() {
             );
 
 
+            if (
+                Object.keys(
+                    changes
+                ).length ===
+                    0
+            ) {
 
-    sortedEvents.forEach(
-        event => {
+                ui.preview.hidden =
+                    true;
 
-            const option =
-                document.createElement(
-                    "option"
+
+                ui.save.disabled =
+                    true;
+
+
+                setStatus(
+                    "READY"
                 );
 
 
-            option.value =
-                event.id;
-
-
-            option.textContent =
-
-                `${event.date} — ${event.name}`;
-
-
-            crEventSelect.appendChild(
-                option
-            );
-
-        }
-    );
-
-
-
-    if (
-        desiredSelection
-
-        &&
-
-        sortedEvents.some(
-            event =>
-                event.id === desiredSelection
-        )
-    ) {
-
-        crEventSelect.value =
-            desiredSelection;
-
-
-        crEventPendingSelectionId =
-            "";
-
-
-        crEventLoadSelected();
-
-    }
-
-
-    else {
-
-        crEventSetStatus(
-            "READY"
-        );
-
-    }
-
-}
-
-
-
-// =================================
-// LOAD SELECTED EVENT
-// =================================
-
-
-function crEventLoadSelected() {
-
-    crEventHideMessage();
-
-
-
-    const eventId =
-        crEventSelect.value;
-
-
-
-    if (!eventId) {
-
-        crEventClearForm();
-
-
-        crEventSetStatus(
-            "READY"
-        );
-
-
-        return;
-
-    }
-
-
-
-    const event =
-        owlControlRoomData.events.find(
-            item =>
-                item.id === eventId
-        );
-
-
-    if (!event) {
-
-        crEventShowMessage(
-
-            "The selected event could not be found.",
-
-            "save-error"
-
-        );
-
-
-        return;
-
-    }
-
-
-
-    crEventOriginalRecord =
-        crEventGetEditableRecord(
-            event
-        );
-
-
-    crEventFillForm(
-        crEventOriginalRecord
-    );
-
-
-    crEventIdPreview.textContent =
-        event.id;
-
-
-    crEventPreview.hidden =
-        true;
-
-
-    crEventConflictMessage.hidden =
-        true;
-
-
-    crEventSaveButton.disabled =
-        true;
-
-
-    crEventSetStatus(
-        "EDITING"
-    );
-
-}
-
-
-
-// =================================
-// MODE CHANGE
-// =================================
-
-
-function crEventChangeMode() {
-
-    crEventHideMessage();
-
-
-    crEventChangeList.innerHTML =
-        "";
-
-
-    crEventPreview.hidden =
-        true;
-
-
-    crEventConflictMessage.hidden =
-        true;
-
-
-
-    if (
-        crEventMode.value === "create"
-    ) {
-
-        crEventSelectRow.hidden =
-            true;
-
-
-        crEventSelect.value =
-            "";
-
-
-        crEventClearForm();
-
-
-        crEventSaveButton.textContent =
-            "Create Event";
-
-
-        crEventSetStatus(
-            "NEW EVENT"
-        );
-
-
-        return;
-
-    }
-
-
-
-    crEventSelectRow.hidden =
-        false;
-
-
-    crEventSaveButton.textContent =
-        "Save Event Changes";
-
-
-    crEventClearForm();
-
-
-    crEventSetStatus(
-        "READY"
-    );
-
-}
-
-
-
-// =================================
-// CHANGE DETECTION
-// =================================
-
-
-function crEventGetChanges() {
-
-    if (!crEventOriginalRecord) {
-
-        return {};
-
-    }
-
-
-    const current =
-        crEventGetFormRecord();
-
-
-    const changes =
-        {};
-
-
-
-    Object.keys(
-        current
-    ).forEach(
-        key => {
-
-            if (
-                !crEventValuesMatch(
-
-                    current[key],
-
-                    crEventOriginalRecord[key]
-
-                )
-            ) {
-
-                changes[key] =
-                    current[key];
+                return;
 
             }
-
-        }
-    );
-
-
-    return changes;
-
-}
-
-
-
-// =================================
-// REVIEW ROW
-// =================================
-
-
-function crEventAddReviewRow(
-    label,
-    value
-) {
-
-    const row =
-        document.createElement(
-            "div"
-        );
-
-
-    row.className =
-        "cr-editor-change-row";
-
-
-    const labelElement =
-        document.createElement(
-            "strong"
-        );
-
-
-    labelElement.textContent =
-        label;
-
-
-    const valueElement =
-        document.createElement(
-            "span"
-        );
-
-
-    valueElement.textContent =
-        value;
-
-
-    row.appendChild(
-        labelElement
-    );
-
-
-    row.appendChild(
-        valueElement
-    );
-
-
-    crEventChangeList.appendChild(
-        row
-    );
-
-}
-
-
-
-// =================================
-// VALIDATION
-// =================================
-
-
-function crEventValidate(
-    record
-) {
-
-    const errors =
-        [];
-
-
-    if (!record.name) {
-
-        errors.push(
-            "Event name is required."
-        );
-
-    }
-
-
-    if (!record.date) {
-
-        errors.push(
-            "Event date is required."
-        );
-
-    }
-
-
-        if (!record.eventType) {
-
-        errors.push(
-            "Event type is required."
-        );
-
-    }
-
-
-    const youtubeInput =
-        crEventFields.youtubeVideoId.value.trim();
-
-
-    if (
-        youtubeInput
-
-        &&
-
-        !record.youtubeVideoId
-    ) {
-
-        errors.push(
-
-            "Enter a valid YouTube URL or an 11-character YouTube video ID."
-
-        );
-
-    }
-
-
-    return errors;
-
-}
-
-
-
-// =================================
-// REVIEW CHANGES
-// =================================
-
-
-function crEventReviewChanges() {
-
-    crEventHideMessage();
-
-
-    crEventChangeList.innerHTML =
-        "";
-
-
-    crEventConflictMessage.hidden =
-        true;
-
-
-
-    const record =
-        crEventGetFormRecord();
-
-
-    const errors =
-        crEventValidate(
-            record
-        );
-
-
-
-    // =================================
-    // CREATE MODE
-    // =================================
-
-
-    if (
-        crEventMode.value === "create"
-    ) {
-
-        const newId =
-            crEventCreateId(
-                record
-            );
-
-
-        crEventIdPreview.textContent =
-            newId || "—";
-
-
-
-        if (
-            !record.name &&
-            !record.date
-        ) {
-
-            crEventPreview.hidden =
-                true;
-
-
-            crEventSaveButton.disabled =
-                true;
-
-
-            return;
-
-        }
-
-
-
-        const duplicateId =
-            newId
-
-            &&
-
-            owlControlRoomData.events.some(
-                event =>
-                    event.id === newId
-            );
-
-
-
-        if (duplicateId) {
-
-            errors.push(
-
-                `An event with the database ID ${newId} already exists.`
-
-            );
-
-        }
-
-
-
-        crEventPreview.hidden =
-            false;
-
-
-        crEventAddReviewRow(
-            "New Event",
-            record.name || "Unnamed"
-        );
-
-
-        crEventAddReviewRow(
-            "Database ID",
-            newId || "Waiting for name and date"
-        );
-
-
-        crEventAddReviewRow(
-            "Date",
-            record.date || "Not selected"
-        );
-
-
-        crEventAddReviewRow(
-            "Show / Brand",
-            record.brand || "Unassigned"
-        );
-
-
-        crEventAddReviewRow(
-            "Event Type",
-            record.eventType
-        );
-
-
-                crEventAddReviewRow(
-            "Status",
-            record.status
-        );
-
-
-        if (
-            record.youtubeVideoId
-        ) {
-
-            crEventAddReviewRow(
-
-                "YouTube Video",
-
-                record.youtubeVideoId
-
-            );
-
-        }
-
-
-
-        if (
-            errors.length > 0
-        ) {
-
-            crEventConflictMessage.textContent =
-                errors.join(" ");
-
-
-            crEventConflictMessage.hidden =
-                false;
-
-        }
-
-
-
-        crEventSaveButton.disabled =
-            errors.length > 0;
-
-
-        crEventSetStatus(
-
-            errors.length > 0
-
-                ? "CHECK FORM"
-
-                : "READY TO CREATE"
-
-        );
-
-
-        return;
-
-    }
-
-
-
-    // =================================
-    // EDIT MODE
-    // =================================
-
-
-    if (!crEventOriginalRecord) {
-
-        crEventPreview.hidden =
-            true;
-
-
-        crEventSaveButton.disabled =
-            true;
-
-
-        return;
-
-    }
-
-
-
-    const changes =
-        crEventGetChanges();
-
-
-    const changeKeys =
-        Object.keys(
-            changes
-        );
-
-
-
-        if (
-        changeKeys.length === 0
-    ) {
-
-        if (
-            errors.length > 0
-        ) {
-
-            crEventPreview.hidden =
-                false;
-
-
-            crEventConflictMessage.textContent =
-                errors.join(" ");
-
-
-            crEventConflictMessage.hidden =
-                false;
-
-
-            crEventSaveButton.disabled =
-                true;
-
-
-            crEventSetStatus(
-                "CHECK FORM"
-            );
-
-
-            return;
-
-        }
-
-
-        crEventPreview.hidden =
-            true;
-
-
-        crEventSaveButton.disabled =
-            true;
-
-
-        crEventSetStatus(
-            "NO CHANGES"
-        );
-
-
-        return;
-
-    }
-
-
-
-    changeKeys.forEach(
-        key => {
-
-            crEventAddReviewRow(
-
-                crEventLabels[key],
-
-                `${crEventDisplayValue(
-                    crEventOriginalRecord[key]
-                )} → ${crEventDisplayValue(
-                    changes[key]
-                )}`
-
-            );
-
-        }
-    );
-
-
-
-    crEventPreview.hidden =
-        false;
-
-
-
-    if (
-        errors.length > 0
-    ) {
-
-        crEventConflictMessage.textContent =
-            errors.join(" ");
-
-
-        crEventConflictMessage.hidden =
-            false;
-
-    }
-
-
-
-    crEventSaveButton.disabled =
-        errors.length > 0;
-
-
-    crEventSetStatus(
-
-        errors.length > 0
-
-            ? "CHECK FORM"
-
-            : "CHANGES READY"
-
-    );
-
-}
-
-
-
-// =================================
-// WRITE PERMISSION
-// =================================
-
-
-async function crEventEnsureWritePermission() {
-
-    if (!owlRepositoryHandle) {
-
-        return false;
-
-    }
-
-
-    const options = {
-
-        mode:
-            "readwrite"
-
-    };
-
-
-    const currentPermission =
-        await owlRepositoryHandle.queryPermission(
-            options
-        );
-
-
-    if (
-        currentPermission === "granted"
-    ) {
-
-        return true;
-
-    }
-
-
-    const requestedPermission =
-        await owlRepositoryHandle.requestPermission(
-            options
-        );
-
-
-    return (
-
-        requestedPermission ===
-        "granted"
-
-    );
-
-}
-
-
-
-// =================================
-// FILE HELPERS
-// =================================
-
-
-async function crEventReadFile() {
-
-    const dataDirectory =
-        await owlRepositoryHandle.getDirectoryHandle(
-            "data"
-        );
-
-
-    const fileHandle =
-        await dataDirectory.getFileHandle(
-            "events.json"
-        );
-
-
-    const file =
-        await fileHandle.getFile();
-
-
-    return {
-
-        fileHandle,
-
-        text:
-            await file.text()
-
-    };
-
-}
-
-
-
-async function crEventWriteFile(
-    fileHandle,
-    text
-) {
-
-    const writable =
-        await fileHandle.createWritable();
-
-
-    await writable.write(
-        text
-    );
-
-
-    await writable.close();
-
-}
-
-
-
-// =================================
-// FIND OBJECT BOUNDS
-// =================================
-
-
-function crEventFindObjectBounds(
-    text,
-    recordId
-) {
-
-    const escapedId =
-        recordId.replace(
-            /[.*+?^${}()|[\]\\]/g,
-            "\\$&"
-        );
-
-
-    const pattern =
-        new RegExp(
-
-            `"id"\\s*:\\s*"${escapedId}"`
-
-        );
-
-
-    const match =
-        pattern.exec(
-            text
-        );
-
-
-    if (!match) {
-
-        throw new Error(
-
-            `Could not find event ${recordId}.`
-
-        );
-
-    }
-
-
-
-    const start =
-        text.lastIndexOf(
-            "{",
-            match.index
-        );
-
-
-    let end =
-        -1;
-
-
-    let depth =
-        0;
-
-
-    let inString =
-        false;
-
-
-    let escaped =
-        false;
-
-
-
-    for (
-        let index = start;
-        index < text.length;
-        index += 1
-    ) {
-
-        const character =
-            text[index];
-
-
-        if (escaped) {
-
-            escaped =
-                false;
-
-
-            continue;
-
-        }
-
-
-        if (
-            character === "\\"
-
-            &&
-
-            inString
-        ) {
-
-            escaped =
-                true;
-
-
-            continue;
-
-        }
-
-
-        if (
-            character === "\""
-        ) {
-
-            inString =
-                !inString;
-
-
-            continue;
-
-        }
-
-
-        if (inString) {
-
-            continue;
-
-        }
-
-
-        if (
-            character === "{"
-        ) {
-
-            depth +=
-                1;
-
-        }
-
-
-        if (
-            character === "}"
-        ) {
-
-            depth -=
-                1;
-
-
-            if (
-                depth === 0
-            ) {
-
-                end =
-                    index;
-
-
-                break;
-
-            }
-
-        }
-
-    }
-
-
-
-    if (
-        start === -1 ||
-        end === -1
-    ) {
-
-        throw new Error(
-
-            `Could not locate event ${recordId}.`
-
-        );
-
-    }
-
-
-    return {
-
-        start,
-        end
-
-    };
-
-}
-
-
-
-// =================================
-// REPLACE STRING FIELD
-// =================================
-
-
-function crEventReplaceStringField(
-    block,
-    key,
-    value
-) {
-
-    const escapedKey =
-        key.replace(
-            /[.*+?^${}()|[\]\\]/g,
-            "\\$&"
-        );
-
-
-    const pattern =
-        new RegExp(
-
-            `("${escapedKey}"\\s*:\\s*)("(?:\\\\.|[^"\\\\])*")`
-
-        );
-
-
-    if (
-        pattern.test(
-            block
-        )
-    ) {
-
-        return block.replace(
-
-            pattern,
-
-            (
-                match,
-                prefix
-            ) =>
-
-                prefix
-
-                +
-
-                JSON.stringify(
-                    value
-                )
-
-        );
-
-    }
-
-
-    const closingIndex =
-        block.lastIndexOf(
-            "}"
-        );
-
-
-    if (
-        closingIndex === -1
-    ) {
-
-        throw new Error(
-
-            `Could not add field ${key}.`
-
-        );
-
-    }
-
-
-    const beforeClosing =
-        block
-
-            .slice(
-                0,
-                closingIndex
-            )
-
-            .trimEnd();
-
-
-    const separator =
-
-        beforeClosing.endsWith(
-            "{"
-        )
-
-            ? "\n"
-
-            : ",\n";
-
-
-    const newField =
-
-        `    ${JSON.stringify(key)}: ${JSON.stringify(value)}\n`;
-
-
-    return (
-
-        beforeClosing
-
-        +
-
-        separator
-
-        +
-
-        newField
-
-        +
-
-        block.slice(
-            closingIndex
-        )
-
-    );
-
-}
-
-
-
-// =================================
-// UPDATE EXISTING EVENT
-// =================================
-
-
-function crEventUpdateRecordText(
-    text,
-    recordId,
-    changes
-) {
-
-    const bounds =
-        crEventFindObjectBounds(
-            text,
-            recordId
-        );
-
-
-    let block =
-        text.slice(
-
-            bounds.start,
-
-            bounds.end + 1
-
-        );
-
-
-
-    Object.entries(
-        changes
-    ).forEach(
-        (
-            [
-                key,
-                value
-            ]
-        ) => {
-
-            block =
-                crEventReplaceStringField(
-
-                    block,
-
-                    key,
-
-                    value
-
-                );
-
-        }
-    );
-
-
-
-    return (
-
-        text.slice(
-            0,
-            bounds.start
-        )
-
-        +
-
-        block
-
-        +
-
-        text.slice(
-            bounds.end + 1
-        )
-
-    );
-
-}
-
-
-
-// =================================
-// APPEND NEW EVENT
-// =================================
-
-
-function crEventAppendRecordText(
-    text,
-    record
-) {
-
-    const closingIndex =
-        text.lastIndexOf(
-            "]"
-        );
-
-
-    if (
-        closingIndex === -1
-    ) {
-
-        throw new Error(
-            "Could not find the end of events.json."
-        );
-
-    }
-
-
-
-    const before =
-        text.slice(
-            0,
-            closingIndex
-        );
-
-
-    const after =
-        text.slice(
-            closingIndex
-        );
-
-
-    const trimmedBefore =
-        before.trimEnd();
-
-
-    const hasRecords =
-        !trimmedBefore.endsWith(
-            "["
-        );
-
-
-    const objectText =
-        JSON.stringify(
-            record,
-            null,
-            2
-        )
-
-            .split("\n")
-
-            .map(
-                line =>
-                    `  ${line}`
-            )
-
-            .join("\n");
-
-
-
-    return (
-
-        trimmedBefore
-
-        +
-
-        (
-            hasRecords
-                ? ",\n"
-                : "\n"
-        )
-
-        +
-
-        objectText
-
-        +
-
-        "\n"
-
-        +
-
-        after
-
-    );
-
-}
-
-
-
-// =================================
-// BUILD NEW EVENT
-// =================================
-
-
-function crEventBuildNewRecord() {
-
-    const form =
-        crEventGetFormRecord();
-
-
-    return {
-
-        id:
-            crEventCreateId(
-                form
-            ),
-
-        name:
-            form.name,
-
-        brand:
-            form.brand,
-
-        eventType:
-            form.eventType,
-
-        date:
-            form.date,
-
-        status:
-            form.status,
-
-        location:
-            form.location,
-
-                image:
-            form.image,
-
-        youtubeVideoId:
-            form.youtubeVideoId,
-
-        tagline:
-            form.tagline,
-
-        description:
-            form.description
-
-    };
-
-}
-
-
-
-// =================================
-// SAVE EXISTING EVENT
-// =================================
-
-
-async function crEventSaveExisting() {
-
-    const eventId =
-        crEventSelect.value;
-
-
-    const changes =
-        crEventGetChanges();
-
-
-
-    if (
-        !eventId
-
-        ||
-
-        Object.keys(
-            changes
-        ).length === 0
-    ) {
-
-        return;
-
-    }
-
-
-
-    const eventFile =
-        await crEventReadFile();
-
-
-
-    const updatedText =
-        crEventUpdateRecordText(
-
-            eventFile.text,
-
-            eventId,
-
-            changes
-
-        );
-
-
-
-    await crEventWriteFile(
-
-        eventFile.fileHandle,
-
-        updatedText
-
-    );
-
-
-
-    crEventPendingSelectionId =
-        eventId;
-
-
-
-    await loadRepositoryData(
-        owlRepositoryHandle
-    );
-
-
-
-    crEventShowMessage(
-
-        "Event changes were saved locally. Review events.json in GitHub Desktop before committing.",
-
-        "save-success"
-
-    );
-
-
-    crEventSetStatus(
-        "SAVED"
-    );
-
-}
-
-
-
-// =================================
-// SAVE NEW EVENT
-// =================================
-
-
-async function crEventSaveNew() {
-
-    const event =
-        crEventBuildNewRecord();
-
-
-
-    const duplicate =
-        owlControlRoomData.events.some(
-            item =>
-                item.id === event.id
-        );
-
-
-    if (duplicate) {
-
-        throw new Error(
-            "An event with this database ID already exists."
-        );
-
-    }
-
-
-
-    const eventFile =
-        await crEventReadFile();
-
-
-
-    const updatedText =
-        crEventAppendRecordText(
-
-            eventFile.text,
-
-            event
-
-        );
-
-
-
-    await crEventWriteFile(
-
-        eventFile.fileHandle,
-
-        updatedText
-
-    );
-
-
-
-    crEventMode.value =
-        "edit";
-
-
-    crEventSelectRow.hidden =
-        false;
-
-
-    crEventSaveButton.textContent =
-        "Save Event Changes";
-
-
-    crEventPendingSelectionId =
-        event.id;
-
-
-
-    await loadRepositoryData(
-        owlRepositoryHandle
-    );
-
-
-
-    crEventShowMessage(
-
-        `${event.name} was created in the local event database. Review events.json in GitHub Desktop before committing.`,
-
-        "save-success"
-
-    );
-
-
-    crEventSetStatus(
-        "CREATED"
-    );
-
-}
-
-
-
-// =================================
-// SAVE BUTTON
-// =================================
-
-
-async function crEventSave() {
-
-    crEventSaveButton.disabled =
-        true;
-
-
-    crEventSetStatus(
-        "SAVING..."
-    );
-
-
-    crEventHideMessage();
-
-
-
-    try {
-
-        const permission =
-            await crEventEnsureWritePermission();
-
-
-        if (!permission) {
-
-            throw new Error(
-                "Write permission was not granted."
-            );
-
-        }
-
-
-
-        const record =
-            crEventGetFormRecord();
-
-
-        const errors =
-            crEventValidate(
-                record
-            );
-
-
-        if (
-            errors.length > 0
-        ) {
-
-            throw new Error(
-                errors.join(" ")
-            );
-
-        }
-
-
-
-        if (
-            crEventMode.value === "create"
-        ) {
-
-            await crEventSaveNew();
 
         }
 
 
         else {
 
-            await crEventSaveExisting();
+            ui.preview.hidden =
+                true;
+
+
+            ui.save.disabled =
+                true;
+
+
+            return;
+
+        }
+
+
+        ui.preview.hidden =
+            false;
+
+
+        if (
+            errors.length
+        ) {
+
+            ui.error.textContent =
+                errors.join(
+                    " "
+                );
+
+
+            ui.error.hidden =
+                false;
+
+
+            ui.save.disabled =
+                true;
+
+
+            setStatus(
+                "CHECK FIELDS"
+            );
+
+
+            return;
+
+        }
+
+
+        if (conflict) {
+
+            ui.error.textContent =
+                `Schedule conflict: ${conflict.name || conflict.id} already occupies ${formatSlot(conflict)}.`;
+
+
+            ui.error.hidden =
+                false;
+
+
+            ui.save.disabled =
+                true;
+
+
+            setStatus(
+                "CONFLICT"
+            );
+
+
+            return;
+
+        }
+
+
+        if (
+            creating
+
+            &&
+
+            !createId(
+                record
+            )
+        ) {
+
+            ui.error.textContent =
+                "A database ID could not be generated from the event name and schedule.";
+
+
+            ui.error.hidden =
+                false;
+
+
+            ui.save.disabled =
+                true;
+
+
+            setStatus(
+                "CHECK FIELDS"
+            );
+
+
+            return;
+
+        }
+
+
+        ui.save.disabled =
+            false;
+
+
+        setStatus(
+            "REVIEW"
+        );
+
+    }
+
+
+
+    async function ensurePermission() {
+
+        if (
+            typeof owlRepositoryHandle ===
+                "undefined"
+
+            ||
+
+            !owlRepositoryHandle
+        ) {
+
+            return false;
+
+        }
+
+
+        const options = {
+
+            mode:
+                "readwrite"
+
+        };
+
+
+        if (
+            await owlRepositoryHandle
+                .queryPermission(
+                    options
+                )
+
+            ===
+                "granted"
+        ) {
+
+            return true;
+
+        }
+
+
+        return (
+
+            await owlRepositoryHandle
+                .requestPermission(
+                    options
+                )
+
+            ===
+                "granted"
+
+        );
+
+    }
+
+
+
+    async function readFile() {
+
+        const dataDirectory =
+            await owlRepositoryHandle
+                .getDirectoryHandle(
+                    "data"
+                );
+
+
+        const fileHandle =
+            await dataDirectory
+                .getFileHandle(
+                    "events.json"
+                );
+
+
+        const file =
+            await fileHandle
+                .getFile();
+
+
+        const events =
+            JSON.parse(
+                await file.text()
+            );
+
+
+        if (
+            !Array.isArray(
+                events
+            )
+        ) {
+
+            throw new Error(
+                "data/events.json must contain a JSON array."
+            );
+
+        }
+
+
+        return {
+
+            fileHandle,
+            events
+
+        };
+
+    }
+
+
+
+    async function writeFile(
+        fileHandle,
+        events
+    ) {
+
+        const writable =
+            await fileHandle
+                .createWritable();
+
+
+        try {
+
+            await writable.write(
+
+                `${JSON.stringify(
+                    events,
+                    null,
+                    2
+                )}\n`
+
+            );
+
+
+            await writable.close();
+
+        }
+
+
+        catch (
+            error
+        ) {
+
+            try {
+
+                await writable.abort();
+
+            }
+
+
+            catch {
+
+                // No additional action required.
+
+            }
+
+
+            throw error;
 
         }
 
     }
 
 
-    catch (error) {
 
-        console.error(
-            "Could not save event:",
+    function storedRecord(
+        form,
+        existing = null
+    ) {
+
+        const record =
+            existing
+
+                ? {
+                    ...existing
+                }
+
+                : {
+                    id:
+                        createId(
+                            form
+                        )
+                };
+
+
+        Object.assign(
+            record,
+            {
+
+                name:
+                    form.name,
+
+                brand:
+                    form.brand,
+
+                eventType:
+                    form.eventType,
+
+                periodId:
+                    form.periodId,
+
+                stage:
+                    form.stage,
+
+                status:
+                    form.status,
+
+                location:
+                    form.location,
+
+                image:
+                    form.image,
+
+                tagline:
+                    form.tagline,
+
+                description:
+                    form.description
+
+            }
+        );
+
+
+        if (
+            form.youtubeVideoId
+        ) {
+
+            record.youtubeVideoId =
+                form.youtubeVideoId;
+
+        }
+
+
+        else {
+
+            delete record.youtubeVideoId;
+
+        }
+
+
+        /*
+         * Existing legacy date fields remain temporarily
+         * until every OWL event reader is migrated.
+         *
+         * Newly created records do not receive an
+         * exact-day date field.
+         */
+
+
+        return record;
+
+    }
+
+
+
+    async function save() {
+
+        ui.save.disabled =
+            true;
+
+
+        setStatus(
+            "SAVING..."
+        );
+
+
+        hideMessage();
+
+
+        const wasCreating =
+            ui.mode.value ===
+                "create";
+
+
+        try {
+
+            if (
+                !await ensurePermission()
+            ) {
+
+                throw new Error(
+                    "Write permission was not granted."
+                );
+
+            }
+
+
+            const form =
+                getForm();
+
+
+            const errors =
+                validate(
+                    form
+                );
+
+
+            if (
+                errors.length
+            ) {
+
+                throw new Error(
+                    errors.join(
+                        " "
+                    )
+                );
+
+            }
+
+
+            const currentId =
+                wasCreating
+                    ? ""
+                    : ui.select.value;
+
+
+            const conflict =
+                findConflict(
+                    form,
+                    currentId
+                );
+
+
+            if (conflict) {
+
+                throw new Error(
+                    `Schedule conflict: ${conflict.name || conflict.id} already occupies ${formatSlot(conflict)}.`
+                );
+
+            }
+
+
+            const {
+                fileHandle,
+                events
+            } =
+                await readFile();
+
+
+            let savedId =
+                "";
+
+
+            if (wasCreating) {
+
+                const record =
+                    storedRecord(
+                        form
+                    );
+
+
+                if (
+                    events.some(
+                        event =>
+                            event.id ===
+                                record.id
+                    )
+                ) {
+
+                    throw new Error(
+                        "An event with this database ID already exists."
+                    );
+
+                }
+
+
+                events.push(
+                    record
+                );
+
+
+                savedId =
+                    record.id;
+
+            }
+
+
+            else {
+
+                const index =
+                    events.findIndex(
+                        event =>
+                            event.id ===
+                                ui.select.value
+                    );
+
+
+                if (
+                    index === -1
+                ) {
+
+                    throw new Error(
+                        "The selected event could not be found in data/events.json."
+                    );
+
+                }
+
+
+                const stableId =
+                    events[index].id;
+
+
+                events[index] =
+                    storedRecord(
+
+                        form,
+
+                        events[index]
+
+                    );
+
+
+                events[index].id =
+                    stableId;
+
+
+                savedId =
+                    stableId;
+
+            }
+
+
+            events.sort(
+                compareEvents
+            );
+
+
+            await writeFile(
+                fileHandle,
+                events
+            );
+
+
+            pendingSelectionId =
+                savedId;
+
+
+            ui.mode.value =
+                "edit";
+
+
+            ui.selectRow.hidden =
+                false;
+
+
+            ui.save.textContent =
+                "Save Event Changes";
+
+
+            await loadRepositoryData(
+                owlRepositoryHandle
+            );
+
+
+            showMessage(
+
+                wasCreating
+
+                    ? `${form.name} was created in data/events.json.`
+
+                    : `${form.name} was saved in data/events.json.`
+
+            );
+
+
+            setStatus(
+                "SAVED"
+            );
+
+        }
+
+
+        catch (
+            error
+        ) {
+
+            console.error(
+                "Could not save event:",
+                error
+            );
+
+
+            review();
+
+
+            showMessage(
+
+                error.message
+
+                ||
+
+                "The event could not be saved.",
+
+                "error"
+
+            );
+
+
+            setStatus(
+                "SAVE FAILED"
+            );
+
+        }
+
+    }
+
+
+
+    ui.mode.addEventListener(
+        "change",
+        changeMode
+    );
+
+
+    ui.select.addEventListener(
+        "change",
+        loadSelected
+    );
+
+
+    Object.values(
+        fields
+    ).forEach(
+        field => {
+
+            field.addEventListener(
+                "input",
+                review
+            );
+
+
+            field.addEventListener(
+                "change",
+                review
+            );
+
+        }
+    );
+
+
+    ui.save.addEventListener(
+        "click",
+        save
+    );
+
+
+    window.addEventListener(
+
+        "owl-control-room-data-loaded",
+
+        populateEvents
+
+    );
+
+
+    try {
+
+        if (
+            typeof owlControlRoomData !==
+                "undefined"
+
+            &&
+
+            Array.isArray(
+                owlControlRoomData.events
+            )
+        ) {
+
+            populateEvents();
+
+        }
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+        console.warn(
+            "Event Manager waiting for repository data.",
             error
         );
 
-
-        crEventReviewChanges();
-
-
-        crEventSetStatus(
-            "SAVE FAILED"
-        );
-
-
-        crEventShowMessage(
-
-            error.message ||
-            "The event could not be saved.",
-
-            "save-error"
-
-        );
-
     }
 
-}
-
-
-
-// =================================
-// DATA RELOAD
-// =================================
-
-
-function crEventHandleDataLoaded() {
-
-    crEventPopulateEvents();
-
-}
-
-
-
-// =================================
-// EVENTS
-// =================================
-
-
-crEventMode.addEventListener(
-    "change",
-    crEventChangeMode
-);
-
-
-crEventSelect.addEventListener(
-    "change",
-    crEventLoadSelected
-);
-
-
-
-Object.values(
-    crEventFields
-).forEach(
-    field => {
-
-        field.addEventListener(
-            "input",
-            crEventReviewChanges
-        );
-
-
-        field.addEventListener(
-            "change",
-            crEventReviewChanges
-        );
-
-    }
-);
-
-
-
-crEventSaveButton.addEventListener(
-    "click",
-    crEventSave
-);
-
-
-
-window.addEventListener(
-
-    "owl-control-room-data-loaded",
-
-    crEventHandleDataLoaded
-
-);
-
-
-
-// =================================
-// SAFETY INITIALIZATION
-// =================================
-
-
-try {
-
-    if (
-        typeof owlControlRoomData !==
-            "undefined"
-
-        &&
-
-        Array.isArray(
-            owlControlRoomData.events
-        )
-    ) {
-
-        crEventPopulateEvents();
-
-    }
-
-}
-
-
-catch (error) {
-
-    console.warn(
-        "Event Manager waiting for repository data.",
-        error
-    );
-
-}
+})();
