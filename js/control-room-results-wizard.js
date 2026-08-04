@@ -1832,6 +1832,7 @@ function crResultsShouldApplyTitleConsequence(
 
 function crResultsPopulateEvents() {
 
+
     const oldValue =
         crResultsEvent.value;
 
@@ -1853,6 +1854,70 @@ function crResultsPopulateEvents() {
     );
 
 
+    const formatEventSchedule = (
+        event
+    ) => {
+
+
+        if (
+            window.OWLCalendar
+
+            &&
+
+            typeof window.OWLCalendar
+                .formatEventSlot ===
+                "function"
+        ) {
+
+            return window.OWLCalendar
+                .formatEventSlot(
+                    event
+                );
+
+        }
+
+
+        return "Schedule Not Set";
+
+    };
+
+
+    const compareEvents = (
+        eventA,
+        eventB
+    ) => {
+
+
+        if (
+            window.OWLCalendar
+
+            &&
+
+            typeof window.OWLCalendar
+                .compareEvents ===
+                "function"
+        ) {
+
+            return window.OWLCalendar
+                .compareEvents(
+                    eventA,
+                    eventB
+                );
+
+        }
+
+
+        return String(
+            eventA?.name || ""
+        ).localeCompare(
+            String(
+                eventB?.name || ""
+            )
+        );
+
+    };
+
+
     const announcedEventIds =
         new Set(
 
@@ -1869,7 +1934,9 @@ function crResultsPopulateEvents() {
 
     const events =
 
-        [...owlControlRoomData.events]
+        [
+            ...owlControlRoomData.events
+        ]
 
             .filter(
 
@@ -1881,19 +1948,7 @@ function crResultsPopulateEvents() {
             )
 
             .sort(
-
-                (a, b) =>
-
-                    new Date(
-                        `${a.date}T00:00:00`
-                    )
-
-                    -
-
-                    new Date(
-                        `${b.date}T00:00:00`
-                    )
-
+                compareEvents
             );
 
 
@@ -1907,7 +1962,9 @@ function crResultsPopulateEvents() {
 
                     event.id,
 
-                    `${event.date} — ${event.name}`
+                    `${formatEventSchedule(
+                        event
+                    )} — ${event.name}`
 
                 )
 
