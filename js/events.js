@@ -3,22 +3,13 @@ async function loadEventsDirectory() {
     try {
 
 
-        // =================================
-        // LOAD EVENTS DATABASE
-        // =================================
-
-
         const response =
-
             await fetch(
-
                 "data/events.json",
-
                 {
                     cache:
                         "no-store"
                 }
-
             );
 
 
@@ -26,65 +17,46 @@ async function loadEventsDirectory() {
             !response.ok
         ) {
 
-
             throw new Error(
-
                 "Could not load events database."
-
             );
 
         }
 
 
         const events =
-
             await response.json();
 
 
 
-        // =================================
-        // PAGE ELEMENTS
-        // =================================
-
-
         const completedSection =
-
             document.getElementById(
                 "completed-events-section"
             );
 
 
         const completedGrid =
-
             document.getElementById(
                 "completed-event-grid"
             );
 
 
         const completedCount =
-
             document.getElementById(
                 "completed-event-count"
             );
 
 
         const emptyState =
-
             document.getElementById(
                 "events-empty-state"
             );
 
 
 
-        // =================================
-        // HELPERS
-        // =================================
-
-
         function normalize(
             value
         ) {
-
 
             return String(
                 value || ""
@@ -96,45 +68,91 @@ async function loadEventsDirectory() {
 
 
 
-        function getDateValue(
-            dateString
+        function escapeHtml(
+            value
         ) {
 
-
-            return new Date(
-
-                `${dateString}T00:00:00`
-
-            );
+            return String(
+                value ?? ""
+            )
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
 
         }
 
 
 
-        function formatDate(
-            dateString
+        function formatEventSchedule(
+            event
         ) {
 
+            if (
+                window.OWLCalendar
 
-            return getDateValue(
-                dateString
-            )
-                .toLocaleDateString(
+                &&
 
-                    "en-US",
+                typeof window.OWLCalendar
+                    .formatEventSlot ===
+                    "function"
+            ) {
 
-                    {
-                        year:
-                            "numeric",
+                return window.OWLCalendar
+                    .formatEventSlot(
+                        event
+                    );
 
-                        month:
-                            "long",
+            }
 
-                        day:
-                            "numeric"
-                    }
 
-                );
+            return "Schedule Not Set";
+
+        }
+
+
+
+        function compareEventsNewestFirst(
+            eventA,
+            eventB
+        ) {
+
+            if (
+                window.OWLCalendar
+
+                &&
+
+                typeof window.OWLCalendar
+                    .compareEvents ===
+                    "function"
+            ) {
+
+                return window.OWLCalendar
+                    .compareEvents(
+                        eventB,
+                        eventA
+                    );
+
+            }
+
+
+            return 0;
 
         }
 
@@ -144,40 +162,27 @@ async function loadEventsDirectory() {
             count
         ) {
 
-
             return `${count} ${
-
                 count === 1
-
                     ? "Event"
-
                     : "Events"
-
             }`;
 
         }
 
 
 
-        // =================================
-        // CREATE EVENT CARD
-        // =================================
-
-
         function createEventCard(
             event
         ) {
 
-
             const link =
-
                 document.createElement(
                     "a"
                 );
 
 
             link.href =
-
                 `event.html?id=${encodeURIComponent(
                     event.id
                 )}`;
@@ -192,26 +197,24 @@ async function loadEventsDirectory() {
                 <div class="event-card-image">
 
                     ${
-
                         event.image
 
                             ? `
-
                                 <img
-                                    src="${event.image}"
-                                    alt="${event.name}"
+                                    src="${escapeHtml(
+                                        event.image
+                                    )}"
+                                    alt="${escapeHtml(
+                                        event.name
+                                    )}"
                                 >
-
                             `
 
                             : `
-
                                 <span>
                                     OWL
                                 </span>
-
                             `
-
                     }
 
                 </div>
@@ -223,13 +226,14 @@ async function loadEventsDirectory() {
                     <div class="event-card-topline">
 
                         <span>
-                            ${event.brand || "OWL"}
+                            ${escapeHtml(
+                                event.brand || "OWL"
+                            )}
                         </span>
 
                         <span>
 
                             ${
-
                                 normalize(
                                     event.eventType
                                 ) === "ppv"
@@ -237,7 +241,6 @@ async function loadEventsDirectory() {
                                     ? "PPV"
 
                                     : "WEEKLY"
-
                             }
 
                         </span>
@@ -246,50 +249,50 @@ async function loadEventsDirectory() {
 
 
                     <h3>
-                        ${event.name}
+                        ${escapeHtml(
+                            event.name
+                        )}
                     </h3>
 
 
                     <p class="event-card-date">
 
-                        ${formatDate(
-                            event.date
+                        ${escapeHtml(
+                            formatEventSchedule(
+                                event
+                            )
                         )}
 
                     </p>
 
 
                     ${
-
                         event.location
 
                             ? `
-
                                 <p class="event-card-location">
-                                    ${event.location}
+                                    ${escapeHtml(
+                                        event.location
+                                    )}
                                 </p>
-
                             `
 
                             : ""
-
                     }
 
 
                     ${
-
                         event.tagline
 
                             ? `
-
                                 <p class="event-card-tagline">
-                                    ${event.tagline}
+                                    ${escapeHtml(
+                                        event.tagline
+                                    )}
                                 </p>
-
                             `
 
                             : ""
-
                     }
 
 
@@ -309,13 +312,7 @@ async function loadEventsDirectory() {
 
 
 
-        // =================================
-        // COMPLETED EVENT HISTORY
-        // =================================
-
-
         const completedEvents =
-
             Array.isArray(
                 events
             )
@@ -323,32 +320,15 @@ async function loadEventsDirectory() {
                 ? events
 
                     .filter(
-
                         event =>
 
                             normalize(
                                 event.status
                             ) !== "upcoming"
-
                     )
 
                     .sort(
-
-                        (
-                            a,
-                            b
-                        ) =>
-
-                            getDateValue(
-                                b.date
-                            )
-
-                            -
-
-                            getDateValue(
-                                a.date
-                            )
-
+                        compareEventsNewestFirst
                     )
 
                 : [];
@@ -359,7 +339,6 @@ async function loadEventsDirectory() {
 
 
         completedCount.textContent =
-
             formatCount(
                 completedEvents.length
             );
@@ -369,26 +348,20 @@ async function loadEventsDirectory() {
             completedEvents.length > 0
         ) {
 
-
             completedSection.hidden =
                 false;
 
 
             completedEvents.forEach(
-
                 event => {
 
-
                     completedGrid.appendChild(
-
                         createEventCard(
                             event
                         )
-
                     );
 
                 }
-
             );
 
 
@@ -400,7 +373,6 @@ async function loadEventsDirectory() {
 
         else {
 
-
             completedSection.hidden =
                 true;
 
@@ -410,7 +382,6 @@ async function loadEventsDirectory() {
 
         }
 
-
     }
 
 
@@ -418,37 +389,29 @@ async function loadEventsDirectory() {
         error
     ) {
 
-
         console.error(
-
             "Could not load Events directory:",
-
             error
-
         );
 
 
         document.querySelector(
             ".events-page"
-        )
-            .innerHTML = `
+        ).innerHTML = `
 
-                <section class="events-section">
+            <section class="events-section">
 
-                    <h1>
-                        Events Page Could Not Load
-                    </h1>
+                <h1>
+                    Events Page Could Not Load
+                </h1>
 
-                    <p class="empty-message">
+                <p class="empty-message">
+                    There was a problem loading the OWL events database.
+                </p>
 
-                        There was a problem loading
-                        the OWL events database.
+            </section>
 
-                    </p>
-
-                </section>
-
-            `;
+        `;
 
     }
 
