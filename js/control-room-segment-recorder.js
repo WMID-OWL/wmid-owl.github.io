@@ -237,7 +237,7 @@
     // =================================
 
 
-    function populateEvents() {
+        function populateEvents() {
 
 
         const currentValue =
@@ -251,6 +251,70 @@
             </option>
 
         `;
+
+
+        const formatEventSchedule = (
+            event
+        ) => {
+
+
+            if (
+                window.OWLCalendar
+
+                &&
+
+                typeof window.OWLCalendar
+                    .formatEventSlot ===
+                    "function"
+            ) {
+
+                return window.OWLCalendar
+                    .formatEventSlot(
+                        event
+                    );
+
+            }
+
+
+            return "Schedule Not Set";
+
+        };
+
+
+        const compareEventsNewestFirst = (
+            eventA,
+            eventB
+        ) => {
+
+
+            if (
+                window.OWLCalendar
+
+                &&
+
+                typeof window.OWLCalendar
+                    .compareEvents ===
+                    "function"
+            ) {
+
+                return window.OWLCalendar
+                    .compareEvents(
+                        eventB,
+                        eventA
+                    );
+
+            }
+
+
+            return String(
+                eventB?.name || ""
+            ).localeCompare(
+                String(
+                    eventA?.name || ""
+                )
+            );
+
+        };
 
 
         events()
@@ -271,24 +335,7 @@
             )
 
             .sort(
-
-                (
-                    a,
-                    b
-                ) =>
-
-                    String(
-                        b.date || ""
-                    )
-
-                        .localeCompare(
-
-                            String(
-                                a.date || ""
-                            )
-
-                        )
-
+                compareEventsNewestFirst
             )
 
             .forEach(
@@ -309,7 +356,9 @@
 
                     option.textContent =
 
-                        `${event.date || "No Date"} — ${event.name}`;
+                        `${formatEventSchedule(
+                            event
+                        )} — ${event.name}`;
 
 
                     eventSelect.appendChild(
