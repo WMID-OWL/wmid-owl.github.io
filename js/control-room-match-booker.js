@@ -1792,31 +1792,83 @@ function crBookerPopulateEvents() {
   const oldValue =
     crBookerEvent.value;
 
+
   crBookerEvent.innerHTML = `
     <option value="">
       Select Event
     </option>
   `;
 
+
+  const formatEventSchedule = (
+    event,
+  ) => {
+    if (
+      window.OWLCalendar
+      &&
+      typeof window.OWLCalendar
+        .formatEventSlot ===
+        "function"
+    ) {
+      return window.OWLCalendar
+        .formatEventSlot(
+          event,
+        );
+    }
+
+
+    return "Schedule Not Set";
+  };
+
+
+  const compareEvents = (
+    eventA,
+    eventB,
+  ) => {
+    if (
+      window.OWLCalendar
+      &&
+      typeof window.OWLCalendar
+        .compareEvents ===
+        "function"
+    ) {
+      return window.OWLCalendar
+        .compareEvents(
+          eventA,
+          eventB,
+        );
+    }
+
+
+    return String(
+      eventA?.name || "",
+    ).localeCompare(
+      String(
+        eventB?.name || "",
+      ),
+    );
+  };
+
+
   const events =
-    [...owlControlRoomData.events]
-      .filter(
-        (event) =>
-          String(
-            event.status || "",
-          ).toLowerCase() !==
-          "completed",
-      )
-      .sort(
-        (a, b) =>
-          new Date(
-            `${a.date}T00:00:00`,
+    Array.isArray(
+      owlControlRoomData.events,
+    )
+      ? [
+          ...owlControlRoomData.events,
+        ]
+          .filter(
+            (event) =>
+              String(
+                event.status || "",
+              ).toLowerCase() !==
+              "completed",
           )
-          -
-          new Date(
-            `${b.date}T00:00:00`,
-          ),
-      );
+          .sort(
+            compareEvents,
+          )
+      : [];
+
 
   events.forEach(
     (event) => {
@@ -1825,17 +1877,23 @@ function crBookerPopulateEvents() {
           "option",
         );
 
+
       option.value =
         event.id;
 
+
       option.textContent =
-        `${event.date} — ${event.name}`;
+        `${formatEventSchedule(
+          event,
+        )} — ${event.name}`;
+
 
       crBookerEvent.appendChild(
         option,
       );
     },
   );
+
 
   if (
     oldValue
