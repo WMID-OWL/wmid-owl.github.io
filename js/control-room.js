@@ -358,53 +358,59 @@ function formatCheckTime() {
 
 
 
-function getDateValue(
-    dateString
+function getEventScheduleValue(
+    event
 ) {
 
 
-    if (!dateString) {
+    if (
+        window.OWLCalendar
 
-        return 0;
+        &&
+
+        typeof window.OWLCalendar
+            .eventSortValue ===
+            "function"
+    ) {
+
+        return window.OWLCalendar
+            .eventSortValue(
+                event
+            );
 
     }
 
 
-    return new Date(
-        `${dateString}T00:00:00`
-    ).getTime();
+    return 0;
 
 }
 
 
 
-function formatDate(
-    dateString
+function formatEventSchedule(
+    event
 ) {
 
 
-    if (!dateString) {
+    if (
+        window.OWLCalendar
 
-        return "—";
+        &&
+
+        typeof window.OWLCalendar
+            .formatEventSlot ===
+            "function"
+    ) {
+
+        return window.OWLCalendar
+            .formatEventSlot(
+                event
+            );
 
     }
 
 
-    return new Date(
-        `${dateString}T00:00:00`
-    ).toLocaleDateString(
-        "en-US",
-        {
-            year:
-                "numeric",
-
-            month:
-                "long",
-
-            day:
-                "numeric"
-        }
-    );
+    return "Schedule Not Set";
 
 }
 
@@ -1397,8 +1403,15 @@ function renderEventSnapshot() {
 
     const events =
 
-        [...owlControlRoomData.events];
+        Array.isArray(
+            owlControlRoomData.events
+        )
 
+            ? [
+                ...owlControlRoomData.events
+            ]
+
+            : [];
 
 
     const upcomingEvents =
@@ -1410,23 +1423,26 @@ function renderEventSnapshot() {
 
                     normalize(
                         event.status
-                    ) === "upcoming"
+                    ) ===
+                        "upcoming"
             )
 
             .sort(
-                (a, b) =>
+                (
+                    eventA,
+                    eventB
+                ) =>
 
-                    getDateValue(
-                        a.date
+                    getEventScheduleValue(
+                        eventA
                     )
 
                     -
 
-                    getDateValue(
-                        b.date
+                    getEventScheduleValue(
+                        eventB
                     )
             );
-
 
 
     const completedEvents =
@@ -1438,23 +1454,26 @@ function renderEventSnapshot() {
 
                     normalize(
                         event.status
-                    ) === "completed"
+                    ) ===
+                        "completed"
             )
 
             .sort(
-                (a, b) =>
+                (
+                    eventA,
+                    eventB
+                ) =>
 
-                    getDateValue(
-                        b.date
+                    getEventScheduleValue(
+                        eventB
                     )
 
                     -
 
-                    getDateValue(
-                        a.date
+                    getEventScheduleValue(
+                        eventA
                     )
             );
-
 
 
     const nextEvent =
@@ -1467,13 +1486,14 @@ function renderEventSnapshot() {
         null;
 
 
-
     document.getElementById(
         "cr-next-event-name"
     ).textContent =
 
         nextEvent
+
             ? nextEvent.name
+
             : "No upcoming event";
 
 
@@ -1482,11 +1502,12 @@ function renderEventSnapshot() {
     ).textContent =
 
         nextEvent
-            ? formatDate(
-                nextEvent.date
-            )
-            : "—";
 
+            ? formatEventSchedule(
+                nextEvent
+            )
+
+            : "—";
 
 
     document.getElementById(
@@ -1494,7 +1515,9 @@ function renderEventSnapshot() {
     ).textContent =
 
         latestEvent
+
             ? latestEvent.name
+
             : "No completed event";
 
 
@@ -1503,9 +1526,11 @@ function renderEventSnapshot() {
     ).textContent =
 
         latestEvent
-            ? formatDate(
-                latestEvent.date
+
+            ? formatEventSchedule(
+                latestEvent
             )
+
             : "—";
 
 }
@@ -6194,37 +6219,32 @@ function getTournamentBookingEligibleEvents() {
     ]
 
         .filter(
-
             event =>
 
                 normalize(
                     event.status
                 ) !==
                     "completed"
-
         )
 
         .sort(
-
             (
                 eventA,
                 eventB
             ) =>
 
-                getDateValue(
-                    eventA.date
+                getEventScheduleValue(
+                    eventA
                 )
 
                 -
 
-                getDateValue(
-                    eventB.date
+                getEventScheduleValue(
+                    eventB
                 )
-
         );
 
 }
-
 
 
 function resetTournamentMatchBookingSelection() {
@@ -6697,9 +6717,11 @@ function populateTournamentMatchEventOptions() {
                 event.id;
 
 
-            option.textContent =
+                        option.textContent =
 
-                `${event.date || "No Date"} — ${event.name}`;
+                `${formatEventSchedule(
+                    event
+                )} — ${event.name}`;
 
 
             tournamentMatchEvent.appendChild(
