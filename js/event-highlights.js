@@ -432,23 +432,14 @@ async function loadEventHighlights() {
                     }
 
 
-                    return (
+                                        if (
+                        match.eventId &&
+                        match.eventId === event.id
+                    ) {
 
-                        match.date === event.date
+                        return true;
 
-                        &&
-
-                        normalize(
-                            match.event
-                        )
-
-                        ===
-
-                        normalize(
-                            event.name
-                        )
-
-                    );
+                    }
 
                 }
             );
