@@ -4,12 +4,13 @@
     "name": "Blood on the Sand",
     "brand": "OWL",
     "eventType": "ppv",
+    "periodId": "2026-07",
+    "stage": "week-4",
     "date": "2026-07-31",
     "status": "upcoming",
     "location": "",
     "image": "assets/images/events/blood-on-the-sand-2026.png",
     "tagline": "",
-    "description": "",
-    "youtubeVideoId": ""
+    "description": ""
   }
 ]
