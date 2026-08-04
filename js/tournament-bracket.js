@@ -116,67 +116,65 @@ function getBracketStatusClass(
 function getRoundNames(
     fieldSize
 ) {
-
-
     const numericFieldSize =
-
         Number(
             fieldSize || 0
         );
 
 
     if (
-        numericFieldSize === 16
+        numericFieldSize ===
+            28
     ) {
-
         return [
-
-            "Round of 16",
-
-            "Quarterfinals",
-
-            "Semifinals",
-
-            "Final"
-
+            "Opening Round",
+            "Brand Quarterfinals",
+            "Brand Semifinals",
+            "Brand Finals",
+            "Twin Talon Final"
         ];
-
     }
 
 
     if (
-        numericFieldSize === 28
+        numericFieldSize ===
+            16
     ) {
-
         return [
-
-            "Opening Round",
-
             "Round of 16",
-
             "Quarterfinals",
-
             "Semifinals",
-
             "Final"
-
         ];
+    }
 
+
+    if (
+        numericFieldSize ===
+            8
+    ) {
+        return [
+            "Quarterfinals",
+            "Semifinals",
+            "Final"
+        ];
+    }
+
+
+    if (
+        numericFieldSize ===
+            4
+    ) {
+        return [
+            "Semifinals",
+            "Final"
+        ];
     }
 
 
     return [
-
-        "Opening Round",
-
-        "Quarterfinals",
-
-        "Semifinals",
-
         "Final"
-
     ];
-
 }
 
 
@@ -1347,12 +1345,34 @@ function renderTournamentBracketPage(
         bracket.name || "";
 
 
-    document.getElementById(
-        "tournament-bracket-description"
-    ).textContent =
+    const tournamentBracketDescription =
 
-        `This bracket will crown the inaugural ${bracket.name} and establish the first titleholder in this division.`;
+    bracket.description
 
+    ||
+
+    (
+        tournament.id ===
+            "inaugural-championship-series"
+
+            ? `This bracket will crown the inaugural ${bracket.name} and establish the first titleholder in this division.`
+
+            : tournament.purpose
+
+                || `This bracket is part of ${tournament.name}.`
+    );
+
+
+document.getElementById(
+    "tournament-bracket-description"
+).textContent =
+    tournamentBracketDescription;
+
+
+document.getElementById(
+    "tournament-bracket-description"
+).style.whiteSpace =
+    "pre-line";
 
     document.getElementById(
         "tournament-bracket-brand"
