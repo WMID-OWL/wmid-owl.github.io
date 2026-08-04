@@ -31,12 +31,253 @@
           "fieldSize": 16,
           "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
-          "fieldLocked": false,
+          "participants": [
+            "jack-rabbid",
+            "atua-tupu",
+            "royce-keys",
+            "ricochet",
+            "fabian-atlas",
+            "mack-aleven",
+            "jayden-alfah",
+            "ilja-dragunov",
+            "kai-valentino",
+            "killian-crowe",
+            "mike-bailey",
+            "lio-rush",
+            "ren-takeda",
+            "ronin-fairchild",
+            "jordan-pack",
+            "percy-franklin"
+          ],
+          "fieldLocked": true,
           "bracketSetup": {
-            "generated": false,
-            "generatedAt": "",
-            "rounds": [],
+            "generated": true,
+            "generatedAt": "2026-08-04T19:03:19.254Z",
+            "rounds": [
+              {
+                "id": "round-1",
+                "order": 1,
+                "name": "Round of 16",
+                "matches": [
+                  {
+                    "id": "round-1-match-1",
+                    "order": 1,
+                    "participantOneId": "jack-rabbid",
+                    "participantTwoId": "atua-tupu",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-2",
+                    "order": 2,
+                    "participantOneId": "royce-keys",
+                    "participantTwoId": "ricochet",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-3",
+                    "order": 3,
+                    "participantOneId": "fabian-atlas",
+                    "participantTwoId": "mack-aleven",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-4",
+                    "order": 4,
+                    "participantOneId": "jayden-alfah",
+                    "participantTwoId": "ilja-dragunov",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-5",
+                    "order": 5,
+                    "participantOneId": "kai-valentino",
+                    "participantTwoId": "killian-crowe",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-6",
+                    "order": 6,
+                    "participantOneId": "mike-bailey",
+                    "participantTwoId": "lio-rush",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-7",
+                    "order": 7,
+                    "participantOneId": "ren-takeda",
+                    "participantTwoId": "ronin-fairchild",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-8",
+                    "order": 8,
+                    "participantOneId": "jordan-pack",
+                    "participantTwoId": "percy-franklin",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-2",
+                "order": 2,
+                "name": "Quarterfinals",
+                "matches": [
+                  {
+                    "id": "round-2-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-1",
+                    "sourceTwoMatchId": "round-1-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-3",
+                    "sourceTwoMatchId": "round-1-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-3",
+                    "order": 3,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-5",
+                    "sourceTwoMatchId": "round-1-match-6",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-4",
+                    "order": 4,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-7",
+                    "sourceTwoMatchId": "round-1-match-8",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-3",
+                "order": 3,
+                "name": "Semifinals",
+                "matches": [
+                  {
+                    "id": "round-3-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-1",
+                    "sourceTwoMatchId": "round-2-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-3-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-3",
+                    "sourceTwoMatchId": "round-2-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-4",
+                "order": 4,
+                "name": "Final",
+                "matches": [
+                  {
+                    "id": "round-4-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-3-match-1",
+                    "sourceTwoMatchId": "round-3-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              }
+            ],
             "winnerId": ""
           },
           "status": "Upcoming"
@@ -49,12 +290,253 @@
           "fieldSize": 16,
           "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
-          "fieldLocked": false,
+          "participants": [
+            "liberty-van-horn",
+            "roxanne-perez",
+            "kristy-grimm",
+            "la-catalina",
+            "lessana-brokova",
+            "hollowell",
+            "mikayla-lashawn",
+            "valentina-calderon",
+            "ayjay-sparks",
+            "brigitte-krauss",
+            "athena",
+            "madison-monroe-mcmahon",
+            "willow-nightingale",
+            "bayley",
+            "katsumi-nanami",
+            "giulia"
+          ],
+          "fieldLocked": true,
           "bracketSetup": {
-            "generated": false,
-            "generatedAt": "",
-            "rounds": [],
+            "generated": true,
+            "generatedAt": "2026-08-04T19:07:25.486Z",
+            "rounds": [
+              {
+                "id": "round-1",
+                "order": 1,
+                "name": "Round of 16",
+                "matches": [
+                  {
+                    "id": "round-1-match-1",
+                    "order": 1,
+                    "participantOneId": "liberty-van-horn",
+                    "participantTwoId": "roxanne-perez",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-2",
+                    "order": 2,
+                    "participantOneId": "kristy-grimm",
+                    "participantTwoId": "la-catalina",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-3",
+                    "order": 3,
+                    "participantOneId": "lessana-brokova",
+                    "participantTwoId": "hollowell",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-4",
+                    "order": 4,
+                    "participantOneId": "mikayla-lashawn",
+                    "participantTwoId": "valentina-calderon",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-5",
+                    "order": 5,
+                    "participantOneId": "ayjay-sparks",
+                    "participantTwoId": "brigitte-krauss",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-6",
+                    "order": 6,
+                    "participantOneId": "athena",
+                    "participantTwoId": "madison-monroe-mcmahon",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-7",
+                    "order": 7,
+                    "participantOneId": "willow-nightingale",
+                    "participantTwoId": "bayley",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-8",
+                    "order": 8,
+                    "participantOneId": "katsumi-nanami",
+                    "participantTwoId": "giulia",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-2",
+                "order": 2,
+                "name": "Quarterfinals",
+                "matches": [
+                  {
+                    "id": "round-2-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-1",
+                    "sourceTwoMatchId": "round-1-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-3",
+                    "sourceTwoMatchId": "round-1-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-3",
+                    "order": 3,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-5",
+                    "sourceTwoMatchId": "round-1-match-6",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-4",
+                    "order": 4,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-7",
+                    "sourceTwoMatchId": "round-1-match-8",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-3",
+                "order": 3,
+                "name": "Semifinals",
+                "matches": [
+                  {
+                    "id": "round-3-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-1",
+                    "sourceTwoMatchId": "round-2-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-3-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-3",
+                    "sourceTwoMatchId": "round-2-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-4",
+                "order": 4,
+                "name": "Final",
+                "matches": [
+                  {
+                    "id": "round-4-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-3-match-1",
+                    "sourceTwoMatchId": "round-3-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              }
+            ],
             "winnerId": ""
           },
           "status": "Upcoming"
@@ -67,12 +549,253 @@
           "fieldSize": 16,
           "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
-          "fieldLocked": false,
+          "participants": [
+            "mascara-mota",
+            "travis-cudi",
+            "cameron-cam-flash",
+            "allen-rain",
+            "bandido",
+            "finn-balor",
+            "ricky-sosa",
+            "kyle-fletcher",
+            "chris-danger",
+            "leon-slater",
+            "paddy-saints",
+            "errol-capleton",
+            "will-kroos",
+            "yoshiki-inamura",
+            "nick-stone",
+            "riley-king"
+          ],
+          "fieldLocked": true,
           "bracketSetup": {
-            "generated": false,
-            "generatedAt": "",
-            "rounds": [],
+            "generated": true,
+            "generatedAt": "2026-08-04T19:05:29.007Z",
+            "rounds": [
+              {
+                "id": "round-1",
+                "order": 1,
+                "name": "Round of 16",
+                "matches": [
+                  {
+                    "id": "round-1-match-1",
+                    "order": 1,
+                    "participantOneId": "mascara-mota",
+                    "participantTwoId": "travis-cudi",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-2",
+                    "order": 2,
+                    "participantOneId": "cameron-cam-flash",
+                    "participantTwoId": "allen-rain",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-3",
+                    "order": 3,
+                    "participantOneId": "bandido",
+                    "participantTwoId": "finn-balor",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-4",
+                    "order": 4,
+                    "participantOneId": "ricky-sosa",
+                    "participantTwoId": "kyle-fletcher",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-5",
+                    "order": 5,
+                    "participantOneId": "chris-danger",
+                    "participantTwoId": "leon-slater",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-6",
+                    "order": 6,
+                    "participantOneId": "paddy-saints",
+                    "participantTwoId": "errol-capleton",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-7",
+                    "order": 7,
+                    "participantOneId": "will-kroos",
+                    "participantTwoId": "yoshiki-inamura",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-8",
+                    "order": 8,
+                    "participantOneId": "nick-stone",
+                    "participantTwoId": "riley-king",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-2",
+                "order": 2,
+                "name": "Quarterfinals",
+                "matches": [
+                  {
+                    "id": "round-2-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-1",
+                    "sourceTwoMatchId": "round-1-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-3",
+                    "sourceTwoMatchId": "round-1-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-3",
+                    "order": 3,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-5",
+                    "sourceTwoMatchId": "round-1-match-6",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-4",
+                    "order": 4,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-7",
+                    "sourceTwoMatchId": "round-1-match-8",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-3",
+                "order": 3,
+                "name": "Semifinals",
+                "matches": [
+                  {
+                    "id": "round-3-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-1",
+                    "sourceTwoMatchId": "round-2-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-3-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-3",
+                    "sourceTwoMatchId": "round-2-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-4",
+                "order": 4,
+                "name": "Final",
+                "matches": [
+                  {
+                    "id": "round-4-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-3-match-1",
+                    "sourceTwoMatchId": "round-3-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              }
+            ],
             "winnerId": ""
           },
           "status": "Upcoming"
@@ -85,12 +808,253 @@
           "fieldSize": 16,
           "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
-          "fieldLocked": false,
+          "participants": [
+            "asuka",
+            "kaijin",
+            "fatima-okoye",
+            "raven-kaine",
+            "maxxine-jaqueline-freeman",
+            "catalina-velez",
+            "lena-kross",
+            "stephanie-vaquer",
+            "annabelle-coven",
+            "tatum-paxley",
+            "alice-crowley",
+            "persephone",
+            "dallis-goodnight",
+            "sami-deddley",
+            "shonda-shamrock",
+            "jayme-toxic"
+          ],
+          "fieldLocked": true,
           "bracketSetup": {
-            "generated": false,
-            "generatedAt": "",
-            "rounds": [],
+            "generated": true,
+            "generatedAt": "2026-08-04T19:09:21.616Z",
+            "rounds": [
+              {
+                "id": "round-1",
+                "order": 1,
+                "name": "Round of 16",
+                "matches": [
+                  {
+                    "id": "round-1-match-1",
+                    "order": 1,
+                    "participantOneId": "asuka",
+                    "participantTwoId": "kaijin",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-2",
+                    "order": 2,
+                    "participantOneId": "fatima-okoye",
+                    "participantTwoId": "raven-kaine",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-3",
+                    "order": 3,
+                    "participantOneId": "maxxine-jaqueline-freeman",
+                    "participantTwoId": "catalina-velez",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-4",
+                    "order": 4,
+                    "participantOneId": "lena-kross",
+                    "participantTwoId": "stephanie-vaquer",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-5",
+                    "order": 5,
+                    "participantOneId": "annabelle-coven",
+                    "participantTwoId": "tatum-paxley",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-6",
+                    "order": 6,
+                    "participantOneId": "alice-crowley",
+                    "participantTwoId": "persephone",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-7",
+                    "order": 7,
+                    "participantOneId": "dallis-goodnight",
+                    "participantTwoId": "sami-deddley",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-8",
+                    "order": 8,
+                    "participantOneId": "shonda-shamrock",
+                    "participantTwoId": "jayme-toxic",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-2",
+                "order": 2,
+                "name": "Quarterfinals",
+                "matches": [
+                  {
+                    "id": "round-2-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-1",
+                    "sourceTwoMatchId": "round-1-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-3",
+                    "sourceTwoMatchId": "round-1-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-3",
+                    "order": 3,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-5",
+                    "sourceTwoMatchId": "round-1-match-6",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-4",
+                    "order": 4,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-7",
+                    "sourceTwoMatchId": "round-1-match-8",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-3",
+                "order": 3,
+                "name": "Semifinals",
+                "matches": [
+                  {
+                    "id": "round-3-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-1",
+                    "sourceTwoMatchId": "round-2-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-3-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-3",
+                    "sourceTwoMatchId": "round-2-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-4",
+                "order": 4,
+                "name": "Final",
+                "matches": [
+                  {
+                    "id": "round-4-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-3-match-1",
+                    "sourceTwoMatchId": "round-3-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              }
+            ],
             "winnerId": ""
           },
           "status": "Upcoming"
@@ -103,12 +1067,253 @@
           "fieldSize": 16,
           "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
-          "fieldLocked": false,
+          "participants": [
+            "rey-fenix",
+            "pluto-carter",
+            "lee-moriarty",
+            "austin-stevens",
+            "lucas-madchild",
+            "kage-oni",
+            "perro-rabioso",
+            "carmelo-hayes",
+            "reverend-ezekiel-cross",
+            "tavion-heights",
+            "kwame-mensah",
+            "jaxson-thriller",
+            "thiago-cruz",
+            "danny-everhardt",
+            "mike-santana",
+            "fabian-aichner"
+          ],
+          "fieldLocked": true,
           "bracketSetup": {
-            "generated": false,
-            "generatedAt": "",
-            "rounds": [],
+            "generated": true,
+            "generatedAt": "2026-08-04T19:16:14.081Z",
+            "rounds": [
+              {
+                "id": "round-1",
+                "order": 1,
+                "name": "Round of 16",
+                "matches": [
+                  {
+                    "id": "round-1-match-1",
+                    "order": 1,
+                    "participantOneId": "rey-fenix",
+                    "participantTwoId": "pluto-carter",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-2",
+                    "order": 2,
+                    "participantOneId": "lee-moriarty",
+                    "participantTwoId": "austin-stevens",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-3",
+                    "order": 3,
+                    "participantOneId": "lucas-madchild",
+                    "participantTwoId": "kage-oni",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-4",
+                    "order": 4,
+                    "participantOneId": "perro-rabioso",
+                    "participantTwoId": "carmelo-hayes",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-5",
+                    "order": 5,
+                    "participantOneId": "reverend-ezekiel-cross",
+                    "participantTwoId": "tavion-heights",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-6",
+                    "order": 6,
+                    "participantOneId": "kwame-mensah",
+                    "participantTwoId": "jaxson-thriller",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-7",
+                    "order": 7,
+                    "participantOneId": "thiago-cruz",
+                    "participantTwoId": "danny-everhardt",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-8",
+                    "order": 8,
+                    "participantOneId": "mike-santana",
+                    "participantTwoId": "fabian-aichner",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-2",
+                "order": 2,
+                "name": "Quarterfinals",
+                "matches": [
+                  {
+                    "id": "round-2-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-1",
+                    "sourceTwoMatchId": "round-1-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-3",
+                    "sourceTwoMatchId": "round-1-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-3",
+                    "order": 3,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-5",
+                    "sourceTwoMatchId": "round-1-match-6",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-4",
+                    "order": 4,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-7",
+                    "sourceTwoMatchId": "round-1-match-8",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-3",
+                "order": 3,
+                "name": "Semifinals",
+                "matches": [
+                  {
+                    "id": "round-3-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-1",
+                    "sourceTwoMatchId": "round-2-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-3-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-3",
+                    "sourceTwoMatchId": "round-2-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-4",
+                "order": 4,
+                "name": "Final",
+                "matches": [
+                  {
+                    "id": "round-4-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-3-match-1",
+                    "sourceTwoMatchId": "round-3-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              }
+            ],
             "winnerId": ""
           },
           "status": "Upcoming"
@@ -121,12 +1326,253 @@
           "fieldSize": 16,
           "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
-          "fieldLocked": false,
+          "participants": [
+            "sol-ruca",
+            "skylar-reign",
+            "naomi",
+            "harley-davis",
+            "vanity-rose",
+            "tima-maolosi",
+            "reina-guerrera",
+            "megan-bayne",
+            "kendal-grey",
+            "roma-reyes",
+            "dracarys",
+            "jordynne-grace",
+            "heather-rae",
+            "sookie-deveaux",
+            "kennedy-rush",
+            "tennesha-washington"
+          ],
+          "fieldLocked": true,
           "bracketSetup": {
-            "generated": false,
-            "generatedAt": "",
-            "rounds": [],
+            "generated": true,
+            "generatedAt": "2026-08-04T19:20:06.921Z",
+            "rounds": [
+              {
+                "id": "round-1",
+                "order": 1,
+                "name": "Round of 16",
+                "matches": [
+                  {
+                    "id": "round-1-match-1",
+                    "order": 1,
+                    "participantOneId": "sol-ruca",
+                    "participantTwoId": "skylar-reign",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-2",
+                    "order": 2,
+                    "participantOneId": "naomi",
+                    "participantTwoId": "harley-davis",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-3",
+                    "order": 3,
+                    "participantOneId": "vanity-rose",
+                    "participantTwoId": "tima-maolosi",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-4",
+                    "order": 4,
+                    "participantOneId": "reina-guerrera",
+                    "participantTwoId": "megan-bayne",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-5",
+                    "order": 5,
+                    "participantOneId": "kendal-grey",
+                    "participantTwoId": "roma-reyes",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-6",
+                    "order": 6,
+                    "participantOneId": "dracarys",
+                    "participantTwoId": "jordynne-grace",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-7",
+                    "order": 7,
+                    "participantOneId": "heather-rae",
+                    "participantTwoId": "sookie-deveaux",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-8",
+                    "order": 8,
+                    "participantOneId": "kennedy-rush",
+                    "participantTwoId": "tennesha-washington",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-2",
+                "order": 2,
+                "name": "Quarterfinals",
+                "matches": [
+                  {
+                    "id": "round-2-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-1",
+                    "sourceTwoMatchId": "round-1-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-3",
+                    "sourceTwoMatchId": "round-1-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-3",
+                    "order": 3,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-5",
+                    "sourceTwoMatchId": "round-1-match-6",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-4",
+                    "order": 4,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-7",
+                    "sourceTwoMatchId": "round-1-match-8",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-3",
+                "order": 3,
+                "name": "Semifinals",
+                "matches": [
+                  {
+                    "id": "round-3-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-1",
+                    "sourceTwoMatchId": "round-2-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-3-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-3",
+                    "sourceTwoMatchId": "round-2-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-4",
+                "order": 4,
+                "name": "Final",
+                "matches": [
+                  {
+                    "id": "round-4-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-3-match-1",
+                    "sourceTwoMatchId": "round-3-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              }
+            ],
             "winnerId": ""
           },
           "status": "Upcoming"
@@ -139,12 +1585,253 @@
           "fieldSize": 16,
           "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
-          "fieldLocked": false,
+          "participants": [
+            "jimbo-cooter",
+            "johnathan-gresham",
+            "robert-roode",
+            "virgil-kent",
+            "liang-wei",
+            "calvin-tankman",
+            "rey-mysterio",
+            "ryuji-sakamoto",
+            "tomasso-ciampa",
+            "gage-blackwell",
+            "chicago-hart",
+            "justin-tyme",
+            "mysterio-negro",
+            "je-von-evans",
+            "kipp-stryker",
+            "isaiah-jackson"
+          ],
+          "fieldLocked": true,
           "bracketSetup": {
-            "generated": false,
-            "generatedAt": "",
-            "rounds": [],
+            "generated": true,
+            "generatedAt": "2026-08-04T19:18:28.813Z",
+            "rounds": [
+              {
+                "id": "round-1",
+                "order": 1,
+                "name": "Round of 16",
+                "matches": [
+                  {
+                    "id": "round-1-match-1",
+                    "order": 1,
+                    "participantOneId": "jimbo-cooter",
+                    "participantTwoId": "johnathan-gresham",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-2",
+                    "order": 2,
+                    "participantOneId": "robert-roode",
+                    "participantTwoId": "virgil-kent",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-3",
+                    "order": 3,
+                    "participantOneId": "liang-wei",
+                    "participantTwoId": "calvin-tankman",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-4",
+                    "order": 4,
+                    "participantOneId": "rey-mysterio",
+                    "participantTwoId": "ryuji-sakamoto",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-5",
+                    "order": 5,
+                    "participantOneId": "tomasso-ciampa",
+                    "participantTwoId": "gage-blackwell",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-6",
+                    "order": 6,
+                    "participantOneId": "chicago-hart",
+                    "participantTwoId": "justin-tyme",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-7",
+                    "order": 7,
+                    "participantOneId": "mysterio-negro",
+                    "participantTwoId": "je-von-evans",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-8",
+                    "order": 8,
+                    "participantOneId": "kipp-stryker",
+                    "participantTwoId": "isaiah-jackson",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-2",
+                "order": 2,
+                "name": "Quarterfinals",
+                "matches": [
+                  {
+                    "id": "round-2-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-1",
+                    "sourceTwoMatchId": "round-1-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-3",
+                    "sourceTwoMatchId": "round-1-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-3",
+                    "order": 3,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-5",
+                    "sourceTwoMatchId": "round-1-match-6",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-4",
+                    "order": 4,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-7",
+                    "sourceTwoMatchId": "round-1-match-8",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-3",
+                "order": 3,
+                "name": "Semifinals",
+                "matches": [
+                  {
+                    "id": "round-3-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-1",
+                    "sourceTwoMatchId": "round-2-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-3-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-3",
+                    "sourceTwoMatchId": "round-2-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-4",
+                "order": 4,
+                "name": "Final",
+                "matches": [
+                  {
+                    "id": "round-4-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-3-match-1",
+                    "sourceTwoMatchId": "round-3-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              }
+            ],
             "winnerId": ""
           },
           "status": "Upcoming"
@@ -157,12 +1844,253 @@
           "fieldSize": 16,
           "fieldUnit": "Competitors",
           "participantType": "wrestler",
-          "participants": [],
-          "fieldLocked": false,
+          "participants": [
+            "taylor-moon",
+            "alex-windsor",
+            "dana-bryant",
+            "nia-jax",
+            "giana-warbucks",
+            "lyra-valkyria",
+            "raquel-rodriguez",
+            "deeva-montana",
+            "jade-cargill",
+            "lash-legend",
+            "courtney-rhodes",
+            "valen-strix",
+            "roxxy-riot",
+            "scarlett-arrowe",
+            "zaria",
+            "bianca-brown"
+          ],
+          "fieldLocked": true,
           "bracketSetup": {
-            "generated": false,
-            "generatedAt": "",
-            "rounds": [],
+            "generated": true,
+            "generatedAt": "2026-08-04T19:21:49.983Z",
+            "rounds": [
+              {
+                "id": "round-1",
+                "order": 1,
+                "name": "Round of 16",
+                "matches": [
+                  {
+                    "id": "round-1-match-1",
+                    "order": 1,
+                    "participantOneId": "taylor-moon",
+                    "participantTwoId": "alex-windsor",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-2",
+                    "order": 2,
+                    "participantOneId": "dana-bryant",
+                    "participantTwoId": "nia-jax",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-3",
+                    "order": 3,
+                    "participantOneId": "giana-warbucks",
+                    "participantTwoId": "lyra-valkyria",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-4",
+                    "order": 4,
+                    "participantOneId": "raquel-rodriguez",
+                    "participantTwoId": "deeva-montana",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-5",
+                    "order": 5,
+                    "participantOneId": "jade-cargill",
+                    "participantTwoId": "lash-legend",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-6",
+                    "order": 6,
+                    "participantOneId": "courtney-rhodes",
+                    "participantTwoId": "valen-strix",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-7",
+                    "order": 7,
+                    "participantOneId": "roxxy-riot",
+                    "participantTwoId": "scarlett-arrowe",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-8",
+                    "order": 8,
+                    "participantOneId": "zaria",
+                    "participantTwoId": "bianca-brown",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-2",
+                "order": 2,
+                "name": "Quarterfinals",
+                "matches": [
+                  {
+                    "id": "round-2-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-1",
+                    "sourceTwoMatchId": "round-1-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-3",
+                    "sourceTwoMatchId": "round-1-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-3",
+                    "order": 3,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-5",
+                    "sourceTwoMatchId": "round-1-match-6",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-4",
+                    "order": 4,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-7",
+                    "sourceTwoMatchId": "round-1-match-8",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-3",
+                "order": 3,
+                "name": "Semifinals",
+                "matches": [
+                  {
+                    "id": "round-3-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-1",
+                    "sourceTwoMatchId": "round-2-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-3-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-3",
+                    "sourceTwoMatchId": "round-2-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-4",
+                "order": 4,
+                "name": "Final",
+                "matches": [
+                  {
+                    "id": "round-4-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-3-match-1",
+                    "sourceTwoMatchId": "round-3-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              }
+            ],
             "winnerId": ""
           },
           "status": "Upcoming"
@@ -175,12 +2103,454 @@
           "fieldSize": 28,
           "fieldUnit": "Teams",
           "participantType": "team",
-          "participants": [],
-          "fieldLocked": false,
+          "participants": [
+            "k-o-k-kings-of-konsequence",
+            "b-t-t-i-t-w-best-tag-team-in-the-world",
+            "blacktide",
+            "double-dragon",
+            "true-north-elite",
+            "hard-luck",
+            "the-i-w-c",
+            "what-da-dog-doin",
+            "the-funky-homosapiens",
+            "bounty-hunnaz",
+            "brawlin-bastards",
+            "fraxiom",
+            "los-ingobernables-plata-o-plomo",
+            "southern-cross",
+            "gold-medal-alchemist",
+            "paid-in-full",
+            "something-filthy",
+            "genn-eric-varsity-club",
+            "dont-fuck-with-texas",
+            "sons-of-lagos",
+            "white-men-can-jump",
+            "idolos-de-oro",
+            "house-money",
+            "creed-brothers",
+            "the-rsclz-rascals",
+            "dude-bro",
+            "perros-del-mal",
+            "the-forgotten-family"
+          ],
+          "fieldLocked": true,
           "bracketSetup": {
-            "generated": false,
-            "generatedAt": "",
-            "rounds": [],
+            "generated": true,
+            "generatedAt": "2026-08-04T19:13:43.881Z",
+            "rounds": [
+              {
+                "id": "round-1",
+                "order": 1,
+                "name": "Opening Round",
+                "matches": [
+                  {
+                    "id": "round-1-match-1",
+                    "order": 1,
+                    "participantOneId": "k-o-k-kings-of-konsequence",
+                    "participantTwoId": "b-t-t-i-t-w-best-tag-team-in-the-world",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-2",
+                    "order": 2,
+                    "participantOneId": "blacktide",
+                    "participantTwoId": "double-dragon",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-3",
+                    "order": 3,
+                    "participantOneId": "true-north-elite",
+                    "participantTwoId": "hard-luck",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-4",
+                    "order": 4,
+                    "participantOneId": "the-i-w-c",
+                    "participantTwoId": "what-da-dog-doin",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-5",
+                    "order": 5,
+                    "participantOneId": "the-funky-homosapiens",
+                    "participantTwoId": "bounty-hunnaz",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-6",
+                    "order": 6,
+                    "participantOneId": "brawlin-bastards",
+                    "participantTwoId": "fraxiom",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-7",
+                    "order": 7,
+                    "participantOneId": "los-ingobernables-plata-o-plomo",
+                    "participantTwoId": "southern-cross",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-8",
+                    "order": 8,
+                    "participantOneId": "gold-medal-alchemist",
+                    "participantTwoId": "paid-in-full",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-9",
+                    "order": 9,
+                    "participantOneId": "something-filthy",
+                    "participantTwoId": "genn-eric-varsity-club",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-10",
+                    "order": 10,
+                    "participantOneId": "dont-fuck-with-texas",
+                    "participantTwoId": "sons-of-lagos",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-11",
+                    "order": 11,
+                    "participantOneId": "white-men-can-jump",
+                    "participantTwoId": "idolos-de-oro",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-12",
+                    "order": 12,
+                    "participantOneId": "house-money",
+                    "participantTwoId": "creed-brothers",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-13",
+                    "order": 13,
+                    "participantOneId": "the-rsclz-rascals",
+                    "participantTwoId": "dude-bro",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-14",
+                    "order": 14,
+                    "participantOneId": "perros-del-mal",
+                    "participantTwoId": "the-forgotten-family",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-2",
+                "order": 2,
+                "name": "Brand Quarterfinals",
+                "matches": [
+                  {
+                    "id": "round-2-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-1",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "bye",
+                    "isBye": true
+                  },
+                  {
+                    "id": "round-2-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-2",
+                    "sourceTwoMatchId": "round-1-match-3",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-3",
+                    "order": 3,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-4",
+                    "sourceTwoMatchId": "round-1-match-5",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-4",
+                    "order": 4,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-6",
+                    "sourceTwoMatchId": "round-1-match-7",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-5",
+                    "order": 5,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-8",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "bye",
+                    "isBye": true
+                  },
+                  {
+                    "id": "round-2-match-6",
+                    "order": 6,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-9",
+                    "sourceTwoMatchId": "round-1-match-10",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-7",
+                    "order": 7,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-11",
+                    "sourceTwoMatchId": "round-1-match-12",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-8",
+                    "order": 8,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-13",
+                    "sourceTwoMatchId": "round-1-match-14",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-3",
+                "order": 3,
+                "name": "Brand Semifinals",
+                "matches": [
+                  {
+                    "id": "round-3-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-1",
+                    "sourceTwoMatchId": "round-2-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-3-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-3",
+                    "sourceTwoMatchId": "round-2-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-3-match-3",
+                    "order": 3,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-5",
+                    "sourceTwoMatchId": "round-2-match-6",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-3-match-4",
+                    "order": 4,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-7",
+                    "sourceTwoMatchId": "round-2-match-8",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-4",
+                "order": 4,
+                "name": "Brand Finals",
+                "matches": [
+                  {
+                    "id": "round-4-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-3-match-1",
+                    "sourceTwoMatchId": "round-3-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-4-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-3-match-3",
+                    "sourceTwoMatchId": "round-3-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-5",
+                "order": 5,
+                "name": "Twin Talon Final",
+                "matches": [
+                  {
+                    "id": "round-5-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-4-match-1",
+                    "sourceTwoMatchId": "round-4-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              }
+            ],
             "winnerId": ""
           },
           "status": "Upcoming"
@@ -193,12 +2563,253 @@
           "fieldSize": 16,
           "fieldUnit": "Teams",
           "participantType": "team",
-          "participants": [],
-          "fieldLocked": false,
+          "participants": [
+            "her-t-business",
+            "southern-heat",
+            "kill-fight-kill-the-owensteens",
+            "the-harvey-girlz",
+            "deddley-sistaz",
+            "bad-intentions",
+            "crimson-lotus",
+            "lovers-of-liberty",
+            "p-w-o",
+            "powerhouse-girlz",
+            "vennym",
+            "fatal-attraction",
+            "sisterhood-of-the-ankh",
+            "london-town-sex-pistols",
+            "the-osus",
+            "murakami"
+          ],
+          "fieldLocked": true,
           "bracketSetup": {
-            "generated": false,
-            "generatedAt": "",
-            "rounds": [],
+            "generated": true,
+            "generatedAt": "2026-08-04T19:24:12.801Z",
+            "rounds": [
+              {
+                "id": "round-1",
+                "order": 1,
+                "name": "Round of 16",
+                "matches": [
+                  {
+                    "id": "round-1-match-1",
+                    "order": 1,
+                    "participantOneId": "her-t-business",
+                    "participantTwoId": "southern-heat",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-2",
+                    "order": 2,
+                    "participantOneId": "kill-fight-kill-the-owensteens",
+                    "participantTwoId": "the-harvey-girlz",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-3",
+                    "order": 3,
+                    "participantOneId": "deddley-sistaz",
+                    "participantTwoId": "bad-intentions",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-4",
+                    "order": 4,
+                    "participantOneId": "crimson-lotus",
+                    "participantTwoId": "lovers-of-liberty",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-5",
+                    "order": 5,
+                    "participantOneId": "p-w-o",
+                    "participantTwoId": "powerhouse-girlz",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-6",
+                    "order": 6,
+                    "participantOneId": "vennym",
+                    "participantTwoId": "fatal-attraction",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-7",
+                    "order": 7,
+                    "participantOneId": "sisterhood-of-the-ankh",
+                    "participantTwoId": "london-town-sex-pistols",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-1-match-8",
+                    "order": 8,
+                    "participantOneId": "the-osus",
+                    "participantTwoId": "murakami",
+                    "sourceOneMatchId": "",
+                    "sourceTwoMatchId": "",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-2",
+                "order": 2,
+                "name": "Quarterfinals",
+                "matches": [
+                  {
+                    "id": "round-2-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-1",
+                    "sourceTwoMatchId": "round-1-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-3",
+                    "sourceTwoMatchId": "round-1-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-3",
+                    "order": 3,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-5",
+                    "sourceTwoMatchId": "round-1-match-6",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-2-match-4",
+                    "order": 4,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-1-match-7",
+                    "sourceTwoMatchId": "round-1-match-8",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-3",
+                "order": 3,
+                "name": "Semifinals",
+                "matches": [
+                  {
+                    "id": "round-3-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-1",
+                    "sourceTwoMatchId": "round-2-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  },
+                  {
+                    "id": "round-3-match-2",
+                    "order": 2,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-2-match-3",
+                    "sourceTwoMatchId": "round-2-match-4",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              },
+              {
+                "id": "round-4",
+                "order": 4,
+                "name": "Final",
+                "matches": [
+                  {
+                    "id": "round-4-match-1",
+                    "order": 1,
+                    "participantOneId": "",
+                    "participantTwoId": "",
+                    "sourceOneMatchId": "round-3-match-1",
+                    "sourceTwoMatchId": "round-3-match-2",
+                    "eventId": "",
+                    "matchRecordId": "",
+                    "winnerId": "",
+                    "status": "pending",
+                    "isBye": false
+                  }
+                ]
+              }
+            ],
             "winnerId": ""
           },
           "status": "Upcoming"
