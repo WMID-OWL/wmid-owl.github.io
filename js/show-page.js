@@ -28,9 +28,12 @@
 
 
     if (
-        !brand ||
-        !nextEventCard ||
-        !recentEventsGrid ||
+        !brand
+        ||
+        !nextEventCard
+        ||
+        !recentEventsGrid
+        ||
         !recentCount
     ) {
 
@@ -39,13 +42,19 @@
     }
 
 
-    const normalize =
-        value =>
-            String(
-                value || ""
-            )
-                .trim()
-                .toLowerCase();
+
+    function normalize(
+        value
+    ) {
+
+        return String(
+            value || ""
+        )
+            .trim()
+            .toLowerCase();
+
+    }
+
 
 
     function escapeHtml(
@@ -79,48 +88,113 @@
     }
 
 
-    function getDateValue(
-        dateString
-    ) {
 
-        const value =
-            new Date(
-                `${dateString}T00:00:00`
-            );
+    function getCalendar() {
 
-
-        return Number.isNaN(
-            value.getTime()
-        )
-
-            ? new Date(0)
-
-            : value;
+        return window.OWLCalendar || null;
 
     }
 
 
-    function formatDate(
-        dateString
+
+    function formatEventSchedule(
+        event
     ) {
 
-        return getDateValue(
-            dateString
-        ).toLocaleDateString(
-            "en-US",
-            {
-                month:
-                    "long",
+        const calendar =
+            getCalendar();
 
-                day:
-                    "numeric",
 
-                year:
-                    "numeric"
-            }
+        if (
+            calendar
+
+            &&
+
+            typeof calendar.formatEventSlot ===
+                "function"
+        ) {
+
+            return calendar.formatEventSlot(
+                event
+            );
+
+        }
+
+
+        return "Schedule Not Set";
+
+    }
+
+
+
+    function compareEvents(
+        eventA,
+        eventB
+    ) {
+
+        const calendar =
+            getCalendar();
+
+
+        if (
+            calendar
+
+            &&
+
+            typeof calendar.compareEvents ===
+                "function"
+        ) {
+
+            return calendar.compareEvents(
+                eventA,
+                eventB
+            );
+
+        }
+
+
+        return String(
+            eventA?.name || ""
+        ).localeCompare(
+            String(
+                eventB?.name || ""
+            )
         );
 
     }
+
+
+
+    function sameEventSlot(
+        sourceA,
+        sourceB
+    ) {
+
+        const calendar =
+            getCalendar();
+
+
+        if (
+            calendar
+
+            &&
+
+            typeof calendar.sameEventSlot ===
+                "function"
+        ) {
+
+            return calendar.sameEventSlot(
+                sourceA,
+                sourceB
+            );
+
+        }
+
+
+        return false;
+
+    }
+
 
 
     function formatCount(
@@ -134,6 +208,7 @@
         }`;
 
     }
+
 
 
     function sideLabel(
@@ -168,6 +243,7 @@
             );
 
     }
+
 
 
     function matchLabel(
@@ -211,26 +287,53 @@
     }
 
 
+
     function getEventMatches(
         event,
         matches
     ) {
 
         return matches.filter(
-            match =>
+            match => {
 
-                match.date === event.date
 
-                &&
+                if (
+                    match.eventId
 
-                normalize(
-                    match.event
-                ) === normalize(
-                    event.name
-                )
+                    &&
+
+                    event.id
+                ) {
+
+                    return match.eventId ===
+                        event.id;
+
+                }
+
+
+                return (
+
+                    sameEventSlot(
+                        match,
+                        event
+                    )
+
+                    &&
+
+                    normalize(
+                        match.event
+                    ) ===
+                        normalize(
+                            event.name
+                        )
+
+                );
+
+            }
         );
 
     }
+
 
 
     function getAverageRating(
@@ -280,6 +383,7 @@
     }
 
 
+
     function getTopMatch(
         matches
     ) {
@@ -287,30 +391,30 @@
         return [...matches]
             .sort(
                 (
-                    a,
-                    b
+                    matchA,
+                    matchB
                 ) =>
 
                     Number(
-                        b.starRating || 0
+                        matchB.starRating || 0
                     )
 
                     -
 
                     Number(
-                        a.starRating || 0
+                        matchA.starRating || 0
                     )
 
                     ||
 
                     Number(
-                        b.rating || 0
+                        matchB.rating || 0
                     )
 
                     -
 
                     Number(
-                        a.rating || 0
+                        matchA.rating || 0
                     )
             )[0]
 
@@ -321,13 +425,12 @@
     }
 
 
+
     function renderNextEvent(
         event
     ) {
 
-        if (
-            !event
-        ) {
+        if (!event) {
 
             nextEventCard.innerHTML = `
 
@@ -413,8 +516,8 @@
 
                     <small>
                         ${escapeHtml(
-                            formatDate(
-                                event.date
+                            formatEventSchedule(
+                                event
                             )
                         )}
                     </small>
@@ -446,6 +549,7 @@
         `;
 
     }
+
 
 
     function renderRecentEvents(
@@ -520,8 +624,8 @@
 
                                     <span>
                                         ${escapeHtml(
-                                            formatDate(
-                                                event.date
+                                            formatEventSchedule(
+                                                event
                                             )
                                         )}
                                     </span>
@@ -601,6 +705,7 @@
     }
 
 
+
     async function loadShowPage() {
 
         try {
@@ -640,8 +745,10 @@
 
 
             if (
-                !eventsResponse.ok ||
-                !matchesResponse.ok ||
+                !eventsResponse.ok
+                ||
+                !matchesResponse.ok
+                ||
                 !wrestlersResponse.ok
             ) {
 
@@ -716,15 +823,17 @@
 
                         normalize(
                             event.brand
-                        ) === normalize(
-                            brand
-                        )
+                        ) ===
+                            normalize(
+                                brand
+                            )
 
                         &&
 
                         normalize(
                             event.eventType
-                        ) === "weekly"
+                        ) ===
+                            "weekly"
                 );
 
 
@@ -736,24 +845,12 @@
 
                             normalize(
                                 event.status
-                            ) === "upcoming"
+                            ) ===
+                                "upcoming"
                     )
 
                     .sort(
-                        (
-                            a,
-                            b
-                        ) =>
-
-                            getDateValue(
-                                a.date
-                            )
-
-                            -
-
-                            getDateValue(
-                                b.date
-                            )
+                        compareEvents
                     )[0]
 
                 ||
@@ -769,30 +866,19 @@
 
                             normalize(
                                 event.status
-                            ) === "upcoming"
+                            ) ===
+                                "upcoming"
 
                             &&
 
                             normalize(
                                 event.eventType
-                            ) === "ppv"
+                            ) ===
+                                "ppv"
                     )
 
                     .sort(
-                        (
-                            a,
-                            b
-                        ) =>
-
-                            getDateValue(
-                                a.date
-                            )
-
-                            -
-
-                            getDateValue(
-                                b.date
-                            )
+                        compareEvents
                     )[0]
 
                 ||
@@ -808,23 +894,19 @@
 
                             normalize(
                                 event.status
-                            ) === "completed"
+                            ) ===
+                                "completed"
                     )
 
                     .sort(
                         (
-                            a,
-                            b
+                            eventA,
+                            eventB
                         ) =>
 
-                            getDateValue(
-                                b.date
-                            )
-
-                            -
-
-                            getDateValue(
-                                a.date
+                            compareEvents(
+                                eventB,
+                                eventA
                             )
                     )
 
@@ -894,7 +976,7 @@
     }
 
 
-    loadShowPage();
 
+    loadShowPage();
 
 })();
