@@ -171,20 +171,50 @@
             : "—";
     }
 
-    function formatDate(dateString) {
-        if (!dateString) {
-            return "Undated";
+        function formatEventSchedule(
+        event
+    ) {
+        if (
+            window.OWLCalendar
+            &&
+            typeof window.OWLCalendar
+                .formatEventSlot ===
+                "function"
+        ) {
+            return window.OWLCalendar
+                .formatEventSlot(
+                    event
+                );
         }
 
-        return new Date(
-            `${dateString}T00:00:00`
-        ).toLocaleDateString(
-            "en-US",
-            {
-                year: "numeric",
-                month: "short",
-                day: "numeric"
-            }
+        return "Schedule Not Set";
+    }
+
+
+    function compareEvents(
+        eventA,
+        eventB
+    ) {
+        if (
+            window.OWLCalendar
+            &&
+            typeof window.OWLCalendar
+                .compareEvents ===
+                "function"
+        ) {
+            return window.OWLCalendar
+                .compareEvents(
+                    eventA,
+                    eventB
+                );
+        }
+
+        return String(
+            eventA?.name || ""
+        ).localeCompare(
+            String(
+                eventB?.name || ""
+            )
         );
     }
 
@@ -963,7 +993,7 @@
         updatePreviewReadout();
     }
 
-    function populateEvents() {
+        function populateEvents() {
         const oldValue =
             eventSelect.value;
 
@@ -984,14 +1014,7 @@
                         )
                 )
                 .sort(
-                    (a, b) =>
-                        new Date(
-                            `${a.date}T00:00:00`
-                        )
-                        -
-                        new Date(
-                            `${b.date}T00:00:00`
-                        )
+                    compareEvents
                 );
 
         eventSelect.innerHTML = `
@@ -1003,7 +1026,7 @@
                 event => `
                     <option value="${escapeHtml(event.id)}">
                         ${escapeHtml(
-                            `${formatDate(event.date)} — ${event.name} — ${titleCase(event.status)}`
+                            `${formatEventSchedule(event)} — ${event.name} — ${titleCase(event.status)}`
                         )}
                     </option>
                 `
