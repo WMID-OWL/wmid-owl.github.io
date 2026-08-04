@@ -2089,7 +2089,1947 @@
         }
     );
 
+    // =================================
+    // TOURNAMENT ARTWORK MANAGEMENT
+    // =================================
 
+    const TOURNAMENT_ARTWORK_MAX_EDGE = 1600;
+    const TOURNAMENT_ARTWORK_QUALITY = 0.9;
+
+    let tournamentArtworkSelectedFile = null;
+    let tournamentArtworkPreviewUrl = "";
+
+
+    const tournamentArtworkStyle =
+        document.createElement(
+            "style"
+        );
+
+
+    tournamentArtworkStyle.textContent = `
+        .cr-tournament-artwork-preview {
+            display: grid;
+            grid-template-columns: minmax(220px, 360px) minmax(0, 1fr);
+            gap: 1.25rem;
+            align-items: stretch;
+            margin-top: 1rem;
+        }
+
+        .cr-tournament-artwork-preview-frame {
+            aspect-ratio: 1 / 1;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(0, 0, 0, 0.24);
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+        }
+
+        .cr-tournament-artwork-preview-frame img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+            background: rgba(0, 0, 0, 0.24);
+        }
+
+        .cr-tournament-artwork-preview-empty {
+            padding: 1.5rem;
+            text-align: center;
+            color: #9ca3a3;
+        }
+
+        .cr-tournament-artwork-preview-copy {
+            display: grid;
+            align-content: start;
+            gap: 0.65rem;
+        }
+
+        .cr-tournament-artwork-preview-copy strong {
+            overflow-wrap: anywhere;
+        }
+
+        @media (max-width: 760px) {
+            .cr-tournament-artwork-preview {
+                grid-template-columns: 1fr;
+            }
+        }
+    `;
+
+
+    document.head.appendChild(
+        tournamentArtworkStyle
+    );
+
+
+    const tournamentArtworkPanel =
+        document.createElement(
+            "div"
+        );
+
+
+    tournamentArtworkPanel.id =
+        "cr-tournament-artwork-panel";
+
+
+    tournamentArtworkPanel.className =
+        "cr-editor-section";
+
+
+    tournamentArtworkPanel.hidden =
+        true;
+
+
+    tournamentArtworkPanel.innerHTML = `
+
+        <div class="cr-editor-section-heading">
+
+            <span>
+                TOURNAMENT MEDIA
+            </span>
+
+            <h3>
+                Tournament Artwork
+            </h3>
+
+            <p>
+                Upload the artwork used on the One-Off Tournament directory card and the individual tournament page.
+                The website copy is resized when needed and converted to WebP without cropping.
+            </p>
+
+        </div>
+
+
+        <div class="cr-editor-form-grid">
+
+            <div class="cr-form-group">
+
+                <label for="cr-tournament-artwork-file">
+                    SOURCE IMAGE
+                </label>
+
+                <input
+                    id="cr-tournament-artwork-file"
+                    type="file"
+                    accept="image/png,image/jpeg,image/webp"
+                    disabled
+                >
+
+                <small class="cr-field-help">
+                    PNG, JPG, or WebP. The longest edge is limited to 1600px. Smaller images are not enlarged.
+                </small>
+
+            </div>
+
+
+            <div class="cr-form-group">
+
+                <label>
+                    DESTINATION PATH
+                </label>
+
+                <div
+                    id="cr-tournament-artwork-destination"
+                    class="cr-current-value"
+                >
+                    —
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="cr-tournament-artwork-preview">
+
+            <div class="cr-tournament-artwork-preview-frame">
+
+                <img
+                    id="cr-tournament-artwork-preview-image"
+                    alt=""
+                    hidden
+                >
+
+                <span
+                    id="cr-tournament-artwork-preview-empty"
+                    class="cr-tournament-artwork-preview-empty"
+                >
+                    Select an existing tournament to manage its artwork.
+                </span>
+
+            </div>
+
+
+            <div class="cr-tournament-artwork-preview-copy">
+
+                <span>
+                    CURRENT ARTWORK PATH
+                </span>
+
+                <strong id="cr-tournament-artwork-current-path">
+                    —
+                </strong>
+
+                <p id="cr-tournament-artwork-file-details">
+                    Recommended master: 1600 × 1600. Keep important text, logos, faces, trophies, and belts inside the center safe area because the public card may crop the outer edges.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="cr-manager-actions">
+
+            <button
+                id="cr-tournament-artwork-save"
+                class="control-room-button control-room-button-primary"
+                type="button"
+                disabled
+            >
+                Optimize and Assign Artwork
+            </button>
+
+            <button
+                id="cr-tournament-artwork-clear"
+                class="control-room-button control-room-button-secondary"
+                type="button"
+                disabled
+            >
+                Clear Artwork Assignment
+            </button>
+
+        </div>
+
+
+        <p
+            id="cr-tournament-artwork-message"
+            class="cr-save-message"
+            hidden
+        ></p>
+
+    `;
+
+
+    tournamentCreateForm.after(
+        tournamentArtworkPanel
+    );
+
+
+    const tournamentArtworkFile =
+        document.getElementById(
+            "cr-tournament-artwork-file"
+        );
+
+
+    const tournamentArtworkDestination =
+        document.getElementById(
+            "cr-tournament-artwork-destination"
+        );
+
+
+    const tournamentArtworkPreviewImage =
+        document.getElementById(
+            "cr-tournament-artwork-preview-image"
+        );
+
+
+    const tournamentArtworkPreviewEmpty =
+        document.getElementById(
+            "cr-tournament-artwork-preview-empty"
+        );
+
+
+    const tournamentArtworkCurrentPath =
+        document.getElementById(
+            "cr-tournament-artwork-current-path"
+        );
+
+
+    const tournamentArtworkFileDetails =
+        document.getElementById(
+            "cr-tournament-artwork-file-details"
+        );
+
+
+    const tournamentArtworkSaveButton =
+        document.getElementById(
+            "cr-tournament-artwork-save"
+        );
+
+
+    const tournamentArtworkClearButton =
+        document.getElementById(
+            "cr-tournament-artwork-clear"
+        );
+
+
+    const tournamentArtworkMessage =
+        document.getElementById(
+            "cr-tournament-artwork-message"
+        );
+
+
+    function getTournamentArtworkDestinationPath(
+        tournament
+    ) {
+
+        return tournament
+
+            ? `assets/images/tournaments/${tournament.id}.webp`
+
+            : "";
+
+    }
+
+
+    function setTournamentArtworkMessage(
+        message,
+        type = "success"
+    ) {
+
+        tournamentArtworkMessage.textContent =
+            message;
+
+
+        tournamentArtworkMessage.className =
+
+            `cr-save-message ${
+
+                type === "error"
+
+                    ? "save-error"
+
+                    : "save-success"
+
+            }`;
+
+
+        tournamentArtworkMessage.hidden =
+            false;
+
+    }
+
+
+    function hideTournamentArtworkMessage() {
+
+        tournamentArtworkMessage.textContent =
+            "";
+
+
+        tournamentArtworkMessage.hidden =
+            true;
+
+    }
+
+
+    function revokeTournamentArtworkPreviewUrl() {
+
+        if (
+            !tournamentArtworkPreviewUrl
+        ) {
+
+            return;
+
+        }
+
+
+        URL.revokeObjectURL(
+            tournamentArtworkPreviewUrl
+        );
+
+
+        tournamentArtworkPreviewUrl =
+            "";
+
+    }
+
+
+    function setTournamentArtworkPreview(
+        source,
+        altText = "Tournament artwork preview"
+    ) {
+
+        if (
+            !source
+        ) {
+
+            tournamentArtworkPreviewImage.hidden =
+                true;
+
+
+            tournamentArtworkPreviewImage.removeAttribute(
+                "src"
+            );
+
+
+            tournamentArtworkPreviewImage.alt =
+                "";
+
+
+            tournamentArtworkPreviewEmpty.hidden =
+                false;
+
+
+            return;
+
+        }
+
+
+        tournamentArtworkPreviewImage.src =
+            source;
+
+
+        tournamentArtworkPreviewImage.alt =
+            altText;
+
+
+        tournamentArtworkPreviewImage.hidden =
+            false;
+
+
+        tournamentArtworkPreviewEmpty.hidden =
+            true;
+
+    }
+
+
+    function formatTournamentArtworkBytes(
+        byteCount
+    ) {
+
+        const bytes =
+            Number(
+                byteCount || 0
+            );
+
+
+        if (
+            bytes < 1024
+        ) {
+
+            return `${bytes} B`;
+
+        }
+
+
+        if (
+            bytes < 1024 * 1024
+        ) {
+
+            return `${(
+                bytes / 1024
+            ).toFixed(1)} KB`;
+
+        }
+
+
+        return `${(
+            bytes / (
+                1024 * 1024
+            )
+        ).toFixed(2)} MB`;
+
+    }
+
+
+    async function readTournamentArtworkImage(
+        file
+    ) {
+
+        if (
+            typeof createImageBitmap ===
+                "function"
+        ) {
+
+            try {
+
+                return await createImageBitmap(
+                    file,
+                    {
+                        imageOrientation:
+                            "from-image"
+                    }
+                );
+
+            }
+
+            catch (
+                error
+            ) {
+
+                return createImageBitmap(
+                    file
+                );
+
+            }
+
+        }
+
+
+        const objectUrl =
+            URL.createObjectURL(
+                file
+            );
+
+
+        try {
+
+            const image =
+                new Image();
+
+
+            await new Promise(
+
+                (
+                    resolve,
+                    reject
+                ) => {
+
+                    image.onload =
+                        resolve;
+
+
+                    image.onerror =
+                        () => reject(
+
+                            new Error(
+                                "The selected image could not be decoded."
+                            )
+
+                        );
+
+
+                    image.src =
+                        objectUrl;
+
+                }
+
+            );
+
+
+            return image;
+
+        }
+
+        finally {
+
+            URL.revokeObjectURL(
+                objectUrl
+            );
+
+        }
+
+    }
+
+
+    function canvasToTournamentArtworkBlob(
+        canvas
+    ) {
+
+        return new Promise(
+
+            (
+                resolve,
+                reject
+            ) => {
+
+                canvas.toBlob(
+
+                    blob => {
+
+                        if (
+                            blob
+                        ) {
+
+                            resolve(
+                                blob
+                            );
+
+
+                            return;
+
+                        }
+
+
+                        reject(
+
+                            new Error(
+                                "The optimized WebP image could not be created."
+                            )
+
+                        );
+
+                    },
+
+                    "image/webp",
+
+                    TOURNAMENT_ARTWORK_QUALITY
+
+                );
+
+            }
+
+        );
+
+    }
+
+
+    async function optimizeTournamentArtwork(
+        file
+    ) {
+
+        const image =
+            await readTournamentArtworkImage(
+                file
+            );
+
+
+        try {
+
+            const sourceWidth =
+                Number(
+
+                    image.width
+
+                    ||
+
+                    image.naturalWidth
+
+                    ||
+
+                    0
+
+                );
+
+
+            const sourceHeight =
+                Number(
+
+                    image.height
+
+                    ||
+
+                    image.naturalHeight
+
+                    ||
+
+                    0
+
+                );
+
+
+            if (
+                !sourceWidth
+
+                ||
+
+                !sourceHeight
+            ) {
+
+                throw new Error(
+                    "The selected image dimensions could not be read."
+                );
+
+            }
+
+
+            const scale =
+                Math.min(
+
+                    1,
+
+                    TOURNAMENT_ARTWORK_MAX_EDGE
+
+                    /
+
+                    Math.max(
+                        sourceWidth,
+                        sourceHeight
+                    )
+
+                );
+
+
+            const outputWidth =
+                Math.max(
+
+                    1,
+
+                    Math.round(
+                        sourceWidth * scale
+                    )
+
+                );
+
+
+            const outputHeight =
+                Math.max(
+
+                    1,
+
+                    Math.round(
+                        sourceHeight * scale
+                    )
+
+                );
+
+
+            const canvas =
+                document.createElement(
+                    "canvas"
+                );
+
+
+            canvas.width =
+                outputWidth;
+
+
+            canvas.height =
+                outputHeight;
+
+
+            const context =
+                canvas.getContext(
+                    "2d"
+                );
+
+
+            if (
+                !context
+            ) {
+
+                throw new Error(
+                    "The browser could not create the image-processing canvas."
+                );
+
+            }
+
+
+            context.imageSmoothingEnabled =
+                true;
+
+
+            context.imageSmoothingQuality =
+                "high";
+
+
+            context.drawImage(
+
+                image,
+
+                0,
+                0,
+
+                outputWidth,
+                outputHeight
+
+            );
+
+
+            const blob =
+                await canvasToTournamentArtworkBlob(
+                    canvas
+                );
+
+
+            return {
+
+                blob,
+
+                sourceWidth,
+
+                sourceHeight,
+
+                outputWidth,
+
+                outputHeight
+
+            };
+
+        }
+
+        finally {
+
+            if (
+                typeof image.close ===
+                    "function"
+            ) {
+
+                image.close();
+
+            }
+
+        }
+
+    }
+
+
+    async function getTournamentArtworkDirectory() {
+
+        const assetsDirectory =
+            await owlRepositoryHandle.getDirectoryHandle(
+
+                "assets",
+
+                {
+                    create:
+                        true
+                }
+
+            );
+
+
+        const imagesDirectory =
+            await assetsDirectory.getDirectoryHandle(
+
+                "images",
+
+                {
+                    create:
+                        true
+                }
+
+            );
+
+
+        return imagesDirectory.getDirectoryHandle(
+
+            "tournaments",
+
+            {
+                create:
+                    true
+            }
+
+        );
+
+    }
+
+
+    async function getTournamentArtworkBackup(
+        directoryHandle,
+        fileName
+    ) {
+
+        try {
+
+            const fileHandle =
+                await directoryHandle.getFileHandle(
+                    fileName
+                );
+
+
+            const file =
+                await fileHandle.getFile();
+
+
+            return await file.arrayBuffer();
+
+        }
+
+        catch (
+            error
+        ) {
+
+            if (
+                error?.name ===
+                    "NotFoundError"
+            ) {
+
+                return null;
+
+            }
+
+
+            throw error;
+
+        }
+
+    }
+
+
+    async function writeTournamentArtworkFile(
+        directoryHandle,
+        fileName,
+        blob
+    ) {
+
+        const fileHandle =
+            await directoryHandle.getFileHandle(
+
+                fileName,
+
+                {
+                    create:
+                        true
+                }
+
+            );
+
+
+        const writable =
+            await fileHandle.createWritable();
+
+
+        try {
+
+            await writable.write(
+                blob
+            );
+
+        }
+
+        finally {
+
+            await writable.close();
+
+        }
+
+    }
+
+
+    async function restoreTournamentArtworkFile(
+        directoryHandle,
+        fileName,
+        backup
+    ) {
+
+        if (
+            backup === null
+        ) {
+
+            try {
+
+                await directoryHandle.removeEntry(
+                    fileName
+                );
+
+            }
+
+            catch (
+                error
+            ) {
+
+                if (
+                    error?.name !==
+                        "NotFoundError"
+                ) {
+
+                    console.warn(
+                        "Could not remove the failed tournament artwork file:",
+                        error
+                    );
+
+                }
+
+            }
+
+
+            return;
+
+        }
+
+
+        const fileHandle =
+            await directoryHandle.getFileHandle(
+
+                fileName,
+
+                {
+                    create:
+                        true
+                }
+
+            );
+
+
+        const writable =
+            await fileHandle.createWritable();
+
+
+        try {
+
+            await writable.write(
+                backup
+            );
+
+        }
+
+        finally {
+
+            await writable.close();
+
+        }
+
+    }
+
+
+    function getTournamentDatabaseWithArtwork(
+        tournamentId,
+        imagePath
+    ) {
+
+        const database =
+            owlControlRoomData.tournaments;
+
+
+        if (
+            !database
+
+            ||
+
+            Array.isArray(
+                database
+            )
+
+            ||
+
+            !Array.isArray(
+                database.tournaments
+            )
+        ) {
+
+            throw new Error(
+                "The tournament database is not available."
+            );
+
+        }
+
+
+        return {
+
+            ...database,
+
+            tournaments:
+
+                database.tournaments.map(
+
+                    tournament =>
+
+                        tournament.id ===
+                            tournamentId
+
+                            ? {
+
+                                ...tournament,
+
+                                image:
+                                    imagePath
+
+                            }
+
+                            : tournament
+
+                )
+
+        };
+
+    }
+
+
+    function resetTournamentArtworkFileSelection() {
+
+        revokeTournamentArtworkPreviewUrl();
+
+
+        tournamentArtworkSelectedFile =
+            null;
+
+
+        tournamentArtworkFile.value =
+            "";
+
+
+        hideTournamentArtworkMessage();
+
+    }
+
+
+    function refreshTournamentArtworkPanel() {
+
+        const isEditMode =
+            tournamentManagerMode.value ===
+                "edit";
+
+
+        const tournament =
+            getSelectedControlRoomTournament();
+
+
+        tournamentArtworkPanel.hidden =
+            !isEditMode;
+
+
+        if (
+            !isEditMode
+
+            ||
+
+            !tournament
+        ) {
+
+            tournamentArtworkFile.disabled =
+                true;
+
+
+            tournamentArtworkSaveButton.disabled =
+                true;
+
+
+            tournamentArtworkClearButton.disabled =
+                true;
+
+
+            tournamentArtworkDestination.textContent =
+                "—";
+
+
+            tournamentArtworkCurrentPath.textContent =
+                "—";
+
+
+            tournamentArtworkFileDetails.textContent =
+                "Select an existing tournament to manage its artwork.";
+
+
+            setTournamentArtworkPreview(
+                "",
+                ""
+            );
+
+
+            return;
+
+        }
+
+
+        const destinationPath =
+            getTournamentArtworkDestinationPath(
+                tournament
+            );
+
+
+        const currentPath =
+            String(
+                tournament.image || ""
+            ).trim();
+
+
+        tournamentArtworkFile.disabled =
+            false;
+
+
+        tournamentArtworkSaveButton.disabled =
+            !tournamentArtworkSelectedFile;
+
+
+        tournamentArtworkClearButton.disabled =
+            !currentPath;
+
+
+        tournamentArtworkDestination.textContent =
+            destinationPath;
+
+
+        tournamentArtworkCurrentPath.textContent =
+            currentPath
+
+            ||
+
+            "No artwork assigned";
+
+
+        if (
+            tournamentArtworkSelectedFile
+
+            &&
+
+            tournamentArtworkPreviewUrl
+        ) {
+
+            return;
+
+        }
+
+
+        tournamentArtworkFileDetails.textContent =
+
+            currentPath
+
+                ? "Current tournament artwork. Choose a new source image to replace it."
+
+                : "Recommended master: 1600 × 1600. The image will be resized only when its longest edge exceeds 1600px.";
+
+
+        setTournamentArtworkPreview(
+
+            currentPath
+
+                ? `${currentPath}?v=${Date.now()}`
+
+                : "",
+
+            currentPath
+
+                ? `${tournament.name} tournament artwork`
+
+                : ""
+
+        );
+
+    }
+
+
+    async function restoreTournamentSelection(
+        tournamentId,
+        bracketId
+    ) {
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        tournamentSelect.value =
+            tournamentId;
+
+
+        populateTournamentBracketSelector();
+
+
+        if (
+            bracketId
+        ) {
+
+            tournamentBracketSelect.value =
+                bracketId;
+
+
+            loadTournamentFieldDraft();
+
+        }
+
+    }
+
+
+    async function handleTournamentArtworkFileSelection() {
+
+        hideTournamentArtworkMessage();
+
+
+        revokeTournamentArtworkPreviewUrl();
+
+
+        tournamentArtworkSelectedFile =
+            null;
+
+
+        const file =
+            tournamentArtworkFile.files?.[0]
+
+            ||
+
+            null;
+
+
+        if (
+            !file
+        ) {
+
+            refreshTournamentArtworkPanel();
+
+
+            return;
+
+        }
+
+
+        const allowedTypes =
+            new Set([
+
+                "image/png",
+
+                "image/jpeg",
+
+                "image/webp"
+
+            ]);
+
+
+        if (
+            !allowedTypes.has(
+                file.type
+            )
+        ) {
+
+            tournamentArtworkFile.value =
+                "";
+
+
+            setTournamentArtworkMessage(
+
+                "Tournament artwork must be a PNG, JPG, or WebP image.",
+
+                "error"
+
+            );
+
+
+            refreshTournamentArtworkPanel();
+
+
+            return;
+
+        }
+
+
+        try {
+
+            const image =
+                await readTournamentArtworkImage(
+                    file
+                );
+
+
+            const width =
+                Number(
+
+                    image.width
+
+                    ||
+
+                    image.naturalWidth
+
+                    ||
+
+                    0
+
+                );
+
+
+            const height =
+                Number(
+
+                    image.height
+
+                    ||
+
+                    image.naturalHeight
+
+                    ||
+
+                    0
+
+                );
+
+
+            if (
+                typeof image.close ===
+                    "function"
+            ) {
+
+                image.close();
+
+            }
+
+
+            if (
+                !width
+
+                ||
+
+                !height
+            ) {
+
+                throw new Error(
+                    "The selected image dimensions could not be read."
+                );
+
+            }
+
+
+            tournamentArtworkSelectedFile =
+                file;
+
+
+            tournamentArtworkPreviewUrl =
+                URL.createObjectURL(
+                    file
+                );
+
+
+            setTournamentArtworkPreview(
+
+                tournamentArtworkPreviewUrl,
+
+                `${file.name} preview`
+
+            );
+
+
+            tournamentArtworkFileDetails.textContent =
+
+                `${file.name} • ${width} × ${height} • ${formatTournamentArtworkBytes(
+                    file.size
+                )}. The saved copy will be WebP with a maximum longest edge of 1600px.`;
+
+
+            tournamentArtworkSaveButton.disabled =
+                false;
+
+        }
+
+        catch (
+            error
+        ) {
+
+            console.error(
+                "Could not read tournament artwork:",
+                error
+            );
+
+
+            tournamentArtworkFile.value =
+                "";
+
+
+            setTournamentArtworkMessage(
+
+                error.message
+
+                ||
+
+                "The selected image could not be read.",
+
+                "error"
+
+            );
+
+
+            refreshTournamentArtworkPanel();
+
+        }
+
+    }
+
+
+    async function saveTournamentArtwork() {
+
+        const tournament =
+            getSelectedControlRoomTournament();
+
+
+        if (
+            !tournament
+        ) {
+
+            setTournamentArtworkMessage(
+
+                "Select an existing tournament first.",
+
+                "error"
+
+            );
+
+
+            return;
+
+        }
+
+
+        if (
+            !tournamentArtworkSelectedFile
+        ) {
+
+            setTournamentArtworkMessage(
+
+                "Select a source image first.",
+
+                "error"
+
+            );
+
+
+            return;
+
+        }
+
+
+        if (
+            !owlRepositoryHandle
+
+            ||
+
+            !await hasRepositoryPermission(
+                owlRepositoryHandle
+            )
+        ) {
+
+            setTournamentArtworkMessage(
+
+                "Repository write permission is required.",
+
+                "error"
+
+            );
+
+
+            return;
+
+        }
+
+
+        const selectedTournamentId =
+            tournament.id;
+
+
+        const selectedBracketId =
+            tournamentBracketSelect.value;
+
+
+        const destinationPath =
+            getTournamentArtworkDestinationPath(
+                tournament
+            );
+
+
+        const fileName =
+            `${tournament.id}.webp`;
+
+
+        tournamentArtworkSaveButton.disabled =
+            true;
+
+
+        tournamentArtworkClearButton.disabled =
+            true;
+
+
+        tournamentCreateStatus.textContent =
+            "PROCESSING ART";
+
+
+        hideTournamentArtworkMessage();
+
+
+        let artworkDirectory =
+            null;
+
+
+        let backup =
+            null;
+
+
+        try {
+
+            const optimized =
+                await optimizeTournamentArtwork(
+                    tournamentArtworkSelectedFile
+                );
+
+
+            artworkDirectory =
+                await getTournamentArtworkDirectory();
+
+
+            backup =
+                await getTournamentArtworkBackup(
+
+                    artworkDirectory,
+
+                    fileName
+
+                );
+
+
+            await writeTournamentArtworkFile(
+
+                artworkDirectory,
+
+                fileName,
+
+                optimized.blob
+
+            );
+
+
+            const updatedDatabase =
+                getTournamentDatabaseWithArtwork(
+
+                    selectedTournamentId,
+
+                    destinationPath
+
+                );
+
+
+            try {
+
+                await writeTournamentDatabase(
+                    updatedDatabase
+                );
+
+            }
+
+            catch (
+                databaseError
+            ) {
+
+                await restoreTournamentArtworkFile(
+
+                    artworkDirectory,
+
+                    fileName,
+
+                    backup
+
+                );
+
+
+                throw databaseError;
+
+            }
+
+
+            await restoreTournamentSelection(
+
+                selectedTournamentId,
+
+                selectedBracketId
+
+            );
+
+
+            resetTournamentArtworkFileSelection();
+
+
+            tournamentCreateStatus.textContent =
+                "READY";
+
+
+            refreshTournamentArtworkPanel();
+
+
+            setTournamentArtworkMessage(
+
+                `Tournament artwork saved as ${destinationPath} at ${optimized.outputWidth} × ${optimized.outputHeight}.`
+
+            );
+
+        }
+
+        catch (
+            error
+        ) {
+
+            console.error(
+                "Could not save tournament artwork:",
+                error
+            );
+
+
+            tournamentCreateStatus.textContent =
+                "ERROR";
+
+
+            setTournamentArtworkMessage(
+
+                error.message
+
+                ||
+
+                "The tournament artwork could not be saved.",
+
+                "error"
+
+            );
+
+
+            refreshTournamentArtworkPanel();
+
+        }
+
+    }
+
+
+    async function clearTournamentArtwork() {
+
+        const tournament =
+            getSelectedControlRoomTournament();
+
+
+        if (
+            !tournament
+
+            ||
+
+            !tournament.image
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            !owlRepositoryHandle
+
+            ||
+
+            !await hasRepositoryPermission(
+                owlRepositoryHandle
+            )
+        ) {
+
+            setTournamentArtworkMessage(
+
+                "Repository write permission is required.",
+
+                "error"
+
+            );
+
+
+            return;
+
+        }
+
+
+        const confirmed =
+            window.confirm(
+
+                `Clear the artwork assignment for ${tournament.name}?`
+
+            );
+
+
+        if (
+            !confirmed
+        ) {
+
+            return;
+
+        }
+
+
+        const selectedTournamentId =
+            tournament.id;
+
+
+        const selectedBracketId =
+            tournamentBracketSelect.value;
+
+
+        const oldPath =
+            tournament.image;
+
+
+        const canonicalPath =
+            getTournamentArtworkDestinationPath(
+                tournament
+            );
+
+
+        tournamentArtworkSaveButton.disabled =
+            true;
+
+
+        tournamentArtworkClearButton.disabled =
+            true;
+
+
+        hideTournamentArtworkMessage();
+
+
+        try {
+
+            const updatedDatabase =
+                getTournamentDatabaseWithArtwork(
+
+                    selectedTournamentId,
+
+                    ""
+
+                );
+
+
+            await writeTournamentDatabase(
+                updatedDatabase
+            );
+
+
+            let fileRemovalWarning =
+                "";
+
+
+            if (
+                oldPath ===
+                    canonicalPath
+            ) {
+
+                try {
+
+                    const artworkDirectory =
+                        await getTournamentArtworkDirectory();
+
+
+                    await artworkDirectory.removeEntry(
+                        `${tournament.id}.webp`
+                    );
+
+                }
+
+                catch (
+                    error
+                ) {
+
+                    if (
+                        error?.name !==
+                            "NotFoundError"
+                    ) {
+
+                        console.warn(
+
+                            "Tournament artwork assignment was cleared, but the image file could not be removed:",
+
+                            error
+
+                        );
+
+
+                        fileRemovalWarning =
+                            " The old image file remains in assets/images/tournaments and may be deleted manually.";
+
+                    }
+
+                }
+
+            }
+
+
+            await restoreTournamentSelection(
+
+                selectedTournamentId,
+
+                selectedBracketId
+
+            );
+
+
+            resetTournamentArtworkFileSelection();
+
+
+            refreshTournamentArtworkPanel();
+
+
+            setTournamentArtworkMessage(
+
+                `Tournament artwork assignment cleared.${fileRemovalWarning}`
+
+            );
+
+        }
+
+        catch (
+            error
+        ) {
+
+            console.error(
+                "Could not clear tournament artwork:",
+                error
+            );
+
+
+            setTournamentArtworkMessage(
+
+                error.message
+
+                ||
+
+                "The tournament artwork assignment could not be cleared.",
+
+                "error"
+
+            );
+
+
+            refreshTournamentArtworkPanel();
+
+        }
+
+    }
+
+
+    tournamentArtworkFile.addEventListener(
+
+        "change",
+
+        handleTournamentArtworkFileSelection
+
+    );
+
+
+    tournamentArtworkSaveButton.addEventListener(
+
+        "click",
+
+        saveTournamentArtwork
+
+    );
+
+
+    tournamentArtworkClearButton.addEventListener(
+
+        "click",
+
+        clearTournamentArtwork
+
+    );
+
+
+    tournamentManagerMode.addEventListener(
+
+        "change",
+
+        () => {
+
+            resetTournamentArtworkFileSelection();
+
+
+            window.setTimeout(
+
+                refreshTournamentArtworkPanel,
+
+                0
+
+            );
+
+        }
+
+    );
+
+
+    tournamentSelect.addEventListener(
+
+        "change",
+
+        () => {
+
+            resetTournamentArtworkFileSelection();
+
+
+            window.setTimeout(
+
+                refreshTournamentArtworkPanel,
+
+                0
+
+            );
+
+        }
+
+    );
+    
     // =================================
     // SOURCE-BASED BYE RESOLUTION
     // =================================
@@ -2294,19 +4234,22 @@
 
 
     window.addEventListener(
-        "owl-control-room-data-loaded",
-        () => {
-            window.setTimeout(
-                () => {
-                    toggleTournamentCreatorMode();
+    "owl-control-room-data-loaded",
+    () => {
+        window.setTimeout(
+            () => {
+                toggleTournamentCreatorMode();
 
 
-                    refreshBracketMethodControls(
-                        getSelectedControlRoomBracket()
-                    );
-                },
-                0
-            );
-        }
-    );
+                refreshBracketMethodControls(
+                    getSelectedControlRoomBracket()
+                );
+
+
+                refreshTournamentArtworkPanel();
+            },
+            0
+        );
+    }
+);
 })();
