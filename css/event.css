@@ -2440,3 +2440,92 @@
     }
 
 }
+/* =================================
+   STEP 317B-R1
+   DESKTOP LIGHTBOX VERTICAL SCROLL
+================================= */
+
+
+@media (min-width: 601px) {
+
+    .event-match-graphic-lightbox {
+
+        display:
+            block;
+
+        padding:
+            0;
+
+        overflow-x:
+            hidden;
+
+        overflow-y:
+            auto;
+
+        overscroll-behavior:
+            contain;
+
+    }
+
+
+    .event-match-graphic-lightbox-panel {
+
+        display:
+            grid;
+
+        place-items:
+            center;
+
+        width:
+            min(
+                1400px,
+                calc(100% - 2rem)
+            );
+
+        height:
+            auto;
+
+        min-height:
+            100vh;
+
+        margin:
+            0 auto;
+
+        padding:
+
+            4.5rem
+            0
+            2rem;
+
+        box-sizing:
+            border-box;
+
+    }
+
+
+    .event-match-graphic-lightbox-panel img {
+
+        display:
+            block;
+
+        width:
+            auto;
+
+        height:
+            auto;
+
+        max-width:
+            100%;
+
+        max-height:
+            none;
+
+        margin:
+            0 auto;
+
+        object-fit:
+            contain;
+
+    }
+
+}
