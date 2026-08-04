@@ -1202,3 +1202,740 @@ else {
     setupSiteBackToTop();
 
 }
+// =================================
+// OWL MONTH / WEEK CALENDAR
+// STEP 318C-1A
+// =================================
+
+
+(() => {
+
+    "use strict";
+
+
+    const MONTH_NAMES = [
+
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+
+    ];
+
+
+    const VALID_STAGES = [
+
+        "week-1",
+        "week-2",
+        "week-3",
+        "week-4"
+
+    ];
+
+
+
+    function cleanText(
+        value
+    ) {
+
+
+        return String(
+            value || ""
+        ).trim();
+
+    }
+
+
+
+    function parsePeriodId(
+        periodId
+    ) {
+
+
+        const match =
+
+            cleanText(
+                periodId
+            ).match(
+                /^(\d{4})-(0[1-9]|1[0-2])$/
+            );
+
+
+        if (!match) {
+
+            return null;
+
+        }
+
+
+        return {
+
+            year:
+                Number(
+                    match[1]
+                ),
+
+            month:
+                Number(
+                    match[2]
+                ),
+
+            periodId:
+                `${match[1]}-${match[2]}`
+
+        };
+
+    }
+
+
+
+    function normalizeStage(
+        value
+    ) {
+
+
+        const text =
+
+            cleanText(
+                value
+            )
+                .toLowerCase()
+                .replace(
+                    /_/g,
+                    "-"
+                )
+                .replace(
+                    /\s+/g,
+                    "-"
+                );
+
+
+        if (
+            VALID_STAGES.includes(
+                text
+            )
+        ) {
+
+            return text;
+
+        }
+
+
+        const numberMatch =
+
+            text.match(
+                /^(?:week-?)?([1-4])$/
+            );
+
+
+        return numberMatch
+
+            ? `week-${numberMatch[1]}`
+
+            : "";
+
+    }
+
+
+
+    function stageNumber(
+        value
+    ) {
+
+
+        const normalizedStage =
+            normalizeStage(
+                value
+            );
+
+
+        if (!normalizedStage) {
+
+            return 0;
+
+        }
+
+
+        return Number(
+            normalizedStage.replace(
+                "week-",
+                ""
+            )
+        );
+
+    }
+
+
+
+    function legacyPeriodId(
+        dateString
+    ) {
+
+
+        const match =
+
+            cleanText(
+                dateString
+            ).match(
+                /^(\d{4})-(0[1-9]|1[0-2])-\d{2}$/
+            );
+
+
+        return match
+
+            ? `${match[1]}-${match[2]}`
+
+            : "";
+
+    }
+
+
+
+    function legacyStage(
+        dateString
+    ) {
+
+
+        const match =
+
+            cleanText(
+                dateString
+            ).match(
+                /^\d{4}-\d{2}-(\d{2})$/
+            );
+
+
+        if (!match) {
+
+            return "";
+
+        }
+
+
+        const day =
+            Number(
+                match[1]
+            );
+
+
+        if (
+            !Number.isFinite(
+                day
+            )
+
+            ||
+
+            day < 1
+        ) {
+
+            return "";
+
+        }
+
+
+        return `week-${Math.min(
+            4,
+            Math.ceil(
+                day / 7
+            )
+        )}`;
+
+    }
+
+
+
+    function getPeriodId(
+        source
+    ) {
+
+
+        if (
+            typeof source ===
+                "string"
+        ) {
+
+            return parsePeriodId(
+                source
+            )
+                ? cleanText(
+                    source
+                )
+                : legacyPeriodId(
+                    source
+                );
+
+        }
+
+
+        const storedPeriodId =
+            cleanText(
+                source?.periodId
+            );
+
+
+        if (
+            parsePeriodId(
+                storedPeriodId
+            )
+        ) {
+
+            return storedPeriodId;
+
+        }
+
+
+        return legacyPeriodId(
+            source?.date
+        );
+
+    }
+
+
+
+    function getStage(
+        source
+    ) {
+
+
+        if (
+            typeof source ===
+                "string"
+        ) {
+
+            return normalizeStage(
+                source
+            );
+
+        }
+
+
+        return (
+
+            normalizeStage(
+                source?.stage
+            )
+
+            ||
+
+            legacyStage(
+                source?.date
+            )
+
+        );
+
+    }
+
+
+
+    function getSlot(
+        source
+    ) {
+
+
+        const periodId =
+            getPeriodId(
+                source
+            );
+
+
+        const stage =
+            getStage(
+                source
+            );
+
+
+        const parsedPeriod =
+            parsePeriodId(
+                periodId
+            );
+
+
+        const week =
+            stageNumber(
+                stage
+            );
+
+
+        if (
+            !parsedPeriod
+
+            ||
+
+            !week
+        ) {
+
+            return null;
+
+        }
+
+
+        return {
+
+            ...parsedPeriod,
+
+            stage,
+
+            week
+
+        };
+
+    }
+
+
+
+    function formatPeriod(
+        periodId
+    ) {
+
+
+        const parsed =
+            parsePeriodId(
+                periodId
+            );
+
+
+        if (!parsed) {
+
+            return "Unscheduled";
+
+        }
+
+
+        return `${MONTH_NAMES[
+            parsed.month - 1
+        ]} ${parsed.year}`;
+
+    }
+
+
+
+    function formatStage(
+        stage
+    ) {
+
+
+        const week =
+            stageNumber(
+                stage
+            );
+
+
+        return week
+
+            ? `Week ${week}`
+
+            : "Week Not Set";
+
+    }
+
+
+
+    function formatEventSlot(
+        source,
+        separator = " • "
+    ) {
+
+
+        const slot =
+            getSlot(
+                source
+            );
+
+
+        if (!slot) {
+
+            return "Schedule Not Set";
+
+        }
+
+
+        return `${formatPeriod(
+            slot.periodId
+        )}${separator}${formatStage(
+            slot.stage
+        )}`;
+
+    }
+
+
+
+    function eventSortValue(
+        source
+    ) {
+
+
+        const slot =
+            getSlot(
+                source
+            );
+
+
+        if (!slot) {
+
+            return 0;
+
+        }
+
+
+        return (
+
+            slot.year * 1000
+
+            +
+
+            slot.month * 10
+
+            +
+
+            slot.week
+
+        );
+
+    }
+
+
+
+    function compareEvents(
+        eventA,
+        eventB
+    ) {
+
+
+        const slotDifference =
+
+            eventSortValue(
+                eventA
+            )
+
+            -
+
+            eventSortValue(
+                eventB
+            );
+
+
+        if (
+            slotDifference !== 0
+        ) {
+
+            return slotDifference;
+
+        }
+
+
+        const orderDifference =
+
+            Number(
+                eventA?.order || 0
+            )
+
+            -
+
+            Number(
+                eventB?.order || 0
+            );
+
+
+        if (
+            orderDifference !== 0
+        ) {
+
+            return orderDifference;
+
+        }
+
+
+        return cleanText(
+            eventA?.name
+        ).localeCompare(
+            cleanText(
+                eventB?.name
+            )
+        );
+
+    }
+
+
+
+    function sameEventSlot(
+        sourceA,
+        sourceB
+    ) {
+
+
+        const slotA =
+            getSlot(
+                sourceA
+            );
+
+
+        const slotB =
+            getSlot(
+                sourceB
+            );
+
+
+        return Boolean(
+
+            slotA
+
+            &&
+
+            slotB
+
+            &&
+
+            slotA.periodId ===
+                slotB.periodId
+
+            &&
+
+            slotA.stage ===
+                slotB.stage
+
+        );
+
+    }
+
+
+
+    function slugify(
+        value
+    ) {
+
+
+        return cleanText(
+            value
+        )
+            .toLowerCase()
+            .replace(
+                /['’]/g,
+                ""
+            )
+            .replace(
+                /&/g,
+                "and"
+            )
+            .replace(
+                /[^a-z0-9]+/g,
+                "-"
+            )
+            .replace(
+                /^-+|-+$/g,
+                ""
+            );
+
+    }
+
+
+
+    function createEventId(
+        name,
+        periodId,
+        stage
+    ) {
+
+
+        const safeName =
+            slugify(
+                name
+            );
+
+
+        const parsedPeriod =
+            parsePeriodId(
+                periodId
+            );
+
+
+        const normalizedStage =
+            normalizeStage(
+                stage
+            );
+
+
+        if (
+            !safeName
+
+            ||
+
+            !parsedPeriod
+
+            ||
+
+            !normalizedStage
+        ) {
+
+            return "";
+
+        }
+
+
+        return `${safeName}-${parsedPeriod.periodId}-${normalizedStage}`;
+
+    }
+
+
+
+    function isValidEventSlot(
+        source
+    ) {
+
+
+        return Boolean(
+            getSlot(
+                source
+            )
+        );
+
+    }
+
+
+
+    window.OWLCalendar = {
+
+        monthNames:
+            [...MONTH_NAMES],
+
+        validStages:
+            [...VALID_STAGES],
+
+        parsePeriodId,
+
+        normalizeStage,
+
+        stageNumber,
+
+        getPeriodId,
+
+        getStage,
+
+        getSlot,
+
+        formatPeriod,
+
+        formatStage,
+
+        formatEventSlot,
+
+        eventSortValue,
+
+        compareEvents,
+
+        sameEventSlot,
+
+        createEventId,
+
+        isValidEventSlot
+
+    };
+
+})();
