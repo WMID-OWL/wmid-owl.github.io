@@ -159,7 +159,61 @@ async function loadHomePage() {
             );
 
         }
+        function getEventScheduleValue(
+            event
+        ) {
 
+
+            if (
+                window.OWLCalendar
+
+                &&
+
+                typeof window.OWLCalendar
+                    .eventSortValue ===
+                    "function"
+            ) {
+
+                return window.OWLCalendar
+                    .eventSortValue(
+                        event
+                    );
+
+            }
+
+
+            return 0;
+
+        }
+
+
+
+        function formatEventSchedule(
+            event
+        ) {
+
+
+            if (
+                window.OWLCalendar
+
+                &&
+
+                typeof window.OWLCalendar
+                    .formatEventSlot ===
+                    "function"
+            ) {
+
+                return window.OWLCalendar
+                    .formatEventSlot(
+                        event
+                    );
+
+            }
+
+
+            return "Schedule Not Set";
+
+        }
 
 
         // =================================
@@ -385,7 +439,7 @@ async function loadHomePage() {
         // =================================
 
 
-        const upcomingEvents =
+                const upcomingEvents =
             events
 
                 .filter(
@@ -397,16 +451,19 @@ async function loadHomePage() {
                 )
 
                 .sort(
-                    (a, b) =>
+                    (
+                        eventA,
+                        eventB
+                    ) =>
 
-                        getDateValue(
-                            a.date
+                        getEventScheduleValue(
+                            eventA
                         )
 
                         -
 
-                        getDateValue(
-                            b.date
+                        getEventScheduleValue(
+                            eventB
                         )
                 );
 
@@ -445,11 +502,11 @@ async function loadHomePage() {
 
 
 
-            document.getElementById(
+                        document.getElementById(
                 "home-event-date"
             ).textContent =
-                formatDate(
-                    nextEvent.date
+                formatEventSchedule(
+                    nextEvent
                 );
 
 
@@ -726,7 +783,7 @@ async function loadHomePage() {
         // =================================
 
 
-        const completedEvents =
+                const completedEvents =
             events
 
                 .filter(
@@ -738,16 +795,19 @@ async function loadHomePage() {
                 )
 
                 .sort(
-                    (a, b) =>
+                    (
+                        eventA,
+                        eventB
+                    ) =>
 
-                        getDateValue(
-                            b.date
+                        getEventScheduleValue(
+                            eventB
                         )
 
                         -
 
-                        getDateValue(
-                            a.date
+                        getEventScheduleValue(
+                            eventA
                         )
                 );
 
