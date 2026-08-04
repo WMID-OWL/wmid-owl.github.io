@@ -1250,16 +1250,25 @@ function crResultsGetTournamentWinnerEntrantId(
 function crResultsPopulateTournamentAdvancementSlots(
     rounds
 ) {
+    if (
+        window.OWLResolveTournamentByes
+
+        &&
+
+        typeof window.OWLResolveTournamentByes ===
+            "function"
+    ) {
+        return window.OWLResolveTournamentByes(
+            rounds
+        );
+    }
 
 
     const orderedRounds =
 
         [
-
             ...rounds
-
         ].sort(
-
             (
                 roundA,
                 roundB
@@ -1274,7 +1283,6 @@ function crResultsPopulateTournamentAdvancementSlots(
                 Number(
                     roundB.order || 0
                 )
-
         );
 
 
@@ -1283,10 +1291,7 @@ function crResultsPopulateTournamentAdvancementSlots(
 
 
     orderedRounds.forEach(
-
         round => {
-
-
             const matches =
 
                 Array.isArray(
@@ -1299,114 +1304,165 @@ function crResultsPopulateTournamentAdvancementSlots(
 
 
             matches.forEach(
-
                 match => {
-
-
                     matchMap.set(
                         match.id,
                         match
                     );
-
                 }
-
             );
-
         }
-
     );
 
 
-    orderedRounds.forEach(
-
-        (
-            round,
-            roundIndex
-        ) => {
+    let changed =
+        true;
 
 
-            if (
-                roundIndex ===
-                    0
-            ) {
+    let safety =
+        0;
 
-                return;
 
+    while (
+        changed
+
+        &&
+
+        safety <
+            matchMap.size + 2
+    ) {
+        changed =
+            false;
+
+
+        safety +=
+            1;
+
+
+        orderedRounds.forEach(
+            (
+                round,
+                roundIndex
+            ) => {
+                if (
+                    roundIndex ===
+                        0
+                ) {
+                    return;
+                }
+
+
+                const matches =
+
+                    Array.isArray(
+                        round.matches
+                    )
+
+                        ? round.matches
+
+                        : [];
+
+
+                matches.forEach(
+                    match => {
+                        if (
+                            match.sourceOneMatchId
+                        ) {
+                            const participantOneId =
+
+                                matchMap.get(
+                                    match.sourceOneMatchId
+                                )?.winnerId
+
+                                ||
+
+                                "";
+
+
+                            if (
+                                match.participantOneId !==
+                                    participantOneId
+                            ) {
+                                match.participantOneId =
+                                    participantOneId;
+
+
+                                changed =
+                                    true;
+                            }
+                        }
+
+
+                        if (
+                            match.sourceTwoMatchId
+                        ) {
+                            const participantTwoId =
+
+                                matchMap.get(
+                                    match.sourceTwoMatchId
+                                )?.winnerId
+
+                                ||
+
+                                "";
+
+
+                            if (
+                                match.participantTwoId !==
+                                    participantTwoId
+                            ) {
+                                match.participantTwoId =
+                                    participantTwoId;
+
+
+                                changed =
+                                    true;
+                            }
+                        }
+
+
+                        if (match.isBye) {
+                            const byeWinnerId =
+
+                                match.participantOneId
+
+                                ||
+
+                                match.participantTwoId
+
+                                ||
+
+                                "";
+
+
+                            if (
+                                byeWinnerId
+
+                                &&
+
+                                match.winnerId !==
+                                    byeWinnerId
+                            ) {
+                                match.winnerId =
+                                    byeWinnerId;
+
+
+                                match.status =
+                                    "bye";
+
+
+                                changed =
+                                    true;
+                            }
+                        }
+                    }
+                );
             }
-
-
-            const matches =
-
-                Array.isArray(
-                    round.matches
-                )
-
-                    ? round.matches
-
-                    : [];
-
-
-            matches.forEach(
-
-                match => {
-
-
-                    if (
-                        match.sourceOneMatchId
-                    ) {
-
-
-                        const sourceOneMatch =
-
-                            matchMap.get(
-                                match.sourceOneMatchId
-                            );
-
-
-                        match.participantOneId =
-
-                            sourceOneMatch?.winnerId
-
-                            ||
-
-                            "";
-
-                    }
-
-
-                    if (
-                        match.sourceTwoMatchId
-                    ) {
-
-
-                        const sourceTwoMatch =
-
-                            matchMap.get(
-                                match.sourceTwoMatchId
-                            );
-
-
-                        match.participantTwoId =
-
-                            sourceTwoMatch?.winnerId
-
-                            ||
-
-                            "";
-
-                    }
-
-                }
-
-            );
-
-        }
-
-    );
+        );
+    }
 
 
     return orderedRounds;
-
 }
 
 function crResultsBuildTournamentAdvancementUpdate(
