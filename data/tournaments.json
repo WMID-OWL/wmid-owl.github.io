@@ -29,9 +29,9 @@
           "brand": "Ascension",
           "division": "Men's Singles",
           "fieldSize": 16,
-                    "fieldUnit": "Competitors",
+          "fieldUnit": "Competitors",
           "participantType": "wrestler",
-                   "participants": [],
+          "participants": [],
           "fieldLocked": false,
           "bracketSetup": {
             "generated": false,
@@ -47,9 +47,9 @@
           "brand": "Ascension",
           "division": "Women's Singles",
           "fieldSize": 16,
-                   "fieldUnit": "Competitors",
+          "fieldUnit": "Competitors",
           "participantType": "wrestler",
-                    "participants": [],
+          "participants": [],
           "fieldLocked": false,
           "bracketSetup": {
             "generated": false,
@@ -65,9 +65,9 @@
           "brand": "Ascension",
           "division": "Men's Singles",
           "fieldSize": 16,
-                   "fieldUnit": "Competitors",
+          "fieldUnit": "Competitors",
           "participantType": "wrestler",
-                   "participants": [],
+          "participants": [],
           "fieldLocked": false,
           "bracketSetup": {
             "generated": false,
@@ -83,9 +83,9 @@
           "brand": "Ascension",
           "division": "Women's Singles",
           "fieldSize": 16,
-                    "fieldUnit": "Competitors",
+          "fieldUnit": "Competitors",
           "participantType": "wrestler",
-                   "participants": [],
+          "participants": [],
           "fieldLocked": false,
           "bracketSetup": {
             "generated": false,
@@ -101,9 +101,9 @@
           "brand": "Revolt",
           "division": "Men's Singles",
           "fieldSize": 16,
-                    "fieldUnit": "Competitors",
+          "fieldUnit": "Competitors",
           "participantType": "wrestler",
-                   "participants": [],
+          "participants": [],
           "fieldLocked": false,
           "bracketSetup": {
             "generated": false,
@@ -119,9 +119,9 @@
           "brand": "Revolt",
           "division": "Women's Singles",
           "fieldSize": 16,
-                   "fieldUnit": "Competitors",
+          "fieldUnit": "Competitors",
           "participantType": "wrestler",
-                    "participants": [],
+          "participants": [],
           "fieldLocked": false,
           "bracketSetup": {
             "generated": false,
@@ -137,9 +137,9 @@
           "brand": "Revolt",
           "division": "Men's Singles",
           "fieldSize": 16,
-                    "fieldUnit": "Competitors",
+          "fieldUnit": "Competitors",
           "participantType": "wrestler",
-                   "participants": [],
+          "participants": [],
           "fieldLocked": false,
           "bracketSetup": {
             "generated": false,
@@ -155,9 +155,9 @@
           "brand": "Revolt",
           "division": "Women's Singles",
           "fieldSize": 16,
-                    "fieldUnit": "Competitors",
+          "fieldUnit": "Competitors",
           "participantType": "wrestler",
-                   "participants": [],
+          "participants": [],
           "fieldLocked": false,
           "bracketSetup": {
             "generated": false,
@@ -173,9 +173,9 @@
           "brand": "Shared",
           "division": "Men's Tag Teams",
           "fieldSize": 28,
-                   "fieldUnit": "Teams",
+          "fieldUnit": "Teams",
           "participantType": "team",
-                    "participants": [],
+          "participants": [],
           "fieldLocked": false,
           "bracketSetup": {
             "generated": false,
@@ -191,9 +191,9 @@
           "brand": "Shared",
           "division": "Women's Tag Teams",
           "fieldSize": 16,
-                    "fieldUnit": "Teams",
+          "fieldUnit": "Teams",
           "participantType": "team",
-                   "participants": [],
+          "participants": [],
           "fieldLocked": false,
           "bracketSetup": {
             "generated": false,
@@ -204,6 +204,17 @@
           "status": "Upcoming"
         }
       ]
+    },
+    {
+      "id": "twin-talon-challengers-cup-2026",
+      "name": "Twin Talon Challengers Cup",
+      "year": 2026,
+      "status": "Upcoming",
+      "badge": "Annual Tournament",
+      "purpose": "HOW IT WORKS\n\n- NO TIME LIMITS\n- 16 TEAMS COMPETE IN 8 BLIND DRAW MATCHES\n- THE 8 WINNING TEAMS COMPETE IN 4 BLIND DRAW MATCHES\n- THE 4 WINNERS MOVE ON TO THE SEMI-FINALS ON THE GO-HOME SHOWS OF THAT MONTH\n- THE CUP FINALS WILL TAKE PLACE AT THE FOLLOWING PPV (GROUND ZERO IN JAN)\n- THE WINNING TEAM WILL BE THE NEW TWIN TALON TAG TEAM CHAMPIONS AND WILL RECEIVE THE CHALLENGERS CUP",
+      "image": "",
+      "directoryStats": [],
+      "brackets": []
     }
   ]
 }
