@@ -1,7 +1,7 @@
 # OWL Simulation Rulebook
 
 **Status:** Active internal rulebook  
-**Last revised:** August 1, 2026
+**Last revised:** August 3, 2026  
 **Applies to:** OWL Wrestling simulation, progression, injuries, recovery, and Control Room automation
 
 ---
@@ -22,7 +22,7 @@ It governs:
 - Post-injury recovery
 - Fire Pro endurance changes
 - Reinjury handling
-- Control Room generator procedures
+- Control Room Generator procedures
 - Public injury wording
 - Future simulation-system revisions
 
@@ -309,7 +309,9 @@ Championship automatically vacated
 
 The rule outcome is mandatory.
 
-The Control Room must still require confirmation that the related championship database changes have been completed. It must not silently rewrite championship history without user confirmation.
+The Control Room must still require confirmation that the related championship database changes have been completed.
+
+It must not silently rewrite championship history without user confirmation.
 
 ---
 
@@ -447,13 +449,15 @@ Final absence duration
 
 A diagnosis from a different body area or duration cannot be used.
 
-The complete approved diagnosis catalog will be stored in:
+The complete approved diagnosis catalog is stored in:
 
 ```text
 data/injury-diagnoses.json
 ```
 
-That catalog is part of this rulebook system. JavaScript must read from the catalog rather than containing a separate hidden list of diagnoses.
+That catalog is part of this rulebook system.
+
+JavaScript must read from the catalog rather than containing a separate hidden list of diagnoses.
 
 ### Required wording rule
 
@@ -1004,7 +1008,9 @@ If another injury occurs before High is restored:
 - The healthy-week count restarts from the wrestler’s latest full-clearance timestamp
 - Completed qualifying matches already earned toward the restoration requirement remain counted
 
-The healthy-week requirement measures uninterrupted healthy time. The completed-match requirement measures proven post-clearance durability.
+The healthy-week requirement measures uninterrupted healthy time.
+
+The completed-match requirement measures proven post-clearance durability.
 
 Until both requirements are satisfied, the affected area remains:
 
@@ -1022,24 +1028,31 @@ The current Control Room Generator Hub supports:
 
 - Canon Mode
 - Test Mode
-- Custom pool draws
+- Custom Pool Draw
+- Injury Evaluation
 - Primary injury d10
 - Severe-injury check
 - Severe-duration roll
 - CRIT body-area ambiguity resolution
-- Diagnosis selection
+- Duration-based diagnosis selection
 - Same-area reinjury advantage roll
 - High-endurance milestone selection
+- Fate’s Wheel case assignment and outcomes
+- Hex-Cell entry-order generation
+- Wildcard Play-In selection
+- Ranking-position selection
+- JoW private booking-style selection
 
-Approved dedicated presets that remain future Generator work include:
+Other approved one-time or recurring random decisions may use Custom Pool Draw when no dedicated preset exists.
 
-- Fate’s Wheel cases and case outcomes
-- Hex-Cell entry order
-- Wildcard Play-In selections
-- Ranking-position selections
-- Other approved recurring random decisions
+A Custom Pool Draw must preserve:
 
-Until a dedicated preset is implemented, an approved decision may use the Custom Pool Draw when that method can preserve the complete eligible pool, exclusions, and confirmed result.
+- The complete eligible pool
+- Any excluded entries
+- The selected draw method
+- The final result
+- Canon or Test Mode
+- Confirmation status when applicable
 
 ### Canon Mode
 
@@ -1047,7 +1060,9 @@ Canon Mode creates a pending official result.
 
 It becomes official only after confirmation.
 
-A confirmed result enters Generator History but does not automatically perform a related Fire Pro, injury, endurance, championship, or scheduling edit unless that specific workflow explicitly supports the edit and requires separate confirmation.
+A confirmed result enters Generator History.
+
+A confirmed Generator result does not automatically perform a related Fire Pro, injury, endurance, championship, booking, or scheduling edit unless that specific workflow explicitly supports the edit and requires the appropriate confirmation.
 
 ### Test Mode
 
@@ -1061,11 +1076,15 @@ Test results must never:
 - Change availability
 - Trigger a milestone
 - Alter championship data
+- Change booking data
+- Change tournament data
+- Create canon consequences
+
 ---
 
 ## 35. Generator History
 
-Each confirmed generator result must record:
+Each confirmed Generator result must record:
 
 ```text
 Generator result ID
@@ -1103,6 +1122,15 @@ Eligible Normal areas
 Selected area
 Activation requirements
 ```
+
+Dedicated Signature Series and ranking presets must preserve their relevant:
+
+- Entrant or candidate pool
+- Placement or selection order
+- Case or outcome pool
+- Exclusions
+- Final assignments
+- Canon confirmation
 
 ---
 
@@ -1213,7 +1241,7 @@ The code does not privately redefine it.
 
 ## 39. Implementation Status
 
-As of August 1, 2026, the approved OWL injury and endurance system has been implemented.
+As of August 3, 2026, the approved OWL injury, endurance, and Generator systems have been implemented.
 
 Completed components include:
 
@@ -1249,22 +1277,53 @@ Completed components include:
 - Standard and severe High-restoration requirements
 - Test and Canon Generator boundaries
 - Permanent Generator History
+- Fate’s Wheel Generator preset
+- Hex-Cell entry-order Generator preset
+- Wildcard Play-In Generator preset
+- Ranking-position Generator preset
+- JoW private booking-style Generator preset
 
-### Validation status
+### Final launch validation
 
-The clean OWL repository has passed:
+Before the public launch is declared clean, the repository must confirm:
 
 ```text
-16 of 16 Control Room databases healthy
-218 wrestlers using the global Normal baseline
-0 unnecessary individual endurance records
-0 fake matches
-0 fake injuries
-0 fake milestone activations
-0 fake Generator History entries
+All required Control Room databases are healthy
+All permanent roster records use valid endurance values
+All individual endurance overrides are intentional
+No temporary test matches remain
+No temporary test match graphics remain
+No fake injuries remain
+No fake milestone activations remain
+No fake Generator History entries remain
+No temporary test tournament records remain
+```
+
+Fixed database totals must not be written into this rulebook because the number of managed files may legitimately increase as approved systems are added.
+
 ---
 
 ## 40. Revision Log
+
+### August 3, 2026
+
+Synchronized the Simulation Rulebook with the completed Control Room and Generator implementation.
+
+Updated or corrected:
+
+- Fate’s Wheel case assignment and outcome preset
+- Hex-Cell entry-order preset
+- Wildcard Play-In selection preset
+- Ranking-position selection preset
+- JoW private booking-style preset
+- Removal of obsolete Generator “future work” language
+- Current diagnosis-catalog implementation wording
+- Canon and Test Mode consequence boundaries
+- Generator History requirements for dedicated presets
+- Future-proof Control Room database-health wording
+- Final launch-cleanup validation requirements
+- Broken Markdown code-block closure in the implementation-status section
+- Current revision date
 
 ### August 1, 2026
 
