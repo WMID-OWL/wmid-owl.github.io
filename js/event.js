@@ -188,7 +188,160 @@ async function loadEventPage() {
                 .toLowerCase();
 
         }
+        function escapeAttribute(
+            value
+        ) {
 
+
+            return String(
+                value ?? ""
+            )
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                );
+
+        }
+
+
+
+        function getMatchGraphic(
+            match
+        ) {
+
+
+            const graphic =
+                match?.matchGraphic;
+
+
+            if (
+                !graphic
+
+                ||
+
+                Array.isArray(
+                    graphic
+                )
+
+                ||
+
+                typeof graphic !==
+                    "object"
+
+                ||
+
+                !String(
+                    graphic.src || ""
+                ).trim()
+            ) {
+
+                return null;
+
+            }
+
+
+            const storedOrientation =
+                normalize(
+                    graphic.orientation
+                );
+
+
+            const orientation =
+
+                [
+                    "landscape",
+                    "portrait",
+                    "square"
+                ].includes(
+                    storedOrientation
+                )
+
+                    ? storedOrientation
+
+                    : "square";
+
+
+            return {
+
+                src:
+                    String(
+                        graphic.src
+                    ).trim(),
+
+                orientation
+
+            };
+
+        }
+
+
+
+        function renderMatchGraphic(
+            graphic
+        ) {
+
+
+            if (!graphic) {
+
+                return "";
+
+            }
+
+
+            const safeSource =
+                escapeAttribute(
+                    graphic.src
+                );
+
+
+            const safeOrientation =
+                escapeAttribute(
+                    graphic.orientation
+                );
+
+
+            return `
+
+                <button
+                    class="event-match-graphic"
+                    type="button"
+                    data-match-graphic-src="${safeSource}"
+                    data-match-graphic-orientation="${safeOrientation}"
+                    aria-label="View full match-card graphic"
+                >
+
+
+                    <img
+                        src="${safeSource}"
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+
+                    <span>
+                        VIEW FULL GRAPHIC
+                    </span>
+
+
+                </button>
+
+            `;
+
+        }
 
 
         function formatDate(
@@ -1454,7 +1607,7 @@ document.getElementById(
 
 
 
-        eventMatches.forEach(
+                eventMatches.forEach(
             (
                 match,
                 index
@@ -1467,8 +1620,33 @@ document.getElementById(
                     );
 
 
+                const matchGraphic =
+                    getMatchGraphic(
+                        match
+                    );
+
+
                 card.className =
-                    "event-match-card";
+
+                    [
+                        "event-match-card",
+
+                        matchGraphic
+                            ? "has-match-graphic"
+                            : "",
+
+                        matchGraphic
+                            ? `graphic-${matchGraphic.orientation}`
+                            : ""
+                    ]
+
+                        .filter(
+                            Boolean
+                        )
+
+                        .join(
+                            " "
+                        );
 
 
                 const finishText =
@@ -1587,6 +1765,11 @@ document.getElementById(
 
 
                     </div>
+
+
+                    ${renderMatchGraphic(
+                        matchGraphic
+                    )}
 
                 `;
 
