@@ -117,7 +117,160 @@ async function loadUpcomingMatchCard() {
                 .toLowerCase();
 
         }
+        function escapeAttribute(
+            value
+        ) {
 
+
+            return String(
+                value ?? ""
+            )
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                );
+
+        }
+
+
+
+        function getMatchGraphic(
+            match
+        ) {
+
+
+            const graphic =
+                match?.matchGraphic;
+
+
+            if (
+                !graphic
+
+                ||
+
+                Array.isArray(
+                    graphic
+                )
+
+                ||
+
+                typeof graphic !==
+                    "object"
+
+                ||
+
+                !String(
+                    graphic.src || ""
+                ).trim()
+            ) {
+
+                return null;
+
+            }
+
+
+            const storedOrientation =
+                normalize(
+                    graphic.orientation
+                );
+
+
+            const orientation =
+
+                [
+                    "landscape",
+                    "portrait",
+                    "square"
+                ].includes(
+                    storedOrientation
+                )
+
+                    ? storedOrientation
+
+                    : "square";
+
+
+            return {
+
+                src:
+                    String(
+                        graphic.src
+                    ).trim(),
+
+                orientation
+
+            };
+
+        }
+
+
+
+        function renderMatchGraphic(
+            graphic
+        ) {
+
+
+            if (!graphic) {
+
+                return "";
+
+            }
+
+
+            const safeSource =
+                escapeAttribute(
+                    graphic.src
+                );
+
+
+            const safeOrientation =
+                escapeAttribute(
+                    graphic.orientation
+                );
+
+
+            return `
+
+                <button
+                    class="event-match-graphic"
+                    type="button"
+                    data-match-graphic-src="${safeSource}"
+                    data-match-graphic-orientation="${safeOrientation}"
+                    aria-label="View full match-card graphic"
+                >
+
+
+                    <img
+                        src="${safeSource}"
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+
+                    <span>
+                        VIEW FULL GRAPHIC
+                    </span>
+
+
+                </button>
+
+            `;
+
+        }
 
 
         function createMemberSignature(
@@ -541,7 +694,32 @@ async function loadUpcomingMatchCard() {
                 true;
 
         }
+        const matchEyebrow =
+            document.getElementById(
+                "event-match-eyebrow"
+            );
 
+
+        const matchHeading =
+            document.getElementById(
+                "event-match-heading"
+            );
+
+
+        if (matchEyebrow) {
+
+            matchEyebrow.textContent =
+                "ANNOUNCED MATCHES";
+
+        }
+
+
+        if (matchHeading) {
+
+            matchHeading.textContent =
+                "What’s on the Card";
+
+        }
 
 
         // =================================
@@ -591,7 +769,7 @@ async function loadUpcomingMatchCard() {
         // =================================
 
 
-        eventMatches.forEach(
+                eventMatches.forEach(
             (
                 match,
                 index
@@ -616,10 +794,35 @@ async function loadUpcomingMatchCard() {
                     );
 
 
+                const matchGraphic =
+                    getMatchGraphic(
+                        match
+                    );
+
+
                 card.className =
 
-                    `event-match-card event-announced-match ${statusClass}`;
+                    [
+                        "event-match-card",
+                        "event-announced-match",
+                        statusClass,
 
+                        matchGraphic
+                            ? "has-match-graphic"
+                            : "",
+
+                        matchGraphic
+                            ? `graphic-${matchGraphic.orientation}`
+                            : ""
+                    ]
+
+                        .filter(
+                            Boolean
+                        )
+
+                        .join(
+                            " "
+                        );
 
 
                 const championship =
@@ -632,14 +835,12 @@ async function loadUpcomingMatchCard() {
                         : null;
 
 
-
                 const championshipName =
                     championship
 
                         ? championship.name
 
                         : "";
-
 
 
                 card.innerHTML = `
@@ -736,6 +937,11 @@ async function loadUpcomingMatchCard() {
 
 
                     </div>
+
+
+                    ${renderMatchGraphic(
+                        matchGraphic
+                    )}
 
                 `;
 
