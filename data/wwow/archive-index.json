@@ -1,3 +1,11 @@
 {
-  "issues": []
+  "issues": [
+    {
+      "id": "2026-06",
+      "label": "June 2026",
+      "coverTitle": "THE GREAT DEPARTURE",
+      "issue": 1,
+      "file": "data/wwow/2026-06.json"
+    }
+  ]
 }
