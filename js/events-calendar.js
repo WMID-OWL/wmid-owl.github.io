@@ -51,11 +51,13 @@
 
 
     let scheduledEvents =
-    [];
+        [];
 
 
-let nextUpcomingEventId =
-    "";
+    let nextUpcomingEventId =
+        "";
+
+
 
     function normalize(
         value
@@ -70,6 +72,7 @@ let nextUpcomingEventId =
     }
 
 
+
     function escapeHtml(
         value
     ) {
@@ -77,27 +80,22 @@ let nextUpcomingEventId =
         return String(
             value ?? ""
         )
-
             .replace(
                 /&/g,
                 "&amp;"
             )
-
             .replace(
                 /</g,
                 "&lt;"
             )
-
             .replace(
                 />/g,
                 "&gt;"
             )
-
             .replace(
                 /"/g,
                 "&quot;"
             )
-
             .replace(
                 /'/g,
                 "&#039;"
@@ -106,177 +104,335 @@ let nextUpcomingEventId =
     }
 
 
-    function dateValue(
-        dateString
-    ) {
 
-        if (
-            !dateString
-        ) {
+    function getCalendar() {
 
-            return null;
-
-        }
-
-
-        const value =
-            new Date(
-                `${dateString}T00:00:00`
-            );
-
-
-        return Number.isNaN(
-            value.getTime()
-        )
-
-            ? null
-
-            : value;
+        return window.OWLCalendar || null;
 
     }
 
 
-    function monthIdFromDate(
-        dateString
+
+    function getPeriodId(
+        event
     ) {
 
-        const value =
-            dateValue(
-                dateString
-            );
+        const calendar =
+            getCalendar();
 
 
         if (
-            !value
+            calendar
+            &&
+            typeof calendar.getPeriodId ===
+                "function"
         ) {
 
-            return "";
+            return calendar.getPeriodId(
+                event
+            );
 
         }
 
 
-        return `${value.getFullYear()}-${String(
-            value.getMonth() + 1
-        ).padStart(
-            2,
-            "0"
-        )}`;
+        return String(
+            event?.periodId || ""
+        ).trim();
 
     }
+
+
+
+    function getStage(
+        event
+    ) {
+
+        const calendar =
+            getCalendar();
+
+
+        if (
+            calendar
+            &&
+            typeof calendar.getStage ===
+                "function"
+        ) {
+
+            return calendar.getStage(
+                event
+            );
+
+        }
+
+
+        return String(
+            event?.stage || ""
+        ).trim();
+
+    }
+
+
+
+    function getWeekNumber(
+        event
+    ) {
+
+        const calendar =
+            getCalendar();
+
+
+        if (
+            calendar
+            &&
+            typeof calendar.stageNumber ===
+                "function"
+        ) {
+
+            return calendar.stageNumber(
+                getStage(
+                    event
+                )
+            );
+
+        }
+
+
+        const match =
+            getStage(
+                event
+            ).match(
+                /^week-([1-4])$/
+            );
+
+
+        return match
+            ? Number(
+                match[1]
+            )
+            : 0;
+
+    }
+
 
 
     function formatMonth(
-        monthId
+        periodId
     ) {
 
-        const match =
-            String(
-                monthId || ""
+        const calendar =
+            getCalendar();
+
+
+        if (
+            calendar
+            &&
+            typeof calendar.formatPeriod ===
+                "function"
+        ) {
+
+            return calendar.formatPeriod(
+                periodId
+            );
+
+        }
+
+
+        return "OWL Schedule";
+
+    }
+
+
+
+    function formatEventSchedule(
+        event
+    ) {
+
+        const calendar =
+            getCalendar();
+
+
+        if (
+            calendar
+            &&
+            typeof calendar.formatEventSlot ===
+                "function"
+        ) {
+
+            return calendar.formatEventSlot(
+                event
+            );
+
+        }
+
+
+        return "Schedule Not Set";
+
+    }
+
+
+
+    function eventScheduleValue(
+        event
+    ) {
+
+        const calendar =
+            getCalendar();
+
+
+        if (
+            calendar
+            &&
+            typeof calendar.eventSortValue ===
+                "function"
+        ) {
+
+            return calendar.eventSortValue(
+                event
+            );
+
+        }
+
+
+        return 0;
+
+    }
+
+
+
+    function eventSequence(
+        event
+    ) {
+
+        const eventType =
+            normalize(
+                event?.eventType
+            );
+
+
+        const brand =
+            normalize(
+                event?.brand
+            );
+
+
+        if (
+            eventType === "weekly"
+            &&
+            brand === "ascension"
+        ) {
+
+            return 1;
+
+        }
+
+
+        if (
+            eventType === "weekly"
+            &&
+            brand === "revolt"
+        ) {
+
+            return 2;
+
+        }
+
+
+        if (
+            eventType === "ppv"
+        ) {
+
+            return 3;
+
+        }
+
+
+        return 4;
+
+    }
+
+
+
+    function compareScheduledEvents(
+        eventA,
+        eventB
+    ) {
+
+        const scheduleDifference =
+
+            eventScheduleValue(
+                eventA
             )
-                .match(
-                    /^(\d{4})-(\d{2})$/
-                );
 
+            -
 
-        if (
-            !match
-        ) {
-
-            return "OWL Schedule";
-
-        }
-
-
-        return new Date(
-            Number(
-                match[1]
-            ),
-            Number(
-                match[2]
-            ) - 1,
-            1
-        )
-            .toLocaleDateString(
-                "en-US",
-                {
-                    month:
-                        "long",
-
-                    year:
-                        "numeric"
-                }
-            );
-
-    }
-
-
-    function formatShortDate(
-        dateString
-    ) {
-
-        const value =
-            dateValue(
-                dateString
+            eventScheduleValue(
+                eventB
             );
 
 
         if (
-            !value
+            scheduleDifference !== 0
         ) {
 
-            return "TBA";
+            return scheduleDifference;
 
         }
 
 
-        return value.toLocaleDateString(
-            "en-US",
-            {
-                month:
-                    "short",
+        const sequenceDifference =
 
-                day:
-                    "numeric"
-            }
+            eventSequence(
+                eventA
+            )
+
+            -
+
+            eventSequence(
+                eventB
+            );
+
+
+        if (
+            sequenceDifference !== 0
+        ) {
+
+            return sequenceDifference;
+
+        }
+
+
+        const orderDifference =
+
+            Number(
+                eventA?.order || 0
+            )
+
+            -
+
+            Number(
+                eventB?.order || 0
+            );
+
+
+        if (
+            orderDifference !== 0
+        ) {
+
+            return orderDifference;
+
+        }
+
+
+        return String(
+            eventA?.name || ""
+        ).localeCompare(
+            String(
+                eventB?.name || ""
+            )
         );
 
     }
 
-
-    function formatFullDate(
-        dateString
-    ) {
-
-        const value =
-            dateValue(
-                dateString
-            );
-
-
-        if (
-            !value
-        ) {
-
-            return "Date TBA";
-
-        }
-
-
-        return value.toLocaleDateString(
-            "en-US",
-            {
-                month:
-                    "long",
-
-                day:
-                    "numeric",
-
-                year:
-                    "numeric"
-            }
-        );
-
-    }
 
 
     function brandClass(
@@ -312,15 +468,34 @@ let nextUpcomingEventId =
     }
 
 
+
+    function isNextUpcoming(
+        event
+    ) {
+
+        return (
+
+            String(
+                event?.id || ""
+            )
+
+            ===
+
+            nextUpcomingEventId
+
+        );
+
+    }
+
+
+
     function showSlot(
         event,
         fallbackBrand,
         dayLabel
     ) {
 
-        if (
-            !event
-        ) {
+        if (!event) {
 
             return `
 
@@ -353,42 +528,34 @@ let nextUpcomingEventId =
 
             <a
                 class="owl-calendar-show-slot ${brandClass(
-    event
-)} ${
-
-    String(
-        event.id || ""
-    ) === nextUpcomingEventId
-
-        ? "calendar-next-up"
-
-        : ""
-
-}"
+                    event
+                )} ${
+                    isNextUpcoming(
+                        event
+                    )
+                        ? "calendar-next-up"
+                        : ""
+                }"
                 href="event.html?id=${encodeURIComponent(
                     event.id
                 )}"
             >
 
-    ${
+                ${
+                    isNextUpcoming(
+                        event
+                    )
 
-        String(
-            event.id || ""
-        ) === nextUpcomingEventId
+                        ? `
+                            <span class="owl-calendar-next-badge">
+                                NEXT UP
+                            </span>
+                        `
 
-            ? `
+                        : ""
+                }
 
-                <span class="owl-calendar-next-badge">
-                    NEXT UP
-                </span>
-
-            `
-
-            : ""
-
-    }
-
-    <span class="owl-calendar-show-day">
+                <span class="owl-calendar-show-day">
                     ${escapeHtml(
                         dayLabel
                     )}
@@ -405,8 +572,10 @@ let nextUpcomingEventId =
                                         event.image
                                     )}"
                                     alt="${escapeHtml(
-                                        event.name ||
-                                        event.brand ||
+                                        event.name
+                                        ||
+                                        event.brand
+                                        ||
                                         fallbackBrand
                                     )}"
                                 >
@@ -415,7 +584,8 @@ let nextUpcomingEventId =
                             : `
                                 <strong>
                                     ${escapeHtml(
-                                        event.brand ||
+                                        event.brand
+                                        ||
                                         fallbackBrand
                                     )}
                                 </strong>
@@ -426,8 +596,8 @@ let nextUpcomingEventId =
 
                 <small>
                     ${escapeHtml(
-                        formatShortDate(
-                            event.date
+                        formatEventSchedule(
+                            event
                         )
                     )}
                 </small>
@@ -439,13 +609,12 @@ let nextUpcomingEventId =
     }
 
 
+
     function ppvCard(
         event
     ) {
 
-        if (
-            !event
-        ) {
+        if (!event) {
 
             return `
 
@@ -482,42 +651,34 @@ let nextUpcomingEventId =
 
             <a
                 class="owl-calendar-ppv ${
-
-    String(
-        event.id || ""
-    ) === nextUpcomingEventId
-
-        ? "calendar-next-up"
-
-        : ""
-
-}"
+                    isNextUpcoming(
+                        event
+                    )
+                        ? "calendar-next-up"
+                        : ""
+                }"
                 href="event.html?id=${encodeURIComponent(
                     event.id
                 )}"
             >
 
-    ${
+                ${
+                    isNextUpcoming(
+                        event
+                    )
 
-        String(
-            event.id || ""
-        ) === nextUpcomingEventId
+                        ? `
+                            <span class="owl-calendar-next-badge">
+                                NEXT UP
+                            </span>
+                        `
 
-            ? `
+                        : ""
+                }
 
-                <span class="owl-calendar-next-badge">
-                    NEXT UP
+                <span class="owl-calendar-card-label">
+                    MONTHLY PPV
                 </span>
-
-            `
-
-            : ""
-
-    }
-
-    <span class="owl-calendar-card-label">
-        MONTHLY PPV
-    </span>
 
                 <div class="owl-calendar-ppv-art">
 
@@ -548,15 +709,16 @@ let nextUpcomingEventId =
 
                     <strong>
                         ${escapeHtml(
-                            event.name ||
+                            event.name
+                            ||
                             "OWL PPV"
                         )}
                     </strong>
 
                     <small>
                         ${escapeHtml(
-                            formatFullDate(
-                                event.date
+                            formatEventSchedule(
+                                event
                             )
                         )}
                     </small>
@@ -584,6 +746,39 @@ let nextUpcomingEventId =
     }
 
 
+
+    function getWeeklyEvent(
+        monthEvents,
+        brand,
+        weekNumber
+    ) {
+
+        return monthEvents.find(
+            event =>
+
+                normalize(
+                    event.eventType
+                ) === "weekly"
+
+                &&
+
+                normalize(
+                    event.brand
+                ) === normalize(
+                    brand
+                )
+
+                &&
+
+                getWeekNumber(
+                    event
+                ) === weekNumber
+        ) || null;
+
+    }
+
+
+
     function renderMonth() {
 
         if (
@@ -597,7 +792,7 @@ let nextUpcomingEventId =
             calendarGrid.innerHTML = `
 
                 <div class="owl-calendar-empty">
-                    Add dated OWL events to display the monthly calendar.
+                    Add month-and-week OWL events to display the monthly calendar.
                 </div>
 
             `;
@@ -628,55 +823,13 @@ let nextUpcomingEventId =
                 .filter(
                     event =>
 
-                        event.calendarMonthId ===
-                        selectedMonth
+                        event.calendarPeriodId ===
+                            selectedMonth
                 )
 
                 .sort(
-                    (a, b) =>
-
-                        dateValue(
-                            a.date
-                        )
-
-                        -
-
-                        dateValue(
-                            b.date
-                        )
+                    compareScheduledEvents
                 );
-
-
-        const ascensionEvents =
-            monthEvents.filter(
-                event =>
-
-                    normalize(
-                        event.eventType
-                    ) === "weekly"
-
-                    &&
-
-                    normalize(
-                        event.brand
-                    ) === "ascension"
-            );
-
-
-        const revoltEvents =
-            monthEvents.filter(
-                event =>
-
-                    normalize(
-                        event.eventType
-                    ) === "weekly"
-
-                    &&
-
-                    normalize(
-                        event.brand
-                    ) === "revolt"
-            );
 
 
         const ppvEvent =
@@ -686,11 +839,7 @@ let nextUpcomingEventId =
                     normalize(
                         event.eventType
                     ) === "ppv"
-            )
-
-            ||
-
-            null;
+            ) || null;
 
 
         monthLabel.textContent =
@@ -701,17 +850,17 @@ let nextUpcomingEventId =
 
         calendarGrid.innerHTML = `
 
-            ${[0, 1, 2, 3]
+            ${[1, 2, 3, 4]
 
                 .map(
-                    index => `
+                    weekNumber => `
 
                         <article class="owl-calendar-week-card">
 
                             <div class="owl-calendar-week-heading">
 
                                 <span>
-                                    WEEK ${index + 1}
+                                    WEEK ${weekNumber}
                                 </span>
 
                                 <strong>
@@ -721,13 +870,21 @@ let nextUpcomingEventId =
                             </div>
 
                             ${showSlot(
-                                ascensionEvents[index],
+                                getWeeklyEvent(
+                                    monthEvents,
+                                    "Ascension",
+                                    weekNumber
+                                ),
                                 "Ascension",
                                 "TUESDAY"
                             )}
 
                             ${showSlot(
-                                revoltEvents[index],
+                                getWeeklyEvent(
+                                    monthEvents,
+                                    "Revolt",
+                                    weekNumber
+                                ),
                                 "Revolt",
                                 "WEDNESDAY"
                             )}
@@ -736,6 +893,7 @@ let nextUpcomingEventId =
 
                     `
                 )
+
                 .join(
                     ""
                 )}
@@ -753,9 +911,10 @@ let nextUpcomingEventId =
 
         nextButton.disabled =
             selectedMonthIndex ===
-            monthIds.length - 1;
+                monthIds.length - 1;
 
     }
+
 
 
     async function loadCalendar() {
@@ -799,9 +958,14 @@ let nextUpcomingEventId =
 
                                 ...event,
 
-                                calendarMonthId:
-                                    monthIdFromDate(
-                                        event.date
+                                calendarPeriodId:
+                                    getPeriodId(
+                                        event
+                                    ),
+
+                                calendarStage:
+                                    getStage(
+                                        event
                                     )
 
                             })
@@ -810,91 +974,73 @@ let nextUpcomingEventId =
                         .filter(
                             event =>
 
-                                event.calendarMonthId
+                                event.calendarPeriodId
+
+                                &&
+
+                                event.calendarStage
                         )
 
                     : [];
 
 
-            monthIds =
-                [
+            monthIds = [
 
-                    ...new Set(
+                ...new Set(
 
-                        scheduledEvents.map(
-                            event =>
-
-                                event.calendarMonthId
-                        )
-
+                    scheduledEvents.map(
+                        event =>
+                            event.calendarPeriodId
                     )
 
-                ]
-                    .sort();
+                )
+
+            ]
+                .sort();
 
 
             const nextUpcomingEvent =
+                scheduledEvents
 
-    scheduledEvents
+                    .filter(
+                        event =>
 
-        .filter(
+                            normalize(
+                                event.status
+                            ) === "upcoming"
+                    )
 
-            event =>
+                    .sort(
+                        compareScheduledEvents
+                    )[0]
 
-                normalize(
-                    event.status
-                ) === "upcoming"
-
-        )
-
-        .sort(
-
-            (
-                a,
-                b
-            ) =>
-
-                dateValue(
-                    a.date
-                )
-
-                -
-
-                dateValue(
-                    b.date
-                )
-
-        )
-        [0]
-
-    ||
-
-    null;
+                || null;
 
 
-nextUpcomingEventId =
+            nextUpcomingEventId =
+                nextUpcomingEvent
 
-    nextUpcomingEvent
+                    ? String(
+                        nextUpcomingEvent.id || ""
+                    )
 
-        ? String(
-            nextUpcomingEvent.id || ""
-        )
-
-        : "";
+                    : "";
 
 
-const firstUpcomingMonth =
-
-    nextUpcomingEvent
-        ?.calendarMonthId
-
-    ||
-
-    "";
+            const firstUpcomingMonth =
+                nextUpcomingEvent
+                    ?.calendarPeriodId
+                ||
+                "";
 
 
             selectedMonthIndex =
                 firstUpcomingMonth
+
+                &&
+                monthIds.includes(
+                    firstUpcomingMonth
+                )
 
                     ? monthIds.indexOf(
                         firstUpcomingMonth
@@ -946,6 +1092,7 @@ const firstUpcomingMonth =
     }
 
 
+
     previousButton.addEventListener(
         "click",
         () => {
@@ -966,13 +1113,14 @@ const firstUpcomingMonth =
     );
 
 
+
     nextButton.addEventListener(
         "click",
         () => {
 
             if (
                 selectedMonthIndex <
-                monthIds.length - 1
+                    monthIds.length - 1
             ) {
 
                 selectedMonthIndex +=
@@ -987,7 +1135,7 @@ const firstUpcomingMonth =
     );
 
 
-    loadCalendar();
 
+    loadCalendar();
 
 })();
