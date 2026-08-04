@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": "blood-on-the-sand-2026",
+    "name": "Blood on the Sand",
+    "brand": "OWL",
+    "eventType": "ppv",
+    "date": "2026-07-31",
+    "status": "upcoming",
+    "location": "",
+    "image": "assets/images/events/blood-on-the-sand-2026.png",
+    "tagline": "",
+    "description": "",
+    "youtubeVideoId": "IHVNzvkxI3Y"
+  }
+]
