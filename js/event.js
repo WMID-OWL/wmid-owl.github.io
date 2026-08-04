@@ -344,26 +344,30 @@ async function loadEventPage() {
         }
 
 
-        function formatDate(
-            dateString
+               function formatEventSchedule(
+            eventRecord
         ) {
 
 
-            return new Date(
-                `${dateString}T00:00:00`
-            ).toLocaleDateString(
-                "en-US",
-                {
-                    year:
-                        "numeric",
+            if (
+                window.OWLCalendar
 
-                    month:
-                        "long",
+                &&
 
-                    day:
-                        "numeric"
-                }
-            );
+                typeof window.OWLCalendar
+                    .formatEventSlot ===
+                    "function"
+            ) {
+
+                return window.OWLCalendar
+                    .formatEventSlot(
+                        eventRecord
+                    );
+
+            }
+
+
+            return "Schedule Not Set";
 
         }
 
@@ -673,11 +677,11 @@ document.getElementById(
                 : "OWL WEEKLY EVENT";
 
 
-        document.getElementById(
+                document.getElementById(
             "event-date"
         ).textContent =
-            formatDate(
-                event.date
+            formatEventSchedule(
+                event
             );
 
 
@@ -1165,9 +1169,41 @@ document.getElementById(
                     }
 
 
+                                        const sameScheduleSlot =
+
+                        window.OWLCalendar
+
+                        &&
+
+                        typeof window.OWLCalendar
+                            .sameEventSlot ===
+                            "function"
+
+                            ? window.OWLCalendar
+                                .sameEventSlot(
+                                    match,
+                                    event
+                                )
+
+                            : Boolean(
+
+                                match.date
+
+                                &&
+
+                                event.date
+
+                                &&
+
+                                match.date ===
+                                    event.date
+
+                            );
+
+
                     return (
 
-                        match.date === event.date
+                        sameScheduleSlot
 
                         &&
 
