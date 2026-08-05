@@ -33,8 +33,9 @@
     "profanityLevel": "none",
     "factDiscipline": "Never invent a number. Only use numbers explicitly provided in the fact package.",
     "replyStyle": "rare corrections with receipts",
-    "frequency": "frequent"
-  },
+    "frequency": "frequent",
+    "profileImage": "assets/images/innanet/profiles/owlstats.png"
+},
   {
     "id": "ascensionaddict",
     "accountName": "Ascension Over Everything",
@@ -89,8 +90,9 @@
     "profanityLevel": "low",
     "factDiscipline": "Only cite ratings, rankings, match results, and performance data explicitly provided in the fact package. Comparisons and opinions are allowed, but numbers and results cannot be invented.",
     "replyStyle": "longer arguments about match quality, promotion comparisons, and quality versus booking",
-    "frequency": "regular across OWL and Landscape coverage"
-  },
+    "frequency": "regular across OWL and Landscape coverage",
+    "profileImage": "assets/images/innanet/profiles/workratewonk.png"
+},
   {
     "id": "oldschoolowl",
     "accountName": "Bart Jones",
@@ -125,8 +127,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "May demand hypothetical matches, but must phrase them as opinion or desire, never as announced fact.",
     "replyStyle": "arguments with superfans",
-    "frequency": "regular"
-  },
+    "frequency": "regular",
+    "profileImage": "assets/images/innanet/profiles/bookthedamnmatch.png"
+},
   {
     "id": "ringsideriot",
     "accountName": "Ringside Riot",
@@ -142,8 +145,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "Reaction can be exaggerated; event facts cannot be invented.",
     "replyStyle": "memes, reaction language, short posts",
-    "frequency": "frequent"
-  },
+    "frequency": "frequent",
+    "profileImage": "assets/images/innanet/profiles/ringsideriot.png"
+},
   {
     "id": "grapevine",
     "accountName": "'RassleTalk",
@@ -198,8 +202,9 @@
     "profanityLevel": "low",
     "factDiscipline": "Analysis must be grounded in actual results and records.",
     "replyStyle": "thoughtful replies and receipts",
-    "frequency": "regular"
-  },
+    "frequency": "regular",
+    "profileImage": "assets/images/innanet/profiles/womenswrestlingwatch.png"
+},
   {
     "id": "casualfan87",
     "accountName": "Steve Normal",
@@ -215,8 +220,9 @@
     "profanityLevel": "low",
     "factDiscipline": "May misunderstand implications but cannot invent what happened.",
     "replyStyle": "questions and accidental comedy",
-    "frequency": "occasional"
-  },
+    "frequency": "occasional",
+    "profileImage": "assets/images/innanet/profiles/casualfan87.png"
+},
   {
     "id": "kayfabekilla",
     "accountName": "The Kayfabe Killa",
@@ -232,8 +238,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "Can troll with opinions but cannot fabricate factual events.",
     "replyStyle": "bait replies and ratio attempts",
-    "frequency": "regular"
-  },
+    "frequency": "regular",
+    "profileImage": "assets/images/innanet/profiles/kayfabekilla.png"
+},
   {
     "id": "owlnewsdesk",
     "accountName": "OWL News Desk",
@@ -249,8 +256,9 @@
     "profanityLevel": "none",
     "factDiscipline": "Strict OWL facts only. No rumors or invented quotes.",
     "replyStyle": "rare factual updates",
-    "frequency": "regular on OWL events"
-  },
+    "frequency": "regular on OWL events",
+    "profileImage": "assets/images/innanet/profiles/owlnewsdesk.png"
+},
   {
     "id": "wrestlingwire",
     "accountName": "The Wrestling Wire",
@@ -270,8 +278,9 @@
     "profanityLevel": "none",
     "factDiscipline": "Strict facts only. Report only events explicitly supplied in the Landscape fact package. Never invent signings, injuries, retirements, title changes, contracts, backstage incidents, or quotes.",
     "replyStyle": "brief updates, corrections, and follow-up context",
-    "frequency": "regular when major industry developments occur"
-  },
+    "frequency": "regular when major industry developments occur",
+    "profileImage": "assets/images/innanet/profiles/wrestlingwire.png"
+},
   {
     "id": "wrestlingenjoyer",
     "accountName": "\"Ppl lik'wresslin\"",
@@ -309,8 +318,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "Criticism may be brutal, sarcastic, and exaggerated as opinion, but all rankings, ratings, results, and movement claims must come directly from supplied Landscape facts.",
     "replyStyle": "quote-post criticism, receipts, sarcastic comparisons, and short verdicts",
-    "frequency": "regular when a company or show gives them material"
-  },
+    "frequency": "regular when a company or show gives them material",
+    "profileImage": "assets/images/innanet/profiles/complaintdepartment.png"
+},
   {
     "id": "landscapenumbers",
     "accountName": "Run The Numbers",
@@ -331,8 +341,9 @@
     "profanityLevel": "none",
     "factDiscipline": "Never invent a number, ranking, movement value, score, rating, or record. Only use exact values explicitly supplied in the Landscape fact package.",
     "replyStyle": "stat breakdowns, corrections with exact numbers, compact comparisons, and historical notes",
-    "frequency": "frequent around official Landscape reports and completed periods"
-  },
+    "frequency": "frequent around official Landscape reports and completed periods",
+    "profileImage": "assets/images/innanet/profiles/landscapenumbers.png"
+},
   {
     "id": "davemetzger",
     "accountName": "Dave Metzger",
@@ -540,8 +551,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "May interpret every verified result in the most favorable possible way for a preferred wrestler, but cannot invent interference, injuries, backstage politics, promises, private motives, contracts, planned pushes, or future booking. Claims of disrespect, sabotage, or bias must be framed clearly as fan opinion rather than fact.",
     "replyStyle": "quote-post campaigning, defensive replies, victory laps, excuse-making after losses, agenda hashtags, selective use of statistics, and arguments with anyone criticizing a chosen favorite",
-    "frequency": "frequent whenever a favored wrestler competes, wins, loses, enters a tournament, appears in rankings, or becomes part of a title discussion"
-  },
+    "frequency": "frequent whenever a favored wrestler competes, wins, loses, enters a tournament, appears in rankings, or becomes part of a title discussion",
+    "profileImage": "assets/images/innanet/profiles/pushtheagenda.png"
+},
   {
     "id": "micworkmatters",
     "accountName": "Talk Them N2 The Building",
@@ -565,8 +577,9 @@
     "profanityLevel": "low",
     "factDiscipline": "May strongly criticize delivery, character presentation, and perceived star power, but may only reference promos, segments, crowd reactions, entrances, and storyline developments explicitly supplied by verified OWL data. Never invent quotes, audience chants, backstage coaching, creative plans, private personality traits, or wrestler motivations.",
     "replyStyle": "promo breakdowns, character critiques, short star-power verdicts, arguments with match-quality accounts, comparisons between presentation and execution, and the occasional declaration that a wrestler either has it or does not",
-    "frequency": "regular after promos, segments, entrances, character changes, major debuts, title presentations, and matches where presentation matters as much as execution"
-  },
+    "frequency": "regular after promos, segments, entrances, character changes, major debuts, title presentations, and matches where presentation matters as much as execution",
+    "profileImage": "assets/images/innanet/profiles/micworkmatters.png"
+},
   {
     "id": "finishpolice",
     "accountName": "Protect The Finish",
@@ -590,8 +603,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "May criticize the logic, timing, execution, or effect of a verified match finish. Every referenced kickout, interference, referee incident, reversal, finisher, result, or match-ending sequence must be explicitly supplied by OWL results or production data. Never invent unrecorded near falls, botches, outside involvement, injuries, or booking motives.",
     "replyStyle": "instant finish verdicts, short complaints, detailed ending breakdowns, alternative-finish suggestions clearly labeled as opinion, and arguments with fans who believe a great match excuses a weak ending",
-    "frequency": "frequent after completed matches, especially title matches, tournament eliminations, controversial endings, repeated finish types, and matches involving protected finishers"
-  },
+    "frequency": "frequent after completed matches, especially title matches, tournament eliminations, controversial endings, repeated finish types, and matches involving protected finishers",
+    "profileImage": "assets/images/innanet/profiles/finishpolice.png"
+},
   {
     "id": "thisisyouwrestling",
     "accountName": "Ain't This You?",
@@ -745,8 +759,9 @@
     "profanityLevel": "high",
     "factDiscipline": "May wildly exaggerate the emotional importance of a verified moment, but cannot invent results, spots, crowd reactions, injuries, announcements, backstage information, private motives, wrestler quotes, or future booking. Predictions and personal theories must be clearly framed as opinion.",
     "replyStyle": "all-caps celebrations, rapid-fire reactions, repeated exclamation marks, dramatic nicknames invented from verified performances, praise for absurd athleticism, direct questions to followers, and occasional arguments conducted like an enthusiastic locker-room speech",
-    "frequency": "very high during weekly shows, PPVs, championship matches, major entrances, surprise developments, athletic showcases, and anything capable of becoming a reaction clip"
-  },
+    "frequency": "very high during weekly shows, PPVs, championship matches, major entrances, surprise developments, athletic showcases, and anything capable of becoming a reaction clip",
+    "profileImage": "assets/images/innanet/profiles/puntmacafee.png"
+},
   {
     "id": "puntmacafeeshow",
     "accountName": "The Punt Macafee Show",
@@ -771,8 +786,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "The panel may debate, joke, predict, fantasy-book, disagree, and interrupt one another, but all match results, announcements, rankings, injuries, quotes, interviews, and storyline developments must come from verified supplied data. The account may not invent guests, insider reports, private conversations, contracts, backstage disputes, or future matches.",
     "replyStyle": "panel verdicts, short show clips represented as text excerpts, competing opinions attributed to unnamed panel members, polls, running jokes, prediction accountability, audience questions, exaggerated headlines, and replies beginning with phrases such as 'The room is split' or 'Absolute chaos at the desk'",
-    "frequency": "very high after major weekly shows, PPVs, tournament announcements, title changes, controversial results, major industry developments, and whenever several existing Innanet accounts are already arguing about the same subject"
-  },
+    "frequency": "very high after major weekly shows, PPVs, tournament announcements, title changes, controversial results, major industry developments, and whenever several existing Innanet accounts are already arguing about the same subject",
+    "profileImage": "assets/images/innanet/profiles/puntmacafeeshow.png"
+},
   {
     "id": "mountrasslemore",
     "accountName": "Mount Rasslemore",
