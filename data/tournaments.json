@@ -7,7 +7,7 @@
       "status": "Upcoming",
       "badge": "Founding Tournament",
       "purpose": "Crown the first champions in OWL history and establish the inaugural titleholders who will forever represent the foundation of each division.",
-      "image": "",
+      "image": "assets/images/tournaments/inaugural-championship-series.webp",
       "directoryStats": [
         {
           "value": "10",
@@ -2823,7 +2823,7 @@
       "status": "Upcoming",
       "badge": "Annual Tournament",
       "purpose": "HOW IT WORKS\n\n- NO TIME LIMITS\n- 16 TEAMS COMPETE IN 8 BLIND DRAW MATCHES\n- THE 8 WINNING TEAMS COMPETE IN 4 BLIND DRAW MATCHES\n- THE 4 WINNERS MOVE ON TO THE SEMI-FINALS ON THE GO-HOME SHOWS OF THAT MONTH\n- THE CUP FINALS WILL TAKE PLACE AT THE FOLLOWING PPV (GROUND ZERO IN JAN)\n- THE WINNING TEAM WILL BE THE NEW TWIN TALON TAG TEAM CHAMPIONS AND WILL RECEIVE THE CHALLENGERS CUP",
-      "image": "",
+      "image": "assets/images/tournaments/twin-talon-challengers-cup-2026.webp",
       "directoryStats": [],
       "brackets": []
     }
