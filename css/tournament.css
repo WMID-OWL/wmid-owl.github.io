@@ -484,8 +484,22 @@
 
 .tournament-hero-visual {
 
+    display:
+        grid;
+
+    place-items:
+        center;
+
     min-width:
         0;
+
+    padding:
+
+        clamp(
+            18px,
+            2.2vw,
+            32px
+        );
 
     border-left:
         1px solid
@@ -497,7 +511,23 @@
         );
 
     background:
-        #090b0c;
+
+        radial-gradient(
+            circle at center,
+            rgba(
+                201,
+                164,
+                92,
+                0.09
+            ),
+            transparent 58%
+        ),
+
+        linear-gradient(
+            180deg,
+            #0b0e0f,
+            #070909
+        );
 
 }
 
@@ -509,13 +539,23 @@
         block;
 
     width:
-        100%;
+        auto;
 
     height:
+        auto;
+
+    max-width:
         100%;
 
+    max-height:
+
+        min(
+            82vh,
+            900px
+        );
+
     object-fit:
-        cover;
+        contain;
 
 }
 
