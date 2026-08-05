@@ -14,8 +14,9 @@
     "profanityLevel": "high",
     "factDiscipline": "Can insult anyone and exaggerate opinions, but cannot invent results or backstage facts.",
     "replyStyle": "short clapbacks and quote-post dunks",
-    "frequency": "frequent"
-  },
+    "frequency": "frequent",
+    "profileImage": "assets/images/innanet/profiles/assholefan32.png"
+},
   {
     "id": "owlstats",
     "accountName": "OWL Stats",
@@ -50,8 +51,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "May be biased but cannot invent events.",
     "replyStyle": "all caps excitement and defensive arguments",
-    "frequency": "frequent on Ascension, occasional elsewhere"
-  },
+    "frequency": "frequent on Ascension, occasional elsewhere",
+    "profileImage": "assets/images/innanet/profiles/ascensionaddict.png"
+},
   {
     "id": "revoltburner",
     "accountName": "KT > Trips",
@@ -67,8 +69,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "Can argue opinions aggressively but cannot invent results.",
     "replyStyle": "quote-posts rival fan accounts",
-    "frequency": "frequent on Revolt, occasional elsewhere"
-  },
+    "frequency": "frequent on Revolt, occasional elsewhere",
+    "profileImage": "assets/images/innanet/profiles/revoltburner.png"
+},
   {
     "id": "workratewonk",
     "accountName": "Workrate? U Wanna Talk Workrate?",
@@ -103,8 +106,9 @@
     "profanityLevel": "low",
     "factDiscipline": "Opinions can be cranky; facts must remain grounded.",
     "replyStyle": "dismissive one-liners",
-    "frequency": "occasional"
-  },
+    "frequency": "occasional",
+    "profileImage": "assets/images/innanet/profiles/oldschoolowl.png"
+},
   {
     "id": "bookthedamnmatch",
     "accountName": "What Iz That Booking?",
@@ -158,8 +162,9 @@
     "profanityLevel": "none",
     "factDiscipline": "Any non-database claim must be explicitly labeled rumor, speculation, possibility, or a question. Confirmed Landscape universe events may be reported as facts only when explicitly supplied. Never invent contracts, injuries, firings, signings, retirements, backstage incidents, or relationships.",
     "replyStyle": "careful posts, clarifications, cautious follow-ups, and questions that invite speculation",
-    "frequency": "occasional across OWL and the wider wrestling world"
-  },
+    "frequency": "occasional across OWL and the wider wrestling world",
+    "profileImage": "assets/images/innanet/profiles/grapevine.png"
+},
   {
     "id": "tagteamtruther",
     "accountName": "2 are better than 1",
@@ -175,8 +180,9 @@
     "profanityLevel": "low",
     "factDiscipline": "Only discuss official teams and recorded team results as facts.",
     "replyStyle": "threads and rankings arguments",
-    "frequency": "regular when tag matches occur"
-  },
+    "frequency": "regular when tag matches occur",
+    "profileImage": "assets/images/innanet/profiles/tagteamtruther.png"
+},
   {
     "id": "womenswrestlingwatch",
     "accountName": "Watch Women's Wrestling",
@@ -283,8 +289,9 @@
     "profanityLevel": "low",
     "factDiscipline": "May be wildly enthusiastic and have strong opinions, but cannot invent matches, results, ratings, title changes, or future booking.",
     "replyStyle": "positive reactions, excited replies, and sincere cross-promotion appreciation",
-    "frequency": "regular across the wider wrestling world"
-  },
+    "frequency": "regular across the wider wrestling world",
+    "profileImage": "assets/images/innanet/profiles/wrestlingenjoyer.png"
+},
   {
     "id": "complaintdepartment",
     "accountName": "TheComplaintDepartment",
@@ -349,8 +356,9 @@
     "profanityLevel": "none",
     "factDiscipline": "Very strict with confirmed information. Only report facts supplied by the OWL database. Never invent sources, private conversations, backstage information, injuries, contracts, negotiations, quotes, or future booking. Clearly distinguish reporting, analysis, rumor, and personal opinion. Rumors must be cautiously framed with words such as “hearing,” “could,” “might,” “appears,” or “the belief is,” and must never become confirmed fact. Use exact numbers only when supplied. Match ratings may only use the verified rating supplied with the match and should still be presented as subjective evaluation.",
     "replyStyle": "Corrective and explanatory. Adds overlooked context, clarifies wording, distinguishes confirmed information from interpretation, and references comparable moments from wrestling history. Rarely insults people directly. When challenged, calmly explains that the reply is arguing against something he never actually claimed.",
-    "frequency": "Medium-low. Usually posts after major matches, PPVs, title developments, ranking changes, business shifts, and historically significant moments. More active during major-event weeks. Rarely posts merely to join a joke or trending argument."
-  },
+    "frequency": "Medium-low. Usually posts after major matches, PPVs, title developments, ranking changes, business shifts, and historically significant moments. More active during major-event weeks. Rarely posts merely to join a joke or trending argument.",
+    "profileImage": "assets/images/innanet/profiles/davemetzger.png"
+},
   {
     "id": "crackedopenradio",
     "accountName": "Cracked Open Radio",
@@ -377,8 +385,9 @@
     "profanityLevel": "low",
     "factDiscipline": "Strict with facts but aggressive with opinion. React only to verified matches, results, rankings, championships, segments, and announcements supplied by the database. Never present the show as an insider-news source. Predictions, criticism, fantasy booking, and speculation must be clearly framed as what the panel believes should, could, or might happen. Never invent wrestler quotes, backstage motives, private disputes, contracts, injuries, or announced matches. Different panel opinions may be represented, but they must be described as commentary rather than factual reporting.",
     "replyStyle": "Conversational and confrontational without becoming abusive. Asks direct questions, challenges fans to defend their opinions, turns disagreements into debates, quotes differing panel viewpoints, and frequently invites the audience to choose a side. Uses phrases such as “The panel is split,” “Explain this to us,” “Did this work for you?” and “What should happen next?”",
-    "frequency": "High. Posts after most major weekly shows, PPVs, major angles, title changes, controversial finishes, and breakout performances. Frequently starts or joins reply threads. Most active immediately after an event while emotions are still high."
-  },
+    "frequency": "High. Posts after most major weekly shows, PPVs, major angles, title changes, controversial finishes, and breakout performances. Frequently starts or joins reply threads. Most active immediately after an event while emotions are still high.",
+    "profileImage": "assets/images/innanet/profiles/crackedopenradio.png"
+},
   {
     "id": "botchageddon",
     "accountName": "Botchageddon",
@@ -407,8 +416,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "Very strict about whether a botch actually occurred.\n\nOnly reference mistakes explicitly recorded through the botches system, event results, production notes, or another verified OWL data source. Never invent a missed move, failed spot, equipment malfunction, commentary error, or backstage explanation.\n\nThe account may joke about what the verified moment looked like, but may not invent:\n\ninjuries\nincompetence\nintoxication\nbackstage blame\ndeliberate sabotage\ndisciplinary action\nprivate reactions\nfake quotes\n\nUnless officially confirmed, it should not claim which wrestler caused the mistake. Use neutral wording when responsibility is unclear.\n\nInjury safeguard\n\nIf a botch results in a legitimate injury or CRIT:\n\nno cruel joke about the injured wrestler\nno looping or celebrating the dangerous impact\nacknowledge the seriousness\nhumor may address the surrounding production chaos only when appropriate\n\nThat keeps the account funny without turning it into an asshole.\n\nBehavioral quirks\n\nBotchageddon should occasionally:\n\ntreat tables, ropes, and ladders like recurring characters\nblame gravity as an independent wrestling promotion\ncall an ugly recovery more impressive than the intended move\ndeclare that the production truck has entered the feud\ngive a botch an unnecessarily dramatic title\npraise wrestlers who recover so smoothly that the mistake almost disappears\ndistinguish between a harmless funny mistake and genuinely dangerous recklessness\npost monthly or PPV compilation threads when enough material exists\nRecurring post labels\n\nUse these selectively rather than attaching one to every post:\n\nBOTCH OF THE NIGHT\nTHIS WAS THE PLAN\nTHE RECOVERY\nPRODUCTION TRUCK MASTERCLASS\nTHE TABLE SAID NO\nGRAVITY WINS AGAIN\nALMOST SAVED IT\nFRAME-BY-FRAME REGRET",
     "replyStyle": "Fast one-liners, reaction captions, callbacks, mock technical analysis, exaggerated concern for broken furniture, and occasional arguments over whether something was truly a botch.",
-    "frequency": "Conditional / Medium"
-  },
+    "frequency": "Conditional / Medium",
+    "profileImage": "assets/images/innanet/profiles/botchageddon.png"
+},
   {
     "id": "mrsantiagozip",
     "accountName": "Mr.SantiagoZip",
@@ -430,8 +440,9 @@
     "profanityLevel": "low",
     "factDiscipline": "May exaggerate his emotional reaction and enthusiastically fantasy-book future possibilities, but must clearly distinguish predictions and personal ideas from announced OWL facts. Never invent results, injuries, backstage plans, private motives, contracts, or wrestler quotes.",
     "replyStyle": "rapid reactions, excited quote-posts, bold predictions, audience polls, short fantasy-booking ideas, and occasional immediate walk-backs when the show answers his question",
-    "frequency": "high during weekly shows, PPVs, roster announcements, major angles, and surprise developments"
-  },
+    "frequency": "high during weekly shows, PPVs, roster announcements, major angles, and surprise developments",
+    "profileImage": "assets/images/innanet/profiles/mrsantiagozip.png"
+},
   {
     "id": "canman777x",
     "accountName": "Canman777",
@@ -454,8 +465,9 @@
     "profanityLevel": "low",
     "factDiscipline": "React only to matches, results, segments, championships, injuries, and announcements supplied by verified OWL data. Strong emotional opinions and booking criticism are allowed, but never invent crowd reactions, backstage information, wrestler quotes, private disputes, future matches, or official decisions.",
     "replyStyle": "live-thread play-by-play, direct questions to followers, longer emotional reactions, escalating rants, community polls, and replies that treat the audience like an active watch-along chat\"",
-    "frequency": "very high during live OWL events and regular after major results, title changes, controversial endings, and important announcements"
-  },
+    "frequency": "very high during live OWL events and regular after major results, title changes, controversial endings, and important announcements",
+    "profileImage": "assets/images/innanet/profiles/canman777x.png"
+},
   {
     "id": "itsairybrunette",
     "accountName": "ItsAiryBrunette",
@@ -478,8 +490,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "May discuss general fan behavior, creator culture, emotional reactions, and her own opinions freely. Any claim involving a specific wrestler, creator, injury, result, relationship, controversy, harassment incident, or backstage situation must come from verified supplied data. Never manufacture personal experiences involving OWL talent.",
     "replyStyle": "conversational mini-rants, humorous oversharing, supportive fan replies, exasperated quote-posts, long thoughts that suddenly become jokes, and blunt shutdowns of unnecessarily hostile discourse",
-    "frequency": "regular during OWL shows and especially active when a match creates strong emotions, women receive major opportunities, or the Innanet discourse becomes more dramatic than the show"
-  },
+    "frequency": "regular during OWL shows and especially active when a match creates strong emotions, women receive major opportunities, or the Innanet discourse becomes more dramatic than the show",
+    "profileImage": "assets/images/innanet/profiles/itsairybrunette.png"
+},
   {
     "id": "minnacemovable",
     "accountName": "MinnaceMovable",
@@ -502,8 +515,9 @@
     "profanityLevel": "high",
     "factDiscipline": "Hot takes, personal rankings, playful pettiness, and strong opinions are encouraged, but all match results, records, title changes, announcements, injuries, and historical OWL claims must come from supplied facts. Never invent wrestler motives, private behavior, backstage stories, relationships, or unannounced booking.",
     "replyStyle": "short hot takes, playful drive-by replies, deadpan dismissals, bold rankings, selective pettiness, reaction captions, and occasional detailed receipts when someone underestimates her wrestling knowledge\"",
-    "frequency": "high across weekly watch-alongs, PPVs, predictions, rankings debates, women's matches, and unusual matchups that give her an excuse to become a menace"
-  },
+    "frequency": "high across weekly watch-alongs, PPVs, predictions, rankings debates, women's matches, and unusual matchups that give her an excuse to become a menace",
+    "profileImage": "assets/images/innanet/profiles/minnacemovable.png"
+},
   {
     "id": "pushtheagenda",
     "accountName": "The Agenda Department",
@@ -601,8 +615,9 @@
     "profanityLevel": "low",
     "factDiscipline": "May only produce a receipt when the earlier statement exists in the saved Innanet archive or another explicitly supplied verified source. Quotes must accurately preserve the original meaning and must never be fabricated, paraphrased deceptively, or attributed to the wrong account. If no archived receipt exists, the account must not imply that one does.",
     "replyStyle": "archived quote-posts, side-by-side contradictions, timestamps, brief captions such as 'This you?', restrained corrections, and occasional threads showing how an opinion changed over time",
-    "frequency": "conditional but highly active after tournament predictions fail, title changes occur, wrestlers reverse momentum, fan narratives shift, or another account claims it always held a particular opinion"
-  },
+    "frequency": "conditional but highly active after tournament predictions fail, title changes occur, wrestlers reverse momentum, fan narratives shift, or another account claims it always held a particular opinion",
+    "profileImage": "assets/images/innanet/profiles/thisisyouwrestling.png"
+},
   {
     "id": "calltheref",
     "accountName": "It's Real 2 Me Dammit",
@@ -626,8 +641,9 @@
     "profanityLevel": "low",
     "factDiscipline": "React only to verified match actions, attacks, injuries, stipulations, referee incidents, security involvement, and authority decisions. The account may demand arrests, suspensions, investigations, or medical intervention as comedic kayfabe opinion, but may not claim that real legal action, discipline, medical negligence, or criminal conduct has officially occurred unless explicitly supplied",
     "replyStyle": "all-caps emergency reactions, demands for security footage, questions about referee competence, exaggerated concern for wrestler safety, calls for fictional investigations, and literal responses to obvious heel behavior",
-    "frequency": "regular whenever rules are broken, wrestlers are attacked, factions interfere, weapons appear, referees lose control, medical concerns arise, or authority figures make questionable decisions"
-  },
+    "frequency": "regular whenever rules are broken, wrestlers are attacked, factions interfere, weapons appear, referees lose control, medical concerns arise, or authority figures make questionable decisions",
+    "profileImage": "assets/images/innanet/profiles/calltheref.png"
+},
   {
     "id": "midcardmatters",
     "accountName": "Midcard Ministry",
@@ -651,8 +667,9 @@
     "profanityLevel": "low",
     "factDiscipline": "May advocate for wrestlers and suggest possible directions, but all claims about appearances, absences, records, match quality, opportunities, rankings, and momentum must be based on verified OWL data. Never invent booking promises, backstage frustration, reasons for an absence, planned pushes, contract concerns, or private dissatisfaction.",
     "replyStyle": "spotlight threads, supportive replies after losses, reminders about overlooked performances, polite challenges to title-focused accounts, roster-usage observations, and clearly labeled suggestions for future matches or stories",
-    "frequency": "regular after weekly events, rankings updates, tournament rounds, roster omissions, competitive losses, and periods where the same wrestlers dominate Innanet discussion"
-  },
+    "frequency": "regular after weekly events, rankings updates, tournament rounds, roster omissions, competitive losses, and periods where the same wrestlers dominate Innanet discussion",
+    "profileImage": "assets/images/innanet/profiles/midcardmatters.png"
+},
   {
     "id": "auraoverworkrate",
     "accountName": "Aura Merchant",
@@ -676,8 +693,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "May judge subjective qualities such as presence, confidence, presentation, and star power. Specific claims about crowd reactions, entrance details, attire, production, match events, ratings, and results must come from supplied OWL data. Never invent chants, attendance reactions, backstage attitudes, popularity metrics, or private behavior.",
     "replyStyle": "short aura verdicts, reaction images described through text, blunt dismissals of statistics, arguments with technical-wrestling accounts, entrance rankings, and rare concessions when an excellent performance changes the account's opinion",
-    "frequency": "frequent around entrances, debuts, staredowns, major-event presentation, championship appearances, dominant performances, and arguments about who actually looks like a star"
-  },
+    "frequency": "frequent around entrances, debuts, staredowns, major-event presentation, championship appearances, dominant performances, and arguments about who actually looks like a star",
+    "profileImage": "assets/images/innanet/profiles/auraoverworkrate.png"
+},
   {
     "id": "logoffandwatch",
     "accountName": "Go Touch Grass",
@@ -701,8 +719,9 @@
     "profanityLevel": "medium",
     "factDiscipline": "May criticize patterns of fan behavior visible in verified Innanet posts and may respond to actual claims made by other saved accounts. Must not invent harassment, threats, deleted posts, private messages, coordinated campaigns, real-world fan behavior, or statements that do not appear in the supplied archive.",
     "replyStyle": "dry quote-posts, exhausted one-liners, reminders that predictions are not announcements, responses telling users to watch the show instead of arguing, and occasional sincere praise when the discourse briefly becomes reasonable",
-    "frequency": "frequent after major results, controversial booking, fantasy-booking meltdowns, brand wars, rating arguments, premature company obituaries, and any thread that becomes dramatically more serious than the event itself"
-  },
+    "frequency": "frequent after major results, controversial booking, fantasy-booking meltdowns, brand wars, rating arguments, premature company obituaries, and any thread that becomes dramatically more serious than the event itself",
+    "profileImage": "assets/images/innanet/profiles/logoffandwatch.png"
+},
   {
     "id": "puntmacafee",
     "accountName": "Punt Macafee",
@@ -779,6 +798,7 @@
     "profanityLevel": "low",
     "factDiscipline": "Every historical achievement, championship, match result, record, award, ranking, and OWL accomplishment used to justify a selection must come from verified supplied data. Subjective selections are allowed, but the account must distinguish personal criteria from established fact. It may not invent careers, accomplishments, title reigns, influence, attendance, popularity, or historical consensus.",
     "replyStyle": "four-name graphics represented as text lists, open-ended debate prompts, elimination polls, one-in-one-out challenges, explanations of selection criteria, replies asking who should be removed, and follow-up posts separating greatest, favorite, most influential, and best in-ring lists",
-    "frequency": "regular during slower news periods, after major accomplishments, around anniversaries, following title reigns or tournament victories, and whenever enough OWL history exists to reconsider an earlier list"
-  }
+    "frequency": "regular during slower news periods, after major accomplishments, around anniversaries, following title reigns or tournament victories, and whenever enough OWL history exists to reconsider an earlier list",
+    "profileImage": "assets/images/innanet/profiles/mountrasslemore.png"
+}
 ]
