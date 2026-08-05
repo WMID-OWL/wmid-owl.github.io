@@ -539,20 +539,13 @@
         block;
 
     width:
-        auto;
+        100%;
 
     height:
         auto;
 
     max-width:
-        100%;
-
-    max-height:
-
-        min(
-            82vh,
-            900px
-        );
+        540px;
 
     object-fit:
         contain;
@@ -1246,25 +1239,25 @@
 
     .tournament-hero-visual {
 
-    min-height:
-        0;
+        min-height:
+            0;
 
-    padding:
-        24px;
+        padding:
+            24px;
 
-    border-top:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.10
-        );
+        border-top:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.10
+            );
 
-    border-left:
-        0;
+        border-left:
+            0;
 
-}
+    }
 
 
     .tournament-image-placeholder {
@@ -1326,13 +1319,6 @@
 @media (
     max-width:
         650px
-   
-   .tournament-hero-visual {
-
-    padding:
-        14px;
-
-}
 ) {
 
 
@@ -1380,6 +1366,14 @@
                 16vw,
                 5.4rem
             );
+
+    }
+
+
+    .tournament-hero-visual {
+
+        padding:
+            14px;
 
     }
 
