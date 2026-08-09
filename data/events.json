@@ -1,5 +1,18 @@
 [
   {
+    "id": "ascension-ep-1-2026-07-week-1",
+    "name": "Ascension Ep. 1",
+    "brand": "Ascension",
+    "eventType": "weekly",
+    "periodId": "2026-07",
+    "stage": "week-1",
+    "status": "upcoming",
+    "location": "Parliament Hall",
+    "image": "assets/images/events/ascension-ep-1-2026-07-week-1.png",
+    "tagline": "",
+    "description": ""
+  },
+  {
     "id": "blood-on-the-sand-2026",
     "name": "Blood on the Sand",
     "brand": "OWL",

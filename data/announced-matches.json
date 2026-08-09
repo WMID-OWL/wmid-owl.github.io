@@ -1,1 +1,151 @@
-[]
+[
+  {
+    "id": "announced-0001",
+    "eventId": "ascension-ep-1-2026-07-week-1",
+    "order": 1,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "jack-rabbid"
+        ]
+      },
+      {
+        "wrestlers": [
+          "atua-tupu"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced"
+  },
+  {
+    "id": "announced-0002",
+    "eventId": "ascension-ep-1-2026-07-week-1",
+    "order": 2,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "liberty-van-horn"
+        ]
+      },
+      {
+        "wrestlers": [
+          "roxanne-perez"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced"
+  },
+  {
+    "id": "announced-0003",
+    "eventId": "ascension-ep-1-2026-07-week-1",
+    "order": 3,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "jayden-alfah"
+        ]
+      },
+      {
+        "wrestlers": [
+          "ilja-dragunov"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced"
+  },
+  {
+    "id": "announced-0004",
+    "eventId": "ascension-ep-1-2026-07-week-1",
+    "order": 4,
+    "matchType": "Tag Team",
+    "sides": [
+      {
+        "wrestlers": [
+          "johnny-gargano",
+          "zack-sabre-jr"
+        ]
+      },
+      {
+        "wrestlers": [
+          "shane-taylor",
+          "keith-lee"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced"
+  },
+  {
+    "id": "announced-0005",
+    "eventId": "ascension-ep-1-2026-07-week-1",
+    "order": 5,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "katsumi-nanami"
+        ]
+      },
+      {
+        "wrestlers": [
+          "giulia"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced"
+  },
+  {
+    "id": "announced-0006",
+    "eventId": "ascension-ep-1-2026-07-week-1",
+    "order": 6,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "mike-bailey"
+        ]
+      },
+      {
+        "wrestlers": [
+          "lio-rush"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced"
+  },
+  {
+    "id": "announced-0007",
+    "eventId": "ascension-ep-1-2026-07-week-1",
+    "order": 7,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "willow-nightingale"
+        ]
+      },
+      {
+        "wrestlers": [
+          "bayley"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced"
+  }
+]
