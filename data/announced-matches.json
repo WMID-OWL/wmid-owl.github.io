@@ -18,7 +18,16 @@
     ],
     "championshipId": "",
     "stipulation": "",
-    "status": "announced"
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/ascension-ep-1-2026-07-week-1/announced-0001.webp",
+      "orientation": "portrait",
+      "width": 1200,
+      "height": 1519,
+      "originalWidth": 2015,
+      "originalHeight": 2550,
+      "format": "webp"
+    }
   },
   {
     "id": "announced-0002",
@@ -39,7 +48,16 @@
     ],
     "championshipId": "",
     "stipulation": "",
-    "status": "announced"
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/ascension-ep-1-2026-07-week-1/announced-0002.webp",
+      "orientation": "portrait",
+      "width": 1200,
+      "height": 1519,
+      "originalWidth": 2015,
+      "originalHeight": 2550,
+      "format": "webp"
+    }
   },
   {
     "id": "announced-0003",
@@ -60,7 +78,16 @@
     ],
     "championshipId": "",
     "stipulation": "",
-    "status": "announced"
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/ascension-ep-1-2026-07-week-1/announced-0003.webp",
+      "orientation": "portrait",
+      "width": 1200,
+      "height": 1519,
+      "originalWidth": 2015,
+      "originalHeight": 2550,
+      "format": "webp"
+    }
   },
   {
     "id": "announced-0004",
@@ -83,7 +110,16 @@
     ],
     "championshipId": "",
     "stipulation": "",
-    "status": "announced"
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/ascension-ep-1-2026-07-week-1/announced-0004.webp",
+      "orientation": "portrait",
+      "width": 1200,
+      "height": 1519,
+      "originalWidth": 2015,
+      "originalHeight": 2550,
+      "format": "webp"
+    }
   },
   {
     "id": "announced-0005",
@@ -104,7 +140,16 @@
     ],
     "championshipId": "",
     "stipulation": "",
-    "status": "announced"
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/ascension-ep-1-2026-07-week-1/announced-0005.webp",
+      "orientation": "portrait",
+      "width": 1200,
+      "height": 1519,
+      "originalWidth": 2015,
+      "originalHeight": 2550,
+      "format": "webp"
+    }
   },
   {
     "id": "announced-0006",
@@ -125,7 +170,16 @@
     ],
     "championshipId": "",
     "stipulation": "",
-    "status": "announced"
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/ascension-ep-1-2026-07-week-1/announced-0006.webp",
+      "orientation": "portrait",
+      "width": 1200,
+      "height": 1519,
+      "originalWidth": 2015,
+      "originalHeight": 2550,
+      "format": "webp"
+    }
   },
   {
     "id": "announced-0007",
@@ -146,6 +200,15 @@
     ],
     "championshipId": "",
     "stipulation": "",
-    "status": "announced"
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/ascension-ep-1-2026-07-week-1/announced-0007.webp",
+      "orientation": "portrait",
+      "width": 1200,
+      "height": 1519,
+      "originalWidth": 2015,
+      "originalHeight": 2550,
+      "format": "webp"
+    }
   }
 ]
