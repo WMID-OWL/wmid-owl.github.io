@@ -1917,5 +1917,24 @@ text-transform:
         column;
 
 }
+.tournament-broadcast-match {
 
+    grid-template-columns:
+        1fr;
+
+    gap:
+        6px;
+
+    padding:
+        16px 0;
+
+}
+
+
+.tournament-broadcast-match-number {
+
+    margin-bottom:
+        2px;
+
+}
 }
