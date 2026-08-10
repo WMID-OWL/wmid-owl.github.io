@@ -608,7 +608,9 @@ line-height:
 
 /* =================================SHARED SECTIONS================================= */
 
-.tournament-summary-section,.tournament-brackets-section {
+.tournament-summary-section,
+.tournament-broadcasts-section,
+.tournament-brackets-section {
 
 margin-top:
     22px;
@@ -822,6 +824,316 @@ text-transform:
 }
 
 
+/* =================================
+   CHAMPIONSHIP SERIES BROADCASTS
+================================= */
+
+
+.tournament-broadcast-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        16px;
+
+}
+
+
+
+.tournament-broadcast-card {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    min-height:
+        260px;
+
+    padding:
+        26px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(
+                201,
+                164,
+                92,
+                0.055
+            ),
+            transparent 42%
+        ),
+
+        #0d1112;
+
+}
+
+
+
+.tournament-broadcast-card-topline {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        18px;
+
+}
+
+
+
+.tournament-broadcast-card-topline > span {
+
+    color:
+        #c9a45c;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.13em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.tournament-broadcast-status {
+
+    padding:
+        6px 9px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    color:
+        #929a98;
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.tournament-broadcast-status-upcoming {
+
+    color:
+        #e5c77e;
+
+    border-color:
+        rgba(
+            229,
+            199,
+            126,
+            0.34
+        );
+
+}
+
+
+
+.tournament-broadcast-status-published,
+.tournament-broadcast-status-completed {
+
+    color:
+        #78d5a1;
+
+    border-color:
+        rgba(
+            120,
+            213,
+            161,
+            0.34
+        );
+
+}
+
+
+
+.tournament-broadcast-card h3 {
+
+    margin:
+        34px 0 0;
+
+    font-size:
+
+        clamp(
+            1.7rem,
+            3vw,
+            2.8rem
+        );
+
+    line-height:
+        0.98;
+
+    letter-spacing:
+        -0.04em;
+
+}
+
+
+
+.tournament-broadcast-description {
+
+    max-width:
+        720px;
+
+    margin:
+        18px 0 0;
+
+    color:
+        #969f9c;
+
+    line-height:
+        1.65;
+
+}
+
+
+
+.tournament-broadcast-meta {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        18px;
+
+    margin-top:
+        auto;
+
+    padding-top:
+        30px;
+
+    color:
+        #7f8885;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+.tournament-broadcast-empty {
+
+    padding:
+        40px 24px;
+
+    border:
+        1px dashed
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+
+    color:
+        #89928f;
+
+    background:
+        #0d1112;
+
+    text-align:
+        center;
+
+}
+
+
+
+.tournament-broadcast-empty strong {
+
+    display:
+        block;
+
+    color:
+        #e5c77e;
+
+    font-size:
+        0.7rem;
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+
+.tournament-broadcast-empty p {
+
+    margin:
+        10px 0 0;
+
+    line-height:
+        1.6;
+
+}
 
 /* =================================BRACKET GROUPS================================= */
 
@@ -1235,7 +1547,8 @@ text-transform:
 }
 
 
-.tournament-bracket-grid {
+.tournament-bracket-grid,
+.tournament-broadcast-grid {
 
     grid-template-columns:
         1fr;
@@ -1297,6 +1610,7 @@ text-transform:
 
 
 .tournament-summary-section,
+.tournament-broadcasts-section,
 .tournament-brackets-section {
 
     padding:
