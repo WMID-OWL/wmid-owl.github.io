@@ -2891,7 +2891,7 @@
             }
           ]
         },
-        {
+                {
           "id": "week-1-block-b",
           "week": 1,
           "block": "Block B",
@@ -2899,7 +2899,72 @@
           "description": "Opening-round tournament action from the Inaugural Championship Series.",
           "status": "Upcoming",
           "youtube": "",
-          "matches": []
+          "matches": [
+            {
+              "bracketId": "owl-heavyweight-championship",
+              "matchId": "round-1-match-4"
+            },
+            {
+              "bracketId": "owl-womens-world-championship",
+              "matchId": "round-1-match-5"
+            },
+            {
+              "bracketId": "twin-talon-tag-team-championships",
+              "matchId": "round-1-match-5"
+            },
+            {
+              "bracketId": "owl-heavyweight-championship",
+              "matchId": "round-1-match-6"
+            },
+            {
+              "bracketId": "owl-world-championship",
+              "matchId": "round-1-match-7"
+            },
+            {
+              "bracketId": "owl-womens-heavyweight-championship",
+              "matchId": "round-1-match-5"
+            },
+            {
+              "bracketId": "twin-talon-tag-team-championships",
+              "matchId": "round-1-match-6"
+            },
+            {
+              "bracketId": "owl-womens-world-championship",
+              "matchId": "round-1-match-6"
+            },
+            {
+              "bracketId": "owl-heavyweight-championship",
+              "matchId": "round-1-match-7"
+            },
+            {
+              "bracketId": "twin-talon-tag-team-championships",
+              "matchId": "round-1-match-7"
+            },
+            {
+              "bracketId": "owl-world-championship",
+              "matchId": "round-1-match-8"
+            },
+            {
+              "bracketId": "owl-womens-heavyweight-championship",
+              "matchId": "round-1-match-7"
+            },
+            {
+              "bracketId": "twin-talon-tag-team-championships",
+              "matchId": "round-1-match-12"
+            },
+            {
+              "bracketId": "owl-womens-heavyweight-championship",
+              "matchId": "round-1-match-8"
+            },
+            {
+              "bracketId": "twin-talon-tag-team-championships",
+              "matchId": "round-1-match-13"
+            },
+            {
+              "bracketId": "twin-talon-tag-team-championships",
+              "matchId": "round-1-match-14"
+            }
+          ]
         },
         {
           "id": "week-2-block-a",
