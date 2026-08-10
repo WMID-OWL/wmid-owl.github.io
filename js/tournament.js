@@ -638,6 +638,369 @@ function renderTournamentBracketGroups(
         ).join("");
 }
 
+// =================================
+// TOURNAMENT BROADCASTS
+// =================================
+
+
+function getTournamentBroadcasts(
+    tournament
+) {
+
+
+    return Array.isArray(
+        tournament?.broadcasts
+    )
+
+        ? tournament.broadcasts
+
+        : [];
+
+}
+
+
+
+function getTournamentBroadcastStatusClass(
+    status
+) {
+
+
+    return String(
+        status || ""
+    )
+
+        .trim()
+
+        .toLowerCase()
+
+        .replaceAll(
+            " ",
+            "-"
+        );
+
+}
+
+
+
+function renderTournamentBroadcasts(
+    tournament
+) {
+
+
+    const broadcastSection =
+
+        document.getElementById(
+            "tournament-broadcasts-section"
+        );
+
+
+    const broadcastGrid =
+
+        document.getElementById(
+            "tournament-broadcast-grid"
+        );
+
+
+    const broadcastEmpty =
+
+        document.getElementById(
+            "tournament-broadcasts-empty"
+        );
+
+
+    if (
+        !broadcastSection
+        ||
+        !broadcastGrid
+        ||
+        !broadcastEmpty
+    ) {
+
+        return;
+
+    }
+
+
+    const broadcasts =
+
+        getTournamentBroadcasts(
+            tournament
+        );
+
+
+    broadcastGrid.innerHTML =
+        "";
+
+
+    /*
+     * No broadcasts means this entire section stays hidden.
+     *
+     * This prevents normal one-off tournaments from showing
+     * Championship Series broadcast UI unless broadcasts have
+     * actually been created for that tournament.
+     */
+
+    if (
+        broadcasts.length ===
+            0
+    ) {
+
+
+        broadcastSection.hidden =
+            true;
+
+
+        broadcastEmpty.hidden =
+            true;
+
+
+        return;
+
+    }
+
+
+    broadcastSection.hidden =
+        false;
+
+
+    const publishedBroadcasts =
+
+        broadcasts.filter(
+
+            broadcast =>
+
+                broadcast
+
+                &&
+
+                typeof broadcast ===
+                    "object"
+
+        );
+
+
+    if (
+        publishedBroadcasts.length ===
+            0
+    ) {
+
+
+        broadcastEmpty.hidden =
+            false;
+
+
+        return;
+
+    }
+
+
+    broadcastEmpty.hidden =
+        true;
+
+
+    broadcastGrid.innerHTML =
+
+        publishedBroadcasts.map(
+
+            broadcast => {
+
+
+                const week =
+
+                    Number(
+                        broadcast.week || 0
+                    );
+
+
+                const block =
+
+                    String(
+                        broadcast.block || ""
+                    ).trim();
+
+
+                const title =
+
+                    String(
+                        broadcast.title || ""
+                    ).trim()
+
+                    ||
+
+                    [
+                        week
+                            ? `Week ${week}`
+                            : "",
+
+                        block
+                    ]
+
+                        .filter(
+                            Boolean
+                        )
+
+                        .join(
+                            " — "
+                        )
+
+                    ||
+
+                    "Championship Series Broadcast";
+
+
+                const description =
+
+                    String(
+                        broadcast.description || ""
+                    ).trim();
+
+
+                const status =
+
+                    String(
+                        broadcast.status ||
+                        "Upcoming"
+                    ).trim();
+
+
+                const statusClass =
+
+                    getTournamentBroadcastStatusClass(
+                        status
+                    );
+
+
+                const youtube =
+
+                    String(
+                        broadcast.youtube || ""
+                    ).trim();
+
+
+                const matches =
+
+                    Array.isArray(
+                        broadcast.matches
+                    )
+
+                        ? broadcast.matches
+
+                        : [];
+
+
+                return `
+
+                    <article
+                        class="tournament-broadcast-card"
+                        data-broadcast-id="${escapeTournamentPageText(
+                            broadcast.id || ""
+                        )}"
+                    >
+
+
+                        <div class="tournament-broadcast-card-topline">
+
+
+                            <span>
+
+                                ${
+                                    week
+                                        ? `WEEK ${escapeTournamentPageText(
+                                            week
+                                        )}`
+                                        : "CHAMPIONSHIP SERIES"
+                                }
+
+                                ${
+                                    block
+                                        ? ` • ${escapeTournamentPageText(
+                                            block
+                                        )}`
+                                        : ""
+                                }
+
+                            </span>
+
+
+                            <strong
+                                class="tournament-broadcast-status tournament-broadcast-status-${escapeTournamentPageText(
+                                    statusClass
+                                )}"
+                            >
+                                ${escapeTournamentPageText(
+                                    status
+                                )}
+                            </strong>
+
+
+                        </div>
+
+
+                        <h3>
+                            ${escapeTournamentPageText(
+                                title
+                            )}
+                        </h3>
+
+
+                        ${
+                            description
+
+                                ? `
+
+                                    <p class="tournament-broadcast-description">
+                                        ${escapeTournamentPageText(
+                                            description
+                                        )}
+                                    </p>
+
+                                `
+
+                                : ""
+                        }
+
+
+                        <div class="tournament-broadcast-meta">
+
+
+                            <span>
+
+                                ${escapeTournamentPageText(
+                                    matches.length
+                                )}
+
+                                ${
+                                    matches.length === 1
+                                        ? "MATCH"
+                                        : "MATCHES"
+                                }
+
+                            </span>
+
+
+                            <span>
+
+                                ${
+                                    youtube
+                                        ? "VIDEO AVAILABLE"
+                                        : "VIDEO PENDING"
+                                }
+
+                            </span>
+
+
+                        </div>
+
+
+                    </article>
+
+                `;
+
+            }
+
+        ).join("");
+
+}
 
 function renderTournamentPage(
     tournament
@@ -758,7 +1121,12 @@ function renderTournamentPage(
     );
 
 
-    renderTournamentBracketGroups(
+        renderTournamentBracketGroups(
+        tournament
+    );
+
+
+    renderTournamentBroadcasts(
         tournament
     );
 
