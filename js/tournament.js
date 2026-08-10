@@ -682,8 +682,468 @@ function getTournamentBroadcastStatusClass(
 
 
 
+function getTournamentBroadcastBracket(
+    tournament,
+    bracketId
+) {
+
+
+    const brackets =
+
+        Array.isArray(
+            tournament?.brackets
+        )
+
+            ? tournament.brackets
+
+            : [];
+
+
+    return brackets.find(
+
+        bracket =>
+            bracket.id ===
+                bracketId
+
+    ) || null;
+
+}
+
+
+
+function getTournamentBroadcastMatch(
+    bracket,
+    matchId
+) {
+
+
+    const rounds =
+
+        Array.isArray(
+            bracket?.bracketSetup?.rounds
+        )
+
+            ? bracket.bracketSetup.rounds
+
+            : [];
+
+
+    for (
+        const round
+        of rounds
+    ) {
+
+
+        const matches =
+
+            Array.isArray(
+                round.matches
+            )
+
+                ? round.matches
+
+                : [];
+
+
+        const match =
+
+            matches.find(
+
+                entry =>
+                    entry.id ===
+                        matchId
+
+            );
+
+
+        if (
+            match
+        ) {
+
+
+            return {
+                round,
+                match
+            };
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+
+function getTournamentBroadcastEntrantName(
+    bracket,
+    participantId,
+    wrestlers,
+    teams
+) {
+
+
+    if (
+        !participantId
+    ) {
+
+        return "";
+
+    }
+
+
+    if (
+        bracket?.participantType ===
+            "team"
+    ) {
+
+
+        const team =
+
+            teams.find(
+
+                entry =>
+                    entry.id ===
+                        participantId
+
+            );
+
+
+        return team?.name ||
+            "Team Unavailable";
+
+    }
+
+
+    const wrestler =
+
+        wrestlers.find(
+
+            entry =>
+                entry.id ===
+                    participantId
+
+        );
+
+
+    return wrestler?.name ||
+        "Competitor Unavailable";
+
+}
+
+
+
+function getTournamentBroadcastSourceLabel(
+    sourceMatchId
+) {
+
+
+    const sourceMatch =
+
+        /^round-(\d+)-match-(\d+)$/i.exec(
+
+            String(
+                sourceMatchId || ""
+            )
+
+        );
+
+
+    if (
+        !sourceMatch
+    ) {
+
+        return "Previous-Round Winner";
+
+    }
+
+
+    return `Winner of Round ${sourceMatch[1]} Match ${sourceMatch[2]}`;
+
+}
+
+
+
+function getTournamentBroadcastSideLabel(
+    bracket,
+    match,
+    participantProperty,
+    sourceProperty,
+    wrestlers,
+    teams
+) {
+
+
+    const participantId =
+
+        String(
+            match?.[
+                participantProperty
+            ] || ""
+        ).trim();
+
+
+    if (
+        participantId
+    ) {
+
+
+        return getTournamentBroadcastEntrantName(
+            bracket,
+            participantId,
+            wrestlers,
+            teams
+        );
+
+    }
+
+
+    const sourceMatchId =
+
+        String(
+            match?.[
+                sourceProperty
+            ] || ""
+        ).trim();
+
+
+    if (
+        sourceMatchId
+    ) {
+
+
+        return getTournamentBroadcastSourceLabel(
+            sourceMatchId
+        );
+
+    }
+
+
+    return "TBD";
+
+}
+
+
+
+function getTournamentBroadcastMatchupLabel(
+    bracket,
+    match,
+    wrestlers,
+    teams
+) {
+
+
+    const participantOne =
+
+        getTournamentBroadcastSideLabel(
+            bracket,
+            match,
+            "participantOneId",
+            "sourceOneMatchId",
+            wrestlers,
+            teams
+        );
+
+
+    const participantTwo =
+
+        getTournamentBroadcastSideLabel(
+            bracket,
+            match,
+            "participantTwoId",
+            "sourceTwoMatchId",
+            wrestlers,
+            teams
+        );
+
+
+    if (
+        match?.isBye
+    ) {
+
+
+        return `${participantOne} — BYE`;
+
+    }
+
+
+    return `${participantOne} vs ${participantTwo}`;
+
+}
+
+
+
+function renderTournamentBroadcastMatchList(
+    tournament,
+    matches,
+    wrestlers,
+    teams
+) {
+
+
+    if (
+        matches.length ===
+            0
+    ) {
+
+        return "";
+
+    }
+
+
+    return `
+
+        <details class="tournament-broadcast-matches">
+
+
+            <summary>
+
+                VIEW ${escapeTournamentPageText(
+                    matches.length
+                )}
+
+                ${
+                    matches.length === 1
+                        ? "MATCH"
+                        : "MATCHES"
+                }
+
+            </summary>
+
+
+            <div class="tournament-broadcast-match-list">
+
+
+                ${matches.map(
+
+                    (
+                        reference,
+                        index
+                    ) => {
+
+
+                        const bracket =
+
+                            getTournamentBroadcastBracket(
+                                tournament,
+                                reference?.bracketId
+                            );
+
+
+                        const matchRecord =
+
+                            bracket
+
+                                ? getTournamentBroadcastMatch(
+                                    bracket,
+                                    reference?.matchId
+                                )
+
+                                : null;
+
+
+                        if (
+                            !bracket
+                            ||
+                            !matchRecord
+                        ) {
+
+
+                            return `
+
+                                <div class="tournament-broadcast-match tournament-broadcast-match-unavailable">
+
+
+                                    <span class="tournament-broadcast-match-number">
+                                        MATCH ${index + 1}
+                                    </span>
+
+
+                                    <span class="tournament-broadcast-match-bracket">
+                                        MATCH REFERENCE
+                                    </span>
+
+
+                                    <strong class="tournament-broadcast-match-matchup">
+                                        Match information unavailable
+                                    </strong>
+
+
+                                </div>
+
+                            `;
+
+                        }
+
+
+                        const matchup =
+
+                            getTournamentBroadcastMatchupLabel(
+                                bracket,
+                                matchRecord.match,
+                                wrestlers,
+                                teams
+                            );
+
+
+                        return `
+
+                            <div
+                                class="tournament-broadcast-match"
+                                data-bracket-id="${escapeTournamentPageText(
+                                    bracket.id
+                                )}"
+                                data-match-id="${escapeTournamentPageText(
+                                    matchRecord.match.id
+                                )}"
+                            >
+
+
+                                <span class="tournament-broadcast-match-number">
+                                    MATCH ${index + 1}
+                                </span>
+
+
+                                <span class="tournament-broadcast-match-bracket">
+                                    ${escapeTournamentPageText(
+                                        bracket.name
+                                    )}
+                                </span>
+
+
+                                <strong class="tournament-broadcast-match-matchup">
+                                    ${escapeTournamentPageText(
+                                        matchup
+                                    )}
+                                </strong>
+
+
+                            </div>
+
+                        `;
+
+                    }
+
+                ).join("")}
+
+
+            </div>
+
+
+        </details>
+
+    `;
+
+}
+
+
+
 function renderTournamentBroadcasts(
-    tournament
+    tournament,
+    wrestlers,
+    teams
 ) {
 
 
@@ -732,14 +1192,6 @@ function renderTournamentBroadcasts(
         "";
 
 
-    /*
-     * No broadcasts means this entire section stays hidden.
-     *
-     * This prevents normal one-off tournaments from showing
-     * Championship Series broadcast UI unless broadcasts have
-     * actually been created for that tournament.
-     */
-
     if (
         broadcasts.length ===
             0
@@ -763,7 +1215,7 @@ function renderTournamentBroadcasts(
         false;
 
 
-    const publishedBroadcasts =
+    const validBroadcasts =
 
         broadcasts.filter(
 
@@ -780,7 +1232,7 @@ function renderTournamentBroadcasts(
 
 
     if (
-        publishedBroadcasts.length ===
+        validBroadcasts.length ===
             0
     ) {
 
@@ -800,7 +1252,7 @@ function renderTournamentBroadcasts(
 
     broadcastGrid.innerHTML =
 
-        publishedBroadcasts.map(
+        validBroadcasts.map(
 
             broadcast => {
 
@@ -888,6 +1340,16 @@ function renderTournamentBroadcasts(
                         : [];
 
 
+                const matchListMarkup =
+
+                    renderTournamentBroadcastMatchList(
+                        tournament,
+                        matches,
+                        wrestlers,
+                        teams
+                    );
+
+
                 return `
 
                     <article
@@ -960,6 +1422,9 @@ function renderTournamentBroadcasts(
                         }
 
 
+                        ${matchListMarkup}
+
+
                         <div class="tournament-broadcast-meta">
 
 
@@ -1003,7 +1468,9 @@ function renderTournamentBroadcasts(
 }
 
 function renderTournamentPage(
-    tournament
+    tournament,
+    wrestlers,
+    teams
 ) {
     document.title =
         `${tournament.name} | OWL Signature Series`;
@@ -1141,36 +1608,106 @@ function renderTournamentPage(
 
 
 async function loadTournamentPage() {
+
+
     try {
+
+
         const tournamentId =
+
             getTournamentPageId();
 
 
-        if (!tournamentId) {
+        if (
+            !tournamentId
+        ) {
+
+
             throw new Error(
                 "No tournament ID supplied."
             );
+
         }
 
 
-        const response =
-            await fetch(
-                "data/tournaments.json"
-            );
+        const [
+            tournamentResponse,
+            wrestlerResponse,
+            teamResponse
+        ] =
+
+            await Promise.all([
+
+                fetch(
+                    "data/tournaments.json"
+                ),
+
+                fetch(
+                    "data/wrestlers.json"
+                ),
+
+                fetch(
+                    "data/teams.json"
+                )
+
+            ]);
 
 
-        if (!response.ok) {
+        if (
+            !tournamentResponse.ok
+        ) {
+
+
             throw new Error(
-                `Tournament request failed: ${response.status}`
+                `Tournament request failed: ${tournamentResponse.status}`
             );
+
         }
 
 
-        const database =
-            await response.json();
+        if (
+            !wrestlerResponse.ok
+        ) {
+
+
+            throw new Error(
+                `Wrestler request failed: ${wrestlerResponse.status}`
+            );
+
+        }
+
+
+        if (
+            !teamResponse.ok
+        ) {
+
+
+            throw new Error(
+                `Team request failed: ${teamResponse.status}`
+            );
+
+        }
+
+
+        const [
+            database,
+            wrestlerDatabase,
+            teamDatabase
+        ] =
+
+            await Promise.all([
+
+                tournamentResponse.json(),
+
+                wrestlerResponse.json(),
+
+                teamResponse.json()
+
+            ]);
 
 
         const tournaments =
+
             Array.isArray(
                 database.tournaments
             )
@@ -1180,27 +1717,65 @@ async function loadTournamentPage() {
                 : [];
 
 
+        const wrestlers =
+
+            Array.isArray(
+                wrestlerDatabase
+            )
+
+                ? wrestlerDatabase
+
+                : [];
+
+
+        const teams =
+
+            Array.isArray(
+                teamDatabase
+            )
+
+                ? teamDatabase
+
+                : [];
+
+
         const tournament =
+
             tournaments.find(
+
                 entry =>
                     entry.id ===
                         tournamentId
+
             );
 
 
-        if (!tournament) {
+        if (
+            !tournament
+        ) {
+
+
             throw new Error(
                 "Tournament not found."
             );
+
         }
 
 
         renderTournamentPage(
-            tournament
+            tournament,
+            wrestlers,
+            teams
         );
+
     }
 
-    catch (error) {
+
+    catch (
+        error
+    ) {
+
+
         console.error(
             "Tournament page error:",
             error
@@ -1213,7 +1788,9 @@ async function loadTournamentPage() {
 
         tournamentError.hidden =
             false;
+
     }
+
 }
 
 
