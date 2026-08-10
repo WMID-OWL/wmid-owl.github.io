@@ -2812,7 +2812,79 @@
             ],
             "winnerId": ""
           },
-          "status": "Upcoming"
+                    "status": "Upcoming"
+        }
+      ],
+      "broadcasts": [
+        {
+          "id": "week-1-block-a",
+          "week": 1,
+          "block": "Block A",
+          "title": "Championship Series — Week 1: Block A",
+          "description": "Opening-round tournament action from the Inaugural Championship Series.",
+          "status": "Upcoming",
+          "youtube": "",
+          "matches": []
+        },
+        {
+          "id": "week-1-block-b",
+          "week": 1,
+          "block": "Block B",
+          "title": "Championship Series — Week 1: Block B",
+          "description": "Opening-round tournament action from the Inaugural Championship Series.",
+          "status": "Upcoming",
+          "youtube": "",
+          "matches": []
+        },
+        {
+          "id": "week-2-block-a",
+          "week": 2,
+          "block": "Block A",
+          "title": "Championship Series — Week 2: Block A",
+          "description": "The championship field continues to narrow as the inaugural tournament moves forward.",
+          "status": "Upcoming",
+          "youtube": "",
+          "matches": []
+        },
+        {
+          "id": "week-2-block-b",
+          "week": 2,
+          "block": "Block B",
+          "title": "Championship Series — Week 2: Block B",
+          "description": "More exclusive tournament action on the road to Blood on the Sand.",
+          "status": "Upcoming",
+          "youtube": "",
+          "matches": []
+        },
+        {
+          "id": "week-3-block-a",
+          "week": 3,
+          "block": "Block A",
+          "title": "Championship Series — Week 3: Block A",
+          "description": "Quarterfinal action pushes the inaugural championship brackets toward their final four.",
+          "status": "Upcoming",
+          "youtube": "",
+          "matches": []
+        },
+        {
+          "id": "week-3-block-b",
+          "week": 3,
+          "block": "Block B",
+          "title": "Championship Series — Week 3: Block B",
+          "description": "The remaining quarterfinal battles determine who survives into semifinal week.",
+          "status": "Upcoming",
+          "youtube": "",
+          "matches": []
+        },
+        {
+          "id": "week-4-finale",
+          "week": 4,
+          "block": "Series Finale",
+          "title": "Championship Series — Week 4: Series Finale",
+          "description": "The final supplemental semifinals determine the last competitors advancing to Blood on the Sand.",
+          "status": "Upcoming",
+          "youtube": "",
+          "matches": []
         }
       ]
     },
