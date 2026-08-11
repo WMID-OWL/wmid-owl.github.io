@@ -1366,6 +1366,90 @@ text-transform:
     opacity:.88;
 }
 
+
+/* =================================
+   TOURNAMENT MATCH GRAPHIC LIGHTBOX
+================================= */
+
+.tournament-match-graphic-lightbox {
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+    background:rgba(0,0,0,.92);
+    backdrop-filter:blur(8px);
+}
+
+.tournament-match-graphic-lightbox[hidden] {
+    display:none;
+}
+
+.tournament-match-graphic-lightbox-backdrop {
+    position:absolute;
+    inset:0;
+    border:0;
+    padding:0;
+    background:transparent;
+    cursor:zoom-out;
+}
+
+.tournament-match-graphic-lightbox-content {
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:min(1200px,100%);
+    max-height:calc(100vh - 64px);
+    pointer-events:none;
+}
+
+.tournament-match-graphic-lightbox-image {
+    display:block;
+    width:auto;
+    max-width:100%;
+    height:auto;
+    max-height:calc(100vh - 64px);
+    object-fit:contain;
+    box-shadow:
+        0 24px 80px
+        rgba(0,0,0,.65);
+    pointer-events:auto;
+}
+
+.tournament-match-graphic-lightbox-close {
+    position:absolute;
+    top:18px;
+    right:22px;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:44px;
+    height:44px;
+    border:1px solid rgba(255,255,255,.28);
+    background:rgba(10,12,12,.86);
+    color:#fff;
+    font:inherit;
+    font-size:1.35rem;
+    font-weight:900;
+    line-height:1;
+    cursor:pointer;
+}
+
+.tournament-match-graphic-lightbox-close:hover {
+    background:#fff;
+    color:#090b0b;
+}
+
+body.tournament-lightbox-open {
+    overflow:hidden;
+}
+
+
 .tournament-broadcast-match-unavailable {
     color:#89928f;
 }
