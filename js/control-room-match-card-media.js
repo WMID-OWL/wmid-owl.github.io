@@ -1370,38 +1370,94 @@
             return;
         }
 
+                const tournamentMode =
+            selectedSource?.sourceType ===
+                "tournament";
+
         const event =
-            selectedEvent();
+            tournamentMode
+                ? null
+                : selectedEvent();
+
+        const tournament =
+            tournamentMode
+                ? selectedTournament()
+                : null;
+
+        const broadcast =
+            tournamentMode
+                ? selectedBroadcast()
+                : null;
 
         const orientation =
             selectedOrientation();
 
-        reviewList.innerHTML = `
-            <div class="cr-editor-change-row">
-                <strong>EVENT</strong>
+        const sourceRows =
+            tournamentMode
+                ? `
+                    <div class="cr-editor-change-row">
+                        <strong>TOURNAMENT</strong>
 
-                <span>
-                    ${escapeHtml(
-                        event?.name
-                        ||
-                        selectedSource.match.eventId
-                    )}
-                </span>
-            </div>
+                        <span>
+                            ${escapeHtml(
+                                tournament?.name
+                                ||
+                                selectedSource.tournamentId
+                            )}
+                        </span>
+                    </div>
+
+                    <div class="cr-editor-change-row">
+                        <strong>BROADCAST</strong>
+
+                        <span>
+                            ${escapeHtml(
+                                broadcast?.title
+                                ||
+                                selectedSource.broadcastId
+                            )}
+                        </span>
+                    </div>
+                `
+                : `
+                    <div class="cr-editor-change-row">
+                        <strong>EVENT</strong>
+
+                        <span>
+                            ${escapeHtml(
+                                event?.name
+                                ||
+                                selectedSource.match.eventId
+                            )}
+                        </span>
+                    </div>
+                `;
+
+        const matchLabel =
+            tournamentMode
+                ? formatTournamentMatch(
+                    selectedSource.bracket,
+                    selectedSource.match
+                )
+                : `Match ${
+                    selectedSource.match.order
+                    ||
+                    "—"
+                } — ${
+                    formatMatch(
+                        selectedSource.match
+                    )
+                }`;
+
+        reviewList.innerHTML = `
+            ${sourceRows}
 
             <div class="cr-editor-change-row">
                 <strong>MATCH</strong>
 
                 <span>
-                    Match ${escapeHtml(
-                        selectedSource.match.order
-                        ||
-                        "—"
-                    )} —
                     ${escapeHtml(
-                        formatMatch(
-                            selectedSource.match
-                        )
+                        matchLabel
                     )}
                 </span>
             </div>
