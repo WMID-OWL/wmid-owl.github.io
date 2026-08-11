@@ -2304,10 +2304,11 @@
         }
     }
 
-    async function updateMatchRecord(
+       async function updateMatchRecord(
         source,
         updater
     ) {
+
         const dataDirectory =
             await owlRepositoryHandle
                 .getDirectoryHandle(
@@ -2328,31 +2329,169 @@
                 await file.text()
             );
 
-        if (!Array.isArray(parsed)) {
-            throw new Error(
-                `data/${source.fileName} must contain a JSON array.`
-            );
+
+        let record =
+            null;
+
+
+        if (
+            source?.sourceType ===
+                "tournament"
+        ) {
+
+            if (
+                !parsed
+                ||
+                Array.isArray(
+                    parsed
+                )
+                ||
+                !Array.isArray(
+                    parsed.tournaments
+                )
+            ) {
+                throw new Error(
+                    "data/tournaments.json must contain a tournaments array."
+                );
+            }
+
+
+            const tournament =
+                parsed.tournaments.find(
+                    entry =>
+                        entry.id ===
+                            source.tournamentId
+                );
+
+
+            if (
+                !tournament
+            ) {
+                throw new Error(
+                    `Could not find tournament ${source.tournamentId}.`
+                );
+            }
+
+
+            const bracket =
+                (
+                    Array.isArray(
+                        tournament.brackets
+                    )
+                        ? tournament.brackets
+                        : []
+                ).find(
+                    entry =>
+                        entry.id ===
+                            source.bracketId
+                );
+
+
+            if (
+                !bracket
+            ) {
+                throw new Error(
+                    `Could not find bracket ${source.bracketId}.`
+                );
+            }
+
+
+            const rounds =
+                Array.isArray(
+                    bracket?.bracketSetup?.rounds
+                )
+                    ? bracket.bracketSetup.rounds
+                    : [];
+
+
+            for (
+                const round
+                of rounds
+            ) {
+
+                const matches =
+                    Array.isArray(
+                        round.matches
+                    )
+                        ? round.matches
+                        : [];
+
+
+                record =
+                    matches.find(
+                        match =>
+                            match.id ===
+                                source.match.id
+                    )
+                    ||
+                    null;
+
+
+                if (
+                    record
+                ) {
+                    break;
+                }
+
+            }
+
+
+            if (
+                !record
+            ) {
+                throw new Error(
+                    `Could not find tournament match ${source.match.id}.`
+                );
+            }
+
         }
 
-        const record =
-            parsed.find(
-                match =>
-                    match.id === source.match.id
-            );
+        else {
 
-        if (!record) {
-            throw new Error(
-                `Could not find match ${source.match.id} in data/${source.fileName}.`
-            );
+            if (
+                !Array.isArray(
+                    parsed
+                )
+            ) {
+                throw new Error(
+                    `data/${source.fileName} must contain a JSON array.`
+                );
+            }
+
+
+            record =
+                parsed.find(
+                    match =>
+                        match.id ===
+                            source.match.id
+                )
+                ||
+                null;
+
+
+            if (
+                !record
+            ) {
+                throw new Error(
+                    `Could not find match ${source.match.id} in data/${source.fileName}.`
+                );
+            }
+
         }
 
-        updater(record);
+
+        updater(
+            record
+        );
+
 
         const writable =
             await fileHandle
                 .createWritable();
 
+
         try {
+
             await writable.write(
                 `${JSON.stringify(
                     parsed,
@@ -2362,17 +2501,28 @@
             );
 
             await writable.close();
+
         }
-        catch (error) {
+
+        catch (
+            error
+        ) {
+
             try {
+
                 await writable.abort();
+
             }
+
             catch {
                 // No additional action required.
             }
 
+
             throw error;
+
         }
+
     }
 
     async function removeStoredFile(source) {
