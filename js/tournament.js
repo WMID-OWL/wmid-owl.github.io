@@ -1443,15 +1443,32 @@ function renderTournamentBroadcasts(
                             </span>
 
 
-                            <span>
+                                                        ${
+                                youtube
 
-                                ${
-                                    youtube
-                                        ? "VIDEO AVAILABLE"
-                                        : "VIDEO PENDING"
-                                }
+                                    ? `
 
-                            </span>
+                                        <a
+                                            class="tournament-broadcast-watch"
+                                            href="${escapeTournamentPageText(
+                                                youtube
+                                            )}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            WATCH BROADCAST →
+                                        </a>
+
+                                    `
+
+                                    : `
+
+                                        <span>
+                                            VIDEO PENDING
+                                        </span>
+
+                                    `
+                            }
 
 
                         </div>
