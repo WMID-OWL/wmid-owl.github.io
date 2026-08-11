@@ -1315,32 +1315,61 @@ text-transform:
 
 
 .tournament-broadcast-match-matchup {
-
-    min-width:
-        0;
-
-    color:
-        #f5f4ef;
-
-    font-size:
-        0.88rem;
-
-    font-weight:
-        800;
-
-    line-height:
-        1.45;
-
+    min-width:0;
+    color:#f5f4ef;
+    font-size:.88rem;
+    font-weight:800;
+    line-height:1.45;
 }
 
+.tournament-broadcast-match-graphic {
+    grid-column:1 / -1;
+    display:flex;
+    justify-content:center;
+    margin-top:4px;
+}
 
+.tournament-broadcast-match-graphic-frame {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    max-width:720px;
+    padding:0;
+    border:0;
+    background:transparent;
+    cursor:pointer;
+}
+
+.tournament-broadcast-match-graphic-frame img {
+    display:block;
+    width:auto;
+    max-width:100%;
+    height:auto;
+    max-height:520px;
+    object-fit:contain;
+}
+
+.tournament-broadcast-match-graphic-frame[data-orientation="portrait"] {
+    max-width:420px;
+}
+
+.tournament-broadcast-match-graphic-frame[data-orientation="square"] {
+    max-width:560px;
+}
+
+.tournament-broadcast-match-graphic-frame[data-orientation="landscape"] {
+    max-width:720px;
+}
+
+.tournament-broadcast-match-graphic-frame:hover img {
+    opacity:.88;
+}
 
 .tournament-broadcast-match-unavailable {
-
-    color:
-        #89928f;
-
+    color:#89928f;
 }
+
 .tournament-broadcast-watch {
 
     color:
