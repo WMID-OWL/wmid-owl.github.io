@@ -7,10 +7,47 @@
     const standardRecordField = document.getElementById("cr-media-standard-record-field");
     const standardPathField = document.getElementById("cr-media-standard-path-field");
     const standardWorkflow = document.getElementById("cr-media-standard-workflow");
-    const workflow = document.getElementById("cr-match-card-workflow");
+        const workflow = document.getElementById("cr-match-card-workflow");
 
-    const eventSelect = document.getElementById("cr-match-card-event");
-    const matchSelect = document.getElementById("cr-match-card-match");
+    const sourceSelect =
+        document.getElementById(
+            "cr-match-card-source"
+        );
+
+    const eventSourceFields =
+        document.getElementById(
+            "cr-match-card-event-source-fields"
+        );
+
+    const tournamentSourceFields =
+        document.getElementById(
+            "cr-match-card-tournament-source-fields"
+        );
+
+    const eventSelect =
+        document.getElementById(
+            "cr-match-card-event"
+        );
+
+    const matchSelect =
+        document.getElementById(
+            "cr-match-card-match"
+        );
+
+    const tournamentSelect =
+        document.getElementById(
+            "cr-match-card-tournament"
+        );
+
+    const broadcastSelect =
+        document.getElementById(
+            "cr-match-card-broadcast"
+        );
+
+    const tournamentMatchSelect =
+        document.getElementById(
+            "cr-match-card-tournament-match"
+        );
     const currentPath = document.getElementById("cr-match-card-current-path");
     const fileInput = document.getElementById("cr-match-card-file");
     const layoutSelect = document.getElementById("cr-match-card-layout");
@@ -31,7 +68,25 @@
     const removeButton = document.getElementById("cr-match-card-remove");
     const message = document.getElementById("cr-match-card-message");
 
-    if (!mediaTypeSelect || !workflow || !eventSelect || !matchSelect || !fileInput) {
+        if (
+        !mediaTypeSelect
+        ||
+        !workflow
+        ||
+        !sourceSelect
+        ||
+        !eventSelect
+        ||
+        !matchSelect
+        ||
+        !tournamentSelect
+        ||
+        !broadcastSelect
+        ||
+        !tournamentMatchSelect
+        ||
+        !fileInput
+    ) {
         return;
     }
 
@@ -411,7 +466,380 @@
                 source.match.id === matchId
         ) || null;
     }
+    function tournamentRecords() {
 
+        const database =
+            owlControlRoomData?.tournaments;
+
+        if (
+            !database
+            ||
+            Array.isArray(
+                database
+            )
+            ||
+            !Array.isArray(
+                database.tournaments
+            )
+        ) {
+            return [];
+        }
+
+        return database.tournaments;
+
+    }
+
+
+
+    function selectedTournament() {
+
+        return tournamentRecords().find(
+            tournament =>
+                tournament.id ===
+                    tournamentSelect.value
+        ) || null;
+
+    }
+
+
+
+    function selectedBroadcast() {
+
+        const tournament =
+            selectedTournament();
+
+        if (
+            !tournament
+        ) {
+            return null;
+        }
+
+        const broadcasts =
+            Array.isArray(
+                tournament.broadcasts
+            )
+                ? tournament.broadcasts
+                : [];
+
+        return broadcasts.find(
+            broadcast =>
+                broadcast.id ===
+                    broadcastSelect.value
+        ) || null;
+
+    }
+
+
+
+    function getTournamentBracket(
+        tournament,
+        bracketId
+    ) {
+
+        const brackets =
+            Array.isArray(
+                tournament?.brackets
+            )
+                ? tournament.brackets
+                : [];
+
+        return brackets.find(
+            bracket =>
+                bracket.id ===
+                    bracketId
+        ) || null;
+
+    }
+
+
+
+    function getTournamentMatch(
+        bracket,
+        matchId
+    ) {
+
+        const rounds =
+            Array.isArray(
+                bracket?.bracketSetup?.rounds
+            )
+                ? bracket.bracketSetup.rounds
+                : [];
+
+        for (
+            const round
+            of rounds
+        ) {
+
+            const matches =
+                Array.isArray(
+                    round.matches
+                )
+                    ? round.matches
+                    : [];
+
+            const match =
+                matches.find(
+                    entry =>
+                        entry.id ===
+                            matchId
+                );
+
+            if (
+                match
+            ) {
+                return {
+                    round,
+                    match
+                };
+            }
+
+        }
+
+        return null;
+
+    }
+
+
+
+    function getTournamentEntrantName(
+        bracket,
+        participantId
+    ) {
+
+        if (
+            !participantId
+        ) {
+            return "";
+        }
+
+        if (
+            bracket?.participantType ===
+                "team"
+        ) {
+
+            const teams =
+                Array.isArray(
+                    owlControlRoomData?.teams
+                )
+                    ? owlControlRoomData.teams
+                    : [];
+
+            const team =
+                teams.find(
+                    entry =>
+                        entry.id ===
+                            participantId
+                );
+
+            return team?.name
+                ||
+                participantId;
+
+        }
+
+        return getWrestlerName(
+            participantId
+        );
+
+    }
+
+
+
+    function getTournamentSourceLabel(
+        sourceMatchId
+    ) {
+
+        const source =
+            /^round-(\d+)-match-(\d+)$/i.exec(
+                cleanText(
+                    sourceMatchId
+                )
+            );
+
+        if (
+            !source
+        ) {
+            return "Previous-Round Winner";
+        }
+
+        return `Winner of Round ${source[1]} Match ${source[2]}`;
+
+    }
+
+
+
+    function getTournamentMatchSideLabel(
+        bracket,
+        match,
+        participantProperty,
+        sourceProperty
+    ) {
+
+        const participantId =
+            cleanText(
+                match?.[
+                    participantProperty
+                ]
+            );
+
+        if (
+            participantId
+        ) {
+
+            return getTournamentEntrantName(
+                bracket,
+                participantId
+            );
+
+        }
+
+        const sourceMatchId =
+            cleanText(
+                match?.[
+                    sourceProperty
+                ]
+            );
+
+        if (
+            sourceMatchId
+        ) {
+
+            return getTournamentSourceLabel(
+                sourceMatchId
+            );
+
+        }
+
+        return "TBD";
+
+    }
+
+
+
+    function formatTournamentMatch(
+        bracket,
+        match
+    ) {
+
+        const participantOne =
+            getTournamentMatchSideLabel(
+                bracket,
+                match,
+                "participantOneId",
+                "sourceOneMatchId"
+            );
+
+        const participantTwo =
+            getTournamentMatchSideLabel(
+                bracket,
+                match,
+                "participantTwoId",
+                "sourceTwoMatchId"
+            );
+
+        if (
+            match?.isBye
+        ) {
+            return `${participantOne} — BYE`;
+        }
+
+        return `${participantOne} vs ${participantTwo}`;
+
+    }
+
+
+
+    function getSelectedTournamentSource() {
+
+        const tournament =
+            selectedTournament();
+
+        const broadcast =
+            selectedBroadcast();
+
+        const selectedValue =
+            cleanText(
+                tournamentMatchSelect.value
+            );
+
+        if (
+            !tournament
+            ||
+            !broadcast
+            ||
+            !selectedValue
+        ) {
+            return null;
+        }
+
+        const reference =
+            (
+                Array.isArray(
+                    broadcast.matches
+                )
+                    ? broadcast.matches
+                    : []
+            ).find(
+                entry =>
+                    `${entry.bracketId}::${entry.matchId}` ===
+                        selectedValue
+            );
+
+        if (
+            !reference
+        ) {
+            return null;
+        }
+
+        const bracket =
+            getTournamentBracket(
+                tournament,
+                reference.bracketId
+            );
+
+        const matchRecord =
+            bracket
+                ? getTournamentMatch(
+                    bracket,
+                    reference.matchId
+                )
+                : null;
+
+        if (
+            !bracket
+            ||
+            !matchRecord
+        ) {
+            return null;
+        }
+
+        return {
+            sourceType:
+                "tournament",
+
+            fileName:
+                "tournaments.json",
+
+            tournamentId:
+                tournament.id,
+
+            broadcastId:
+                broadcast.id,
+
+            bracketId:
+                bracket.id,
+
+            bracket,
+
+            round:
+                matchRecord.round,
+
+            match:
+                matchRecord.match
+        };
+
+    }
+    
     function getGraphic(match) {
         const graphic =
             match?.matchGraphic;
@@ -1104,7 +1532,403 @@
                 oldValue;
         }
     }
+    function populateTournamentSelector() {
 
+        const oldValue =
+            tournamentSelect.value;
+
+        const tournaments =
+            tournamentRecords().filter(
+                tournament =>
+                    Array.isArray(
+                        tournament.broadcasts
+                    )
+                    &&
+                    tournament.broadcasts.some(
+                        broadcast =>
+                            Array.isArray(
+                                broadcast.matches
+                            )
+                            &&
+                            broadcast.matches.length >
+                                0
+                    )
+            );
+
+        tournamentSelect.innerHTML =
+            `
+                <option value="">
+                    Select Tournament
+                </option>
+
+                ${tournaments.map(
+                    tournament => `
+                        <option value="${escapeHtml(
+                            tournament.id
+                        )}">
+                            ${escapeHtml(
+                                tournament.year
+                                    ? `${tournament.name} (${tournament.year})`
+                                    : tournament.name
+                            )}
+                        </option>
+                    `
+                ).join("")}
+            `;
+
+        tournamentSelect.disabled =
+            tournaments.length ===
+                0;
+
+        if (
+            tournaments.some(
+                tournament =>
+                    tournament.id ===
+                        oldValue
+            )
+        ) {
+            tournamentSelect.value =
+                oldValue;
+        }
+
+    }
+
+
+
+    function populateBroadcastSelector() {
+
+        const tournament =
+            selectedTournament();
+
+        const oldValue =
+            broadcastSelect.value;
+
+        const broadcasts =
+            (
+                Array.isArray(
+                    tournament?.broadcasts
+                )
+                    ? tournament.broadcasts
+                    : []
+            ).filter(
+                broadcast =>
+                    Array.isArray(
+                        broadcast.matches
+                    )
+                    &&
+                    broadcast.matches.length >
+                        0
+            );
+
+        broadcastSelect.innerHTML =
+            `
+                <option value="">
+                    ${
+                        tournament
+                            ? "Select Broadcast"
+                            : "Select Tournament First"
+                    }
+                </option>
+
+                ${broadcasts.map(
+                    broadcast => `
+                        <option value="${escapeHtml(
+                            broadcast.id
+                        )}">
+                            ${escapeHtml(
+                                broadcast.title
+                                ||
+                                broadcast.id
+                            )}
+                        </option>
+                    `
+                ).join("")}
+            `;
+
+        broadcastSelect.disabled =
+            broadcasts.length ===
+                0;
+
+        if (
+            broadcasts.some(
+                broadcast =>
+                    broadcast.id ===
+                        oldValue
+            )
+        ) {
+            broadcastSelect.value =
+                oldValue;
+        }
+
+    }
+
+
+
+    function populateTournamentMatches() {
+
+        const tournament =
+            selectedTournament();
+
+        const broadcast =
+            selectedBroadcast();
+
+        const oldValue =
+            tournamentMatchSelect.value;
+
+        const references =
+            Array.isArray(
+                broadcast?.matches
+            )
+                ? broadcast.matches
+                : [];
+
+        const options =
+            references.map(
+                (
+                    reference,
+                    index
+                ) => {
+
+                    const bracket =
+                        getTournamentBracket(
+                            tournament,
+                            reference.bracketId
+                        );
+
+                    const matchRecord =
+                        bracket
+                            ? getTournamentMatch(
+                                bracket,
+                                reference.matchId
+                            )
+                            : null;
+
+                    if (
+                        !bracket
+                        ||
+                        !matchRecord
+                    ) {
+                        return null;
+                    }
+
+                    return {
+                        value:
+                            `${reference.bracketId}::${reference.matchId}`,
+
+                        label:
+                            `Match ${index + 1} — ${bracket.name} — ${formatTournamentMatch(
+                                bracket,
+                                matchRecord.match
+                            )}`
+                    };
+
+                }
+            ).filter(
+                Boolean
+            );
+
+        tournamentMatchSelect.innerHTML =
+            `
+                <option value="">
+                    ${
+                        broadcast
+                            ? "Select Match"
+                            : "Select Broadcast First"
+                    }
+                </option>
+
+                ${options.map(
+                    option => `
+                        <option value="${escapeHtml(
+                            option.value
+                        )}">
+                            ${escapeHtml(
+                                option.label
+                            )}
+                        </option>
+                    `
+                ).join("")}
+            `;
+
+        tournamentMatchSelect.disabled =
+            options.length ===
+                0;
+
+        if (
+            options.some(
+                option =>
+                    option.value ===
+                        oldValue
+            )
+        ) {
+            tournamentMatchSelect.value =
+                oldValue;
+        }
+
+    }
+
+
+
+    function resetMatchCardSelection() {
+
+        clearMessage();
+        resetSelectedFile();
+
+        selectedSource =
+            null;
+
+        currentPath.textContent =
+            "—";
+
+        fileInput.disabled =
+            true;
+
+        layoutSelect.disabled =
+            true;
+
+        removeButton.disabled =
+            true;
+
+        clearPreviewImage();
+        updatePreviewReadout();
+
+    }
+
+
+
+    function handleMatchSourceChange() {
+
+        resetMatchCardSelection();
+
+        const tournamentMode =
+            sourceSelect.value ===
+                "tournament";
+
+        eventSourceFields.hidden =
+            tournamentMode;
+
+        tournamentSourceFields.hidden =
+            !tournamentMode;
+
+        if (
+            tournamentMode
+        ) {
+
+            populateTournamentSelector();
+
+            populateBroadcastSelector();
+
+            populateTournamentMatches();
+
+            setStatus(
+                "SELECT TOURNAMENT"
+            );
+
+            return;
+
+        }
+
+        populateEvents();
+
+        if (
+            eventSelect.value
+        ) {
+            populateMatches();
+        }
+
+        setStatus(
+            "SELECT EVENT"
+        );
+
+    }
+
+
+
+    function handleTournamentChange() {
+
+        resetMatchCardSelection();
+
+        populateBroadcastSelector();
+
+        populateTournamentMatches();
+
+        setStatus(
+            tournamentSelect.value
+                ? "SELECT BROADCAST"
+                : "SELECT TOURNAMENT"
+        );
+
+    }
+
+
+
+    function handleBroadcastChange() {
+
+        resetMatchCardSelection();
+
+        populateTournamentMatches();
+
+        setStatus(
+            broadcastSelect.value
+                ? "SELECT MATCH"
+                : "SELECT BROADCAST"
+        );
+
+    }
+
+
+
+    function handleTournamentMatchChange() {
+
+        resetMatchCardSelection();
+
+        selectedSource =
+            getSelectedTournamentSource();
+
+        const graphic =
+            getGraphic(
+                selectedSource?.match
+            );
+
+        currentPath.textContent =
+            graphic?.src
+            ||
+            (
+                selectedSource
+                    ? "No match graphic assigned"
+                    : "—"
+            );
+
+        if (
+            graphic?.src
+        ) {
+
+            showExistingGraphic();
+
+        }
+
+        /*
+         * Tournament saving is intentionally
+         * disabled until 319C-3C.
+         */
+
+        fileInput.disabled =
+            true;
+
+        layoutSelect.disabled =
+            true;
+
+        removeButton.disabled =
+            true;
+
+        setStatus(
+            selectedSource
+                ? "TOURNAMENT MATCH READY"
+                : "SELECT MATCH"
+        );
+
+    }
+    
     function handleEventChange() {
         clearMessage();
         resetSelectedFile();
@@ -1736,6 +2560,7 @@
     }
 
     function activateWorkflow() {
+
         const active =
             isActive();
 
@@ -1756,46 +2581,56 @@
             active
         );
 
-        if (!active) {
+        sourceSelect.disabled =
+            !active;
+
+        if (
+            !active
+        ) {
+
             resetSelectedFile();
             clearPreviewImage();
+
             return;
+
         }
 
         clearMessage();
-        populateEvents();
 
-        if (eventSelect.value) {
-            populateMatches();
-        }
-        else {
-            matchSelect.innerHTML =
-                `<option value="">Select Event First</option>`;
-
-            matchSelect.disabled =
-                true;
+        if (
+            !sourceSelect.value
+        ) {
+            sourceSelect.value =
+                "event";
         }
 
-        selectedSource =
-            getSelectedSource();
+        handleMatchSourceChange();
 
-        if (selectedSource) {
-            handleMatchChange();
-        }
-        else {
-            currentPath.textContent = "—";
-            fileInput.disabled = true;
-            layoutSelect.disabled = true;
-            removeButton.disabled = true;
-
-            clearPreviewImage();
-            updatePreviewReadout();
-        }
+    }
     }
 
     mediaTypeSelect.addEventListener(
         "change",
         activateWorkflow
+    );
+    sourceSelect.addEventListener(
+        "change",
+        handleMatchSourceChange
+    );
+
+    tournamentSelect.addEventListener(
+        "change",
+        handleTournamentChange
+    );
+
+    broadcastSelect.addEventListener(
+        "change",
+        handleBroadcastChange
+    );
+
+    tournamentMatchSelect.addEventListener(
+        "change",
+        handleTournamentMatchChange
     );
 
     eventSelect.addEventListener(
