@@ -4252,4 +4252,385 @@
         );
     }
 );
+        // =================================
+    // CHAMPIONSHIP SERIES
+    // BROADCAST MANAGER
+    // =================================
+
+    const tournamentBroadcastTournament =
+        document.getElementById(
+            "cr-tournament-broadcast-tournament"
+        );
+
+    const tournamentBroadcastSelect =
+        document.getElementById(
+            "cr-tournament-broadcast-select"
+        );
+
+    const tournamentBroadcastMatchCount =
+        document.getElementById(
+            "cr-tournament-broadcast-match-count"
+        );
+
+    const tournamentBroadcastTitle =
+        document.getElementById(
+            "cr-tournament-broadcast-title"
+        );
+
+    const tournamentBroadcastStatus =
+        document.getElementById(
+            "cr-tournament-broadcast-status"
+        );
+
+    const tournamentBroadcastYoutube =
+        document.getElementById(
+            "cr-tournament-broadcast-youtube"
+        );
+
+    const tournamentBroadcastDescription =
+        document.getElementById(
+            "cr-tournament-broadcast-description"
+        );
+
+    const tournamentBroadcastPreview =
+        document.getElementById(
+            "cr-tournament-broadcast-preview"
+        );
+
+    const tournamentBroadcastSaveButton =
+        document.getElementById(
+            "cr-tournament-broadcast-save"
+        );
+
+
+
+    function resetTournamentBroadcastEditor() {
+
+        tournamentBroadcastMatchCount.textContent =
+            "—";
+
+        tournamentBroadcastTitle.value =
+            "";
+
+        tournamentBroadcastStatus.value =
+            "Upcoming";
+
+        tournamentBroadcastYoutube.value =
+            "";
+
+        tournamentBroadcastDescription.value =
+            "";
+
+        tournamentBroadcastTitle.disabled =
+            true;
+
+        tournamentBroadcastStatus.disabled =
+            true;
+
+        tournamentBroadcastYoutube.disabled =
+            true;
+
+        tournamentBroadcastDescription.disabled =
+            true;
+
+        tournamentBroadcastSaveButton.disabled =
+            true;
+
+        tournamentBroadcastPreview.hidden =
+            true;
+
+    }
+
+
+
+    function getSelectedBroadcastTournament() {
+
+        const tournaments =
+            getControlRoomTournaments();
+
+        return tournaments.find(
+            tournament =>
+                tournament.id ===
+                    tournamentBroadcastTournament.value
+        ) || null;
+
+    }
+
+
+
+    function getSelectedTournamentBroadcast() {
+
+        const tournament =
+            getSelectedBroadcastTournament();
+
+        if (
+            !tournament
+        ) {
+            return null;
+        }
+
+        const broadcasts =
+            Array.isArray(
+                tournament.broadcasts
+            )
+                ? tournament.broadcasts
+                : [];
+
+        return broadcasts.find(
+            broadcast =>
+                broadcast.id ===
+                    tournamentBroadcastSelect.value
+        ) || null;
+
+    }
+
+
+
+    function populateTournamentBroadcastSelector() {
+
+        const tournament =
+            getSelectedBroadcastTournament();
+
+        tournamentBroadcastSelect.innerHTML =
+            "";
+
+        resetTournamentBroadcastEditor();
+
+        if (
+            !tournament
+        ) {
+
+            tournamentBroadcastSelect.innerHTML =
+                `
+                    <option value="">
+                        Select Tournament First
+                    </option>
+                `;
+
+            tournamentBroadcastSelect.disabled =
+                true;
+
+            return;
+
+        }
+
+        const broadcasts =
+            Array.isArray(
+                tournament.broadcasts
+            )
+                ? tournament.broadcasts
+                : [];
+
+        const placeholder =
+            document.createElement(
+                "option"
+            );
+
+        placeholder.value =
+            "";
+
+        placeholder.textContent =
+            broadcasts.length > 0
+                ? "Select Broadcast"
+                : "No Broadcasts Available";
+
+        tournamentBroadcastSelect.appendChild(
+            placeholder
+        );
+
+        broadcasts.forEach(
+            broadcast => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value =
+                    broadcast.id;
+
+                option.textContent =
+                    broadcast.title
+                    ||
+                    [
+                        broadcast.week
+                            ? `Week ${broadcast.week}`
+                            : "",
+                        broadcast.block || ""
+                    ]
+                        .filter(
+                            Boolean
+                        )
+                        .join(
+                            " — "
+                        )
+                    ||
+                    broadcast.id;
+
+                tournamentBroadcastSelect.appendChild(
+                    option
+                );
+
+            }
+        );
+
+        tournamentBroadcastSelect.disabled =
+            broadcasts.length ===
+                0;
+
+    }
+
+
+
+    function loadTournamentBroadcastEditor() {
+
+        const broadcast =
+            getSelectedTournamentBroadcast();
+
+        resetTournamentBroadcastEditor();
+
+        if (
+            !broadcast
+        ) {
+            return;
+        }
+
+        const matches =
+            Array.isArray(
+                broadcast.matches
+            )
+                ? broadcast.matches
+                : [];
+
+        tournamentBroadcastMatchCount.textContent =
+            String(
+                matches.length
+            );
+
+        tournamentBroadcastTitle.value =
+            broadcast.title || "";
+
+        tournamentBroadcastStatus.value =
+            broadcast.status || "Upcoming";
+
+        tournamentBroadcastYoutube.value =
+            broadcast.youtube || "";
+
+        tournamentBroadcastDescription.value =
+            broadcast.description || "";
+
+        tournamentBroadcastTitle.disabled =
+            false;
+
+        tournamentBroadcastStatus.disabled =
+            false;
+
+        tournamentBroadcastYoutube.disabled =
+            false;
+
+        tournamentBroadcastDescription.disabled =
+            false;
+
+        // Saving is wired in the next step.
+        tournamentBroadcastSaveButton.disabled =
+            true;
+
+    }
+
+
+
+    function initializeTournamentBroadcastManager() {
+
+        if (
+            !tournamentBroadcastTournament
+            ||
+            !tournamentBroadcastSelect
+        ) {
+            return;
+        }
+
+        const tournaments =
+            getControlRoomTournaments();
+
+        tournamentBroadcastTournament.innerHTML =
+            "";
+
+        const placeholder =
+            document.createElement(
+                "option"
+            );
+
+        placeholder.value =
+            "";
+
+        placeholder.textContent =
+            tournaments.length > 0
+                ? "Select Tournament"
+                : "No Tournaments Available";
+
+        tournamentBroadcastTournament.appendChild(
+            placeholder
+        );
+
+        tournaments.forEach(
+            tournament => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value =
+                    tournament.id;
+
+                option.textContent =
+                    tournament.year
+                        ? `${tournament.name} (${tournament.year})`
+                        : tournament.name;
+
+                tournamentBroadcastTournament.appendChild(
+                    option
+                );
+
+            }
+        );
+
+        tournamentBroadcastTournament.disabled =
+            tournaments.length ===
+                0;
+
+        tournamentBroadcastSelect.innerHTML =
+            `
+                <option value="">
+                    Select Tournament First
+                </option>
+            `;
+
+        tournamentBroadcastSelect.disabled =
+            true;
+
+        resetTournamentBroadcastEditor();
+
+    }
+
+
+
+    tournamentBroadcastTournament?.addEventListener(
+        "change",
+        populateTournamentBroadcastSelector
+    );
+
+
+
+    tournamentBroadcastSelect?.addEventListener(
+        "change",
+        loadTournamentBroadcastEditor
+    );
+
+
+
+    window.addEventListener(
+        "owl-control-room-data-loaded",
+        initializeTournamentBroadcastManager
+    );
 })();
