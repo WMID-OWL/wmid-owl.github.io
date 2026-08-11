@@ -8351,20 +8351,57 @@
                 hidden
             >
 
-                <div class="cr-editor-section">
+                               <div class="cr-editor-section">
 
                     <div class="cr-editor-section-heading">
 
                         <span>MATCH ATTACHMENT</span>
-                        <h3>Select Event and Match</h3>
+
+                        <h3>
+                            Select Match Source
+                        </h3>
 
                         <p>
-                            Match graphics stay attached when an announced match becomes an official result.
+                            Attach an optional custom graphic to either
+                            an event match or a supplemental tournament
+                            broadcast match.
                         </p>
 
                     </div>
 
-                    <div class="cr-editor-form-grid">
+
+                    <div class="cr-editor-top-grid">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-match-card-source">
+                                MATCH SOURCE
+                            </label>
+
+                            <select
+                                id="cr-match-card-source"
+                                disabled
+                            >
+
+                                <option value="event">
+                                    Event Match
+                                </option>
+
+                                <option value="tournament">
+                                    Tournament Broadcast Match
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="cr-match-card-event-source-fields"
+                        class="cr-editor-form-grid"
+                    >
 
                         <div class="cr-form-group">
 
@@ -8372,7 +8409,10 @@
                                 EVENT
                             </label>
 
-                            <select id="cr-match-card-event" disabled>
+                            <select
+                                id="cr-match-card-event"
+                                disabled
+                            >
 
                                 <option value="">
                                     Connect Repository First
@@ -8382,6 +8422,95 @@
 
                         </div>
 
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-match-card-match">
+                                MATCH
+                            </label>
+
+                            <select
+                                id="cr-match-card-match"
+                                disabled
+                            >
+
+                                <option value="">
+                                    Select Event First
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="cr-match-card-tournament-source-fields"
+                        class="cr-editor-form-grid"
+                        hidden
+                    >
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-match-card-tournament">
+                                TOURNAMENT
+                            </label>
+
+                            <select
+                                id="cr-match-card-tournament"
+                                disabled
+                            >
+
+                                <option value="">
+                                    Select Tournament
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-match-card-broadcast">
+                                BROADCAST
+                            </label>
+
+                            <select
+                                id="cr-match-card-broadcast"
+                                disabled
+                            >
+
+                                <option value="">
+                                    Select Tournament First
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-match-card-tournament-match">
+                                MATCH
+                            </label>
+
+                            <select
+                                id="cr-match-card-tournament-match"
+                                disabled
+                            >
+
+                                <option value="">
+                                    Select Broadcast First
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
                         <div class="cr-form-group">
 
                             <label for="cr-match-card-match">
