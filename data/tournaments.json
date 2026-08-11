@@ -2823,7 +2823,7 @@
           "title": "Championship Series — Week 1: Block A",
           "description": "Opening-round tournament action from the Inaugural Championship Series.",
           "status": "Upcoming",
-          "youtube": "",
+          "youtube": "https://www.youtube.com/",
           "matches": [
             {
               "bracketId": "owl-world-championship",
