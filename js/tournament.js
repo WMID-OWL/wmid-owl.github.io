@@ -1131,10 +1131,15 @@ function renderTournamentBroadcastMatchList(
                                     <div
                                         class="tournament-broadcast-match-graphic"
                                     >
-                                        <div
+                                                                                <div
                                             class="tournament-broadcast-match-graphic-frame"
                                             data-orientation="${escapeTournamentPageText(
                                                 graphicOrientation
+                                            )}"
+                                            role="button"
+                                            tabindex="0"
+                                            aria-label="${escapeTournamentPageText(
+                                                `${matchup} — expand match graphic`
                                             )}"
                                         >
                                             <img
@@ -1872,6 +1877,299 @@ async function loadTournamentPage() {
     }
 
 }
+
+
+let tournamentMatchGraphicLightbox =
+    null;
+
+let tournamentMatchGraphicLightboxImage =
+    null;
+
+let tournamentMatchGraphicLightboxTrigger =
+    null;
+
+
+
+function ensureTournamentMatchGraphicLightbox() {
+
+    if (
+        tournamentMatchGraphicLightbox
+    ) {
+        return;
+    }
+
+
+    const lightbox =
+        document.createElement(
+            "div"
+        );
+
+
+    lightbox.id =
+        "tournament-match-graphic-lightbox";
+
+    lightbox.className =
+        "tournament-match-graphic-lightbox";
+
+    lightbox.hidden =
+        true;
+
+
+    lightbox.innerHTML = `
+        <button
+            type="button"
+            class="tournament-match-graphic-lightbox-backdrop"
+            aria-label="Close expanded match graphic"
+        ></button>
+
+        <div
+            class="tournament-match-graphic-lightbox-content"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Expanded tournament match graphic"
+        >
+            <img
+                class="tournament-match-graphic-lightbox-image"
+                alt=""
+            >
+        </div>
+
+        <button
+            type="button"
+            class="tournament-match-graphic-lightbox-close"
+            aria-label="Close expanded match graphic"
+        >
+            ×
+        </button>
+    `;
+
+
+    document.body.appendChild(
+        lightbox
+    );
+
+
+    tournamentMatchGraphicLightbox =
+        lightbox;
+
+    tournamentMatchGraphicLightboxImage =
+        lightbox.querySelector(
+            ".tournament-match-graphic-lightbox-image"
+        );
+
+}
+
+
+
+function openTournamentMatchGraphicLightbox(
+    frame
+) {
+
+    const image =
+        frame?.querySelector(
+            "img"
+        );
+
+
+    if (
+        !image
+        ||
+        !image.src
+    ) {
+        return;
+    }
+
+
+    ensureTournamentMatchGraphicLightbox();
+
+
+    tournamentMatchGraphicLightboxTrigger =
+        frame;
+
+
+    tournamentMatchGraphicLightboxImage.src =
+        image.currentSrc
+        ||
+        image.src;
+
+
+    tournamentMatchGraphicLightboxImage.alt =
+        image.alt
+        ||
+        "Tournament match graphic";
+
+
+    tournamentMatchGraphicLightbox.hidden =
+        false;
+
+
+    document.body.classList.add(
+        "tournament-lightbox-open"
+    );
+
+
+    tournamentMatchGraphicLightbox
+        .querySelector(
+            ".tournament-match-graphic-lightbox-close"
+        )
+        ?.focus();
+
+}
+
+
+
+function closeTournamentMatchGraphicLightbox() {
+
+    if (
+        !tournamentMatchGraphicLightbox
+        ||
+        tournamentMatchGraphicLightbox.hidden
+    ) {
+        return;
+    }
+
+
+    tournamentMatchGraphicLightbox.hidden =
+        true;
+
+
+    document.body.classList.remove(
+        "tournament-lightbox-open"
+    );
+
+
+    if (
+        tournamentMatchGraphicLightboxImage
+    ) {
+
+        tournamentMatchGraphicLightboxImage
+            .removeAttribute(
+                "src"
+            );
+
+        tournamentMatchGraphicLightboxImage.alt =
+            "";
+
+    }
+
+
+    tournamentMatchGraphicLightboxTrigger
+        ?.focus();
+
+
+    tournamentMatchGraphicLightboxTrigger =
+        null;
+
+}
+
+
+
+document.addEventListener(
+    "click",
+    event => {
+
+        if (
+            !(event.target instanceof Element)
+        ) {
+            return;
+        }
+
+
+        const graphicFrame =
+            event.target.closest(
+                ".tournament-broadcast-match-graphic-frame"
+            );
+
+
+        if (
+            graphicFrame
+        ) {
+
+            openTournamentMatchGraphicLightbox(
+                graphicFrame
+            );
+
+            return;
+
+        }
+
+
+        if (
+            event.target.closest(
+                ".tournament-match-graphic-lightbox-close"
+            )
+            ||
+            event.target.closest(
+                ".tournament-match-graphic-lightbox-backdrop"
+            )
+        ) {
+
+            closeTournamentMatchGraphicLightbox();
+
+        }
+
+    }
+);
+
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key ===
+                "Escape"
+        ) {
+
+            closeTournamentMatchGraphicLightbox();
+
+            return;
+
+        }
+
+
+        if (
+            event.key !==
+                "Enter"
+            &&
+            event.key !==
+                " "
+        ) {
+            return;
+        }
+
+
+        if (
+            !(event.target instanceof Element)
+        ) {
+            return;
+        }
+
+
+        const graphicFrame =
+            event.target.closest(
+                ".tournament-broadcast-match-graphic-frame"
+            );
+
+
+        if (
+            !graphicFrame
+        ) {
+            return;
+        }
+
+
+        event.preventDefault();
+
+
+        openTournamentMatchGraphicLightbox(
+            graphicFrame
+        );
+
+    }
+);
+
 
 
 loadTournamentPage();
