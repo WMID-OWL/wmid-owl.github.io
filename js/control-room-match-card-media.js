@@ -868,22 +868,113 @@
         return null;
     }
 
-    function destinationFor(source) {
-        const eventId =
-            cleanText(
-                source?.match?.eventId
-            );
+        function getMatchCardStorageTarget(
+        source
+    ) {
 
         const matchId =
             cleanText(
                 source?.match?.id
             );
 
-        if (!eventId || !matchId) {
-            return "";
+        if (
+            !matchId
+        ) {
+            return null;
         }
 
-        return `assets/images/match-cards/${eventId}/${matchId}.webp`;
+
+        if (
+            source?.sourceType ===
+                "tournament"
+        ) {
+
+            const tournamentId =
+                cleanText(
+                    source.tournamentId
+                );
+
+            const bracketId =
+                cleanText(
+                    source.bracketId
+                );
+
+
+            if (
+                !tournamentId
+                ||
+                !bracketId
+            ) {
+                return null;
+            }
+
+
+            return {
+
+                folders: [
+                    "images",
+                    "match-cards",
+                    "tournaments",
+                    tournamentId,
+                    bracketId
+                ],
+
+                fileName:
+                    `${matchId}.webp`,
+
+                publicPath:
+                    `assets/images/match-cards/tournaments/${tournamentId}/${bracketId}/${matchId}.webp`
+
+            };
+
+        }
+
+
+        const eventId =
+            cleanText(
+                source?.match?.eventId
+            );
+
+
+        if (
+            !eventId
+        ) {
+            return null;
+        }
+
+
+        return {
+
+            folders: [
+                "images",
+                "match-cards",
+                eventId
+            ],
+
+            fileName:
+                `${matchId}.webp`,
+
+            publicPath:
+                `assets/images/match-cards/${eventId}/${matchId}.webp`
+
+        };
+
+    }
+
+
+
+    function destinationFor(
+        source
+    ) {
+
+        return (
+            getMatchCardStorageTarget(
+                source
+            )?.publicPath
+            ||
+            ""
+        );
+
     }
 
     function detectOrientation(
@@ -1899,11 +1990,17 @@
                     : "—"
             );
 
-        if (
+                if (
             graphic?.src
         ) {
 
             showExistingGraphic();
+
+        }
+
+        else {
+
+            updatePreviewReadout();
 
         }
 
@@ -2154,14 +2251,23 @@
                     }
                 );
 
+                const storageTarget =
+            getMatchCardStorageTarget(
+                source
+            );
+
+        if (
+            !storageTarget
+        ) {
+            throw new Error(
+                "The match-card destination could not be determined."
+            );
+        }
+
         const destinationDirectory =
             await getDirectoryPath(
                 assetsDirectory,
-                [
-                    "images",
-                    "match-cards",
-                    source.match.eventId
-                ],
+                storageTarget.folders,
                 {
                     create:
                         true
@@ -2171,7 +2277,7 @@
         const fileHandle =
             await destinationDirectory
                 .getFileHandle(
-                    `${source.match.id}.webp`,
+                    storageTarget.fileName,
                     {
                         create:
                             true
@@ -2276,19 +2382,28 @@
                     "assets"
                 );
 
+                const storageTarget =
+            getMatchCardStorageTarget(
+                source
+            );
+
+        if (
+            !storageTarget
+        ) {
+            throw new Error(
+                "The match-card destination could not be determined."
+            );
+        }
+
         const destinationDirectory =
             await getDirectoryPath(
                 assetsDirectory,
-                [
-                    "images",
-                    "match-cards",
-                    source.match.eventId
-                ]
+                storageTarget.folders
             );
 
         await destinationDirectory
             .removeEntry(
-                `${source.match.id}.webp`
+                storageTarget.fileName
             );
     }
 
