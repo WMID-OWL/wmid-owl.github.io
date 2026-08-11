@@ -1078,8 +1078,7 @@ function renderTournamentBroadcastMatchList(
                         }
 
 
-                        const matchup =
-
+                                                const matchup =
                             getTournamentBroadcastMatchupLabel(
                                 bracket,
                                 matchRecord.match,
@@ -1088,8 +1087,73 @@ function renderTournamentBroadcastMatchList(
                             );
 
 
-                        return `
+                        const graphic =
+                            matchRecord.match?.matchGraphic;
 
+
+                        const graphicSrc =
+                            typeof graphic ===
+                                "string"
+
+                                ? graphic.trim()
+
+                                : String(
+                                    graphic?.src || ""
+                                ).trim();
+
+
+                        const storedOrientation =
+                            String(
+                                graphic?.orientation || ""
+                            )
+                                .trim()
+                                .toLowerCase();
+
+
+                        const graphicOrientation =
+                            [
+                                "portrait",
+                                "landscape",
+                                "square"
+                            ].includes(
+                                storedOrientation
+                            )
+
+                                ? storedOrientation
+
+                                : "square";
+
+
+                        const graphicMarkup =
+                            graphicSrc
+
+                                ? `
+                                    <div
+                                        class="tournament-broadcast-match-graphic"
+                                    >
+                                        <div
+                                            class="tournament-broadcast-match-graphic-frame"
+                                            data-orientation="${escapeTournamentPageText(
+                                                graphicOrientation
+                                            )}"
+                                        >
+                                            <img
+                                                src="${escapeTournamentPageText(
+                                                    graphicSrc
+                                                )}"
+                                                alt="${escapeTournamentPageText(
+                                                    `${matchup} match graphic`
+                                                )}"
+                                                loading="lazy"
+                                            >
+                                        </div>
+                                    </div>
+                                `
+
+                                : "";
+
+
+                        return `
                             <div
                                 class="tournament-broadcast-match"
                                 data-bracket-id="${escapeTournamentPageText(
@@ -1100,11 +1164,9 @@ function renderTournamentBroadcastMatchList(
                                 )}"
                             >
 
-
                                 <span class="tournament-broadcast-match-number">
                                     MATCH ${index + 1}
                                 </span>
-
 
                                 <span class="tournament-broadcast-match-bracket">
                                     ${escapeTournamentPageText(
@@ -1112,16 +1174,15 @@ function renderTournamentBroadcastMatchList(
                                     )}
                                 </span>
 
-
                                 <strong class="tournament-broadcast-match-matchup">
                                     ${escapeTournamentPageText(
                                         matchup
                                     )}
                                 </strong>
 
+                                ${graphicMarkup}
 
                             </div>
-
                         `;
 
                     }
