@@ -1341,6 +1341,35 @@ text-transform:
         #89928f;
 
 }
+.tournament-broadcast-watch {
+
+    color:
+        #e5c77e;
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+    text-decoration:
+        none;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.tournament-broadcast-watch:hover {
+
+    color:
+        #f5f4ef;
+
+}
 
 .tournament-broadcast-empty {
 
