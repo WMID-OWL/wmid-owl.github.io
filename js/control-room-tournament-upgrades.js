@@ -4292,9 +4292,24 @@
             "cr-tournament-broadcast-description"
         );
 
-    const tournamentBroadcastPreview =
+        const tournamentBroadcastPreview =
         document.getElementById(
             "cr-tournament-broadcast-preview"
+        );
+
+    const tournamentBroadcastChangeList =
+        document.getElementById(
+            "cr-tournament-broadcast-change-list"
+        );
+
+    const tournamentBroadcastError =
+        document.getElementById(
+            "cr-tournament-broadcast-error"
+        );
+
+    const tournamentBroadcastMessage =
+        document.getElementById(
+            "cr-tournament-broadcast-message"
         );
 
     const tournamentBroadcastSaveButton =
@@ -4538,7 +4553,575 @@
     }
 
 
+    function getTournamentBroadcastDraft() {
 
+        return {
+            title:
+                tournamentBroadcastTitle.value.trim(),
+
+            status:
+                tournamentBroadcastStatus.value,
+
+            youtube:
+                tournamentBroadcastYoutube.value.trim(),
+
+            description:
+                tournamentBroadcastDescription.value.trim()
+        };
+
+    }
+
+
+
+    function validateTournamentBroadcastDraft(
+        draft
+    ) {
+
+        if (
+            !draft.title
+        ) {
+            return "Public title is required.";
+        }
+
+
+        if (
+            !draft.description
+        ) {
+            return "Public description is required.";
+        }
+
+
+        if (
+            draft.youtube
+        ) {
+
+            try {
+
+                const url =
+                    new URL(
+                        draft.youtube
+                    );
+
+
+                const hostname =
+                    url.hostname
+                        .toLowerCase()
+                        .replace(
+                            /^www\./,
+                            ""
+                        );
+
+
+                const allowedHosts =
+                    new Set([
+                        "youtube.com",
+                        "m.youtube.com",
+                        "youtu.be"
+                    ]);
+
+
+                if (
+                    !allowedHosts.has(
+                        hostname
+                    )
+                ) {
+                    return "YouTube URL must use youtube.com or youtu.be.";
+                }
+
+            }
+
+            catch (
+                error
+            ) {
+                return "Enter a valid YouTube URL.";
+            }
+
+        }
+
+
+        return "";
+
+    }
+
+
+
+    function getTournamentBroadcastChanges(
+        broadcast,
+        draft
+    ) {
+
+        const changes =
+            [];
+
+
+        if (
+            String(
+                broadcast.title || ""
+            ) !==
+            draft.title
+        ) {
+            changes.push({
+                label:
+                    "Public Title",
+
+                before:
+                    broadcast.title || "—",
+
+                after:
+                    draft.title || "—"
+            });
+        }
+
+
+        if (
+            String(
+                broadcast.status || "Upcoming"
+            ) !==
+            draft.status
+        ) {
+            changes.push({
+                label:
+                    "Status",
+
+                before:
+                    broadcast.status || "Upcoming",
+
+                after:
+                    draft.status
+            });
+        }
+
+
+        if (
+            String(
+                broadcast.youtube || ""
+            ) !==
+            draft.youtube
+        ) {
+            changes.push({
+                label:
+                    "YouTube URL",
+
+                before:
+                    broadcast.youtube || "Not Set",
+
+                after:
+                    draft.youtube || "Not Set"
+            });
+        }
+
+
+        if (
+            String(
+                broadcast.description || ""
+            ) !==
+            draft.description
+        ) {
+            changes.push({
+                label:
+                    "Public Description",
+
+                before:
+                    broadcast.description || "—",
+
+                after:
+                    draft.description || "—"
+            });
+        }
+
+
+        return changes;
+
+    }
+
+
+
+    function renderTournamentBroadcastPreview() {
+
+        const broadcast =
+            getSelectedTournamentBroadcast();
+
+
+        if (
+            !broadcast
+        ) {
+
+            tournamentBroadcastPreview.hidden =
+                true;
+
+            tournamentBroadcastSaveButton.disabled =
+                true;
+
+            return;
+
+        }
+
+
+        const draft =
+            getTournamentBroadcastDraft();
+
+
+        const validationError =
+            validateTournamentBroadcastDraft(
+                draft
+            );
+
+
+        const changes =
+            getTournamentBroadcastChanges(
+                broadcast,
+                draft
+            );
+
+
+        tournamentBroadcastChangeList.innerHTML =
+            "";
+
+
+        tournamentBroadcastError.hidden =
+            true;
+
+        tournamentBroadcastError.textContent =
+            "";
+
+
+        if (
+            validationError
+        ) {
+
+            tournamentBroadcastPreview.hidden =
+                false;
+
+            tournamentBroadcastError.textContent =
+                validationError;
+
+            tournamentBroadcastError.hidden =
+                false;
+
+            tournamentBroadcastSaveButton.disabled =
+                true;
+
+            return;
+
+        }
+
+
+        if (
+            changes.length ===
+                0
+        ) {
+
+            tournamentBroadcastPreview.hidden =
+                true;
+
+            tournamentBroadcastSaveButton.disabled =
+                true;
+
+            return;
+
+        }
+
+
+        changes.forEach(
+            change => {
+
+                const row =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                row.className =
+                    "cr-editor-change-row";
+
+
+                const label =
+                    document.createElement(
+                        "strong"
+                    );
+
+
+                label.textContent =
+                    change.label;
+
+
+                const value =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                value.textContent =
+                    `${change.before} → ${change.after}`;
+
+
+                row.append(
+                    label,
+                    value
+                );
+
+
+                tournamentBroadcastChangeList.appendChild(
+                    row
+                );
+
+            }
+        );
+
+
+        tournamentBroadcastPreview.hidden =
+            false;
+
+        tournamentBroadcastSaveButton.disabled =
+            false;
+
+    }
+
+
+
+    function setTournamentBroadcastMessage(
+        message,
+        type = "success"
+    ) {
+
+        tournamentBroadcastMessage.textContent =
+            message;
+
+
+        tournamentBroadcastMessage.className =
+            `cr-save-message ${
+                type === "error"
+                    ? "save-error"
+                    : "save-success"
+            }`;
+
+
+        tournamentBroadcastMessage.hidden =
+            false;
+
+    }
+
+
+
+    async function saveTournamentBroadcastChanges() {
+
+        const tournament =
+            getSelectedBroadcastTournament();
+
+
+        const broadcast =
+            getSelectedTournamentBroadcast();
+
+
+        if (
+            !tournament
+            ||
+            !broadcast
+        ) {
+
+            setTournamentBroadcastMessage(
+                "Select a tournament broadcast first.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const draft =
+            getTournamentBroadcastDraft();
+
+
+        const validationError =
+            validateTournamentBroadcastDraft(
+                draft
+            );
+
+
+        if (
+            validationError
+        ) {
+
+            setTournamentBroadcastMessage(
+                validationError,
+                "error"
+            );
+
+            renderTournamentBroadcastPreview();
+
+            return;
+
+        }
+
+
+        const tournamentDatabase =
+            owlControlRoomData.tournaments;
+
+
+        if (
+            !tournamentDatabase
+            ||
+            Array.isArray(
+                tournamentDatabase
+            )
+            ||
+            !Array.isArray(
+                tournamentDatabase.tournaments
+            )
+        ) {
+
+            setTournamentBroadcastMessage(
+                "The tournament database is not available.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const selectedTournamentId =
+            tournament.id;
+
+
+        const selectedBroadcastId =
+            broadcast.id;
+
+
+        const updatedTournamentDatabase = {
+
+            ...tournamentDatabase,
+
+            tournaments:
+                tournamentDatabase.tournaments.map(
+                    storedTournament => {
+
+                        if (
+                            storedTournament.id !==
+                                selectedTournamentId
+                        ) {
+                            return storedTournament;
+                        }
+
+
+                        return {
+
+                            ...storedTournament,
+
+                            broadcasts:
+                                Array.isArray(
+                                    storedTournament.broadcasts
+                                )
+
+                                    ? storedTournament.broadcasts.map(
+                                        storedBroadcast => {
+
+                                            if (
+                                                storedBroadcast.id !==
+                                                    selectedBroadcastId
+                                            ) {
+                                                return storedBroadcast;
+                                            }
+
+
+                                            return {
+
+                                                ...storedBroadcast,
+
+                                                title:
+                                                    draft.title,
+
+                                                status:
+                                                    draft.status,
+
+                                                youtube:
+                                                    draft.youtube,
+
+                                                description:
+                                                    draft.description
+
+                                            };
+
+                                        }
+                                    )
+
+                                    : []
+
+                        };
+
+                    }
+                )
+
+        };
+
+
+        tournamentBroadcastSaveButton.disabled =
+            true;
+
+
+        setTournamentBroadcastMessage(
+            "Saving broadcast changes..."
+        );
+
+
+        try {
+
+            await writeTournamentDatabase(
+                updatedTournamentDatabase
+            );
+
+
+            await loadRepositoryData(
+                owlRepositoryHandle
+            );
+
+
+            tournamentBroadcastTournament.value =
+                selectedTournamentId;
+
+
+            populateTournamentBroadcastSelector();
+
+
+            tournamentBroadcastSelect.value =
+                selectedBroadcastId;
+
+
+            loadTournamentBroadcastEditor();
+
+
+            setTournamentBroadcastMessage(
+                "Broadcast changes saved successfully."
+            );
+
+        }
+
+
+        catch (
+            error
+        ) {
+
+            console.error(
+                "Could not save tournament broadcast:",
+                error
+            );
+
+
+            setTournamentBroadcastMessage(
+                error.message
+                ||
+                "The broadcast changes could not be saved.",
+                "error"
+            );
+
+
+            renderTournamentBroadcastPreview();
+
+        }
+
+    }
+    
     function initializeTournamentBroadcastManager() {
 
         if (
@@ -4626,7 +5209,33 @@
         "change",
         loadTournamentBroadcastEditor
     );
+    [
+        tournamentBroadcastTitle,
+        tournamentBroadcastStatus,
+        tournamentBroadcastYoutube,
+        tournamentBroadcastDescription
+    ].forEach(
+        field => {
 
+            field?.addEventListener(
+                "input",
+                renderTournamentBroadcastPreview
+            );
+
+            field?.addEventListener(
+                "change",
+                renderTournamentBroadcastPreview
+            );
+
+        }
+    );
+
+
+
+    tournamentBroadcastSaveButton?.addEventListener(
+        "click",
+        saveTournamentBroadcastChanges
+    );
 
 
     window.addEventListener(
