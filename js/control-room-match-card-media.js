@@ -2604,9 +2604,8 @@
                 "event";
         }
 
-        handleMatchSourceChange();
+                handleMatchSourceChange();
 
-    }
     }
 
     mediaTypeSelect.addEventListener(
