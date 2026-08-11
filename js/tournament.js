@@ -1593,9 +1593,11 @@ function renderTournamentPage(
     );
 
 
-    renderTournamentBroadcasts(
-        tournament
-    );
+   renderTournamentBroadcasts(
+    tournament,
+    wrestlers,
+    teams
+);
 
 
     tournamentLoading.hidden =
