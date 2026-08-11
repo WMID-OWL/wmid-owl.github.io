@@ -2060,23 +2060,21 @@
 
         }
 
-        /*
-         * Tournament saving is intentionally
-         * disabled until 319C-3C.
-         */
-
-        fileInput.disabled =
-            true;
+               fileInput.disabled =
+            !selectedSource;
 
         layoutSelect.disabled =
-            true;
+            !selectedSource;
+
+        layoutSelect.value =
+            "auto";
 
         removeButton.disabled =
-            true;
+            !graphic?.src;
 
         setStatus(
             selectedSource
-                ? "TOURNAMENT MATCH READY"
+                ? "SELECT IMAGE"
                 : "SELECT MATCH"
         );
 
@@ -2613,18 +2611,90 @@
             );
     }
 
-    async function reloadAndRestore(
-        eventId,
-        matchId
+        async function reloadAndRestore(
+        source
     ) {
+
+        const sourceType =
+            source?.sourceType ===
+                "tournament"
+                ? "tournament"
+                : "event";
+
+        const eventId =
+            cleanText(
+                source?.match?.eventId
+            );
+
+        const matchId =
+            cleanText(
+                source?.match?.id
+            );
+
+        const tournamentId =
+            cleanText(
+                source?.tournamentId
+            );
+
+        const broadcastId =
+            cleanText(
+                source?.broadcastId
+            );
+
+        const bracketId =
+            cleanText(
+                source?.bracketId
+            );
+
+
         await loadRepositoryData(
             owlRepositoryHandle
         );
 
+
         mediaTypeSelect.value =
             MATCH_CARD_TYPE;
 
+        sourceSelect.value =
+            sourceType;
+
         activateWorkflow();
+
+
+        if (
+            sourceType ===
+                "tournament"
+        ) {
+
+            sourceSelect.value =
+                "tournament";
+
+            handleMatchSourceChange();
+
+            tournamentSelect.value =
+                tournamentId;
+
+            populateBroadcastSelector();
+
+            broadcastSelect.value =
+                broadcastId;
+
+            populateTournamentMatches();
+
+            tournamentMatchSelect.value =
+                `${bracketId}::${matchId}`;
+
+            handleTournamentMatchChange();
+
+            return;
+
+        }
+
+
+        sourceSelect.value =
+            "event";
+
+        handleMatchSourceChange();
 
         eventSelect.value =
             eventId;
@@ -2637,6 +2707,7 @@
             matchId;
 
         handleMatchChange();
+
     }
 
     async function saveGraphic() {
@@ -2663,12 +2734,9 @@
         const source =
             selectedSource;
 
-        const eventId =
-            source.match.eventId;
-
-        const matchId =
+                const matchId =
             source.match.id;
-
+        
         const path =
             destinationFor(source);
 
@@ -2727,13 +2795,15 @@
                 }
             );
 
-            await reloadAndRestore(
-                eventId,
-                matchId
+                       await reloadAndRestore(
+                source
             );
 
             showMessage(
-                `Match ${source.match.order || "—"} graphic was optimized, saved, and attached to ${matchId}.`
+                source?.sourceType ===
+                    "tournament"
+                    ? `Tournament match graphic was optimized, saved, and attached to ${matchId}.`
+                    : `Match ${source.match.order || "—"} graphic was optimized, saved, and attached to ${matchId}.`
             );
 
             setStatus("SAVED");
@@ -2812,10 +2882,7 @@
         const source =
             selectedSource;
 
-        const eventId =
-            source.match.eventId;
-
-        const matchId =
+                const matchId =
             source.match.id;
 
         try {
@@ -2849,13 +2916,15 @@
                 }
             }
 
-            await reloadAndRestore(
-                eventId,
-                matchId
+                        await reloadAndRestore(
+                source
             );
 
             showMessage(
-                `The match-card graphic was removed from ${matchId}.${fileWarning}`
+                source?.sourceType ===
+                    "tournament"
+                    ? `The tournament match graphic was removed from ${matchId}.${fileWarning}`
+                    : `The match-card graphic was removed from ${matchId}.${fileWarning}`
             );
 
             setStatus("REMOVED");
