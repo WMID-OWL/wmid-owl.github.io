@@ -44,6 +44,8 @@
         source: byId("cr-trophy-source"),
         description: byId("cr-trophy-description"),
         image: byId("cr-trophy-image"),
+        artworkFile: byId("cr-trophy-artwork-file"),
+        artworkDestination: byId("cr-trophy-artwork-destination"),
         link: byId("cr-trophy-link"),
         visibility: byId("cr-trophy-visibility"),
         featured: byId("cr-trophy-featured"),
