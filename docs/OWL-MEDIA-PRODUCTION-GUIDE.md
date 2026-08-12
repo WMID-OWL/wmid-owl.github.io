@@ -643,6 +643,19 @@ The following subjects belong in a future OWL Website and Control Room Operation
 
 ## 10. Revision Log
 
+### August 12, 2026
+
+Updated the OWL After Dark production standards to reflect the completed Live Broadcast Graphics system.
+
+Documented:
+
+- Standalone After Dark lower-third ticker
+- Continuous-crawl presentation as the approved active format
+- Independence between ticker publishing and episode records
+- Separate Control Room review, publish, and delete actions
+- Desktop and mobile broadcast presentation
+- Current production status of the completed ticker system
+
 ### August 3, 2026
 
 Synchronized the production guide with the completed Match Card Graphics system and current OWL Media priorities.
