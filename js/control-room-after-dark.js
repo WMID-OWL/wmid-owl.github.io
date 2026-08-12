@@ -256,15 +256,8 @@ function afterDarkTickerDraft() {
 
     return {
 
-        mode:
-
-            afterDarkTickerEls
-                .mode
-                ?.value === "flip"
-
-                ? "flip"
-
-                : "crawl",
+                mode:
+            "crawl",
 
         items
 
@@ -544,14 +537,10 @@ async function afterDarkTickerLoad() {
             );
 
 
-        afterDarkTickerEls
+               afterDarkTickerEls
             .mode
             .value =
-
-                ticker.mode === "flip"
-                    ? "flip"
-                    : "crawl";
-
+                "crawl";
 
         afterDarkTickerEls
             .items
