@@ -477,6 +477,180 @@ afterDarkTickerRenderPreview();
 
 
 // =================================
+// TICKER PUBLISH
+// =================================
+
+
+async function afterDarkTickerPublish() {
+
+
+    const draft =
+        afterDarkTickerDraft();
+
+
+    if (
+        !draft.items.length
+    ) {
+
+        afterDarkTickerRenderPreview();
+
+        return;
+
+    }
+
+
+    afterDarkTickerEls
+        .publishButton
+        .disabled =
+            true;
+
+
+    afterDarkTickerEls
+        .message
+        .hidden =
+            true;
+
+
+    afterDarkTickerEls
+        .error
+        .hidden =
+            true;
+
+
+    try {
+
+
+        const hasPermission =
+            await afterDarkPublisherEnsureWritePermission();
+
+
+        if (
+            !hasPermission
+        ) {
+
+            throw new Error(
+                "Write permission was not granted."
+            );
+
+        }
+
+
+        const dataDirectory =
+            await owlRepositoryHandle
+                .getDirectoryHandle(
+                    "data",
+                    {
+                        create:
+                            true
+                    }
+                );
+
+
+        const afterDarkDirectory =
+            await dataDirectory
+                .getDirectoryHandle(
+                    "after-dark",
+                    {
+                        create:
+                            true
+                    }
+                );
+
+
+        await afterDarkPublisherWriteJson(
+
+            afterDarkDirectory,
+
+            "ticker.json",
+
+            {
+                version:
+                    1,
+
+                mode:
+                    draft.mode,
+
+                items:
+                    draft.items,
+
+                updatedAt:
+                    new Date()
+                        .toISOString()
+            }
+
+        );
+
+
+        afterDarkTickerEls
+            .message
+            .textContent =
+                "After Dark ticker published. Review data/after-dark/ticker.json in GitHub Desktop before committing.";
+
+
+        afterDarkTickerEls
+            .message
+            .className =
+                "cr-save-message save-success";
+
+
+        afterDarkTickerEls
+            .message
+            .hidden =
+                false;
+
+
+        afterDarkTickerEls
+            .deleteButton
+            .disabled =
+                false;
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        console.error(
+            "Could not publish After Dark ticker:",
+            error
+        );
+
+
+        afterDarkTickerEls
+            .error
+            .textContent =
+                error.message
+                ||
+                "After Dark ticker could not be published.";
+
+
+        afterDarkTickerEls
+            .error
+            .hidden =
+                false;
+
+    }
+
+
+    afterDarkTickerEls
+        .publishButton
+        .disabled =
+            !draft.items.length;
+
+}
+
+
+afterDarkTickerEls
+    .publishButton
+    ?.addEventListener(
+        "click",
+        afterDarkTickerPublish
+    );
+
+
+// =================================
 // STATE
 // =================================
 
