@@ -230,7 +230,7 @@
                 canvas
             );
 
-        return {
+                return {
             blob,
 
             meta: {
@@ -243,6 +243,127 @@
             }
         };
     }
+
+    async function handleTrophyArtworkFileChange() {
+        clearMessage();
+
+        const file =
+            els.artworkFile?.files?.[0]
+            ||
+            null;
+
+        pendingArtworkBlob =
+            null;
+
+        pendingArtworkMeta =
+            null;
+
+        if (!file) {
+            if (els.artworkDestination) {
+                els.artworkDestination.textContent =
+                    "assets/images/trophy-room/";
+            }
+
+            setStatus("READY");
+            return;
+        }
+
+        const allowedTypes =
+            new Set([
+                "image/png",
+                "image/jpeg",
+                "image/webp"
+            ]);
+
+        if (
+            !allowedTypes.has(
+                file.type
+            )
+        ) {
+            els.artworkFile.value =
+                "";
+
+            if (els.artworkDestination) {
+                els.artworkDestination.textContent =
+                    "assets/images/trophy-room/";
+            }
+
+            setMessage(
+                "Select a PNG, JPG, or WebP image for Trophy Room artwork.",
+                "error"
+            );
+
+            setStatus("READY");
+            return;
+        }
+
+        setStatus(
+            "OPTIMIZING ARTWORK"
+        );
+
+        try {
+            const result =
+                await optimizeTrophyArtwork(
+                    file
+                );
+
+            pendingArtworkBlob =
+                result.blob;
+
+            pendingArtworkMeta =
+                result.meta;
+
+            const value =
+                draft();
+
+            const destination =
+                `assets/images/trophy-room/${value.id}.webp`;
+
+            if (els.artworkDestination) {
+                els.artworkDestination.textContent =
+                    destination;
+            }
+
+            setStatus(
+                "ARTWORK READY"
+            );
+        }
+
+        catch (error) {
+            console.error(
+                "Could not optimize Trophy Room artwork:",
+                error
+            );
+
+            pendingArtworkBlob =
+                null;
+
+            pendingArtworkMeta =
+                null;
+
+            els.artworkFile.value =
+                "";
+
+            if (els.artworkDestination) {
+                els.artworkDestination.textContent =
+                    "assets/images/trophy-room/";
+            }
+
+            setMessage(
+                error.message
+                ||
+                "The selected Trophy Room artwork could not be optimized.",
+                "error"
+            );
+
+            setStatus("READY");
+        }
+    }
+
+    els.artworkFile?.addEventListener(
+        "change",
+        handleTrophyArtworkFileChange
+    );
 
     function database() {
         const value = owlControlRoomData?.careerAchievements;
@@ -790,9 +911,117 @@
         els.save.disabled = true;
         setStatus("SAVING");
 
-        try {
+                try {
             const current = database();
             const now = new Date().toISOString();
+
+            if (pendingArtworkBlob) {
+                if (
+                    typeof owlRepositoryHandle === "undefined"
+                    ||
+                    !owlRepositoryHandle
+                ) {
+                    throw new Error(
+                        "Connect the OWL repository before saving Trophy Room artwork."
+                    );
+                }
+
+                const options = {
+                    mode: "readwrite"
+                };
+
+                let permission =
+                    await owlRepositoryHandle
+                        .queryPermission(
+                            options
+                        );
+
+                if (
+                    permission !==
+                    "granted"
+                ) {
+                    permission =
+                        await owlRepositoryHandle
+                            .requestPermission(
+                                options
+                            );
+                }
+
+                if (
+                    permission !==
+                    "granted"
+                ) {
+                    throw new Error(
+                        "Repository write permission was not granted."
+                    );
+                }
+
+                const assetsDirectory =
+                    await owlRepositoryHandle
+                        .getDirectoryHandle(
+                            "assets",
+                            {
+                                create: true
+                            }
+                        );
+
+                const imagesDirectory =
+                    await assetsDirectory
+                        .getDirectoryHandle(
+                            "images",
+                            {
+                                create: true
+                            }
+                        );
+
+                const trophyRoomDirectory =
+                    await imagesDirectory
+                        .getDirectoryHandle(
+                            "trophy-room",
+                            {
+                                create: true
+                            }
+                        );
+
+                const artworkFileName =
+                    `${value.id}.webp`;
+
+                const artworkFileHandle =
+                    await trophyRoomDirectory
+                        .getFileHandle(
+                            artworkFileName,
+                            {
+                                create: true
+                            }
+                        );
+
+                const artworkWritable =
+                    await artworkFileHandle
+                        .createWritable();
+
+                try {
+                    await artworkWritable.write(
+                        pendingArtworkBlob
+                    );
+
+                    await artworkWritable.close();
+                }
+
+                catch (error) {
+                    try {
+                        await artworkWritable.abort();
+                    }
+
+                    catch {
+                        // No additional action required.
+                    }
+
+                    throw error;
+                }
+
+                value.image =
+                    `assets/images/trophy-room/${artworkFileName}`;
+            }
 
             const achievement = {
                 ...existing,
