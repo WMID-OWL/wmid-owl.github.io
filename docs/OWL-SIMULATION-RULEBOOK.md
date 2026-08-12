@@ -59,13 +59,13 @@ Any future exception must be documented in this rulebook.
 Every active OWL wrestler begins at:
 
 ```text
-180 points
+160 points
 ```
 
 A wrestler’s permanent base rating may never fall below:
 
 ```text
-180 points
+160 points
 ```
 
 OWL does not use permanent negative rating penalties that reduce a wrestler below the company baseline.
@@ -87,9 +87,9 @@ while holding the championship.
 Example:
 
 ```text
-Permanent rating: 184
+Permanent rating: 164
 Championship bonus: +20
-Active champion rating: 204
+Active champion rating: 184
 ```
 
 When the championship is lost, the temporary `+20` bonus is removed.
@@ -1380,7 +1380,7 @@ Initial rulebook created.
 Documented:
 
 - Fire Pro simulation settings
-- 180-point rating baseline
+- 160-point rating baseline
 - Temporary championship bonus
 - Permanent progression categories
 - Successful-defense retention
