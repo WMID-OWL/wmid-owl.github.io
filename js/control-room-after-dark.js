@@ -227,6 +227,256 @@ const afterDarkTickerEls = {
 
 
 // =================================
+// TICKER DRAFT
+// =================================
+
+
+function afterDarkTickerDraft() {
+
+
+    const items =
+
+        String(
+            afterDarkTickerEls
+                .items
+                ?.value
+
+            ||
+            ""
+        )
+            .split("\n")
+            .map(
+                item =>
+                    item.trim()
+            )
+            .filter(
+                Boolean
+            );
+
+
+    return {
+
+        mode:
+
+            afterDarkTickerEls
+                .mode
+                ?.value === "flip"
+
+                ? "flip"
+
+                : "crawl",
+
+        items
+
+    };
+
+}
+
+
+// =================================
+// TICKER REVIEW ROW
+// =================================
+
+
+function afterDarkTickerAppendReviewRow(
+    label,
+    value
+) {
+
+
+    const row =
+
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "cr-editor-change-row";
+
+
+    const labelElement =
+
+        document.createElement(
+            "strong"
+        );
+
+
+    labelElement.textContent =
+        label;
+
+
+    const valueElement =
+
+        document.createElement(
+            "span"
+        );
+
+
+    valueElement.textContent =
+        value || "—";
+
+
+    row.append(
+        labelElement,
+        valueElement
+    );
+
+
+    afterDarkTickerEls
+        .review
+        .appendChild(
+            row
+        );
+
+}
+
+
+// =================================
+// TICKER REVIEW
+// =================================
+
+
+function afterDarkTickerRenderPreview() {
+
+
+    const draft =
+        afterDarkTickerDraft();
+
+
+    afterDarkTickerEls
+        .review
+        .innerHTML =
+            "";
+
+
+    if (
+        !draft.items.length
+    ) {
+
+
+        afterDarkTickerEls
+            .preview
+            .hidden =
+                true;
+
+
+        afterDarkTickerEls
+            .publishButton
+            .disabled =
+                true;
+
+
+        return;
+
+    }
+
+
+    afterDarkTickerAppendReviewRow(
+
+        "MODE",
+
+        draft.mode === "flip"
+            ? "Headline Flip"
+            : "Continuous Crawl"
+
+    );
+
+
+    afterDarkTickerAppendReviewRow(
+
+        "ITEM COUNT",
+
+        `${draft.items.length} item${
+            draft.items.length === 1
+                ? ""
+                : "s"
+        }`
+
+    );
+
+
+    draft.items.forEach(
+        (
+            item,
+            index
+        ) => {
+
+
+            afterDarkTickerAppendReviewRow(
+
+                `ITEM ${index + 1}`,
+
+                item
+
+            );
+
+        }
+    );
+
+
+    afterDarkTickerEls
+        .preview
+        .hidden =
+            false;
+
+
+    afterDarkTickerEls
+        .publishButton
+        .disabled =
+            false;
+
+}
+
+
+// =================================
+// TICKER LISTENERS
+// =================================
+
+
+function afterDarkTickerInstallListeners() {
+
+
+    [
+        afterDarkTickerEls.mode,
+        afterDarkTickerEls.items
+    ]
+        .filter(
+            Boolean
+        )
+        .forEach(
+            field => {
+
+
+                field.addEventListener(
+
+                    "input",
+
+                    afterDarkTickerRenderPreview
+
+                );
+
+
+                field.addEventListener(
+
+                    "change",
+
+                    afterDarkTickerRenderPreview
+
+                );
+
+            }
+        );
+
+}
+
+
+afterDarkTickerInstallListeners();
+
+afterDarkTickerRenderPreview();
+
+
+// =================================
 // STATE
 // =================================
 
