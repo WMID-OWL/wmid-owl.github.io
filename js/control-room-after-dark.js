@@ -477,6 +477,188 @@ afterDarkTickerRenderPreview();
 
 
 // =================================
+// TICKER LOAD
+// =================================
+
+
+async function afterDarkTickerLoad() {
+
+
+    if (
+        !owlRepositoryHandle
+    ) {
+
+        return;
+
+    }
+
+
+    afterDarkTickerEls
+        .message
+        .hidden =
+            true;
+
+
+    afterDarkTickerEls
+        .error
+        .hidden =
+            true;
+
+
+    try {
+
+
+        const dataDirectory =
+            await owlRepositoryHandle
+                .getDirectoryHandle(
+                    "data"
+                );
+
+
+        const afterDarkDirectory =
+            await dataDirectory
+                .getDirectoryHandle(
+                    "after-dark"
+                );
+
+
+        const tickerHandle =
+            await afterDarkDirectory
+                .getFileHandle(
+                    "ticker.json"
+                );
+
+
+        const file =
+            await tickerHandle
+                .getFile();
+
+
+        const text =
+            await file.text();
+
+
+        const ticker =
+            JSON.parse(
+                text
+            );
+
+
+        afterDarkTickerEls
+            .mode
+            .value =
+
+                ticker.mode === "flip"
+                    ? "flip"
+                    : "crawl";
+
+
+        afterDarkTickerEls
+            .items
+            .value =
+
+                Array.isArray(
+                    ticker.items
+                )
+
+                    ? ticker.items
+                        .map(
+                            item =>
+                                String(
+                                    item || ""
+                                )
+                                    .trim()
+                        )
+                        .filter(
+                            Boolean
+                        )
+                        .join("\n")
+
+                    : "";
+
+
+        afterDarkTickerRenderPreview();
+
+
+        afterDarkTickerEls
+            .deleteButton
+            .disabled =
+                false;
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        if (
+            error?.name ===
+            "NotFoundError"
+        ) {
+
+
+            afterDarkTickerEls
+                .mode
+                .value =
+                    "crawl";
+
+
+            afterDarkTickerEls
+                .items
+                .value =
+                    "";
+
+
+            afterDarkTickerRenderPreview();
+
+
+            afterDarkTickerEls
+                .deleteButton
+                .disabled =
+                    true;
+
+
+            return;
+
+        }
+
+
+        console.error(
+            "Could not load After Dark ticker:",
+            error
+        );
+
+
+        afterDarkTickerEls
+            .error
+            .textContent =
+                error.message
+                ||
+                "Existing After Dark ticker could not be loaded.";
+
+
+        afterDarkTickerEls
+            .error
+            .hidden =
+                false;
+
+    }
+
+}
+
+
+window.addEventListener(
+
+    "owl-control-room-data-loaded",
+
+    afterDarkTickerLoad
+
+);
+
+
+// =================================
 // TICKER PUBLISH
 // =================================
 
