@@ -1132,9 +1132,60 @@
                     )
             };
 
-            await writeDatabase(
+                        await writeDatabase(
                 updated
             );
+
+            let artworkCleanupFailed =
+                false;
+
+            const managedArtworkPath =
+                `assets/images/trophy-room/${existing.id}.webp`;
+
+            if (
+                existing.image ===
+                managedArtworkPath
+            ) {
+                try {
+                    const assetsDirectory =
+                        await owlRepositoryHandle
+                            .getDirectoryHandle(
+                                "assets"
+                            );
+
+                    const imagesDirectory =
+                        await assetsDirectory
+                            .getDirectoryHandle(
+                                "images"
+                            );
+
+                    const trophyRoomDirectory =
+                        await imagesDirectory
+                            .getDirectoryHandle(
+                                "trophy-room"
+                            );
+
+                    await trophyRoomDirectory
+                        .removeEntry(
+                            `${existing.id}.webp`
+                        );
+                }
+
+                catch (error) {
+                    if (
+                        error?.name !==
+                        "NotFoundError"
+                    ) {
+                        artworkCleanupFailed =
+                            true;
+
+                        console.warn(
+                            "Trophy Room achievement was deleted, but its managed artwork could not be removed:",
+                            error
+                        );
+                    }
+                }
+            }
 
             owlControlRoomData.careerAchievements =
                 updated;
@@ -1146,7 +1197,9 @@
             );
 
             setMessage(
-                `${existing.title} was removed from the Trophy Room.`
+                artworkCleanupFailed
+                    ? `${existing.title} was removed from the Trophy Room, but its artwork file could not be removed.`
+                    : `${existing.title} was removed from the Trophy Room.`
             );
 
             els.existing.value = "";
