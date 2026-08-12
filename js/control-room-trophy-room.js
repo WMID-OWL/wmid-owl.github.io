@@ -4,8 +4,9 @@
 // =================================
 
 (() => {
-    const CATEGORIES = {
+        const CATEGORIES = {
         "video-game-cover": "Video Game Cover",
+        "action-figure": "Action Figure",
         "movie-role": "Movie Role",
         "television-role": "Television Role",
         "documentary": "Documentary",
