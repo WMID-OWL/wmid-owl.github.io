@@ -675,6 +675,75 @@ function installOwlOfficialSocialLinks() {
 installOwlOfficialSocialLinks();
 
 // =================================
+// OWL TROPHY ROOM NAVIGATION
+// =================================
+
+function installTrophyRoomNavigation() {
+    const navigationBars =
+        document.querySelectorAll(
+            ".site-nav, .landscape-main-nav"
+        );
+
+    navigationBars.forEach(
+        navigationBar => {
+            const existingLink =
+                navigationBar.querySelector(
+                    'a[href="trophy-room.html"]'
+                );
+
+            if (existingLink) {
+                return;
+            }
+
+            const trophyRoomLink =
+                document.createElement(
+                    "a"
+                );
+
+            trophyRoomLink.href =
+                "trophy-room.html";
+
+            trophyRoomLink.textContent =
+                "TROPHY ROOM";
+
+            const currentPage =
+                window.location.pathname
+                    .split("/")
+                    .pop();
+
+            if (
+                currentPage ===
+                "trophy-room.html"
+            ) {
+                trophyRoomLink.classList.add(
+                    "active"
+                );
+            }
+
+            const cagematchLink =
+                navigationBar.querySelector(
+                    'a[href="records.html"]'
+                );
+
+            if (cagematchLink) {
+                navigationBar.insertBefore(
+                    trophyRoomLink,
+                    cagematchLink
+                );
+            }
+
+            else {
+                navigationBar.appendChild(
+                    trophyRoomLink
+                );
+            }
+        }
+    );
+}
+
+installTrophyRoomNavigation();
+
+// =================================
 // OWL GLOBAL MOBILE NAVIGATION
 // =================================
 
