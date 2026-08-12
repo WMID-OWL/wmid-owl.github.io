@@ -47,10 +47,24 @@ const afterDarkPublisherEls = {
         ),
 
 
-    deck:
+        deck:
 
         document.getElementById(
             "cr-after-dark-deck"
+        ),
+
+
+    tickerMode:
+
+        document.getElementById(
+            "cr-after-dark-ticker-mode"
+        ),
+
+
+    tickerItems:
+
+        document.getElementById(
+            "cr-after-dark-ticker-items"
         ),
 
 
