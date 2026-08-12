@@ -1044,52 +1044,89 @@
     }
 
 }
-.trophy-room-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 520px);
-    gap: 48px;
-    align-items: center;
-}
+/* =================================
+   TROPHY ROOM HERO DISPLAY
+================================= */
 
-.trophy-room-hero-copy {
-    position: relative;
-    z-index: 2;
-}
+.trophy-room-hero::after {
 
-.trophy-room-hero-visual {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 420px;
-}
+    content:
+        "";
 
-.trophy-room-hero-visual img {
-    display: block;
-    width: 100%;
-    max-width: 520px;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.45));
-}
+    position:
+        absolute;
 
-/* optional: remove the old empty decorative diamond if your CSS made one with a pseudo-element */
-.trophy-room-hero::after,
-.trophy-room-hero::before {
-    content: none;
-}
+    top:
+        50%;
 
-@media (max-width: 980px) {
-    .trophy-room-hero {
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
+    right:
+        max(
+            2.5rem,
+            calc(
+                (
+                    100vw - 1200px
+                ) / 2
+            )
+        );
 
-    .trophy-room-hero-visual {
-        min-height: auto;
-    }
+    width:
+        min(
+            430px,
+            38vw
+        );
 
-    .trophy-room-hero-visual img {
-        max-width: 100%;
-    }
+    aspect-ratio:
+        1;
+
+    background-color:
+        #080a0b;
+
+    background-image:
+        url("../assets/images/trophy-room/trophy-room-hero.png");
+
+    background-repeat:
+        no-repeat;
+
+    background-size:
+        220% auto;
+
+    background-position:
+        100% 58%;
+
+    border:
+        1px solid
+        rgba(
+            198,
+            161,
+            91,
+            0.28
+        );
+
+    clip-path:
+        polygon(
+            50% 0,
+            100% 50%,
+            50% 100%,
+            0 50%
+        );
+
+    transform:
+        translateY(-50%);
+
+    filter:
+        drop-shadow(
+            0
+            20px
+            45px
+            rgba(
+                0,
+                0,
+                0,
+                0.55
+            )
+        );
+
+    pointer-events:
+        none;
+
 }
