@@ -1088,7 +1088,12 @@ function renderRoundShell(
 
                                 return `
 
-                                    <article class="${matchClassName}">
+                                                                        <article
+                                        class="${matchClassName}"
+                                        data-bracket-match-id="${escapeTournamentBracketText(
+                                            match.id || ""
+                                        )}"
+                                    >
 
                                         <div class="tournament-round-match-meta">
 
@@ -1265,9 +1270,463 @@ function renderRoundShell(
 
             }
 
-        ).join("");
+                ).join("");
 
 }
+
+
+function renderTournamentBracketConnectors(
+    bracket
+) {
+
+
+    const roundGrid =
+
+        document.getElementById(
+            "tournament-round-grid"
+        );
+
+
+    const bracketSetup =
+
+        getSavedTournamentBracketSetup(
+            bracket
+        );
+
+
+    const oldConnectorLayer =
+
+        roundGrid.querySelector(
+            ".tournament-bracket-connectors"
+        );
+
+
+    if (
+        oldConnectorLayer
+    ) {
+
+        oldConnectorLayer.remove();
+
+    }
+
+
+    if (
+        !bracketSetup.generated
+
+        ||
+
+        !Array.isArray(
+            bracketSetup.rounds
+        )
+
+        ||
+
+        bracketSetup.rounds.length < 2
+    ) {
+
+        return;
+
+    }
+
+
+    window.requestAnimationFrame(
+
+        () => {
+
+
+            const matchElements =
+
+                new Map(
+
+                    Array.from(
+
+                        roundGrid.querySelectorAll(
+                            "[data-bracket-match-id]"
+                        )
+
+                    ).map(
+
+                        element => [
+
+                            element.dataset
+                                .bracketMatchId,
+
+                            element
+
+                        ]
+
+                    )
+
+                );
+
+
+            if (
+                matchElements.size === 0
+            ) {
+
+                return;
+
+            }
+
+
+            const gridRectangle =
+
+                roundGrid.getBoundingClientRect();
+
+
+            const svg =
+
+                document.createElementNS(
+
+                    "http://www.w3.org/2000/svg",
+
+                    "svg"
+
+                );
+
+
+            svg.classList.add(
+                "tournament-bracket-connectors"
+            );
+
+
+            svg.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            svg.setAttribute(
+
+                "width",
+
+                Math.ceil(
+                    roundGrid.scrollWidth
+                )
+
+            );
+
+
+            svg.setAttribute(
+
+                "height",
+
+                Math.ceil(
+                    roundGrid.scrollHeight
+                )
+
+            );
+
+
+            svg.style.position =
+                "absolute";
+
+            svg.style.inset =
+                "0";
+
+            svg.style.width =
+                `${roundGrid.scrollWidth}px`;
+
+            svg.style.height =
+                `${roundGrid.scrollHeight}px`;
+
+            svg.style.overflow =
+                "visible";
+
+            svg.style.pointerEvents =
+                "none";
+
+            svg.style.zIndex =
+                "0";
+
+
+            roundGrid.style.position =
+                "relative";
+
+
+            bracketSetup.rounds.forEach(
+
+                (
+                    round,
+                    roundIndex
+                ) => {
+
+
+                    if (
+                        roundIndex === 0
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const matches =
+
+                        Array.isArray(
+                            round.matches
+                        )
+
+                            ? round.matches
+
+                            : [];
+
+
+                    matches.forEach(
+
+                        match => {
+
+
+                            const targetElement =
+
+                                matchElements.get(
+                                    match.id
+                                );
+
+
+                            if (
+                                !targetElement
+                            ) {
+
+                                return;
+
+                            }
+
+
+                            const targetNode =
+
+                                targetElement.querySelector(
+                                    ".tournament-bracket-entrant-list"
+                                )
+
+                                ||
+
+                                targetElement;
+
+
+                            const targetRectangle =
+
+                                targetNode
+                                    .getBoundingClientRect();
+
+
+                            const sourceIds = [
+
+                                match.sourceOneMatchId,
+
+                                match.sourceTwoMatchId
+
+                            ].filter(
+                                Boolean
+                            );
+
+
+                            sourceIds.forEach(
+
+                                sourceId => {
+
+
+                                    const sourceElement =
+
+                                        matchElements.get(
+                                            sourceId
+                                        );
+
+
+                                    if (
+                                        !sourceElement
+                                    ) {
+
+                                        return;
+
+                                    }
+
+
+                                    const sourceNode =
+
+                                        sourceElement.querySelector(
+                                            ".tournament-bracket-entrant-list"
+                                        )
+
+                                        ||
+
+                                        sourceElement;
+
+
+                                    const sourceRectangle =
+
+                                        sourceNode
+                                            .getBoundingClientRect();
+
+
+                                    const startX =
+
+                                        sourceRectangle.right
+
+                                        -
+
+                                        gridRectangle.left;
+
+
+                                    const startY =
+
+                                        sourceRectangle.top
+
+                                        -
+
+                                        gridRectangle.top
+
+                                        +
+
+                                        (
+                                            sourceRectangle.height
+                                            /
+                                            2
+                                        );
+
+
+                                    const endX =
+
+                                        targetRectangle.left
+
+                                        -
+
+                                        gridRectangle.left;
+
+
+                                    const endY =
+
+                                        targetRectangle.top
+
+                                        -
+
+                                        gridRectangle.top
+
+                                        +
+
+                                        (
+                                            targetRectangle.height
+                                            /
+                                            2
+                                        );
+
+
+                                    const elbowX =
+
+                                        startX
+
+                                        +
+
+                                        (
+                                            endX
+                                            -
+                                            startX
+                                        )
+                                        /
+                                        2;
+
+
+                                    const glowPath =
+
+                                        document.createElementNS(
+
+                                            "http://www.w3.org/2000/svg",
+
+                                            "path"
+
+                                        );
+
+
+                                    glowPath.setAttribute(
+
+                                        "d",
+
+                                        `M ${startX} ${startY} H ${elbowX} V ${endY} H ${endX}`
+
+                                    );
+
+
+                                    glowPath.style.fill =
+                                        "none";
+
+                                    glowPath.style.stroke =
+                                        "rgba(201, 164, 92, 0.10)";
+
+                                    glowPath.style.strokeWidth =
+                                        "5";
+
+                                    glowPath.style.strokeLinejoin =
+                                        "round";
+
+
+                                    const connectorPath =
+
+                                        document.createElementNS(
+
+                                            "http://www.w3.org/2000/svg",
+
+                                            "path"
+
+                                        );
+
+
+                                    connectorPath.setAttribute(
+
+                                        "d",
+
+                                        `M ${startX} ${startY} H ${elbowX} V ${endY} H ${endX}`
+
+                                    );
+
+
+                                    connectorPath.style.fill =
+                                        "none";
+
+                                    connectorPath.style.stroke =
+                                        "rgba(229, 199, 126, 0.58)";
+
+                                    connectorPath.style.strokeWidth =
+                                        "1.5";
+
+                                    connectorPath.style.strokeLinejoin =
+                                        "round";
+
+                                    connectorPath.style.strokeLinecap =
+                                        "square";
+
+
+                                    svg.appendChild(
+                                        glowPath
+                                    );
+
+
+                                    svg.appendChild(
+                                        connectorPath
+                                    );
+
+                                }
+
+                            );
+
+                        }
+
+                    );
+
+                }
+
+            );
+
+
+            roundGrid.prepend(
+                svg
+            );
+
+        }
+
+    );
+
+}
+
 
 function renderTournamentBracketWinner(
     bracket,
@@ -1530,13 +1989,38 @@ document.getElementById(
     );
 
 
-            renderRoundShell(
+                        renderRoundShell(
 
         bracket,
 
         wrestlers,
 
         teams
+
+    );
+
+
+    renderTournamentBracketConnectors(
+        bracket
+    );
+
+
+    window.addEventListener(
+
+        "resize",
+
+        () => {
+
+            renderTournamentBracketConnectors(
+                bracket
+            );
+
+        },
+
+        {
+            passive:
+                true
+        }
 
     );
 
