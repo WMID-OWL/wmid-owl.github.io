@@ -1105,12 +1105,12 @@
             return;
         }
 
-        const approved = window.confirm(
+                const approved = window.confirm(
             `Delete this Trophy Room achievement?\n\n` +
             `${existing.recipientName}\n${existing.title}\n\n` +
-            "This removes it from the wrestler profile and future Trophy Room page."
+            "This removes it from the wrestler profile and company-wide Trophy Room."
         );
-
+            
         if (!approved) {
             return;
         }
