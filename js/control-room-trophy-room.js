@@ -62,7 +62,187 @@
         return;
     }
 
-    let busy = false;
+        let busy = false;
+
+    let pendingArtworkBlob = null;
+    let pendingArtworkMeta = null;
+
+    const TROPHY_ARTWORK_MAX_EDGE = 1600;
+    const TROPHY_ARTWORK_QUALITY = 0.9;
+
+    function loadTrophyArtworkImage(file) {
+        return new Promise(
+            (resolve, reject) => {
+                const objectUrl =
+                    URL.createObjectURL(file);
+
+                const image =
+                    new Image();
+
+                image.onload =
+                    () => {
+                        URL.revokeObjectURL(
+                            objectUrl
+                        );
+
+                        resolve(image);
+                    };
+
+                image.onerror =
+                    () => {
+                        URL.revokeObjectURL(
+                            objectUrl
+                        );
+
+                        reject(
+                            new Error(
+                                "The selected Trophy Room artwork could not be decoded."
+                            )
+                        );
+                    };
+
+                image.src =
+                    objectUrl;
+            }
+        );
+    }
+
+    function canvasToTrophyArtworkBlob(
+        canvas
+    ) {
+        return new Promise(
+            (resolve, reject) => {
+                canvas.toBlob(
+                    blob => {
+                        if (!blob) {
+                            reject(
+                                new Error(
+                                    "The browser could not create the Trophy Room WebP image."
+                                )
+                            );
+
+                            return;
+                        }
+
+                        resolve(blob);
+                    },
+                    "image/webp",
+                    TROPHY_ARTWORK_QUALITY
+                );
+            }
+        );
+    }
+
+    async function optimizeTrophyArtwork(
+        file
+    ) {
+        const image =
+            await loadTrophyArtworkImage(
+                file
+            );
+
+        const originalWidth =
+            Number(
+                image.naturalWidth || 0
+            );
+
+        const originalHeight =
+            Number(
+                image.naturalHeight || 0
+            );
+
+        if (
+            !originalWidth ||
+            !originalHeight
+        ) {
+            throw new Error(
+                "The selected Trophy Room artwork does not have valid dimensions."
+            );
+        }
+
+        const scale =
+            Math.min(
+                1,
+                TROPHY_ARTWORK_MAX_EDGE /
+                    Math.max(
+                        originalWidth,
+                        originalHeight
+                    )
+            );
+
+        const width =
+            Math.max(
+                1,
+                Math.round(
+                    originalWidth * scale
+                )
+            );
+
+        const height =
+            Math.max(
+                1,
+                Math.round(
+                    originalHeight * scale
+                )
+            );
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+        canvas.width =
+            width;
+
+        canvas.height =
+            height;
+
+        const context =
+            canvas.getContext(
+                "2d",
+                {
+                    alpha: true
+                }
+            );
+
+        if (!context) {
+            throw new Error(
+                "The browser could not prepare the Trophy Room image processor."
+            );
+        }
+
+        context.imageSmoothingEnabled =
+            true;
+
+        context.imageSmoothingQuality =
+            "high";
+
+        context.drawImage(
+            image,
+            0,
+            0,
+            width,
+            height
+        );
+
+        const blob =
+            await canvasToTrophyArtworkBlob(
+                canvas
+            );
+
+        return {
+            blob,
+
+            meta: {
+                originalWidth,
+                originalHeight,
+                width,
+                height,
+                bytes:
+                    blob.size
+            }
+        };
+    }
 
     function database() {
         const value = owlControlRoomData?.careerAchievements;
