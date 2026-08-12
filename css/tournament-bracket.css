@@ -1395,7 +1395,7 @@
         grid;
 
     grid-template-columns:
-        34px
+        56px
         minmax(
             0,
             1fr
@@ -1405,7 +1405,7 @@
         center;
 
     min-height:
-        38px;
+        44px;
 
     background:
         rgba(
