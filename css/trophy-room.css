@@ -501,7 +501,7 @@
         100%;
 
     object-fit:
-        cover;
+        contain;
 
 }
 
