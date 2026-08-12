@@ -40,10 +40,24 @@ const afterDarkEls = {
         ),
 
 
-    emptyArchive:
+        emptyArchive:
 
         document.getElementById(
             "after-dark-empty-archive"
+        ),
+
+
+    ticker:
+
+        document.getElementById(
+            "after-dark-ticker"
+        ),
+
+
+    tickerTrack:
+
+        document.getElementById(
+            "after-dark-ticker-track"
         )
 
 };
@@ -982,6 +996,260 @@ function afterDarkRenderArchive(
 
 
 // =================================
+// TICKER
+// =================================
+
+
+async function afterDarkLoadTicker() {
+
+
+    if (
+        !afterDarkEls.ticker
+
+        ||
+
+        !afterDarkEls.tickerTrack
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+
+        const response =
+
+            await fetch(
+
+                "data/after-dark/ticker.json",
+
+                {
+                    cache:
+                        "no-store"
+                }
+
+            );
+
+
+        if (
+            !response.ok
+        ) {
+
+            return;
+
+        }
+
+
+        const ticker =
+            await response.json();
+
+
+        const items =
+
+            afterDarkArray(
+                ticker.items
+            )
+                .map(
+                    item =>
+                        String(
+                            item || ""
+                        )
+                            .trim()
+                )
+                .filter(
+                    Boolean
+                );
+
+
+        if (
+            !items.length
+        ) {
+
+            return;
+
+        }
+
+
+        afterDarkEls
+            .ticker
+            .classList
+            .remove(
+                "is-crawl",
+                "is-flip"
+            );
+
+
+        afterDarkEls
+            .tickerTrack
+            .innerHTML =
+                "";
+
+
+        if (
+            ticker.mode === "flip"
+        ) {
+
+
+            afterDarkEls
+                .ticker
+                .classList
+                .add(
+                    "is-flip"
+                );
+
+
+            let activeIndex =
+                0;
+
+
+            const renderHeadline =
+                () => {
+
+
+                    afterDarkEls
+                        .tickerTrack
+                        .innerHTML = `
+
+                            <span class="after-dark-ticker-item">
+
+                                ${afterDarkEscape(
+                                    items[
+                                        activeIndex
+                                    ]
+                                )}
+
+                            </span>
+
+                        `;
+
+                };
+
+
+            renderHeadline();
+
+
+            if (
+                items.length > 1
+            ) {
+
+
+                window.setInterval(
+
+                    () => {
+
+
+                        activeIndex =
+                            (
+                                activeIndex + 1
+                            )
+                            %
+                            items.length;
+
+
+                        renderHeadline();
+
+                    },
+
+                    4500
+
+                );
+
+            }
+
+        }
+
+
+        else {
+
+
+            afterDarkEls
+                .ticker
+                .classList
+                .add(
+                    "is-crawl"
+                );
+
+
+            afterDarkEls
+                .tickerTrack
+                .innerHTML =
+
+                    items
+                        .map(
+                            item => `
+
+                                <span class="after-dark-ticker-item">
+
+                                    ${afterDarkEscape(
+                                        item
+                                    )}
+
+                                </span>
+
+                            `
+                        )
+                        .join(
+                            ""
+                        );
+
+
+            const totalCharacters =
+
+                items
+                    .join(
+                        " "
+                    )
+                    .length;
+
+
+            const duration =
+
+                Math.max(
+                    22,
+                    Math.min(
+                        70,
+                        totalCharacters * 0.16
+                    )
+                );
+
+
+            afterDarkEls
+                .ticker
+                .style
+                .setProperty(
+                    "--after-dark-ticker-duration",
+                    `${duration}s`
+                );
+
+        }
+
+
+        afterDarkEls
+            .ticker
+            .hidden =
+                false;
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        afterDarkEls
+            .ticker
+            .hidden =
+                true;
+
+    }
+
+}
+
+
+// =================================
 // LOAD
 // =================================
 
@@ -1140,5 +1408,7 @@ async function afterDarkLoad() {
 // START
 // =================================
 
+
+afterDarkLoadTicker();
 
 afterDarkLoad();
