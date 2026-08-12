@@ -1054,7 +1054,18 @@ A Custom Pool Draw must preserve:
 - Canon or Test Mode
 - Confirmation status when applicable
 
-### Canon Mode
+### New Beginnings Brand Refresh
+
+When a Fate’s Wheel Remorse outcome causes a roster firing, the resulting vacancy may be filled through the New Beginnings Invitational.
+
+Once the resulting new hire or hires are finalized, OWL enters a mandatory Brand Refresh.
+
+The Brand Refresh consists of exactly:
+
+```text
+2 wrestlers moving from Ascension to Revolt
+2 wrestlers moving from Revolt to Ascension
+4 total brand changes
 
 Canon Mode creates a pending official result.
 
