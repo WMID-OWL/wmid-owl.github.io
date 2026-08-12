@@ -1,7 +1,7 @@
 # OWL Media Production Guide
 
 **Status:** Active internal production guide  
-**Last revised:** August 3, 2026  
+**Last revised:** August 12, 2026  
 **Applies to:** OWL match presentation, commentary, audio production, event graphics, OWL Media programming, and platform publishing
 
 ---
