@@ -7613,7 +7613,7 @@ main .section .eyebrow {
         relative;
 
     min-height:
-        500px;
+        420px;
 
     border-right:
         1px solid
@@ -7679,10 +7679,7 @@ main .section .eyebrow {
 .home-event-feature .event-art img {
 
     position:
-        absolute;
-
-    inset:
-        0;
+        relative;
 
     z-index:
         1;
@@ -7727,9 +7724,9 @@ main .section .eyebrow {
 
     padding:
         clamp(
-            2.75rem,
+            2rem,
             5vw,
-            5rem
+            4rem
         );
 
 }
@@ -7811,11 +7808,11 @@ main .section .eyebrow {
         Arial,
         sans-serif;
 
-    font-size:
+        font-size:
         clamp(
-            2.3rem,
-            5vw,
-            4.6rem
+            2rem,
+            4vw,
+            3.4rem
         );
 
     line-height:
