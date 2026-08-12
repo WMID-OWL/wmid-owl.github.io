@@ -1087,11 +1087,11 @@
     background-repeat:
         no-repeat;
 
-    background-size:
-        220% auto;
+        background-size:
+        cover;
 
     background-position:
-        100% 58%;
+        center center;
 
     border:
         1px solid
