@@ -1305,7 +1305,18 @@ Fixed database totals must not be written into this rulebook because the number 
 
 ## 40. Revision Log
 
-### August 3, 2026
+### August 12, 2026
+
+Changed OWL’s universal wrestler rating baseline from 180 points to 160 points.
+
+The 160-point baseline is now both:
+
+- The starting rating for every active OWL wrestler
+- The permanent minimum base rating before temporary bonuses
+
+Championship bonuses and permanent progression rules remain unchanged.
+
+### August 1, 2026
 
 Synchronized the Simulation Rulebook with the completed Control Room and Generator implementation.
 
