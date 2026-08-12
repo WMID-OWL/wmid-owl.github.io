@@ -9302,64 +9302,137 @@ crResultsWinnerSide.addEventListener(
                 : [];
 
 
-        const isSinglesMatch =
+        if (
+            crResultsWinnerSide.value === ""
+        ) {
 
-            sides.length === 2
 
-            &&
+            const participantIds =
 
-            sides.every(
+                crResultsGetMatchParticipantIds();
 
-                side =>
 
-                    Array.isArray(
-                        side.wrestlers
-                    )
+            crResultsPopulateWrestlerSelect(
 
-                    &&
+                crResultsFinishWinner,
 
-                    side.wrestlers.length === 1
+                participantIds
 
             );
 
 
-        if (
-            isSinglesMatch
+            crResultsPopulateWrestlerSelect(
 
-            &&
+                crResultsFinishLoser,
 
-            crResultsWinnerSide.value !== ""
-        ) {
+                participantIds
+
+            );
 
 
-            const winningSideIndex =
+            crResultsReviewResult();
 
-                Number(
-                    crResultsWinnerSide.value
+
+            return;
+
+        }
+
+
+        const winningSideIndex =
+
+            Number(
+                crResultsWinnerSide.value
+            );
+
+
+        const winningWrestlerIds =
+
+            Array.isArray(
+                sides[
+                    winningSideIndex
+                ]?.wrestlers
+            )
+
+                ? sides[
+                    winningSideIndex
+                ].wrestlers
+
+                : [];
+
+
+        const losingWrestlerIds =
+
+            sides
+                .filter(
+
+                    (
+                        side,
+                        sideIndex
+                    ) =>
+
+                        sideIndex !==
+                            winningSideIndex
+
+                )
+                .flatMap(
+
+                    side =>
+
+                        Array.isArray(
+                            side.wrestlers
+                        )
+
+                            ? side.wrestlers
+
+                            : []
+
                 );
 
 
-            const losingSideIndex =
+        crResultsPopulateWrestlerSelect(
 
-                winningSideIndex === 0
-                    ? 1
-                    : 0;
+            crResultsFinishWinner,
+
+            winningWrestlerIds
+
+        );
+
+
+        crResultsPopulateWrestlerSelect(
+
+            crResultsFinishLoser,
+
+            losingWrestlerIds
+
+        );
+
+
+        const isSinglesMatch =
+
+            winningWrestlerIds.length === 1
+
+            &&
+
+            losingWrestlerIds.length === 1
+
+            &&
+
+            sides.length === 2;
+
+
+        if (
+            isSinglesMatch
+        ) {
 
 
             crResultsFinishWinner.value =
 
-                sides[
-                    winningSideIndex
-                ]
-                    .wrestlers[0];
+                winningWrestlerIds[0];
 
 
             crResultsFinishLoser.value =
 
-                sides[
-                    losingSideIndex
-                ]
-                    .wrestlers[0];
+                losingWrestlerIds[0];
 
         }
 
@@ -9369,7 +9442,6 @@ crResultsWinnerSide.addEventListener(
     }
 
 );
-
 
 [
     crResultsFinishWinner,
