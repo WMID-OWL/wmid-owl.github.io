@@ -85,7 +85,18 @@ The written-content automation is complete.
 
 Final voice and video production may continue through the approved external production workflow.
 
-### Sunday Disservice
+### OWL After Dark Live Broadcast Graphics
+
+OWL After Dark includes a standalone lower-third ticker system for live broadcast presentation.
+
+The ticker is independent from individual After Dark episode records.
+
+It may exist, be edited, published, replaced, or deleted whether or not a manual After Dark episode record currently exists.
+
+The approved ticker presentation is:
+
+```text
+Continuous crawl
 
 The full title is:
 
