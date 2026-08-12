@@ -6,10 +6,13 @@
 (() => {
 
 
-    const CATEGORY_LABELS = {
+        const CATEGORY_LABELS = {
 
         "video-game-cover":
             "Video Game Cover",
+
+        "action-figure":
+            "Action Figure",
 
         "movie-role":
             "Movie Role",
