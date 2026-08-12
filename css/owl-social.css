@@ -7905,48 +7905,6 @@ h2.social-destination-logo-heading {
 }
 
 
-/* HEADLINE FLIP */
-
-
-.after-dark-ticker.is-flip
-.after-dark-ticker-viewport {
-
-    justify-content:
-        flex-start;
-
-}
-
-
-.after-dark-ticker.is-flip
-.after-dark-ticker-track {
-
-    width:
-        100%;
-
-    min-width:
-        0;
-
-}
-
-
-.after-dark-ticker.is-flip
-.after-dark-ticker-item {
-
-    width:
-        100%;
-
-}
-
-
-.after-dark-ticker.is-flip
-.after-dark-ticker-item::after {
-
-    display:
-        none;
-
-}
-
-
 /* MOBILE */
 
 
