@@ -47,24 +47,10 @@ const afterDarkPublisherEls = {
         ),
 
 
-        deck:
+            deck:
 
         document.getElementById(
             "cr-after-dark-deck"
-        ),
-
-
-    tickerMode:
-
-        document.getElementById(
-            "cr-after-dark-ticker-mode"
-        ),
-
-
-    tickerItems:
-
-        document.getElementById(
-            "cr-after-dark-ticker-items"
         ),
 
 
@@ -73,7 +59,6 @@ const afterDarkPublisherEls = {
         document.getElementById(
             "cr-after-dark-ascension-event"
         ),
-
 
     revoltEvent:
 
@@ -166,7 +151,7 @@ const afterDarkPublisherEls = {
         ),
 
 
-    message:
+        message:
 
         document.getElementById(
             "cr-after-dark-message"
@@ -174,6 +159,71 @@ const afterDarkPublisherEls = {
 
 };
 
+
+// =================================
+// AFTER DARK TICKER
+// =================================
+
+
+const afterDarkTickerEls = {
+
+
+    mode:
+
+        document.getElementById(
+            "cr-after-dark-ticker-mode"
+        ),
+
+
+    items:
+
+        document.getElementById(
+            "cr-after-dark-ticker-items"
+        ),
+
+
+    preview:
+
+        document.getElementById(
+            "cr-after-dark-ticker-preview"
+        ),
+
+
+    review:
+
+        document.getElementById(
+            "cr-after-dark-ticker-review"
+        ),
+
+
+    publishButton:
+
+        document.getElementById(
+            "cr-after-dark-ticker-publish"
+        ),
+
+
+    deleteButton:
+
+        document.getElementById(
+            "cr-after-dark-ticker-delete"
+        ),
+
+
+    message:
+
+        document.getElementById(
+            "cr-after-dark-ticker-message"
+        ),
+
+
+    error:
+
+        document.getElementById(
+            "cr-after-dark-ticker-error"
+        )
+
+};
 
 
 // =================================
