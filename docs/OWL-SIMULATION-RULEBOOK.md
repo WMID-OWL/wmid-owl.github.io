@@ -1412,7 +1412,7 @@ Initial rulebook created.
 Documented:
 
 - Fire Pro simulation settings
-- 160-point rating baseline
+- 180-point rating baseline
 - Temporary championship bonus
 - Permanent progression categories
 - Successful-defense retention
