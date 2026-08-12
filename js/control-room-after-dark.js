@@ -1545,7 +1545,7 @@ function afterDarkPublisherDraft() {
             "",
 
 
-                deck:
+                       deck:
 
             afterDarkPublisherEls
                 .deck
@@ -1555,37 +1555,6 @@ function afterDarkPublisherDraft() {
             ||
 
             "",
-
-
-        tickerMode:
-
-            afterDarkPublisherEls
-                .tickerMode
-                ?.value === "flip"
-
-                ? "flip"
-
-                : "crawl",
-
-
-        tickerItems:
-
-            String(
-                afterDarkPublisherEls
-                    .tickerItems
-                    ?.value
-
-                ||
-                ""
-            )
-                .split("\n")
-                .map(
-                    item =>
-                        item.trim()
-                )
-                .filter(
-                    Boolean
-                ),
 
 
         ascensionEvent,
@@ -1933,35 +1902,11 @@ function afterDarkPublisherRenderPreview() {
     );
 
 
-        afterDarkPublisherAppendReviewRow(
+            afterDarkPublisherAppendReviewRow(
 
         "AIR DATE",
 
         draft.label
-
-    );
-
-
-    afterDarkPublisherAppendReviewRow(
-
-        "TICKER MODE",
-
-        draft.tickerMode === "flip"
-            ? "Headline Flip"
-            : "Continuous Crawl"
-
-    );
-
-
-    afterDarkPublisherAppendReviewRow(
-
-        "TICKER ITEMS",
-
-        `${draft.tickerItems.length} item${
-            draft.tickerItems.length === 1
-                ? ""
-                : "s"
-        }`
 
     );
 
