@@ -878,32 +878,78 @@ function renderRoundShell(
                                     );
 
 
-                                const participantTwoLabel =
-
-                                    getTournamentBracketMatchSideLabel(
-
-                                        bracket,
-
-                                        match,
-
-                                        "participantTwoId",
-
-                                        "sourceTwoMatchId",
-
-                                        wrestlers,
-
-                                        teams
-
-                                    );
-
-
-                                                                const matchupLabel =
+                                                                const participantTwoLabel =
 
                                     match.isBye
 
-                                        ? `${participantOneLabel} — BYE`
+                                        ? "BYE"
 
-                                        : `${participantOneLabel} vs ${participantTwoLabel}`;
+                                        : getTournamentBracketMatchSideLabel(
+
+                                            bracket,
+
+                                            match,
+
+                                            "participantTwoId",
+
+                                            "sourceTwoMatchId",
+
+                                            wrestlers,
+
+                                            teams
+
+                                        );
+
+
+                                const participantOrder =
+
+                                    Array.isArray(
+                                        bracket.participants
+                                    )
+
+                                        ? bracket.participants
+
+                                        : [];
+
+
+                                const participantOneSeedIndex =
+
+                                    match.participantOneId
+
+                                        ? participantOrder.indexOf(
+                                            match.participantOneId
+                                        )
+
+                                        : -1;
+
+
+                                const participantTwoSeedIndex =
+
+                                    match.participantTwoId
+
+                                        ? participantOrder.indexOf(
+                                            match.participantTwoId
+                                        )
+
+                                        : -1;
+
+
+                                const participantOneSeed =
+
+                                    participantOneSeedIndex >= 0
+
+                                        ? participantOneSeedIndex + 1
+
+                                        : "";
+
+
+                                const participantTwoSeed =
+
+                                    participantTwoSeedIndex >= 0
+
+                                        ? participantTwoSeedIndex + 1
+
+                                        : "";
 
 
                                 const winnerLabel =
@@ -921,7 +967,7 @@ function renderRoundShell(
                                     );
 
 
-                                                                const isCompletedMatch =
+                                const isCompletedMatch =
 
                                     Boolean(
                                         winnerLabel
@@ -967,6 +1013,30 @@ function renderRoundShell(
 
                                     bracketSetup.winnerId ===
                                         match.winnerId;
+
+
+                                const participantOneIsWinner =
+
+                                    Boolean(
+                                        match.winnerId
+                                    )
+
+                                    &&
+
+                                    match.winnerId ===
+                                        match.participantOneId;
+
+
+                                const participantTwoIsWinner =
+
+                                    Boolean(
+                                        match.winnerId
+                                    )
+
+                                    &&
+
+                                    match.winnerId ===
+                                        match.participantTwoId;
 
 
                                 const matchNumber =
@@ -1016,85 +1086,123 @@ function renderRoundShell(
                                         );
 
 
-                                const resultPrefix =
-
-                                    match.isBye
-
-                                        ? "ADVANCES"
-
-                                        : isTournamentWinner
-
-                                            ? "TOURNAMENT WINNER"
-
-                                            : "WINNER";
-
-
-                                const resultName =
-
-                                    winnerLabel
-
-                                    ||
-
-                                    (
-
-                                        match.isBye
-
-                                            ? participantOneLabel
-
-                                            : ""
-
-                                    );
-
-
                                 return `
 
                                     <article class="${matchClassName}">
 
-                                        <span>
-                                            ${
-                                                                                                match.isBye
+                                        <div class="tournament-round-match-meta">
 
-                                                    ? "BYE"
+                                            <span>
 
-                                                    : isCompletedMatch
+                                                ${
+                                                    match.isBye
 
-                                                        ? `MATCH ${matchNumber} • COMPLETE`
+                                                        ? "AUTOMATIC ADVANCEMENT"
 
-                                                        : isBookedMatch
+                                                        : isCompletedMatch
 
-                                                            ? `MATCH ${matchNumber} • BOOKED`
+                                                            ? `MATCH ${matchNumber} • COMPLETE`
 
-                                                            : `MATCH ${matchNumber}`
-                                            }
-                                        </span>
+                                                            : isBookedMatch
 
-                                        <strong>
-                                            ${escapeTournamentBracketText(
-                                                matchupLabel
-                                            )}
-                                        </strong>
+                                                                ? `MATCH ${matchNumber} • BOOKED`
 
-                                        ${
-                                            resultName
+                                                                : `MATCH ${matchNumber}`
+                                                }
 
-                                                ? `
+                                            </span>
 
-                                                    <small class="tournament-round-match-result">
+                                        </div>
 
-                                                        ${escapeTournamentBracketText(
-                                                            resultPrefix
-                                                        )}:
 
-                                                        ${escapeTournamentBracketText(
-                                                            resultName
-                                                        )}
+                                        <div class="tournament-bracket-entrant-list">
 
-                                                    </small>
 
-                                                `
+                                            <div
+                                                class="tournament-bracket-entrant${
+                                                    participantOneIsWinner
 
-                                                : ""
-                                        }
+                                                        ||
+
+                                                    match.isBye
+
+                                                        ? " tournament-bracket-entrant-winner"
+
+                                                        : ""
+                                                }"
+                                            >
+
+                                                <span class="tournament-bracket-seed">
+
+                                                    ${
+                                                        participantOneSeed
+
+                                                            ? escapeTournamentBracketText(
+                                                                participantOneSeed
+                                                            )
+
+                                                            : "—"
+                                                    }
+
+                                                </span>
+
+                                                <strong>
+
+                                                    ${escapeTournamentBracketText(
+                                                        participantOneLabel
+                                                    )}
+
+                                                </strong>
+
+                                            </div>
+
+
+                                            <div
+                                                class="tournament-bracket-entrant${
+                                                    participantTwoIsWinner
+
+                                                        ? " tournament-bracket-entrant-winner"
+
+                                                        : ""
+                                                }${
+                                                    match.isBye
+
+                                                        ? " tournament-bracket-entrant-bye"
+
+                                                        : ""
+                                                }"
+                                            >
+
+                                                <span class="tournament-bracket-seed">
+
+                                                    ${
+                                                        match.isBye
+
+                                                            ? "—"
+
+                                                            : participantTwoSeed
+
+                                                                ? escapeTournamentBracketText(
+                                                                    participantTwoSeed
+                                                                )
+
+                                                                : "—"
+                                                    }
+
+                                                </span>
+
+                                                <strong>
+
+                                                    ${escapeTournamentBracketText(
+                                                        participantTwoLabel
+                                                    )}
+
+                                                </strong>
+
+                                            </div>
+
+
+                                        </div>
 
                                     </article>
 
