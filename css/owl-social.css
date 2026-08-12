@@ -7586,6 +7586,449 @@ h2.social-destination-logo-heading {
 
 
 /* =================================
+   AFTER DARK LOWER THIRD
+================================= */
+
+
+.after-dark-ticker {
+
+    position:
+        fixed;
+
+    z-index:
+        9998;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    bottom:
+        0;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        auto
+        minmax(
+            0,
+            1fr
+        );
+
+    min-height:
+        58px;
+
+    border-top:
+        1px solid
+        rgba(
+            213,
+            156,
+            255,
+            0.5
+        );
+
+    background:
+        #09090e;
+
+    box-shadow:
+
+        0
+        -10px
+        30px
+        rgba(
+            0,
+            0,
+            0,
+            0.42
+        );
+
+}
+
+
+.after-dark-ticker[hidden] {
+
+    display:
+        none;
+
+}
+
+
+.after-dark-ticker-bug {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    min-width:
+        205px;
+
+    padding:
+        0
+        22px;
+
+    border-right:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #7e35ac,
+            #3d1756
+        );
+
+    white-space:
+        nowrap;
+
+}
+
+
+.after-dark-ticker-bug span {
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    width:
+        32px;
+
+    height:
+        32px;
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.82
+        );
+
+    border-radius:
+        50%;
+
+    color:
+        #ffffff;
+
+    font-size:
+        0.66rem;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.04em;
+
+}
+
+
+.after-dark-ticker-bug strong {
+
+    color:
+        #ffffff;
+
+    font-size:
+        0.76rem;
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+.after-dark-ticker-viewport {
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    min-width:
+        0;
+
+    overflow:
+        hidden;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #111119,
+            #09090e
+        );
+
+}
+
+
+.after-dark-ticker-track {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    min-width:
+        max-content;
+
+    min-height:
+        58px;
+
+    color:
+        #f4f1f7;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.015em;
+
+    white-space:
+        nowrap;
+
+}
+
+
+.after-dark-ticker-item {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        18px;
+
+    padding:
+        0
+        30px;
+
+}
+
+
+.after-dark-ticker-item::after {
+
+    content:
+        "◆";
+
+    color:
+        #c98cff;
+
+    font-size:
+        0.46rem;
+
+}
+
+
+.after-dark-ticker-item:last-child::after {
+
+    display:
+        none;
+
+}
+
+
+/* CONTINUOUS CRAWL */
+
+
+.after-dark-ticker.is-crawl
+.after-dark-ticker-track {
+
+    padding-left:
+        100%;
+
+    animation:
+
+        afterDarkTickerCrawl
+        var(
+            --after-dark-ticker-duration,
+            34s
+        )
+        linear
+        infinite;
+
+}
+
+
+@keyframes afterDarkTickerCrawl {
+
+    from {
+
+        transform:
+            translateX(
+                0
+            );
+
+    }
+
+    to {
+
+        transform:
+            translateX(
+                -100%
+            );
+
+    }
+
+}
+
+
+/* HEADLINE FLIP */
+
+
+.after-dark-ticker.is-flip
+.after-dark-ticker-viewport {
+
+    justify-content:
+        flex-start;
+
+}
+
+
+.after-dark-ticker.is-flip
+.after-dark-ticker-track {
+
+    width:
+        100%;
+
+    min-width:
+        0;
+
+}
+
+
+.after-dark-ticker.is-flip
+.after-dark-ticker-item {
+
+    width:
+        100%;
+
+}
+
+
+.after-dark-ticker.is-flip
+.after-dark-ticker-item::after {
+
+    display:
+        none;
+
+}
+
+
+/* MOBILE */
+
+
+@media (
+    max-width:
+        700px
+) {
+
+
+    .after-dark-ticker {
+
+        min-height:
+            52px;
+
+        grid-template-columns:
+            auto
+            minmax(
+                0,
+                1fr
+            );
+
+    }
+
+
+    .after-dark-ticker-bug {
+
+        min-width:
+            0;
+
+        padding:
+            0
+            12px;
+
+    }
+
+
+    .after-dark-ticker-bug span {
+
+        width:
+            28px;
+
+        height:
+            28px;
+
+        font-size:
+            0.58rem;
+
+    }
+
+
+    .after-dark-ticker-bug strong {
+
+        display:
+            none;
+
+    }
+
+
+    .after-dark-ticker-track {
+
+        min-height:
+            52px;
+
+        font-size:
+            0.74rem;
+
+    }
+
+
+    .after-dark-ticker-item {
+
+        padding:
+            0
+            20px;
+
+    }
+
+}
+
+
+
+/* =================================
    MASTHEAD
 ================================= */
 
