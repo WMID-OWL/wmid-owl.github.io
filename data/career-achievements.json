@@ -1,4 +1,24 @@
 {
   "version": 1,
-  "achievements": []
+  "achievements": [
+    {
+      "recipientType": "wrestler",
+      "recipientId": "tavion-heights",
+      "recipientName": "A.J. Styles",
+      "category": "action-figure",
+      "categoryLabel": "Action Figure",
+      "title": "Maddel Select Series — Series 1",
+      "year": 2026,
+      "date": "",
+      "source": "Maddel Select Series",
+      "description": "Selected for the Maddel Select Series action figure collection.",
+      "image": "",
+      "link": "",
+      "visibility": "public",
+      "featured": false,
+      "id": "a-j-styles-maddel-select-series-series-1-2026",
+      "createdAt": "2026-08-12T03:18:06.130Z",
+      "updatedAt": "2026-08-12T03:18:06.130Z"
+    }
+  ]
 }
