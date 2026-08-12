@@ -6201,7 +6201,7 @@
 
                 <div class="cr-editor-form-grid">
 
-                    <div class="cr-form-group">
+                                        <div class="cr-form-group">
 
                         <label for="cr-trophy-image">
                             ARTWORK PATH — OPTIONAL
@@ -6211,8 +6211,48 @@
                             id="cr-trophy-image"
                             type="text"
                             autocomplete="off"
-                            placeholder="assets/images/trophy-room/example.png"
+                            placeholder="assets/images/trophy-room/example.webp"
                         >
+
+                        <small class="cr-field-help">
+                            Assigned automatically when Trophy Room artwork is uploaded.
+                            Existing repository paths may also be entered manually.
+                        </small>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-trophy-artwork-file">
+                            UPLOAD ARTWORK — OPTIONAL
+                        </label>
+
+                        <input
+                            id="cr-trophy-artwork-file"
+                            type="file"
+                            accept="image/png,image/jpeg,image/webp"
+                            disabled
+                        >
+
+                        <small class="cr-field-help">
+                            PNG, JPG, or WebP. Large artwork will be resized without cropping
+                            and stored as a website-ready WebP.
+                        </small>
+
+                    </div>
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            UPLOAD DESTINATION
+                        </label>
+
+                        <div
+                            id="cr-trophy-artwork-destination"
+                            class="cr-current-value"
+                        >
+                            assets/images/trophy-room/
+                        </div>
 
                     </div>
 
