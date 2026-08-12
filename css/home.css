@@ -7662,7 +7662,10 @@ main .section .eyebrow {
 .home-event-feature .event-art img {
 
     position:
-        relative;
+        absolute;
+
+    inset:
+        0;
 
     z-index:
         1;
