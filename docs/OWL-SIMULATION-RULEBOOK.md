@@ -1,7 +1,7 @@
 # OWL Simulation Rulebook
 
 **Status:** Active internal rulebook  
-**Last revised:** August 3, 2026  
+**Last revised:** August 12, 2026  
 **Applies to:** OWL Wrestling simulation, progression, injuries, recovery, and Control Room automation
 
 ---
