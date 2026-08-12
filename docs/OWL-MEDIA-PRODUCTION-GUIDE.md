@@ -570,11 +570,12 @@ It does not replace OWL’s normal match-production format.
 
 ## 7. Current Production Status
 
-As of August 3, 2026:
+As of August 12, 2026:
 
 | System | Status |
 |---|---|
 | OWL After Dark written automation | Complete |
+| OWL After Dark live broadcast crawl ticker | Complete |
 | Sunday Disservice written automation | Complete |
 | Sunday Disservice audio production and validation | Back-burnered / Blocked pending paid ElevenLabs workflow |
 | Innanet text publishing | Complete |
