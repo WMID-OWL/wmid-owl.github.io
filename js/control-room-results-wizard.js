@@ -9284,10 +9284,94 @@ crResultsResultType.addEventListener(
 );
 
 
+crResultsWinnerSide.addEventListener(
+
+    "change",
+
+    () => {
+
+
+        const sides =
+
+            Array.isArray(
+                crResultsSelectedMatch?.sides
+            )
+
+                ? crResultsSelectedMatch.sides
+
+                : [];
+
+
+        const isSinglesMatch =
+
+            sides.length === 2
+
+            &&
+
+            sides.every(
+
+                side =>
+
+                    Array.isArray(
+                        side.wrestlers
+                    )
+
+                    &&
+
+                    side.wrestlers.length === 1
+
+            );
+
+
+        if (
+            isSinglesMatch
+
+            &&
+
+            crResultsWinnerSide.value !== ""
+        ) {
+
+
+            const winningSideIndex =
+
+                Number(
+                    crResultsWinnerSide.value
+                );
+
+
+            const losingSideIndex =
+
+                winningSideIndex === 0
+                    ? 1
+                    : 0;
+
+
+            crResultsFinishWinner.value =
+
+                sides[
+                    winningSideIndex
+                ]
+                    .wrestlers[0];
+
+
+            crResultsFinishLoser.value =
+
+                sides[
+                    losingSideIndex
+                ]
+                    .wrestlers[0];
+
+        }
+
+
+        crResultsReviewResult();
+
+    }
+
+);
+
+
 [
-
-    crResultsWinnerSide,
-
     crResultsFinishWinner,
 
     crResultsFinishLoser,
@@ -9311,7 +9395,6 @@ crResultsResultType.addEventListener(
     }
 
 );
-
 
 [
 
