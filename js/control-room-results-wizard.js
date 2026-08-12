@@ -9005,21 +9005,104 @@ async function crResultsSaveResult() {
         );
 
 
+               const completedMatchOrder =
+
+            Number(
+                crResultsSelectedMatch?.order || 0
+            );
+
+
         crResultsPopulateEvents();
 
 
         crResultsPopulateMatches();
 
 
-        crResultsMatch.value =
-            "";
+        const remainingMatches =
+
+            owlControlRoomData
+                .announcedMatches
+
+                .filter(
+
+                    match =>
+                        match.eventId ===
+                            crResultsEvent.value
+
+                )
+
+                .sort(
+
+                    (
+                        matchA,
+                        matchB
+                    ) =>
+
+                        Number(
+                            matchA.order || 0
+                        )
+
+                        -
+
+                        Number(
+                            matchB.order || 0
+                        )
+
+                );
 
 
-        crResultsClearWizard();
+        const nextMatch =
+
+            remainingMatches.find(
+
+                match =>
+
+                    Number(
+                        match.order || 0
+                    )
+
+                    >
+
+                    completedMatchOrder
+
+            )
+
+            ||
+
+            remainingMatches[0]
+
+            ||
+
+            null;
+
+
+        if (
+            nextMatch
+        ) {
+
+
+            crResultsMatch.value =
+                nextMatch.id;
+
+
+            crResultsLoadSelectedMatch();
+
+        }
+
+
+        else {
+
+
+            crResultsMatch.value =
+                "";
+
+
+            crResultsClearWizard();
+
+        }
 
 
         const filesChanged =
-
             [
 
                 "matches.json",
