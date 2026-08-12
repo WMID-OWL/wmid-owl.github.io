@@ -867,12 +867,21 @@
         }
     );
 
-    function initialize() {
+        function initialize() {
         populateWrestlers();
         populateExisting();
         renderSummary();
         renderArchive();
         renderMode();
+
+        if (els.artworkFile) {
+            els.artworkFile.disabled =
+                !(
+                    typeof owlRepositoryHandle !== "undefined" &&
+                    owlRepositoryHandle
+                );
+        }
+
         setStatus("READY");
     }
 
