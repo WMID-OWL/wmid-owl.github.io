@@ -1327,6 +1327,16 @@ The 160-point baseline is now both:
 
 Championship bonuses and permanent progression rules remain unchanged.
 
+Also documented the New Beginnings Brand Refresh process following a Fate’s Wheel Remorse firing.
+
+The Brand Refresh requires:
+
+- 2 wrestlers moving from Ascension to Revolt
+- 2 wrestlers moving from Revolt to Ascension
+- 4 total brand changes across the overall refresh window
+
+The rule intentionally leaves wrestler-selection method, champion eligibility, and team/faction handling undefined until separately approved.
+
 ### August 1, 2026
 
 Synchronized the Simulation Rulebook with the completed Control Room and Generator implementation.
