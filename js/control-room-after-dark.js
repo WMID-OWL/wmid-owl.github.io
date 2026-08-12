@@ -651,6 +651,186 @@ afterDarkTickerEls
 
 
 // =================================
+// TICKER DELETE
+// =================================
+
+
+async function afterDarkTickerDelete() {
+
+
+    const confirmed =
+        window.confirm(
+            "Delete the active OWL After Dark ticker?"
+        );
+
+
+    if (
+        !confirmed
+    ) {
+
+        return;
+
+    }
+
+
+    afterDarkTickerEls
+        .deleteButton
+        .disabled =
+            true;
+
+
+    afterDarkTickerEls
+        .message
+        .hidden =
+            true;
+
+
+    afterDarkTickerEls
+        .error
+        .hidden =
+            true;
+
+
+    try {
+
+
+        const hasPermission =
+            await afterDarkPublisherEnsureWritePermission();
+
+
+        if (
+            !hasPermission
+        ) {
+
+            throw new Error(
+                "Write permission was not granted."
+            );
+
+        }
+
+
+        const dataDirectory =
+            await owlRepositoryHandle
+                .getDirectoryHandle(
+                    "data",
+                    {
+                        create:
+                            true
+                    }
+                );
+
+
+        const afterDarkDirectory =
+            await dataDirectory
+                .getDirectoryHandle(
+                    "after-dark",
+                    {
+                        create:
+                            true
+                    }
+                );
+
+
+        await afterDarkDirectory
+            .removeEntry(
+                "ticker.json"
+            );
+
+
+        afterDarkTickerEls
+            .items
+            .value =
+                "";
+
+
+        afterDarkTickerEls
+            .review
+            .innerHTML =
+                "";
+
+
+        afterDarkTickerEls
+            .preview
+            .hidden =
+                true;
+
+
+        afterDarkTickerEls
+            .publishButton
+            .disabled =
+                true;
+
+
+        afterDarkTickerEls
+            .deleteButton
+            .disabled =
+                true;
+
+
+        afterDarkTickerEls
+            .message
+            .textContent =
+                "After Dark ticker deleted. Review the removal of data/after-dark/ticker.json in GitHub Desktop before committing.";
+
+
+        afterDarkTickerEls
+            .message
+            .className =
+                "cr-save-message save-success";
+
+
+        afterDarkTickerEls
+            .message
+            .hidden =
+                false;
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+
+        console.error(
+            "Could not delete After Dark ticker:",
+            error
+        );
+
+
+        afterDarkTickerEls
+            .error
+            .textContent =
+                error.message
+                ||
+                "After Dark ticker could not be deleted.";
+
+
+        afterDarkTickerEls
+            .error
+            .hidden =
+                false;
+
+
+        afterDarkTickerEls
+            .deleteButton
+            .disabled =
+                false;
+
+    }
+
+}
+
+
+afterDarkTickerEls
+    .deleteButton
+    ?.addEventListener(
+        "click",
+        afterDarkTickerDelete
+    );
+
+
+// =================================
 // STATE
 // =================================
 
