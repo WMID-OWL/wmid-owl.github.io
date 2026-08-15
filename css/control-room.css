@@ -13259,7 +13259,6 @@
 
     text-align:
         center;
-
 }
 
 
@@ -13287,6 +13286,433 @@
     }
 
 }
+
+
+/* =================================
+   CONTROL ROOM APP SHELL — 321A
+================================= */
+
+
+.control-room-body {
+
+    height:
+        100vh;
+
+    overflow:
+        hidden;
+
+    background:
+        #090c11;
+
+    color:
+        #e8edf5;
+
+}
+
+
+.control-room-header {
+
+    position:
+        relative;
+
+    z-index:
+        1100;
+
+    background:
+        #0d1118;
+
+    border-bottom:
+        1px solid
+        #202a38;
+
+    box-shadow:
+        0 1px 0
+        rgba(
+            255,
+            255,
+            255,
+            0.02
+        );
+
+}
+
+
+.control-room-brand-mark {
+
+    background:
+        #377dff;
+
+    color:
+        #ffffff;
+
+}
+
+
+.control-room-site-link:hover {
+
+    color:
+        #6fa2ff;
+
+}
+
+
+/* LEFT APPLICATION SIDEBAR */
+
+
+.cr-tool-jump-bar {
+
+    position:
+        fixed !important;
+
+    top:
+        78px !important;
+
+    left:
+        0;
+
+    bottom:
+        0;
+
+    z-index:
+        950 !important;
+
+    box-sizing:
+        border-box;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        stretch;
+
+    gap:
+        3px;
+
+    width:
+        250px;
+
+    padding:
+        18px 12px 28px;
+
+    overflow-x:
+        hidden;
+
+    overflow-y:
+        auto;
+
+    background:
+        #0d1118;
+
+    border-right:
+        1px solid
+        #202a38;
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        #34445c
+        transparent;
+
+}
+
+
+.cr-tool-jump-label {
+
+    display:
+        block;
+
+    padding:
+        4px 10px 12px;
+
+    color:
+        #6398ff;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.15em;
+
+    white-space:
+        nowrap;
+
+}
+
+
+.cr-tool-jump-link {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        flex-start;
+
+    flex:
+        0 0 auto;
+
+    min-height:
+        36px;
+
+    padding:
+        9px 11px;
+
+    border:
+        1px solid
+        transparent;
+
+    border-radius:
+        4px;
+
+    color:
+        #9da9b9;
+
+    background:
+        transparent;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.04em;
+
+    line-height:
+        1.2;
+
+    text-align:
+        left;
+
+    text-decoration:
+        none;
+
+    text-transform:
+        uppercase;
+
+    transition:
+        background 0.16s ease,
+        border-color 0.16s ease,
+        color 0.16s ease;
+
+}
+
+
+.cr-tool-jump-link:hover,
+.cr-tool-jump-link:focus {
+
+    color:
+        #f5f8ff;
+
+    background:
+        #151d29;
+
+    border-color:
+        #29394f;
+
+    outline:
+        none;
+
+}
+
+
+/* RIGHT APPLICATION WORKSPACE */
+
+
+.control-room-page {
+
+    box-sizing:
+        border-box;
+
+    width:
+        calc(
+            100% - 250px
+        );
+
+    height:
+        calc(
+            100vh - 78px
+        );
+
+    margin:
+        0 0 0 250px;
+
+    padding:
+        24px 28px 48px;
+
+    overflow-x:
+        hidden;
+
+    overflow-y:
+        auto;
+
+    overscroll-behavior:
+        contain;
+
+    scrollbar-gutter:
+        stable;
+
+    background:
+        #090c11;
+
+}
+
+
+.control-room-page::-webkit-scrollbar {
+
+    width:
+        10px;
+
+}
+
+
+.control-room-page::-webkit-scrollbar-track {
+
+    background:
+        #090c11;
+
+}
+
+
+.control-room-page::-webkit-scrollbar-thumb {
+
+    background:
+        #29374b;
+
+    border:
+        2px solid
+        #090c11;
+
+    border-radius:
+        10px;
+
+}
+
+
+.control-room-hero {
+
+    padding:
+        1.6rem 0 1.8rem;
+
+}
+
+
+/* TEMPORARY SMALL-SCREEN FALLBACK */
+
+
+@media (
+    max-width:
+        900px
+) {
+
+    .control-room-body {
+
+        height:
+            auto;
+
+        overflow:
+            auto;
+
+    }
+
+
+    .cr-tool-jump-bar {
+
+        position:
+            sticky !important;
+
+        top:
+            0 !important;
+
+        bottom:
+            auto;
+
+        width:
+            100%;
+
+        flex-direction:
+            row;
+
+        align-items:
+            center;
+
+        gap:
+            6px;
+
+        padding:
+            9px 12px;
+
+        overflow-x:
+            auto;
+
+        overflow-y:
+            hidden;
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            #202a38;
+
+    }
+
+
+    .cr-tool-jump-label {
+
+        display:
+            none;
+
+    }
+
+
+    .cr-tool-jump-link {
+
+        flex:
+            0 0 auto;
+
+        white-space:
+            nowrap;
+
+    }
+
+
+    .control-room-page {
+
+        width:
+            min(
+                1400px,
+                calc(
+                    100% - 2rem
+                )
+            );
+
+        height:
+            auto;
+
+        margin:
+            0 auto;
+
+        padding:
+            1.5rem 0 5rem;
+
+        overflow:
+            visible;
+
+    }
+
+}
+
 /* =================================
    STEP 317A
    MATCH CARD MEDIA WORKFLOW
