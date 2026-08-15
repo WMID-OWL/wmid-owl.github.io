@@ -14076,6 +14076,242 @@
 }
 
 
+/* =================================
+   COMPACT WORKSPACE CHROME — 321F
+================================= */
+
+
+/* TOP CONTROL ROOM IDENTITY */
+
+
+.control-room-hero {
+
+    align-items:
+        center;
+
+    gap:
+        1rem;
+
+    padding:
+        0 0 14px;
+
+    border-bottom:
+        1px solid
+        #202c3b;
+
+}
+
+
+.control-room-hero h1 {
+
+    margin:
+        2px 0 0;
+
+    color:
+        #f1f5fc;
+
+    font-size:
+        1.35rem;
+
+    line-height:
+        1;
+
+    letter-spacing:
+        -0.025em;
+
+}
+
+
+.control-room-hero .eyebrow {
+
+    margin:
+        0;
+
+    font-size:
+        0.57rem;
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.control-room-intro {
+
+    display:
+        none;
+
+}
+
+
+/* CONNECTION BUTTONS */
+
+
+.control-room-hero
+.control-room-actions {
+
+    flex-direction:
+        row;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+}
+
+
+.control-room-hero
+.control-room-button {
+
+    min-height:
+        34px;
+
+    padding:
+        7px 11px;
+
+    font-size:
+        0.62rem;
+
+}
+
+
+/* REPOSITORY UTILITY STRIP */
+
+
+.control-room-page
+>
+.control-room-panel {
+
+    padding:
+        12px 14px;
+
+    margin:
+        12px 0 18px;
+
+    background:
+        #0d131c;
+
+    border-color:
+        #202c3b;
+
+}
+
+
+.control-room-page
+>
+.control-room-panel
+>
+.control-room-panel-heading {
+
+    align-items:
+        center;
+
+    padding-bottom:
+        8px;
+
+    margin-bottom:
+        9px;
+
+}
+
+
+.control-room-page
+>
+.control-room-panel
+>
+.control-room-panel-heading
+h2 {
+
+    margin:
+        2px 0 0;
+
+    font-size:
+        0.95rem;
+
+}
+
+
+.control-room-page
+>
+.control-room-panel
+.control-room-status {
+
+    padding:
+        5px 8px;
+
+    font-size:
+        0.57rem;
+
+}
+
+
+/* REPOSITORY DETAILS */
+
+
+.control-room-repo-grid {
+
+    gap:
+        7px;
+
+}
+
+
+.control-room-repo-item {
+
+    padding:
+        8px 10px;
+
+    background:
+        #0a0f16;
+
+    border:
+        1px solid
+        #1d2938;
+
+}
+
+
+.control-room-repo-item span {
+
+    font-size:
+        0.54rem;
+
+    color:
+        #65758a;
+
+}
+
+
+.control-room-repo-item strong {
+
+    margin-top:
+        4px;
+
+    font-size:
+        0.72rem;
+
+    color:
+        #dce5f2;
+
+}
+
+
+.control-room-connection-message {
+
+    margin:
+        8px 0 0;
+
+    font-size:
+        0.68rem;
+
+    color:
+        #718096;
+
+}
+
+
 /* TEMPORARY SMALL-SCREEN FALLBACK */
 
 
