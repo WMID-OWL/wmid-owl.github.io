@@ -10635,6 +10635,272 @@
 
 <script src="js/control-room-social-status.js?v=303b1"></script>
 <script src="js/control-room-account-manager.js?v=314b"></script>
-    
+
+
+<script>
+(() => {
+
+    const workspace =
+        document.querySelector(
+            ".control-room-page"
+        );
+
+    const dashboard =
+        document.getElementById(
+            "cr-dashboard"
+        );
+
+    const toolLinks =
+        Array.from(
+            document.querySelectorAll(
+                '.cr-tool-jump-link[href^="#cr-tool-"]'
+            )
+        );
+
+
+    if (
+        !workspace
+        ||
+        !dashboard
+        ||
+        !toolLinks.length
+    ) {
+
+        return;
+
+    }
+
+
+    const toolPanels =
+        toolLinks
+            .map(
+                link =>
+                    document.querySelector(
+                        link.getAttribute(
+                            "href"
+                        )
+                    )
+            )
+            .filter(
+                Boolean
+            );
+
+
+    const overviewPanels =
+        Array.from(
+            dashboard.children
+        )
+            .filter(
+                element =>
+                    element.classList
+                        ?.contains(
+                            "control-room-panel"
+                        )
+                    &&
+                    !element.id
+                        ?.startsWith(
+                            "cr-tool-"
+                        )
+            );
+
+
+    function openControlRoomTool(
+        targetId,
+        updateHash = true
+    ) {
+
+        const target =
+            document.getElementById(
+                targetId
+            );
+
+
+        if (
+            !target
+            ||
+            !toolPanels.includes(
+                target
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        overviewPanels.forEach(
+            panel => {
+
+                panel.hidden =
+                    true;
+
+            }
+        );
+
+
+        toolPanels.forEach(
+            panel => {
+
+                panel.hidden =
+                    panel !== target;
+
+            }
+        );
+
+
+        toolLinks.forEach(
+            link => {
+
+                const isActive =
+                    link.getAttribute(
+                        "href"
+                    )
+                    ===
+                    `#${targetId}`;
+
+
+                link.classList.toggle(
+                    "is-active",
+                    isActive
+                );
+
+
+                if (
+                    isActive
+                ) {
+
+                    link.setAttribute(
+                        "aria-current",
+                        "page"
+                    );
+
+                }
+
+                else {
+
+                    link.removeAttribute(
+                        "aria-current"
+                    );
+
+                }
+
+            }
+        );
+
+
+        if (
+            updateHash
+        ) {
+
+            history.replaceState(
+                null,
+                "",
+                `#${targetId}`
+            );
+
+        }
+
+
+        requestAnimationFrame(
+            () => {
+
+                target.scrollIntoView(
+                    {
+                        behavior:
+                            "auto",
+
+                        block:
+                            "start"
+                    }
+                );
+
+            }
+        );
+
+    }
+
+
+    toolLinks.forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+
+                    const targetId =
+                        link
+                            .getAttribute(
+                                "href"
+                            )
+                            .slice(
+                                1
+                            );
+
+
+                    openControlRoomTool(
+                        targetId
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    window.addEventListener(
+        "hashchange",
+        () => {
+
+            const targetId =
+                window.location.hash
+                    .slice(
+                        1
+                    );
+
+
+            if (
+                targetId.startsWith(
+                    "cr-tool-"
+                )
+            ) {
+
+                openControlRoomTool(
+                    targetId,
+                    false
+                );
+
+            }
+
+        }
+    );
+
+
+    const initialTarget =
+        window.location.hash
+            .startsWith(
+                "#cr-tool-"
+            )
+
+            ? window.location.hash
+                .slice(
+                    1
+                )
+
+            : "cr-tool-runbook";
+
+
+    openControlRoomTool(
+        initialTarget,
+        false
+    );
+
+})();
+</script>
+
+
 </body>
 </html>
