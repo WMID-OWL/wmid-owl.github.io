@@ -14312,6 +14312,149 @@ h2 {
 }
 
 
+/* =================================
+   COMPACT TOOL DENSITY — 321G
+================================= */
+
+
+.cr-manager-grid,
+.cr-editor-top-grid,
+.cr-editor-form-grid {
+
+    gap:
+        12px;
+
+}
+
+
+.cr-form-group {
+
+    gap:
+        5px;
+
+}
+
+
+.cr-form-group label {
+
+    font-size:
+        0.59rem;
+
+}
+
+
+.cr-form-group input,
+.cr-form-group select {
+
+    min-height:
+        40px;
+
+}
+
+
+.cr-form-group input,
+.cr-form-group textarea {
+
+    padding:
+        0.7rem 0.75rem;
+
+}
+
+
+.cr-form-group select {
+
+    padding:
+        0 0.75rem;
+
+}
+
+
+.cr-current-value {
+
+    min-height:
+        40px;
+
+    padding:
+        0 0.75rem;
+
+}
+
+
+/* EDITOR SECTIONS */
+
+
+.cr-editor-section {
+
+    margin-top:
+        1.35rem;
+
+    padding-top:
+        1rem;
+
+}
+
+
+.cr-editor-section-heading {
+
+    margin-bottom:
+        0.85rem;
+
+}
+
+
+.cr-editor-section-heading span {
+
+    font-size:
+        0.57rem;
+
+}
+
+
+.cr-editor-section-heading h3 {
+
+    font-size:
+        1rem;
+
+}
+
+
+.cr-editor-note {
+
+    margin:
+        -0.1rem 0 0.8rem;
+
+    font-size:
+        0.75rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+/* ACTION ROWS */
+
+
+.cr-manager-actions {
+
+    gap:
+        8px;
+
+}
+
+
+.cr-manager-actions
+.control-room-button {
+
+    min-height:
+        38px;
+
+    padding:
+        0.65rem 0.85rem;
+
+}
+
+
 /* TEMPORARY SMALL-SCREEN FALLBACK */
 
 
