@@ -13798,6 +13798,284 @@
 }
 
 
+/* =================================
+   CONTROL ROOM WORKSPACE THEME — 321E
+================================= */
+
+
+.control-room-panel {
+
+    margin-top:
+        0;
+
+    padding:
+        1.5rem;
+
+    background:
+        #101620;
+
+    border:
+        1px solid
+        #202c3b;
+
+    border-radius:
+        4px;
+
+}
+
+
+.control-room-panel-heading {
+
+    align-items:
+        center;
+
+    padding-bottom:
+        1rem;
+
+    margin-bottom:
+        1.25rem;
+
+    border-bottom:
+        1px solid
+        #202c3b;
+
+}
+
+
+.control-room-panel-heading h2 {
+
+    color:
+        #f1f5fc;
+
+    font-size:
+        clamp(
+            1.45rem,
+            2.5vw,
+            2.15rem
+        );
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.025em;
+
+}
+
+
+.control-room-page .eyebrow {
+
+    color:
+        #6398ff;
+
+}
+
+
+.control-room-health-summary {
+
+    color:
+        #8090a5;
+
+}
+
+
+/* TOOL SUBSECTIONS */
+
+
+.cr-editor-section {
+
+    border-top:
+        1px solid
+        #202c3b;
+
+}
+
+
+.cr-editor-section-heading span {
+
+    color:
+        #6398ff;
+
+}
+
+
+.cr-editor-section-heading h3 {
+
+    color:
+        #eef3fb;
+
+}
+
+
+/* FORM CONTROLS */
+
+
+.cr-form-group label {
+
+    color:
+        #7f8ca0;
+
+}
+
+
+.cr-form-group input,
+.cr-form-group textarea,
+.cr-form-group select {
+
+    background:
+        #0b1017;
+
+    border-color:
+        #263448;
+
+    border-radius:
+        3px;
+
+    color:
+        #eef3fb;
+
+}
+
+
+.cr-form-group input:hover,
+.cr-form-group textarea:hover,
+.cr-form-group select:hover {
+
+    border-color:
+        #354966;
+
+}
+
+
+.cr-form-group input:focus,
+.cr-form-group textarea:focus,
+.cr-form-group select:focus {
+
+    border-color:
+        #377dff;
+
+    box-shadow:
+        0
+        0
+        0
+        2px
+        rgba(
+            55,
+            125,
+            255,
+            0.12
+        );
+
+}
+
+
+.cr-current-value {
+
+    background:
+        #0b1017;
+
+    border-color:
+        #263448;
+
+    border-radius:
+        3px;
+
+    color:
+        #eef3fb;
+
+}
+
+
+/* BUTTONS */
+
+
+.control-room-button {
+
+    border-radius:
+        3px;
+
+}
+
+
+.control-room-button-primary {
+
+    background:
+        #377dff;
+
+    color:
+        #ffffff;
+
+}
+
+
+.control-room-button-primary:hover {
+
+    background:
+        #4d8cff;
+
+}
+
+
+.control-room-button-secondary {
+
+    background:
+        #121a25;
+
+    border-color:
+        #2b394d;
+
+    color:
+        #cbd4e1;
+
+}
+
+
+.control-room-button-secondary:hover {
+
+    background:
+        #172235;
+
+    border-color:
+        #377dff;
+
+    color:
+        #ffffff;
+
+}
+
+
+/* REVIEW / CHANGE PANELS */
+
+
+.cr-change-preview {
+
+    background:
+        rgba(
+            55,
+            125,
+            255,
+            0.07
+        );
+
+    border-color:
+        rgba(
+            55,
+            125,
+            255,
+            0.32
+        );
+
+}
+
+
+.cr-change-preview span {
+
+    color:
+        #6398ff;
+
+}
+
+
 /* TEMPORARY SMALL-SCREEN FALLBACK */
 
 
