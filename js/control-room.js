@@ -132,12 +132,28 @@ const OWL_CONTROL_ROOM_FILES = [
         countKey: "editions"
     },
 
-    {
+        {
         key: "weeklyRunbook",
         fileName: "weekly-runbook.json",
         label: "Weekly Runbook",
         objectFile: true,
         countKey: "weeks"
+    },
+
+    {
+        key: "parameterReference",
+        fileName: "owl-parameter-reference.json",
+        label: "OWL Parameter Reference",
+        objectFile: true,
+        countKey: "specialSkills"
+    },
+
+    {
+        key: "parameterProfiles",
+        fileName: "owl-parameter-profiles.json",
+        label: "OWL Parameter Profiles",
+        objectFile: true,
+        countKey: "profiles"
     }
 ];
 
