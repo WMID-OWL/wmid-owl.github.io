@@ -69,8 +69,12 @@
             ROSTER
         </span>
 
-        <a class="cr-tool-jump-link" href="#cr-tool-wrestlers">
+                <a class="cr-tool-jump-link" href="#cr-tool-wrestlers">
             Wrestlers
+        </a>
+
+        <a class="cr-tool-jump-link" href="#cr-tool-parameters">
+            OWL Prameter Editor
         </a>
 
         <a class="cr-tool-jump-link" href="#cr-tool-teams">
@@ -886,7 +890,116 @@
             </div>
 
             <div class="cr-manager-actions"><button id="cr-save-wrestler" class="control-room-button control-room-button-primary" type="button" disabled>Save Wrestler Changes</button></div>
-            <p id="cr-wrestler-editor-message" class="cr-save-message" hidden></p>
+                        <p id="cr-wrestler-editor-message" class="cr-save-message" hidden></p>
+        </section>
+
+        <!-- =================================
+             OWL PRAMETER EDITOR
+        ================================== -->
+
+        <section
+            id="cr-tool-parameters"
+            class="control-room-panel"
+        >
+
+            <div class="control-room-panel-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        OWL SIMULATION SYSTEM
+                    </p>
+
+                    <h2>
+                        OWL PRAMETER EDITOR
+                    </h2>
+
+                </div>
+
+                <span
+                    id="cr-parameter-status"
+                    class="control-room-health-summary"
+                >
+                    WAITING
+                </span>
+
+            </div>
+
+            <p class="cr-editor-note">
+                Build and maintain each wrestler’s OWL-balanced
+                simulation profile using the universal 160-point
+                baseline.
+            </p>
+
+            <div class="cr-editor-top-grid">
+
+                <div class="cr-form-group">
+
+                    <label for="cr-parameter-wrestler">
+                        WRESTLER
+                    </label>
+
+                    <select id="cr-parameter-wrestler">
+
+                        <option value="">
+                            Select Wrestler
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label>
+                        CURRENT BUILD
+                    </label>
+
+                    <div
+                        id="cr-parameter-current-total"
+                        class="cr-current-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label>
+                        OWL BASELINE
+                    </label>
+
+                    <div class="cr-current-value">
+                        160 POINTS
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        BUILD DATA
+                    </span>
+
+                    <h3>
+                        OWL Simulation Profile
+                    </h3>
+
+                </div>
+
+                <p class="cr-editor-note">
+                    Select a wrestler to load Offense, Defense,
+                    Skills, Body Endurance, Movement, Special Skill
+                    reference information, and the complete point audit.
+                </p>
+
+            </div>
+
         </section>
 
         <!-- =================================
