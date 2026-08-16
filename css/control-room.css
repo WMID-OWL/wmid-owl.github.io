@@ -14455,6 +14455,66 @@ h2 {
 }
 
 
+/* =================================
+   STICKY TOOL WORKSPACE HEADER — 321H
+================================= */
+
+
+#cr-dashboard
+>
+.control-room-panel
+>
+.control-room-panel-heading {
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    z-index:
+        40;
+
+    margin:
+        -1.5rem
+        -1.5rem
+        1.25rem;
+
+    padding:
+        1rem
+        1.5rem;
+
+    background:
+        rgba(
+            16,
+            22,
+            32,
+            0.97
+        );
+
+    border-bottom:
+        1px solid
+        #28374a;
+
+    box-shadow:
+        0
+        8px
+        18px
+        rgba(
+            0,
+            0,
+            0,
+            0.22
+        );
+
+    backdrop-filter:
+        blur(
+            8px
+        );
+
+}
+
+
 /* TEMPORARY SMALL-SCREEN FALLBACK */
 
 
