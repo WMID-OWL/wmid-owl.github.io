@@ -210,7 +210,13 @@
         1.05;
 
     overflow-wrap:
-        anywhere;
+        normal;
+
+    word-break:
+        normal;
+
+    hyphens:
+        none;
 
 }
 
@@ -1164,7 +1170,7 @@
     grid-template-columns:
         repeat(
             auto-fill,
-            minmax(175px, 1fr)
+            minmax(240px, 1fr)
         );
 
     gap:
