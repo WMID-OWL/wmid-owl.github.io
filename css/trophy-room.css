@@ -1059,22 +1059,14 @@
     top:
         50%;
 
-    right:
-        max(
-            2.5rem,
-            calc(
-                (
-                    100vw - 1200px
-                ) / 2
-            )
-        );
+        right:
+        0;
 
     width:
         min(
             430px,
             38vw
         );
-
     aspect-ratio:
         1;
 
