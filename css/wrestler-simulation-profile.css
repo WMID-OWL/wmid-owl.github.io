@@ -3,7 +3,203 @@
 ================================= */
 
 
+.owl-simulation-profile {
+
+    overflow:
+        hidden;
+
+    padding:
+        0;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12, 15, 16, 0.98),
+            rgba(7, 9, 10, 0.98)
+        );
+
+    border:
+        1px solid
+        rgba(198, 161, 91, 0.24);
+
+}
+
+
+.owl-simulation-profile-summary {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        24px;
+
+    padding:
+        24px 28px;
+
+    cursor:
+        pointer;
+
+    list-style:
+        none;
+
+    user-select:
+        none;
+
+}
+
+
+.owl-simulation-profile-summary::-webkit-details-marker {
+
+    display:
+        none;
+
+}
+
+
+.owl-simulation-profile-summary::marker {
+
+    content:
+        "";
+
+}
+
+
+.owl-simulation-profile-summary .eyebrow {
+
+    margin:
+        0 0 6px;
+
+}
+
+
+.owl-simulation-profile-summary h2 {
+
+    margin:
+        0;
+
+}
+
+
+.owl-simulation-profile-baseline {
+
+    display:
+        block;
+
+    margin-top:
+        8px;
+
+    color:
+        #899296;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.09em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.owl-simulation-profile-toggle {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    flex:
+        0 0 auto;
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    color:
+        #c6a15b;
+
+    border:
+        1px solid
+        rgba(198, 161, 91, 0.45);
+
+    font-size:
+        1.6rem;
+
+    font-weight:
+        300;
+
+    line-height:
+        1;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.owl-simulation-profile[open]
+.owl-simulation-profile-toggle {
+
+    transform:
+        rotate(45deg);
+
+    background:
+        rgba(198, 161, 91, 0.08);
+
+}
+
+
+.owl-simulation-profile-content {
+
+    padding:
+        0 28px 28px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+}
+
+
+.owl-simulation-profile-content
+> .empty-message {
+
+    margin:
+        28px 0 0;
+
+}
+
+
 .owl-sim-build {
+
+    margin-top:
+        28px;
+
+    display:
+        grid;
+
+    gap:
+        28px;
+
+}
 
     display:
         grid;
