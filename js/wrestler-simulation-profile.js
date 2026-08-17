@@ -456,8 +456,30 @@
         ];
 
 
+                const specialSkillValue =
+            profile
+                ?.skills
+                ?.specialSkill
+            ||
+            "None";
+
+        const specialSkill =
+            Array.isArray(
+                reference?.specialSkills
+            )
+                ? reference.specialSkills.find(
+                    skill =>
+                        skill?.value ===
+                        specialSkillValue
+                )
+                : null;
+
+
         skillDefinitions.forEach(
-            definition => {
+            (
+                definition,
+                index
+            ) => {
 
                 const value =
                     profile
@@ -481,35 +503,23 @@
                     )
                 );
 
+
+                if (
+                    index ===
+                    0
+                ) {
+
+                    skillsGrid.appendChild(
+                        makeBuildItem(
+                            "Special Skill",
+                            specialSkillValue,
+                            specialSkill?.points
+                        )
+                    );
+
+                }
+
             }
-        );
-
-
-        const specialSkillValue =
-            profile
-                ?.skills
-                ?.specialSkill
-            ||
-            "None";
-
-        const specialSkill =
-            Array.isArray(
-                reference?.specialSkills
-            )
-                ? reference.specialSkills.find(
-                    skill =>
-                        skill?.value ===
-                        specialSkillValue
-                )
-                : null;
-
-
-        skillsGrid.appendChild(
-            makeBuildItem(
-                "Special Skill",
-                specialSkillValue,
-                specialSkill?.points
-            )
         );
 
 
