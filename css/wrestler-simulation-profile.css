@@ -1,0 +1,464 @@
+/* =================================
+   OWL SIMULATION PROFILE
+   ATTRIBUTE BOARD
+================================= */
+
+
+.owl-sim-parameter-board {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        24px;
+
+    margin-top:
+        32px;
+
+}
+
+
+.owl-sim-parameter-panel {
+
+    padding:
+        22px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(20, 24, 26, 0.98),
+            rgba(7, 9, 10, 0.98)
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.11
+        );
+
+}
+
+
+.owl-sim-parameter-heading {
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        space-between;
+
+    gap:
+        16px;
+
+    margin-bottom:
+        22px;
+
+}
+
+
+.owl-sim-parameter-heading span {
+
+    color:
+        #c6a15b;
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.15em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.owl-sim-parameter-heading h3 {
+
+    margin:
+        5px 0 0;
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        1.45rem;
+
+    line-height:
+        1;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.owl-sim-parameter-heading strong {
+
+    color:
+        #7f898d;
+
+    font-size:
+        0.72rem;
+
+    letter-spacing:
+        0.08em;
+
+    white-space:
+        nowrap;
+
+}
+
+
+.owl-sim-bars {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            12,
+            minmax(
+                36px,
+                1fr
+            )
+        );
+
+    align-items:
+        end;
+
+    gap:
+        7px;
+
+}
+
+
+.owl-sim-stat {
+
+    display:
+        grid;
+
+    grid-template-rows:
+        auto
+        190px
+        46px;
+
+    gap:
+        7px;
+
+    min-width:
+        0;
+
+    text-align:
+        center;
+
+}
+
+
+.owl-sim-stat-value {
+
+    color:
+        #f5f5f2;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        1000;
+
+    line-height:
+        1;
+
+}
+
+
+.owl-sim-stat-track {
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    width:
+        100%;
+
+    height:
+        190px;
+
+    overflow:
+        hidden;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+}
+
+
+.owl-sim-stat-track::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        repeating-linear-gradient(
+            to top,
+            transparent
+                0,
+            transparent
+                calc(10% - 1px),
+            rgba(
+                255,
+                255,
+                255,
+                0.07
+            )
+                calc(10% - 1px),
+            rgba(
+                255,
+                255,
+                255,
+                0.07
+            )
+                10%
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+.owl-sim-stat-fill {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    height:
+        calc(
+            var(--owl-stat-value) *
+            10%
+        );
+
+    min-height:
+        2px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(
+                255,
+                255,
+                255,
+                0.9
+            ),
+            var(
+                --owl-stat-color
+            )
+        );
+
+    box-shadow:
+        0 0
+        14px
+        color-mix(
+            in srgb,
+            var(
+                --owl-stat-color
+            )
+            38%,
+            transparent
+        );
+
+}
+
+
+.owl-sim-stat-label {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        center;
+
+    color:
+        #9ca5a9;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        900;
+
+    line-height:
+        1.15;
+
+    text-transform:
+        uppercase;
+
+    overflow-wrap:
+        normal;
+
+    word-break:
+        normal;
+
+}
+
+
+.owl-sim-stat:nth-child(1),
+.owl-sim-stat:nth-child(2) {
+
+    --owl-stat-color:
+        #3f93d7;
+
+}
+
+
+.owl-sim-stat:nth-child(3),
+.owl-sim-stat:nth-child(4),
+.owl-sim-stat:nth-child(5) {
+
+    --owl-stat-color:
+        #48a968;
+
+}
+
+
+.owl-sim-stat:nth-child(6),
+.owl-sim-stat:nth-child(7),
+.owl-sim-stat:nth-child(8) {
+
+    --owl-stat-color:
+        #d27b3c;
+
+}
+
+
+.owl-sim-stat:nth-child(9),
+.owl-sim-stat:nth-child(10) {
+
+    --owl-stat-color:
+        #c94a58;
+
+}
+
+
+.owl-sim-stat:nth-child(11) {
+
+    --owl-stat-color:
+        #7456b6;
+
+}
+
+
+.owl-sim-stat:nth-child(12) {
+
+    --owl-stat-color:
+        #c6a15b;
+
+}
+
+
+@media (
+    max-width:
+        1200px
+) {
+
+    .owl-sim-parameter-board {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        720px
+) {
+
+    .owl-sim-parameter-panel {
+
+        padding:
+            16px;
+
+        overflow-x:
+            auto;
+
+    }
+
+
+    .owl-sim-bars {
+
+        min-width:
+            650px;
+
+    }
+
+
+    .owl-sim-stat {
+
+        grid-template-rows:
+            auto
+            155px
+            42px;
+
+    }
+
+
+    .owl-sim-stat-track {
+
+        height:
+            155px;
+
+    }
+
+}
