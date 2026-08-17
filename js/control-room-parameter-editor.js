@@ -326,9 +326,14 @@
             "cr-param-balance-message"
         );
 
-        const saveButton =
+            const saveButton =
         document.getElementById(
             "cr-param-save"
+        );
+
+    const saveMessage =
+        document.getElementById(
+            "cr-param-save-message"
         );
 
 
@@ -1866,6 +1871,677 @@
     }
 
 
+        function getParameterProfileDatabase() {
+
+        const database =
+            typeof owlControlRoomData !==
+                "undefined"
+                ? owlControlRoomData
+                    .parameterProfiles
+                : null;
+
+
+        if (
+            !database
+            ||
+            Array.isArray(
+                database
+            )
+            ||
+            typeof database !==
+                "object"
+        ) {
+
+            return {
+                version: 1,
+                profiles: []
+            };
+
+        }
+
+
+        return {
+            ...database,
+
+            version:
+                Number(
+                    database.version
+                    ||
+                    1
+                ),
+
+            profiles:
+                Array.isArray(
+                    database.profiles
+                )
+                    ? database.profiles
+                    : []
+        };
+
+    }
+
+
+    function getSavedParameterProfile(
+        wrestlerId
+    ) {
+
+        return (
+            getParameterProfileDatabase()
+                .profiles
+                .find(
+                    profile =>
+                        profile
+                            ?.wrestlerId ===
+                        wrestlerId
+                )
+            ||
+            null
+        );
+
+    }
+
+
+    function selectedWrestler() {
+
+        return (
+            getParameterEditorWrestlers()
+                .find(
+                    wrestler =>
+                        wrestler.id ===
+                        wrestlerSelect.value
+                )
+            ||
+            null
+        );
+
+    }
+
+
+    function collectParameterValues(
+        fields
+    ) {
+
+        const result =
+            {};
+
+
+        fields.forEach(
+            field => {
+
+                result[
+                    field.key
+                ] =
+                    getParameterFieldValue(
+                        field
+                    );
+
+            }
+        );
+
+
+        return result;
+
+    }
+
+
+    function collectSelectValues(
+        fields
+    ) {
+
+        const result =
+            {};
+
+
+        Object.entries(
+            fields
+        )
+            .forEach(
+                ([
+                    key,
+                    field
+                ]) => {
+
+                    result[
+                        key
+                    ] =
+                        document
+                            .getElementById(
+                                field.selectId
+                            )
+                            ?.value
+                        ||
+                        "";
+
+                }
+            );
+
+
+        return result;
+
+    }
+
+
+    function currentPermanentBonus() {
+
+        return Math.max(
+            0,
+            Number.parseInt(
+                permanentBonusInput
+                    ?.value
+                ||
+                "0",
+                10
+            )
+            ||
+            0
+        );
+
+    }
+
+
+    function currentChampionBonus() {
+
+        return Number(
+            championBonusSelect
+                ?.value
+            ||
+            0
+        );
+
+    }
+
+
+    function currentAuthorizedBuild() {
+
+        const baseline =
+            Number(
+                getParameterReference()
+                    ?.owlRules
+                    ?.baselinePoints
+                ??
+                160
+            );
+
+
+        return (
+            baseline
+            +
+            currentPermanentBonus()
+            +
+            currentChampionBonus()
+        );
+
+    }
+
+
+    function currentEditTotal() {
+
+        return (
+            calculateParameterPoints()
+            +
+            calculateSkillPoints()
+        );
+
+    }
+
+
+    function saveAuthorizationIsValid() {
+
+        if (
+            !wrestlerSelect.value
+            ||
+            !parameterFieldsComplete()
+            ||
+            !selectionFieldsComplete()
+        ) {
+
+            return false;
+
+        }
+
+
+        const baseline =
+            Number(
+                getParameterReference()
+                    ?.owlRules
+                    ?.baselinePoints
+                ??
+                160
+            );
+
+        const editTotal =
+            currentEditTotal();
+
+        const authorizedBuild =
+            currentAuthorizedBuild();
+
+
+        if (
+            editTotal <
+            baseline
+            ||
+            editTotal !==
+            authorizedBuild
+        ) {
+
+            return false;
+
+        }
+
+
+        if (
+            authorizedBuild >
+            baseline
+        ) {
+
+            return (
+                overBaselineInput
+                    ?.value
+                    ?.trim()
+                    ?.toUpperCase()
+                ===
+                `SAVE ${authorizedBuild}`
+            );
+
+        }
+
+
+        return true;
+
+    }
+
+
+    async function writeParameterProfileDatabase(
+        database
+    ) {
+
+        if (
+            typeof owlRepositoryHandle ===
+                "undefined"
+            ||
+            !owlRepositoryHandle
+        ) {
+
+            throw new Error(
+                "OWL repository is not connected."
+            );
+
+        }
+
+
+        const permissionOptions = {
+            mode:
+                "readwrite"
+        };
+
+
+        let permission =
+            await owlRepositoryHandle
+                .queryPermission(
+                    permissionOptions
+                );
+
+
+        if (
+            permission !==
+            "granted"
+        ) {
+
+            permission =
+                await owlRepositoryHandle
+                    .requestPermission(
+                        permissionOptions
+                    );
+
+        }
+
+
+        if (
+            permission !==
+            "granted"
+        ) {
+
+            throw new Error(
+                "Repository write permission was not granted."
+            );
+
+        }
+
+
+        const dataDirectory =
+            await owlRepositoryHandle
+                .getDirectoryHandle(
+                    "data"
+                );
+
+
+        const fileHandle =
+            await dataDirectory
+                .getFileHandle(
+                    "owl-parameter-profiles.json"
+                );
+
+
+        const writable =
+            await fileHandle
+                .createWritable();
+
+
+        try {
+
+            await writable.write(
+                `${JSON.stringify(
+                    database,
+                    null,
+                    2
+                )}\n`
+            );
+
+            await writable.close();
+
+        }
+
+        catch (
+            error
+        ) {
+
+            try {
+
+                await writable.abort();
+
+            }
+
+            catch {
+
+                // Nothing else required.
+
+            }
+
+
+            throw error;
+
+        }
+
+    }
+
+
+    async function saveParameterProfile() {
+
+        if (
+            !saveAuthorizationIsValid()
+        ) {
+
+            renderPointAudit();
+
+            return;
+
+        }
+
+
+        const wrestler =
+            selectedWrestler();
+
+
+        if (!wrestler) {
+
+            return;
+
+        }
+
+
+        const database =
+            getParameterProfileDatabase();
+
+        const existing =
+            getSavedParameterProfile(
+                wrestler.id
+            );
+
+        const baseline =
+            Number(
+                getParameterReference()
+                    ?.owlRules
+                    ?.baselinePoints
+                ??
+                160
+            );
+
+        const permanentBonus =
+            currentPermanentBonus();
+
+        const championBonus =
+            currentChampionBonus();
+
+        const authorizedBuild =
+            currentAuthorizedBuild();
+
+        const editTotal =
+            currentEditTotal();
+
+
+        const approved =
+            window.confirm(
+                `${existing ? "Update" : "Create"} ${wrestler.name}'s OWL Simulation Profile?\n\n`
+                +
+                `Edit Total: ${editTotal}\n`
+                +
+                `Base Build: ${baseline}\n`
+                +
+                `Permanent Bonus: +${permanentBonus}\n`
+                +
+                `Champion Bonus: +${championBonus}\n`
+                +
+                `Authorized Build: ${authorizedBuild}\n\n`
+                +
+                "Confirm these values match the wrestler's current Fire Pro OWL build."
+            );
+
+
+        if (!approved) {
+
+            return;
+
+        }
+
+
+        saveButton.disabled =
+            true;
+
+        status.textContent =
+            "SAVING...";
+
+
+        if (
+            saveMessage
+        ) {
+
+            saveMessage.hidden =
+                true;
+
+        }
+
+
+        try {
+
+            const now =
+                new Date()
+                    .toISOString();
+
+
+            const profile = {
+
+                ...existing,
+
+                wrestlerId:
+                    wrestler.id,
+
+                wrestlerName:
+                    wrestler.name,
+
+                offense:
+                    collectParameterValues(
+                        offenseParameterFields
+                    ),
+
+                defense:
+                    collectParameterValues(
+                        defenseParameterFields
+                    ),
+
+                skills: {
+                    ...collectSelectValues(
+                        referenceFields
+                    ),
+
+                    specialSkill:
+                        specialSkillSelect
+                            ?.value
+                        ||
+                        ""
+                },
+
+                movement:
+                    collectSelectValues(
+                        movementFields
+                    ),
+
+                bonuses: {
+                    permanent:
+                        permanentBonus,
+
+                    champion:
+                        championBonus
+                },
+
+                createdAt:
+                    existing?.createdAt
+                    ||
+                    now,
+
+                updatedAt:
+                    now
+            };
+
+
+            const updatedDatabase = {
+
+                ...database,
+
+                version:
+                    Number(
+                        database.version
+                        ||
+                        1
+                    ),
+
+                profiles: [
+
+                    profile,
+
+                    ...database.profiles
+                        .filter(
+                            candidate =>
+                                candidate
+                                    ?.wrestlerId !==
+                                wrestler.id
+                        )
+
+                ]
+            };
+
+
+            await writeParameterProfileDatabase(
+                updatedDatabase
+            );
+
+
+            owlControlRoomData
+                .parameterProfiles =
+                    updatedDatabase;
+
+
+            if (
+                typeof loadRepositoryData ===
+                    "function"
+            ) {
+
+                await loadRepositoryData(
+                    owlRepositoryHandle
+                );
+
+            }
+
+
+            status.textContent =
+                "SAVED";
+
+
+            if (
+                saveMessage
+            ) {
+
+                saveMessage.textContent =
+                    `${wrestler.name}'s OWL Simulation Profile was saved to data/owl-parameter-profiles.json.`;
+
+                saveMessage.hidden =
+                    false;
+
+            }
+
+
+            window.dispatchEvent(
+                new CustomEvent(
+                    "owl-parameter-profiles-updated",
+                    {
+                        detail: {
+                            wrestlerId:
+                                wrestler.id
+                        }
+                    }
+                )
+            );
+
+
+            renderPointAudit();
+
+        }
+
+        catch (
+            error
+        ) {
+
+            console.error(
+                "Could not save OWL Simulation Profile:",
+                error
+            );
+
+
+            status.textContent =
+                "SAVE FAILED";
+
+
+            if (
+                saveMessage
+            ) {
+
+                saveMessage.textContent =
+                    error.message
+                    ||
+                    "The OWL Simulation Profile could not be saved.";
+
+                saveMessage.hidden =
+                    false;
+
+            }
+
+
+            renderPointAudit();
+
+        }
+
+    }
+
+
     function renderParameterEditor() {
 
         renderParameterWrestlerOptions();
@@ -1989,10 +2665,17 @@
         );
 
 
-    overBaselineInput
+        overBaselineInput
         ?.addEventListener(
             "input",
             renderPointAudit
+        );
+
+
+    saveButton
+        ?.addEventListener(
+            "click",
+            saveParameterProfile
         );
 
 
