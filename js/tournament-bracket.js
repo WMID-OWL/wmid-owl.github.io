@@ -2,79 +2,58 @@
 // OWL TOURNAMENT BRACKET PAGE
 // =================================
 
-
 const tournamentBracketLoading =
-
     document.getElementById(
         "tournament-bracket-loading"
     );
 
-
 const tournamentBracketError =
-
     document.getElementById(
         "tournament-bracket-error"
     );
 
-
 const tournamentBracketContent =
-
     document.getElementById(
         "tournament-bracket-content"
     );
 
 
-
 function escapeTournamentBracketText(
     value
 ) {
-
-
     return String(
         value ?? ""
     )
-
         .replaceAll(
             "&",
             "&amp;"
         )
-
         .replaceAll(
             "<",
             "&lt;"
         )
-
         .replaceAll(
             ">",
             "&gt;"
         )
-
         .replaceAll(
             '"',
             "&quot;"
         )
-
         .replaceAll(
             "'",
             "&#039;"
         );
-
 }
 
 
-
 function getTournamentBracketParameters() {
-
-
     const parameters =
-
         new URLSearchParams(
             window.location.search
         );
 
-
     return {
-
         tournamentId:
             parameters.get(
                 "tournament"
@@ -84,33 +63,257 @@ function getTournamentBracketParameters() {
             parameters.get(
                 "bracket"
             )
-
     };
-
 }
-
 
 
 function getBracketStatusClass(
     status
 ) {
-
-
     return String(
         status || ""
     )
-
         .trim()
-
         .toLowerCase()
-
         .replaceAll(
             " ",
             "-"
         );
-
 }
 
+
+function getTournamentCompetitionType(
+    bracket
+) {
+    return String(
+        bracket?.competitionType ||
+        "bracket"
+    )
+        .trim()
+        .toLowerCase();
+}
+
+
+function isTournamentBattleRoyal(
+    bracket
+) {
+    return getTournamentCompetitionType(
+        bracket
+    ) ===
+        "battle-royal";
+}
+
+
+function getTournamentBattleRoyalSetup(
+    bracket
+) {
+    const setup =
+        bracket?.battleRoyalSetup;
+
+    if (
+        !setup
+        ||
+        Array.isArray(
+            setup
+        )
+        ||
+        typeof setup !==
+            "object"
+    ) {
+        return {
+            eliminationRule:
+                "Over the Top Rope",
+
+            winnerId:
+                ""
+        };
+    }
+
+    return {
+        eliminationRule:
+            String(
+                setup.eliminationRule ||
+                "Over the Top Rope"
+            ).trim()
+            ||
+            "Over the Top Rope",
+
+        winnerId:
+            String(
+                setup.winnerId ||
+                ""
+            ).trim()
+    };
+}
+
+
+function getTournamentCompetitionWinnerId(
+    bracket
+) {
+    if (
+        isTournamentBattleRoyal(
+            bracket
+        )
+    ) {
+        return getTournamentBattleRoyalSetup(
+            bracket
+        ).winnerId;
+    }
+
+    const bracketSetup =
+        getSavedTournamentBracketSetup(
+            bracket
+        );
+
+    return String(
+        bracketSetup.winnerId ||
+        ""
+    ).trim();
+}
+
+
+function syncTournamentCompetitionPageCopy(
+    tournament,
+    bracket
+) {
+    const isBattleRoyal =
+        isTournamentBattleRoyal(
+            bracket
+        );
+
+    const isInaugural =
+        tournament.id ===
+            "inaugural-championship-series";
+
+    const participantGrid =
+        document.getElementById(
+            "tournament-participant-grid"
+        );
+
+    const participantSection =
+        participantGrid?.closest(
+            ".tournament-bracket-section"
+        );
+
+    const participantHeading =
+        participantSection?.querySelector(
+            ".tournament-bracket-section-heading"
+        );
+
+    const participantEyebrow =
+        participantHeading?.querySelector(
+            ".tournament-bracket-eyebrow"
+        );
+
+    const participantTitle =
+        participantHeading?.querySelector(
+            "h2"
+        );
+
+    const participantDescription =
+        participantHeading?.querySelector(
+            ":scope > p"
+        );
+
+    if (
+        participantEyebrow
+    ) {
+        participantEyebrow.textContent =
+            isBattleRoyal
+                ? "BATTLE ROYAL FIELD"
+                : "THE FIELD";
+    }
+
+    if (
+        participantTitle
+    ) {
+        participantTitle.textContent =
+            isBattleRoyal
+                ? "Competitors"
+                : "Participants";
+    }
+
+    if (
+        participantDescription
+    ) {
+        const battleRoyalSetup =
+            getTournamentBattleRoyalSetup(
+                bracket
+            );
+
+        participantDescription.textContent =
+            isBattleRoyal
+                ? `All selected competitors enter together. Elimination rule: ${battleRoyalSetup.eliminationRule}. The final wrestler remaining wins.`
+                : "Entrants will appear here when the field is selected.";
+    }
+
+    const roundGrid =
+        document.getElementById(
+            "tournament-round-grid"
+        );
+
+    const bracketSection =
+        roundGrid?.closest(
+            ".tournament-bracket-section"
+        );
+
+    if (
+        bracketSection
+    ) {
+        bracketSection.hidden =
+            isBattleRoyal;
+
+        bracketSection.style.display =
+            isBattleRoyal
+                ? "none"
+                : "";
+    }
+
+    const winnerElement =
+        document.getElementById(
+            "tournament-bracket-winner"
+        );
+
+    const winnerSection =
+        winnerElement?.closest(
+            ".tournament-bracket-winner-section"
+        );
+
+    const winnerEyebrow =
+        winnerSection?.querySelector(
+            ".tournament-bracket-eyebrow"
+        );
+
+    if (
+        winnerEyebrow
+    ) {
+        if (
+            isBattleRoyal
+        ) {
+            const normalizedName =
+                String(
+                    bracket.name ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase();
+
+            winnerEyebrow.textContent =
+                normalizedName.includes(
+                    "ninth wonder"
+                )
+                    ? "THE NINTH WONDER"
+                    : "BATTLE ROYAL WINNER";
+        }
+
+        else {
+            winnerEyebrow.textContent =
+                isInaugural
+                    ? "INAUGURAL CHAMPION"
+                    : "TOURNAMENT WINNER";
+        }
+    }
+}
 
 
 function getRoundNames(
@@ -120,7 +323,6 @@ function getRoundNames(
         Number(
             fieldSize || 0
         );
-
 
     if (
         numericFieldSize ===
@@ -135,7 +337,6 @@ function getRoundNames(
         ];
     }
 
-
     if (
         numericFieldSize ===
             16
@@ -148,7 +349,6 @@ function getRoundNames(
         ];
     }
 
-
     if (
         numericFieldSize ===
             8
@@ -160,7 +360,6 @@ function getRoundNames(
         ];
     }
 
-
     if (
         numericFieldSize ===
             4
@@ -170,7 +369,6 @@ function getRoundNames(
             "Final"
         ];
     }
-
 
     return [
         "Final"
@@ -182,38 +380,24 @@ function getTournamentBracketWrestlerById(
     wrestlers,
     wrestlerId
 ) {
-
-
     return wrestlers.find(
-
         wrestler =>
-
             wrestler.id ===
             wrestlerId
-
     ) || null;
-
 }
-
 
 
 function getTournamentBracketTeamById(
     teams,
     teamId
 ) {
-
-
     return teams.find(
-
         team =>
-
             team.id ===
             teamId
-
     ) || null;
-
 }
-
 
 
 function getTournamentBracketEntrant(
@@ -222,43 +406,27 @@ function getTournamentBracketEntrant(
     wrestlers,
     teams
 ) {
-
-
     if (
         !participantId
     ) {
-
         return null;
-
     }
-
 
     if (
         bracket.participantType ===
         "team"
     ) {
-
         return getTournamentBracketTeamById(
-
             teams,
-
             participantId
-
         );
-
     }
 
-
     return getTournamentBracketWrestlerById(
-
         wrestlers,
-
         participantId
-
     );
-
 }
-
 
 
 function getTournamentBracketEntrantDetail(
@@ -266,204 +434,126 @@ function getTournamentBracketEntrantDetail(
     entrant,
     wrestlers
 ) {
-
-
     if (
         !entrant
     ) {
-
         return "Database record unavailable";
-
     }
-
 
     if (
         bracket.participantType ===
         "team"
     ) {
-
-
         const memberIds =
-
             Array.isArray(
                 entrant.members
             )
-
                 ? entrant.members
-
                 : [];
 
-
         const memberNames =
-
             memberIds.map(
-
                 memberId =>
-
                     getTournamentBracketWrestlerById(
-
                         wrestlers,
-
                         memberId
-
                     )?.name
-
                     ||
-
                     "Unknown Member"
-
             );
 
-
         return memberNames.length > 0
-
             ? memberNames.join(
                 " & "
             )
-
             : "Official Tag Team";
-
     }
 
-
     return [
-
         entrant.brand,
-
         entrant.division
-
     ]
-
         .filter(
             Boolean
         )
-
         .join(
             " • "
         )
-
         ||
-
         "Singles Competitor";
-
 }
+
 
 function renderParticipantSlots(
     bracket,
     wrestlers,
     teams
 ) {
-
-
     const participantGrid =
-
         document.getElementById(
             "tournament-participant-grid"
         );
 
-
     const participantCount =
-
         Number(
             bracket.fieldSize || 0
         );
 
-
     const lockedParticipants =
-
         bracket.fieldLocked
-
         &&
-
         Array.isArray(
             bracket.participants
         )
-
             ? bracket.participants
-
             : [];
 
-
     participantGrid.innerHTML =
-
         Array.from(
-
             {
-
                 length:
                     participantCount
-
             },
 
             (
                 unusedValue,
                 index
             ) => {
-
-
                 const participantId =
-
                     lockedParticipants[
                         index
                     ]
-
                     ||
-
                     "";
 
-
                 const entrant =
-
                     getTournamentBracketEntrant(
-
                         bracket,
-
                         participantId,
-
                         wrestlers,
-
                         teams
-
                     );
 
-
                 const entrantName =
-
                     participantId
-
                         ? entrant?.name
-
                             ||
-
                             "Participant Unavailable"
-
                         : "Participant TBD";
 
-
                 const entrantDetail =
-
                     participantId
-
                         ? getTournamentBracketEntrantDetail(
-
                             bracket,
-
                             entrant,
-
                             wrestlers
-
                         )
-
                         : bracket.fieldUnit ===
                             "Teams"
-
                             ? "Team Slot"
-
                             : "Competitor Slot";
 
-
                 return `
-
                     <article class="tournament-participant-slot">
 
                         <span>
@@ -483,42 +573,29 @@ function renderParticipantSlots(
                         </small>
 
                     </article>
-
                 `;
-
             }
-
         ).join("");
-
 }
 
 
 function getSavedTournamentBracketSetup(
     bracket
 ) {
-
-
     const bracketSetup =
         bracket?.bracketSetup;
 
-
     if (
         !bracketSetup
-
         ||
-
         Array.isArray(
             bracketSetup
         )
-
         ||
-
         typeof bracketSetup !==
             "object"
     ) {
-
         return {
-
             generated:
                 false,
 
@@ -530,47 +607,31 @@ function getSavedTournamentBracketSetup(
 
             winnerId:
                 ""
-
         };
-
     }
 
-
     return bracketSetup;
-
 }
-
 
 
 function getTournamentBracketSourceLabel(
     sourceMatchId
 ) {
-
-
     const sourceMatch =
-
         /^round-(\d+)-match-(\d+)$/.exec(
-
             String(
                 sourceMatchId || ""
             )
-
         );
-
 
     if (
         !sourceMatch
     ) {
-
         return "Previous-Round Winner";
-
     }
 
-
     return `Winner of Round ${sourceMatch[1]} Match ${sourceMatch[2]}`;
-
 }
-
 
 
 function getTournamentBracketMatchSideLabel(
@@ -581,64 +642,41 @@ function getTournamentBracketMatchSideLabel(
     wrestlers,
     teams
 ) {
-
-
     const participantId =
-
         match[
             participantProperty
         ];
 
-
     if (
         participantId
     ) {
-
-
         const entrant =
-
             getTournamentBracketEntrant(
-
                 bracket,
-
                 participantId,
-
                 wrestlers,
-
                 teams
-
             );
 
-
         return entrant?.name
-
             ||
-
             "Participant Unavailable";
-
     }
 
-
     const sourceMatchId =
-
         match[
             sourceProperty
         ];
 
-
     if (
         sourceMatchId
     ) {
-
         return getTournamentBracketSourceLabel(
             sourceMatchId
         );
-
     }
 
-
     return "TBD";
-
 }
 
 
@@ -648,72 +686,48 @@ function getTournamentBracketMatchWinnerLabel(
     wrestlers,
     teams
 ) {
-
-
     if (
         !match?.winnerId
     ) {
-
         return "";
-
     }
 
-
     const winner =
-
         getTournamentBracketEntrant(
-
             bracket,
-
             match.winnerId,
-
             wrestlers,
-
             teams
-
         );
 
-
     return winner?.name
-
         ||
-
         "Winner Unavailable";
-
 }
+
 
 function renderPendingTournamentRounds(
     bracket,
     roundGrid
 ) {
-
-
     const roundNames =
-
         getRoundNames(
             bracket.fieldSize
         );
 
-
     roundGrid.innerHTML =
-
         roundNames.map(
-
             (
                 roundName,
                 roundIndex
             ) => `
-
                 <section class="tournament-round-column">
 
-
                     <div class="tournament-round-heading">
-
 
                         <span>
                             ROUND ${roundIndex + 1}
                         </span>
-
 
                         <h3>
                             ${escapeTournamentBracketText(
@@ -721,12 +735,9 @@ function renderPendingTournamentRounds(
                             )}
                         </h3>
 
-
                     </div>
 
-
                     <div class="tournament-round-match-list">
-
 
                         <article class="tournament-round-match">
 
@@ -740,18 +751,12 @@ function renderPendingTournamentRounds(
 
                         </article>
 
-
                     </div>
 
-
                 </section>
-
             `
-
         ).join("");
-
 }
-
 
 
 function renderRoundShell(
@@ -759,336 +764,207 @@ function renderRoundShell(
     wrestlers,
     teams
 ) {
-
-
     const roundGrid =
-
         document.getElementById(
             "tournament-round-grid"
         );
 
-
     const bracketSetup =
-
         getSavedTournamentBracketSetup(
             bracket
         );
 
-
     if (
         !bracketSetup.generated
-
         ||
-
         !Array.isArray(
             bracketSetup.rounds
         )
-
         ||
-
         bracketSetup.rounds.length ===
             0
     ) {
-
-
         renderPendingTournamentRounds(
-
             bracket,
-
             roundGrid
-
         );
 
-
         return;
-
     }
 
-
     roundGrid.innerHTML =
-
         bracketSetup.rounds.map(
-
             (
                 round,
                 roundIndex
             ) => {
-
-
                 const roundNumber =
-
                     Number(
                         round.order
                     )
-
                     ||
-
                     roundIndex +
                         1;
 
-
                 const roundName =
-
                     round.name
-
                     ||
-
                     `Round ${roundNumber}`;
 
-
                 const matches =
-
                     Array.isArray(
                         round.matches
                     )
-
                         ? round.matches
-
                         : [];
 
-
                 const matchMarkup =
-
                     matches.length > 0
-
                         ? matches.map(
-
                             (
                                 match,
                                 matchIndex
                             ) => {
-
-
                                 const participantOneLabel =
-
                                     getTournamentBracketMatchSideLabel(
-
                                         bracket,
-
                                         match,
-
                                         "participantOneId",
-
                                         "sourceOneMatchId",
-
                                         wrestlers,
-
                                         teams
-
                                     );
 
-
-                                                                const participantTwoLabel =
-
+                                const participantTwoLabel =
                                     match.isBye
-
                                         ? "BYE"
-
                                         : getTournamentBracketMatchSideLabel(
-
                                             bracket,
-
                                             match,
-
                                             "participantTwoId",
-
                                             "sourceTwoMatchId",
-
                                             wrestlers,
-
                                             teams
-
                                         );
 
-
                                 const participantOrder =
-
                                     Array.isArray(
                                         bracket.participants
                                     )
-
                                         ? bracket.participants
-
                                         : [];
 
-
                                 const participantOneSeedIndex =
-
                                     match.participantOneId
-
                                         ? participantOrder.indexOf(
                                             match.participantOneId
                                         )
-
                                         : -1;
 
-
                                 const participantTwoSeedIndex =
-
                                     match.participantTwoId
-
                                         ? participantOrder.indexOf(
                                             match.participantTwoId
                                         )
-
                                         : -1;
 
-
                                 const participantOneSeed =
-
                                     participantOneSeedIndex >= 0
-
                                         ? participantOneSeedIndex + 1
-
                                         : "";
-
 
                                 const participantTwoSeed =
-
                                     participantTwoSeedIndex >= 0
-
                                         ? participantTwoSeedIndex + 1
-
                                         : "";
 
-
                                 const winnerLabel =
-
                                     getTournamentBracketMatchWinnerLabel(
-
                                         bracket,
-
                                         match,
-
                                         wrestlers,
-
                                         teams
-
                                     );
 
-
                                 const isCompletedMatch =
-
                                     Boolean(
                                         winnerLabel
                                     )
-
                                     &&
-
                                     !match.isBye;
 
-
                                 const isBookedMatch =
-
                                     Boolean(
                                         match.eventId
                                     )
-
                                     &&
-
                                     !match.isBye
-
                                     &&
-
                                     !isCompletedMatch;
 
-
                                 const isFinalRound =
-
                                     roundIndex ===
                                     bracketSetup.rounds.length - 1;
 
-
                                 const isTournamentWinner =
-
                                     Boolean(
                                         winnerLabel
                                     )
-
                                     &&
-
                                     isFinalRound
-
                                     &&
-
                                     bracketSetup.winnerId ===
                                         match.winnerId;
 
-
                                 const participantOneIsWinner =
-
                                     Boolean(
                                         match.winnerId
                                     )
-
                                     &&
-
                                     match.winnerId ===
                                         match.participantOneId;
 
-
                                 const participantTwoIsWinner =
-
                                     Boolean(
                                         match.winnerId
                                     )
-
                                     &&
-
                                     match.winnerId ===
                                         match.participantTwoId;
 
-
                                 const matchNumber =
-
                                     Number(
                                         match.order
                                     )
-
                                     ||
-
                                     matchIndex +
                                         1;
 
-
                                 const matchClassName =
-
                                     [
-
                                         "tournament-round-match",
 
                                         match.isBye
-
                                             ? "tournament-round-match-bye"
-
                                             : "",
 
                                         isCompletedMatch
-
                                             ? "tournament-round-match-completed"
-
                                             : "",
 
                                         isTournamentWinner
-
                                             ? "tournament-round-match-champion"
-
                                             : ""
-
                                     ]
-
                                         .filter(
                                             Boolean
                                         )
-
                                         .join(
                                             " "
                                         );
 
-
                                 return `
-
-                                                                        <article
+                                    <article
                                         class="${matchClassName}"
                                         data-bracket-match-id="${escapeTournamentBracketText(
                                             match.id || ""
@@ -1098,127 +974,89 @@ function renderRoundShell(
                                         <div class="tournament-round-match-meta">
 
                                             <span>
-
                                                 ${
                                                     match.isBye
-
                                                         ? "AUTOMATIC ADVANCEMENT"
-
                                                         : isCompletedMatch
-
                                                             ? `MATCH ${matchNumber} • COMPLETE`
-
                                                             : isBookedMatch
-
                                                                 ? `MATCH ${matchNumber} • BOOKED`
-
                                                                 : `MATCH ${matchNumber}`
                                                 }
-
                                             </span>
 
                                         </div>
 
-
                                         <div class="tournament-bracket-entrant-list">
-
 
                                             <div
                                                 class="tournament-bracket-entrant${
                                                     participantOneIsWinner
-
                                                         ||
-
                                                     match.isBye
-
                                                         ? " tournament-bracket-entrant-winner"
-
                                                         : ""
                                                 }"
                                             >
 
                                                 <span class="tournament-bracket-seed">
-
                                                     ${
                                                         participantOneSeed
-
                                                             ? escapeTournamentBracketText(
                                                                 participantOneSeed
                                                             )
-
                                                             : "—"
                                                     }
-
                                                 </span>
 
                                                 <strong>
-
                                                     ${escapeTournamentBracketText(
                                                         participantOneLabel
                                                     )}
-
                                                 </strong>
 
                                             </div>
-
 
                                             <div
                                                 class="tournament-bracket-entrant${
                                                     participantTwoIsWinner
-
                                                         ? " tournament-bracket-entrant-winner"
-
                                                         : ""
                                                 }${
                                                     match.isBye
-
                                                         ? " tournament-bracket-entrant-bye"
-
                                                         : ""
                                                 }"
                                             >
 
                                                 <span class="tournament-bracket-seed">
-
                                                     ${
                                                         match.isBye
-
                                                             ? "—"
-
                                                             : participantTwoSeed
-
                                                                 ? escapeTournamentBracketText(
                                                                     participantTwoSeed
                                                                 )
-
                                                                 : "—"
                                                     }
-
                                                 </span>
 
                                                 <strong>
-
                                                     ${escapeTournamentBracketText(
                                                         participantTwoLabel
                                                     )}
-
                                                 </strong>
 
                                             </div>
 
-
                                         </div>
 
                                     </article>
-
                                 `;
-
                             }
-
                         ).join("")
 
                         : `
-
                             <article class="tournament-round-match">
 
                                 <span>
@@ -1230,22 +1068,16 @@ function renderRoundShell(
                                 </strong>
 
                             </article>
-
                         `;
 
-
                 return `
-
                     <section class="tournament-round-column">
 
-
                         <div class="tournament-round-heading">
-
 
                             <span>
                                 ROUND ${roundNumber}
                             </span>
-
 
                             <h3>
                                 ${escapeTournamentBracketText(
@@ -1253,9 +1085,7 @@ function renderRoundShell(
                                 )}
                             </h3>
 
-
                         </div>
-
 
                         <div class="tournament-round-match-list">
 
@@ -1263,160 +1093,104 @@ function renderRoundShell(
 
                         </div>
 
-
                     </section>
-
                 `;
-
             }
-
-                ).join("");
-
+        ).join("");
 }
 
 
 function renderTournamentBracketConnectors(
     bracket
 ) {
-
-
     const roundGrid =
-
         document.getElementById(
             "tournament-round-grid"
         );
 
-
     const bracketSetup =
-
         getSavedTournamentBracketSetup(
             bracket
         );
 
-
     const oldConnectorLayer =
-
         roundGrid.querySelector(
             ".tournament-bracket-connectors"
         );
 
-
     if (
         oldConnectorLayer
     ) {
-
         oldConnectorLayer.remove();
-
     }
-
 
     if (
         !bracketSetup.generated
-
         ||
-
         !Array.isArray(
             bracketSetup.rounds
         )
-
         ||
-
         bracketSetup.rounds.length < 2
     ) {
-
         return;
-
     }
 
-
     window.requestAnimationFrame(
-
         () => {
-
-
             const matchElements =
-
                 new Map(
-
                     Array.from(
-
                         roundGrid.querySelectorAll(
                             "[data-bracket-match-id]"
                         )
-
                     ).map(
-
                         element => [
-
                             element.dataset
                                 .bracketMatchId,
 
                             element
-
                         ]
-
                     )
-
                 );
-
 
             if (
                 matchElements.size === 0
             ) {
-
                 return;
-
             }
 
-
             const gridRectangle =
-
                 roundGrid.getBoundingClientRect();
 
-
             const svg =
-
                 document.createElementNS(
-
                     "http://www.w3.org/2000/svg",
-
                     "svg"
-
                 );
-
 
             svg.classList.add(
                 "tournament-bracket-connectors"
             );
-
 
             svg.setAttribute(
                 "aria-hidden",
                 "true"
             );
 
-
             svg.setAttribute(
-
                 "width",
-
                 Math.ceil(
                     roundGrid.scrollWidth
                 )
-
             );
 
-
             svg.setAttribute(
-
                 "height",
-
                 Math.ceil(
                     roundGrid.scrollHeight
                 )
-
             );
-
 
             svg.style.position =
                 "absolute";
@@ -1439,184 +1213,117 @@ function renderTournamentBracketConnectors(
             svg.style.zIndex =
                 "0";
 
-
             roundGrid.style.position =
                 "relative";
 
-
             bracketSetup.rounds.forEach(
-
                 (
                     round,
                     roundIndex
                 ) => {
-
-
                     if (
                         roundIndex === 0
                     ) {
-
                         return;
-
                     }
 
-
                     const matches =
-
                         Array.isArray(
                             round.matches
                         )
-
                             ? round.matches
-
                             : [];
 
-
                     matches.forEach(
-
                         match => {
-
-
                             const targetElement =
-
                                 matchElements.get(
                                     match.id
                                 );
 
-
                             if (
                                 !targetElement
                             ) {
-
                                 return;
-
                             }
 
-
                             const targetNode =
-
                                 targetElement.querySelector(
                                     ".tournament-bracket-entrant-list"
                                 )
-
                                 ||
-
                                 targetElement;
 
-
                             const targetRectangle =
-
                                 targetNode
                                     .getBoundingClientRect();
 
-
                             const sourceIds = [
-
                                 match.sourceOneMatchId,
-
                                 match.sourceTwoMatchId
-
                             ].filter(
                                 Boolean
                             );
 
-
                             sourceIds.forEach(
-
                                 sourceId => {
-
-
                                     const sourceElement =
-
                                         matchElements.get(
                                             sourceId
                                         );
 
-
                                     if (
                                         !sourceElement
                                     ) {
-
                                         return;
-
                                     }
 
-
                                     const sourceNode =
-
                                         sourceElement.querySelector(
                                             ".tournament-bracket-entrant-list"
                                         )
-
                                         ||
-
                                         sourceElement;
 
-
                                     const sourceRectangle =
-
                                         sourceNode
                                             .getBoundingClientRect();
 
-
                                     const startX =
-
                                         sourceRectangle.right
-
                                         -
-
                                         gridRectangle.left;
 
-
                                     const startY =
-
                                         sourceRectangle.top
-
                                         -
-
                                         gridRectangle.top
-
                                         +
-
                                         (
                                             sourceRectangle.height
                                             /
                                             2
                                         );
 
-
                                     const endX =
-
                                         targetRectangle.left
-
                                         -
-
                                         gridRectangle.left;
 
-
                                     const endY =
-
                                         targetRectangle.top
-
                                         -
-
                                         gridRectangle.top
-
                                         +
-
                                         (
                                             targetRectangle.height
                                             /
                                             2
                                         );
 
-
                                     const elbowX =
-
                                         startX
-
                                         +
-
                                         (
                                             endX
                                             -
@@ -1625,26 +1332,16 @@ function renderTournamentBracketConnectors(
                                         /
                                         2;
 
-
                                     const glowPath =
-
                                         document.createElementNS(
-
                                             "http://www.w3.org/2000/svg",
-
                                             "path"
-
                                         );
 
-
                                     glowPath.setAttribute(
-
                                         "d",
-
                                         `M ${startX} ${startY} H ${elbowX} V ${endY} H ${endX}`
-
                                     );
-
 
                                     glowPath.style.fill =
                                         "none";
@@ -1658,26 +1355,16 @@ function renderTournamentBracketConnectors(
                                     glowPath.style.strokeLinejoin =
                                         "round";
 
-
                                     const connectorPath =
-
                                         document.createElementNS(
-
                                             "http://www.w3.org/2000/svg",
-
                                             "path"
-
                                         );
 
-
                                     connectorPath.setAttribute(
-
                                         "d",
-
                                         `M ${startX} ${startY} H ${elbowX} V ${endY} H ${endX}`
-
                                     );
-
 
                                     connectorPath.style.fill =
                                         "none";
@@ -1694,37 +1381,25 @@ function renderTournamentBracketConnectors(
                                     connectorPath.style.strokeLinecap =
                                         "square";
 
-
                                     svg.appendChild(
                                         glowPath
                                     );
 
-
                                     svg.appendChild(
                                         connectorPath
                                     );
-
                                 }
-
                             );
-
                         }
-
                     );
-
                 }
-
             );
-
 
             roundGrid.prepend(
                 svg
             );
-
         }
-
     );
-
 }
 
 
@@ -1733,133 +1408,91 @@ function renderTournamentBracketWinner(
     wrestlers,
     teams
 ) {
-
-
     const winnerElement =
-
         document.getElementById(
             "tournament-bracket-winner"
         );
 
-
     const winnerStatus =
-
         winnerElement.querySelector(
             "span"
         );
 
-
     const winnerName =
-
         winnerElement.querySelector(
             "strong"
         );
 
-
     const winnerDetail =
-
         winnerElement.querySelector(
             "small"
         );
 
-
-    const bracketSetup =
-
-        getSavedTournamentBracketSetup(
+    const isBattleRoyal =
+        isTournamentBattleRoyal(
             bracket
         );
 
-
     const winnerId =
-
-        bracketSetup.winnerId
-
-        ||
-
-        "";
-
+        getTournamentCompetitionWinnerId(
+            bracket
+        );
 
     if (
         !winnerId
     ) {
-
-
         winnerElement.className =
             "tournament-bracket-winner";
-
 
         winnerStatus.textContent =
             "TO BE CROWNED";
 
-
         winnerName.textContent =
             "—";
 
-
         winnerDetail.textContent =
-            "Tournament winner";
-
+            isBattleRoyal
+                ? "Battle Royal winner"
+                : "Tournament winner";
 
         return;
-
     }
 
-
     const winner =
-
         getTournamentBracketEntrant(
-
             bracket,
-
             winnerId,
-
             wrestlers,
-
             teams
-
         );
-
 
     const winnerDisplayName =
-
         winner?.name
-
         ||
-
         "Winner Unavailable";
 
-
     const entrantDetail =
-
         getTournamentBracketEntrantDetail(
-
             bracket,
-
             winner,
-
             wrestlers
-
         );
 
-
     winnerElement.className =
-
         "tournament-bracket-winner tournament-bracket-winner-crowned";
 
-
     winnerStatus.textContent =
-        "TOURNAMENT WINNER";
-
+        isBattleRoyal
+            ? "BATTLE ROYAL WINNER"
+            : "TOURNAMENT WINNER";
 
     winnerName.textContent =
         winnerDisplayName;
 
-
     winnerDetail.textContent =
-
         `${bracket.name} • ${entrantDetail}`;
-
 }
+
 
 function renderTournamentBracketPage(
     tournament,
@@ -1867,225 +1500,200 @@ function renderTournamentBracketPage(
     wrestlers,
     teams
 ) {
-
+    const isBattleRoyal =
+        isTournamentBattleRoyal(
+            bracket
+        );
 
     document.title =
-
         `${bracket.name} | ${tournament.name}`;
 
-
     const backLink =
-
         document.getElementById(
             "tournament-bracket-back"
         );
 
-
     backLink.href =
-
         `tournament.html?id=${encodeURIComponent(
             tournament.id
         )}`;
 
+    backLink.textContent =
+        "← Tournament";
 
     document.getElementById(
         "tournament-bracket-badge"
     ).textContent =
         tournament.badge || "";
 
-
     document.getElementById(
         "tournament-bracket-year"
     ).textContent =
         tournament.year || "";
-
 
     document.getElementById(
         "tournament-bracket-parent-name"
     ).textContent =
         tournament.name || "";
 
-
     document.getElementById(
         "tournament-bracket-name"
     ).textContent =
         bracket.name || "";
 
+    const battleRoyalDescription =
+        String(
+            bracket.name ||
+            ""
+        )
+            .trim()
+            .toLowerCase()
+            .includes(
+                "ninth wonder"
+            )
+            ? `For one match, OWL has no men's division and no women's division. There are only ${bracket.fieldSize || 0} wrestlers—and one Ninth Wonder.`
+            : `This ${bracket.fieldSize || 0}-competitor Battle Royal is contested under over-the-top-rope elimination rules. The final wrestler remaining wins.`;
 
     const tournamentBracketDescription =
+        bracket.description
+        ||
+        (
+            isBattleRoyal
+                ? battleRoyalDescription
+                : tournament.id ===
+                    "inaugural-championship-series"
+                    ? `This bracket will crown the inaugural ${bracket.name} and establish the first titleholder in this division.`
+                    : tournament.purpose
+                        || `This bracket is part of ${tournament.name}.`
+        );
 
-    bracket.description
+    document.getElementById(
+        "tournament-bracket-description"
+    ).textContent =
+        tournamentBracketDescription;
 
-    ||
-
-    (
-        tournament.id ===
-            "inaugural-championship-series"
-
-            ? `This bracket will crown the inaugural ${bracket.name} and establish the first titleholder in this division.`
-
-            : tournament.purpose
-
-                || `This bracket is part of ${tournament.name}.`
-    );
-
-
-document.getElementById(
-    "tournament-bracket-description"
-).textContent =
-    tournamentBracketDescription;
-
-
-document.getElementById(
-    "tournament-bracket-description"
-).style.whiteSpace =
-    "pre-line";
+    document.getElementById(
+        "tournament-bracket-description"
+    ).style.whiteSpace =
+        "pre-line";
 
     document.getElementById(
         "tournament-bracket-brand"
     ).textContent =
         bracket.brand || "";
 
-
     document.getElementById(
         "tournament-bracket-division"
     ).textContent =
         bracket.division || "";
 
-
     document.getElementById(
         "tournament-bracket-field"
     ).textContent =
-
         `${bracket.fieldSize} ${bracket.fieldUnit}`;
 
-
     const statusElement =
-
         document.getElementById(
             "tournament-bracket-status"
         );
 
-
     statusElement.textContent =
         bracket.status || "";
 
-
     statusElement.className =
-
         `tournament-bracket-status tournament-bracket-status-${getBracketStatusClass(
             bracket.status
         )}`;
 
-
-        renderParticipantSlots(
-
-        bracket,
-
-        wrestlers,
-
-        teams
-
-    );
-
-
-                        renderRoundShell(
-
-        bracket,
-
-        wrestlers,
-
-        teams
-
-    );
-
-
-    renderTournamentBracketConnectors(
+    syncTournamentCompetitionPageCopy(
+        tournament,
         bracket
     );
 
+    renderParticipantSlots(
+        bracket,
+        wrestlers,
+        teams
+    );
 
-    window.addEventListener(
+    if (
+        !isBattleRoyal
+    ) {
+        renderRoundShell(
+            bracket,
+            wrestlers,
+            teams
+        );
 
-        "resize",
+        renderTournamentBracketConnectors(
+            bracket
+        );
 
-        () => {
+        window.addEventListener(
+            "resize",
+            () => {
+                renderTournamentBracketConnectors(
+                    bracket
+                );
+            },
 
-            renderTournamentBracketConnectors(
-                bracket
+            {
+                passive:
+                    true
+            }
+        );
+    }
+
+    else {
+        const roundGrid =
+            document.getElementById(
+                "tournament-round-grid"
             );
 
-        },
-
-        {
-            passive:
-                true
+        if (
+            roundGrid
+        ) {
+            roundGrid.innerHTML =
+                "";
         }
-
-    );
-
+    }
 
     renderTournamentBracketWinner(
-
         bracket,
-
         wrestlers,
-
         teams
-
     );
-
 
     tournamentBracketLoading.hidden =
         true;
 
-
     tournamentBracketContent.hidden =
         false;
-
 }
 
 
-
 async function loadTournamentBracketPage() {
-
-
     try {
-
-
         const {
-
             tournamentId,
             bracketId
-
         } = getTournamentBracketParameters();
-
 
         if (
             !tournamentId
-
             ||
-
             !bracketId
         ) {
-
             throw new Error(
                 "Missing tournament or bracket ID."
             );
-
         }
 
-
-               const [
-
+        const [
             tournamentResponse,
-
             wrestlerResponse,
-
             teamResponse
-
         ] = await Promise.all([
-
             fetch(
                 "data/tournaments.json"
             ),
@@ -2097,195 +1705,123 @@ async function loadTournamentBracketPage() {
             fetch(
                 "data/teams.json"
             )
-
         ]);
-
 
         if (
             !tournamentResponse.ok
         ) {
-
             throw new Error(
-
                 `Tournament request failed: ${tournamentResponse.status}`
-
             );
-
         }
-
 
         if (
             !wrestlerResponse.ok
         ) {
-
             throw new Error(
-
                 `Wrestler request failed: ${wrestlerResponse.status}`
-
             );
-
         }
-
 
         if (
             !teamResponse.ok
         ) {
-
             throw new Error(
-
                 `Team request failed: ${teamResponse.status}`
-
             );
-
         }
 
-
         const [
-
             database,
-
             wrestlerDatabase,
-
             teamDatabase
-
         ] = await Promise.all([
-
             tournamentResponse.json(),
-
             wrestlerResponse.json(),
-
             teamResponse.json()
-
         ]);
 
-
         const wrestlers =
-
             Array.isArray(
                 wrestlerDatabase
             )
-
                 ? wrestlerDatabase
-
                 : [];
 
-
         const teams =
-
             Array.isArray(
                 teamDatabase
             )
-
                 ? teamDatabase
-
                 : [];
 
-
         const tournaments =
-
             Array.isArray(
                 database.tournaments
             )
-
                 ? database.tournaments
-
                 : [];
 
-
         const tournament =
-
             tournaments.find(
-
                 entry =>
-
                     entry.id ===
                     tournamentId
-
             );
-
 
         if (
             !tournament
         ) {
-
             throw new Error(
                 "Tournament not found."
             );
-
         }
 
-
         const brackets =
-
             Array.isArray(
                 tournament.brackets
             )
-
                 ? tournament.brackets
-
                 : [];
 
-
         const bracket =
-
             brackets.find(
-
                 entry =>
-
                     entry.id ===
                     bracketId
-
             );
-
 
         if (
             !bracket
         ) {
-
             throw new Error(
-                "Bracket not found."
+                "Competition not found."
             );
-
         }
 
-
-                renderTournamentBracketPage(
-
+        renderTournamentBracketPage(
             tournament,
-
             bracket,
-
             wrestlers,
-
             teams
-
         );
-
     }
-
 
     catch (
         error
     ) {
-
-
         console.error(
-            "Tournament bracket error:",
+            "Tournament competition error:",
             error
         );
-
 
         tournamentBracketLoading.hidden =
             true;
 
-
         tournamentBracketError.hidden =
             false;
-
     }
-
 }
-
 
 
 loadTournamentBracketPage();
