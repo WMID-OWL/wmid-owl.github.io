@@ -2,6 +2,218 @@
   "version": 1,
   "profiles": [
     {
+      "wrestlerId": "shayna-baszler",
+      "wrestlerName": "Shayna Baszler",
+      "offense": {
+        "punch": 5,
+        "kick": 8,
+        "throw": 6,
+        "joint": 9,
+        "stretch": 8,
+        "power": 4,
+        "agility": 2,
+        "arm": 3,
+        "technical": 6,
+        "rough": 1,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 7,
+        "kick": 8,
+        "throw": 8,
+        "joint": 9,
+        "stretch": 9,
+        "aerial": 4,
+        "impact": 7,
+        "lariat": 6,
+        "technical": 10,
+        "rough": 7,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Medium",
+        "recoveryBleeding": "Slow",
+        "breathing": "Good",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium",
+        "ascentStyle": "Can Ascend",
+        "upDownSpeed": "Medium Slow"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T07:02:57.751Z",
+      "updatedAt": "2026-08-17T07:02:57.751Z"
+    },
+    {
+      "wrestlerId": "roxanne-perez",
+      "wrestlerName": "Roxanne Perez",
+      "offense": {
+        "punch": 2,
+        "kick": 5,
+        "throw": 5,
+        "joint": 2,
+        "stretch": 2,
+        "power": 2,
+        "agility": 8,
+        "arm": 4,
+        "technical": 8,
+        "rough": 2,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 7,
+        "kick": 7,
+        "throw": 6,
+        "joint": 7,
+        "stretch": 7,
+        "aerial": 9,
+        "impact": 5,
+        "lariat": 5,
+        "technical": 9,
+        "rough": 6,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Good",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium Fast",
+        "ascentStyle": "Can Ascend While Running",
+        "upDownSpeed": "Medium Fast"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T07:00:16.014Z",
+      "updatedAt": "2026-08-17T07:00:16.014Z"
+    },
+    {
+      "wrestlerId": "giulia",
+      "wrestlerName": "Giulia",
+      "offense": {
+        "punch": 5,
+        "kick": 8,
+        "throw": 7,
+        "joint": 2,
+        "stretch": 3,
+        "power": 5,
+        "agility": 5,
+        "arm": 3,
+        "technical": 8,
+        "rough": 3,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 7,
+        "kick": 8,
+        "throw": 8,
+        "joint": 6,
+        "stretch": 6,
+        "aerial": 7,
+        "impact": 7,
+        "lariat": 6,
+        "technical": 9,
+        "rough": 8,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Normal",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium",
+        "ascentStyle": "Can Ascend While Running",
+        "upDownSpeed": "Medium"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T06:58:22.852Z",
+      "updatedAt": "2026-08-17T06:58:22.852Z"
+    },
+    {
+      "wrestlerId": "nia-jax",
+      "wrestlerName": "Nia Jax",
+      "offense": {
+        "punch": 9,
+        "kick": 6,
+        "throw": 8,
+        "joint": 2,
+        "stretch": 2,
+        "power": 10,
+        "agility": 6,
+        "arm": 10,
+        "technical": 6,
+        "rough": 9,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 8,
+        "kick": 7,
+        "throw": 9,
+        "joint": 5,
+        "stretch": 5,
+        "aerial": 5,
+        "impact": 9,
+        "lariat": 9,
+        "technical": 6,
+        "rough": 7,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Medium",
+        "recoveryBleeding": "Medium",
+        "breathing": "Normal",
+        "breathingBleeding": "Poor",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium Slow",
+        "ascentStyle": "Can Ascend",
+        "upDownSpeed": "Slow"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T06:56:32.290Z",
+      "updatedAt": "2026-08-17T06:56:32.290Z"
+    },
+    {
       "wrestlerId": "stephanie-vaquer",
       "wrestlerName": "Stephanie Vaquer",
       "offense": {
