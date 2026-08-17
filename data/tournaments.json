@@ -3076,10 +3076,10 @@
           "status": "Upcoming"
         },
         {
-          "id": "ninth-wonder-of-the-world-battle-royal",
-          "name": "Ninth Wonder Of The World Battle Royal",
+          "id": "ninth-wonder-battle-royal",
+          "name": "Ninth Wonder Battle Royal",
           "brand": "Shared",
-          "division": "Men's Singles",
+          "division": "Mixed Singles",
           "fieldSize": 8,
           "fieldUnit": "Competitors",
           "participantType": "wrestler",
@@ -3091,7 +3091,12 @@
             "rounds": [],
             "winnerId": ""
           },
-          "status": "Upcoming"
+          "status": "Upcoming",
+          "competitionType": "battle-royal",
+          "battleRoyalSetup": {
+            "eliminationRule": "Over the Top Rope",
+            "winnerId": ""
+          }
         }
       ]
     }
