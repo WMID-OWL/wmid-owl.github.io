@@ -932,3 +932,118 @@
     }
 
 }
+/* =================================
+   SIMULATION PROFILE RESPONSIVE
+================================= */
+
+
+@media (
+    max-width:
+        850px
+) {
+
+    .owl-sim-build-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
+
+    .owl-simulation-profile-summary {
+
+        padding:
+            20px;
+
+    }
+
+
+    .owl-simulation-profile-content {
+
+        padding:
+            0 20px 20px;
+
+    }
+
+}
+
+
+@media (
+    max-width:
+        520px
+) {
+
+    .owl-sim-build-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .owl-simulation-profile-summary {
+
+        gap:
+            14px;
+
+        padding:
+            18px 16px;
+
+    }
+
+
+    .owl-simulation-profile-summary h2 {
+
+        font-size:
+            1.35rem;
+
+    }
+
+
+    .owl-simulation-profile-baseline {
+
+        font-size:
+            0.58rem;
+
+        line-height:
+            1.4;
+
+    }
+
+
+    .owl-simulation-profile-toggle {
+
+        width:
+            36px;
+
+        height:
+            36px;
+
+        font-size:
+            1.35rem;
+
+    }
+
+
+    .owl-simulation-profile-content {
+
+        padding:
+            0 16px 16px;
+
+    }
+
+
+    .owl-sim-build-group {
+
+        padding:
+            16px;
+
+    }
+
+}
