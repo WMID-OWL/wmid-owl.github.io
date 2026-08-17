@@ -2,6 +2,748 @@
   "version": 1,
   "profiles": [
     {
+      "wrestlerId": "bayley",
+      "wrestlerName": "Davina Rose",
+      "offense": {
+        "punch": 6,
+        "kick": 4,
+        "throw": 6,
+        "joint": 3,
+        "stretch": 6,
+        "power": 4,
+        "agility": 5,
+        "arm": 4,
+        "technical": 7,
+        "rough": 4,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 7,
+        "kick": 7,
+        "throw": 8,
+        "joint": 7,
+        "stretch": 6,
+        "aerial": 6,
+        "impact": 7,
+        "lariat": 6,
+        "technical": 8,
+        "rough": 6,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Good",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium",
+        "ascentStyle": "Can Ascend",
+        "upDownSpeed": "Medium"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T08:59:19.037Z",
+      "updatedAt": "2026-08-17T08:59:19.037Z"
+    },
+    {
+      "wrestlerId": "willow-nightingale",
+      "wrestlerName": "Willow Nightingale",
+      "offense": {
+        "punch": 4,
+        "kick": 4,
+        "throw": 7,
+        "joint": 2,
+        "stretch": 2,
+        "power": 8,
+        "agility": 5,
+        "arm": 7,
+        "technical": 4,
+        "rough": 2,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 7,
+        "kick": 7,
+        "throw": 8,
+        "joint": 6,
+        "stretch": 6,
+        "aerial": 7,
+        "impact": 8,
+        "lariat": 8,
+        "technical": 7,
+        "rough": 8,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Good",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium",
+        "ascentStyle": "Can Ascend",
+        "upDownSpeed": "Medium"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T08:54:54.732Z",
+      "updatedAt": "2026-08-17T08:54:54.732Z"
+    },
+    {
+      "wrestlerId": "lio-rush",
+      "wrestlerName": "Lio Rush",
+      "offense": {
+        "punch": 3,
+        "kick": 6,
+        "throw": 4,
+        "joint": 2,
+        "stretch": 2,
+        "power": 2,
+        "agility": 8,
+        "arm": 3,
+        "technical": 7,
+        "rough": 4,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 5,
+        "kick": 6,
+        "throw": 6,
+        "joint": 5,
+        "stretch": 5,
+        "aerial": 8,
+        "impact": 5,
+        "lariat": 5,
+        "technical": 7,
+        "rough": 6,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Normal",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "Blood"
+      },
+      "movement": {
+        "movementSpeed": "Medium Fast",
+        "ascentStyle": "Can Ascend While Running",
+        "upDownSpeed": "Medium Fast"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T08:52:47.974Z",
+      "updatedAt": "2026-08-17T08:52:47.974Z"
+    },
+    {
+      "wrestlerId": "mike-bailey",
+      "wrestlerName": "Mike Bailey",
+      "offense": {
+        "punch": 4,
+        "kick": 8,
+        "throw": 4,
+        "joint": 4,
+        "stretch": 4,
+        "power": 4,
+        "agility": 8,
+        "arm": 4,
+        "technical": 6,
+        "rough": 2,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 5,
+        "kick": 8,
+        "throw": 6,
+        "joint": 5,
+        "stretch": 5,
+        "aerial": 8,
+        "impact": 6,
+        "lariat": 5,
+        "technical": 7,
+        "rough": 5,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Good",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium Fast",
+        "ascentStyle": "Can Ascend While Running",
+        "upDownSpeed": "Medium Fast"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T08:48:39.431Z",
+      "updatedAt": "2026-08-17T08:48:39.431Z"
+    },
+    {
+      "wrestlerId": "katsumi-nanami",
+      "wrestlerName": "Katsumi Nanami",
+      "offense": {
+        "punch": 3,
+        "kick": 5,
+        "throw": 5,
+        "joint": 3,
+        "stretch": 5,
+        "power": 2,
+        "agility": 8,
+        "arm": 4,
+        "technical": 7,
+        "rough": 3,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 6,
+        "kick": 7,
+        "throw": 7,
+        "joint": 7,
+        "stretch": 8,
+        "aerial": 8,
+        "impact": 7,
+        "lariat": 6,
+        "technical": 6,
+        "rough": 7,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Good",
+        "breathingBleeding": "Normal",
+        "spirit": "Medium",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium Fast",
+        "ascentStyle": "Can Ascend While Running",
+        "upDownSpeed": "Medium Fast"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T08:45:46.511Z",
+      "updatedAt": "2026-08-17T08:45:46.511Z"
+    },
+    {
+      "wrestlerId": "keith-lee",
+      "wrestlerName": "Keith Lee",
+      "offense": {
+        "punch": 6,
+        "kick": 5,
+        "throw": 7,
+        "joint": 2,
+        "stretch": 2,
+        "power": 9,
+        "agility": 6,
+        "arm": 6,
+        "technical": 5,
+        "rough": 4,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 7,
+        "kick": 6,
+        "throw": 8,
+        "joint": 7,
+        "stretch": 6,
+        "aerial": 7,
+        "impact": 8,
+        "lariat": 7,
+        "technical": 7,
+        "rough": 8,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Normal",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium",
+        "ascentStyle": "Can Ascend",
+        "upDownSpeed": "Medium"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T08:41:56.000Z",
+      "updatedAt": "2026-08-17T08:41:56.000Z"
+    },
+    {
+      "wrestlerId": "shane-taylor",
+      "wrestlerName": "Shane Taylor",
+      "offense": {
+        "punch": 8,
+        "kick": 5,
+        "throw": 7,
+        "joint": 3,
+        "stretch": 4,
+        "power": 8,
+        "agility": 3,
+        "arm": 8,
+        "technical": 5,
+        "rough": 7,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 7,
+        "kick": 6,
+        "throw": 7,
+        "joint": 6,
+        "stretch": 6,
+        "aerial": 4,
+        "impact": 8,
+        "lariat": 8,
+        "technical": 7,
+        "rough": 8,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Normal",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Strong",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium Slow",
+        "ascentStyle": "Can Ascend",
+        "upDownSpeed": "Medium Slow"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T08:35:38.788Z",
+      "updatedAt": "2026-08-17T08:35:38.788Z"
+    },
+    {
+      "wrestlerId": "johnny-gargano",
+      "wrestlerName": "Johnny Gargano",
+      "offense": {
+        "punch": 3,
+        "kick": 4,
+        "throw": 5,
+        "joint": 4,
+        "stretch": 5,
+        "power": 2,
+        "agility": 7,
+        "arm": 3,
+        "technical": 6,
+        "rough": 3,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 6,
+        "kick": 6,
+        "throw": 7,
+        "joint": 7,
+        "stretch": 8,
+        "aerial": 7,
+        "impact": 6,
+        "lariat": 5,
+        "technical": 8,
+        "rough": 8,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Good",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium Fast",
+        "ascentStyle": "Can Ascend",
+        "upDownSpeed": "Medium Fast"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T08:13:48.759Z",
+      "updatedAt": "2026-08-17T08:13:48.759Z"
+    },
+    {
+      "wrestlerId": "zack-sabre-jr",
+      "wrestlerName": "Zack Sabre Jr.",
+      "offense": {
+        "punch": 2,
+        "kick": 4,
+        "throw": 5,
+        "joint": 8,
+        "stretch": 8,
+        "power": 2,
+        "agility": 3,
+        "arm": 2,
+        "technical": 8,
+        "rough": 1,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 7,
+        "kick": 7,
+        "throw": 8,
+        "joint": 8,
+        "stretch": 8,
+        "aerial": 7,
+        "impact": 7,
+        "lariat": 5,
+        "technical": 8,
+        "rough": 5,
+        "mmaOverall": 6,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Good",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium",
+        "ascentStyle": "Can Ascend",
+        "upDownSpeed": "Medium Slow"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T08:08:49.093Z",
+      "updatedAt": "2026-08-17T08:08:49.093Z"
+    },
+    {
+      "wrestlerId": "ilja-dragunov",
+      "wrestlerName": "Ilja Dragunov",
+      "offense": {
+        "punch": 5,
+        "kick": 6,
+        "throw": 6,
+        "joint": 2,
+        "stretch": 2,
+        "power": 4,
+        "agility": 4,
+        "arm": 6,
+        "technical": 4,
+        "rough": 1,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 7,
+        "kick": 7,
+        "throw": 7,
+        "joint": 6,
+        "stretch": 6,
+        "aerial": 5,
+        "impact": 8,
+        "lariat": 7,
+        "technical": 6,
+        "rough": 6,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Normal",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Strong",
+        "specialSkill": "Quick Return"
+      },
+      "movement": {
+        "movementSpeed": "Medium",
+        "ascentStyle": "Can Ascend",
+        "upDownSpeed": "Medium"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T07:55:29.780Z",
+      "updatedAt": "2026-08-17T07:55:29.780Z"
+    },
+    {
+      "wrestlerId": "jayden-alfah",
+      "wrestlerName": "Jayden Alfah",
+      "offense": {
+        "punch": 3,
+        "kick": 7,
+        "throw": 5,
+        "joint": 2,
+        "stretch": 2,
+        "power": 4,
+        "agility": 8,
+        "arm": 4,
+        "technical": 6,
+        "rough": 2,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 6,
+        "kick": 7,
+        "throw": 7,
+        "joint": 5,
+        "stretch": 5,
+        "aerial": 8,
+        "impact": 7,
+        "lariat": 5,
+        "technical": 8,
+        "rough": 7,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Good",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium Fast",
+        "ascentStyle": "Can Ascend While Running",
+        "upDownSpeed": "Medium Fast"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T07:50:54.768Z",
+      "updatedAt": "2026-08-17T07:50:54.768Z"
+    },
+    {
+      "wrestlerId": "liberty-van-horn",
+      "wrestlerName": "Liberty Van Horn",
+      "offense": {
+        "punch": 3,
+        "kick": 3,
+        "throw": 5,
+        "joint": 4,
+        "stretch": 7,
+        "power": 6,
+        "agility": 4,
+        "arm": 8,
+        "technical": 5,
+        "rough": 2,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 7,
+        "kick": 7,
+        "throw": 8,
+        "joint": 7,
+        "stretch": 8,
+        "aerial": 7,
+        "impact": 9,
+        "lariat": 8,
+        "technical": 8,
+        "rough": 7,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Normal",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium",
+        "ascentStyle": "Can Ascend",
+        "upDownSpeed": "Medium"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T07:44:13.166Z",
+      "updatedAt": "2026-08-17T07:44:13.166Z"
+    },
+    {
+      "wrestlerId": "atua-tupu",
+      "wrestlerName": "Atua Tupu",
+      "offense": {
+        "punch": 7,
+        "kick": 6,
+        "throw": 8,
+        "joint": 2,
+        "stretch": 4,
+        "power": 9,
+        "agility": 3,
+        "arm": 7,
+        "technical": 6,
+        "rough": 8,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 6,
+        "kick": 5,
+        "throw": 7,
+        "joint": 5,
+        "stretch": 6,
+        "aerial": 3,
+        "impact": 8,
+        "lariat": 6,
+        "technical": 4,
+        "rough": 4,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Fast",
+        "breathing": "Good",
+        "breathingBleeding": "Good",
+        "spirit": "Strong",
+        "spiritBleeding": "Strong",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium Slow",
+        "ascentStyle": "Can Ascend",
+        "upDownSpeed": "Slow"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T07:28:11.481Z",
+      "updatedAt": "2026-08-17T07:28:11.481Z"
+    },
+    {
+      "wrestlerId": "jack-rabbid",
+      "wrestlerName": "Jack Rabbid",
+      "offense": {
+        "punch": 4,
+        "kick": 5,
+        "throw": 4,
+        "joint": 2,
+        "stretch": 2,
+        "power": 3,
+        "agility": 8,
+        "arm": 5,
+        "technical": 6,
+        "rough": 7,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 6,
+        "kick": 6,
+        "throw": 5,
+        "joint": 5,
+        "stretch": 5,
+        "aerial": 7,
+        "impact": 6,
+        "lariat": 5,
+        "technical": 7,
+        "rough": 7,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Medium",
+        "recoveryBleeding": "Fast",
+        "breathing": "Normal",
+        "breathingBleeding": "Normal",
+        "spirit": "Medium",
+        "spiritBleeding": "Strong",
+        "specialSkill": "Hardcore"
+      },
+      "movement": {
+        "movementSpeed": "Medium Fast",
+        "ascentStyle": "Can Ascend While Running",
+        "upDownSpeed": "Medium Fast"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T07:21:35.717Z",
+      "updatedAt": "2026-08-17T07:21:35.717Z"
+    },
+    {
       "wrestlerId": "shayna-baszler",
       "wrestlerName": "Shayna Baszler",
       "offense": {
