@@ -118,6 +118,191 @@
     }
 
 
+        function makeParameterPanel(
+        title,
+        kicker,
+        parameters,
+        values
+    ) {
+
+        const panel =
+            document.createElement(
+                "section"
+            );
+
+        panel.className =
+            "owl-sim-parameter-panel";
+
+
+        const heading =
+            document.createElement(
+                "div"
+            );
+
+        heading.className =
+            "owl-sim-parameter-heading";
+
+
+        const headingCopy =
+            document.createElement(
+                "div"
+            );
+
+
+        const eyebrow =
+            document.createElement(
+                "span"
+            );
+
+        eyebrow.textContent =
+            kicker;
+
+
+        const headingTitle =
+            document.createElement(
+                "h3"
+            );
+
+        headingTitle.textContent =
+            title;
+
+
+        headingCopy.append(
+            eyebrow,
+            headingTitle
+        );
+
+
+        const scale =
+            document.createElement(
+                "strong"
+            );
+
+        scale.textContent =
+            "1–10 SCALE";
+
+
+        heading.append(
+            headingCopy,
+            scale
+        );
+
+
+        const bars =
+            document.createElement(
+                "div"
+            );
+
+        bars.className =
+            "owl-sim-bars";
+
+
+        parameters.forEach(
+            parameter => {
+
+                const rating =
+                    Math.max(
+                        1,
+                        Math.min(
+                            10,
+                            Number(
+                                values
+                                    ?.[parameter.id]
+                                ??
+                                1
+                            )
+                        )
+                    );
+
+
+                const stat =
+                    document.createElement(
+                        "div"
+                    );
+
+                stat.className =
+                    "owl-sim-stat";
+
+
+                stat.style.setProperty(
+                    "--owl-stat-value",
+                    rating
+                );
+
+
+                const ratingElement =
+                    document.createElement(
+                        "strong"
+                    );
+
+                ratingElement.className =
+                    "owl-sim-stat-value";
+
+                ratingElement.textContent =
+                    rating;
+
+
+                const track =
+                    document.createElement(
+                        "div"
+                    );
+
+                track.className =
+                    "owl-sim-stat-track";
+
+
+                const fill =
+                    document.createElement(
+                        "div"
+                    );
+
+                fill.className =
+                    "owl-sim-stat-fill";
+
+
+                track.appendChild(
+                    fill
+                );
+
+
+                const label =
+                    document.createElement(
+                        "span"
+                    );
+
+                label.className =
+                    "owl-sim-stat-label";
+
+                label.textContent =
+                    parameter.label;
+
+
+                stat.append(
+                    ratingElement,
+                    track,
+                    label
+                );
+
+
+                bars.appendChild(
+                    stat
+                );
+
+            }
+        );
+
+
+        panel.append(
+            heading,
+            bars
+        );
+
+
+        return panel;
+
+    }
+
+
     function renderSimulationSkills(
         profile,
         reference,
@@ -587,10 +772,45 @@
         );
 
 
+                const parameterBoard =
+            document.createElement(
+                "div"
+            );
+
+        parameterBoard.className =
+            "owl-sim-parameter-board";
+
+
+        parameterBoard.append(
+
+            makeParameterPanel(
+                "Offense",
+                "ATTACK PARAMETERS",
+                reference
+                    ?.offenseParameters
+                ||
+                [],
+                profile?.offense
+            ),
+
+            makeParameterPanel(
+                "Defense",
+                "DEFENSE PARAMETERS",
+                reference
+                    ?.defenseParameters
+                ||
+                [],
+                profile?.defense
+            )
+
+        );
+
+
         wrapper.append(
             skillsSection,
             enduranceSection,
-            movementSection
+            movementSection,
+            parameterBoard
         );
 
 
