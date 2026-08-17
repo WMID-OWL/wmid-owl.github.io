@@ -2554,22 +2554,250 @@
     }
 
 
+        function loadSelectedParameterProfile() {
+
+        const wrestlerId =
+            wrestlerSelect.value;
+
+        const profile =
+            wrestlerId
+                ? getSavedParameterProfile(
+                    wrestlerId
+                )
+                : null;
+
+
+        offenseParameterFields
+            .forEach(
+                field => {
+
+                    const input =
+                        document.getElementById(
+                            field.id
+                        );
+
+
+                    if (input) {
+
+                        input.value =
+                            profile
+                                ?.offense
+                                ?.[field.key]
+                            ??
+                            "";
+
+                    }
+
+                }
+            );
+
+
+        defenseParameterFields
+            .forEach(
+                field => {
+
+                    const input =
+                        document.getElementById(
+                            field.id
+                        );
+
+
+                    if (input) {
+
+                        input.value =
+                            profile
+                                ?.defense
+                                ?.[field.key]
+                            ??
+                            "";
+
+                    }
+
+                }
+            );
+
+
+        Object.entries(
+            referenceFields
+        )
+            .forEach(
+                ([
+                    key,
+                    field
+                ]) => {
+
+                    const select =
+                        document.getElementById(
+                            field.selectId
+                        );
+
+                    const points =
+                        document.getElementById(
+                            field.pointsId
+                        );
+
+
+                    if (!select) {
+
+                        return;
+
+                    }
+
+
+                    select.value =
+                        profile
+                            ?.skills
+                            ?.[key]
+                        ??
+                        "";
+
+
+                    updatePointReadout(
+                        select,
+                        points
+                    );
+
+                }
+            );
+
+
+        if (
+            specialSkillSelect
+        ) {
+
+            specialSkillSelect.value =
+                profile
+                    ?.skills
+                    ?.specialSkill
+                ??
+                "";
+
+        }
+
+
+        Object.entries(
+            movementFields
+        )
+            .forEach(
+                ([
+                    key,
+                    field
+                ]) => {
+
+                    const select =
+                        document.getElementById(
+                            field.selectId
+                        );
+
+                    const points =
+                        document.getElementById(
+                            field.pointsId
+                        );
+
+
+                    if (!select) {
+
+                        return;
+
+                    }
+
+
+                    select.value =
+                        profile
+                            ?.movement
+                            ?.[key]
+                        ??
+                        "";
+
+
+                    updatePointReadout(
+                        select,
+                        points
+                    );
+
+                }
+            );
+
+
+        if (
+            permanentBonusInput
+        ) {
+
+            permanentBonusInput.value =
+                String(
+                    profile
+                        ?.bonuses
+                        ?.permanent
+                    ??
+                    0
+                );
+
+        }
+
+
+        if (
+            championBonusSelect
+        ) {
+
+            championBonusSelect.value =
+                String(
+                    profile
+                        ?.bonuses
+                        ?.champion
+                    ??
+                    0
+                );
+
+        }
+
+
+        if (
+            overBaselineInput
+        ) {
+
+            overBaselineInput.value =
+                "";
+
+        }
+
+
+        if (
+            saveMessage
+        ) {
+
+            saveMessage.hidden =
+                true;
+
+        }
+
+
+        renderSpecialSkillReference();
+
+        renderSelectedBuild();
+
+
+        status.textContent =
+            profile
+                ? "PROFILE LOADED"
+                : "READY";
+
+    }
+
+
     function renderParameterEditor() {
 
         renderParameterWrestlerOptions();
 
         renderReferenceOptions();
 
-        renderSpecialSkillReference();
-
-        renderSelectedBuild();
+        loadSelectedParameterProfile();
 
     }
 
 
-            wrestlerSelect.addEventListener(
+        wrestlerSelect.addEventListener(
         "change",
-        renderSelectedBuild
+        loadSelectedParameterProfile
     );
 
 
