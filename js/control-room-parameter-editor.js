@@ -117,10 +117,43 @@
             "cr-param-special-skill-reference"
         );
 
-    const specialSkillSynopsis =
+        const specialSkillSynopsis =
         document.getElementById(
             "cr-param-special-skill-synopsis"
         );
+
+
+    const enduranceFields = {
+
+        Neck: {
+            valueId:
+                "cr-param-endurance-neck",
+            pointsId:
+                "cr-param-endurance-neck-points"
+        },
+
+        Arms: {
+            valueId:
+                "cr-param-endurance-arms",
+            pointsId:
+                "cr-param-endurance-arms-points"
+        },
+
+        Back: {
+            valueId:
+                "cr-param-endurance-back",
+            pointsId:
+                "cr-param-endurance-back-points"
+        },
+
+        Legs: {
+            valueId:
+                "cr-param-endurance-legs",
+            pointsId:
+                "cr-param-endurance-legs-points"
+        }
+
+    };
 
 
     function getParameterReference() {
@@ -641,6 +674,174 @@
     }
 
 
+        function getSelectedEnduranceProfile() {
+
+        if (
+            !wrestlerSelect.value
+            ||
+            typeof owlControlRoomData ===
+                "undefined"
+        ) {
+
+            return null;
+
+        }
+
+
+        const profiles =
+            owlControlRoomData
+                .enduranceProfiles
+                ?.profiles;
+
+
+        if (
+            !Array.isArray(
+                profiles
+            )
+        ) {
+
+            return null;
+
+        }
+
+
+        return (
+            profiles.find(
+                profile =>
+                    profile?.wrestlerId ===
+                    wrestlerSelect.value
+            )
+            ||
+            null
+        );
+
+    }
+
+
+    function getEndurancePoints(
+        state
+    ) {
+
+        const reference =
+            getParameterReference();
+
+        const option =
+            reference
+                ?.enduranceSettings
+                ?.options
+                ?.find(
+                    candidate =>
+                        candidate.value ===
+                        state
+                );
+
+
+        return Number(
+            option?.points
+            ??
+            0
+        );
+
+    }
+
+
+    function renderEnduranceProfile() {
+
+        const hasWrestler =
+            Boolean(
+                wrestlerSelect.value
+            );
+
+
+        const profile =
+            getSelectedEnduranceProfile();
+
+
+        const savedAreas =
+            profile?.areas
+            ||
+            {};
+
+
+        Object.entries(
+            enduranceFields
+        )
+            .forEach(
+                ([
+                    area,
+                    field
+                ]) => {
+
+                    const valueElement =
+                        document.getElementById(
+                            field.valueId
+                        );
+
+                    const pointsElement =
+                        document.getElementById(
+                            field.pointsId
+                        );
+
+
+                    if (
+                        !valueElement
+                        ||
+                        !pointsElement
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    if (
+                        !hasWrestler
+                    ) {
+
+                        valueElement.textContent =
+                            "—";
+
+                        pointsElement.textContent =
+                            "— pts";
+
+                        return;
+
+                    }
+
+
+                    const storedState =
+                        savedAreas[
+                            area
+                        ];
+
+
+                    const state =
+                        [
+                            "Low",
+                            "Normal",
+                            "High"
+                        ]
+                            .includes(
+                                storedState
+                            )
+                            ? storedState
+                            : "Normal";
+
+
+                    valueElement.textContent =
+                        state;
+
+                    pointsElement.textContent =
+                        `${getEndurancePoints(
+                            state
+                        )} pts`;
+
+                }
+            );
+
+    }
+
+
     function renderParameterEditor() {
 
         renderParameterWrestlerOptions();
@@ -649,12 +850,26 @@
 
         renderSpecialSkillReference();
 
+        renderEnduranceProfile();
+
     }
+
+
+        wrestlerSelect.addEventListener(
+        "change",
+        renderEnduranceProfile
+    );
 
 
     window.addEventListener(
         "owl-control-room-data-loaded",
         renderParameterEditor
+    );
+
+
+    window.addEventListener(
+        "owl-endurance-profiles-updated",
+        renderEnduranceProfile
     );
 
 
