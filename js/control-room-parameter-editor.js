@@ -1941,15 +1941,27 @@
     }
 
 
-    function selectedWrestler() {
+        function selectedWrestler() {
+
+        const wrestlers =
+            (
+                typeof owlControlRoomData !==
+                    "undefined"
+                &&
+                Array.isArray(
+                    owlControlRoomData.wrestlers
+                )
+            )
+                ? owlControlRoomData.wrestlers
+                : [];
+
 
         return (
-            getParameterEditorWrestlers()
-                .find(
-                    wrestler =>
-                        wrestler.id ===
-                        wrestlerSelect.value
-                )
+            wrestlers.find(
+                wrestler =>
+                    wrestler.id ===
+                    wrestlerSelect.value
+            )
             ||
             null
         );
