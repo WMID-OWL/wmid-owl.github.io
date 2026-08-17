@@ -459,8 +459,17 @@
 
 .owl-sim-parameter-panel {
 
+    min-width:
+        0;
+
     padding:
         22px;
+
+    box-sizing:
+        border-box;
+
+    overflow:
+        hidden;
 
     background:
         linear-gradient(
@@ -567,7 +576,7 @@
         repeat(
             12,
             minmax(
-                36px,
+                0,
                 1fr
             )
         );
@@ -575,8 +584,17 @@
     align-items:
         end;
 
-        gap:
+    gap:
         9px;
+
+    width:
+        100%;
+
+    min-width:
+        0;
+
+    box-sizing:
+        border-box;
 
 }
 
@@ -627,6 +645,9 @@
 
     display:
         flex;
+
+    box-sizing:
+        border-box;
 
     align-items:
         flex-end;
