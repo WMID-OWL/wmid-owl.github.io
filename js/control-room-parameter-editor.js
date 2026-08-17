@@ -22,6 +22,127 @@
     }
 
 
+    const referenceFields = {
+
+        criticalAbility: {
+            selectId:
+                "cr-param-critical",
+            pointsId:
+                "cr-param-critical-points"
+        },
+
+        recovery: {
+            selectId:
+                "cr-param-recovery",
+            pointsId:
+                "cr-param-recovery-points"
+        },
+
+        recoveryBleeding: {
+            selectId:
+                "cr-param-recovery-bleeding",
+            pointsId:
+                "cr-param-recovery-bleeding-points"
+        },
+
+        breathing: {
+            selectId:
+                "cr-param-breathing",
+            pointsId:
+                "cr-param-breathing-points"
+        },
+
+        breathingBleeding: {
+            selectId:
+                "cr-param-breathing-bleeding",
+            pointsId:
+                "cr-param-breathing-bleeding-points"
+        },
+
+        spirit: {
+            selectId:
+                "cr-param-spirit",
+            pointsId:
+                "cr-param-spirit-points"
+        },
+
+        spiritBleeding: {
+            selectId:
+                "cr-param-spirit-bleeding",
+            pointsId:
+                "cr-param-spirit-bleeding-points"
+        }
+
+    };
+
+
+    const movementFields = {
+
+        movementSpeed: {
+            selectId:
+                "cr-param-movement-speed",
+            pointsId:
+                "cr-param-movement-speed-points"
+        },
+
+        ascentStyle: {
+            selectId:
+                "cr-param-ascent-style",
+            pointsId:
+                "cr-param-ascent-style-points"
+        },
+
+        upDownSpeed: {
+            selectId:
+                "cr-param-up-down-speed",
+            pointsId:
+                "cr-param-up-down-speed-points"
+        }
+
+    };
+
+
+    const specialSkillSelect =
+        document.getElementById(
+            "cr-param-special-skill"
+        );
+
+    const specialSkillPoints =
+        document.getElementById(
+            "cr-param-special-skill-points"
+        );
+
+    const specialSkillReference =
+        document.getElementById(
+            "cr-param-special-skill-reference"
+        );
+
+    const specialSkillSynopsis =
+        document.getElementById(
+            "cr-param-special-skill-synopsis"
+        );
+
+
+    function getParameterReference() {
+
+        if (
+            typeof owlControlRoomData ===
+                "undefined"
+            ||
+            !owlControlRoomData.parameterReference
+        ) {
+
+            return null;
+
+        }
+
+        return (
+            owlControlRoomData.parameterReference
+        );
+
+    }
+
+
     function getParameterEditorWrestlers() {
 
         if (
@@ -135,21 +256,408 @@
 
         }
 
+    }
+
+
+    function populateSelect(
+        selectElement,
+        options
+    ) {
+
+        if (
+            !selectElement
+            ||
+            !Array.isArray(
+                options
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        const currentValue =
+            selectElement.value;
+
+
+        selectElement.innerHTML =
+            "";
+
+
+        const placeholder =
+            document.createElement(
+                "option"
+            );
+
+        placeholder.value =
+            "";
+
+        placeholder.textContent =
+            "—";
+
+        selectElement.appendChild(
+            placeholder
+        );
+
+
+        options.forEach(
+            optionData => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value =
+                    optionData.value;
+
+                option.textContent =
+                    optionData.value;
+
+                option.dataset.points =
+                    String(
+                        optionData.points
+                        ??
+                        0
+                    );
+
+                selectElement.appendChild(
+                    option
+                );
+
+            }
+        );
+
+
+        if (
+            currentValue
+            &&
+            options.some(
+                optionData =>
+                    optionData.value ===
+                    currentValue
+            )
+        ) {
+
+            selectElement.value =
+                currentValue;
+
+        }
+
+    }
+
+
+    function updatePointReadout(
+        selectElement,
+        pointsElement
+    ) {
+
+        if (
+            !selectElement
+            ||
+            !pointsElement
+        ) {
+
+            return;
+
+        }
+
+
+        const selectedOption =
+            selectElement.options[
+                selectElement.selectedIndex
+            ];
+
+
+        if (
+            !selectedOption
+            ||
+            !selectElement.value
+        ) {
+
+            pointsElement.textContent =
+                "— pts";
+
+            return;
+
+        }
+
+
+        const points =
+            Number(
+                selectedOption.dataset.points
+                ||
+                0
+            );
+
+
+        pointsElement.textContent =
+            `${points} pts`;
+
+    }
+
+
+    function wirePointField(
+        field
+    ) {
+
+        const selectElement =
+            document.getElementById(
+                field.selectId
+            );
+
+        const pointsElement =
+            document.getElementById(
+                field.pointsId
+            );
+
+
+        if (
+            !selectElement
+            ||
+            !pointsElement
+        ) {
+
+            return;
+
+        }
+
+
+        selectElement.addEventListener(
+            "change",
+            () => {
+
+                updatePointReadout(
+                    selectElement,
+                    pointsElement
+                );
+
+            }
+        );
+
+    }
+
+
+    function renderReferenceOptions() {
+
+        const reference =
+            getParameterReference();
+
+
+        if (!reference) {
+
+            status.textContent =
+                "REFERENCE MISSING";
+
+            return;
+
+        }
+
+
+        Object.entries(
+            referenceFields
+        )
+            .forEach(
+                ([
+                    referenceKey,
+                    field
+                ]) => {
+
+                    const selectElement =
+                        document.getElementById(
+                            field.selectId
+                        );
+
+                    const setting =
+                        reference.skillSettings
+                        ?.[
+                            referenceKey
+                        ];
+
+
+                    populateSelect(
+                        selectElement,
+                        setting?.options
+                    );
+
+
+                    updatePointReadout(
+                        selectElement,
+                        document.getElementById(
+                            field.pointsId
+                        )
+                    );
+
+                }
+            );
+
+
+        Object.entries(
+            movementFields
+        )
+            .forEach(
+                ([
+                    referenceKey,
+                    field
+                ]) => {
+
+                    const selectElement =
+                        document.getElementById(
+                            field.selectId
+                        );
+
+                    const setting =
+                        reference.movementSettings
+                        ?.[
+                            referenceKey
+                        ];
+
+
+                    populateSelect(
+                        selectElement,
+                        setting?.options
+                    );
+
+
+                    updatePointReadout(
+                        selectElement,
+                        document.getElementById(
+                            field.pointsId
+                        )
+                    );
+
+                }
+            );
+
+
+        populateSelect(
+            specialSkillSelect,
+            reference.specialSkills
+        );
+
+
+        updatePointReadout(
+            specialSkillSelect,
+            specialSkillPoints
+        );
+
 
         status.textContent =
-            wrestlers.length > 0
-                ? "READY"
-                : "WAITING";
+            "READY";
+
+    }
+
+
+    function renderSpecialSkillReference() {
+
+        const reference =
+            getParameterReference();
+
+
+        if (
+            !reference
+            ||
+            !specialSkillSelect
+            ||
+            !specialSkillReference
+            ||
+            !specialSkillSynopsis
+        ) {
+
+            return;
+
+        }
+
+
+        const selectedSkill =
+            reference.specialSkills
+                ?.find(
+                    skill =>
+                        skill.value ===
+                        specialSkillSelect.value
+                );
+
+
+        updatePointReadout(
+            specialSkillSelect,
+            specialSkillPoints
+        );
+
+
+        if (
+            !selectedSkill
+            ||
+            !specialSkillSelect.value
+        ) {
+
+            specialSkillReference.hidden =
+                true;
+
+            specialSkillSynopsis.textContent =
+                "—";
+
+            return;
+
+        }
+
+
+        specialSkillSynopsis.textContent =
+            selectedSkill.synopsis
+            ||
+            "No synopsis available.";
+
+        specialSkillReference.hidden =
+            false;
+
+    }
+
+
+    Object.values(
+        referenceFields
+    )
+        .forEach(
+            wirePointField
+        );
+
+
+    Object.values(
+        movementFields
+    )
+        .forEach(
+            wirePointField
+        );
+
+
+    if (
+        specialSkillSelect
+    ) {
+
+        specialSkillSelect.addEventListener(
+            "change",
+            renderSpecialSkillReference
+        );
+
+    }
+
+
+    function renderParameterEditor() {
+
+        renderParameterWrestlerOptions();
+
+        renderReferenceOptions();
+
+        renderSpecialSkillReference();
 
     }
 
 
     window.addEventListener(
         "owl-control-room-data-loaded",
-        renderParameterWrestlerOptions
+        renderParameterEditor
     );
 
 
-    renderParameterWrestlerOptions();
+    renderParameterEditor();
 
 })();
