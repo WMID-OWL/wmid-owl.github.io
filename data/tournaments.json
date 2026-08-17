@@ -2812,11 +2812,11 @@
             ],
             "winnerId": ""
           },
-                    "status": "Upcoming"
+          "status": "Upcoming"
         }
       ],
       "broadcasts": [
-                {
+        {
           "id": "week-1-block-a",
           "week": 1,
           "block": "Block A",
@@ -2891,7 +2891,7 @@
             }
           ]
         },
-                {
+        {
           "id": "week-1-block-b",
           "week": 1,
           "block": "Block B",
@@ -3028,6 +3028,72 @@
       "image": "assets/images/tournaments/twin-talon-challengers-cup-2026.webp",
       "directoryStats": [],
       "brackets": []
+    },
+    {
+      "id": "the-wonder-of-worlds-memorial-2027",
+      "name": "The Wonder Of Worlds Memorial",
+      "year": 2027,
+      "status": "Upcoming",
+      "badge": "Tournament/Battle Royal",
+      "purpose": "The Wonder of Worlds Memorial is an annual OWL tradition created to honor the legacies of Bray Wyatt and Chyna—two unforgettable performers who challenged convention, broke expectations, and changed what a wrestling superstar could be.\n\nRather than simply recreate the past, the Memorial celebrates that spirit through competition. The Eater of Worlds Classic rewards those capable of surviving a tournament field and standing above their peers, while The Ninth Wonder places men and women together under the same rules, recognizing the kind of boundary-breaking fearlessness that made Chyna unlike anyone before her. Every winner adds their name to a tradition built around individuality, ambition, and the courage to become something wrestling has never seen before.",
+      "image": "assets/images/tournaments/the-wonder-of-worlds-memorial-2027.webp",
+      "directoryStats": [],
+      "brackets": [
+        {
+          "id": "the-eater-of-worlds-tournament",
+          "name": "The Eater Of Worlds Tournament",
+          "brand": "Shared",
+          "division": "Men's Singles",
+          "fieldSize": 8,
+          "fieldUnit": "Competitors",
+          "participantType": "wrestler",
+          "participants": [],
+          "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
+          "status": "Upcoming"
+        },
+        {
+          "id": "the-eater-of-worlds-tournament-2",
+          "name": "The Eater Of Worlds Tournament",
+          "brand": "Shared",
+          "division": "Women's Singles",
+          "fieldSize": 8,
+          "fieldUnit": "Competitors",
+          "participantType": "wrestler",
+          "participants": [],
+          "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
+          "status": "Upcoming"
+        },
+        {
+          "id": "ninth-wonder-of-the-world-battle-royal",
+          "name": "Ninth Wonder Of The World Battle Royal",
+          "brand": "Shared",
+          "division": "Men's Singles",
+          "fieldSize": 8,
+          "fieldUnit": "Competitors",
+          "participantType": "wrestler",
+          "participants": [],
+          "fieldLocked": false,
+          "bracketSetup": {
+            "generated": false,
+            "generatedAt": "",
+            "rounds": [],
+            "winnerId": ""
+          },
+          "status": "Upcoming"
+        }
+      ]
     }
   ]
 }
