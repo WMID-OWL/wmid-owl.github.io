@@ -1572,12 +1572,44 @@
             false;
 
 
-        if (
+                if (
             !buildComplete
         ) {
 
-            balanceMessage.textContent =
-                "BUILD INCOMPLETE — finish all 24 parameters and all Skill / Movement selections.";
+            const parametersComplete =
+                parameterFieldsComplete();
+
+            const selectionsComplete =
+                selectionFieldsComplete();
+
+
+            if (
+                !parametersComplete
+                &&
+                !selectionsComplete
+            ) {
+
+                balanceMessage.textContent =
+                    "BUILD INCOMPLETE — parameter ratings and one or more Skill / Movement selections are still missing.";
+
+            }
+
+            else if (
+                !parametersComplete
+            ) {
+
+                balanceMessage.textContent =
+                    "BUILD INCOMPLETE — one or more parameter ratings are blank or outside 1–10.";
+
+            }
+
+            else {
+
+                balanceMessage.textContent =
+                    "BUILD INCOMPLETE — all parameter ratings are entered, but one or more Skill / Movement selections are still blank.";
+
+            }
+
 
             return;
 
@@ -1657,16 +1689,34 @@
                     );
 
 
-                input?.addEventListener(
-                    "input",
-                    renderPointAudit
-                );
+                                if (input) {
 
-                input?.addEventListener(
-                    "change",
-                    renderPointAudit
-                );
+                    input.type =
+                        "text";
 
+                    input.inputMode =
+                        "numeric";
+
+                    input.maxLength =
+                        2;
+
+                    input.setAttribute(
+                        "pattern",
+                        "[0-9]*"
+                    );
+
+
+                    input.addEventListener(
+                        "input",
+                        renderPointAudit
+                    );
+
+                    input.addEventListener(
+                        "change",
+                        renderPointAudit
+                    );
+
+                }
             }
         );
 
