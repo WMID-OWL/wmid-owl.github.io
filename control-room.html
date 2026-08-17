@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-   <link rel="stylesheet" href="css/control-room.css?v=317a">
+   <link rel="stylesheet" href="css/control-room.css?v=317a">x
 </head>
 
 <body class="control-room-body">
@@ -1597,7 +1597,7 @@
                     </article>
 
 
-                    <article class="control-room-stat-card">
+                                        <article class="control-room-stat-card">
 
                         <span>
                             OWL BASELINE
@@ -1608,6 +1608,148 @@
                         </strong>
 
                     </article>
+
+                </div>
+
+
+                <div class="cr-editor-section cr-editor-spaced-field">
+
+                    <div class="cr-editor-section-heading">
+
+                        <span>
+                            AUTHORIZED BUILD
+                        </span>
+
+                        <h3>
+                            OWL Bonus Breakdown
+                        </h3>
+
+                        <p>
+                            Record only points the wrestler has actually
+                            earned through OWL progression or currently
+                            receives as an active champion.
+                        </p>
+
+                    </div>
+
+
+                    <div class="cr-editor-form-grid">
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-param-permanent-bonus">
+                                PERMANENT BONUS POINTS
+                            </label>
+
+                            <input
+                                id="cr-param-permanent-bonus"
+                                type="text"
+                                inputmode="numeric"
+                                pattern="[0-9]*"
+                                maxlength="3"
+                                value="0"
+                            >
+
+                            <small class="cr-field-help">
+                                PPV wins, title wins, defenses, approved
+                                Signature Series wins, and earned title opportunities.
+                            </small>
+
+                        </div>
+
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-param-champion-bonus">
+                                ACTIVE CHAMPION BONUS
+                            </label>
+
+                            <select id="cr-param-champion-bonus">
+
+                                <option value="0">
+                                    No — 0 pts
+                                </option>
+
+                                <option value="20">
+                                    Yes — +20 pts
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="cr-form-group">
+
+                            <label>
+                                BASE BUILD
+                            </label>
+
+                            <div
+                                id="cr-param-base-build"
+                                class="cr-current-value"
+                            >
+                                160
+                            </div>
+
+                        </div>
+
+
+                        <div class="cr-form-group">
+
+                            <label>
+                                CURRENT AUTHORIZED BUILD
+                            </label>
+
+                            <div
+                                id="cr-param-authorized-build"
+                                class="cr-current-value"
+                            >
+                                160
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="cr-param-over-baseline-confirm"
+                        class="cr-change-preview"
+                        hidden
+                    >
+
+                        <span>
+                            OVER-BASELINE SAVE AUTHORIZATION
+                        </span>
+
+                        <p id="cr-param-over-baseline-copy">
+                            —
+                        </p>
+
+
+                        <div class="cr-form-group">
+
+                            <label for="cr-param-over-baseline-input">
+                                CONFIRMATION
+                            </label>
+
+                            <input
+                                id="cr-param-over-baseline-input"
+                                type="text"
+                                autocomplete="off"
+                            >
+
+                            <small
+                                id="cr-param-over-baseline-help"
+                                class="cr-field-help"
+                            >
+                                —
+                            </small>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
