@@ -156,6 +156,177 @@
     };
 
 
+        const offenseParameterFields = [
+
+        {
+            key: "punch",
+            id: "cr-param-offense-punch"
+        },
+
+        {
+            key: "kick",
+            id: "cr-param-offense-kick"
+        },
+
+        {
+            key: "throw",
+            id: "cr-param-offense-throw"
+        },
+
+        {
+            key: "joint",
+            id: "cr-param-offense-joint"
+        },
+
+        {
+            key: "stretch",
+            id: "cr-param-offense-stretch"
+        },
+
+        {
+            key: "power",
+            id: "cr-param-offense-power"
+        },
+
+        {
+            key: "agility",
+            id: "cr-param-offense-agility"
+        },
+
+        {
+            key: "arm",
+            id: "cr-param-offense-arm"
+        },
+
+        {
+            key: "technical",
+            id: "cr-param-offense-technical"
+        },
+
+        {
+            key: "rough",
+            id: "cr-param-offense-rough"
+        },
+
+        {
+            key: "mmaOverall",
+            id: "cr-param-offense-mma"
+        },
+
+        {
+            key: "entertain",
+            id: "cr-param-offense-entertain"
+        }
+
+    ];
+
+
+    const defenseParameterFields = [
+
+        {
+            key: "punch",
+            id: "cr-param-defense-punch"
+        },
+
+        {
+            key: "kick",
+            id: "cr-param-defense-kick"
+        },
+
+        {
+            key: "throw",
+            id: "cr-param-defense-throw"
+        },
+
+        {
+            key: "joint",
+            id: "cr-param-defense-joint"
+        },
+
+        {
+            key: "stretch",
+            id: "cr-param-defense-stretch"
+        },
+
+        {
+            key: "aerial",
+            id: "cr-param-defense-aerial"
+        },
+
+        {
+            key: "impact",
+            id: "cr-param-defense-impact"
+        },
+
+        {
+            key: "lariat",
+            id: "cr-param-defense-lariat"
+        },
+
+        {
+            key: "technical",
+            id: "cr-param-defense-technical"
+        },
+
+        {
+            key: "rough",
+            id: "cr-param-defense-rough"
+        },
+
+        {
+            key: "mmaOverall",
+            id: "cr-param-defense-mma"
+        },
+
+        {
+            key: "entertain",
+            id: "cr-param-defense-entertain"
+        }
+
+    ];
+
+
+    const parameterTotalElement =
+        document.getElementById(
+            "cr-param-parameter-total"
+        );
+
+    const skillTotalElement =
+        document.getElementById(
+            "cr-param-skill-total"
+        );
+
+    const editTotalElement =
+        document.getElementById(
+            "cr-param-edit-total"
+        );
+
+    const currentTotalElement =
+        document.getElementById(
+            "cr-parameter-current-total"
+        );
+
+    const dnmtOffenseElement =
+        document.getElementById(
+            "cr-param-dnmt-offense"
+        );
+
+    const dnmtDefenseElement =
+        document.getElementById(
+            "cr-param-dnmt-defense"
+        );
+
+    const dnmtRatioElement =
+        document.getElementById(
+            "cr-param-dnmt-ratio"
+        );
+
+    const balanceMessage =
+        document.getElementById(
+            "cr-param-balance-message"
+        );
+
+
     function getParameterReference() {
 
         if (
@@ -842,6 +1013,598 @@
     }
 
 
+        function getParameterRatingCost(
+        rating
+    ) {
+
+        const reference =
+            getParameterReference();
+
+        const costs =
+            reference
+                ?.parameterRatingCosts;
+
+
+        if (
+            Array.isArray(
+                costs
+            )
+        ) {
+
+            const match =
+                costs.find(
+                    item =>
+                        Number(
+                            item.rating
+                            ??
+                            item.value
+                        )
+                        ===
+                        rating
+                );
+
+
+            if (match) {
+
+                return Number(
+                    match.points
+                    ??
+                    0
+                );
+
+            }
+
+        }
+
+
+        if (
+            costs
+            &&
+            typeof costs ===
+                "object"
+            &&
+            costs[
+                String(
+                    rating
+                )
+            ]
+            !== undefined
+        ) {
+
+            return Number(
+                costs[
+                    String(
+                        rating
+                    )
+                ]
+            );
+
+        }
+
+
+        return Math.max(
+            0,
+            rating - 1
+        );
+
+    }
+
+
+    function getParameterFieldValue(
+        field
+    ) {
+
+        const input =
+            document.getElementById(
+                field.id
+            );
+
+
+        if (!input) {
+
+            return null;
+
+        }
+
+
+        const value =
+            Number(
+                input.value
+            );
+
+
+        if (
+            !Number.isInteger(
+                value
+            )
+            ||
+            value < 1
+            ||
+            value > 10
+        ) {
+
+            return null;
+
+        }
+
+
+        return value;
+
+    }
+
+
+    function getSelectedOptionPoints(
+        selectElement
+    ) {
+
+        if (
+            !selectElement
+            ||
+            !selectElement.value
+        ) {
+
+            return 0;
+
+        }
+
+
+        const option =
+            selectElement.options[
+                selectElement.selectedIndex
+            ];
+
+
+        return Number(
+            option?.dataset.points
+            ??
+            0
+        );
+
+    }
+
+
+    function parameterFieldsComplete() {
+
+        return [
+            ...offenseParameterFields,
+            ...defenseParameterFields
+        ]
+            .every(
+                field =>
+                    getParameterFieldValue(
+                        field
+                    )
+                    !==
+                    null
+            );
+
+    }
+
+
+    function selectionFieldsComplete() {
+
+        const coreComplete =
+            Object
+                .values(
+                    referenceFields
+                )
+                .every(
+                    field =>
+                        Boolean(
+                            document
+                                .getElementById(
+                                    field.selectId
+                                )
+                                ?.value
+                        )
+                );
+
+
+        const movementComplete =
+            Object
+                .values(
+                    movementFields
+                )
+                .every(
+                    field =>
+                        Boolean(
+                            document
+                                .getElementById(
+                                    field.selectId
+                                )
+                                ?.value
+                        )
+                );
+
+
+        return (
+            coreComplete
+            &&
+            movementComplete
+            &&
+            Boolean(
+                specialSkillSelect
+                    ?.value
+            )
+        );
+
+    }
+
+
+    function calculateParameterPoints() {
+
+        return [
+            ...offenseParameterFields,
+            ...defenseParameterFields
+        ]
+            .reduce(
+                (
+                    total,
+                    field
+                ) => {
+
+                    const rating =
+                        getParameterFieldValue(
+                            field
+                        );
+
+
+                    if (
+                        rating ===
+                        null
+                    ) {
+
+                        return total;
+
+                    }
+
+
+                    return (
+                        total
+                        +
+                        getParameterRatingCost(
+                            rating
+                        )
+                    );
+
+                },
+                0
+            );
+
+    }
+
+
+    function calculateSkillPoints() {
+
+        let total =
+            0;
+
+
+        Object.values(
+            referenceFields
+        )
+            .forEach(
+                field => {
+
+                    total +=
+                        getSelectedOptionPoints(
+                            document.getElementById(
+                                field.selectId
+                            )
+                        );
+
+                }
+            );
+
+
+        Object.values(
+            movementFields
+        )
+            .forEach(
+                field => {
+
+                    total +=
+                        getSelectedOptionPoints(
+                            document.getElementById(
+                                field.selectId
+                            )
+                        );
+
+                }
+            );
+
+
+        total +=
+            getSelectedOptionPoints(
+                specialSkillSelect
+            );
+
+
+        if (
+            wrestlerSelect.value
+        ) {
+
+            const profile =
+                getSelectedEnduranceProfile();
+
+            const areas =
+                profile?.areas
+                ||
+                {};
+
+
+            Object.keys(
+                enduranceFields
+            )
+                .forEach(
+                    area => {
+
+                        const storedState =
+                            areas[
+                                area
+                            ];
+
+
+                        const state =
+                            [
+                                "Low",
+                                "Normal",
+                                "High"
+                            ]
+                                .includes(
+                                    storedState
+                                )
+                                ? storedState
+                                : "Normal";
+
+
+                        total +=
+                            getEndurancePoints(
+                                state
+                            );
+
+                    }
+                );
+
+        }
+
+
+        return total;
+
+    }
+
+
+    function calculateDnmtSum(
+        fields
+    ) {
+
+        return fields
+            .filter(
+                field =>
+                    field.key !==
+                        "mmaOverall"
+                    &&
+                    field.key !==
+                        "entertain"
+            )
+            .reduce(
+                (
+                    total,
+                    field
+                ) => {
+
+                    const rating =
+                        getParameterFieldValue(
+                            field
+                        );
+
+
+                    return (
+                        total
+                        +
+                        (
+                            rating
+                            ??
+                            0
+                        )
+                    );
+
+                },
+                0
+            );
+
+    }
+
+
+    function renderPointAudit() {
+
+        const hasWrestler =
+            Boolean(
+                wrestlerSelect.value
+            );
+
+
+        if (!hasWrestler) {
+
+            parameterTotalElement.textContent =
+                "—";
+
+            skillTotalElement.textContent =
+                "—";
+
+            editTotalElement.textContent =
+                "—";
+
+            currentTotalElement.textContent =
+                "—";
+
+            dnmtOffenseElement.textContent =
+                "—";
+
+            dnmtDefenseElement.textContent =
+                "—";
+
+            dnmtRatioElement.textContent =
+                "—";
+
+            balanceMessage.hidden =
+                true;
+
+            return;
+
+        }
+
+
+        const parameterPoints =
+            calculateParameterPoints();
+
+        const skillPoints =
+            calculateSkillPoints();
+
+        const editTotal =
+            parameterPoints
+            +
+            skillPoints;
+
+        const baseline =
+            Number(
+                getParameterReference()
+                    ?.owlRules
+                    ?.baselinePoints
+                ??
+                160
+            );
+
+
+        parameterTotalElement.textContent =
+            parameterPoints;
+
+        skillTotalElement.textContent =
+            skillPoints;
+
+        editTotalElement.textContent =
+            editTotal;
+
+        currentTotalElement.textContent =
+            `${editTotal} / ${baseline}`;
+
+
+        if (
+            parameterFieldsComplete()
+        ) {
+
+            const offense =
+                calculateDnmtSum(
+                    offenseParameterFields
+                );
+
+            const defense =
+                calculateDnmtSum(
+                    defenseParameterFields
+                );
+
+
+            dnmtOffenseElement.textContent =
+                offense;
+
+            dnmtDefenseElement.textContent =
+                defense;
+
+
+            dnmtRatioElement.textContent =
+                offense > 0
+                    ? `${(
+                        (
+                            defense
+                            /
+                            offense
+                        )
+                        *
+                        100
+                    ).toFixed(
+                        1
+                    )}%`
+                    : "—";
+
+        }
+
+        else {
+
+            dnmtOffenseElement.textContent =
+                "—";
+
+            dnmtDefenseElement.textContent =
+                "—";
+
+            dnmtRatioElement.textContent =
+                "—";
+
+        }
+
+
+        const buildComplete =
+            parameterFieldsComplete()
+            &&
+            selectionFieldsComplete();
+
+
+        balanceMessage.hidden =
+            false;
+
+
+        if (
+            !buildComplete
+        ) {
+
+            balanceMessage.textContent =
+                "BUILD INCOMPLETE — finish all 24 parameters and all Skill / Movement selections.";
+
+            return;
+
+        }
+
+
+        if (
+            editTotal ===
+            baseline
+        ) {
+
+            balanceMessage.textContent =
+                `BALANCED — ${editTotal} / ${baseline} ✓`;
+
+            return;
+
+        }
+
+
+        if (
+            editTotal >
+            baseline
+        ) {
+
+            balanceMessage.textContent =
+                `OVER BASELINE — ${editTotal} / ${baseline} ⚠`;
+
+            return;
+
+        }
+
+
+        balanceMessage.textContent =
+            `UNDER BASELINE — ${editTotal} / ${baseline}`;
+
+    }
+
+
+    function renderSelectedBuild() {
+
+        renderEnduranceProfile();
+
+        renderPointAudit();
+
+    }
+
+
     function renderParameterEditor() {
 
         renderParameterWrestlerOptions();
@@ -850,15 +1613,87 @@
 
         renderSpecialSkillReference();
 
-        renderEnduranceProfile();
+        renderSelectedBuild();
 
     }
 
 
-        wrestlerSelect.addEventListener(
+            wrestlerSelect.addEventListener(
         "change",
-        renderEnduranceProfile
+        renderSelectedBuild
     );
+
+
+    [
+        ...offenseParameterFields,
+        ...defenseParameterFields
+    ]
+        .forEach(
+            field => {
+
+                const input =
+                    document.getElementById(
+                        field.id
+                    );
+
+
+                input?.addEventListener(
+                    "input",
+                    renderPointAudit
+                );
+
+                input?.addEventListener(
+                    "change",
+                    renderPointAudit
+                );
+
+            }
+        );
+
+
+    Object.values(
+        referenceFields
+    )
+        .forEach(
+            field => {
+
+                document
+                    .getElementById(
+                        field.selectId
+                    )
+                    ?.addEventListener(
+                        "change",
+                        renderPointAudit
+                    );
+
+            }
+        );
+
+
+    Object.values(
+        movementFields
+    )
+        .forEach(
+            field => {
+
+                document
+                    .getElementById(
+                        field.selectId
+                    )
+                    ?.addEventListener(
+                        "change",
+                        renderPointAudit
+                    );
+
+            }
+        );
+
+
+    specialSkillSelect
+        ?.addEventListener(
+            "change",
+            renderPointAudit
+        );
 
 
     window.addEventListener(
@@ -869,7 +1704,7 @@
 
     window.addEventListener(
         "owl-endurance-profiles-updated",
-        renderEnduranceProfile
+        renderSelectedBuild
     );
 
 
