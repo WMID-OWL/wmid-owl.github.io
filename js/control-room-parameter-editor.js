@@ -326,9 +326,50 @@
             "cr-param-balance-message"
         );
 
-    const saveButton =
+        const saveButton =
         document.getElementById(
             "cr-param-save"
+        );
+
+
+    const permanentBonusInput =
+        document.getElementById(
+            "cr-param-permanent-bonus"
+        );
+
+    const championBonusSelect =
+        document.getElementById(
+            "cr-param-champion-bonus"
+        );
+
+    const baseBuildElement =
+        document.getElementById(
+            "cr-param-base-build"
+        );
+
+    const authorizedBuildElement =
+        document.getElementById(
+            "cr-param-authorized-build"
+        );
+
+    const overBaselineConfirm =
+        document.getElementById(
+            "cr-param-over-baseline-confirm"
+        );
+
+    const overBaselineCopy =
+        document.getElementById(
+            "cr-param-over-baseline-copy"
+        );
+
+    const overBaselineInput =
+        document.getElementById(
+            "cr-param-over-baseline-input"
+        );
+
+    const overBaselineHelp =
+        document.getElementById(
+            "cr-param-over-baseline-help"
         );
 
 
@@ -1547,10 +1588,145 @@
         }
 
 
-                const buildComplete =
+                        const buildComplete =
             parameterFieldsComplete()
             &&
             selectionFieldsComplete();
+
+
+        const permanentBonus =
+            Math.max(
+                0,
+                Number.parseInt(
+                    permanentBonusInput
+                        ?.value
+                    ||
+                    "0",
+                    10
+                )
+                ||
+                0
+            );
+
+
+        const championBonus =
+            Number(
+                championBonusSelect
+                    ?.value
+                ||
+                0
+            );
+
+
+        const authorizedBuild =
+            baseline
+            +
+            permanentBonus
+            +
+            championBonus;
+
+
+        if (
+            baseBuildElement
+        ) {
+
+            baseBuildElement.textContent =
+                baseline;
+
+        }
+
+
+        if (
+            authorizedBuildElement
+        ) {
+
+            authorizedBuildElement.textContent =
+                authorizedBuild;
+
+        }
+
+
+        const confirmationPhrase =
+            `SAVE ${authorizedBuild}`;
+
+
+        const requiresAuthorization =
+            authorizedBuild >
+            baseline;
+
+
+        const authorizationMatches =
+            !requiresAuthorization
+            ||
+            (
+                overBaselineInput
+                    ?.value
+                    ?.trim()
+                    ?.toUpperCase()
+                ===
+                confirmationPhrase
+            );
+
+
+        if (
+            overBaselineConfirm
+        ) {
+
+            overBaselineConfirm.hidden =
+                !requiresAuthorization;
+
+        }
+
+
+        if (
+            requiresAuthorization
+        ) {
+
+            if (
+                overBaselineCopy
+            ) {
+
+                overBaselineCopy.textContent =
+                    `This wrestler is authorized for ${authorizedBuild} points: ${baseline} base + ${permanentBonus} permanent + ${championBonus} champion bonus.`;
+
+            }
+
+
+            if (
+                overBaselineHelp
+            ) {
+
+                overBaselineHelp.textContent =
+                    `Type ${confirmationPhrase} exactly to authorize this over-baseline save.`;
+
+            }
+
+        }
+
+        else {
+
+            if (
+                overBaselineInput
+            ) {
+
+                overBaselineInput.value =
+                    "";
+
+            }
+
+        }
+
+
+        const validSave =
+            buildComplete
+            &&
+            editTotal >=
+                baseline
+            &&
+            editTotal ===
+                authorizedBuild
+            &&
+            authorizationMatches;
 
 
         if (
@@ -1558,12 +1734,7 @@
         ) {
 
             saveButton.disabled =
-                !(
-                    buildComplete
-                    &&
-                    editTotal ===
-                        baseline
-                );
+                !validSave;
 
         }
 
@@ -1572,7 +1743,7 @@
             false;
 
 
-                if (
+        if (
             !buildComplete
         ) {
 
@@ -1617,7 +1788,46 @@
 
 
         if (
-            editTotal ===
+            editTotal <
+            baseline
+        ) {
+
+            balanceMessage.textContent =
+                `UNDER BASELINE — ${editTotal} / ${baseline}`;
+
+            return;
+
+        }
+
+
+        if (
+            editTotal <
+            authorizedBuild
+        ) {
+
+            balanceMessage.textContent =
+                `BELOW AUTHORIZED BUILD — ${editTotal} / ${authorizedBuild}`;
+
+            return;
+
+        }
+
+
+        if (
+            editTotal >
+            authorizedBuild
+        ) {
+
+            balanceMessage.textContent =
+                `EXCEEDS AUTHORIZED BUILD — ${editTotal} / ${authorizedBuild} ⚠`;
+
+            return;
+
+        }
+
+
+        if (
+            authorizedBuild ===
             baseline
         ) {
 
@@ -1630,12 +1840,11 @@
 
 
         if (
-            editTotal >
-            baseline
+            !authorizationMatches
         ) {
 
             balanceMessage.textContent =
-                `OVER BASELINE — ${editTotal} / ${baseline} ⚠`;
+                `AUTHORIZED BONUS BUILD — ${editTotal} / ${authorizedBuild}. Confirmation required before saving.`;
 
             return;
 
@@ -1643,7 +1852,7 @@
 
 
         balanceMessage.textContent =
-            `UNDER BASELINE — ${editTotal} / ${baseline}`;
+            `AUTHORIZED BONUS BUILD — ${editTotal} / ${authorizedBuild} ✓`;
 
     }
 
@@ -1759,9 +1968,30 @@
         );
 
 
-    specialSkillSelect
+        specialSkillSelect
         ?.addEventListener(
             "change",
+            renderPointAudit
+        );
+
+
+    permanentBonusInput
+        ?.addEventListener(
+            "input",
+            renderPointAudit
+        );
+
+
+    championBonusSelect
+        ?.addEventListener(
+            "change",
+            renderPointAudit
+        );
+
+
+    overBaselineInput
+        ?.addEventListener(
+            "input",
             renderPointAudit
         );
 
