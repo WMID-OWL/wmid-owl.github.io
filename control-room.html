@@ -1130,9 +1130,403 @@
                         <input id="cr-param-defense-mma" type="number" min="1" max="10" step="1">
                     </div>
 
-                    <div class="cr-form-group">
+                                        <div class="cr-form-group">
                         <label for="cr-param-defense-entertain">ENTERTAIN</label>
                         <input id="cr-param-defense-entertain" type="number" min="1" max="10" step="1">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        SKILLS
+                    </span>
+
+                    <h3>
+                        Core Simulation Settings
+                    </h3>
+
+                </div>
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-param-critical">
+                            CRITICAL! ABILITY
+                        </label>
+
+                        <select id="cr-param-critical">
+                            <option value="">—</option>
+                        </select>
+
+                        <small
+                            id="cr-param-critical-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-param-special-skill">
+                            SPECIAL SKILL
+                        </label>
+
+                        <select id="cr-param-special-skill">
+                            <option value="">—</option>
+                        </select>
+
+                        <small
+                            id="cr-param-special-skill-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-param-recovery">
+                            RECOVERY
+                        </label>
+
+                        <select id="cr-param-recovery">
+                            <option value="">—</option>
+                        </select>
+
+                        <small
+                            id="cr-param-recovery-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-param-recovery-bleeding">
+                            RECOVERY (WHEN BLEEDING)
+                        </label>
+
+                        <select id="cr-param-recovery-bleeding">
+                            <option value="">—</option>
+                        </select>
+
+                        <small
+                            id="cr-param-recovery-bleeding-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-param-breathing">
+                            BREATHING
+                        </label>
+
+                        <select id="cr-param-breathing">
+                            <option value="">—</option>
+                        </select>
+
+                        <small
+                            id="cr-param-breathing-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-param-breathing-bleeding">
+                            BREATHING (WHEN BLEEDING)
+                        </label>
+
+                        <select id="cr-param-breathing-bleeding">
+                            <option value="">—</option>
+                        </select>
+
+                        <small
+                            id="cr-param-breathing-bleeding-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-param-spirit">
+                            SPIRIT
+                        </label>
+
+                        <select id="cr-param-spirit">
+                            <option value="">—</option>
+                        </select>
+
+                        <small
+                            id="cr-param-spirit-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-param-spirit-bleeding">
+                            SPIRIT (WHEN BLEEDING)
+                        </label>
+
+                        <select id="cr-param-spirit-bleeding">
+                            <option value="">—</option>
+                        </select>
+
+                        <small
+                            id="cr-param-spirit-bleeding-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="cr-param-special-skill-reference"
+                    class="cr-change-preview"
+                    hidden
+                >
+
+                    <span>
+                        SPECIAL SKILL — WHAT IT DOES
+                    </span>
+
+                    <p id="cr-param-special-skill-synopsis">
+                        —
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        BODY ENDURANCE
+                    </span>
+
+                    <h3>
+                        Current OWL Durability
+                    </h3>
+
+                    <p>
+                        These values come from OWL’s canonical
+                        injury and endurance system.
+                    </p>
+
+                </div>
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            NECK ENDURANCE
+                        </label>
+
+                        <div
+                            id="cr-param-endurance-neck"
+                            class="cr-current-value"
+                        >
+                            —
+                        </div>
+
+                        <small
+                            id="cr-param-endurance-neck-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            ARM ENDURANCE
+                        </label>
+
+                        <div
+                            id="cr-param-endurance-arms"
+                            class="cr-current-value"
+                        >
+                            —
+                        </div>
+
+                        <small
+                            id="cr-param-endurance-arms-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            BACK ENDURANCE
+                        </label>
+
+                        <div
+                            id="cr-param-endurance-back"
+                            class="cr-current-value"
+                        >
+                            —
+                        </div>
+
+                        <small
+                            id="cr-param-endurance-back-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            LEG ENDURANCE
+                        </label>
+
+                        <div
+                            id="cr-param-endurance-legs"
+                            class="cr-current-value"
+                        >
+                            —
+                        </div>
+
+                        <small
+                            id="cr-param-endurance-legs-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        MOVEMENT
+                    </span>
+
+                    <h3>
+                        Ring Movement Settings
+                    </h3>
+
+                </div>
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-param-movement-speed">
+                            MOVEMENT SPEED
+                        </label>
+
+                        <select id="cr-param-movement-speed">
+                            <option value="">—</option>
+                        </select>
+
+                        <small
+                            id="cr-param-movement-speed-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-param-ascent-style">
+                            ASCENT STYLE
+                        </label>
+
+                        <select id="cr-param-ascent-style">
+                            <option value="">—</option>
+                        </select>
+
+                        <small
+                            id="cr-param-ascent-style-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
+                    </div>
+
+
+                    <div class="cr-form-group">
+
+                        <label for="cr-param-up-down-speed">
+                            UP AND DOWN SPEED
+                        </label>
+
+                        <select id="cr-param-up-down-speed">
+                            <option value="">—</option>
+                        </select>
+
+                        <small
+                            id="cr-param-up-down-speed-points"
+                            class="cr-field-help"
+                        >
+                            — pts
+                        </small>
+
                     </div>
 
                 </div>
