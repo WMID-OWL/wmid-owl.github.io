@@ -321,9 +321,14 @@
             "cr-param-dnmt-ratio"
         );
 
-    const balanceMessage =
+        const balanceMessage =
         document.getElementById(
             "cr-param-balance-message"
+        );
+
+    const saveButton =
+        document.getElementById(
+            "cr-param-save"
         );
 
 
@@ -1542,10 +1547,25 @@
         }
 
 
-        const buildComplete =
+                const buildComplete =
             parameterFieldsComplete()
             &&
             selectionFieldsComplete();
+
+
+        if (
+            saveButton
+        ) {
+
+            saveButton.disabled =
+                !(
+                    buildComplete
+                    &&
+                    editTotal ===
+                        baseline
+                );
+
+        }
 
 
         balanceMessage.hidden =
