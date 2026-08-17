@@ -1829,13 +1829,75 @@
             </div>
 
 
-            <p
+                        <p
                 id="cr-param-save-message"
                 class="cr-save-message"
                 hidden
             ></p>
 
         </section>
+
+
+        <script>
+        (() => {
+
+            const panel =
+                document.getElementById(
+                    "cr-tool-parameters"
+                );
+
+            const offenseSection =
+                document.getElementById(
+                    "cr-param-offense-punch"
+                )
+                    ?.closest(
+                        ".cr-editor-section"
+                    );
+
+
+            if (
+                !panel
+                ||
+                !offenseSection
+            ) {
+
+                return;
+
+            }
+
+
+            [
+                "cr-param-critical",
+                "cr-param-endurance-neck",
+                "cr-param-movement-speed"
+            ]
+                .forEach(
+                    fieldId => {
+
+                        const section =
+                            document.getElementById(
+                                fieldId
+                            )
+                                ?.closest(
+                                    ".cr-editor-section"
+                                );
+
+
+                        if (section) {
+
+                            panel.insertBefore(
+                                section,
+                                offenseSection
+                            );
+
+                        }
+
+                    }
+                );
+
+        })();
+        </script>
+
 
         <!-- =================================
              TEAM MANAGER
