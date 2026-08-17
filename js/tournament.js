@@ -86,6 +86,32 @@ function isInauguralTournament(
 }
 
 
+function tournamentUsesMultipleCompetitionFormats(
+    tournament
+) {
+    const competitions =
+        Array.isArray(
+            tournament?.brackets
+        )
+
+            ? tournament.brackets
+
+            : [];
+
+
+    return competitions.some(
+        competition =>
+            String(
+                competition?.competitionType ||
+                "bracket"
+            )
+                .trim()
+                .toLowerCase() ===
+                "battle-royal"
+    );
+}
+
+
 function getTournamentPublicCopy(
     tournament
 ) {
@@ -121,6 +147,45 @@ function getTournamentPublicCopy(
 
             winnerCountLabel:
                 "Inaugural Champions"
+        };
+    }
+
+
+    if (
+        tournamentUsesMultipleCompetitionFormats(
+            tournament
+        )
+    ) {
+        return {
+            placeholderLabel:
+                tournament.badge ||
+                "TOURNAMENT SERIES",
+
+            summaryEyebrow:
+                "COMPETITION FORMAT",
+
+            summaryTitle:
+                tournament.name ||
+                "Competition Overview",
+
+            summaryDescription:
+                tournament.purpose ||
+                "Competition details will be announced.",
+
+            bracketEyebrow:
+                "TOURNAMENT COMPETITIONS",
+
+            bracketTitle:
+                "Choose a Competition",
+
+            bracketDescription:
+                "Select a competition to view its field, format, progress, results, and eventual winner.",
+
+            bracketCountLabel:
+                "Competitions",
+
+            winnerCountLabel:
+                "Competition Winners"
         };
     }
 
@@ -406,6 +471,12 @@ function getTournamentGroupCopy(
         );
 
 
+    const mixedFormats =
+        tournamentUsesMultipleCompetitionFormats(
+            tournament
+        );
+
+
     const groupCopy = {
         Ascension: {
             label:
@@ -417,7 +488,11 @@ function getTournamentGroupCopy(
 
                     ? "The four championships belonging to OWL Ascension."
 
-                    : "Tournament brackets assigned to OWL Ascension."
+                    : mixedFormats
+
+                        ? "Tournament competitions assigned to OWL Ascension."
+
+                        : "Tournament brackets assigned to OWL Ascension."
         },
 
         Revolt: {
@@ -430,7 +505,11 @@ function getTournamentGroupCopy(
 
                     ? "The four championships belonging to OWL Revolt."
 
-                    : "Tournament brackets assigned to OWL Revolt."
+                    : mixedFormats
+
+                        ? "Tournament competitions assigned to OWL Revolt."
+
+                        : "Tournament brackets assigned to OWL Revolt."
         },
 
         Shared: {
@@ -440,7 +519,11 @@ function getTournamentGroupCopy(
 
                     ? "Shared Championships"
 
-                    : "Shared OWL Brackets",
+                    : mixedFormats
+
+                        ? "Shared OWL Competitions"
+
+                        : "Shared OWL Brackets",
 
             description:
 
@@ -448,7 +531,11 @@ function getTournamentGroupCopy(
 
                     ? "The Twin Talon championships defended across both brands."
 
-                    : "Tournament brackets involving competitors from both brands."
+                    : mixedFormats
+
+                        ? "Tournament competitions involving competitors from both brands."
+
+                        : "Tournament brackets involving competitors from both brands."
         }
     };
 
@@ -468,7 +555,7 @@ function renderTournamentBracketGroups(
         );
 
 
-    const brackets =
+    const competitions =
         Array.isArray(
             tournament.brackets
         )
@@ -478,8 +565,14 @@ function renderTournamentBracketGroups(
             : [];
 
 
+    const mixedFormats =
+        tournamentUsesMultipleCompetitionFormats(
+            tournament
+        );
+
+
     if (
-        brackets.length ===
+        competitions.length ===
             0
     ) {
         bracketGroups.innerHTML = `
@@ -487,11 +580,23 @@ function renderTournamentBracketGroups(
             <section class="tournament-state">
 
                 <strong>
-                    BRACKETS NOT CREATED
+                    ${
+                        mixedFormats
+
+                            ? "COMPETITIONS NOT CREATED"
+
+                            : "BRACKETS NOT CREATED"
+                    }
                 </strong>
 
                 <p>
-                    Tournament brackets will appear here after they are added in the OWL Control Room.
+                    ${
+                        mixedFormats
+
+                            ? "Tournament competitions will appear here after they are added in the OWL Control Room."
+
+                            : "Tournament brackets will appear here after they are added in the OWL Control Room."
+                    }
                 </p>
 
             </section>
@@ -513,16 +618,16 @@ function renderTournamentBracketGroups(
     bracketGroups.innerHTML =
         groupOrder.map(
             groupKey => {
-                const groupBrackets =
-                    brackets.filter(
-                        bracket =>
-                            bracket.brand ===
+                const groupCompetitions =
+                    competitions.filter(
+                        competition =>
+                            competition.brand ===
                                 groupKey
                     );
 
 
                 if (
-                    groupBrackets.length ===
+                    groupCompetitions.length ===
                         0
                 ) {
                     return "";
@@ -559,13 +664,25 @@ function renderTournamentBracketGroups(
                             </div>
 
                             <strong>
-                                ${groupBrackets.length}
+                                ${groupCompetitions.length}
                                 ${
-                                    groupBrackets.length === 1
+                                    mixedFormats
 
-                                        ? "BRACKET"
+                                        ? (
+                                            groupCompetitions.length === 1
 
-                                        : "BRACKETS"
+                                                ? "COMPETITION"
+
+                                                : "COMPETITIONS"
+                                        )
+
+                                        : (
+                                            groupCompetitions.length === 1
+
+                                                ? "BRACKET"
+
+                                                : "BRACKETS"
+                                        )
                                 }
                             </strong>
 
@@ -573,60 +690,82 @@ function renderTournamentBracketGroups(
 
                         <div class="tournament-bracket-grid">
 
-                            ${groupBrackets.map(
-                                bracket => `
+                            ${groupCompetitions.map(
+                                competition => {
+                                    const competitionType =
+                                        String(
+                                            competition.competitionType ||
+                                            "bracket"
+                                        )
+                                            .trim()
+                                            .toLowerCase();
 
-                                    <a
-                                        class="tournament-bracket-card"
-                                        href="tournament-bracket.html?tournament=${encodeURIComponent(
-                                            tournament.id
-                                        )}&bracket=${encodeURIComponent(
-                                            bracket.id
-                                        )}"
-                                    >
 
-                                        <div class="tournament-bracket-card-topline">
+                                    const isBattleRoyal =
+                                        competitionType ===
+                                            "battle-royal";
 
-                                            <span>
+
+                                    return `
+
+                                        <a
+                                            class="tournament-bracket-card"
+                                            href="tournament-bracket.html?tournament=${encodeURIComponent(
+                                                tournament.id
+                                            )}&bracket=${encodeURIComponent(
+                                                competition.id
+                                            )}"
+                                        >
+
+                                            <div class="tournament-bracket-card-topline">
+
+                                                <span>
+                                                    ${escapeTournamentPageText(
+                                                        competition.division
+                                                    )}
+                                                </span>
+
+                                                <strong>
+                                                    ${escapeTournamentPageText(
+                                                        competition.status
+                                                    )}
+                                                </strong>
+
+                                            </div>
+
+                                            <h4>
                                                 ${escapeTournamentPageText(
-                                                    bracket.division
+                                                    competition.name
                                                 )}
-                                            </span>
+                                            </h4>
 
-                                            <strong>
-                                                ${escapeTournamentPageText(
-                                                    bracket.status
-                                                )}
-                                            </strong>
+                                            <div class="tournament-bracket-card-footer">
 
-                                        </div>
+                                                <span>
+                                                    ${escapeTournamentPageText(
+                                                        competition.fieldSize
+                                                    )}
+                                                    ${escapeTournamentPageText(
+                                                        competition.fieldUnit
+                                                    )}
+                                                </span>
 
-                                        <h4>
-                                            ${escapeTournamentPageText(
-                                                bracket.name
-                                            )}
-                                        </h4>
+                                                <strong>
+                                                    ${
+                                                        isBattleRoyal
 
-                                        <div class="tournament-bracket-card-footer">
+                                                            ? "Open Battle Royal →"
 
-                                            <span>
-                                                ${escapeTournamentPageText(
-                                                    bracket.fieldSize
-                                                )}
-                                                ${escapeTournamentPageText(
-                                                    bracket.fieldUnit
-                                                )}
-                                            </span>
+                                                            : "Open Bracket →"
+                                                    }
+                                                </strong>
 
-                                            <strong>
-                                                Open Bracket →
-                                            </strong>
+                                            </div>
 
-                                        </div>
+                                        </a>
 
-                                    </a>
-
-                                `
+                                    `;
+                                }
                             ).join("")}
 
                         </div>
@@ -637,6 +776,7 @@ function renderTournamentBracketGroups(
             }
         ).join("");
 }
+
 
 // =================================
 // TOURNAMENT BROADCASTS
@@ -1078,7 +1218,7 @@ function renderTournamentBroadcastMatchList(
                         }
 
 
-                                                const matchup =
+                        const matchup =
                             getTournamentBroadcastMatchupLabel(
                                 bracket,
                                 matchRecord.match,
@@ -1131,7 +1271,7 @@ function renderTournamentBroadcastMatchList(
                                     <div
                                         class="tournament-broadcast-match-graphic"
                                     >
-                                                                                <div
+                                        <div
                                             class="tournament-broadcast-match-graphic-frame"
                                             data-orientation="${escapeTournamentPageText(
                                                 graphicOrientation
@@ -1509,7 +1649,7 @@ function renderTournamentBroadcasts(
                             </span>
 
 
-                                                        ${
+                            ${
                                 youtube
 
                                     ? `
@@ -1549,6 +1689,7 @@ function renderTournamentBroadcasts(
         ).join("");
 
 }
+
 
 function renderTournamentPage(
     tournament,
@@ -1671,16 +1812,16 @@ function renderTournamentPage(
     );
 
 
-        renderTournamentBracketGroups(
+    renderTournamentBracketGroups(
         tournament
     );
 
 
-   renderTournamentBroadcasts(
-    tournament,
-    wrestlers,
-    teams
-);
+    renderTournamentBroadcasts(
+        tournament,
+        wrestlers,
+        teams
+    );
 
 
     tournamentLoading.hidden =
