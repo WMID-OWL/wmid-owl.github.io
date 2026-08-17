@@ -1,4 +1,58 @@
 {
   "version": 1,
-  "profiles": []
-} 
+  "profiles": [
+    {
+      "wrestlerId": "stephanie-vaquer",
+      "wrestlerName": "Stephanie Vaquer",
+      "offense": {
+        "punch": 4,
+        "kick": 8,
+        "throw": 5,
+        "joint": 2,
+        "stretch": 3,
+        "power": 5,
+        "agility": 6,
+        "arm": 3,
+        "technical": 6,
+        "rough": 1,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "defense": {
+        "punch": 7,
+        "kick": 8,
+        "throw": 7,
+        "joint": 6,
+        "stretch": 6,
+        "aerial": 8,
+        "impact": 8,
+        "lariat": 7,
+        "technical": 8,
+        "rough": 7,
+        "mmaOverall": 1,
+        "entertain": 1
+      },
+      "skills": {
+        "criticalAbility": "Finisher",
+        "recovery": "Fast",
+        "recoveryBleeding": "Medium",
+        "breathing": "Good",
+        "breathingBleeding": "Normal",
+        "spirit": "Strong",
+        "spiritBleeding": "Medium",
+        "specialSkill": "None"
+      },
+      "movement": {
+        "movementSpeed": "Medium",
+        "ascentStyle": "Can Ascend While Running",
+        "upDownSpeed": "Medium"
+      },
+      "bonuses": {
+        "permanent": 0,
+        "champion": 0
+      },
+      "createdAt": "2026-08-17T04:22:02.028Z",
+      "updatedAt": "2026-08-17T04:22:02.028Z"
+    }
+  ]
+}
