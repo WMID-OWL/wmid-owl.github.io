@@ -292,10 +292,14 @@
     },
 
     "tna-impact": {
-      "mode": "traveling"
-    },
+  "mode": "traveling"
+},
 
-    "cmll-super-viernes": {
+"mlw-fusion": {
+  "mode": "traveling"
+},
+
+"cmll-super-viernes": {
       "mode": "venue-pool",
       "venues": [
         {
@@ -388,10 +392,14 @@
     },
 
     "tna": {
-      "mode": "traveling"
-    },
+  "mode": "traveling"
+},
 
-    "cmll": {
+"mlw": {
+  "mode": "traveling"
+},
+
+"cmll": {
       "mode": "venue-pool",
       "flagshipVenue": {
         "venue": "Arena México",
