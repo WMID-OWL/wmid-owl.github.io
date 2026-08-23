@@ -10118,8 +10118,18 @@ function beginTournamentMaintenance(
         true;
 
 
-    tournamentMaintenanceConfirmButton.disabled =
+        tournamentMaintenanceConfirmButton.disabled =
         true;
+
+
+    if (
+        mode ===
+        "swap"
+    ) {
+
+        populateTournamentMaintenanceTargetTournaments();
+
+    }
 
 
     tournamentMaintenancePanel.scrollIntoView({
@@ -10129,6 +10139,628 @@ function beginTournamentMaintenance(
         block:
             "nearest"
     });
+
+}
+
+
+function getTournamentMaintenanceCompatibleBrackets(
+    tournament,
+    sourceTournament,
+    sourceBracket
+) {
+
+    if (
+        !tournament
+        ||
+        !sourceTournament
+        ||
+        !sourceBracket
+        ||
+        !Array.isArray(
+            tournament.brackets
+        )
+    ) {
+
+        return [];
+
+    }
+
+
+    return tournament.brackets.filter(
+        bracket => {
+
+            if (!bracket) {
+
+                return false;
+
+            }
+
+
+            const isSourceBracket =
+
+                tournament.id ===
+                    sourceTournament.id
+
+                &&
+
+                bracket.id ===
+                    sourceBracket.id;
+
+
+            if (isSourceBracket) {
+
+                return false;
+
+            }
+
+
+            const bracketSetup =
+                getTournamentBracketSetup(
+                    bracket
+                );
+
+
+            if (
+                !bracket.fieldLocked
+                ||
+                !bracketSetup.generated
+            ) {
+
+                return false;
+
+            }
+
+
+            if (
+                bracket.participantType !==
+                sourceBracket.participantType
+            ) {
+
+                return false;
+
+            }
+
+
+            if (
+                normalize(
+                    bracket.division
+                )
+                !==
+                normalize(
+                    sourceBracket.division
+                )
+            ) {
+
+                return false;
+
+            }
+
+
+            return true;
+
+        }
+    );
+
+}
+
+
+function populateTournamentMaintenanceTargetTournaments() {
+
+    const sourceTournament =
+        getSelectedControlRoomTournament();
+
+    const sourceBracket =
+        getSelectedControlRoomBracket();
+
+
+    tournamentMaintenanceTargetTournament.innerHTML =
+        `
+            <option value="">
+                Select Tournament
+            </option>
+        `;
+
+
+    tournamentMaintenanceTargetBracket.innerHTML =
+        `
+            <option value="">
+                Select Bracket
+            </option>
+        `;
+
+
+    tournamentMaintenanceTargetParticipant.innerHTML =
+        `
+            <option value="">
+                Select Participant
+            </option>
+        `;
+
+
+    tournamentMaintenanceTargetBracketWrap.hidden =
+        true;
+
+    tournamentMaintenanceTargetParticipantWrap.hidden =
+        true;
+
+
+    tournamentMaintenanceTargetBracket.disabled =
+        true;
+
+    tournamentMaintenanceTargetParticipant.disabled =
+        true;
+
+
+    if (
+        !sourceTournament
+        ||
+        !sourceBracket
+    ) {
+
+        tournamentMaintenanceTargetTournament.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    const compatibleTournaments =
+
+        getControlRoomTournaments().filter(
+            tournament =>
+
+                getTournamentMaintenanceCompatibleBrackets(
+                    tournament,
+                    sourceTournament,
+                    sourceBracket
+                ).length >
+                0
+        );
+
+
+    compatibleTournaments.forEach(
+        tournament => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                tournament.id;
+
+
+            option.textContent =
+                tournament.name
+                ||
+                tournament.id;
+
+
+            tournamentMaintenanceTargetTournament.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    tournamentMaintenanceTargetTournament.disabled =
+
+        compatibleTournaments.length ===
+        0;
+
+
+    if (
+        compatibleTournaments.length ===
+        0
+    ) {
+
+        tournamentMaintenanceTargetTournament.options[
+            0
+        ].textContent =
+            "No Compatible Finalized Tournaments";
+
+    }
+
+}
+
+
+function populateTournamentMaintenanceTargetBrackets() {
+
+    const sourceTournament =
+        getSelectedControlRoomTournament();
+
+    const sourceBracket =
+        getSelectedControlRoomBracket();
+
+
+    const targetTournament =
+
+        getControlRoomTournaments().find(
+            tournament =>
+                tournament.id ===
+                tournamentMaintenanceTargetTournament.value
+        )
+        ||
+        null;
+
+
+    tournamentMaintenanceTargetBracket.innerHTML =
+        `
+            <option value="">
+                Select Bracket
+            </option>
+        `;
+
+
+    tournamentMaintenanceTargetParticipant.innerHTML =
+        `
+            <option value="">
+                Select Participant
+            </option>
+        `;
+
+
+    tournamentMaintenanceTargetParticipantWrap.hidden =
+        true;
+
+    tournamentMaintenanceTargetParticipant.disabled =
+        true;
+
+
+    if (
+        !sourceTournament
+        ||
+        !sourceBracket
+        ||
+        !targetTournament
+    ) {
+
+        tournamentMaintenanceTargetBracketWrap.hidden =
+            true;
+
+        tournamentMaintenanceTargetBracket.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    const compatibleBrackets =
+
+        getTournamentMaintenanceCompatibleBrackets(
+            targetTournament,
+            sourceTournament,
+            sourceBracket
+        );
+
+
+    tournamentMaintenanceTargetBracketWrap.hidden =
+        false;
+
+
+    compatibleBrackets.forEach(
+        bracket => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                bracket.id;
+
+
+            option.textContent =
+
+                `${bracket.name || bracket.id} — ${bracket.brand || "OWL"}`;
+
+
+            tournamentMaintenanceTargetBracket.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    tournamentMaintenanceTargetBracket.disabled =
+
+        compatibleBrackets.length ===
+        0;
+
+}
+
+
+function populateTournamentMaintenanceTargetParticipants() {
+
+    const targetTournament =
+
+        getControlRoomTournaments().find(
+            tournament =>
+                tournament.id ===
+                tournamentMaintenanceTargetTournament.value
+        )
+        ||
+        null;
+
+
+    const targetBracket =
+
+        targetTournament
+        &&
+        Array.isArray(
+            targetTournament.brackets
+        )
+
+            ? targetTournament.brackets.find(
+                bracket =>
+                    bracket.id ===
+                    tournamentMaintenanceTargetBracket.value
+            )
+            ||
+            null
+
+            : null;
+
+
+    tournamentMaintenanceTargetParticipant.innerHTML =
+        `
+            <option value="">
+                Select Participant
+            </option>
+        `;
+
+
+    if (!targetBracket) {
+
+        tournamentMaintenanceTargetParticipantWrap.hidden =
+            true;
+
+        tournamentMaintenanceTargetParticipant.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    const targetParticipants =
+
+        getStoredTournamentParticipants(
+            targetBracket
+        )
+            .filter(
+                Boolean
+            )
+            .filter(
+                participantId =>
+                    participantId !==
+                    tournamentMaintenanceSourceParticipantId
+            );
+
+
+    tournamentMaintenanceTargetParticipantWrap.hidden =
+        false;
+
+
+    targetParticipants.forEach(
+        participantId => {
+
+            const entrant =
+                getTournamentEntrantRecord(
+                    targetBracket,
+                    participantId
+                );
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                participantId;
+
+
+            option.textContent =
+                entrant?.name
+                ||
+                participantId;
+
+
+            tournamentMaintenanceTargetParticipant.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    tournamentMaintenanceTargetParticipant.disabled =
+
+        targetParticipants.length ===
+        0;
+
+
+    if (
+        targetParticipants.length ===
+        0
+    ) {
+
+        tournamentMaintenanceTargetParticipant.options[
+            0
+        ].textContent =
+            "No Participants Available";
+
+    }
+
+}
+
+
+function renderTournamentMaintenanceSwapPreview() {
+
+    if (
+        tournamentMaintenanceMode !==
+        "swap"
+    ) {
+
+        return;
+
+    }
+
+
+    const sourceTournament =
+        getSelectedControlRoomTournament();
+
+    const sourceBracket =
+        getSelectedControlRoomBracket();
+
+
+    if (
+        !sourceTournament
+        ||
+        !sourceBracket
+    ) {
+
+        return;
+
+    }
+
+
+    const sourceName =
+
+        getTournamentEntrantDisplayName(
+            sourceBracket,
+            tournamentMaintenanceSourceParticipantId
+        );
+
+
+    const targetTournament =
+
+        getControlRoomTournaments().find(
+            tournament =>
+                tournament.id ===
+                tournamentMaintenanceTargetTournament.value
+        )
+        ||
+        null;
+
+
+    const targetBracket =
+
+        targetTournament
+        &&
+        Array.isArray(
+            targetTournament.brackets
+        )
+
+            ? targetTournament.brackets.find(
+                bracket =>
+                    bracket.id ===
+                    tournamentMaintenanceTargetBracket.value
+            )
+            ||
+            null
+
+            : null;
+
+
+    const targetParticipantId =
+        tournamentMaintenanceTargetParticipant.value;
+
+
+    tournamentMaintenanceChangeList.innerHTML =
+        "";
+
+
+    appendTournamentMaintenancePreviewRow(
+        "ACTION",
+        "SWAP PARTICIPANTS"
+    );
+
+
+    appendTournamentMaintenancePreviewRow(
+        "FROM",
+        `${sourceName} — ${sourceTournament.name} / ${sourceBracket.name}`
+    );
+
+
+    if (!targetTournament) {
+
+        appendTournamentMaintenancePreviewRow(
+            "NEXT",
+            "Select the tournament containing the other participant."
+        );
+
+
+        tournamentMaintenanceConfirmButton.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    if (!targetBracket) {
+
+        appendTournamentMaintenancePreviewRow(
+            "NEXT",
+            "Select the finalized bracket to swap with."
+        );
+
+
+        tournamentMaintenanceConfirmButton.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    if (!targetParticipantId) {
+
+        appendTournamentMaintenancePreviewRow(
+            "NEXT",
+            "Select the participant who will trade bracket positions."
+        );
+
+
+        tournamentMaintenanceConfirmButton.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    const targetName =
+
+        getTournamentEntrantDisplayName(
+            targetBracket,
+            targetParticipantId
+        );
+
+
+    appendTournamentMaintenancePreviewRow(
+        "WITH",
+        `${targetName} — ${targetTournament.name} / ${targetBracket.name}`
+    );
+
+
+    appendTournamentMaintenancePreviewRow(
+        "RESULT",
+        "The two finalized bracket positions will trade participants."
+    );
+
+
+    tournamentMaintenanceConfirmButton.disabled =
+        true;
 
 }
 
@@ -13733,6 +14365,45 @@ tournamentFieldLockButton.addEventListener(
     "click",
 
     toggleTournamentParticipantFieldLock
+
+);
+
+
+tournamentMaintenanceTargetTournament.addEventListener(
+
+    "change",
+
+    () => {
+
+        populateTournamentMaintenanceTargetBrackets();
+
+        renderTournamentMaintenanceSwapPreview();
+
+    }
+
+);
+
+
+tournamentMaintenanceTargetBracket.addEventListener(
+
+    "change",
+
+    () => {
+
+        populateTournamentMaintenanceTargetParticipants();
+
+        renderTournamentMaintenanceSwapPreview();
+
+    }
+
+);
+
+
+tournamentMaintenanceTargetParticipant.addEventListener(
+
+    "change",
+
+    renderTournamentMaintenanceSwapPreview
 
 );
 
