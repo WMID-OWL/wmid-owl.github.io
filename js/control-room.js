@@ -3545,6 +3545,104 @@ const tournamentSelectedList =
     );
 
 
+const tournamentMaintenancePanel =
+
+    document.getElementById(
+        "cr-tournament-maintenance"
+    );
+
+
+const tournamentMaintenanceSource =
+
+    document.getElementById(
+        "cr-tournament-maintenance-source"
+    );
+
+
+const tournamentMaintenanceTargetTournamentWrap =
+
+    document.getElementById(
+        "cr-tournament-maintenance-target-tournament-wrap"
+    );
+
+
+const tournamentMaintenanceTargetTournament =
+
+    document.getElementById(
+        "cr-tournament-maintenance-target-tournament"
+    );
+
+
+const tournamentMaintenanceTargetBracketWrap =
+
+    document.getElementById(
+        "cr-tournament-maintenance-target-bracket-wrap"
+    );
+
+
+const tournamentMaintenanceTargetBracket =
+
+    document.getElementById(
+        "cr-tournament-maintenance-target-bracket"
+    );
+
+
+const tournamentMaintenanceTargetParticipantWrap =
+
+    document.getElementById(
+        "cr-tournament-maintenance-target-participant-wrap"
+    );
+
+
+const tournamentMaintenanceTargetParticipant =
+
+    document.getElementById(
+        "cr-tournament-maintenance-target-participant"
+    );
+
+
+const tournamentMaintenancePreview =
+
+    document.getElementById(
+        "cr-tournament-maintenance-preview"
+    );
+
+
+const tournamentMaintenanceChangeList =
+
+    document.getElementById(
+        "cr-tournament-maintenance-change-list"
+    );
+
+
+const tournamentMaintenanceError =
+
+    document.getElementById(
+        "cr-tournament-maintenance-error"
+    );
+
+
+const tournamentMaintenanceConfirmButton =
+
+    document.getElementById(
+        "cr-tournament-maintenance-confirm"
+    );
+
+
+const tournamentMaintenanceCancelButton =
+
+    document.getElementById(
+        "cr-tournament-maintenance-cancel"
+    );
+
+
+const tournamentMaintenanceMessage =
+
+    document.getElementById(
+        "cr-tournament-maintenance-message"
+    );
+
+
 const tournamentFieldReview =
 
     document.getElementById(
@@ -3712,6 +3810,14 @@ let tournamentFieldDraftParticipants =
 
 let tournamentBracketSetupDraft =
     null;
+
+
+let tournamentMaintenanceMode =
+    "";
+
+
+let tournamentMaintenanceSourceParticipantId =
+    "";
 
 
 function getControlRoomTournaments() {
@@ -9234,9 +9340,11 @@ async function toggleTournamentParticipantFieldLock() {
 
 function loadTournamentFieldDraft() {
 
-
     tournamentBracketSetupDraft =
         null;
+
+
+    resetTournamentMaintenance();
 
 
     const bracket =
@@ -9714,6 +9822,317 @@ function renderTournamentEligibleParticipants() {
 }
 
 
+function resetTournamentMaintenance() {
+
+    tournamentMaintenanceMode =
+        "";
+
+    tournamentMaintenanceSourceParticipantId =
+        "";
+
+
+    if (
+        !tournamentMaintenancePanel
+    ) {
+
+        return;
+
+    }
+
+
+    tournamentMaintenancePanel.hidden =
+        true;
+
+
+    tournamentMaintenanceSource.textContent =
+        "—";
+
+
+    tournamentMaintenanceTargetTournamentWrap.hidden =
+        true;
+
+    tournamentMaintenanceTargetBracketWrap.hidden =
+        true;
+
+    tournamentMaintenanceTargetParticipantWrap.hidden =
+        true;
+
+
+    tournamentMaintenanceTargetTournament.innerHTML =
+        `
+            <option value="">
+                Select Tournament
+            </option>
+        `;
+
+    tournamentMaintenanceTargetTournament.disabled =
+        true;
+
+
+    tournamentMaintenanceTargetBracket.innerHTML =
+        `
+            <option value="">
+                Select Bracket
+            </option>
+        `;
+
+    tournamentMaintenanceTargetBracket.disabled =
+        true;
+
+
+    tournamentMaintenanceTargetParticipant.innerHTML =
+        `
+            <option value="">
+                Select Participant
+            </option>
+        `;
+
+    tournamentMaintenanceTargetParticipant.disabled =
+        true;
+
+
+    tournamentMaintenancePreview.hidden =
+        true;
+
+    tournamentMaintenanceChangeList.innerHTML =
+        "";
+
+
+    tournamentMaintenanceError.hidden =
+        true;
+
+    tournamentMaintenanceError.textContent =
+        "";
+
+
+    tournamentMaintenanceConfirmButton.disabled =
+        true;
+
+
+    tournamentMaintenanceMessage.hidden =
+        true;
+
+    tournamentMaintenanceMessage.textContent =
+        "";
+
+}
+
+
+function appendTournamentMaintenancePreviewRow(
+    label,
+    value
+) {
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "cr-editor-change-row";
+
+
+    const rowLabel =
+        document.createElement(
+            "strong"
+        );
+
+    rowLabel.textContent =
+        label;
+
+
+    const rowValue =
+        document.createElement(
+            "span"
+        );
+
+    rowValue.textContent =
+        value;
+
+
+    row.append(
+        rowLabel,
+        rowValue
+    );
+
+
+    tournamentMaintenanceChangeList.appendChild(
+        row
+    );
+
+}
+
+
+function beginTournamentMaintenance(
+    mode,
+    participantId
+) {
+
+    const tournament =
+        getSelectedControlRoomTournament();
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    if (
+        !tournament
+        ||
+        !bracket
+        ||
+        !participantId
+    ) {
+
+        return;
+
+    }
+
+
+    const bracketSetup =
+        getTournamentBracketSetup(
+            bracket
+        );
+
+
+    if (
+        !bracket.fieldLocked
+        ||
+        !bracketSetup.generated
+    ) {
+
+        return;
+
+    }
+
+
+    const entrant =
+        getTournamentEntrantRecord(
+            bracket,
+            participantId
+        );
+
+
+    tournamentMaintenanceMode =
+        mode;
+
+    tournamentMaintenanceSourceParticipantId =
+        participantId;
+
+
+    tournamentMaintenancePanel.hidden =
+        false;
+
+
+    tournamentMaintenanceSource.textContent =
+
+        `${
+            entrant?.name
+            ||
+            participantId
+        } — ${tournament.name} / ${bracket.name}`;
+
+
+    tournamentMaintenanceTargetTournamentWrap.hidden =
+        mode !==
+        "swap";
+
+    tournamentMaintenanceTargetBracketWrap.hidden =
+        true;
+
+    tournamentMaintenanceTargetParticipantWrap.hidden =
+        true;
+
+
+    tournamentMaintenanceTargetTournament.disabled =
+        true;
+
+    tournamentMaintenanceTargetBracket.disabled =
+        true;
+
+    tournamentMaintenanceTargetParticipant.disabled =
+        true;
+
+
+    tournamentMaintenanceChangeList.innerHTML =
+        "";
+
+
+    appendTournamentMaintenancePreviewRow(
+        "ACTION",
+        mode ===
+            "swap"
+            ? "SWAP PARTICIPANT"
+            : "REMOVE PARTICIPANT"
+    );
+
+
+    appendTournamentMaintenancePreviewRow(
+        "SOURCE",
+        entrant?.name
+        ||
+        participantId
+    );
+
+
+    appendTournamentMaintenancePreviewRow(
+        "BRACKET",
+        bracket.name
+    );
+
+
+    if (
+        mode ===
+        "remove"
+    ) {
+
+        appendTournamentMaintenancePreviewRow(
+            "RESULT",
+            "This bracket position will become vacant."
+        );
+
+    }
+
+    else {
+
+        appendTournamentMaintenancePreviewRow(
+            "NEXT",
+            "Choose the finalized tournament participant to swap with."
+        );
+
+    }
+
+
+    tournamentMaintenancePreview.hidden =
+        false;
+
+
+    tournamentMaintenanceError.hidden =
+        true;
+
+    tournamentMaintenanceError.textContent =
+        "";
+
+
+    tournamentMaintenanceMessage.hidden =
+        true;
+
+
+    tournamentMaintenanceConfirmButton.disabled =
+        true;
+
+
+    tournamentMaintenancePanel.scrollIntoView({
+        behavior:
+            "smooth",
+
+        block:
+            "nearest"
+    });
+
+}
+
+
 function renderStoredTournamentParticipants(
     bracket
 ) {
@@ -9833,43 +10252,160 @@ function renderStoredTournamentParticipants(
             );
 
 
-            const removeButton =
-                document.createElement(
-                    "button"
+                        const bracketSetup =
+                getTournamentBracketSetup(
+                    bracket
                 );
 
 
-            removeButton.type =
-                "button";
+            const finalizedGeneratedField =
 
-
-            removeButton.className =
-                "control-room-button";
-
-
-            removeButton.textContent =
-                "Remove";
-
-
-            removeButton.disabled =
                 Boolean(
                     bracket.fieldLocked
+                )
+
+                &&
+
+                Boolean(
+                    bracketSetup.generated
                 );
 
 
-            removeButton.addEventListener(
+            const actions =
+                document.createElement(
+                    "div"
+                );
 
-                "click",
 
-                () => {
+            actions.className =
+                "cr-manager-actions";
 
-                    removeTournamentFieldParticipant(
-                        participantId
+
+            if (
+                finalizedGeneratedField
+            ) {
+
+                const maintenanceRemoveButton =
+                    document.createElement(
+                        "button"
                     );
 
-                }
 
-            );
+                maintenanceRemoveButton.type =
+                    "button";
+
+
+                maintenanceRemoveButton.className =
+                    "control-room-button";
+
+
+                maintenanceRemoveButton.textContent =
+                    "Remove";
+
+
+                maintenanceRemoveButton.addEventListener(
+
+                    "click",
+
+                    () => {
+
+                        beginTournamentMaintenance(
+                            "remove",
+                            participantId
+                        );
+
+                    }
+
+                );
+
+
+                const maintenanceSwapButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                maintenanceSwapButton.type =
+                    "button";
+
+
+                maintenanceSwapButton.className =
+                    "control-room-button";
+
+
+                maintenanceSwapButton.textContent =
+                    "Swap";
+
+
+                maintenanceSwapButton.addEventListener(
+
+                    "click",
+
+                    () => {
+
+                        beginTournamentMaintenance(
+                            "swap",
+                            participantId
+                        );
+
+                    }
+
+                );
+
+
+                actions.append(
+                    maintenanceRemoveButton,
+                    maintenanceSwapButton
+                );
+
+            }
+
+            else {
+
+                const removeButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                removeButton.type =
+                    "button";
+
+
+                removeButton.className =
+                    "control-room-button";
+
+
+                removeButton.textContent =
+                    "Remove";
+
+
+                removeButton.disabled =
+                    Boolean(
+                        bracket.fieldLocked
+                    );
+
+
+                removeButton.addEventListener(
+
+                    "click",
+
+                    () => {
+
+                        removeTournamentFieldParticipant(
+                            participantId
+                        );
+
+                    }
+
+                );
+
+
+                actions.appendChild(
+                    removeButton
+                );
+
+            }
 
 
             participantRow.append(
@@ -9878,7 +10414,7 @@ function renderStoredTournamentParticipants(
 
                 participantIdentity,
 
-                removeButton
+                actions
 
             );
 
@@ -13197,6 +13733,15 @@ tournamentFieldLockButton.addEventListener(
     "click",
 
     toggleTournamentParticipantFieldLock
+
+);
+
+
+tournamentMaintenanceCancelButton.addEventListener(
+
+    "click",
+
+    resetTournamentMaintenance
 
 );
 
