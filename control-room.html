@@ -3256,8 +3256,22 @@
                         Current Participants
                     </h3>
 
+                               <div class="cr-editor-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        SELECTED FIELD
+                    </span>
+
+                    <h3>
+                        Current Participants
+                    </h3>
+
                     <p>
-                        Participants remain editable until the completed field is locked.
+                        Open fields can be edited normally. Finalized generated
+                        brackets support controlled Remove and Swap maintenance
+                        without rebuilding the tournament.
                     </p>
 
                 </div>
@@ -3274,6 +3288,185 @@
                 </div>
 
             </div>
+
+
+            <!-- =================================
+                 FINALIZED FIELD MAINTENANCE
+            ================================== -->
+
+            <div
+                id="cr-tournament-maintenance"
+                class="cr-editor-section"
+                hidden
+            >
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        FINALIZED FIELD MAINTENANCE
+                    </span>
+
+                    <h3>
+                        Remove or Swap Participant
+                    </h3>
+
+                    <p>
+                        Maintain a generated tournament without rebuilding its
+                        bracket. Completed tournament results will remain protected.
+                    </p>
+
+                </div>
+
+
+                <div class="cr-editor-form-grid">
+
+                    <div class="cr-form-group">
+
+                        <label>
+                            SELECTED PARTICIPANT
+                        </label>
+
+                        <div
+                            id="cr-tournament-maintenance-source"
+                            class="cr-current-value"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="cr-tournament-maintenance-target-tournament-wrap"
+                        class="cr-form-group"
+                        hidden
+                    >
+
+                        <label for="cr-tournament-maintenance-target-tournament">
+                            SWAP WITH TOURNAMENT
+                        </label>
+
+                        <select
+                            id="cr-tournament-maintenance-target-tournament"
+                            disabled
+                        >
+
+                            <option value="">
+                                Select Tournament
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div
+                        id="cr-tournament-maintenance-target-bracket-wrap"
+                        class="cr-form-group"
+                        hidden
+                    >
+
+                        <label for="cr-tournament-maintenance-target-bracket">
+                            SWAP WITH BRACKET
+                        </label>
+
+                        <select
+                            id="cr-tournament-maintenance-target-bracket"
+                            disabled
+                        >
+
+                            <option value="">
+                                Select Bracket
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div
+                        id="cr-tournament-maintenance-target-participant-wrap"
+                        class="cr-form-group"
+                        hidden
+                    >
+
+                        <label for="cr-tournament-maintenance-target-participant">
+                            SWAP WITH PARTICIPANT
+                        </label>
+
+                        <select
+                            id="cr-tournament-maintenance-target-participant"
+                            disabled
+                        >
+
+                            <option value="">
+                                Select Participant
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="cr-tournament-maintenance-preview"
+                    class="cr-change-preview"
+                    hidden
+                >
+
+                    <span>
+                        REVIEW TOURNAMENT CHANGE
+                    </span>
+
+                    <div
+                        id="cr-tournament-maintenance-change-list"
+                        class="cr-editor-change-list"
+                    >
+                    </div>
+
+                    <p
+                        id="cr-tournament-maintenance-error"
+                        class="cr-change-error"
+                        hidden
+                    >
+                    </p>
+
+                </div>
+
+
+                <div class="cr-manager-actions">
+
+                    <button
+                        id="cr-tournament-maintenance-confirm"
+                        class="control-room-button control-room-button-primary"
+                        type="button"
+                        disabled
+                    >
+                        Confirm Tournament Change
+                    </button>
+
+                    <button
+                        id="cr-tournament-maintenance-cancel"
+                        class="control-room-button"
+                        type="button"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="cr-tournament-maintenance-message"
+                    class="cr-save-message"
+                    hidden
+                >
+                </p>
+
+            </div>
+
 
             <div
                 id="cr-tournament-field-review"
