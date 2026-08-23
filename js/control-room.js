@@ -11511,6 +11511,423 @@ async function saveTournamentMaintenanceSwap() {
 }
 
 
+const originalRenderTournamentMaintenanceRemovePreview =
+
+    typeof renderTournamentMaintenanceRemovePreview ===
+        "function"
+
+        ? renderTournamentMaintenanceRemovePreview
+
+        : null;
+
+
+if (
+    originalRenderTournamentMaintenanceRemovePreview
+) {
+
+    renderTournamentMaintenanceRemovePreview =
+        function () {
+
+            originalRenderTournamentMaintenanceRemovePreview();
+
+
+            if (
+                tournamentMaintenanceMode !==
+                "remove"
+            ) {
+
+                return;
+
+            }
+
+
+            const bracket =
+                getSelectedControlRoomBracket();
+
+
+            if (
+                !bracket
+                ||
+                !tournamentMaintenanceSourceParticipantId
+            ) {
+
+                tournamentMaintenanceConfirmButton.disabled =
+                    true;
+
+                return;
+
+            }
+
+
+            const safety =
+                getTournamentMaintenanceParticipantSafety(
+                    bracket,
+                    tournamentMaintenanceSourceParticipantId
+                );
+
+
+            if (
+                !safety.allowed
+            ) {
+
+                tournamentMaintenanceError.textContent =
+                    safety.reason;
+
+                tournamentMaintenanceError.hidden =
+                    false;
+
+                tournamentMaintenanceConfirmButton.disabled =
+                    true;
+
+                return;
+
+            }
+
+
+            tournamentMaintenanceError.hidden =
+                true;
+
+            tournamentMaintenanceError.textContent =
+                "";
+
+
+            tournamentMaintenanceConfirmButton.disabled =
+                false;
+
+        };
+
+}
+
+
+async function saveTournamentMaintenanceRemoval() {
+
+    if (
+        tournamentMaintenanceMode !==
+        "remove"
+    ) {
+
+        return;
+
+    }
+
+
+    const tournament =
+        getSelectedControlRoomTournament();
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    const participantId =
+        tournamentMaintenanceSourceParticipantId;
+
+
+    if (
+        !tournament
+        ||
+        !bracket
+        ||
+        !participantId
+    ) {
+
+        return;
+
+    }
+
+
+    const participantIds =
+        getStoredTournamentParticipants(
+            bracket
+        );
+
+
+    if (
+        !participantIds.includes(
+            participantId
+        )
+    ) {
+
+        tournamentMaintenanceError.textContent =
+            "This participant is no longer in the selected bracket.";
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        tournamentMaintenanceConfirmButton.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    const safety =
+        getTournamentMaintenanceParticipantSafety(
+            bracket,
+            participantId
+        );
+
+
+    if (
+        !safety.allowed
+    ) {
+
+        tournamentMaintenanceError.textContent =
+            safety.reason;
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        tournamentMaintenanceConfirmButton.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    const participantName =
+        getTournamentEntrantDisplayName(
+            bracket,
+            participantId
+        );
+
+
+    const confirmed =
+        window.confirm(
+
+            `Remove ${participantName} from this finalized tournament bracket?\n\n`
+            +
+            `${tournament.name} / ${bracket.name}\n\n`
+            +
+            `Their exact bracket position will become VACANT.\n\n`
+            +
+            `The bracket will remain locked and generated. No opponent will automatically advance.`
+
+        );
+
+
+    if (
+        !confirmed
+    ) {
+
+        return;
+
+    }
+
+
+    const tournamentDatabase =
+        owlControlRoomData.tournaments;
+
+
+    if (
+        !tournamentDatabase
+        ||
+        Array.isArray(
+            tournamentDatabase
+        )
+        ||
+        !Array.isArray(
+            tournamentDatabase.tournaments
+        )
+    ) {
+
+        tournamentMaintenanceError.textContent =
+            "The tournament database is not available.";
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        return;
+
+    }
+
+
+    const selectedTournamentId =
+        tournament.id;
+
+
+    const selectedBracketId =
+        bracket.id;
+
+
+    const updatedTournamentDatabase = {
+
+        ...tournamentDatabase,
+
+        tournaments:
+
+            tournamentDatabase.tournaments.map(
+                storedTournament => {
+
+                    if (
+                        storedTournament.id !==
+                        selectedTournamentId
+                    ) {
+
+                        return storedTournament;
+
+                    }
+
+
+                    return {
+
+                        ...storedTournament,
+
+                        brackets:
+
+                            (
+                                Array.isArray(
+                                    storedTournament.brackets
+                                )
+                                    ? storedTournament.brackets
+                                    : []
+                            )
+                                .map(
+                                    storedBracket => {
+
+                                        if (
+                                            storedBracket.id !==
+                                            selectedBracketId
+                                        ) {
+
+                                            return storedBracket;
+
+                                        }
+
+
+                                        return replaceTournamentMaintenanceParticipant(
+                                            storedBracket,
+                                            participantId,
+                                            ""
+                                        );
+
+                                    }
+                                )
+
+                    };
+
+                }
+            )
+
+    };
+
+
+    tournamentMaintenanceConfirmButton.disabled =
+        true;
+
+
+    tournamentFieldStatus.textContent =
+        "REMOVING PARTICIPANT";
+
+
+    tournamentMaintenanceError.hidden =
+        true;
+
+    tournamentMaintenanceMessage.hidden =
+        true;
+
+
+    try {
+
+        await writeTournamentDatabase(
+            updatedTournamentDatabase
+        );
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        tournamentSelect.value =
+            selectedTournamentId;
+
+
+        populateTournamentBracketSelector();
+
+
+        tournamentBracketSelect.value =
+            selectedBracketId;
+
+
+        loadTournamentFieldDraft();
+
+
+        tournamentFieldStatus.textContent =
+            "READY";
+
+
+        tournamentFieldMessage.textContent =
+
+            `${participantName} removed. Their finalized tournament position is now vacant.`;
+
+
+        tournamentFieldMessage.hidden =
+            false;
+
+    }
+
+    catch (
+        error
+    ) {
+
+        console.error(
+            "Could not remove finalized tournament participant:",
+            error
+        );
+
+
+        tournamentFieldStatus.textContent =
+            "ERROR";
+
+
+        tournamentMaintenanceError.textContent =
+
+            error.message
+            ||
+            "The tournament participant could not be removed.";
+
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+
+        tournamentMaintenanceConfirmButton.disabled =
+            false;
+
+    }
+
+}
+
+
+async function saveTournamentMaintenanceChange() {
+
+    if (
+        tournamentMaintenanceMode ===
+        "swap"
+    ) {
+
+        await saveTournamentMaintenanceSwap();
+
+        return;
+
+    }
+
+
+    if (
+        tournamentMaintenanceMode ===
+        "remove"
+    ) {
+
+        await saveTournamentMaintenanceRemoval();
+
+    }
+
+}
+
+
 function renderStoredTournamentParticipants(
     bracket
 ) {
