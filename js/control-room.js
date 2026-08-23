@@ -3820,6 +3820,10 @@ let tournamentMaintenanceSourceParticipantId =
     "";
 
 
+let tournamentMaintenanceSourceSlotIndex =
+    -1;
+
+
 function getControlRoomTournaments() {
 
 
@@ -9827,8 +9831,12 @@ function resetTournamentMaintenance() {
     tournamentMaintenanceMode =
         "";
 
-    tournamentMaintenanceSourceParticipantId =
+        tournamentMaintenanceSourceParticipantId =
         "";
+
+
+    tournamentMaintenanceSourceSlotIndex =
+        -1;
 
 
     if (
@@ -11902,6 +11910,1052 @@ async function saveTournamentMaintenanceRemoval() {
 }
 
 
+function getTournamentMaintenanceEligibleAddParticipants(
+    bracket
+) {
+
+    const storedParticipants =
+        getStoredTournamentParticipants(
+            bracket
+        );
+
+
+    const existingParticipantIds =
+        new Set(
+            storedParticipants.filter(
+                Boolean
+            )
+        );
+
+
+    const entrantPool =
+
+        bracket.participantType ===
+            "team"
+
+            ? (
+                Array.isArray(
+                    owlControlRoomData.teams
+                )
+                    ? owlControlRoomData.teams
+                    : []
+            )
+
+            : (
+                Array.isArray(
+                    owlControlRoomData.wrestlers
+                )
+                    ? owlControlRoomData.wrestlers
+                    : []
+            );
+
+
+    return entrantPool
+
+        .filter(
+            entrant =>
+
+                entrant?.id
+
+                &&
+
+                !existingParticipantIds.has(
+                    entrant.id
+                )
+        )
+
+        .filter(
+            entrant =>
+
+                bracket.participantType ===
+                    "team"
+
+                    ? isTournamentTeamEligible(
+                        entrant,
+                        bracket
+                    )
+
+                    : isTournamentWrestlerEligible(
+                        entrant,
+                        bracket
+                    )
+        )
+
+        .sort(
+            (
+                entrantA,
+                entrantB
+            ) =>
+
+                String(
+                    entrantA.name || ""
+                ).localeCompare(
+                    String(
+                        entrantB.name || ""
+                    )
+                )
+        );
+
+}
+
+
+function getTournamentMaintenanceOpeningRound(
+    bracket
+) {
+
+    const rounds =
+        Array.isArray(
+            getTournamentBracketSetup(
+                bracket
+            )?.rounds
+        )
+            ? getTournamentBracketSetup(
+                bracket
+            ).rounds
+            : [];
+
+
+    return [
+        ...rounds
+    ]
+        .sort(
+            (
+                roundA,
+                roundB
+            ) =>
+
+                Number(
+                    roundA.order || 0
+                )
+
+                -
+
+                Number(
+                    roundB.order || 0
+                )
+        )[0]
+        ||
+        null;
+
+}
+
+
+function getTournamentMaintenanceVacantMatch(
+    bracket,
+    slotIndex
+) {
+
+    const openingRound =
+        getTournamentMaintenanceOpeningRound(
+            bracket
+        );
+
+
+    if (
+        !openingRound
+        ||
+        !Array.isArray(
+            openingRound.matches
+        )
+        ||
+        slotIndex <
+            0
+    ) {
+
+        return null;
+
+    }
+
+
+    const orderedMatches =
+        [
+            ...openingRound.matches
+        ]
+            .sort(
+                (
+                    matchA,
+                    matchB
+                ) =>
+
+                    Number(
+                        matchA.order || 0
+                    )
+
+                    -
+
+                    Number(
+                        matchB.order || 0
+                    )
+            );
+
+
+    return orderedMatches[
+        Math.floor(
+            slotIndex / 2
+        )
+    ]
+    ||
+    null;
+
+}
+
+
+function populateTournamentMaintenanceAddParticipants(
+    bracket
+) {
+
+    const candidates =
+        getTournamentMaintenanceEligibleAddParticipants(
+            bracket
+        );
+
+
+    tournamentMaintenanceTargetParticipant.innerHTML =
+        `
+            <option value="">
+                Select Participant
+            </option>
+        `;
+
+
+    candidates.forEach(
+        entrant => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                entrant.id;
+
+
+            option.textContent =
+                entrant.name
+                ||
+                entrant.id;
+
+
+            tournamentMaintenanceTargetParticipant.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    tournamentMaintenanceTargetParticipantWrap.hidden =
+        false;
+
+
+    const label =
+        tournamentMaintenanceTargetParticipantWrap.querySelector(
+            "label"
+        );
+
+
+    if (label) {
+
+        label.textContent =
+            "ADD PARTICIPANT";
+
+    }
+
+
+    tournamentMaintenanceTargetParticipant.disabled =
+        candidates.length ===
+        0;
+
+
+    if (
+        candidates.length ===
+        0
+    ) {
+
+        tournamentMaintenanceTargetParticipant.options[
+            0
+        ].textContent =
+            "No Eligible Participants Available";
+
+    }
+
+}
+
+
+function beginTournamentMaintenanceAdd(
+    slotIndex
+) {
+
+    const tournament =
+        getSelectedControlRoomTournament();
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    if (
+        !tournament
+        ||
+        !bracket
+        ||
+        slotIndex <
+            0
+        ||
+        !bracket.fieldLocked
+        ||
+        !getTournamentBracketSetup(
+            bracket
+        ).generated
+    ) {
+
+        return;
+
+    }
+
+
+    const storedParticipants =
+        getStoredTournamentParticipants(
+            bracket
+        );
+
+
+    if (
+        storedParticipants[
+            slotIndex
+        ]
+    ) {
+
+        return;
+
+    }
+
+
+    tournamentMaintenanceMode =
+        "add";
+
+
+    tournamentMaintenanceSourceParticipantId =
+        "";
+
+
+    tournamentMaintenanceSourceSlotIndex =
+        slotIndex;
+
+
+    tournamentMaintenancePanel.hidden =
+        false;
+
+
+    tournamentMaintenanceSource.textContent =
+
+        `VACANT SLOT ${slotIndex + 1} — ${tournament.name} / ${bracket.name}`;
+
+
+    tournamentMaintenanceTargetTournamentWrap.hidden =
+        true;
+
+
+    tournamentMaintenanceTargetBracketWrap.hidden =
+        true;
+
+
+    populateTournamentMaintenanceAddParticipants(
+        bracket
+    );
+
+
+    tournamentMaintenanceChangeList.innerHTML =
+        "";
+
+
+    appendTournamentMaintenancePreviewRow(
+        "ACTION",
+        "ADD PARTICIPANT"
+    );
+
+
+    appendTournamentMaintenancePreviewRow(
+        "BRACKET SLOT",
+        `Slot ${slotIndex + 1}`
+    );
+
+
+    appendTournamentMaintenancePreviewRow(
+        "RESULT",
+        "The selected participant will occupy this exact finalized bracket position."
+    );
+
+
+    tournamentMaintenancePreview.hidden =
+        false;
+
+
+    tournamentMaintenanceError.hidden =
+        true;
+
+    tournamentMaintenanceError.textContent =
+        "";
+
+
+    tournamentMaintenanceMessage.hidden =
+        true;
+
+
+    tournamentMaintenanceConfirmButton.disabled =
+        true;
+
+
+    tournamentMaintenancePanel.scrollIntoView({
+        behavior:
+            "smooth",
+
+        block:
+            "nearest"
+    });
+
+}
+
+
+function renderTournamentMaintenanceAddPreview() {
+
+    if (
+        tournamentMaintenanceMode !==
+        "add"
+    ) {
+
+        return;
+
+    }
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    const participantId =
+        tournamentMaintenanceTargetParticipant.value;
+
+
+    tournamentMaintenanceChangeList.innerHTML =
+        "";
+
+
+    appendTournamentMaintenancePreviewRow(
+        "ACTION",
+        "ADD PARTICIPANT"
+    );
+
+
+    appendTournamentMaintenancePreviewRow(
+        "BRACKET SLOT",
+        `Slot ${tournamentMaintenanceSourceSlotIndex + 1}`
+    );
+
+
+    if (
+        !bracket
+        ||
+        !participantId
+    ) {
+
+        appendTournamentMaintenancePreviewRow(
+            "NEXT",
+            "Select the participant who will fill this vacant position."
+        );
+
+
+        tournamentMaintenanceConfirmButton.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    const entrant =
+        getTournamentEntrantRecord(
+            bracket,
+            participantId
+        );
+
+
+    appendTournamentMaintenancePreviewRow(
+        "PARTICIPANT",
+        entrant?.name
+        ||
+        participantId
+    );
+
+
+    appendTournamentMaintenancePreviewRow(
+        "RESULT",
+        "The vacant slot will be filled without changing any other bracket position."
+    );
+
+
+    tournamentMaintenanceError.hidden =
+        true;
+
+    tournamentMaintenanceError.textContent =
+        "";
+
+
+    tournamentMaintenanceConfirmButton.disabled =
+        false;
+
+}
+
+
+function fillTournamentMaintenanceVacantSlot(
+    bracket,
+    slotIndex,
+    participantId
+) {
+
+    const updatedParticipants =
+        [
+            ...getStoredTournamentParticipants(
+                bracket
+            )
+        ];
+
+
+    updatedParticipants[
+        slotIndex
+    ] =
+        participantId;
+
+
+    const bracketSetup =
+        getTournamentBracketSetup(
+            bracket
+        );
+
+
+    const updatedRounds =
+
+        (
+            Array.isArray(
+                bracketSetup?.rounds
+            )
+                ? bracketSetup.rounds
+                : []
+        )
+            .map(
+                round => ({
+
+                    ...round,
+
+                    matches:
+
+                        (
+                            Array.isArray(
+                                round.matches
+                            )
+                                ? round.matches
+                                : []
+                        )
+                            .map(
+                                match => ({
+                                    ...match
+                                })
+                            )
+
+                })
+            );
+
+
+    const orderedRounds =
+        [
+            ...updatedRounds
+        ]
+            .sort(
+                (
+                    roundA,
+                    roundB
+                ) =>
+
+                    Number(
+                        roundA.order || 0
+                    )
+
+                    -
+
+                    Number(
+                        roundB.order || 0
+                    )
+            );
+
+
+    const openingRound =
+        orderedRounds[0];
+
+
+    if (
+        !openingRound
+        ||
+        !Array.isArray(
+            openingRound.matches
+        )
+    ) {
+
+        throw new Error(
+            "The generated opening round could not be found."
+        );
+
+    }
+
+
+    const orderedOpeningMatches =
+        [
+            ...openingRound.matches
+        ]
+            .sort(
+                (
+                    matchA,
+                    matchB
+                ) =>
+
+                    Number(
+                        matchA.order || 0
+                    )
+
+                    -
+
+                    Number(
+                        matchB.order || 0
+                    )
+            );
+
+
+    const targetMatch =
+        orderedOpeningMatches[
+            Math.floor(
+                slotIndex / 2
+            )
+        ];
+
+
+    if (!targetMatch) {
+
+        throw new Error(
+            "The vacant bracket position could not be found."
+        );
+
+    }
+
+
+    if (
+        slotIndex %
+            2 ===
+        0
+    ) {
+
+        targetMatch.participantOneId =
+            participantId;
+
+    }
+
+    else {
+
+        targetMatch.participantTwoId =
+            participantId;
+
+    }
+
+
+    if (
+        targetMatch.isBye
+    ) {
+
+        targetMatch.winnerId =
+            participantId;
+
+
+        targetMatch.status =
+            "bye";
+
+    }
+
+
+    const resolvedRounds =
+
+        window.OWLResolveTournamentByes
+
+        &&
+
+        typeof window.OWLResolveTournamentByes ===
+            "function"
+
+            ? window.OWLResolveTournamentByes(
+                updatedRounds
+            )
+
+            : updatedRounds;
+
+
+    return {
+
+        ...bracket,
+
+        participants:
+            updatedParticipants,
+
+        bracketSetup: {
+
+            ...bracketSetup,
+
+            rounds:
+                resolvedRounds
+
+        }
+
+    };
+
+}
+
+
+async function saveTournamentMaintenanceAdd() {
+
+    if (
+        tournamentMaintenanceMode !==
+        "add"
+    ) {
+
+        return;
+
+    }
+
+
+    const tournament =
+        getSelectedControlRoomTournament();
+
+
+    const bracket =
+        getSelectedControlRoomBracket();
+
+
+    const slotIndex =
+        tournamentMaintenanceSourceSlotIndex;
+
+
+    const participantId =
+        tournamentMaintenanceTargetParticipant.value;
+
+
+    if (
+        !tournament
+        ||
+        !bracket
+        ||
+        slotIndex <
+            0
+        ||
+        !participantId
+    ) {
+
+        return;
+
+    }
+
+
+    const participants =
+        getStoredTournamentParticipants(
+            bracket
+        );
+
+
+    if (
+        participants[
+            slotIndex
+        ]
+    ) {
+
+        tournamentMaintenanceError.textContent =
+            "This finalized bracket slot is no longer vacant.";
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        tournamentMaintenanceConfirmButton.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    const entrant =
+        getTournamentEntrantRecord(
+            bracket,
+            participantId
+        );
+
+
+    if (!entrant) {
+
+        tournamentMaintenanceError.textContent =
+            "The selected participant could not be found.";
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        return;
+
+    }
+
+
+    const eligible =
+
+        bracket.participantType ===
+            "team"
+
+            ? isTournamentTeamEligible(
+                entrant,
+                bracket
+            )
+
+            : isTournamentWrestlerEligible(
+                entrant,
+                bracket
+            );
+
+
+    if (!eligible) {
+
+        tournamentMaintenanceError.textContent =
+            `${entrant.name || participantId} is not eligible for this bracket.`;
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        return;
+
+    }
+
+
+    const targetMatch =
+        getTournamentMaintenanceVacantMatch(
+            bracket,
+            slotIndex
+        );
+
+
+    if (!targetMatch) {
+
+        tournamentMaintenanceError.textContent =
+            "The matching opening-round position could not be found.";
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        return;
+
+    }
+
+
+    const linkedRecord =
+        getTournamentMatchLinkedRecord(
+            targetMatch
+        );
+
+
+    if (
+        linkedRecord.source ===
+        "announced"
+        ||
+        linkedRecord.source ===
+        "completed"
+        ||
+        linkedRecord.source ===
+        "missing"
+    ) {
+
+        tournamentMaintenanceError.textContent =
+            "This vacant slot belongs to a tournament match that already has a saved match link. Clear or repair that match before filling the vacancy.";
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        tournamentMaintenanceConfirmButton.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    const confirmed =
+        window.confirm(
+
+            `Add ${entrant.name || participantId} to this finalized tournament bracket?\n\n`
+            +
+            `${tournament.name} / ${bracket.name}\n`
+            +
+            `Slot ${slotIndex + 1}\n\n`
+            +
+            `No other tournament position will change.`
+
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    const tournamentDatabase =
+        owlControlRoomData.tournaments;
+
+
+    const selectedTournamentId =
+        tournament.id;
+
+
+    const selectedBracketId =
+        bracket.id;
+
+
+    const updatedTournamentDatabase = {
+
+        ...tournamentDatabase,
+
+        tournaments:
+
+            tournamentDatabase.tournaments.map(
+                storedTournament => {
+
+                    if (
+                        storedTournament.id !==
+                        selectedTournamentId
+                    ) {
+
+                        return storedTournament;
+
+                    }
+
+
+                    return {
+
+                        ...storedTournament,
+
+                        brackets:
+
+                            (
+                                Array.isArray(
+                                    storedTournament.brackets
+                                )
+                                    ? storedTournament.brackets
+                                    : []
+                            )
+                                .map(
+                                    storedBracket =>
+
+                                        storedBracket.id ===
+                                            selectedBracketId
+
+                                            ? fillTournamentMaintenanceVacantSlot(
+                                                storedBracket,
+                                                slotIndex,
+                                                participantId
+                                            )
+
+                                            : storedBracket
+                                )
+
+                    };
+
+                }
+            )
+
+    };
+
+
+    tournamentMaintenanceConfirmButton.disabled =
+        true;
+
+
+    tournamentFieldStatus.textContent =
+        "FILLING VACANCY";
+
+
+    try {
+
+        await writeTournamentDatabase(
+            updatedTournamentDatabase
+        );
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        tournamentSelect.value =
+            selectedTournamentId;
+
+
+        populateTournamentBracketSelector();
+
+
+        tournamentBracketSelect.value =
+            selectedBracketId;
+
+
+        loadTournamentFieldDraft();
+
+
+        tournamentFieldStatus.textContent =
+            "READY";
+
+
+        tournamentFieldMessage.textContent =
+
+            `${entrant.name || participantId} added to vacant Slot ${slotIndex + 1}.`;
+
+
+        tournamentFieldMessage.hidden =
+            false;
+
+    }
+
+    catch (
+        error
+    ) {
+
+        console.error(
+            "Could not fill finalized tournament vacancy:",
+            error
+        );
+
+
+        tournamentFieldStatus.textContent =
+            "ERROR";
+
+
+        tournamentMaintenanceError.textContent =
+
+            error.message
+            ||
+            "The vacant tournament position could not be filled.";
+
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+
+        tournamentMaintenanceConfirmButton.disabled =
+            false;
+
+    }
+
+}
+
+
 async function saveTournamentMaintenanceChange() {
 
     if (
@@ -11916,17 +12970,28 @@ async function saveTournamentMaintenanceChange() {
     }
 
 
-    if (
+        if (
         tournamentMaintenanceMode ===
         "remove"
     ) {
 
         await saveTournamentMaintenanceRemoval();
 
+        return;
+
+    }
+
+
+    if (
+        tournamentMaintenanceMode ===
+        "add"
+    ) {
+
+        await saveTournamentMaintenanceAdd();
+
     }
 
 }
-
 
 function renderStoredTournamentParticipants(
     bracket
@@ -12082,7 +13147,52 @@ function renderStoredTournamentParticipants(
                 "cr-manager-actions";
 
 
-            if (
+                        if (
+                finalizedGeneratedField
+                &&
+                !participantId
+            ) {
+
+                const maintenanceAddButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                maintenanceAddButton.type =
+                    "button";
+
+
+                maintenanceAddButton.className =
+                    "control-room-button";
+
+
+                maintenanceAddButton.textContent =
+                    "Add";
+
+
+                maintenanceAddButton.addEventListener(
+
+                    "click",
+
+                    () => {
+
+                        beginTournamentMaintenanceAdd(
+                            index
+                        );
+
+                    }
+
+                );
+
+
+                actions.appendChild(
+                    maintenanceAddButton
+                );
+
+            }
+
+            else if (
                 finalizedGeneratedField
             ) {
 
@@ -15572,7 +16682,30 @@ tournamentMaintenanceTargetParticipant.addEventListener(
 
     "change",
 
-    renderTournamentMaintenanceSwapPreview
+    () => {
+
+        if (
+            tournamentMaintenanceMode ===
+            "swap"
+        ) {
+
+            renderTournamentMaintenanceSwapPreview();
+
+            return;
+
+        }
+
+
+        if (
+            tournamentMaintenanceMode ===
+            "add"
+        ) {
+
+            renderTournamentMaintenanceAddPreview();
+
+        }
+
+    }
 
 );
 
