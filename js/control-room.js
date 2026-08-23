@@ -12013,13 +12013,17 @@ function renderStoredTournamentParticipants(
                 );
 
 
-            participantName.textContent =
+                       participantName.textContent =
 
-                entrant?.name
+                participantId
 
-                ||
+                    ? (
+                        entrant?.name
+                        ||
+                        participantId
+                    )
 
-                participantId;
+                    : "VACANT";
 
 
             const participantDetail =
@@ -12029,13 +12033,15 @@ function renderStoredTournamentParticipants(
 
 
             participantDetail.textContent =
-                getTournamentEntrantDetail(
 
-                    bracket,
+                participantId
 
-                    entrant
+                    ? getTournamentEntrantDetail(
+                        bracket,
+                        entrant
+                    )
 
-                );
+                    : "OPEN FINALIZED BRACKET SLOT";
 
 
             participantIdentity.append(
@@ -15575,7 +15581,7 @@ tournamentMaintenanceConfirmButton.addEventListener(
 
     "click",
 
-    saveTournamentMaintenanceSwap
+    saveTournamentMaintenanceChange
 
 );
 
