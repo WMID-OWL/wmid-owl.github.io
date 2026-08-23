@@ -10603,6 +10603,274 @@ function populateTournamentMaintenanceTargetParticipants() {
 }
 
 
+function getTournamentMaintenanceParticipantSafety(
+    bracket,
+    participantId
+) {
+
+    const bracketSetup =
+        getTournamentBracketSetup(
+            bracket
+        );
+
+
+    const rounds =
+        Array.isArray(
+            bracketSetup?.rounds
+        )
+            ? bracketSetup.rounds
+            : [];
+
+
+    const participantMatches =
+        rounds.flatMap(
+            round =>
+
+                (
+                    Array.isArray(
+                        round?.matches
+                    )
+                        ? round.matches
+                        : []
+                )
+                    .filter(
+                        match =>
+
+                            match?.participantOneId ===
+                                participantId
+
+                            ||
+
+                            match?.participantTwoId ===
+                                participantId
+
+                            ||
+
+                            (
+                                match?.winnerId ===
+                                    participantId
+
+                                &&
+
+                                !match?.isBye
+                            )
+                    )
+        );
+
+
+    for (
+        const match
+        of participantMatches
+    ) {
+
+        const linkStatus =
+            getTournamentMatchLinkStatusValue(
+                match
+            );
+
+
+        if (
+            linkStatus ===
+            "COMPLETED"
+
+            ||
+
+            normalize(
+                match?.status
+            ) ===
+            "completed"
+
+            ||
+
+            (
+                match?.winnerId
+
+                &&
+
+                !match?.isBye
+            )
+        ) {
+
+            return {
+                allowed:
+                    false,
+
+                reason:
+                    "This participant has already completed a tournament match. The finalized bracket cannot be rewritten."
+            };
+
+        }
+
+
+        const linkedRecord =
+            getTournamentMatchLinkedRecord(
+                match
+            );
+
+
+        if (
+            linkedRecord.source ===
+            "announced"
+        ) {
+
+            return {
+                allowed:
+                    false,
+
+                reason:
+                    "This participant already has a booked tournament match. Remove that announced match from the event card before swapping the tournament slot."
+            };
+
+        }
+
+
+        if (
+            linkedRecord.source ===
+            "missing"
+        ) {
+
+            return {
+                allowed:
+                    false,
+
+                reason:
+                    "This participant has a tournament match link whose match record is missing. Repair that link before swapping the tournament slot."
+            };
+
+        }
+
+    }
+
+
+    return {
+        allowed:
+            true,
+
+        reason:
+            ""
+    };
+
+}
+
+
+function replaceTournamentMaintenanceParticipant(
+    bracket,
+    oldParticipantId,
+    newParticipantId
+) {
+
+    const bracketSetup =
+        getTournamentBracketSetup(
+            bracket
+        );
+
+
+    return {
+
+        ...bracket,
+
+        participants:
+            getStoredTournamentParticipants(
+                bracket
+            )
+                .map(
+                    participantId =>
+
+                        participantId ===
+                            oldParticipantId
+
+                            ? newParticipantId
+
+                            : participantId
+                ),
+
+        bracketSetup: {
+
+            ...bracketSetup,
+
+            rounds:
+
+                (
+                    Array.isArray(
+                        bracketSetup?.rounds
+                    )
+                        ? bracketSetup.rounds
+                        : []
+                )
+                    .map(
+                        round => ({
+
+                            ...round,
+
+                            matches:
+
+                                (
+                                    Array.isArray(
+                                        round?.matches
+                                    )
+                                        ? round.matches
+                                        : []
+                                )
+                                    .map(
+                                        match => {
+
+                                            const updatedMatch = {
+                                                ...match
+                                            };
+
+
+                                            if (
+                                                updatedMatch.participantOneId ===
+                                                oldParticipantId
+                                            ) {
+
+                                                updatedMatch.participantOneId =
+                                                    newParticipantId;
+
+                                            }
+
+
+                                            if (
+                                                updatedMatch.participantTwoId ===
+                                                oldParticipantId
+                                            ) {
+
+                                                updatedMatch.participantTwoId =
+                                                    newParticipantId;
+
+                                            }
+
+
+                                            if (
+                                                updatedMatch.isBye
+
+                                                &&
+
+                                                updatedMatch.winnerId ===
+                                                oldParticipantId
+                                            ) {
+
+                                                updatedMatch.winnerId =
+                                                    newParticipantId;
+
+                                            }
+
+
+                                            return updatedMatch;
+
+                                        }
+                                    )
+
+                        })
+                    )
+
+        }
+
+    };
+
+}
+
+
 function renderTournamentMaintenanceSwapPreview() {
 
     if (
@@ -10753,14 +11021,492 @@ function renderTournamentMaintenanceSwapPreview() {
     );
 
 
-    appendTournamentMaintenancePreviewRow(
+        appendTournamentMaintenancePreviewRow(
         "RESULT",
         "The two finalized bracket positions will trade participants."
     );
 
 
+    tournamentMaintenanceError.hidden =
+        true;
+
+    tournamentMaintenanceError.textContent =
+        "";
+
+
+    const sourceParticipants =
+        getStoredTournamentParticipants(
+            sourceBracket
+        );
+
+
+    const targetParticipants =
+        getStoredTournamentParticipants(
+            targetBracket
+        );
+
+
+    if (
+        sourceParticipants.includes(
+            targetParticipantId
+        )
+    ) {
+
+        tournamentMaintenanceError.textContent =
+            `${targetName} is already part of the source bracket.`;
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        tournamentMaintenanceConfirmButton.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    if (
+        targetParticipants.includes(
+            tournamentMaintenanceSourceParticipantId
+        )
+    ) {
+
+        tournamentMaintenanceError.textContent =
+            `${sourceName} is already part of the target bracket.`;
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        tournamentMaintenanceConfirmButton.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    const sourceSafety =
+        getTournamentMaintenanceParticipantSafety(
+            sourceBracket,
+            tournamentMaintenanceSourceParticipantId
+        );
+
+
+    if (
+        !sourceSafety.allowed
+    ) {
+
+        tournamentMaintenanceError.textContent =
+            `${sourceName}: ${sourceSafety.reason}`;
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        tournamentMaintenanceConfirmButton.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    const targetSafety =
+        getTournamentMaintenanceParticipantSafety(
+            targetBracket,
+            targetParticipantId
+        );
+
+
+    if (
+        !targetSafety.allowed
+    ) {
+
+        tournamentMaintenanceError.textContent =
+            `${targetName}: ${targetSafety.reason}`;
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        tournamentMaintenanceConfirmButton.disabled =
+            true;
+
+        return;
+
+    }
+
+
+    appendTournamentMaintenancePreviewRow(
+        "SAFETY",
+        "Both participants are clear to swap."
+    );
+
+
+    tournamentMaintenanceConfirmButton.disabled =
+        false;
+
+}
+
+
+async function saveTournamentMaintenanceSwap() {
+
+    if (
+        tournamentMaintenanceMode !==
+        "swap"
+    ) {
+
+        return;
+
+    }
+
+
+    const sourceTournament =
+        getSelectedControlRoomTournament();
+
+    const sourceBracket =
+        getSelectedControlRoomBracket();
+
+
+    const targetTournament =
+
+        getControlRoomTournaments().find(
+            tournament =>
+                tournament.id ===
+                tournamentMaintenanceTargetTournament.value
+        )
+        ||
+        null;
+
+
+    const targetBracket =
+
+        targetTournament
+        &&
+        Array.isArray(
+            targetTournament.brackets
+        )
+
+            ? targetTournament.brackets.find(
+                bracket =>
+                    bracket.id ===
+                    tournamentMaintenanceTargetBracket.value
+            )
+            ||
+            null
+
+            : null;
+
+
+    const sourceParticipantId =
+        tournamentMaintenanceSourceParticipantId;
+
+
+    const targetParticipantId =
+        tournamentMaintenanceTargetParticipant.value;
+
+
+    if (
+        !sourceTournament
+        ||
+        !sourceBracket
+        ||
+        !targetTournament
+        ||
+        !targetBracket
+        ||
+        !sourceParticipantId
+        ||
+        !targetParticipantId
+    ) {
+
+        return;
+
+    }
+
+
+    const sourceSafety =
+        getTournamentMaintenanceParticipantSafety(
+            sourceBracket,
+            sourceParticipantId
+        );
+
+
+    const targetSafety =
+        getTournamentMaintenanceParticipantSafety(
+            targetBracket,
+            targetParticipantId
+        );
+
+
+    if (
+        !sourceSafety.allowed
+        ||
+        !targetSafety.allowed
+    ) {
+
+        renderTournamentMaintenanceSwapPreview();
+
+        return;
+
+    }
+
+
+    const sourceName =
+        getTournamentEntrantDisplayName(
+            sourceBracket,
+            sourceParticipantId
+        );
+
+
+    const targetName =
+        getTournamentEntrantDisplayName(
+            targetBracket,
+            targetParticipantId
+        );
+
+
+    const confirmed =
+        window.confirm(
+
+            `Swap ${sourceName} and ${targetName} between these finalized tournament brackets?\n\n`
+            +
+            `${sourceTournament.name} / ${sourceBracket.name}\n`
+            +
+            `${sourceName} → ${targetName}\n\n`
+            +
+            `${targetTournament.name} / ${targetBracket.name}\n`
+            +
+            `${targetName} → ${sourceName}\n\n`
+            +
+            `The bracket positions and tournament structure will remain unchanged.`
+
+        );
+
+
+    if (
+        !confirmed
+    ) {
+
+        return;
+
+    }
+
+
+    const tournamentDatabase =
+        owlControlRoomData.tournaments;
+
+
+    if (
+        !tournamentDatabase
+        ||
+        Array.isArray(
+            tournamentDatabase
+        )
+        ||
+        !Array.isArray(
+            tournamentDatabase.tournaments
+        )
+    ) {
+
+        tournamentMaintenanceError.textContent =
+            "The tournament database is not available.";
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+        return;
+
+    }
+
+
+    const sourceTournamentId =
+        sourceTournament.id;
+
+    const sourceBracketId =
+        sourceBracket.id;
+
+    const targetTournamentId =
+        targetTournament.id;
+
+    const targetBracketId =
+        targetBracket.id;
+
+
+    const updatedTournamentDatabase = {
+
+        ...tournamentDatabase,
+
+        tournaments:
+
+            tournamentDatabase.tournaments.map(
+                storedTournament => {
+
+                    if (
+                        storedTournament.id !==
+                            sourceTournamentId
+
+                        &&
+
+                        storedTournament.id !==
+                            targetTournamentId
+                    ) {
+
+                        return storedTournament;
+
+                    }
+
+
+                    return {
+
+                        ...storedTournament,
+
+                        brackets:
+
+                            (
+                                Array.isArray(
+                                    storedTournament.brackets
+                                )
+                                    ? storedTournament.brackets
+                                    : []
+                            )
+                                .map(
+                                    storedBracket => {
+
+                                        if (
+                                            storedTournament.id ===
+                                                sourceTournamentId
+
+                                            &&
+
+                                            storedBracket.id ===
+                                                sourceBracketId
+                                        ) {
+
+                                            return replaceTournamentMaintenanceParticipant(
+                                                storedBracket,
+                                                sourceParticipantId,
+                                                targetParticipantId
+                                            );
+
+                                        }
+
+
+                                        if (
+                                            storedTournament.id ===
+                                                targetTournamentId
+
+                                            &&
+
+                                            storedBracket.id ===
+                                                targetBracketId
+                                        ) {
+
+                                            return replaceTournamentMaintenanceParticipant(
+                                                storedBracket,
+                                                targetParticipantId,
+                                                sourceParticipantId
+                                            );
+
+                                        }
+
+
+                                        return storedBracket;
+
+                                    }
+                                )
+
+                    };
+
+                }
+            )
+
+    };
+
+
     tournamentMaintenanceConfirmButton.disabled =
         true;
+
+
+    tournamentFieldStatus.textContent =
+        "SAVING SWAP";
+
+
+    tournamentMaintenanceError.hidden =
+        true;
+
+    tournamentMaintenanceMessage.hidden =
+        true;
+
+
+    try {
+
+        await writeTournamentDatabase(
+            updatedTournamentDatabase
+        );
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        tournamentSelect.value =
+            sourceTournamentId;
+
+
+        populateTournamentBracketSelector();
+
+
+        tournamentBracketSelect.value =
+            sourceBracketId;
+
+
+        loadTournamentFieldDraft();
+
+
+        tournamentFieldStatus.textContent =
+            "READY";
+
+
+        tournamentFieldMessage.textContent =
+
+            `${sourceName} and ${targetName} swapped tournament positions successfully.`;
+
+
+        tournamentFieldMessage.hidden =
+            false;
+
+    }
+
+    catch (
+        error
+    ) {
+
+        console.error(
+            "Could not save tournament participant swap:",
+            error
+        );
+
+
+        tournamentFieldStatus.textContent =
+            "ERROR";
+
+
+        tournamentMaintenanceError.textContent =
+
+            error.message
+            ||
+            "The tournament participant swap could not be saved.";
+
+
+        tournamentMaintenanceError.hidden =
+            false;
+
+
+        tournamentMaintenanceConfirmButton.disabled =
+            false;
+
+    }
 
 }
 
@@ -14404,6 +15150,15 @@ tournamentMaintenanceTargetParticipant.addEventListener(
     "change",
 
     renderTournamentMaintenanceSwapPreview
+
+);
+
+
+tournamentMaintenanceConfirmButton.addEventListener(
+
+    "click",
+
+    saveTournamentMaintenanceSwap
 
 );
 
