@@ -32,7 +32,7 @@
   {
     "id": "announced-0002",
     "eventId": "ascension-ep-1-2026-07-week-1",
-    "order": 2,
+    "order": 4,
     "matchType": "Singles",
     "sides": [
       {
@@ -62,7 +62,7 @@
   {
     "id": "announced-0003",
     "eventId": "ascension-ep-1-2026-07-week-1",
-    "order": 3,
+    "order": 7,
     "matchType": "Singles",
     "sides": [
       {
@@ -92,7 +92,7 @@
   {
     "id": "announced-0004",
     "eventId": "ascension-ep-1-2026-07-week-1",
-    "order": 4,
+    "order": 3,
     "matchType": "Tag Team",
     "sides": [
       {
@@ -124,7 +124,7 @@
   {
     "id": "announced-0005",
     "eventId": "ascension-ep-1-2026-07-week-1",
-    "order": 5,
+    "order": 2,
     "matchType": "Singles",
     "sides": [
       {
@@ -154,7 +154,7 @@
   {
     "id": "announced-0006",
     "eventId": "ascension-ep-1-2026-07-week-1",
-    "order": 6,
+    "order": 5,
     "matchType": "Singles",
     "sides": [
       {
@@ -184,7 +184,7 @@
   {
     "id": "announced-0007",
     "eventId": "ascension-ep-1-2026-07-week-1",
-    "order": 7,
+    "order": 6,
     "matchType": "Singles",
     "sides": [
       {
@@ -208,6 +208,218 @@
       "height": 1519,
       "originalWidth": 2015,
       "originalHeight": 2550,
+      "format": "webp"
+    }
+  },
+  {
+    "id": "announced-0008",
+    "eventId": "revolt-ep-1-2026-07-week-1",
+    "order": 1,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "rey-fenix"
+        ]
+      },
+      {
+        "wrestlers": [
+          "pluto-carter"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/revolt-ep-1-2026-07-week-1/announced-0008.webp",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 900,
+      "originalWidth": 3200,
+      "originalHeight": 1800,
+      "format": "webp"
+    }
+  },
+  {
+    "id": "announced-0009",
+    "eventId": "revolt-ep-1-2026-07-week-1",
+    "order": 2,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "kendal-grey"
+        ]
+      },
+      {
+        "wrestlers": [
+          "roma-reyes"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/revolt-ep-1-2026-07-week-1/announced-0009.webp",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 900,
+      "originalWidth": 3200,
+      "originalHeight": 1800,
+      "format": "webp"
+    }
+  },
+  {
+    "id": "announced-0010",
+    "eventId": "revolt-ep-1-2026-07-week-1",
+    "order": 3,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "tavion-heights"
+        ]
+      },
+      {
+        "wrestlers": [
+          "reverend-ezekiel-cross"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/revolt-ep-1-2026-07-week-1/announced-0010.webp",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 900,
+      "originalWidth": 3200,
+      "originalHeight": 1800,
+      "format": "webp"
+    }
+  },
+  {
+    "id": "announced-0011",
+    "eventId": "revolt-ep-1-2026-07-week-1",
+    "order": 4,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "reina-guerrera"
+        ]
+      },
+      {
+        "wrestlers": [
+          "megan-bayne"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/revolt-ep-1-2026-07-week-1/announced-0011.webp",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 900,
+      "originalWidth": 3200,
+      "originalHeight": 1800,
+      "format": "webp"
+    }
+  },
+  {
+    "id": "announced-0012",
+    "eventId": "revolt-ep-1-2026-07-week-1",
+    "order": 5,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "perro-rabioso"
+        ]
+      },
+      {
+        "wrestlers": [
+          "carmelo-hayes"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/revolt-ep-1-2026-07-week-1/announced-0012.webp",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 900,
+      "originalWidth": 3200,
+      "originalHeight": 1800,
+      "format": "webp"
+    }
+  },
+  {
+    "id": "announced-0013",
+    "eventId": "revolt-ep-1-2026-07-week-1",
+    "order": 6,
+    "matchType": "Singles",
+    "sides": [
+      {
+        "wrestlers": [
+          "dracarys"
+        ]
+      },
+      {
+        "wrestlers": [
+          "jordynne-grace"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/revolt-ep-1-2026-07-week-1/announced-0013.webp",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 900,
+      "originalWidth": 3200,
+      "originalHeight": 1800,
+      "format": "webp"
+    }
+  },
+  {
+    "id": "announced-0014",
+    "eventId": "revolt-ep-1-2026-07-week-1",
+    "order": 7,
+    "matchType": "Tag Team",
+    "sides": [
+      {
+        "wrestlers": [
+          "claudio-castagnoli",
+          "charlie-dempsey"
+        ]
+      },
+      {
+        "wrestlers": [
+          "aleister-black",
+          "chad-gable"
+        ]
+      }
+    ],
+    "championshipId": "",
+    "stipulation": "",
+    "status": "announced",
+    "matchGraphic": {
+      "src": "assets/images/match-cards/revolt-ep-1-2026-07-week-1/announced-0014.webp",
+      "orientation": "landscape",
+      "width": 1600,
+      "height": 900,
+      "originalWidth": 3200,
+      "originalHeight": 1800,
       "format": "webp"
     }
   }
