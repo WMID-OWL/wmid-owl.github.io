@@ -18,7 +18,7 @@ on:
 
     inputs:
 
-            sermon_id:
+      sermon_id:
 
         description:
           "Optional exact sermon ID to process when it does not already have audio"
@@ -86,9 +86,10 @@ jobs:
           echo "Credits used by this workflow: 0."
 
 
-    generate-audio:
+  generate-audio:
 
     if: ${{ (vars.SUNDAY_DISSERVICE_AUDIO_ENABLED == 'true' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == true)) && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
+
     runs-on:
       ubuntu-latest
 
@@ -201,7 +202,7 @@ jobs:
           echo "Narration characters: ${{ steps.audio_check.outputs.character_count }}"
 
 
-            - name: Generate one new Sunday Disservice MP3
+      - name: Generate one new Sunday Disservice MP3
 
         if: >
 
