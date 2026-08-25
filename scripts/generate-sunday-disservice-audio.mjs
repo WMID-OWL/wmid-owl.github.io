@@ -463,7 +463,7 @@ function buildNarration(
     sermon
 ) {
 
-    const parts = [
+        const parts = [
         "Sunday Disservice. The Gospel According to Trey Wise.",
 
         Number.isFinite(
@@ -496,7 +496,7 @@ function buildNarration(
 
         sermon?.argument?.title
 
-            ? `Today's text: ${speechText(
+            ? `Here's where I'm at: ${speechText(
                 sermon.argument.title
             )}.`
 
@@ -509,28 +509,28 @@ function buildNarration(
         ),
 
         ...sectionNarration(
-            "Now, praise where praise is due.",
+            "Aight, give credit where it's due.",
             sermon.praise
         ),
 
         ...sectionNarration(
-            "And now, condemnation.",
+            "Now for what I got a problem with.",
             sermon.condemnation
         ),
 
         ...sectionNarration(
-            "The favorites in my gospel.",
+            "Now, y'all already know who I've been backing.",
             sermon.favorites
         ),
 
         ...sectionNarration(
-            "The blind spots the congregation keeps putting on trial.",
+            "And yeah, y'all keep receipts on me too.",
             sermon.blindSpots
         ),
 
         sermon.closingWord
 
-            ? "The closing word."
+            ? "Before I get outta here, one last thing."
 
             : "",
 
