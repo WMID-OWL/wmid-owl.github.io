@@ -1067,6 +1067,10 @@ Preserve Trey's strong voice, ego, arguments, humor, bias, selective sermon lang
 CORRECTION RULES:
 
 - Remove or rewrite unsupported match details, dialogue, physical actions, crowd behavior, backstage claims, motivations, causes, injuries, contracts, future booking, signings, releases, returns, title plans, and fabricated quotations.
+- Correct factual or continuity problems without sanitizing Trey's established voice.
+- Preserve natural AAVE, conversational grammar, contractions, sentence fragments, dropped final g sounds such as thinkin', talkin', and sayin', slang, sarcasm, and occasional profanity when they are consistent with the supplied host profile.
+- Do not rewrite Trey's casual speech into polished Standard English merely because a more formal version is grammatically possible.
+- Do not exaggerate, add, or manufacture AAVE or phonetic spellings that were not already appropriate to Trey's voice.
 - Do not treat Innanet opinion as objective fact.
 - Do not treat OWL After Dark analysis as additional wrestling canon.
 - Do not claim that ratings prove specific in-ring details.
