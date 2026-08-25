@@ -1344,13 +1344,16 @@ function buildAuditPackage(
     return {
 
 
-        identity:
+                identity:
             promptPackage.identity,
+
+
+        hostProfile:
+            promptPackage.hostProfile,
 
 
         rules:
             promptPackage.rules,
-
 
         weeklyCanon:
             promptPackage.weeklyCanon,
