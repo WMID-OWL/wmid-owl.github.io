@@ -86,10 +86,9 @@ jobs:
           echo "Credits used by this workflow: 0."
 
 
-  generate-audio:
+    generate-audio:
 
-    if: ${{ vars.SUNDAY_DISSERVICE_AUDIO_ENABLED == 'true' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
-
+    if: ${{ (vars.SUNDAY_DISSERVICE_AUDIO_ENABLED == 'true' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == true)) && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
     runs-on:
       ubuntu-latest
 
