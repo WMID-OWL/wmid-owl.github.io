@@ -18,7 +18,7 @@ on:
 
     inputs:
 
-      sermon_id:
+            sermon_id:
 
         description:
           "Optional exact sermon ID to process when it does not already have audio"
@@ -28,6 +28,21 @@ on:
 
         default:
           ""
+
+
+      dry_run:
+
+        description:
+          "Protected check only — do not contact ElevenLabs"
+
+        required:
+          false
+
+        type:
+          boolean
+
+        default:
+          true
 
 
 permissions:
