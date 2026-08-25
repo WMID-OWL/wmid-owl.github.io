@@ -202,11 +202,13 @@ jobs:
           echo "Narration characters: ${{ steps.audio_check.outputs.character_count }}"
 
 
-      - name: Generate one new Sunday Disservice MP3
+            - name: Generate one new Sunday Disservice MP3
 
         if: >
 
           steps.audio_check.outputs.should_generate == 'true'
+          &&
+          (github.event_name != 'workflow_dispatch' || inputs.dry_run != true)
 
         env:
 
