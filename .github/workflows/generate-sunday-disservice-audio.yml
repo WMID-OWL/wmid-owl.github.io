@@ -205,7 +205,7 @@ jobs:
             ${{ steps.audio_check.outputs.sermon_id }}
 
           SUNDAY_DISSERVICE_AUDIO_MODEL:
-            eleven_flash_v2_5
+            eleven_multilingual_v2
 
           SUNDAY_DISSERVICE_AUDIO_FORMAT:
             mp3_44100_128
