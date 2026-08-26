@@ -1149,19 +1149,6 @@ async function sundayDisserviceLoad() {
 
     try {
 
-        const params =
-            new URLSearchParams(
-                window.location.search
-            );
-
-
-        const isTestPreview =
-            params.get(
-                "test"
-            ) ===
-            "1";
-
-
         const index =
             await sundayDisserviceFetchJson(
                 "data/sunday-disservice/archive-index.json"
@@ -1191,31 +1178,6 @@ async function sundayDisserviceLoad() {
 
 
         if (
-            isTestPreview
-        ) {
-
-            sundayDisserviceRenderArchive(
-                sermons,
-                ""
-            );
-
-
-            const testSermon =
-                await sundayDisserviceFetchJson(
-                    "data/sunday-disservice/test-sermon.json"
-                );
-
-
-            sundayDisserviceRenderSermon(
-                testSermon
-            );
-
-
-            return;
-        }
-
-
-        if (
             !sermons.length
         ) {
 
@@ -1232,7 +1194,14 @@ async function sundayDisserviceLoad() {
 
 
             return;
+
         }
+
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
 
 
         const requestedSermon =
