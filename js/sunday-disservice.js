@@ -710,7 +710,6 @@ function sundayDisserviceRenderSermon(
     sermon
 ) {
 
-
     sundayDisserviceEls
         .sermon
         .innerHTML =
@@ -726,218 +725,230 @@ function sundayDisserviceRenderSermon(
     sundayDisserviceEls
         .currentLabel
         .textContent =
-
             sermon.label
-
             ||
-
-            "Latest Sermon";
+            "Latest Episode";
 
 
     const article =
-
         document.createElement(
             "article"
         );
 
 
     article.className =
-        "sunday-disservice-sermon-package";
+        "sunday-disservice-audio-experience";
 
 
     const argument =
-
         sermon.argument
-
         ||
-
         {};
+
+
+    const audio =
+        sundayDisservicePublishedAudio(
+            sermon
+        );
+
+
+    const playerHtml =
+        audio
+
+            ? `
+                <audio
+                    class="sunday-disservice-main-player"
+                    controls
+                    preload="metadata"
+                >
+                    <source
+                        src="${sundayDisserviceEscape(
+                            audio.file
+                        )}"
+                        type="audio/mpeg"
+                    >
+
+                    Your browser does not support audio playback.
+                </audio>
+            `
+
+            : `
+                <div class="sunday-disservice-audio-unavailable">
+                    AUDIO PREVIEW NOT GENERATED YET
+                </div>
+            `;
 
 
     article.innerHTML = `
 
-        <header class="sunday-disservice-sermon-hero">
+        <section class="sunday-disservice-now-playing">
+
+            <div class="sunday-disservice-player-art">
+
+                <div class="sunday-disservice-player-art-placeholder">
+
+                    <span>
+                        SUNDAY
+                    </span>
+
+                    <strong>
+                        DISSERVICE
+                    </strong>
+
+                    <small>
+                        THE GOSPEL ACCORDING TO TREY WISE
+                    </small>
+
+                </div>
+
+            </div>
 
 
-            <div>
+            <div class="sunday-disservice-player-info">
 
-
-                <span class="sunday-disservice-sermon-number">
-
-                    SERMON
-
-                    ${sundayDisserviceEscape(
-                        sermon.sermon || "—"
-                    )}
-
+                <span class="sunday-disservice-now-playing-label">
+                    NOW PLAYING
                 </span>
 
 
                 <h2>
-
                     ${sundayDisserviceEscape(
-                        sermon.headline ||
+                        sermon.headline
+                        ||
                         "Sunday Disservice"
                     )}
-
                 </h2>
 
 
-                <p>
-
+                <p class="sunday-disservice-player-description">
                     ${sundayDisserviceEscape(
-                        sermon.deck || ""
+                        sermon.deck
+                        ||
+                        ""
                     )}
-
                 </p>
 
 
+                <div class="sunday-disservice-player-meta">
+
+                    <span>
+                        Sunday Disservice
+                    </span>
+
+                    <span>
+                        Trey Wise
+                    </span>
+
+                    <span>
+                        ${sundayDisserviceEscape(
+                            sermon.label
+                            ||
+                            ""
+                        )}
+                    </span>
+
+                </div>
+
+
+                ${playerHtml}
+
             </div>
 
-
-            <aside class="sunday-disservice-sermon-meta">
-
-
-                <span>
-                    DELIVERED
-                </span>
+        </section>
 
 
-                <strong>
+        <details class="sunday-disservice-transcript">
 
-                    ${sundayDisserviceEscape(
-                        sermon.label || ""
+            <summary>
+                READ EPISODE TRANSCRIPT
+            </summary>
+
+
+            <div class="sunday-disservice-transcript-content">
+
+                <section class="sunday-disservice-main-argument">
+
+                    <span>
+                        THIS WEEK’S GOSPEL
+                    </span>
+
+                    <h3>
+                        ${sundayDisserviceEscape(
+                            argument.title
+                            ||
+                            "The Weekly Argument"
+                        )}
+                    </h3>
+
+                    <div>
+                        ${sundayDisserviceParagraphsHtml(
+                            argument.body
+                        )}
+                    </div>
+
+                </section>
+
+
+                <section class="sunday-disservice-verdict-grid">
+
+                    ${sundayDisserviceCollectionHtml(
+                        "PRAISE BE",
+                        "What Trey Praised",
+                        sermon.praise,
+                        "No praise was issued this week."
                     )}
 
-                </strong>
+
+                    ${sundayDisserviceCollectionHtml(
+                        "HERESY OF THE WEEK",
+                        "What Trey Condemned",
+                        sermon.condemnation,
+                        "No condemnation was issued this week."
+                    )}
+
+                </section>
 
 
-                <small>
-                    THE GOSPEL ACCORDING TO TREY WISE
-                </small>
-
-
-            </aside>
-
-
-                </header>
-
-
-        ${sundayDisserviceAudioHtml(
-            sermon
-        )}
-
-
-        <section class="sunday-disservice-main-argument">
-
-
-            <span>
-                THIS WEEK’S GOSPEL
-            </span>
-
-
-            <h3>
-
-                ${sundayDisserviceEscape(
-                    argument.title ||
-                    "The Weekly Argument"
+                ${sundayDisserviceBiasHtml(
+                    sermon.favorites,
+                    sermon.blindSpots
                 )}
 
-            </h3>
 
-
-            <div>
-
-                ${sundayDisserviceParagraphsHtml(
-                    argument.body
+                ${sundayDisserviceReferencesHtml(
+                    sermon.references
                 )}
+
+
+                ${
+                    sermon.closingWord
+
+                        ? `
+                            <footer class="sunday-disservice-closing-word">
+
+                                <span>
+                                    THE BENEDICTION
+                                </span>
+
+                                <p>
+                                    ${sundayDisserviceEscape(
+                                        sermon.closingWord
+                                    )}
+                                </p>
+
+                                <strong>
+                                    — TREY WISE
+                                </strong>
+
+                            </footer>
+                        `
+
+                        : ""
+                }
 
             </div>
 
-
-        </section>
-
-
-        <section class="sunday-disservice-verdict-grid">
-
-
-            ${sundayDisserviceCollectionHtml(
-
-                "PRAISE BE",
-
-                "What Trey Praised",
-
-                sermon.praise,
-
-                "No praise was issued this week."
-
-            )}
-
-
-            ${sundayDisserviceCollectionHtml(
-
-                "HERESY OF THE WEEK",
-
-                "What Trey Condemned",
-
-                sermon.condemnation,
-
-                "No condemnation was issued this week."
-
-            )}
-
-
-        </section>
-
-
-        ${sundayDisserviceBiasHtml(
-
-            sermon.favorites,
-
-            sermon.blindSpots
-
-        )}
-
-
-        ${sundayDisserviceReferencesHtml(
-            sermon.references
-        )}
-
-
-        ${
-            sermon.closingWord
-
-                ? `
-
-                    <footer class="sunday-disservice-closing-word">
-
-
-                        <span>
-                            THE BENEDICTION
-                        </span>
-
-
-                        <p>
-
-                            ${sundayDisserviceEscape(
-                                sermon.closingWord
-                            )}
-
-                        </p>
-
-
-                        <strong>
-                            — TREY WISE
-                        </strong>
-
-
-                    </footer>
-
-                `
-
-                : ""
-        }
-
+        </details>
     `;
 
 
