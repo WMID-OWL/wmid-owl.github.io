@@ -209,7 +209,7 @@ jobs:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           TREY_WISE_VOICE_ID: ${{ secrets.TREY_WISE_VOICE_ID }}
           TARGET_SERMON_ID: ${{ steps.audio_check.outputs.sermon_id }}
-          SUNDAY_DISSERVICE_AUDIO_MODEL: eleven_multilingual_v2
+          SUNDAY_DISSERVICE_AUDIO_MODEL: eleven_v3
           SUNDAY_DISSERVICE_AUDIO_FORMAT: mp3_44100_128
         run: |
           node scripts/generate-sunday-disservice-audio.mjs
