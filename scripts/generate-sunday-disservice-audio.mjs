@@ -383,9 +383,13 @@ function speechText(
             /\s*&\s*/g,
             " and "
         )
-        .replace(
+                .replace(
             /\bvs\.?\b/gi,
             "versus"
+        )
+        .replace(
+            /\bOWL\b/g,
+            "O. W. L."
         )
         .replace(
             /[ \t]+/g,
