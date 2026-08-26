@@ -49,7 +49,7 @@ const OUTPUT_FORMAT =
 
 
 const MAX_NARRATION_CHARACTERS =
-    9500;
+    4500;
 
 
 const ARCHIVE_INDEX_PATH =
