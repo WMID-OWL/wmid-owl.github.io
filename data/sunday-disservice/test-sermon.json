@@ -39,5 +39,12 @@
     }
   ],
   "references": [],
-  "closingWord": "Test or no test, the rule stays the same. Bring an argument, bring receipts, and don't expect me to agree just because everybody else does."
+  "closingWord": "Test or no test, the rule stays the same. Bring an argument, bring receipts, and don't expect me to agree just because everybody else does.",
+  "audio": {
+    "status": "published",
+    "file": "assets/audio/sunday-disservice/preview/trey-wise-preview.mp3",
+    "format": "mp3_44100_128",
+    "model": "eleven_v3",
+    "generatedAt": "2026-08-26T04:07:53.186Z"
+  }
 }
