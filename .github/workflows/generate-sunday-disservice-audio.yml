@@ -214,6 +214,15 @@ jobs:
         run: |
           node scripts/generate-sunday-disservice-audio.mjs
 
+      - name: Upload temporary Trey Wise test MP3
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.test_mode == true && inputs.dry_run != true && steps.audio_check.outputs.should_generate == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: sunday-disservice-trey-wise-audio-test
+          path: assets/audio/sunday-disservice/sunday-disservice-test.mp3
+          if-no-files-found: error
+          retention-days: 1
+
       - name: Confirm no ElevenLabs request was needed
         if: >
           steps.audio_check.outputs.should_generate != 'true'
