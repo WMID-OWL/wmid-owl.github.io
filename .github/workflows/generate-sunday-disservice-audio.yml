@@ -62,7 +62,7 @@ jobs:
         with:
           node-version: "20"
 
-            - name: Check Sunday Disservice audio-generator syntax
+      - name: Check Sunday Disservice audio-generator syntax
         run: |
           node --check scripts/generate-sunday-disservice-audio.mjs
 
