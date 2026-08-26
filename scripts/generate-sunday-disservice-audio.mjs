@@ -477,9 +477,9 @@ function buildNarration(
 ) {
 
     const argumentCues = [
-        "[rushed]",
-        "[frustrated] [rushed]",
-        "[sarcastic] [rushed]"
+        "[American accent] [rushed]",
+        "[American accent] [frustrated] [rushed]",
+        "[American accent] [sarcastic] [rushed]"
     ];
 
 
@@ -521,7 +521,7 @@ function buildNarration(
 
 
     const parts = [
-        "[excited] [rushed] Sunday Disservice. The Gospel According to Trey Wise.",
+        "[American accent] [excited] [rushed] Sunday Disservice. The Gospel According to Trey Wise.",
 
         Number.isFinite(
             Number(
@@ -529,7 +529,7 @@ function buildNarration(
             )
         )
 
-            ? `[rushed] Sermon ${Number(
+            ? `[American accent] [rushed] Sermon ${Number(
                 sermon.sermon
             )}.`
 
@@ -537,7 +537,7 @@ function buildNarration(
 
         sermon.label
 
-            ? `[rushed] Delivered ${speechText(
+            ? `[American accent] [rushed] Delivered ${speechText(
                 sermon.label
             )}.`
 
@@ -545,7 +545,7 @@ function buildNarration(
 
         sermon.headline
 
-            ? `[excited] ${speechText(
+            ? `[American accent] [excited] ${speechText(
                 sermon.headline
             )}`
 
@@ -553,7 +553,7 @@ function buildNarration(
 
         sermon.deck
 
-            ? `[rushed] ${speechText(
+            ? `[American accent] [rushed] ${speechText(
                 sermon.deck
             )}`
 
@@ -561,7 +561,7 @@ function buildNarration(
 
         sermon?.argument?.title
 
-            ? `[sarcastic] Here's where I'm at: ${speechText(
+            ? `[American accent] [sarcastic] Here's where I'm at: ${speechText(
                 sermon.argument.title
             )}.`
 
@@ -570,38 +570,38 @@ function buildNarration(
         ...argumentBody,
 
         ...sectionNarration(
-            "[excited] Aight, give credit where it's due.",
+            "[American accent] [excited] Aight, give credit where it's due.",
             sermon.praise,
-            "[excited] [rushed]"
+            "[American accent] [excited] [rushed]"
         ),
 
         ...sectionNarration(
-            "[frustrated] Now for what I got a problem with.",
+            "[American accent] [frustrated] Now for what I got a problem with.",
             sermon.condemnation,
-            "[frustrated] [rushed]"
+            "[American accent] [frustrated] [rushed]"
         ),
 
         ...sectionNarration(
-            "[mischievously] Now, y'all already know who I've been backing.",
+            "[American accent] [mischievously] Now, y'all already know who I've been backing.",
             sermon.favorites,
-            "[mischievously] [rushed]"
+            "[American accent] [mischievously] [rushed]"
         ),
 
         ...sectionNarration(
-            "[sarcastic] And yeah, y'all keep receipts on me too.",
+            "[American accent] [sarcastic] And yeah, y'all keep receipts on me too.",
             sermon.blindSpots,
-            "[sarcastic] [rushed]"
+            "[American accent] [sarcastic] [rushed]"
         ),
 
         sermon.closingWord
 
-            ? "[rushed] Before I get outta here, one last thing."
+            ? "[American accent] [rushed] Before I get outta here, one last thing."
 
             : "",
 
         sermon.closingWord
 
-            ? `[rushed] ${speechText(
+            ? `[American accent] [rushed] ${speechText(
                 sermon.closingWord
             )}`
 
