@@ -261,12 +261,13 @@ jobs:
           echo "Credits used by this workflow: 0."
 
 
-      - name: Commit generated Sunday Disservice audio
+           - name: Commit generated Sunday Disservice audio
 
         if: >
 
           steps.audio_check.outputs.should_generate == 'true'
-
+          &&
+          (github.event_name != 'workflow_dispatch' || inputs.test_mode != true)
         run: |
 
           git add \
