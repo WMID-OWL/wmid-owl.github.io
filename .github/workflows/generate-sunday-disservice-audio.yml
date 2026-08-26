@@ -223,6 +223,64 @@ jobs:
           if-no-files-found: error
           retention-days: 1
 
+      - name: Publish hidden Sunday Disservice audio preview
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.test_mode == true && inputs.dry_run != true && steps.audio_check.outputs.should_generate == 'true' }}
+        run: |
+          mkdir -p assets/audio/sunday-disservice/preview
+
+          cp \
+            assets/audio/sunday-disservice/sunday-disservice-test.mp3 \
+            assets/audio/sunday-disservice/preview/trey-wise-preview.mp3
+
+          node - <<'NODE'
+          const fs = require("fs");
+
+          const previewPath =
+            "data/sunday-disservice/test-sermon.json";
+
+          const sermon =
+            JSON.parse(
+              fs.readFileSync(
+                previewPath,
+                "utf8"
+              )
+            );
+
+          sermon.audio = {
+            status: "published",
+            file: "assets/audio/sunday-disservice/preview/trey-wise-preview.mp3",
+            format: "mp3_44100_128",
+            model: "eleven_v3",
+            generatedAt: new Date().toISOString()
+          };
+
+          fs.writeFileSync(
+            previewPath,
+            `${JSON.stringify(
+              sermon,
+              null,
+              2
+            )}\n`
+          );
+          NODE
+
+          git add \
+            assets/audio/sunday-disservice/preview/trey-wise-preview.mp3 \
+            data/sunday-disservice/test-sermon.json
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --cached --quiet; then
+            echo "No preview changes to commit."
+            exit 0
+          fi
+
+          git commit \
+            -m "Update Sunday Disservice audio preview"
+
+          git push
+
       - name: Confirm no ElevenLabs request was needed
         if: >
           steps.audio_check.outputs.should_generate != 'true'
