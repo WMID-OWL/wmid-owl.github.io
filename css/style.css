@@ -2099,3 +2099,409 @@ body.owl-interior {
     }
 
 }
+/* =================================
+   SUNDAY DISSERVICE
+   AUDIO-FIRST PLAYER EXPERIENCE
+================================= */
+
+.sunday-disservice-audio-experience {
+    overflow: hidden;
+    border: 1px solid rgba(242, 207, 117, 0.28);
+    border-radius: 24px;
+    background:
+        radial-gradient(
+            circle at 15% 0%,
+            rgba(242, 207, 117, 0.12),
+            transparent 34%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(24, 20, 16, 0.98),
+            rgba(8, 8, 9, 0.99)
+        );
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.34);
+}
+
+
+/* =================================
+   NOW PLAYING
+================================= */
+
+.sunday-disservice-now-playing {
+    display: grid;
+    grid-template-columns:
+        minmax(220px, 320px)
+        minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3.25rem);
+    align-items: center;
+    padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+
+.sunday-disservice-player-art {
+    width: 100%;
+}
+
+
+.sunday-disservice-player-art-placeholder {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid rgba(242, 207, 117, 0.45);
+    border-radius: 18px;
+    background:
+        radial-gradient(
+            circle at 50% 28%,
+            rgba(242, 207, 117, 0.2),
+            transparent 34%
+        ),
+        linear-gradient(
+            160deg,
+            #211a12,
+            #090909 72%
+        );
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+
+.sunday-disservice-player-art-placeholder span {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: clamp(0.75rem, 1.4vw, 0.95rem);
+    font-weight: 800;
+    letter-spacing: 0.22em;
+}
+
+
+.sunday-disservice-player-art-placeholder strong {
+    color: #f2cf75;
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+}
+
+
+.sunday-disservice-player-art-placeholder small {
+    margin-top: 0.35rem;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.66rem;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: 0.12em;
+}
+
+
+/* =================================
+   PLAYER INFORMATION
+================================= */
+
+.sunday-disservice-player-info {
+    min-width: 0;
+}
+
+
+.sunday-disservice-now-playing-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.9rem;
+    color: #f2cf75;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+}
+
+
+.sunday-disservice-now-playing-label::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f2cf75;
+    box-shadow:
+        0 0 0 5px rgba(242, 207, 117, 0.1);
+}
+
+
+.sunday-disservice-player-info h2 {
+    max-width: 900px;
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(2rem, 5vw, 4.25rem);
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+}
+
+
+.sunday-disservice-player-description {
+    max-width: 760px;
+    margin: 1.15rem 0 0;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: clamp(0.95rem, 1.7vw, 1.08rem);
+    line-height: 1.65;
+}
+
+
+.sunday-disservice-player-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 1.15rem;
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
+
+.sunday-disservice-player-meta span:not(:last-child)::after {
+    content: "•";
+    margin-left: 0.5rem;
+    color: rgba(242, 207, 117, 0.62);
+}
+
+
+/* =================================
+   MAIN AUDIO PLAYER
+================================= */
+
+.sunday-disservice-main-player {
+    display: block;
+    width: 100%;
+    margin-top: 1.75rem;
+    border-radius: 999px;
+}
+
+
+.sunday-disservice-audio-unavailable {
+    margin-top: 1.75rem;
+    padding: 1rem 1.15rem;
+    border: 1px dashed rgba(242, 207, 117, 0.32);
+    border-radius: 12px;
+    color: rgba(242, 207, 117, 0.72);
+    background: rgba(242, 207, 117, 0.04);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+
+/* =================================
+   TRANSCRIPT
+================================= */
+
+.sunday-disservice-transcript {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.18);
+}
+
+
+.sunday-disservice-transcript > summary {
+    position: relative;
+    padding: 1.15rem clamp(1.5rem, 4vw, 3rem);
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+
+.sunday-disservice-transcript > summary::-webkit-details-marker {
+    display: none;
+}
+
+
+.sunday-disservice-transcript > summary::after {
+    content: "+";
+    position: absolute;
+    right: clamp(1.5rem, 4vw, 3rem);
+    top: 50%;
+    transform: translateY(-50%);
+    color: #f2cf75;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+
+.sunday-disservice-transcript[open] > summary::after {
+    content: "−";
+}
+
+
+.sunday-disservice-transcript > summary:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.025);
+}
+
+
+.sunday-disservice-transcript-content {
+    padding:
+        0
+        clamp(1.5rem, 4vw, 3rem)
+        clamp(1.75rem, 4vw, 3rem);
+}
+
+
+/* =================================
+   ARCHIVE / EPISODE PLAYLIST FEEL
+================================= */
+
+.sunday-disservice-archive-grid {
+    display: grid;
+    gap: 0.65rem;
+}
+
+
+.sunday-disservice-archive-card {
+    display: grid;
+    grid-template-columns:
+        minmax(80px, 110px)
+        minmax(0, 1fr)
+        auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.025);
+    text-decoration: none;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        transform 160ms ease;
+}
+
+
+.sunday-disservice-archive-card:hover {
+    transform: translateY(-1px);
+    border-color: rgba(242, 207, 117, 0.34);
+    background: rgba(242, 207, 117, 0.055);
+}
+
+
+.sunday-disservice-archive-card.active {
+    border-color: rgba(242, 207, 117, 0.52);
+    background: rgba(242, 207, 117, 0.08);
+}
+
+
+.sunday-disservice-archive-card > span {
+    color: #f2cf75;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+}
+
+
+.sunday-disservice-archive-card h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 0.98rem;
+    line-height: 1.25;
+}
+
+
+.sunday-disservice-archive-card p {
+    margin: 0.3rem 0 0;
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 0.72rem;
+}
+
+
+.sunday-disservice-archive-card > strong {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.68rem;
+    white-space: nowrap;
+}
+
+
+.sunday-disservice-archive-card.has-audio > strong {
+    color: #f2cf75;
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 820px) {
+
+    .sunday-disservice-now-playing {
+        grid-template-columns: 1fr;
+    }
+
+
+    .sunday-disservice-player-art {
+        max-width: 340px;
+    }
+
+
+    .sunday-disservice-player-info h2 {
+        font-size: clamp(2rem, 9vw, 3.4rem);
+    }
+
+
+    .sunday-disservice-archive-card {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+    }
+
+
+    .sunday-disservice-archive-card > strong {
+        margin-top: 0.35rem;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .sunday-disservice-audio-experience {
+        border-radius: 16px;
+    }
+
+
+    .sunday-disservice-now-playing {
+        padding: 1.15rem;
+    }
+
+
+    .sunday-disservice-player-art {
+        max-width: none;
+    }
+
+
+    .sunday-disservice-player-art-placeholder {
+        border-radius: 13px;
+    }
+
+
+    .sunday-disservice-transcript > summary {
+        padding:
+            1rem
+            1.15rem;
+    }
+
+
+    .sunday-disservice-transcript > summary::after {
+        right: 1.15rem;
+    }
+
+
+    .sunday-disservice-transcript-content {
+        padding:
+            0
+            1.15rem
+            1.25rem;
+    }
+
+}
