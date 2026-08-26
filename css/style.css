@@ -2505,3 +2505,309 @@ body.owl-interior {
     }
 
 }
+/* =================================
+   SUNDAY DISSERVICE
+   EPISODE PLAYLIST
+================================= */
+
+.sunday-disservice-archive-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    background: rgba(7, 7, 8, 0.94);
+}
+
+
+/* =================================
+   EPISODE ROW
+================================= */
+
+.sunday-disservice-episode-row {
+    display: grid;
+    grid-template-columns:
+        64px
+        minmax(0, 1fr)
+        110px;
+    gap: 1rem;
+    align-items: center;
+
+    min-height: 88px;
+    padding: 0.9rem 1.15rem;
+
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+    border-radius: 0;
+
+    background: transparent;
+    color: inherit;
+    text-decoration: none;
+
+    transition:
+        background 150ms ease,
+        transform 150ms ease;
+}
+
+
+.sunday-disservice-episode-row:last-child {
+    border-bottom: 0;
+}
+
+
+.sunday-disservice-episode-row:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.045);
+}
+
+
+.sunday-disservice-episode-row.active {
+    border-color: rgba(255, 255, 255, 0.065);
+    background:
+        linear-gradient(
+            90deg,
+            rgba(242, 207, 117, 0.14),
+            rgba(242, 207, 117, 0.035) 55%,
+            transparent
+        );
+}
+
+
+/* =================================
+   NUMBER / PLAY INDICATOR
+================================= */
+
+.sunday-disservice-episode-index {
+    display: grid;
+    grid-template-columns:
+        24px
+        28px;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+
+.sunday-disservice-episode-index > span {
+    color: rgba(255, 255, 255, 0.34);
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
+
+
+.sunday-disservice-episode-index > strong {
+    display: grid;
+    place-items: center;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.76rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+
+.sunday-disservice-episode-row.has-audio:hover
+.sunday-disservice-episode-index > strong {
+    background: #f2cf75;
+    color: #0c0b0a;
+}
+
+
+.sunday-disservice-episode-row.active
+.sunday-disservice-episode-index > strong {
+    background: #f2cf75;
+    color: #0c0b0a;
+}
+
+
+/* =================================
+   EPISODE COPY
+================================= */
+
+.sunday-disservice-episode-copy {
+    min-width: 0;
+}
+
+
+.sunday-disservice-episode-kicker {
+    display: block;
+    margin-bottom: 0.32rem;
+
+    color: #f2cf75;
+    font-size: 0.61rem;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: 0.13em;
+}
+
+
+.sunday-disservice-episode-copy h3 {
+    overflow: hidden;
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.94);
+    font-size: 0.98rem;
+    font-weight: 800;
+    line-height: 1.3;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.sunday-disservice-episode-row:hover
+.sunday-disservice-episode-copy h3,
+.sunday-disservice-episode-row.active
+.sunday-disservice-episode-copy h3 {
+    color: #ffffff;
+}
+
+
+.sunday-disservice-episode-copy p {
+    overflow: hidden;
+    margin: 0.28rem 0 0;
+
+    color: rgba(255, 255, 255, 0.42);
+    font-size: 0.72rem;
+    line-height: 1.3;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =================================
+   AUDIO STATUS
+================================= */
+
+.sunday-disservice-episode-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.18rem;
+
+    text-align: right;
+}
+
+
+.sunday-disservice-episode-status span {
+    color: rgba(255, 255, 255, 0.32);
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+
+.sunday-disservice-episode-status strong {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+}
+
+
+.sunday-disservice-episode-row.has-audio
+.sunday-disservice-episode-status strong {
+    color: #f2cf75;
+}
+
+
+.sunday-disservice-episode-row.active
+.sunday-disservice-episode-status span {
+    color: rgba(242, 207, 117, 0.62);
+}
+
+
+.sunday-disservice-episode-row.active
+.sunday-disservice-episode-status strong {
+    color: #f2cf75;
+}
+
+
+/* =================================
+   PLAYLIST RESPONSIVE
+================================= */
+
+@media (max-width: 700px) {
+
+    .sunday-disservice-episode-row {
+        grid-template-columns:
+            48px
+            minmax(0, 1fr)
+            72px;
+
+        gap: 0.7rem;
+        min-height: 80px;
+        padding: 0.8rem 0.85rem;
+    }
+
+
+    .sunday-disservice-episode-index {
+        grid-template-columns:
+            16px
+            26px;
+        gap: 0.25rem;
+    }
+
+
+    .sunday-disservice-episode-index > span {
+        font-size: 0.62rem;
+    }
+
+
+    .sunday-disservice-episode-index > strong {
+        width: 26px;
+        height: 26px;
+    }
+
+
+    .sunday-disservice-episode-copy h3 {
+        font-size: 0.9rem;
+    }
+
+
+    .sunday-disservice-episode-status strong {
+        font-size: 0.6rem;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .sunday-disservice-episode-row {
+        grid-template-columns:
+            38px
+            minmax(0, 1fr);
+    }
+
+
+    .sunday-disservice-episode-index {
+        grid-template-columns: 1fr;
+    }
+
+
+    .sunday-disservice-episode-index > span {
+        display: none;
+    }
+
+
+    .sunday-disservice-episode-status {
+        display: none;
+    }
+
+
+    .sunday-disservice-episode-copy h3 {
+        white-space: normal;
+    }
+
+}
