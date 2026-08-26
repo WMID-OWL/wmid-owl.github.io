@@ -774,8 +774,8 @@ function sundayDisserviceRenderSermon(
 
             : `
                 <div class="sunday-disservice-audio-unavailable">
-                    AUDIO PREVIEW NOT GENERATED YET
-                </div>
+    EPISODE AUDIO NOT YET AVAILABLE
+</div>
             `;
 
 
