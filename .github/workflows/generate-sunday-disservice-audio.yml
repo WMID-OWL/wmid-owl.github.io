@@ -30,7 +30,7 @@ on:
           ""
 
 
-      dry_run:
+            dry_run:
 
         description:
           "Protected check only — do not contact ElevenLabs"
@@ -44,6 +44,20 @@ on:
         default:
           true
 
+
+      test_mode:
+
+        description:
+          "Use temporary non-canon Trey Wise test sermon"
+
+        required:
+          false
+
+        type:
+          boolean
+
+        default:
+          false
 
 permissions:
 
