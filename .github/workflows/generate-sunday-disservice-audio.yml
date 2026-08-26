@@ -1,296 +1,152 @@
 name: Generate Sunday Disservice Audio
 
-
 on:
-
   workflow_run:
-
     workflows:
-
       - Generate Sunday Disservice Sermon
-
     types:
-
       - completed
 
-
   workflow_dispatch:
-
     inputs:
-
       sermon_id:
+        description: "Optional exact sermon ID to process when it does not already have audio"
+        required: false
+        default: ""
 
-        description:
-          "Optional exact sermon ID to process when it does not already have audio"
-
-        required:
-          false
-
-        default:
-          ""
-
-
-            dry_run:
-
-        description:
-          "Protected check only — do not contact ElevenLabs"
-
-        required:
-          false
-
-        type:
-          boolean
-
-        default:
-          true
-
+      dry_run:
+        description: "Protected check only — do not contact ElevenLabs"
+        required: false
+        type: boolean
+        default: true
 
       test_mode:
-
-        description:
-          "Use temporary non-canon Trey Wise test sermon"
-
-        required:
-          false
-
-        type:
-          boolean
-
-        default:
-          false
+        description: "Use temporary non-canon Trey Wise test sermon"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
-
-  contents:
-    write
-
+  contents: write
 
 concurrency:
-
-  group:
-    sunday-disservice-audio
-
-  cancel-in-progress:
-    false
-
+  group: sunday-disservice-audio
+  cancel-in-progress: false
 
 jobs:
-
   audio-disabled:
-
     if: ${{ vars.SUNDAY_DISSERVICE_AUDIO_ENABLED != 'true' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
-
-    runs-on:
-      ubuntu-latest
-
+    runs-on: ubuntu-latest
 
     steps:
-
-
       - name: Confirm Sunday Disservice audio is disabled
-
         run: |
-
           echo "Sunday Disservice audio generation is currently disabled."
-
           echo "Written sermons will continue publishing normally."
-
           echo "ElevenLabs was not contacted."
-
           echo "Credits used by this workflow: 0."
 
-
   generate-audio:
-
     if: ${{ (vars.SUNDAY_DISSERVICE_AUDIO_ENABLED == 'true' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == true)) && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
-
-    runs-on:
-      ubuntu-latest
-
+    runs-on: ubuntu-latest
 
     steps:
-
-
       - name: Check out repository
-
-        uses:
-          actions/checkout@v4
-
+        uses: actions/checkout@v4
         with:
-
-          ref:
-            main
-
-          fetch-depth:
-            2
-
+          ref: main
+          fetch-depth: 2
 
       - name: Set up Node
-
-        uses:
-          actions/setup-node@v4
-
+        uses: actions/setup-node@v4
         with:
-
-          node-version:
-            "20"
-
+          node-version: "20"
 
       - name: Check Sunday Disservice audio-generator syntax
-
         run: |
-
           node --check scripts/generate-sunday-disservice-audio.mjs
 
-
       - name: Check for protected Sunday Disservice audio work
-
-        id:
-          audio_check
-
+        id: audio_check
         env:
-
-          TARGET_SERMON_ID:
-            ${{ github.event_name == 'workflow_dispatch' && inputs.sermon_id || '' }}
-
+          TARGET_SERMON_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.sermon_id || '' }}
         run: |
-
           RESULT=$(
-
             node scripts/generate-sunday-disservice-audio.mjs \
               --check-only
-
           )
-
 
           echo "$RESULT"
 
-
           SHOULD_GENERATE=$(
-
             echo "$RESULT" \
               | sed -n 's/^SHOULD_GENERATE=//p' \
               | tail -n 1
-
           )
 
-
           SERMON_ID=$(
-
             echo "$RESULT" \
               | sed -n 's/^SERMON_ID=//p' \
               | tail -n 1
-
           )
 
-
           CHARACTER_COUNT=$(
-
             echo "$RESULT" \
               | sed -n 's/^CHARACTER_COUNT=//p' \
               | tail -n 1
-
           )
 
-
-          echo "should_generate=${SHOULD_GENERATE:-false}" \
-            >> "$GITHUB_OUTPUT"
-
-
-          echo "sermon_id=${SERMON_ID}" \
-            >> "$GITHUB_OUTPUT"
-
-
-          echo "character_count=${CHARACTER_COUNT:-0}" \
-            >> "$GITHUB_OUTPUT"
-
+          echo "should_generate=${SHOULD_GENERATE:-false}" >> "$GITHUB_OUTPUT"
+          echo "sermon_id=${SERMON_ID}" >> "$GITHUB_OUTPUT"
+          echo "character_count=${CHARACTER_COUNT:-0}" >> "$GITHUB_OUTPUT"
 
       - name: Report protected audio decision
-
         run: |
-
           echo "Generate audio: ${{ steps.audio_check.outputs.should_generate }}"
-
           echo "Sermon ID: ${{ steps.audio_check.outputs.sermon_id }}"
-
           echo "Narration characters: ${{ steps.audio_check.outputs.character_count }}"
 
-
       - name: Generate one new Sunday Disservice MP3
-
         if: >
-
           steps.audio_check.outputs.should_generate == 'true'
           &&
           (github.event_name != 'workflow_dispatch' || inputs.dry_run != true)
-
         env:
-
-          ELEVENLABS_API_KEY:
-            ${{ secrets.ELEVENLABS_API_KEY }}
-
-          TREY_WISE_VOICE_ID:
-            ${{ secrets.TREY_WISE_VOICE_ID }}
-
-          TARGET_SERMON_ID:
-            ${{ steps.audio_check.outputs.sermon_id }}
-
-          SUNDAY_DISSERVICE_AUDIO_MODEL:
-            eleven_multilingual_v2
-
-          SUNDAY_DISSERVICE_AUDIO_FORMAT:
-            mp3_44100_128
-
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          TREY_WISE_VOICE_ID: ${{ secrets.TREY_WISE_VOICE_ID }}
+          TARGET_SERMON_ID: ${{ steps.audio_check.outputs.sermon_id }}
+          SUNDAY_DISSERVICE_AUDIO_MODEL: eleven_multilingual_v2
+          SUNDAY_DISSERVICE_AUDIO_FORMAT: mp3_44100_128
         run: |
-
           node scripts/generate-sunday-disservice-audio.mjs
 
-
       - name: Confirm no ElevenLabs request was needed
-
         if: >
-
           steps.audio_check.outputs.should_generate != 'true'
-
         run: |
-
           echo "No new sermon requires audio."
-
           echo "ElevenLabs was not contacted."
-
           echo "Credits used by this workflow: 0."
 
-
-           - name: Commit generated Sunday Disservice audio
-
+      - name: Commit generated Sunday Disservice audio
         if: >
-
           steps.audio_check.outputs.should_generate == 'true'
           &&
           (github.event_name != 'workflow_dispatch' || inputs.test_mode != true)
         run: |
-
           git add \
             assets/audio/sunday-disservice \
             data/sunday-disservice
 
-
           if git diff --cached --quiet; then
-
             echo "No Sunday Disservice audio changes to commit."
-
             exit 0
-
           fi
 
-
           git config user.name "github-actions[bot]"
-
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
 
           git commit \
             -m "Publish Sunday Disservice audio"
-
 
           git push
