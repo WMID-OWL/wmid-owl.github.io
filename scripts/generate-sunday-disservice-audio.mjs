@@ -866,16 +866,27 @@ async function generateAudio(
                 },
 
                 body:
-                    JSON.stringify({
-                        text:
-                            narration,
+    JSON.stringify({
+        text:
+            narration,
 
-                        model_id:
-                            MODEL,
+        model_id:
+            MODEL,
 
-                        language_code:
-                            "en"
-                    })
+        language_code:
+            "en",
+
+        voice_settings: {
+            stability:
+                0.35,
+
+            similarity_boost:
+                0.75,
+
+            use_speaker_boost:
+                true
+        }
+    })
             }
         );
 
