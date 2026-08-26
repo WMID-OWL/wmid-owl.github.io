@@ -62,14 +62,108 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Check Sunday Disservice audio-generator syntax
+            - name: Check Sunday Disservice audio-generator syntax
         run: |
           node --check scripts/generate-sunday-disservice-audio.mjs
+
+      - name: Create temporary non-canon Trey Wise test sermon
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.test_mode == true }}
+        run: |
+          cat > data/sunday-disservice/sunday-disservice-test.json <<'EOF'
+          {
+            "id": "sunday-disservice-test",
+            "sermon": 0,
+            "deliveryDate": "2099-01-04",
+            "label": "NON-CANON AUDIO TEST",
+            "host": "Trey Wise",
+            "headline": "Y'all Keep Confusing Loud With Right",
+            "deck": "This ain't an OWL result and it ain't canon. I'm just here to make sure this mic works, this voice works, and y'all can actually hear me the way I'm supposed to sound.",
+            "argument": {
+              "title": "Having a hot take don't mean you made a good argument",
+              "body": [
+                "See, this is what I'm talkin' about. Folks hear somebody say something with enough confidence and suddenly we supposed to act like confidence is evidence. Nah. If your argument falls apart the second somebody asks one follow-up question, you ain't cookin'. You just made noise.",
+                "And I know somebody already mad at how I said it. That's fine. Be mad. But don't get so caught up in the delivery that you miss the point. I'm not here to make every opinion comfortable. I'm here to tell you what I think, tell you why I think it, and stand on it until somebody gives me a reason not to.",
+                "That's what Sunday Disservice is supposed to be. We can laugh, argue, call somebody out, give somebody their credit, and come back next week with receipts. Just don't expect me to nod along because everybody else decided something was true."
+              ]
+            },
+            "praise": [
+              {
+                "title": "Credit where it's due",
+                "body": "If somebody shows out, I'm gonna say they showed out. I can dislike the decision and still respect the performance. Both things can be true."
+              }
+            ],
+            "condemnation": [
+              {
+                "title": "Stop moving the goalposts",
+                "body": "What I can't stand is changing the argument every time the first one stops working. Pick a lane and defend it."
+              }
+            ],
+            "favorites": [
+              {
+                "title": "Yeah, I got favorites",
+                "body": "Everybody got people they believe in a little more than everybody else. At least I'm not pretending I don't."
+              }
+            ],
+            "blindSpots": [
+              {
+                "title": "And y'all keep receipts",
+                "body": "If I miss, call it out. Just make sure you remember when I was right too, because somehow those receipts always disappear."
+              }
+            ],
+            "references": [],
+            "closingWord": "Test or no test, the rule stays the same. Bring an argument, bring receipts, and don't expect me to agree just because everybody else does."
+          }
+          EOF
+
+          node - <<'NODE'
+          const fs = require("fs");
+
+          const archivePath =
+            "data/sunday-disservice/archive-index.json";
+
+          const index =
+            JSON.parse(
+              fs.readFileSync(
+                archivePath,
+                "utf8"
+              )
+            );
+
+          index.sermons =
+            Array.isArray(index.sermons)
+              ? index.sermons
+              : [];
+
+          index.sermons =
+            index.sermons.filter(
+              sermon =>
+                sermon.id !==
+                "sunday-disservice-test"
+            );
+
+          index.sermons.unshift({
+            id: "sunday-disservice-test",
+            sermon: 0,
+            deliveryDate: "2099-01-04",
+            label: "NON-CANON AUDIO TEST",
+            headline: "Y'all Keep Confusing Loud With Right",
+            file: "data/sunday-disservice/sunday-disservice-test.json"
+          });
+
+          fs.writeFileSync(
+            archivePath,
+            `${JSON.stringify(
+              index,
+              null,
+              2
+            )}\n`
+          );
+          NODE
 
       - name: Check for protected Sunday Disservice audio work
         id: audio_check
         env:
-          TARGET_SERMON_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.sermon_id || '' }}
+          TARGET_SERMON_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.test_mode == true && 'sunday-disservice-test' || (github.event_name == 'workflow_dispatch' && inputs.sermon_id || '') }}
         run: |
           RESULT=$(
             node scripts/generate-sunday-disservice-audio.mjs \
