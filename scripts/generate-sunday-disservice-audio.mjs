@@ -406,7 +406,8 @@ function speechText(
 
 function sectionNarration(
     heading,
-    entries
+    entries,
+    performanceCue = ""
 ) {
 
     const validEntries =
@@ -439,24 +440,32 @@ function sectionNarration(
     ) {
 
         return [];
-
     }
 
 
     return [
         heading,
+
         ...validEntries.map(
-            entry =>
-                [
-                    entry.title,
-                    entry.body
-                ]
-                    .filter(
-                        Boolean
-                    )
-                    .join(
-                        ". "
-                    )
+            entry => {
+
+                const text =
+                    [
+                        entry.title,
+                        entry.body
+                    ]
+                        .filter(
+                            Boolean
+                        )
+                        .join(
+                            ". "
+                        );
+
+
+                return performanceCue
+                    ? `${performanceCue} ${text}`
+                    : text;
+            }
         )
     ];
 
@@ -467,8 +476,52 @@ function buildNarration(
     sermon
 ) {
 
-        const parts = [
-        "Sunday Disservice. The Gospel According to Trey Wise.",
+    const argumentCues = [
+        "[rushed]",
+        "[frustrated] [rushed]",
+        "[sarcastic] [rushed]"
+    ];
+
+
+    const argumentBody =
+        array(
+            sermon?.argument?.body
+        )
+            .map(
+                (
+                    paragraph,
+                    index
+                ) => {
+
+                    const text =
+                        speechText(
+                            paragraph
+                        );
+
+
+                    if (
+                        !text
+                    ) {
+
+                        return "";
+                    }
+
+
+                    const cue =
+                        argumentCues[
+                            index
+                            %
+                            argumentCues.length
+                        ];
+
+
+                    return `${cue} ${text}`;
+                }
+            );
+
+
+    const parts = [
+        "[excited] [rushed] Sunday Disservice. The Gospel According to Trey Wise.",
 
         Number.isFinite(
             Number(
@@ -476,7 +529,7 @@ function buildNarration(
             )
         )
 
-            ? `Sermon ${Number(
+            ? `[rushed] Sermon ${Number(
                 sermon.sermon
             )}.`
 
@@ -484,63 +537,75 @@ function buildNarration(
 
         sermon.label
 
-            ? `Delivered ${speechText(
+            ? `[rushed] Delivered ${speechText(
                 sermon.label
             )}.`
 
             : "",
 
-        speechText(
-            sermon.headline
-        ),
+        sermon.headline
 
-        speechText(
-            sermon.deck
-        ),
+            ? `[excited] ${speechText(
+                sermon.headline
+            )}`
+
+            : "",
+
+        sermon.deck
+
+            ? `[rushed] ${speechText(
+                sermon.deck
+            )}`
+
+            : "",
 
         sermon?.argument?.title
 
-            ? `Here's where I'm at: ${speechText(
+            ? `[sarcastic] Here's where I'm at: ${speechText(
                 sermon.argument.title
             )}.`
 
             : "",
 
-        ...array(
-            sermon?.argument?.body
-        ).map(
-            speechText
+        ...argumentBody,
+
+        ...sectionNarration(
+            "[excited] Aight, give credit where it's due.",
+            sermon.praise,
+            "[excited] [rushed]"
         ),
 
         ...sectionNarration(
-            "Aight, give credit where it's due.",
-            sermon.praise
+            "[frustrated] Now for what I got a problem with.",
+            sermon.condemnation,
+            "[frustrated] [rushed]"
         ),
 
         ...sectionNarration(
-            "Now for what I got a problem with.",
-            sermon.condemnation
+            "[mischievously] Now, y'all already know who I've been backing.",
+            sermon.favorites,
+            "[mischievously] [rushed]"
         ),
 
         ...sectionNarration(
-            "Now, y'all already know who I've been backing.",
-            sermon.favorites
-        ),
-
-        ...sectionNarration(
-            "And yeah, y'all keep receipts on me too.",
-            sermon.blindSpots
+            "[sarcastic] And yeah, y'all keep receipts on me too.",
+            sermon.blindSpots,
+            "[sarcastic] [rushed]"
         ),
 
         sermon.closingWord
 
-            ? "Before I get outta here, one last thing."
+            ? "[rushed] Before I get outta here, one last thing."
 
             : "",
 
-        speechText(
-            sermon.closingWord
-        )
+        sermon.closingWord
+
+            ? `[rushed] ${speechText(
+                sermon.closingWord
+            )}`
+
+            : ""
     ]
         .map(
             speechText
@@ -555,7 +620,6 @@ function buildNarration(
     );
 
 }
-
 
 // =================================
 // SERMON SELECTION
