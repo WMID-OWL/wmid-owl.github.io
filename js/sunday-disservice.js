@@ -1136,52 +1136,77 @@ function sundayDisserviceRenderArchive(
 
 async function sundayDisserviceLoad() {
 
-
     try {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const isTestPreview =
+            params.get(
+                "test"
+            ) ===
+            "1";
 
 
         const index =
-
             await sundayDisserviceFetchJson(
-
                 "data/sunday-disservice/archive-index.json"
-
             );
 
 
         const sermons =
-
             sundayDisserviceArray(
                 index.sermons
             );
 
 
         sermons.sort(
-
             (
                 a,
                 b
             ) =>
-
                 String(
                     b.id
                 )
-
                     .localeCompare(
-
                         String(
                             a.id
                         )
-
                     )
-
         );
+
+
+        if (
+            isTestPreview
+        ) {
+
+            sundayDisserviceRenderArchive(
+                sermons,
+                ""
+            );
+
+
+            const testSermon =
+                await sundayDisserviceFetchJson(
+                    "data/sunday-disservice/test-sermon.json"
+                );
+
+
+            sundayDisserviceRenderSermon(
+                testSermon
+            );
+
+
+            return;
+        }
 
 
         if (
             !sermons.length
         ) {
-
 
             sundayDisserviceRenderArchive(
                 [],
@@ -1196,51 +1221,32 @@ async function sundayDisserviceLoad() {
 
 
             return;
-
         }
 
 
-        const params =
-
-            new URLSearchParams(
-                window.location.search
-            );
-
-
         const requestedSermon =
-
             params.get(
                 "sermon"
             );
 
 
         const selected =
-
             sermons.find(
-
                 sermon =>
-
                     sermon.id ===
                     requestedSermon
-
             )
-
             ||
-
             sermons[0];
 
 
         sundayDisserviceRenderArchive(
-
             sermons,
-
             selected.id
-
         );
 
 
         const sermon =
-
             await sundayDisserviceFetchJson(
                 selected.file
             );
@@ -1252,18 +1258,13 @@ async function sundayDisserviceLoad() {
 
     }
 
-
     catch (
         error
     ) {
 
-
         console.error(
-
             "Could not load Sunday Disservice:",
-
             error
-
         );
 
 
@@ -1281,7 +1282,6 @@ async function sundayDisserviceLoad() {
     }
 
 }
-
 
 
 // =================================
