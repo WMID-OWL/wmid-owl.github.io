@@ -972,7 +972,6 @@ function sundayDisserviceRenderArchive(
     activeSermonId
 ) {
 
-
     sundayDisserviceEls
         .archiveGrid
         .innerHTML =
@@ -982,7 +981,6 @@ function sundayDisserviceRenderArchive(
     if (
         !sermons.length
     ) {
-
 
         sundayDisserviceEls
             .emptyArchive
@@ -1002,126 +1000,166 @@ function sundayDisserviceRenderArchive(
 
 
     sermons.forEach(
-
-        sermon => {
-
+        (
+            sermon,
+            index
+        ) => {
 
             const link =
-
                 document.createElement(
                     "a"
                 );
 
 
-                        const hasAudio =
-
+            const hasAudio =
                 Boolean(
-
                     sundayDisservicePublishedAudio(
                         sermon
                     )
-
                 );
 
 
-            link.className = [
-
-                "sunday-disservice-archive-card",
-
+            const isActive =
                 sermon.id ===
-                activeSermonId
+                activeSermonId;
 
+
+            link.className = [
+                "sunday-disservice-archive-card",
+                "sunday-disservice-episode-row",
+
+                isActive
                     ? "active"
-
                     : "",
 
                 hasAudio
-
                     ? "has-audio"
-
                     : ""
-
             ]
-
                 .filter(
                     Boolean
                 )
-
                 .join(
                     " "
                 );
 
 
             link.href =
-
                 `sunday-disservice.html?sermon=${encodeURIComponent(
                     sermon.id
                 )}`;
 
 
+            link.setAttribute(
+                "aria-label",
+                `${
+                    hasAudio
+                        ? "Play"
+                        : "View"
+                } ${
+                    sermon.headline
+                    ||
+                    "Sunday Disservice episode"
+                }`
+            );
+
+
             link.innerHTML = `
 
-                <span>
+                <div class="sunday-disservice-episode-index">
 
-                    SERMON
+                    <span>
+                        ${
+                            String(
+                                index + 1
+                            ).padStart(
+                                2,
+                                "0"
+                            )
+                        }
+                    </span>
 
-                    ${sundayDisserviceEscape(
-                        sermon.sermon || "—"
-                    )}
+                    <strong>
+                        ${
+                            isActive
+                                ? "▶"
+                                : hasAudio
+                                    ? "▷"
+                                    : "—"
+                        }
+                    </strong>
 
-                </span>
-
-
-                <h3>
-
-                    ${sundayDisserviceEscape(
-
-                        sermon.headline
-
-                        ||
-
-                        "The Gospel According to Trey Wise"
-
-                    )}
-
-                </h3>
-
-
-                <p>
-
-                    ${sundayDisserviceEscape(
-                        sermon.label || ""
-                    )}
-
-                </p>
+                </div>
 
 
-                                ${
-                    hasAudio
+                <div class="sunday-disservice-episode-copy">
 
-                        ? `
+                    <span class="sunday-disservice-episode-kicker">
 
-                            <small class="sunday-disservice-archive-audio-badge">
-                                AUDIO AVAILABLE
-                            </small>
+                        ${
+                            sermon.sermon
+                                ? `SERMON ${sundayDisserviceEscape(
+                                    sermon.sermon
+                                )}`
+                                : "SUNDAY DISSERVICE"
+                        }
 
-                        `
+                        ${
+                            isActive
+                                ? " • NOW PLAYING"
+                                : ""
+                        }
 
-                        : ""
-                }
+                    </span>
 
 
-                <strong>
+                    <h3>
+                        ${sundayDisserviceEscape(
+                            sermon.headline
+                            ||
+                            "The Gospel According to Trey Wise"
+                        )}
+                    </h3>
+
+
+                    <p>
+                        ${sundayDisserviceEscape(
+                            sermon.label
+                            ||
+                            ""
+                        )}
+                    </p>
+
+                </div>
+
+
+                <div class="sunday-disservice-episode-status">
 
                     ${
                         hasAudio
 
-                            ? "LISTEN & READ →"
+                            ? `
+                                <span>
+                                    AUDIO
+                                </span>
 
-                            : "READ THE SERMON →"
+                                <strong>
+                                    LISTEN
+                                </strong>
+                            `
+
+                            : `
+                                <span>
+                                    PENDING
+                                </span>
+
+                                <strong>
+                                    AUDIO SOON
+                                </strong>
+                            `
                     }
 
-                </strong>
+                </div>
 
             `;
 
@@ -1133,7 +1171,6 @@ function sundayDisserviceRenderArchive(
                 );
 
         }
-
     );
 
 }
