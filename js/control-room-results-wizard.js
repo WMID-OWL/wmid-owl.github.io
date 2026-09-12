@@ -7540,10 +7540,64 @@ function crResultsBuildCompletedRecord(
     form
 ) {
 
+
     const record =
         structuredClone(
             crResultsSelectedMatch
         );
+
+
+    const event =
+        crResultsGetSelectedEvent();
+
+
+    if (!event) {
+
+        throw new Error(
+            "The selected event could not be resolved for this completed match."
+        );
+
+    }
+
+
+    record.eventId =
+        event.id
+        ||
+        record.eventId
+        ||
+        "";
+
+
+    record.date =
+        event.date
+        ||
+        record.date
+        ||
+        "";
+
+
+    record.event =
+        event.name
+        ||
+        record.event
+        ||
+        "";
+
+
+    record.eventType =
+        event.eventType
+        ||
+        record.eventType
+        ||
+        "";
+
+
+    record.brand =
+        event.brand
+        ||
+        record.brand
+        ||
+        "";
 
 
     record.status =
