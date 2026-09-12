@@ -37,7 +37,10 @@
       "winner": "jack-rabbid",
       "loser": "atua-tupu",
       "method": "Pinfall"
-    }
+    },
+    "event": "Ascension Ep. 1",
+    "eventType": "weekly",
+    "brand": "Ascension"
   },
   {
     "id": "announced-0005",
@@ -77,7 +80,10 @@
       "winner": "giulia",
       "loser": "katsumi-nanami",
       "method": "Pinfall"
-    }
+    },
+    "event": "Ascension Ep. 1",
+    "eventType": "weekly",
+    "brand": "Ascension"
   },
   {
     "id": "announced-0004",
@@ -119,7 +125,10 @@
       "winner": "zack-sabre-jr",
       "loser": "shane-taylor",
       "method": "Submission"
-    }
+    },
+    "event": "Ascension Ep. 1",
+    "eventType": "weekly",
+    "brand": "Ascension"
   },
   {
     "id": "announced-0002",
@@ -159,7 +168,10 @@
       "winner": "liberty-van-horn",
       "loser": "roxanne-perez",
       "method": "KO"
-    }
+    },
+    "event": "Ascension Ep. 1",
+    "eventType": "weekly",
+    "brand": "Ascension"
   },
   {
     "id": "announced-0006",
@@ -199,7 +211,10 @@
       "winner": "mike-bailey",
       "loser": "lio-rush",
       "method": "Pinfall"
-    }
+    },
+    "event": "Ascension Ep. 1",
+    "eventType": "weekly",
+    "brand": "Ascension"
   },
   {
     "id": "announced-0007",
@@ -239,7 +254,10 @@
       "winner": "willow-nightingale",
       "loser": "bayley",
       "method": "Pinfall"
-    }
+    },
+    "event": "Ascension Ep. 1",
+    "eventType": "weekly",
+    "brand": "Ascension"
   },
   {
     "id": "announced-0003",
@@ -279,6 +297,9 @@
       "winner": "jayden-alfah",
       "loser": "ilja-dragunov",
       "method": "Pinfall"
-    }
+    },
+    "event": "Ascension Ep. 1",
+    "eventType": "weekly",
+    "brand": "Ascension"
   }
 ]
