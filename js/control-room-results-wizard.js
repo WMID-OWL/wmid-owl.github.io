@@ -9554,16 +9554,356 @@ crResultsSave.addEventListener(
 );
 
 
+let crResultsLegacyMetadataRepairRunning =
+    false;
+
+
+async function crResultsRepairLegacyEventMetadata() {
+
+    if (
+        crResultsLegacyMetadataRepairRunning
+    ) {
+
+        return 0;
+
+    }
+
+
+    const matches =
+        Array.isArray(
+            owlControlRoomData?.matches
+        )
+            ? owlControlRoomData.matches
+            : [];
+
+
+    const events =
+        Array.isArray(
+            owlControlRoomData?.events
+        )
+            ? owlControlRoomData.events
+            : [];
+
+
+    if (
+        matches.length === 0
+        ||
+        events.length === 0
+    ) {
+
+        return 0;
+
+    }
+
+
+    const eventMap =
+        new Map(
+
+            events.map(
+                event => [
+                    event.id,
+                    event
+                ]
+            )
+
+        );
+
+
+    const needsRepair =
+        matches.some(
+            match => {
+
+                const event =
+                    eventMap.get(
+                        match.eventId
+                    );
+
+
+                if (!event) {
+
+                    return false;
+
+                }
+
+
+                return Boolean(
+
+                    (
+                        !match.date
+                        &&
+                        event.date
+                    )
+
+                    ||
+
+                    (
+                        !match.event
+                        &&
+                        event.name
+                    )
+
+                    ||
+
+                    (
+                        !match.eventType
+                        &&
+                        event.eventType
+                    )
+
+                    ||
+
+                    (
+                        !match.brand
+                        &&
+                        event.brand
+                    )
+
+                );
+
+            }
+        );
+
+
+    if (!needsRepair) {
+
+        return 0;
+
+    }
+
+
+    const permission =
+        await crResultsEnsureWritePermission();
+
+
+    if (!permission) {
+
+        throw new Error(
+            "Write permission is required to repair existing match metadata."
+        );
+
+    }
+
+
+    crResultsLegacyMetadataRepairRunning =
+        true;
+
+
+    try {
+
+        const matchesFile =
+            await crResultsReadDataFile(
+                "matches.json"
+            );
+
+
+        const records =
+            crResultsParseJsonArray(
+
+                matchesFile.text,
+
+                "matches.json"
+
+            );
+
+
+        let repairedCount =
+            0;
+
+
+        records.forEach(
+            match => {
+
+                const event =
+                    eventMap.get(
+                        match.eventId
+                    );
+
+
+                if (!event) {
+
+                    return;
+
+                }
+
+
+                let changed =
+                    false;
+
+
+                if (
+                    !match.date
+                    &&
+                    event.date
+                ) {
+
+                    match.date =
+                        event.date;
+
+                    changed =
+                        true;
+
+                }
+
+
+                if (
+                    !match.event
+                    &&
+                    event.name
+                ) {
+
+                    match.event =
+                        event.name;
+
+                    changed =
+                        true;
+
+                }
+
+
+                if (
+                    !match.eventType
+                    &&
+                    event.eventType
+                ) {
+
+                    match.eventType =
+                        event.eventType;
+
+                    changed =
+                        true;
+
+                }
+
+
+                if (
+                    !match.brand
+                    &&
+                    event.brand
+                ) {
+
+                    match.brand =
+                        event.brand;
+
+                    changed =
+                        true;
+
+                }
+
+
+                if (changed) {
+
+                    repairedCount +=
+                        1;
+
+                }
+
+            }
+        );
+
+
+        if (
+            repairedCount === 0
+        ) {
+
+            return 0;
+
+        }
+
+
+        await crResultsWriteFile(
+
+            matchesFile.fileHandle,
+
+            crResultsSerializeJsonArray(
+                records
+            )
+
+        );
+
+
+        await loadRepositoryData(
+            owlRepositoryHandle
+        );
+
+
+        return repairedCount;
+
+    }
+
+
+    finally {
+
+        crResultsLegacyMetadataRepairRunning =
+            false;
+
+    }
+
+}
+
+
+async function crResultsRefreshRepositoryData() {
+
+    const repairedCount =
+        await crResultsRepairLegacyEventMetadata();
+
+
+    crResultsPopulateEvents();
+
+    crResultsPopulateMatches();
+
+
+    if (
+        repairedCount > 0
+    ) {
+
+        crResultsSetStatus(
+            "METADATA REPAIRED"
+        );
+
+
+        crResultsShowMessage(
+
+            `${repairedCount} completed match record${repairedCount === 1 ? "" : "s"} repaired with canonical event metadata. Review matches.json in GitHub Desktop before committing.`,
+
+            "save-success"
+
+        );
+
+
+        return;
+
+    }
+
+
+    crResultsSetStatus(
+        "READY"
+    );
+
+}
+
+
 window.addEventListener(
 
     "owl-control-room-data-loaded",
 
     () => {
 
-        crResultsPopulateEvents();
+        crResultsRefreshRepositoryData()
+            .catch(
+                error => {
+
+                    console.error(
+                        "Could not repair completed match metadata:",
+                        error
+                    );
 
 
-        crResultsPopulateMatches();
+                    crResultsSetStatus(
+                        "REPAIR FAILED"
+                    );
+
+                }
+            );
 
     }
 
@@ -9610,17 +9950,30 @@ try {
         Array.isArray(
             owlControlRoomData.announcedMatches
         )
+
+        &&
+
+        Array.isArray(
+            owlControlRoomData.matches
+        )
     ) {
 
-        crResultsPopulateEvents();
+        crResultsRefreshRepositoryData()
+            .catch(
+                error => {
+
+                    console.error(
+                        "Could not initialize Results Wizard:",
+                        error
+                    );
 
 
-        crResultsPopulateMatches();
+                    crResultsSetStatus(
+                        "REPAIR FAILED"
+                    );
 
-
-        crResultsSetStatus(
-            "READY"
-        );
+                }
+            );
 
     }
 
