@@ -2,5 +2,317 @@
   "version": 1,
   "weekStartsOn": "monday",
   "templateVersion": 1,
-  "weeks": []
+  "weeks": [
+    {
+      "id": "2026-09-07",
+      "startDate": "2026-09-07",
+      "endDate": "2026-09-13",
+      "label": "September 7–13, 2026",
+      "eventIds": [],
+      "tasks": [
+        {
+          "id": "2026-09-07-review-availability",
+          "templateId": "review-availability",
+          "title": "Review injuries, recovery status, and wrestler availability",
+          "category": "booking",
+          "type": "manual",
+          "dueDate": "2026-09-07",
+          "note": "Confirm the active roster before finalizing either weekly card.",
+          "dependencies": [],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "completed",
+          "completedAt": "2026-09-12T02:34:35.965Z",
+          "updatedAt": "2026-09-12T02:34:35.965Z"
+        },
+        {
+          "id": "2026-09-07-review-special-obligations",
+          "templateId": "review-special-obligations",
+          "title": "Review active tournaments and Signature Series obligations",
+          "category": "booking",
+          "type": "conditional",
+          "dueDate": "2026-09-07",
+          "note": "Mark Not Needed when nothing affects this week.",
+          "dependencies": [],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "completed",
+          "completedAt": "2026-09-12T02:34:34.242Z",
+          "updatedAt": "2026-09-12T02:34:34.242Z"
+        },
+        {
+          "id": "2026-09-07-finalize-ascension",
+          "templateId": "finalize-ascension",
+          "title": "Finalize the Ascension match card",
+          "category": "booking",
+          "type": "manual",
+          "dueDate": "2026-09-07",
+          "note": "",
+          "dependencies": [
+            "2026-09-07-review-availability"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "completed",
+          "completedAt": "2026-09-12T02:34:37.585Z",
+          "updatedAt": "2026-09-12T02:34:37.585Z"
+        },
+        {
+          "id": "2026-09-07-finalize-revolt",
+          "templateId": "finalize-revolt",
+          "title": "Finalize the Revolt match card",
+          "category": "booking",
+          "type": "manual",
+          "dueDate": "2026-09-08",
+          "note": "",
+          "dependencies": [
+            "2026-09-07-review-availability"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "completed",
+          "completedAt": "2026-09-12T02:34:38.606Z",
+          "updatedAt": "2026-09-12T02:34:38.606Z"
+        },
+        {
+          "id": "2026-09-07-run-ascension",
+          "templateId": "run-ascension",
+          "title": "Run the Ascension matches",
+          "category": "production",
+          "type": "manual",
+          "dueDate": "2026-09-08",
+          "note": "",
+          "dependencies": [
+            "2026-09-07-finalize-ascension"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "completed",
+          "completedAt": "2026-09-12T02:34:40.697Z",
+          "updatedAt": "2026-09-12T02:34:40.697Z"
+        },
+        {
+          "id": "2026-09-07-ascension-crit",
+          "templateId": "ascension-crit",
+          "title": "Process any Ascension CRIT injury evaluations",
+          "category": "production",
+          "type": "conditional",
+          "dueDate": "2026-09-08",
+          "note": "Mark Not Needed when Ascension produces no CRIT finish.",
+          "dependencies": [
+            "2026-09-07-run-ascension"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "completed",
+          "completedAt": "2026-09-12T02:39:13.064Z",
+          "updatedAt": "2026-09-12T02:39:13.064Z"
+        },
+        {
+          "id": "2026-09-07-ascension-results",
+          "templateId": "ascension-results",
+          "title": "Enter Ascension results and complete website processing",
+          "category": "website",
+          "type": "manual",
+          "dueDate": "2026-09-09",
+          "note": "",
+          "dependencies": [
+            "2026-09-07-run-ascension"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "completed",
+          "completedAt": "2026-09-12T02:39:16.035Z",
+          "updatedAt": "2026-09-12T02:39:16.035Z"
+        },
+        {
+          "id": "2026-09-07-ascension-youtube",
+          "templateId": "ascension-youtube",
+          "title": "Publish Ascension to YouTube",
+          "category": "youtube",
+          "type": "manual",
+          "dueDate": "2026-09-09",
+          "note": "",
+          "dependencies": [
+            "2026-09-07-run-ascension"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "pending",
+          "completedAt": "",
+          "updatedAt": "2026-09-12T02:34:34.243Z"
+        },
+        {
+          "id": "2026-09-07-run-revolt",
+          "templateId": "run-revolt",
+          "title": "Run the Revolt matches",
+          "category": "production",
+          "type": "manual",
+          "dueDate": "2026-09-09",
+          "note": "",
+          "dependencies": [
+            "2026-09-07-finalize-revolt"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "pending",
+          "completedAt": "",
+          "updatedAt": "2026-09-12T02:34:34.243Z"
+        },
+        {
+          "id": "2026-09-07-revolt-crit",
+          "templateId": "revolt-crit",
+          "title": "Process any Revolt CRIT injury evaluations",
+          "category": "production",
+          "type": "conditional",
+          "dueDate": "2026-09-09",
+          "note": "Mark Not Needed when Revolt produces no CRIT finish.",
+          "dependencies": [
+            "2026-09-07-run-revolt"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "pending",
+          "completedAt": "",
+          "updatedAt": "2026-09-12T02:34:34.243Z"
+        },
+        {
+          "id": "2026-09-07-revolt-results",
+          "templateId": "revolt-results",
+          "title": "Enter Revolt results and complete website processing",
+          "category": "website",
+          "type": "manual",
+          "dueDate": "2026-09-10",
+          "note": "",
+          "dependencies": [
+            "2026-09-07-run-revolt"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "pending",
+          "completedAt": "",
+          "updatedAt": "2026-09-12T02:34:34.243Z"
+        },
+        {
+          "id": "2026-09-07-revolt-youtube",
+          "templateId": "revolt-youtube",
+          "title": "Publish Revolt to YouTube",
+          "category": "youtube",
+          "type": "manual",
+          "dueDate": "2026-09-10",
+          "note": "",
+          "dependencies": [
+            "2026-09-07-run-revolt"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "pending",
+          "completedAt": "",
+          "updatedAt": "2026-09-12T02:34:34.243Z"
+        },
+        {
+          "id": "2026-09-07-after-dark",
+          "templateId": "after-dark",
+          "title": "Publish OWL After Dark for this week’s shows",
+          "category": "media",
+          "type": "conditional",
+          "dueDate": "2026-09-10",
+          "note": "Mark Not Needed while the full show remains inactive.",
+          "dependencies": [
+            "2026-09-07-ascension-results",
+            "2026-09-07-revolt-results"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "pending",
+          "completedAt": "",
+          "updatedAt": "2026-09-12T02:34:34.243Z"
+        },
+        {
+          "id": "2026-09-07-weekly-database-update",
+          "templateId": "weekly-database-update",
+          "title": "Update rankings, records, title history, and affected public profiles",
+          "category": "website",
+          "type": "manual",
+          "dueDate": "2026-09-11",
+          "note": "",
+          "dependencies": [
+            "2026-09-07-ascension-results",
+            "2026-09-07-revolt-results"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "pending",
+          "completedAt": "",
+          "updatedAt": "2026-09-12T02:34:34.243Z"
+        },
+        {
+          "id": "2026-09-07-sunday-disservice",
+          "templateId": "sunday-disservice",
+          "title": "Publish Sunday Disservice",
+          "category": "media",
+          "type": "conditional",
+          "dueDate": "2026-09-13",
+          "note": "Mark Not Needed while the podcast remains inactive.",
+          "dependencies": [],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "pending",
+          "completedAt": "",
+          "updatedAt": "2026-09-12T02:34:34.243Z"
+        },
+        {
+          "id": "2026-09-07-data-health",
+          "templateId": "data-health",
+          "title": "Verify Data Health before closing the week",
+          "category": "closeout",
+          "type": "manual",
+          "dueDate": "2026-09-13",
+          "note": "",
+          "dependencies": [],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "pending",
+          "completedAt": "",
+          "updatedAt": "2026-09-12T02:34:34.243Z"
+        },
+        {
+          "id": "2026-09-07-close-week",
+          "templateId": "close-week",
+          "title": "Close the OWL week and resolve remaining exceptions",
+          "category": "closeout",
+          "type": "manual",
+          "dueDate": "2026-09-13",
+          "note": "",
+          "dependencies": [
+            "2026-09-07-data-health"
+          ],
+          "source": "template",
+          "eventId": "",
+          "autoRule": "",
+          "status": "pending",
+          "completedAt": "",
+          "updatedAt": "2026-09-12T02:34:34.243Z"
+        }
+      ],
+      "createdAt": "2026-09-12T02:34:34.243Z",
+      "updatedAt": "2026-09-12T02:39:16.036Z"
+    }
+  ]
 }

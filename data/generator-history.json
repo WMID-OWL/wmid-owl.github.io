@@ -1,4 +1,101 @@
 {
   "version": 1,
-  "results": []
+  "results": [
+    {
+      "id": "generator-1789180616312-vd2081",
+      "generatorKey": "injury-evaluation",
+      "generatorType": "Injury Evaluation",
+      "mode": "canon",
+      "method": "primary-d10",
+      "methodLabel": "Primary Injury d10",
+      "label": "Ascension Ep.1 Injury Evaluation",
+      "relatedContext": "Ascension - July - Week 1",
+      "result": [
+        "Roxanne Perez received a primary injury roll of 6 out of 10.",
+        "1 week unavailable",
+        "CRIT cause: Lariat from Liberty Van Horn",
+        "CRIT determination: Primary Landing / Impact Area.",
+        "Affected area: Neck — Head.",
+        "Diagnosis: Minor concussion.",
+        "This result may be transferred into the Injury Tracker after canon confirmation."
+      ],
+      "eligiblePool": [
+        "Roxanne Perez"
+      ],
+      "excludedEntries": [],
+      "randomDecisions": [
+        {
+          "type": "primary-injury-roll",
+          "eligiblePool": [
+            6
+          ],
+          "selectedResult": 6
+        },
+        {
+          "type": "crit-body-area",
+          "method": "primary-impact",
+          "eligiblePool": [
+            "Neck — Head"
+          ],
+          "selectedIndex": 0,
+          "selectedResult": "Neck — Head"
+        },
+        {
+          "type": "injury-diagnosis",
+          "eligiblePool": [
+            "Head bruise",
+            "Minor concussion"
+          ],
+          "selectedIndex": 1,
+          "selectedResult": "Minor concussion"
+        }
+      ],
+      "injuryEvaluation": {
+        "wrestlerId": "roxanne-perez",
+        "wrestlerName": "Roxanne Perez",
+        "critCause": "Lariat from Liberty Van Horn",
+        "primaryRoll": 6,
+        "firstReinjuryRoll": null,
+        "secondReinjuryRoll": null,
+        "usedReinjuryResult": null,
+        "reinjuryType": "NONE",
+        "parentInjuryId": "",
+        "relatedRecoveringInjuryIds": [],
+        "aggravationOnly": false,
+        "lowEnduranceExtensionWeeks": 0,
+        "classification": "STANDARD",
+        "absenceWeeks": 1,
+        "outcomeLabel": "1 week unavailable",
+        "severe": false,
+        "severeCheckRoll": null,
+        "severeCheckPassed": false,
+        "severeDurationRoll": null,
+        "postReturnLowWeeks": 1,
+        "severeReviewRequired": false,
+        "critDeterminationMethod": "primary-impact",
+        "critDeterminationMethodLabel": "Primary Landing / Impact Area",
+        "bodyAreaCandidates": [
+          {
+            "fireProArea": "Neck",
+            "anatomicalSubArea": "Head",
+            "label": "Neck — Head"
+          }
+        ],
+        "bodyAreaSelectionIndex": 0,
+        "affectedBodyPart": "Neck",
+        "fireProBodyPart": "Neck",
+        "specificAnatomicalSubArea": "Head",
+        "anatomicalSubArea": "Head",
+        "diagnosisPool": [
+          "Head bruise",
+          "Minor concussion"
+        ],
+        "diagnosisSelectionIndex": 1,
+        "diagnosis": "Minor concussion"
+      },
+      "generatedAt": "2026-09-12T02:36:56.312Z",
+      "confirmed": true,
+      "confirmedAt": "2026-09-12T02:38:54.656Z"
+    }
+  ]
 }
