@@ -1,4 +1,63 @@
 {
   "version": 1,
-  "injuries": []
+  "injuries": [
+    {
+      "id": "injury-9f13c428-d308-4332-ba1a-1e6d08ee20ff",
+      "generatorResultId": "generator-1789180616312-vd2081",
+      "wrestlerId": "roxanne-perez",
+      "wrestlerName": "Roxanne Perez",
+      "eventId": "",
+      "matchId": "",
+      "critCause": "Lariat from Liberty Van Horn",
+      "diagnosis": "Minor concussion",
+      "affectedBodyPart": "Neck",
+      "primaryRoll": 6,
+      "classification": "STANDARD",
+      "absenceWeeks": 1,
+      "injuryStartWeek": "July 2026 - Week 1",
+      "expectedReturnWeek": "Able to return July 2026 - Week 3",
+      "postReturnLowWeeks": 1,
+      "recoveryStartWeek": "Able to return July 2026 - Week 3",
+      "expectedClearanceWeek": "July 2026 - Week 3",
+      "priorEnduranceState": "Medium",
+      "currentEnduranceState": "Medium",
+      "status": "INJURED",
+      "championshipStatusAtInjury": "Not Champion",
+      "titleDecision": "",
+      "commissionerNote": "",
+      "generatorConfirmedAt": "2026-09-12T02:38:54.656Z",
+      "createdAt": "2026-09-12T03:07:16.923Z",
+      "updatedAt": "2026-09-12T03:07:16.923Z",
+      "severeCheckRoll": null,
+      "severeCheckPassed": false,
+      "severeDurationRoll": null,
+      "requiredChampionshipAction": "None required",
+      "critDeterminationMethod": "primary-impact",
+      "critDeterminationMethodLabel": "Primary Landing / Impact Area",
+      "bodyAreaCandidates": [
+        {
+          "fireProArea": "Neck",
+          "anatomicalSubArea": "Head",
+          "label": "Neck — Head"
+        }
+      ],
+      "bodyAreaSelectionIndex": 0,
+      "fireProBodyPart": "Neck",
+      "specificAnatomicalSubArea": "Head",
+      "anatomicalSubArea": "Head",
+      "diagnosisPool": [
+        "Head bruise",
+        "Minor concussion"
+      ],
+      "diagnosisSelectionIndex": 1,
+      "parentInjuryId": "",
+      "reinjuryType": "NONE",
+      "firstReinjuryRoll": null,
+      "secondReinjuryRoll": null,
+      "usedReinjuryResult": null,
+      "lowEnduranceExtensionWeeks": 0,
+      "relatedRecoveringInjuryIds": [],
+      "recoveryTimelineReset": false
+    }
+  ]
 }
