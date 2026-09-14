@@ -2,6 +2,35 @@
    OWL TROPHY ROOM
 ================================= */
 
+/* Official header logo */
+
+.site-header .brand {
+    flex: 0 0 auto;
+    align-items: center;
+    width: clamp(116px, 9vw, 148px);
+    line-height: 1;
+}
+
+.site-header .owl-header-logo {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 54px;
+    object-fit: contain;
+    object-position: left center;
+    filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.06));
+}
+
+@media (max-width: 820px) {
+    .site-header .brand {
+        width: 116px;
+    }
+
+    .site-header .owl-header-logo {
+        max-height: 46px;
+    }
+}
+
 
 .trophy-room-page {
 
