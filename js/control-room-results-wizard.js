@@ -9646,36 +9646,87 @@ async function crResultsRepairLegacyEventMetadata() {
                 }
 
 
+                               const canonicalEventName =
+
+                    event.name
+
+                    ||
+
+                    match.eventName
+
+                    ||
+
+                    match.event
+
+                    ||
+
+                    "";
+
+
                 return Boolean(
 
                     (
-                        !match.date
+                        event.periodId
+
                         &&
-                        event.date
+
+                        match.periodId !==
+                            event.periodId
                     )
 
                     ||
 
                     (
-                        !match.event
+                        event.stage
+
                         &&
-                        event.name
+
+                        match.stage !==
+                            event.stage
                     )
 
                     ||
 
                     (
-                        !match.eventType
+                        canonicalEventName
+
                         &&
+
+                        match.eventName !==
+                            canonicalEventName
+                    )
+
+                    ||
+
+                    (
+                        canonicalEventName
+
+                        &&
+
+                        match.event !==
+                            canonicalEventName
+                    )
+
+                    ||
+
+                    (
                         event.eventType
+
+                        &&
+
+                        match.eventType !==
+                            event.eventType
                     )
 
                     ||
 
                     (
-                        !match.brand
-                        &&
                         event.brand
+
+                        &&
+
+                        match.brand !==
+                            event.brand
                     )
 
                 );
@@ -9746,68 +9797,116 @@ async function crResultsRepairLegacyEventMetadata() {
                 }
 
 
-                let changed =
+                                let changed =
                     false;
 
 
-                if (
-                    !match.date
-                    &&
-                    event.date
-                ) {
+                const canonicalEventName =
 
-                    match.date =
-                        event.date;
-
-                    changed =
-                        true;
-
-                }
-
-
-                if (
-                    !match.event
-                    &&
                     event.name
-                ) {
 
-                    match.event =
-                        event.name;
+                    ||
 
-                    changed =
-                        true;
+                    match.eventName
 
-                }
+                    ||
 
+                    match.event
 
-                if (
-                    !match.eventType
-                    &&
-                    event.eventType
-                ) {
+                    ||
 
-                    match.eventType =
-                        event.eventType;
-
-                    changed =
-                        true;
-
-                }
+                    "";
 
 
-                if (
-                    !match.brand
-                    &&
-                    event.brand
-                ) {
+                const canonicalMetadata = {
 
-                    match.brand =
-                        event.brand;
+                    periodId:
 
-                    changed =
-                        true;
+                        event.periodId
 
-                }
+                        ||
+
+                        match.periodId
+
+                        ||
+
+                        "",
+
+                    stage:
+
+                        event.stage
+
+                        ||
+
+                        match.stage
+
+                        ||
+
+                        "",
+
+                    eventName:
+
+                        canonicalEventName,
+
+                    event:
+
+                        canonicalEventName,
+
+                    eventType:
+
+                        event.eventType
+
+                        ||
+
+                        match.eventType
+
+                        ||
+
+                        "",
+
+                    brand:
+
+                        event.brand
+
+                        ||
+
+                        match.brand
+
+                        ||
+
+                        ""
+
+                };
+
+
+                Object.entries(
+                    canonicalMetadata
+                ).forEach(
+                    ([
+                        key,
+                        value
+                    ]) => {
+
+                        if (
+                            value
+
+                            &&
+
+                            match[key] !==
+                                value
+                        ) {
+
+                            match[key] =
+                                value;
+
+
+                            changed =
+                                true;
+
+                        }
+
+                    }
+                );
 
 
                 if (changed) {
