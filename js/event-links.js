@@ -131,9 +131,18 @@ async function loadEventLinks() {
             event => {
 
 
+                                const scheduleText =
+                    normalizeText(
+                        window.OWLCalendar
+                            .formatEventSlot(
+                                event
+                            )
+                    );
+
+
                 const key =
 
-                    `${normalizeDate(event.date)}|${normalizeText(event.name)}`;
+                    `${scheduleText}|${normalizeText(event.name)}`;
 
 
                 eventLookup.set(
@@ -198,8 +207,8 @@ async function loadEventLinks() {
                     }
 
 
-                    const dateText =
-                        normalizeDate(
+                                        const dateText =
+                        normalizeText(
                             dateCell.textContent
                         );
 
