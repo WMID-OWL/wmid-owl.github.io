@@ -2,6 +2,88 @@
   "version": 1,
   "results": [
     {
+      "id": "generator-1789428443720-gscirn",
+      "generatorType": "JoW Private Booking Style",
+      "generatorKey": "jow-booking-style",
+      "mode": "canon",
+      "method": "fixed-choice",
+      "methodLabel": "Secure single-choice draw",
+      "label": "WWE Fiday Night Smackdown July 2026 Week 1",
+      "relatedContext": "Smackdown - July 2026 Week 1",
+      "eligiblePool": [
+        "Quality",
+        "Standard",
+        "Long Term",
+        "Bizzaro",
+        "Terrible"
+      ],
+      "excludedEntries": [],
+      "result": [
+        "Standard"
+      ],
+      "randomDecisions": [
+        {
+          "type": "fixed-choice",
+          "pool": [
+            "Quality",
+            "Standard",
+            "Long Term",
+            "Bizzaro",
+            "Terrible"
+          ],
+          "selectedIndex": 1,
+          "selected": "Standard"
+        }
+      ],
+      "generatedAt": "2026-09-14T23:27:23.720Z",
+      "confirmed": true,
+      "jowBookingStyle": {
+        "selectedStyle": "Standard"
+      },
+      "confirmedAt": "2026-09-14T23:27:26.816Z"
+    },
+    {
+      "id": "generator-1789427679643-162nkfh",
+      "generatorType": "JoW Private Booking Style",
+      "generatorKey": "jow-booking-style",
+      "mode": "canon",
+      "method": "fixed-choice",
+      "methodLabel": "Secure single-choice draw",
+      "label": "WWE Monday Night Raw July 2026 Week 1",
+      "relatedContext": "Raw - July 2026 Week 1",
+      "eligiblePool": [
+        "Quality",
+        "Standard",
+        "Long Term",
+        "Bizzaro",
+        "Terrible"
+      ],
+      "excludedEntries": [],
+      "result": [
+        "Standard"
+      ],
+      "randomDecisions": [
+        {
+          "type": "fixed-choice",
+          "pool": [
+            "Quality",
+            "Standard",
+            "Long Term",
+            "Bizzaro",
+            "Terrible"
+          ],
+          "selectedIndex": 1,
+          "selected": "Standard"
+        }
+      ],
+      "generatedAt": "2026-09-14T23:14:39.643Z",
+      "confirmed": true,
+      "jowBookingStyle": {
+        "selectedStyle": "Standard"
+      },
+      "confirmedAt": "2026-09-14T23:14:55.604Z"
+    },
+    {
       "id": "generator-1789180616312-vd2081",
       "generatorKey": "injury-evaluation",
       "generatorType": "Injury Evaluation",

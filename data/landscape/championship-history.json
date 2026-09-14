@@ -826,6 +826,76 @@
       "eventName": "",
       "wonDate": "",
       "recordedAt": "2026-09-12T08:25:02.827Z"
+    },
+    {
+      "id": "change-1789426852248-2",
+      "titleId": "wwe-wwe-tag-team-championships",
+      "companyId": "wwe",
+      "titleName": "Tag Team Championships",
+      "previousChampionName": "M.F.T.",
+      "newChampionName": "The Usos",
+      "changeType": "title-change",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-09-14T23:00:52.248Z"
+    },
+    {
+      "id": "change-1789426852248-11",
+      "titleId": "wwe-wwe-world-tag-team-championships",
+      "companyId": "wwe",
+      "titleName": "World Tag Team Championships",
+      "previousChampionName": "",
+      "newChampionName": "The Street Profits",
+      "changeType": "new-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-09-14T23:00:52.248Z"
+    },
+    {
+      "id": "change-1789427520460-2",
+      "titleId": "wwe-wwe-tag-team-championships",
+      "companyId": "wwe",
+      "titleName": "Tag Team Championships",
+      "previousChampionName": "The Usos",
+      "newChampionName": "R Truth & Damian Priest",
+      "changeType": "title-change",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-09-14T23:12:00.460Z"
+    },
+    {
+      "id": "change-1789427520460-3",
+      "titleId": "wwe-wwe-undisputed-championship",
+      "companyId": "wwe",
+      "titleName": "Undisputed Championship",
+      "previousChampionName": "Sami Zayn",
+      "newChampionName": "Cody Rhodes",
+      "changeType": "title-change",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-09-14T23:12:00.460Z"
+    },
+    {
+      "id": "change-1789427520460-11",
+      "titleId": "wwe-wwe-world-tag-team-championships",
+      "companyId": "wwe",
+      "titleName": "World Tag Team Championships",
+      "previousChampionName": "The Street Profits",
+      "newChampionName": "M.F.T.",
+      "changeType": "title-change",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-09-14T23:12:00.460Z"
     }
   ]
 }

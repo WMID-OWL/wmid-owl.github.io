@@ -2,6 +2,61 @@
   "version": 1,
   "events": [
     {
+      "id": "2026-07-week-1-wwe-raw",
+      "periodId": "2026-07",
+      "stage": "week-1",
+      "companyId": "wwe",
+      "showId": "wwe-raw",
+      "eventName": "WWE Raw",
+      "eventType": "weekly",
+      "bookingStyle": "standard",
+      "overallRating": 0,
+      "location": {
+        "city": "Huntsville",
+        "region": "Alabama",
+        "country": "United States"
+      },
+      "matches": [
+        {
+          "id": "match-1",
+          "resultText": "The Usos defeated M.F.T.",
+          "rating": 3.25,
+          "storyContext": ""
+        },
+        {
+          "id": "match-2",
+          "resultText": "Becky Lynch defeated AJ Lee to win the WWE Women's Intercontinental Championship",
+          "rating": 4.25,
+          "storyContext": "The Vacant Women's Intercontinental Title"
+        }
+      ],
+      "segments": [
+        {
+          "id": "segment-1",
+          "segmentType": "Backstage Segment",
+          "summary": "Brock Lesnar w/ Paul Heyman and Penta.\n\nTense. Had to be separated by security.",
+          "rating": 4.25,
+          "storyContext": "All or Nothing"
+        },
+        {
+          "id": "segment-2",
+          "segmentType": "Cryptic Threat",
+          "summary": "The Usos\n\nCame out and delivered a warning shot to the division.",
+          "rating": 4.25,
+          "storyContext": "Grudge"
+        },
+        {
+          "id": "segment-3",
+          "segmentType": "Fight",
+          "summary": "LA Knight and Joe Hendry\n\nSmall scuffle.",
+          "rating": 4.25,
+          "storyContext": "Friendly Competition"
+        }
+      ],
+      "universeNotes": "",
+      "recordedAt": "2026-09-14T23:25:28.797Z"
+    },
+    {
       "id": "ascension-ep-1-2026-07-week-1",
       "periodId": "2026-07",
       "stage": "week-1",
@@ -72,6 +127,48 @@
       "universeNotes": "",
       "source": "owl-auto-sync",
       "sourceEventId": "ascension-ep-1-2026-07-week-1"
+    },
+    {
+      "id": "2026-07-week-1-wwe-smackdown",
+      "periodId": "2026-07",
+      "stage": "week-1",
+      "companyId": "wwe",
+      "showId": "wwe-smackdown",
+      "eventName": "WWE SmackDown",
+      "eventType": "weekly",
+      "bookingStyle": "standard",
+      "overallRating": 3.67,
+      "location": {
+        "city": "Clearwater",
+        "region": "Florida",
+        "country": "United States"
+      },
+      "matches": [
+        {
+          "id": "match-1",
+          "resultText": "Cody Rhodes defeated Sami Zayn via DQ (interference) to retain the Undisputed WWE Championship",
+          "rating": 3,
+          "storyContext": "New Challenger"
+        }
+      ],
+      "segments": [
+        {
+          "id": "segment-1",
+          "segmentType": "Promo",
+          "summary": "Cody Rhodes\n\nPromo",
+          "rating": 3.75,
+          "storyContext": ""
+        },
+        {
+          "id": "segment-2",
+          "segmentType": "Backstage Segment",
+          "summary": "CharLexa",
+          "rating": 4.25,
+          "storyContext": ""
+        }
+      ],
+      "universeNotes": "",
+      "recordedAt": "2026-09-14T23:37:50.359Z"
     }
   ]
 }
