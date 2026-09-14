@@ -1627,11 +1627,17 @@ document.body.dataset.brand =
 
         // NEWEST MATCHES FIRST
 
-        wrestlerMatches.sort(
+               wrestlerMatches.sort(
             (a, b) =>
-                new Date(b.date)
+                window.OWLCalendar
+                    .eventSortValue(
+                        b
+                    )
                 -
-                new Date(a.date)
+                window.OWLCalendar
+                    .eventSortValue(
+                        a
+                    )
         );
 
 
@@ -1702,13 +1708,22 @@ document.body.dataset.brand =
 
                 row.innerHTML = `
 
-                    <td>
-                        ${match.date}
+                                        <td>
+                        ${window.OWLCalendar
+                            .formatEventSlot(
+                                match
+                            )}
                     </td>
 
 
                     <td>
-                        ${match.event}
+                        ${
+                            match.eventName
+                            ||
+                            match.event
+                            ||
+                            "Event Not Found"
+                        }
                     </td>
 
 
