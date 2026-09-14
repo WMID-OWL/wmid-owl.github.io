@@ -603,20 +603,20 @@ async function loadHomePage() {
         // =================================
 
 
-        const latestMatches =
+                const latestMatches =
             [...matches]
 
                 .sort(
                     (a, b) =>
 
-                        getDateValue(
-                            b.date
+                        getEventScheduleValue(
+                            eventMap[b.eventId] || b
                         )
 
                         -
 
-                        getDateValue(
-                            a.date
+                        getEventScheduleValue(
+                            eventMap[a.eventId] || a
                         )
                 )
 
@@ -670,7 +670,7 @@ async function loadHomePage() {
 
 
                         <span>
-                            ${formatDate(match.date)}
+                        ${formatEventSchedule(event || match)}
                         </span>
 
 
