@@ -504,75 +504,203 @@ async function loadMatchDatabase() {
                 "";
 
 
-            const sortedMatches =
-                [...filteredMatches].sort(
-                    (a, b) =>
+            const formatResultPeriod = (
+    match
+) => {
 
-                        new Date(b.date)
-                        -
-                        new Date(a.date)
+    if (
+        window.OWLCalendar
+
+        &&
+
+        typeof window.OWLCalendar
+            .formatEventSlot ===
+            "function"
+    ) {
+
+        return window.OWLCalendar
+            .formatEventSlot(
+                match
+            );
+
+    }
+
+
+    const periodParts =
+        String(
+            match.periodId || ""
+        ).split("-");
+
+
+    const year =
+        periodParts[0] || "";
+
+
+    const monthIndex =
+        Number(
+            periodParts[1]
+        ) - 1;
+
+
+    const monthNames = [
+
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+
+    ];
+
+
+    const periodText =
+
+        year
+
+        &&
+
+        monthNames[monthIndex]
+
+            ? `${monthNames[monthIndex]} ${year}`
+
+            : match.periodId || "";
+
+
+    const weekMatch =
+        String(
+            match.stage || ""
+        ).match(
+            /^week-(\d+)$/i
+        );
+
+
+    const stageText =
+
+        weekMatch
+
+            ? `Week ${weekMatch[1]}`
+
+            : String(
+                match.stage || ""
+            )
+                .replaceAll(
+                    "-",
+                    " "
                 );
 
 
-            resultCount.textContent =
+    return (
 
-                `${sortedMatches.length} ${
-                    sortedMatches.length === 1
-                        ? "match"
-                        : "matches"
-                }`;
+        [
+            periodText,
+            stageText
+        ]
+            .filter(
+                Boolean
+            )
+            .join(" • ")
 
+        ||
 
+        "Schedule Not Set"
 
-            if (
-                sortedMatches.length === 0
-            ) {
+    );
 
-
-                noResults.hidden =
-                    false;
-
-
-                matchTable.hidden =
-                    true;
+};
 
 
-                return;
+const resultPeriodSortValue = (
+    match
+) => {
 
-            }
-
-
-
-            noResults.hidden =
-                true;
-
-
-            matchTable.hidden =
-                false;
-
-
-
-            sortedMatches.forEach(
-                match => {
+    const periodValue =
+        Number(
+            String(
+                match.periodId || ""
+            ).replace(
+                "-",
+                ""
+            )
+        ) || 0;
 
 
-                    const row =
-                        document.createElement(
-                            "tr"
-                        );
+    const weekValue =
+        Number(
+
+            String(
+                match.stage || ""
+            ).match(
+                /\d+/
+            )?.[0]
+
+            ||
+
+            0
+
+        );
 
 
-                    row.innerHTML = `
+    return (
+        periodValue * 10
+        +
+        weekValue
+    );
 
-                        <td>
-                            ${match.date}
-                        </td>
+};
 
 
-                        <td>
-                            ${match.event}
-                        </td>
+const sortedMatches =
+    [...filteredMatches].sort(
+        (a, b) =>
 
+            resultPeriodSortValue(
+                b
+            )
+
+            -
+
+            resultPeriodSortValue(
+                a
+            )
+    );
+
+
+resultCount.textContent =
+    `${sortedMatches.length} ${
+        sortedMatches.length === 1
+            ? "match"
+            : "matches"
+    }`;
+
+
+sortedMatches.forEach(
+    match => {
+        const row =
+            document.createElement(
+                "tr"
+            );
+
+
+        row.innerHTML = `
+            <td>
+                ${formatResultPeriod(match)}
+            </td>
+            <td>
+                ${
+                    match.eventName
+                    ||
+                    match.event
+                    ||
+                    "Event Not Found"
+                }
+            </td>
 
                         <td>
 
