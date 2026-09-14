@@ -508,23 +508,8 @@ async function loadMatchDatabase() {
     match
 ) => {
 
-    if (
-        window.OWLCalendar
-
-        &&
-
-        typeof window.OWLCalendar
-            .formatEventSlot ===
-            "function"
-    ) {
-
-        return window.OWLCalendar
-            .formatEventSlot(
-                match
-            );
-
-    }
-
+       // Completed results carry their own
+    // OWL periodId and stage metadata.
 
     const periodParts =
         String(
