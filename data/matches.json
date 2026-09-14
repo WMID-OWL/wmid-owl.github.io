@@ -40,7 +40,10 @@
     },
     "event": "Ascension Ep. 1",
     "eventType": "weekly",
-    "brand": "Ascension"
+    "brand": "Ascension",
+    "periodId": "2026-07",
+    "stage": "week-1",
+    "eventName": "Ascension Ep. 1"
   },
   {
     "id": "announced-0005",
@@ -83,7 +86,10 @@
     },
     "event": "Ascension Ep. 1",
     "eventType": "weekly",
-    "brand": "Ascension"
+    "brand": "Ascension",
+    "periodId": "2026-07",
+    "stage": "week-1",
+    "eventName": "Ascension Ep. 1"
   },
   {
     "id": "announced-0004",
@@ -128,7 +134,10 @@
     },
     "event": "Ascension Ep. 1",
     "eventType": "weekly",
-    "brand": "Ascension"
+    "brand": "Ascension",
+    "periodId": "2026-07",
+    "stage": "week-1",
+    "eventName": "Ascension Ep. 1"
   },
   {
     "id": "announced-0002",
@@ -171,7 +180,10 @@
     },
     "event": "Ascension Ep. 1",
     "eventType": "weekly",
-    "brand": "Ascension"
+    "brand": "Ascension",
+    "periodId": "2026-07",
+    "stage": "week-1",
+    "eventName": "Ascension Ep. 1"
   },
   {
     "id": "announced-0006",
@@ -214,7 +226,10 @@
     },
     "event": "Ascension Ep. 1",
     "eventType": "weekly",
-    "brand": "Ascension"
+    "brand": "Ascension",
+    "periodId": "2026-07",
+    "stage": "week-1",
+    "eventName": "Ascension Ep. 1"
   },
   {
     "id": "announced-0007",
@@ -257,7 +272,10 @@
     },
     "event": "Ascension Ep. 1",
     "eventType": "weekly",
-    "brand": "Ascension"
+    "brand": "Ascension",
+    "periodId": "2026-07",
+    "stage": "week-1",
+    "eventName": "Ascension Ep. 1"
   },
   {
     "id": "announced-0003",
@@ -300,6 +318,9 @@
     },
     "event": "Ascension Ep. 1",
     "eventType": "weekly",
-    "brand": "Ascension"
+    "brand": "Ascension",
+    "periodId": "2026-07",
+    "stage": "week-1",
+    "eventName": "Ascension Ep. 1"
   }
 ]
