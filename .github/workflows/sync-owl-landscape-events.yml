@@ -1,0 +1,60 @@
+name: Sync OWL Landscape Events
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+    paths:
+      - "data/events.json"
+      - "data/matches.json"
+      - "data/segments.json"
+      - "data/wrestlers.json"
+      - "data/teams.json"
+      - "data/landscape/shows.json"
+      - "data/landscape/location-pools.json"
+      - "scripts/sync-owl-landscape-events.mjs"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: landscape-owl-sync
+  cancel-in-progress: false
+
+jobs:
+  sync-owl-landscape-events:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Sync completed OWL events into Landscape
+        run: |
+          node scripts/sync-owl-landscape-events.mjs
+
+      - name: Commit updated Landscape events
+        run: |
+          git add data/landscape/events.json
+
+          if git diff --cached --quiet; then
+            echo "No OWL Landscape sync changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git commit \
+            -m "Sync completed OWL events into Landscape"
+
+          git push
