@@ -942,12 +942,18 @@ function formatFinish(match) {
 
 
 
-        teamMatches.sort(
+                teamMatches.sort(
             (a, b) =>
 
-                new Date(b.date)
+                window.OWLCalendar
+                    .eventSortValue(
+                        b
+                    )
                 -
-                new Date(a.date)
+                window.OWLCalendar
+                    .eventSortValue(
+                        a
+                    )
         );
 
 
@@ -1008,13 +1014,22 @@ const finishText =
 
                 row.innerHTML = `
 
-                    <td>
-                        ${match.date}
+                                        <td>
+                        ${window.OWLCalendar
+                            .formatEventSlot(
+                                match
+                            )}
                     </td>
 
 
                     <td>
-                        ${match.event}
+                        ${
+                            match.eventName
+                            ||
+                            match.event
+                            ||
+                            "Event Not Found"
+                        }
                     </td>
 
 
