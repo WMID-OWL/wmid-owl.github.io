@@ -495,7 +495,7 @@ async function loadMatchDatabase() {
         // =================================
 
 
-        function renderResults(
+               function renderResults(
             filteredMatches
         ) {
 
@@ -504,188 +504,75 @@ async function loadMatchDatabase() {
                 "";
 
 
-            const formatResultPeriod = (
-    match
-) => {
+            const sortedMatches =
+                [...filteredMatches].sort(
+                    (a, b) =>
 
-       // Completed results carry their own
-    // OWL periodId and stage metadata.
+                        window.OWLCalendar
+                            .eventSortValue(
+                                b
+                            )
 
-    const periodParts =
-        String(
-            match.periodId || ""
-        ).split("-");
+                        -
 
-
-    const year =
-        periodParts[0] || "";
-
-
-    const monthIndex =
-        Number(
-            periodParts[1]
-        ) - 1;
-
-
-    const monthNames = [
-
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-
-    ];
-
-
-    const periodText =
-
-        year
-
-        &&
-
-        monthNames[monthIndex]
-
-            ? `${monthNames[monthIndex]} ${year}`
-
-            : match.periodId || "";
-
-
-    const weekMatch =
-        String(
-            match.stage || ""
-        ).match(
-            /^week-(\d+)$/i
-        );
-
-
-    const stageText =
-
-        weekMatch
-
-            ? `Week ${weekMatch[1]}`
-
-            : String(
-                match.stage || ""
-            )
-                .replaceAll(
-                    "-",
-                    " "
+                        window.OWLCalendar
+                            .eventSortValue(
+                                a
+                            )
                 );
 
 
-    return (
-
-        [
-            periodText,
-            stageText
-        ]
-            .filter(
-                Boolean
-            )
-            .join(" • ")
-
-        ||
-
-        "Schedule Not Set"
-
-    );
-
-};
+            const hasResults =
+                sortedMatches.length > 0;
 
 
-const resultPeriodSortValue = (
-    match
-) => {
+            resultCount.textContent =
+                `${sortedMatches.length} ${
 
-    const periodValue =
-        Number(
-            String(
-                match.periodId || ""
-            ).replace(
-                "-",
-                ""
-            )
-        ) || 0;
+                    sortedMatches.length === 1
+
+                        ? "match"
+
+                        : "matches"
+
+                }`;
 
 
-    const weekValue =
-        Number(
-
-            String(
-                match.stage || ""
-            ).match(
-                /\d+/
-            )?.[0]
-
-            ||
-
-            0
-
-        );
+            noResults.hidden =
+                hasResults;
 
 
-    return (
-        periodValue * 10
-        +
-        weekValue
-    );
-
-};
+            matchTable.hidden =
+                !hasResults;
 
 
-const sortedMatches =
-    [...filteredMatches].sort(
-        (a, b) =>
+            sortedMatches.forEach(
+                match => {
 
-            resultPeriodSortValue(
-                b
-            )
-
-            -
-
-            resultPeriodSortValue(
-                a
-            )
-    );
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
 
 
-resultCount.textContent =
-    `${sortedMatches.length} ${
-        sortedMatches.length === 1
-            ? "match"
-            : "matches"
-    }`;
+                    row.innerHTML = `
 
+                        <td>
+                            ${window.OWLCalendar
+                                .formatEventSlot(
+                                    match
+                                )}
+                        </td>
 
-sortedMatches.forEach(
-    match => {
-        const row =
-            document.createElement(
-                "tr"
-            );
-
-
-        row.innerHTML = `
-            <td>
-                ${formatResultPeriod(match)}
-            </td>
-            <td>
-                ${
-                    match.eventName
-                    ||
-                    match.event
-                    ||
-                    "Event Not Found"
-                }
-            </td>
+                        <td>
+                            ${
+                                match.eventName
+                                ||
+                                match.event
+                                ||
+                                "Event Not Found"
+                            }
+                        </td>
 
                         <td>
 
@@ -701,11 +588,9 @@ sortedMatches.forEach(
 
                         </td>
 
-
                         <td>
                             ${getWinnerText(match)}
                         </td>
-
 
                         <td>
 
@@ -719,7 +604,6 @@ sortedMatches.forEach(
                             }
 
                         </td>
-
 
                         <td>
 
