@@ -7560,7 +7560,7 @@ function crResultsBuildCompletedRecord(
     }
 
 
-    record.eventId =
+        record.eventId =
         event.id
         ||
         record.eventId
@@ -7568,10 +7568,28 @@ function crResultsBuildCompletedRecord(
         "";
 
 
-    record.date =
-        event.date
+    record.periodId =
+        event.periodId
         ||
-        record.date
+        record.periodId
+        ||
+        "";
+
+
+    record.stage =
+        event.stage
+        ||
+        record.stage
+        ||
+        "";
+
+
+    record.eventName =
+        event.name
+        ||
+        record.eventName
+        ||
+        record.event
         ||
         "";
 
@@ -7580,6 +7598,8 @@ function crResultsBuildCompletedRecord(
         event.name
         ||
         record.event
+        ||
+        record.eventName
         ||
         "";
 
