@@ -1,4 +1,77 @@
 {
   "version": 1,
-  "events": []
+  "events": [
+    {
+      "id": "ascension-ep-1-2026-07-week-1",
+      "periodId": "2026-07",
+      "stage": "week-1",
+      "eventType": "weekly",
+      "companyId": "owl",
+      "showId": "owl-ascension",
+      "eventName": "Ascension Ep. 1",
+      "bookingStyle": "OWL Canon",
+      "overallRating": 3.29,
+      "location": {
+        "venue": "OWL Parliament Hall",
+        "city": "",
+        "region": "",
+        "country": ""
+      },
+      "matches": [
+        {
+          "id": "announced-0001",
+          "matchType": "Singles",
+          "resultText": "Jack Rabbid defeated Atua Tupu by Pinfall.",
+          "rating": 3.5,
+          "storyContext": ""
+        },
+        {
+          "id": "announced-0005",
+          "matchType": "Singles",
+          "resultText": "Giulia defeated Katsumi Nanami by Pinfall.",
+          "rating": 4.5,
+          "storyContext": ""
+        },
+        {
+          "id": "announced-0004",
+          "matchType": "Tag Team",
+          "resultText": "Johnny Gargano & Zack Sabre Jr. defeated Shane Taylor & Keith Lee by Submission.",
+          "rating": 3.5,
+          "storyContext": ""
+        },
+        {
+          "id": "announced-0002",
+          "matchType": "Singles",
+          "resultText": "Liberty Van Horn defeated Roxanne Perez by KO.",
+          "rating": 2,
+          "storyContext": ""
+        },
+        {
+          "id": "announced-0006",
+          "matchType": "Singles",
+          "resultText": "Speedball Mike Bailey defeated Blackheart Lio Rush by Pinfall.",
+          "rating": 4.5,
+          "storyContext": ""
+        },
+        {
+          "id": "announced-0007",
+          "matchType": "Singles",
+          "resultText": "Willow Nightingale defeated Bayley by Pinfall.",
+          "rating": 2,
+          "storyContext": ""
+        },
+        {
+          "id": "announced-0003",
+          "matchType": "Singles",
+          "resultText": "Jayden Alfah defeated Ilja Dragunov by Pinfall.",
+          "rating": 3,
+          "storyContext": ""
+        }
+      ],
+      "segments": [],
+      "universeNotes": "",
+      "source": "owl-auto-sync",
+      "sourceEventId": "ascension-ep-1-2026-07-week-1"
+    }
+  ]
 }
