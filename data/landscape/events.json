@@ -348,6 +348,67 @@
       ],
       "universeNotes": "",
       "recordedAt": "2026-09-14T23:37:50.359Z"
+    },
+    {
+      "id": "2026-07-week-1-mlw-fusion",
+      "periodId": "2026-07",
+      "stage": "week-1",
+      "companyId": "mlw",
+      "showId": "mlw-fusion",
+      "eventName": "MLW Fusion",
+      "eventType": "weekly",
+      "bookingStyle": "bizzaro",
+      "overallRating": 3.58,
+      "location": {
+        "city": "Cleveland",
+        "region": "Ohio",
+        "country": "United States"
+      },
+      "matches": [
+        {
+          "id": "match-1",
+          "resultText": "Kimchee defeated Doc Gallows, Joe Coffey, Simon Gotch, Veda Scott, Ernset \"The Cat\" Miller, Killer Kross, KUSHIDA & Donovan Dijak",
+          "rating": 2.25,
+          "storyContext": "New Challenger 9-Way Match"
+        },
+        {
+          "id": "match-2",
+          "resultText": "LJ Cleary defeated Alan Angles",
+          "rating": 2.75,
+          "storyContext": ""
+        },
+        {
+          "id": "match-3",
+          "resultText": "Tracy Williams defeated Andrew Everett in a 2/3 falls match. \n1st fall: Williams\n2nd fall: Everett\n3rd fall: Williams",
+          "rating": 3.75,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "id": "segment-1",
+          "segmentType": "Dangerous Attack",
+          "summary": "Killer Kross and Scalett are backstage when KUSHIDA attack and ambushes him. KUSHIDA puts Kross' neck between a steel chair and stomps on the chair. Fans are concerned as a stretcher is brought out for Kross.",
+          "rating": 4.75,
+          "storyContext": "New Challenger"
+        },
+        {
+          "id": "segment-2",
+          "segmentType": "Spooky Trick",
+          "summary": "LaBron Kozone is walking backstage and the lights start flickering. A shadowy figure appeared in the hallway after all the lights go out. He grabs the cover to find Austin Aries playing a trick on him",
+          "rating": 4.75,
+          "storyContext": ""
+        },
+        {
+          "id": "segment-3",
+          "segmentType": "Backstage BBQ",
+          "summary": "Smoke if filling the hall coming from a room backstage, security gets the door open to find Kimchee in the locker room having an indoor BBQ. Staff members tell him about fire safety and it being a hazard and his kicks him in the face",
+          "rating": 3.25,
+          "storyContext": ""
+        }
+      ],
+      "universeNotes": "",
+      "recordedAt": "2026-09-15T01:07:24.964Z"
     }
   ]
 }

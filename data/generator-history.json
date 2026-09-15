@@ -2,6 +2,47 @@
   "version": 1,
   "results": [
     {
+      "id": "generator-1789433671336-mrzozo",
+      "generatorType": "JoW Private Booking Style",
+      "generatorKey": "jow-booking-style",
+      "mode": "canon",
+      "method": "fixed-choice",
+      "methodLabel": "Secure single-choice draw",
+      "label": "MLW Fusion July 2026 Week 1",
+      "relatedContext": "Fusion - July 2026 Week 1",
+      "eligiblePool": [
+        "Quality",
+        "Standard",
+        "Long Term",
+        "Bizzaro",
+        "Terrible"
+      ],
+      "excludedEntries": [],
+      "result": [
+        "Bizzaro"
+      ],
+      "randomDecisions": [
+        {
+          "type": "fixed-choice",
+          "pool": [
+            "Quality",
+            "Standard",
+            "Long Term",
+            "Bizzaro",
+            "Terrible"
+          ],
+          "selectedIndex": 3,
+          "selected": "Bizzaro"
+        }
+      ],
+      "generatedAt": "2026-09-15T00:54:31.336Z",
+      "confirmed": true,
+      "jowBookingStyle": {
+        "selectedStyle": "Bizzaro"
+      },
+      "confirmedAt": "2026-09-15T00:54:49.186Z"
+    },
+    {
       "id": "generator-1789432314390-pi0t8k",
       "generatorType": "JoW Private Booking Style",
       "generatorKey": "jow-booking-style",
