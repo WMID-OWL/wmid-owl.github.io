@@ -1092,6 +1092,48 @@
       "eventName": "",
       "wonDate": "",
       "recordedAt": "2026-09-15T02:15:10.050Z"
+    },
+    {
+      "id": "change-1789439451418-2",
+      "titleId": "tna-knockouts-championship",
+      "companyId": "tna",
+      "titleName": "Knockouts Championship",
+      "previousChampionName": "Xia Brookside",
+      "newChampionName": "Mickie James",
+      "changeType": "title-change",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-09-15T02:30:51.418Z"
+    },
+    {
+      "id": "change-1789439451418-3",
+      "titleId": "tna-knockouts-tag-team-championships",
+      "companyId": "tna",
+      "titleName": "Knockouts Tag Team Championships",
+      "previousChampionName": "Demon x Bunny",
+      "newChampionName": "The Elegance Brand (M & Heather)",
+      "changeType": "title-change",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-09-15T02:30:51.418Z"
+    },
+    {
+      "id": "change-1789439451418-7",
+      "titleId": "tna-x-division-championship",
+      "companyId": "tna",
+      "titleName": "X - Division Championship",
+      "previousChampionName": "",
+      "newChampionName": "Uhaa Nation",
+      "changeType": "new-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-09-15T02:30:51.418Z"
     }
   ]
 }

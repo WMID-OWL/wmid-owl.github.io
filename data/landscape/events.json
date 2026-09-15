@@ -300,6 +300,48 @@
       "recordedAt": "2026-09-15T00:06:51.769Z"
     },
     {
+      "id": "2026-07-week-1-tna-impact",
+      "periodId": "2026-07",
+      "stage": "week-1",
+      "companyId": "tna",
+      "showId": "tna-impact",
+      "eventName": "TNA Impact",
+      "eventType": "weekly",
+      "bookingStyle": "long-term",
+      "overallRating": 3.75,
+      "location": {
+        "city": "Boston",
+        "region": "Massachusetts",
+        "country": "United States"
+      },
+      "matches": [
+        {
+          "id": "match-1",
+          "resultText": "Mickie James defeated Tasha Steelz",
+          "rating": 3.25,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "id": "segment-1",
+          "segmentType": "Slime Surprise",
+          "summary": "A big covered box in the ring. Eddie Edwards invites Matt Hardy to the ring, promising a special gift to thank him. Turns out it was empty, then a load of slime was dumped from the ceiling falling on Matt Hardy",
+          "rating": 4.25,
+          "storyContext": ""
+        },
+        {
+          "id": "segment-2",
+          "segmentType": "Split Interview",
+          "summary": "An live interview with Nic Nemeth and Mustafa Ali in separate locations. Tense conversation lead to heated arguing as they verbally attacked each other.",
+          "rating": 3.75,
+          "storyContext": "Better Wrestler"
+        }
+      ],
+      "universeNotes": "",
+      "recordedAt": "2026-09-15T02:25:33.427Z"
+    },
+    {
       "id": "2026-07-week-1-roh-on-honorclub",
       "periodId": "2026-07",
       "stage": "week-1",
