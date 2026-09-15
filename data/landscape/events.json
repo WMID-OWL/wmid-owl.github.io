@@ -57,6 +57,81 @@
       "recordedAt": "2026-09-14T23:25:28.797Z"
     },
     {
+      "id": "2026-07-week-1-aaa-lucha-libre",
+      "periodId": "2026-07",
+      "stage": "week-1",
+      "companyId": "aaa",
+      "showId": "aaa-lucha-libre",
+      "eventName": "AAA Lucha Libre",
+      "eventType": "weekly",
+      "bookingStyle": "long-term",
+      "overallRating": 3.72,
+      "location": {
+        "venue": "Gimnasio Olímpico Juan de la Barrera",
+        "city": "Mexico City",
+        "region": "Ciudad de México",
+        "country": "Mexico"
+      },
+      "matches": [
+        {
+          "id": "match-1",
+          "resultText": "Los Americanos defeated La Rebeliòn",
+          "rating": 4,
+          "storyContext": "Disrepect"
+        },
+        {
+          "id": "match-2",
+          "resultText": "Chessman defeated Sayrus",
+          "rating": 2.75,
+          "storyContext": "Retire Me"
+        },
+        {
+          "id": "match-3",
+          "resultText": "Tigre Universitario defeated King Vikingo",
+          "rating": 3.25,
+          "storyContext": "Career vs Career"
+        },
+        {
+          "id": "match-4",
+          "resultText": "Aztec Warriors defeated The War Raiders. Didnt like the squash match disrepect",
+          "rating": 3.75,
+          "storyContext": "Disrepect"
+        }
+      ],
+      "segments": [
+        {
+          "id": "segment-1",
+          "segmentType": "Local Squash",
+          "summary": "The War Raiders issuing an open challenge. 2 local stars Christian Contreras and Joe Hunter answered the challenge. War Raiders made short work of the team in a quick match.",
+          "rating": 3.25,
+          "storyContext": ""
+        },
+        {
+          "id": "segment-2",
+          "segmentType": "Push Up Contest",
+          "summary": "Aero Star and Colmillo de Plata are out here trying to see who's stronger so they have a competition. After Colmillo de Plata performed dozens of reps easily, Aero Star refused to participate and instead threw him out of the ring.",
+          "rating": 3.75,
+          "storyContext": "Friendly Contest"
+        },
+        {
+          "id": "segment-3",
+          "segmentType": "Car Destruction",
+          "summary": "El Grande Americano is in the parking lot walking to his car when Psycho Clown appears and attacks his car with a baseball bat",
+          "rating": 4.75,
+          "storyContext": "Disrespect"
+        },
+        {
+          "id": "segment-4",
+          "segmentType": "Fight Tease",
+          "summary": "Pagano and Dr. Wagner Jr are talking in the ring. Tensions are getting high...Pagano teases a fight but backs out of the ring at the last minute.",
+          "rating": 4.25,
+          "storyContext": "Retire Me"
+        }
+      ],
+      "universeNotes": "",
+      "recordedAt": "2026-09-15T00:49:32.225Z"
+    },
+    {
       "id": "ascension-ep-1-2026-07-week-1",
       "periodId": "2026-07",
       "stage": "week-1",

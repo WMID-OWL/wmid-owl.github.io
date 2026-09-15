@@ -2,6 +2,47 @@
   "version": 1,
   "results": [
     {
+      "id": "generator-1789432314390-pi0t8k",
+      "generatorType": "JoW Private Booking Style",
+      "generatorKey": "jow-booking-style",
+      "mode": "canon",
+      "method": "fixed-choice",
+      "methodLabel": "Secure single-choice draw",
+      "label": "AAA Lucha Libre July 2026 Week 1",
+      "relatedContext": "AAA - July 2026 Week 1",
+      "eligiblePool": [
+        "Quality",
+        "Standard",
+        "Long Term",
+        "Bizzaro",
+        "Terrible"
+      ],
+      "excludedEntries": [],
+      "result": [
+        "Long Term"
+      ],
+      "randomDecisions": [
+        {
+          "type": "fixed-choice",
+          "pool": [
+            "Quality",
+            "Standard",
+            "Long Term",
+            "Bizzaro",
+            "Terrible"
+          ],
+          "selectedIndex": 2,
+          "selected": "Long Term"
+        }
+      ],
+      "generatedAt": "2026-09-15T00:31:54.390Z",
+      "confirmed": true,
+      "jowBookingStyle": {
+        "selectedStyle": "Long Term"
+      },
+      "confirmedAt": "2026-09-15T00:31:58.005Z"
+    },
+    {
       "id": "generator-1789430841628-19vq33s",
       "generatorType": "JoW Private Booking Style",
       "generatorKey": "jow-booking-style",
