@@ -300,6 +300,60 @@
       "recordedAt": "2026-09-15T00:06:51.769Z"
     },
     {
+      "id": "2026-07-week-1-roh-on-honorclub",
+      "periodId": "2026-07",
+      "stage": "week-1",
+      "companyId": "roh",
+      "showId": "roh-on-honorclub",
+      "eventName": "ROH on HonorClub",
+      "eventType": "weekly",
+      "bookingStyle": "quality",
+      "overallRating": 3.75,
+      "location": {
+        "venue": "WJCT Studios",
+        "city": "Jacksonville",
+        "region": "Florida",
+        "country": "United States"
+      },
+      "matches": [
+        {
+          "id": "match-1",
+          "resultText": "Ace Austin defeated The Beast Mortos",
+          "rating": 3.25,
+          "storyContext": "Competition"
+        },
+        {
+          "id": "match-2",
+          "resultText": "Serena Deeb defeated Yuka Sakazaki",
+          "rating": 4,
+          "storyContext": ""
+        },
+        {
+          "id": "match-3",
+          "resultText": "The Von Erichs defeated Murder Machines retaining the ROH World Tag Team Championships",
+          "rating": 3.25,
+          "storyContext": "ROH World Tag Team Titles"
+        },
+        {
+          "id": "match-4",
+          "resultText": "Dante Martin defeated Bryan Keith retaining the ROH World Championship",
+          "rating": 4,
+          "storyContext": "ROH World Title"
+        }
+      ],
+      "segments": [
+        {
+          "id": "segment-1",
+          "segmentType": "After Match Attack",
+          "summary": "Ace Austin is leaving the ring after his win over the Beast Mortos and Kingston attacks him from behind.",
+          "rating": 4.25,
+          "storyContext": "Competition"
+        }
+      ],
+      "universeNotes": "",
+      "recordedAt": "2026-09-15T02:13:25.170Z"
+    },
+    {
       "id": "2026-07-week-1-aew-collision",
       "periodId": "2026-07",
       "stage": "week-1",

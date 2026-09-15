@@ -2,6 +2,47 @@
   "version": 1,
   "results": [
     {
+      "id": "generator-1789437792152-1x5ja82",
+      "generatorType": "JoW Private Booking Style",
+      "generatorKey": "jow-booking-style",
+      "mode": "canon",
+      "method": "fixed-choice",
+      "methodLabel": "Secure single-choice draw",
+      "label": "ROH Honor Club July 2026 Week 1",
+      "relatedContext": "ROH - July 2026 Week 1",
+      "eligiblePool": [
+        "Quality",
+        "Standard",
+        "Long Term",
+        "Bizzaro",
+        "Terrible"
+      ],
+      "excludedEntries": [],
+      "result": [
+        "Quality"
+      ],
+      "randomDecisions": [
+        {
+          "type": "fixed-choice",
+          "pool": [
+            "Quality",
+            "Standard",
+            "Long Term",
+            "Bizzaro",
+            "Terrible"
+          ],
+          "selectedIndex": 0,
+          "selected": "Quality"
+        }
+      ],
+      "generatedAt": "2026-09-15T02:03:12.152Z",
+      "confirmed": true,
+      "jowBookingStyle": {
+        "selectedStyle": "Quality"
+      },
+      "confirmedAt": "2026-09-15T02:03:14.725Z"
+    },
+    {
       "id": "generator-1789437074330-f3vm8d",
       "generatorType": "JoW Private Booking Style",
       "generatorKey": "jow-booking-style",
