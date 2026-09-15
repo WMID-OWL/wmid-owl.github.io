@@ -994,6 +994,20 @@
       "eventName": "",
       "wonDate": "",
       "recordedAt": "2026-09-14T23:57:16.015Z"
+    },
+    {
+      "id": "change-1789437577136-3",
+      "titleId": "nxt-nxt-women-s-championship",
+      "companyId": "nxt",
+      "titleName": "NXT Women's Championship",
+      "previousChampionName": "",
+      "newChampionName": "Jaida Parker",
+      "changeType": "new-champion",
+      "periodId": "",
+      "eventId": "",
+      "eventName": "",
+      "wonDate": "",
+      "recordedAt": "2026-09-15T01:59:37.136Z"
     }
   ]
 }

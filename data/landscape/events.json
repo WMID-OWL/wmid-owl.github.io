@@ -132,6 +132,54 @@
       "recordedAt": "2026-09-15T00:49:32.225Z"
     },
     {
+      "id": "2026-07-week-1-nxt-on-cw",
+      "periodId": "2026-07",
+      "stage": "week-1",
+      "companyId": "nxt",
+      "showId": "nxt-on-cw",
+      "eventName": "NXT on CW",
+      "eventType": "weekly",
+      "bookingStyle": "quality",
+      "overallRating": 2.63,
+      "location": {
+        "venue": "WWE Performance Center",
+        "city": "Orlando",
+        "region": "Florida",
+        "country": "United States"
+      },
+      "matches": [
+        {
+          "id": "match-1",
+          "resultText": "Josh Briggs defeated Shawn Spears in an Ironman match 5 falls to 4",
+          "rating": 3.25,
+          "storyContext": ""
+        },
+        {
+          "id": "match-2",
+          "resultText": "Hank Walker defeated Sean Legacy",
+          "rating": 3.25,
+          "storyContext": "Better Wrestler"
+        },
+        {
+          "id": "match-3",
+          "resultText": "Marcus Mathers defeated an Evolve talent",
+          "rating": 2,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "id": "segment-1",
+          "segmentType": "After Match Save",
+          "summary": "Marcus Mathers is attacking his opponent after the match, when Vanta The Unknown's music hits. She runs down to the ring and Mathers retreats, saving the talent from Evolve",
+          "rating": 2,
+          "storyContext": "Better Wrestler"
+        }
+      ],
+      "universeNotes": "",
+      "recordedAt": "2026-09-15T01:58:49.920Z"
+    },
+    {
       "id": "ascension-ep-1-2026-07-week-1",
       "periodId": "2026-07",
       "stage": "week-1",

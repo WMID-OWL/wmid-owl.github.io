@@ -2,6 +2,47 @@
   "version": 1,
   "results": [
     {
+      "id": "generator-1789437074330-f3vm8d",
+      "generatorType": "JoW Private Booking Style",
+      "generatorKey": "jow-booking-style",
+      "mode": "canon",
+      "method": "fixed-choice",
+      "methodLabel": "Secure single-choice draw",
+      "label": "NXT on CW July 2026 Week 1",
+      "relatedContext": "NXT - July 2026 Week 1",
+      "eligiblePool": [
+        "Quality",
+        "Standard",
+        "Long Term",
+        "Bizzaro",
+        "Terrible"
+      ],
+      "excludedEntries": [],
+      "result": [
+        "Quality"
+      ],
+      "randomDecisions": [
+        {
+          "type": "fixed-choice",
+          "pool": [
+            "Quality",
+            "Standard",
+            "Long Term",
+            "Bizzaro",
+            "Terrible"
+          ],
+          "selectedIndex": 0,
+          "selected": "Quality"
+        }
+      ],
+      "generatedAt": "2026-09-15T01:51:14.330Z",
+      "confirmed": true,
+      "jowBookingStyle": {
+        "selectedStyle": "Quality"
+      },
+      "confirmedAt": "2026-09-15T01:51:23.239Z"
+    },
+    {
       "id": "generator-1789433671336-mrzozo",
       "generatorType": "JoW Private Booking Style",
       "generatorKey": "jow-booking-style",
