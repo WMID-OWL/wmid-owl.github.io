@@ -129,6 +129,110 @@
       "sourceEventId": "ascension-ep-1-2026-07-week-1"
     },
     {
+      "id": "2026-07-week-1-aew-dynamite",
+      "periodId": "2026-07",
+      "stage": "week-1",
+      "companyId": "aew",
+      "showId": "aew-dynamite",
+      "eventName": "AEW Dynamite",
+      "eventType": "weekly",
+      "bookingStyle": "standard",
+      "overallRating": 4.25,
+      "location": {
+        "city": "Miami",
+        "region": "Florida",
+        "country": "United States"
+      },
+      "matches": [
+        {
+          "id": "match-1",
+          "resultText": "Sisters Of Sin defeated The Brawling Birds",
+          "rating": 3,
+          "storyContext": "New Challengers"
+        },
+        {
+          "id": "match-2",
+          "resultText": "Hangman Adam Page defeated Kuzuchika Okada, Matt Jackson & Will Ospreay for the AEW World Championship",
+          "rating": 4.5,
+          "storyContext": "AEW World Title 4-Way"
+        }
+      ],
+      "segments": [
+        {
+          "id": "segment-1",
+          "segmentType": "Locker Room Invasion",
+          "summary": "Bobby Lashley broke into Okada's locker room to attack him after the match. Lashley got the better of Okada",
+          "rating": 4.75,
+          "storyContext": "Locker Room Invasion"
+        },
+        {
+          "id": "segment-2",
+          "segmentType": "Backstage Attack",
+          "summary": "Matt Jackson and Will Ospreay arguing near the parking lot later after the match. Ospreay beats down Jackson and throws him into a car window.",
+          "rating": 4.75,
+          "storyContext": "Backstage Attack"
+        }
+      ],
+      "universeNotes": "",
+      "recordedAt": "2026-09-15T00:06:51.769Z"
+    },
+    {
+      "id": "2026-07-week-1-aew-collision",
+      "periodId": "2026-07",
+      "stage": "week-1",
+      "companyId": "aew",
+      "showId": "aew-collision",
+      "eventName": "AEW Collision",
+      "eventType": "weekly",
+      "bookingStyle": "quality",
+      "overallRating": 3.7,
+      "location": {
+        "city": "St. Louis",
+        "region": "Missouri",
+        "country": "United States"
+      },
+      "matches": [
+        {
+          "id": "match-1",
+          "resultText": "The Iinspiration defeated a local tag team in the opener",
+          "rating": 2,
+          "storyContext": ""
+        }
+      ],
+      "segments": [
+        {
+          "id": "segment-1",
+          "segmentType": "After Match Attack",
+          "summary": "Maya World & Hyan attack The Iinspiration after the match. Hyan and Maya World attack them from behind leaving them laying them out and leaving the ring",
+          "rating": 4.25,
+          "storyContext": "Grudge"
+        },
+        {
+          "id": "segment-2",
+          "segmentType": "New Challenger Blowoff",
+          "summary": "Sisters of Sin call out The Brawling Birds to address their fued...They tease a fight before going in for a handshake of mutual respect.",
+          "rating": 3.25,
+          "storyContext": "New Challenger"
+        },
+        {
+          "id": "segment-3",
+          "segmentType": "Surprise Attack",
+          "summary": "Kenny Omega is in the ring cutting a promo about his recent victory when Okada sneak attacks him from behind. Okada beats down Kenny and leaves him in the ring",
+          "rating": 4.25,
+          "storyContext": "Better Wrestler"
+        },
+        {
+          "id": "segment-4",
+          "segmentType": "Masked Attacker",
+          "summary": "Will Ospreay is walking to the ramp for a scheduled match when a masked person attacked him from behind. Could it be Matt Jackson?",
+          "rating": 4.75,
+          "storyContext": "Masked Attacker"
+        }
+      ],
+      "universeNotes": "",
+      "recordedAt": "2026-09-15T00:18:03.187Z"
+    },
+    {
       "id": "2026-07-week-1-wwe-smackdown",
       "periodId": "2026-07",
       "stage": "week-1",

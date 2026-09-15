@@ -2,6 +2,88 @@
   "version": 1,
   "results": [
     {
+      "id": "generator-1789430841628-19vq33s",
+      "generatorType": "JoW Private Booking Style",
+      "generatorKey": "jow-booking-style",
+      "mode": "canon",
+      "method": "fixed-choice",
+      "methodLabel": "Secure single-choice draw",
+      "label": "AEW Collision July 2026 Week 1",
+      "relatedContext": "Collision - July 2026 Week 1",
+      "eligiblePool": [
+        "Quality",
+        "Standard",
+        "Long Term",
+        "Bizzaro",
+        "Terrible"
+      ],
+      "excludedEntries": [],
+      "result": [
+        "Quality"
+      ],
+      "randomDecisions": [
+        {
+          "type": "fixed-choice",
+          "pool": [
+            "Quality",
+            "Standard",
+            "Long Term",
+            "Bizzaro",
+            "Terrible"
+          ],
+          "selectedIndex": 0,
+          "selected": "Quality"
+        }
+      ],
+      "generatedAt": "2026-09-15T00:07:21.628Z",
+      "confirmed": true,
+      "jowBookingStyle": {
+        "selectedStyle": "Quality"
+      },
+      "confirmedAt": "2026-09-15T00:07:25.028Z"
+    },
+    {
+      "id": "generator-1789429653637-1ovaezs",
+      "generatorType": "JoW Private Booking Style",
+      "generatorKey": "jow-booking-style",
+      "mode": "canon",
+      "method": "fixed-choice",
+      "methodLabel": "Secure single-choice draw",
+      "label": "AEW Dynamite July 2026 Week 1",
+      "relatedContext": "Dynamite - July 2026 Week 1",
+      "eligiblePool": [
+        "Quality",
+        "Standard",
+        "Long Term",
+        "Bizzaro",
+        "Terrible"
+      ],
+      "excludedEntries": [],
+      "result": [
+        "Standard"
+      ],
+      "randomDecisions": [
+        {
+          "type": "fixed-choice",
+          "pool": [
+            "Quality",
+            "Standard",
+            "Long Term",
+            "Bizzaro",
+            "Terrible"
+          ],
+          "selectedIndex": 1,
+          "selected": "Standard"
+        }
+      ],
+      "generatedAt": "2026-09-14T23:47:33.637Z",
+      "confirmed": true,
+      "jowBookingStyle": {
+        "selectedStyle": "Standard"
+      },
+      "confirmedAt": "2026-09-14T23:47:37.321Z"
+    },
+    {
       "id": "generator-1789428443720-gscirn",
       "generatorType": "JoW Private Booking Style",
       "generatorKey": "jow-booking-style",
