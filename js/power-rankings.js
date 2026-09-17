@@ -278,6 +278,127 @@ function pFormatDate(
 
 
 
+function pEventRankingDate(
+    event
+) {
+
+    const exactDate =
+        String(
+            event?.date || ""
+        ).trim();
+
+
+    if (
+        /^\d{4}-\d{2}-\d{2}$/.test(
+            exactDate
+        )
+    ) {
+
+        return exactDate;
+
+    }
+
+
+    const slot =
+        window.OWLCalendar
+            ?.getSlot
+            ?.(event);
+
+
+    if (
+        !slot
+    ) {
+
+        return "";
+
+    }
+
+
+    const day =
+        String(
+
+            1
+
+            +
+
+            (
+                slot.week - 1
+            )
+
+            *
+
+            7
+
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    return `${slot.periodId}-${day}`;
+
+}
+
+
+
+function pFormatEventDate(
+    event
+) {
+
+    if (
+        !event?._powerUsesSlotDate
+    ) {
+
+        return pFormatDate(
+            event?.date
+        );
+
+    }
+
+
+    const periodLabel =
+        window.OWLCalendar
+            ?.formatPeriod
+            ?.(event.periodId)
+
+        ||
+
+        event.periodId
+
+        ||
+
+        "Unscheduled";
+
+
+    const stageLabel =
+        window.OWLCalendar
+            ?.formatStage
+            ?.(event.stage)
+
+        ||
+
+        event.stage
+
+        ||
+
+        "";
+
+
+    return [
+        periodLabel,
+        stageLabel
+    ]
+        .filter(
+            Boolean
+        )
+        .join(
+            " • "
+        );
+
+}
+
+
+
 function pSignature(
     ids
 ) {
@@ -3264,8 +3385,14 @@ function pCompletedEventGroups(
                 );
 
 
+            const rankingDate =
+                pEventRankingDate(
+                    event
+                );
+
+
             if (
-                !event?.date
+                !rankingDate
             ) {
 
                 return;
@@ -3285,7 +3412,19 @@ function pCompletedEventGroups(
 
                     {
 
-                        event,
+                        event: {
+
+                            ...event,
+
+                            date:
+                                rankingDate,
+
+                            _powerUsesSlotDate:
+                                !String(
+                                    event.date || ""
+                                ).trim()
+
+                        },
 
                         matches:
                             []
@@ -4242,8 +4381,8 @@ function pUpdateScopeCopy(
 
         powerEls.scopeCopy.textContent =
 
-            `${monthName} • Company-wide rankings through ${pFormatDate(
-                latestDate
+            `${monthName} • Company-wide rankings through ${pFormatEventDate(
+                calculation.latestEvent
             )}`;
 
 
@@ -4256,8 +4395,8 @@ function pUpdateScopeCopy(
 
         `${pDate(
             latestDate
-        ).getFullYear()} YEAR-TO-DATE • Company-wide rankings through ${pFormatDate(
-            latestDate
+        ).getFullYear()} YEAR-TO-DATE • Company-wide rankings through ${pFormatEventDate(
+            calculation.latestEvent
         )}`;
 
 }
@@ -4314,8 +4453,8 @@ function pRenderCurrentView() {
 
 
     powerEls.updatedDate.textContent =
-        pFormatDate(
-            calculation.latestEvent.date
+        pFormatEventDate(
+            calculation.latestEvent
         );
 
 
