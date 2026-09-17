@@ -700,11 +700,6 @@
 
 </div>
 
-
-</div>
-
-</div>
-
             <div class="cr-editor-section">
 
     <div class="cr-editor-section-heading">
@@ -2100,6 +2095,7 @@
 
 </div>
             </div>
+            </div>
 
             <div class="cr-editor-section">
                 <div class="cr-editor-section-heading"><span>FACTION STRUCTURE</span><h3>Team and Leadership</h3></div>
@@ -2594,7 +2590,84 @@
                 Build and review the participant field for each tournament bracket before generating matchups.
             </p>
 
-            <div class="cr-editor-section cr-tournament-creator-section">
+                        <div class="cr-editor-section cr-tournament-selection-section">
+
+                <div class="cr-editor-section-heading">
+
+                    <span>
+                        ACTIVE WORKSPACE
+                    </span>
+
+                    <h3>
+                        Select Tournament and Bracket
+                    </h3>
+
+                    <p>
+                        Choose the tournament and championship bracket you want to manage before editing its field, matchups, or broadcasts.
+                    </p>
+
+                </div>
+
+<div class="cr-editor-top-grid">
+
+                <div class="cr-form-group">
+
+                    <label for="cr-tournament-select">
+                        TOURNAMENT
+                    </label>
+
+                    <select
+                        id="cr-tournament-select"
+                        disabled
+                    >
+
+                        <option value="">
+                            Connect the OWL Folder
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label for="cr-tournament-bracket-select">
+                        CHAMPIONSHIP BRACKET
+                    </label>
+
+                    <select
+                        id="cr-tournament-bracket-select"
+                        disabled
+                    >
+
+                        <option value="">
+                            Select Tournament First
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="cr-form-group">
+
+                    <label>
+                        FIELD STATUS
+                    </label>
+
+                    <div
+                        id="cr-tournament-current-status"
+                        class="cr-current-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+            </div>
+
+<div class="cr-editor-section cr-tournament-creator-section">
 
                 <div class="cr-editor-section-heading">
 
@@ -2802,7 +2875,13 @@
 
                 </div>
 
-                <div class="cr-tournament-bracket-create-form">
+                
+
+                
+
+            </div>
+
+<div class="cr-editor-section cr-tournament-bracket-create-form">
 
                     <div class="cr-editor-section-heading">
 
@@ -2996,138 +3075,7 @@
 
                 </div>
 
-                <div class="cr-tournament-cleanup-section">
-
-                    <div class="cr-editor-section-heading">
-
-                        <span>
-                            SAFETY TOOLS
-                        </span>
-
-                        <h3>
-                            Clean Up Empty Test Items
-                        </h3>
-
-                        <p>
-                            Use these only for mistaken or temporary tournament setup work.
-                            A bracket must be empty, unlocked, and ungenerated before it can be removed.
-                            A tournament must have no brackets before it can be removed.
-                        </p>
-
-                    </div>
-
-                    <div class="cr-editor-form-grid">
-
-                        <div class="cr-form-group">
-
-                            <label>
-                                SELECTED BRACKET
-                            </label>
-
-                            <button
-                                id="cr-tournament-delete-empty-bracket"
-                                class="control-room-button control-room-button-secondary cr-tournament-danger-button"
-                                type="button"
-                                disabled
-                            >
-                                Delete Selected Empty Bracket
-                            </button>
-
-                            <small class="cr-field-help">
-                                Requires typed confirmation. Disabled unless the selected bracket is safe to remove.
-                            </small>
-
-                        </div>
-
-                        <div class="cr-form-group">
-
-                            <label>
-                                SELECTED TOURNAMENT
-                            </label>
-
-                            <button
-                                id="cr-tournament-delete-empty-tournament"
-                                class="control-room-button control-room-button-secondary cr-tournament-danger-button"
-                                type="button"
-                                disabled
-                            >
-                                Delete Selected Empty Tournament
-                            </button>
-
-                            <small class="cr-field-help">
-                                Requires typed confirmation. Disabled unless the selected tournament has no brackets.
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                    <p
-                        id="cr-tournament-cleanup-message"
-                        class="cr-save-message"
-                        hidden
-                    ></p>
-
-                </div>
-
-            </div>
-
-            <div class="cr-editor-top-grid">
-
-                <div class="cr-form-group">
-
-                    <label for="cr-tournament-select">
-                        TOURNAMENT
-                    </label>
-
-                    <select
-                        id="cr-tournament-select"
-                        disabled
-                    >
-
-                        <option value="">
-                            Connect the OWL Folder
-                        </option>
-
-                    </select>
-
-                </div>
-
-                <div class="cr-form-group">
-
-                    <label for="cr-tournament-bracket-select">
-                        CHAMPIONSHIP BRACKET
-                    </label>
-
-                    <select
-                        id="cr-tournament-bracket-select"
-                        disabled
-                    >
-
-                        <option value="">
-                            Select Tournament First
-                        </option>
-
-                    </select>
-
-                </div>
-
-                <div class="cr-form-group">
-
-                    <label>
-                        FIELD STATUS
-                    </label>
-
-                    <div
-                        id="cr-tournament-current-status"
-                        class="cr-current-value"
-                    >
-                        —
-                    </div>
-
-                </div>
-
-            </div>
+            
 
             <div class="cr-editor-section">
 
@@ -3245,18 +3193,6 @@
             </div>
 
             <div class="cr-editor-section">
-
-                <div class="cr-editor-section-heading">
-
-                    <span>
-                        SELECTED FIELD
-                    </span>
-
-                    <h3>
-                        Current Participants
-                    </h3>
-
-                               <div class="cr-editor-section">
 
                 <div class="cr-editor-section-heading">
 
@@ -3992,6 +3928,82 @@
 
             </div>
 
+
+        
+
+<div class="cr-editor-section cr-tournament-cleanup-section">
+
+                    <div class="cr-editor-section-heading">
+
+                        <span>
+                            SAFETY TOOLS
+                        </span>
+
+                        <h3>
+                            Clean Up Empty Test Items
+                        </h3>
+
+                        <p>
+                            Use these only for mistaken or temporary tournament setup work.
+                            A bracket must be empty, unlocked, and ungenerated before it can be removed.
+                            A tournament must have no brackets before it can be removed.
+                        </p>
+
+                    </div>
+
+                    <div class="cr-editor-form-grid">
+
+                        <div class="cr-form-group">
+
+                            <label>
+                                SELECTED BRACKET
+                            </label>
+
+                            <button
+                                id="cr-tournament-delete-empty-bracket"
+                                class="control-room-button control-room-button-secondary cr-tournament-danger-button"
+                                type="button"
+                                disabled
+                            >
+                                Delete Selected Empty Bracket
+                            </button>
+
+                            <small class="cr-field-help">
+                                Requires typed confirmation. Disabled unless the selected bracket is safe to remove.
+                            </small>
+
+                        </div>
+
+                        <div class="cr-form-group">
+
+                            <label>
+                                SELECTED TOURNAMENT
+                            </label>
+
+                            <button
+                                id="cr-tournament-delete-empty-tournament"
+                                class="control-room-button control-room-button-secondary cr-tournament-danger-button"
+                                type="button"
+                                disabled
+                            >
+                                Delete Selected Empty Tournament
+                            </button>
+
+                            <small class="cr-field-help">
+                                Requires typed confirmation. Disabled unless the selected tournament has no brackets.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <p
+                        id="cr-tournament-cleanup-message"
+                        class="cr-save-message"
+                        hidden
+                    ></p>
+
+                </div>
 
         </section>
 
@@ -8144,7 +8156,7 @@
                     </span>
 
                     <h3>
-                        Five-Candidate Ballot
+                        Men’s Five-Candidate Ballot
                     </h3>
 
                     <p>
@@ -8176,7 +8188,7 @@
                     </span>
 
                     <h3>
-                        Five-Candidate Ballot
+                        Women’s Five-Candidate Ballot
                     </h3>
 
                     <p>
@@ -10014,23 +10026,6 @@
                         </div>
 
                     </div>
-                        <div class="cr-form-group">
-
-                            <label for="cr-match-card-match">
-                                MATCH
-                            </label>
-
-                            <select id="cr-match-card-match" disabled>
-
-                                <option value="">
-                                    Select Event First
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                    </div>
 
                     <div class="cr-form-group cr-editor-spaced-field">
 
@@ -10617,38 +10612,7 @@
 
 
 
-    <div class="cr-editor-section">
-
-
-        <div class="cr-editor-section-heading">
-
-
-            <span>
-                EVENT HISTORY
-            </span>
-
-
-            <h3>
-                Recorded Segments
-            </h3>
-
-
-        </div>
-
-
-        <div
-            id="cr-segment-history"
-            class="cr-segment-history-list"
-        >
-
-            <p class="cr-landscape-entry-empty">
-                Select an event to view recorded segments.
-            </p>
-
-        </div>
-
-
-    </div>
+    
 
 
 
@@ -10683,6 +10647,39 @@
         class="cr-save-message"
         hidden
     ></p>
+
+<div class="cr-editor-section">
+
+
+        <div class="cr-editor-section-heading">
+
+
+            <span>
+                EVENT HISTORY
+            </span>
+
+
+            <h3>
+                Recorded Segments
+            </h3>
+
+
+        </div>
+
+
+        <div
+            id="cr-segment-history"
+            class="cr-segment-history-list"
+        >
+
+            <p class="cr-landscape-entry-empty">
+                Select an event to view recorded segments.
+            </p>
+
+        </div>
+
+
+    </div>
 
 
 </section>
