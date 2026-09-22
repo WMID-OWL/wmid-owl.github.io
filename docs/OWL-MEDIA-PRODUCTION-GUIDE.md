@@ -1,7 +1,7 @@
 # OWL Media Production Guide
 
 **Status:** Active internal production guide  
-**Last revised:** August 12, 2026  
+**Last revised:** September 22, 2026  
 **Applies to:** OWL match presentation, commentary, audio production, event graphics, OWL Media programming, and platform publishing
 
 ---
@@ -38,7 +38,11 @@ Those systems remain governed by:
 docs/OWL-SIMULATION-RULEBOOK.md
 ```
 
-Technical website and Control Room implementation procedures should eventually be documented in a separate operations guide.
+Technical website and Control Room implementation procedures are governed by:
+
+```text
+docs/OWL-WEBSITE-CONTROL-ROOM-OPERATIONS-GUIDE.md
+```
 
 ---
 
@@ -97,6 +101,9 @@ The approved ticker presentation is:
 
 ```text
 Continuous crawl
+```
+
+### Sunday Disservice
 
 The full title is:
 
@@ -462,7 +469,11 @@ The uploader automatically:
 
 The optimized website copy does not replace the creator’s original design master.
 
-Full technical storage, browser-processing, and repository-writing procedures belong in the future OWL Website and Control Room Operations Guide.
+Full technical storage, browser-processing, repository-writing, and match-data lifecycle procedures belong in:
+
+```text
+docs/OWL-WEBSITE-CONTROL-ROOM-OPERATIONS-GUIDE.md
+```
 
 ---
 
@@ -570,7 +581,7 @@ It does not replace OWL’s normal match-production format.
 
 ## 7. Current Production Status
 
-As of August 12, 2026:
+As of September 22, 2026:
 
 | System | Status |
 |---|---|
@@ -617,9 +628,15 @@ The automation should not privately redefine OWL’s media format.
 
 ---
 
-## 9. Future Documentation
+## 9. Technical Operations Documentation
 
-The following subjects belong in a future OWL Website and Control Room Operations Guide rather than this document:
+The following subjects belong in the OWL Website and Control Room Operations Guide rather than this production-standard document:
+
+```text
+docs/OWL-WEBSITE-CONTROL-ROOM-OPERATIONS-GUIDE.md
+```
+
+That guide is now active and should be updated whenever the technical workflow changes:
 
 - Control Room file-writing procedures
 - Database connection procedures
@@ -642,6 +659,18 @@ The following subjects belong in a future OWL Website and Control Room Operation
 ---
 
 ## 10. Revision Log
+
+### September 22, 2026
+
+Synchronized the Media Production Guide with the current repository documentation structure.
+
+Updated:
+
+- Replaced obsolete “future operations guide” language with the active Website & Control Room Operations Guide
+- Repaired the OWL After Dark ticker Markdown block
+- Restored the missing Sunday Disservice subsection heading
+- Updated current-status dating
+- Clarified that technical match-card storage and data-lifecycle procedures are maintained in the Operations Guide
 
 ### August 12, 2026
 
