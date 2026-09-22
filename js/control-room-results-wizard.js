@@ -931,6 +931,401 @@ function crResultsGetWinnerSideMembers(
 
 }
 
+function crResultsGetTournamentEntrantId(
+    side,
+    participantType
+) {
+
+
+    const wrestlerIds =
+
+        Array.isArray(
+            side?.wrestlers
+        )
+
+            ? side.wrestlers
+
+            : [];
+
+
+    if (
+        participantType ===
+            "team"
+    ) {
+
+
+        const officialTeam =
+
+            crResultsGetOfficialTeamByMembers(
+                wrestlerIds
+            );
+
+
+        return officialTeam
+
+            ? officialTeam.id
+
+            : "";
+
+    }
+
+
+    return wrestlerIds.length ===
+        1
+
+        ? wrestlerIds[0]
+
+        : "";
+
+}
+
+
+
+function crResultsDetectTournamentLink(
+    match
+) {
+
+
+    if (
+        !match
+
+        ||
+
+        !Array.isArray(
+            match.sides
+        )
+
+        ||
+
+        match.sides.length !==
+            2
+    ) {
+
+        return null;
+
+    }
+
+
+    const tournamentDatabase =
+        owlControlRoomData.tournaments;
+
+
+    if (
+        !tournamentDatabase
+
+        ||
+
+        Array.isArray(
+            tournamentDatabase
+        )
+
+        ||
+
+        !Array.isArray(
+            tournamentDatabase.tournaments
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    const candidates =
+        [];
+
+
+    tournamentDatabase.tournaments.forEach(
+        tournament => {
+
+
+            if (
+                !Array.isArray(
+                    tournament.brackets
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            tournament.brackets.forEach(
+                bracket => {
+
+
+                    const rounds =
+                        bracket?.bracketSetup?.rounds;
+
+
+                    if (
+                        !Array.isArray(
+                            rounds
+                        )
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const participantOneId =
+
+                        crResultsGetTournamentEntrantId(
+
+                            match.sides[0],
+
+                            bracket.participantType
+
+                        );
+
+
+                    const participantTwoId =
+
+                        crResultsGetTournamentEntrantId(
+
+                            match.sides[1],
+
+                            bracket.participantType
+
+                        );
+
+
+                    if (
+                        !participantOneId
+
+                        ||
+
+                        !participantTwoId
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const participantSignature =
+
+                        crResultsSignature([
+                            participantOneId,
+                            participantTwoId
+                        ]);
+
+
+                    rounds.forEach(
+                        round => {
+
+
+                            const bracketMatches =
+
+                                Array.isArray(
+                                    round.matches
+                                )
+
+                                    ? round.matches
+
+                                    : [];
+
+
+                            bracketMatches.forEach(
+                                bracketMatch => {
+
+
+                                    const status =
+
+                                        String(
+                                            bracketMatch.status || ""
+                                        ).toLowerCase();
+
+
+                                    if (
+                                        bracketMatch.isBye
+
+                                        ||
+
+                                        bracketMatch.winnerId
+
+                                        ||
+
+                                        status ===
+                                            "completed"
+
+                                        ||
+
+                                        (
+                                            bracketMatch.matchRecordId
+
+                                            &&
+
+                                            bracketMatch.matchRecordId !==
+                                                match.id
+                                        )
+
+                                        ||
+
+                                        (
+                                            bracketMatch.eventId
+
+                                            &&
+
+                                            match.eventId
+
+                                            &&
+
+                                            bracketMatch.eventId !==
+                                                match.eventId
+                                        )
+
+                                        ||
+
+                                        !bracketMatch.participantOneId
+
+                                        ||
+
+                                        !bracketMatch.participantTwoId
+                                    ) {
+
+                                        return;
+
+                                    }
+
+
+                                    const bracketSignature =
+
+                                        crResultsSignature([
+
+                                            bracketMatch.participantOneId,
+
+                                            bracketMatch.participantTwoId
+
+                                        ]);
+
+
+                                    if (
+                                        bracketSignature !==
+                                            participantSignature
+                                    ) {
+
+                                        return;
+
+                                    }
+
+
+                                    candidates.push({
+
+                                        tournamentId:
+                                            tournament.id,
+
+                                        bracketId:
+                                            bracket.id,
+
+                                        bracketMatchId:
+                                            bracketMatch.id,
+
+                                        roundId:
+                                            round.id,
+
+                                        roundOrder:
+                                            round.order
+
+                                    });
+
+                                }
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    return candidates.length ===
+        1
+
+        ? candidates[0]
+
+        : null;
+
+}
+
+
+
+function crResultsTryAutoLinkTournamentMatch(
+    match
+) {
+
+
+    if (!match) {
+
+        return false;
+
+    }
+
+
+    const existingLink =
+        match.tournamentLink;
+
+
+    if (
+        existingLink
+
+        &&
+
+        !Array.isArray(
+            existingLink
+        )
+
+        &&
+
+        typeof existingLink ===
+            "object"
+
+        &&
+
+        existingLink.tournamentId
+
+        &&
+
+        existingLink.bracketId
+
+        &&
+
+        existingLink.bracketMatchId
+    ) {
+
+        return false;
+
+    }
+
+
+    const detectedLink =
+
+        crResultsDetectTournamentLink(
+            match
+        );
+
+
+    if (!detectedLink) {
+
+        return false;
+
+    }
+
+
+    match.tournamentLink =
+        detectedLink;
+
+
+    return true;
+
+}
+
+
+
 function crResultsIsTournamentMatch(
     match =
         crResultsSelectedMatch
@@ -7430,6 +7825,11 @@ function crResultsLoadSelectedMatch() {
         );
 
 
+    crResultsTryAutoLinkTournamentMatch(
+        crResultsSelectedMatch
+    );
+
+
     crResultsResetStandardFields();
 
 
@@ -7444,7 +7844,7 @@ function crResultsLoadSelectedMatch() {
         ||
 
         crResultsIsTournamentMatch(
-            match
+            crResultsSelectedMatch
         )
     ) {
 
