@@ -73,6 +73,62 @@ When a script version changes but the browser appears to run old code, update th
 
 ---
 
+### Control Room tool layout (329A-1)
+
+The sidebar categories and all 23 tools are retained. Inside each tool, a workflow
+bar follows the working order and stays with the tool heading on desktop. Use it
+to jump directly to setup, editing, review, or supporting tools. Conditional
+checkpoints appear only when their existing tool is visible. On small screens the
+bar remains horizontally scrollable without covering the form.
+The small-screen category bar keeps its labels and tools in compact horizontal
+groups, leaving room for the active form below it.
+
+The layout moves existing controls rather than replacing them. It does not change
+saves, validation, field locks, tournament advancement, data files, or automation.
+It initializes after the folder is connected, including sections added by other
+managers during connection. Reloading data does not duplicate the layout.
+
+| Tool | Working order / audit result |
+|---|---|
+| Runbook | Week selection → task board → optional custom task. |
+| Events | Select/create → identity → presentation → media → review/save. |
+| Match Booker | Event/match selection → match setup → applicable special rules/competitors → review/save. |
+| Results | Event/broadcast and match → outcome → rating/time → applicable special results → review/save. |
+| Segments | Event/title → participants → notes → save → recorded history. |
+| Wrestlers | Select/create → identity → brand/division → moves/story → photo → review/save. |
+| Parameter Editor | Select wrestler → skills/durability/movement → offense/defense → point audit → save. Existing live order retained. |
+| Teams | Select/create → identity → lineup → moves → logo → review/save. |
+| Factions | Select/create → identity → leadership/membership → story/logo → review/save. |
+| Injuries | Pending evaluations now precede the record-creation form; active cases and history follow. |
+| Endurance | Profile → milestones → conditional High Endurance Restoration. |
+| Tournaments | Select tournament/bracket → optional creation → requirements → eligible/selected field → review/save/lock → matchups/results → booking queue → broadcasts → artwork → cleanup. |
+| Signature Series | Active selection → add holder → complete entry; Proving Ground field → round-robin results → final results. |
+| Generator | Mode/type → applicable preset inputs → context/pool → draw/confirm → history. |
+| Media | Type/target → source image or match source → preparation → review/import/save. Navigation follows the selected media mode. |
+| Trophy Room | Select/create → recipient → accomplishment → presentation → review/save → archive. |
+| Annual Covers | Edition → scoring → leaderboards → draw/ballots → save draft → confirm stars → artwork → publish. |
+| After Dark Fallback | Episode identity → recaps → match of week → developments → closing → lower third → review/publish. |
+| Sunday Fallback | Edition → argument → praise/criticism → editorial view → references → closing → review/publish. |
+| Media Status | Existing Innanet/WWoW/After Dark/Sunday/World Memory/pipeline sections retained with direct navigation. |
+| Innanet Accounts | Select/create → identity → voice → review/save → browsable directory. Directory edit buttons still open the selected account. |
+| The Landscape | Existing show entry/championships/rankings/archive/Bragging Rights/calendar tools retained with direct navigation. |
+| Data Health | Existing check list retained. |
+
+Tournament creation and adding a competition are clearly labeled optional,
+expandable setup sections. They retain every original control. Tournament artwork
+is no longer nested inside the creation section. Eligible and selected participant
+lists sit together on wide screens and stack on smaller screens. Existing
+broadcast add, replace, remove, reorder, and save actions remain available.
+
+For tools with a visible change preview, **Review & save** lands on the preview
+before the save controls, rather than skipping the review.
+
+After pulling this update in GitHub Desktop, reopen or reload the local
+`control-room.html` and reconnect the OWL folder. Both layout assets have versioned
+URLs. Seeing the in-tool workflow bar confirms the new layout has loaded.
+
+---
+
 ## 4. Canonical vs. Derived Data
 
 ### Canonical source examples
