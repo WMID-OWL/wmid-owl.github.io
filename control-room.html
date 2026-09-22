@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWL Control Room</title>
     <link rel="stylesheet" href="css/style.css">
-   <link rel="stylesheet" href="css/control-room.css?v=317a">x
+   <link rel="stylesheet" href="css/control-room.css?v=328a2b">x
 </head>
 
 <body class="control-room-body">
@@ -3907,15 +3907,19 @@
                                 CURRENT BROADCAST ORDER
                             </label>
 
-                            <select
-                                id="cr-tournament-broadcast-lineup"
-                                size="10"
-                                disabled
-                            >
-                                <option value="">
-                                    Select a broadcast first
-                                </option>
-                            </select>
+                            <div class="cr-tournament-broadcast-lineup-scroll">
+
+                                <select
+                                    id="cr-tournament-broadcast-lineup"
+                                    size="10"
+                                    disabled
+                                >
+                                    <option value="">
+                                        Select a broadcast first
+                                    </option>
+                                </select>
+
+                            </div>
 
                             <small class="cr-field-help">
                                 Select a match, then move it up/down or remove it from this broadcast.
