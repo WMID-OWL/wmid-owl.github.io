@@ -4336,6 +4336,12 @@
         );
 
 
+    const tournamentBroadcastReplaceMatchButton =
+        document.getElementById(
+            "cr-tournament-broadcast-replace-match"
+        );
+
+
     const tournamentBroadcastMoveUpButton =
         document.getElementById(
             "cr-tournament-broadcast-move-up"
@@ -4420,6 +4426,16 @@
         ) {
 
             tournamentBroadcastAddMatchButton.disabled =
+                true;
+
+        }
+
+
+        if (
+            tournamentBroadcastReplaceMatchButton
+        ) {
+
+            tournamentBroadcastReplaceMatchButton.disabled =
                 true;
 
         }
@@ -4714,6 +4730,50 @@
                 : `${participantOne} vs ${participantTwo}`;
 
 
+        let assignmentLabel =
+            "";
+
+
+        if (
+            match.eventId
+        ) {
+
+            const event =
+
+                Array.isArray(
+                    owlControlRoomData.events
+                )
+
+                    ? owlControlRoomData.events.find(
+                        storedEvent =>
+
+                            storedEvent.id ===
+                                match.eventId
+                    )
+
+                    : null;
+
+
+            assignmentLabel =
+
+                ` • ON EVENT: ${event?.name || match.eventId}`;
+
+        }
+
+
+        else if (
+            String(
+                match.status || ""
+            ).toLowerCase() ===
+                "completed"
+        ) {
+
+            assignmentLabel =
+                " • COMPLETED";
+
+        }
+
+
         return [
 
             bracket.name || bracket.id,
@@ -4728,7 +4788,9 @@
             )
             .join(" • ")
 
-            + ` — ${matchup}`;
+            + ` — ${matchup}`
+
+            + assignmentLabel;
 
     }
 
@@ -5009,6 +5071,25 @@
 
         }
 
+
+        if (
+            tournamentBroadcastReplaceMatchButton
+        ) {
+
+            tournamentBroadcastReplaceMatchButton.disabled =
+
+                !hasSelection
+
+                ||
+
+                !tournamentBroadcastAvailableMatch
+
+                ||
+
+                !tournamentBroadcastAvailableMatch.value;
+
+        }
+
     }
 
 
@@ -5160,6 +5241,61 @@
                         );
 
 
+                    const context =
+
+                        getTournamentBroadcastMatchContext(
+                            tournament,
+                            reference
+                        );
+
+
+                    if (
+                        !context
+                    ) {
+
+                        return false;
+
+                    }
+
+
+                    const status =
+
+                        String(
+                            context.match.status || ""
+                        ).toLowerCase();
+
+
+                    const isReady =
+
+                        Boolean(
+                            context.match.participantOneId
+                        )
+
+                        &&
+
+                        Boolean(
+                            context.match.participantTwoId
+                        );
+
+
+                    const isHostedElsewhere =
+
+                        Boolean(
+                            context.match.eventId
+                        )
+
+                        ||
+
+                        Boolean(
+                            context.match.matchRecordId
+                        )
+
+                        ||
+
+                        status ===
+                            "completed";
+
+
                     return (
                         !currentKeys.has(
                             key
@@ -5170,6 +5306,14 @@
                         !usedElsewhere.has(
                             key
                         )
+
+                        &&
+
+                        isReady
+
+                        &&
+
+                        !isHostedElsewhere
                     );
 
                 }
@@ -5321,6 +5465,93 @@
 
         renderTournamentBroadcastLineup(
             tournamentBroadcastDraftMatches.length - 1
+        );
+
+
+        renderTournamentBroadcastPreview();
+
+    }
+
+
+
+    function replaceTournamentBroadcastMatch() {
+
+        const selectedIndex =
+
+            tournamentBroadcastLineup?.selectedIndex ??
+            -1;
+
+
+        if (
+            selectedIndex <
+                0
+
+            ||
+
+            selectedIndex >=
+                tournamentBroadcastDraftMatches.length
+
+            ||
+
+            !tournamentBroadcastAvailableMatch?.value
+        ) {
+
+            return;
+
+        }
+
+
+        let reference;
+
+
+        try {
+
+            reference =
+                JSON.parse(
+                    tournamentBroadcastAvailableMatch.value
+                );
+
+        }
+
+        catch (
+            error
+        ) {
+
+            return;
+
+        }
+
+
+        const replacementKey =
+            getTournamentBroadcastReferenceKey(
+                reference
+            );
+
+
+        if (
+            !replacementKey
+        ) {
+
+            return;
+
+        }
+
+
+        tournamentBroadcastDraftMatches[
+            selectedIndex
+        ] = {
+
+            bracketId:
+                reference.bracketId,
+
+            matchId:
+                reference.matchId
+
+        };
+
+
+        renderTournamentBroadcastLineup(
+            selectedIndex
         );
 
 
@@ -6455,6 +6686,12 @@
     tournamentBroadcastAddMatchButton?.addEventListener(
         "click",
         addTournamentBroadcastMatch
+    );
+
+
+    tournamentBroadcastReplaceMatchButton?.addEventListener(
+        "click",
+        replaceTournamentBroadcastMatch
     );
 
 
