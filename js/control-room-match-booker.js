@@ -4150,6 +4150,44 @@ async function crBookerSaveTournamentMatchLink(
 
                         ...tournament,
 
+                        broadcasts:
+
+                            Array.isArray(
+                                tournament.broadcasts
+                            )
+
+                                ? tournament.broadcasts.map(
+                                    broadcast => ({
+
+                                        ...broadcast,
+
+                                        matches:
+
+                                            Array.isArray(
+                                                broadcast.matches
+                                            )
+
+                                                ? broadcast.matches.filter(
+                                                    reference =>
+
+                                                        !(
+                                                            reference.bracketId ===
+                                                                context.bracketId
+
+                                                            &&
+
+                                                            reference.matchId ===
+                                                                context.bracketMatchId
+                                                        )
+                                                )
+
+                                                : []
+
+                                    })
+                                )
+
+                                : tournament.broadcasts,
+
                         brackets:
 
                             Array.isArray(
