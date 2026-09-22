@@ -14969,3 +14969,44 @@ h2 {
     }
 
 }
+
+
+/* =================================
+   TOURNAMENT BROADCAST LINEUP SCROLL — 328A-2B
+================================= */
+
+.cr-tournament-broadcast-lineup-scroll {
+
+    width:
+        100%;
+
+    max-width:
+        100%;
+
+    overflow-x:
+        auto;
+
+    overflow-y:
+        hidden;
+
+    padding-bottom:
+        6px;
+
+}
+
+
+#cr-tournament-broadcast-lineup {
+
+    width:
+        max-content;
+
+    min-width:
+        100%;
+
+    max-width:
+        none;
+
+    white-space:
+        nowrap;
+
+}
