@@ -1115,6 +1115,119 @@ function getTournamentBroadcastMatchupLabel(
 
 
 
+function getTournamentBroadcastResult(
+    bracket,
+    match,
+    wrestlers,
+    teams
+) {
+
+
+    const status =
+        String(
+            match?.status || ""
+        ).toLowerCase();
+
+
+    const isCompleted =
+
+        status ===
+            "completed"
+
+        ||
+
+        Boolean(
+            match?.winnerId
+        );
+
+
+    if (!isCompleted) {
+
+        return null;
+
+    }
+
+
+    const winnerName =
+
+        match?.winnerId
+
+            ? getTournamentBroadcastEntrantName(
+                bracket,
+                match.winnerId,
+                wrestlers,
+                teams
+            )
+
+            : "";
+
+
+    const participantIds =
+
+        [
+            match?.participantOneId,
+            match?.participantTwoId
+        ].filter(
+            Boolean
+        );
+
+
+    const loserId =
+
+        match?.winnerId
+
+            ? participantIds.find(
+                participantId =>
+                    participantId !==
+                        match.winnerId
+            ) || ""
+
+            : "";
+
+
+    const loserName =
+
+        loserId
+
+            ? getTournamentBroadcastEntrantName(
+                bracket,
+                loserId,
+                wrestlers,
+                teams
+            )
+
+            : "";
+
+
+    return {
+
+        completed:
+            true,
+
+        winnerName,
+
+        loserName,
+
+        label:
+
+            winnerName
+
+                ? (
+                    loserName
+
+                        ? `${winnerName} def. ${loserName}`
+
+                        : `${winnerName} won`
+                )
+
+                : "Completed"
+
+    };
+
+}
+
+
+
 function renderTournamentBroadcastMatchList(
     tournament,
     matches,
@@ -1133,6 +1246,62 @@ function renderTournamentBroadcastMatchList(
     }
 
 
+    const completedCount =
+
+        matches.reduce(
+            (
+                count,
+                reference
+            ) => {
+
+
+                const bracket =
+                    getTournamentBroadcastBracket(
+                        tournament,
+                        reference?.bracketId
+                    );
+
+
+                const matchRecord =
+
+                    bracket
+
+                        ? getTournamentBroadcastMatch(
+                            bracket,
+                            reference?.matchId
+                        )
+
+                        : null;
+
+
+                const status =
+
+                    String(
+                        matchRecord?.match?.status || ""
+                    ).toLowerCase();
+
+
+                return count + (
+
+                    status ===
+                        "completed"
+
+                    ||
+
+                    Boolean(
+                        matchRecord?.match?.winnerId
+                    )
+
+                        ? 1
+                        : 0
+
+                );
+
+            },
+            0
+        );
+
+
     return `
 
         <details class="tournament-broadcast-matches">
@@ -1140,14 +1309,32 @@ function renderTournamentBroadcastMatchList(
 
             <summary>
 
-                VIEW ${escapeTournamentPageText(
-                    matches.length
-                )}
+                <span>
+                    VIEW ${escapeTournamentPageText(
+                        matches.length
+                    )}
+
+                    ${
+                        matches.length === 1
+                            ? "MATCH"
+                            : "MATCHES"
+                    }
+                </span>
 
                 ${
-                    matches.length === 1
-                        ? "MATCH"
-                        : "MATCHES"
+                    completedCount > 0
+
+                        ? `
+                            <span class="tournament-broadcast-match-progress">
+                                ${escapeTournamentPageText(
+                                    completedCount
+                                )}/${escapeTournamentPageText(
+                                    matches.length
+                                )} COMPLETED
+                            </span>
+                        `
+
+                        : ""
                 }
 
             </summary>
@@ -1220,6 +1407,15 @@ function renderTournamentBroadcastMatchList(
 
                         const matchup =
                             getTournamentBroadcastMatchupLabel(
+                                bracket,
+                                matchRecord.match,
+                                wrestlers,
+                                teams
+                            );
+
+
+                        const result =
+                            getTournamentBroadcastResult(
                                 bracket,
                                 matchRecord.match,
                                 wrestlers,
@@ -1300,7 +1496,7 @@ function renderTournamentBroadcastMatchList(
 
                         return `
                             <div
-                                class="tournament-broadcast-match"
+                                class="tournament-broadcast-match${result?.completed ? " tournament-broadcast-match-completed" : ""}"
                                 data-bracket-id="${escapeTournamentPageText(
                                     bracket.id
                                 )}"
@@ -1319,11 +1515,36 @@ function renderTournamentBroadcastMatchList(
                                     )}
                                 </span>
 
-                                <strong class="tournament-broadcast-match-matchup">
-                                    ${escapeTournamentPageText(
-                                        matchup
-                                    )}
-                                </strong>
+                                <div class="tournament-broadcast-match-main">
+
+                                    <strong class="tournament-broadcast-match-matchup">
+                                        ${escapeTournamentPageText(
+                                            matchup
+                                        )}
+                                    </strong>
+
+                                    ${
+                                        result?.completed
+
+                                            ? `
+                                                <span class="tournament-broadcast-match-result">
+                                                    <span>RESULT</span>
+                                                    <strong>
+                                                        ${escapeTournamentPageText(
+                                                            result.label
+                                                        )}
+                                                    </strong>
+                                                </span>
+                                            `
+
+                                            : `
+                                                <span class="tournament-broadcast-match-pending">
+                                                    UPCOMING
+                                                </span>
+                                            `
+                                    }
+
+                                </div>
 
                                 ${graphicMarkup}
 
