@@ -1187,6 +1187,7 @@ The Brand Refresh consists of exactly:
 2 wrestlers moving from Ascension to Revolt
 2 wrestlers moving from Revolt to Ascension
 4 total brand changes
+```
 
 Canon Mode creates a pending official result.
 
