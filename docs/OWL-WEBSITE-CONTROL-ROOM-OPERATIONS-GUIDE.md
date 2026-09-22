@@ -124,15 +124,22 @@ roundOrder
 
 Tournament Match Intake is the preferred booking path when deliberately booking from a bracket because it creates this relationship at booking time.
 
+If a tournament match is promoted from a supplemental Championship Series broadcast onto Ascension, Revolt, or another normal event card, saving that tournament match through Match Booker removes the same bracket-match reference from any supplemental broadcast lineup. The bracket matchup itself remains canonical in `data/tournaments.json`; only its presentation location changes.
+
 The stable announced-match ID remains the match identity as the record later becomes a completed result.
 
 ---
 
 ## 6. Results Wizard
 
-Results Wizard is the canonical place to record an announced match result.
+Results Wizard is the canonical place to record official match results.
 
-A successful save normally:
+The **Event / Broadcast** selector can use either:
+
+- A normal announced event card
+- A Championship Series supplemental broadcast
+
+For a normal announced event match, a successful save normally:
 
 1. Creates the completed record in `data/matches.json`.
 2. Removes the announced record from `data/announced-matches.json`.
@@ -141,6 +148,18 @@ A successful save normally:
 5. Applies supported championship consequences.
 6. Applies supported tournament consequences.
 7. Reloads repository data for the next result.
+
+For a supplemental Championship Series broadcast match, Results Wizard builds the result-entry record directly from the canonical bracket matchup. It does **not** create or require a duplicate announced match in `data/announced-matches.json`.
+
+A successful supplemental-broadcast save:
+
+1. Creates the official completed record in `data/matches.json`.
+2. Leaves `data/announced-matches.json` untouched.
+3. Updates the exact bracket match in `data/tournaments.json`.
+4. Advances the winner through the bracket.
+5. Resolves supported byes.
+6. Leaves the completed bracket match attached to its broadcast for public result display.
+7. Marks the supplemental broadcast `Completed` when every assigned match has finished.
 
 The save operation is designed as a coordinated write. If a dependent write fails, the wizard attempts to roll back files already changed during that save.
 
@@ -304,6 +323,52 @@ The tournament directory, tournament detail page, and bracket page must use the 
 
 Tournament pages read bracket progress from the canonical tournament database. They should not maintain a second hard-coded bracket result list.
 
+### Championship Series Broadcast Manager
+
+Supplemental Championship Series cards are stored in each tournament's `broadcasts` array.
+
+The Control Room Broadcast Manager supports:
+
+- Editing broadcast title, description, status, and YouTube URL
+- Viewing the current ordered bracket-match lineup
+- Adding an eligible bracket match
+- Removing a bracket match
+- Moving a match up or down
+- Replacing a selected match in-place without disturbing the rest of the broadcast order
+
+A bracket match may belong to only one supplemental broadcast at a time.
+
+The available-match selector excludes:
+
+- Byes
+- Matchups whose participants are not yet resolved
+- Matches already assigned to another supplemental broadcast
+- Matches already booked onto a normal event
+- Completed matches
+
+Long lineup labels use a local horizontal scroll area in Control Room so the full matchup text remains readable without making the full page scroll sideways.
+
+### Public supplemental-broadcast results
+
+The public tournament page reads each broadcast match from the canonical bracket.
+
+Pending matches display as upcoming.
+
+Completed matches display the canonical winner as:
+
+```text
+RESULT
+Winner def. Loser
+```
+
+The broadcast match list also displays a completed-progress count such as:
+
+```text
+3/16 COMPLETED
+```
+
+The public page does not maintain a separate manual results list.
+
 ---
 
 ## 11. Shared Site Header Standard
@@ -376,6 +441,13 @@ As of September 22, 2026:
 | One-Off Tournament shared header/logo | Verified |
 | Tournament detail shared header/logo | Verified |
 | Tournament bracket shared header/logo | Verified |
+| Championship Series Broadcast lineup add/remove/reorder | Verified |
+| Championship Series in-place match replacement | Verified |
+| Tournament event-promotion cleanup from supplemental broadcasts | Verified |
+| Results Wizard supplemental broadcast source | Verified |
+| Supplemental broadcast tournament advancement | Verified |
+| Public supplemental broadcast result display | Verified |
+| Broadcast completion progress display | Verified |
 | Main-branch GitHub Pages workflow | Active |
 
 ---
@@ -399,6 +471,13 @@ Documented:
 - Power Rankings automatic calculation
 - Landscape per-show completed-event sync
 - Tournament public-page data ownership
+- Championship Series Broadcast Manager lineup editing
+- In-place supplemental broadcast match replacement
+- Automatic removal of promoted tournament matches from supplemental broadcasts
+- Results Wizard support for Championship Series broadcasts
+- Direct broadcast-to-`matches.json` result recording without duplicate announced records
+- Supplemental broadcast bracket advancement and completion handling
+- Public broadcast result/progress rendering
 - Shared header/logo standard
 - GitHub Actions safety
 - PASS/FAIL change discipline
