@@ -4318,6 +4318,46 @@
         );
 
 
+    const tournamentBroadcastLineup =
+        document.getElementById(
+            "cr-tournament-broadcast-lineup"
+        );
+
+
+    const tournamentBroadcastAvailableMatch =
+        document.getElementById(
+            "cr-tournament-broadcast-available-match"
+        );
+
+
+    const tournamentBroadcastAddMatchButton =
+        document.getElementById(
+            "cr-tournament-broadcast-add-match"
+        );
+
+
+    const tournamentBroadcastMoveUpButton =
+        document.getElementById(
+            "cr-tournament-broadcast-move-up"
+        );
+
+
+    const tournamentBroadcastMoveDownButton =
+        document.getElementById(
+            "cr-tournament-broadcast-move-down"
+        );
+
+
+    const tournamentBroadcastRemoveMatchButton =
+        document.getElementById(
+            "cr-tournament-broadcast-remove-match"
+        );
+
+
+    let tournamentBroadcastDraftMatches =
+        [];
+
+
 
     function resetTournamentBroadcastEditor() {
 
@@ -4335,6 +4375,85 @@
 
         tournamentBroadcastDescription.value =
             "";
+
+
+        tournamentBroadcastDraftMatches =
+            [];
+
+
+        if (
+            tournamentBroadcastLineup
+        ) {
+
+            tournamentBroadcastLineup.innerHTML =
+                `
+                    <option value="">
+                        Select a broadcast first
+                    </option>
+                `;
+
+            tournamentBroadcastLineup.disabled =
+                true;
+
+        }
+
+
+        if (
+            tournamentBroadcastAvailableMatch
+        ) {
+
+            tournamentBroadcastAvailableMatch.innerHTML =
+                `
+                    <option value="">
+                        Select a broadcast first
+                    </option>
+                `;
+
+            tournamentBroadcastAvailableMatch.disabled =
+                true;
+
+        }
+
+
+        if (
+            tournamentBroadcastAddMatchButton
+        ) {
+
+            tournamentBroadcastAddMatchButton.disabled =
+                true;
+
+        }
+
+
+        if (
+            tournamentBroadcastMoveUpButton
+        ) {
+
+            tournamentBroadcastMoveUpButton.disabled =
+                true;
+
+        }
+
+
+        if (
+            tournamentBroadcastMoveDownButton
+        ) {
+
+            tournamentBroadcastMoveDownButton.disabled =
+                true;
+
+        }
+
+
+        if (
+            tournamentBroadcastRemoveMatchButton
+        ) {
+
+            tournamentBroadcastRemoveMatchButton.disabled =
+                true;
+
+        }
+
 
         tournamentBroadcastTitle.disabled =
             true;
@@ -4396,6 +4515,934 @@
                 broadcast.id ===
                     tournamentBroadcastSelect.value
         ) || null;
+
+    }
+
+
+
+    function getTournamentBroadcastReferenceKey(
+        reference
+    ) {
+
+        return reference
+
+            ? `${reference.bracketId || ""}::${reference.matchId || ""}`
+
+            : "";
+
+    }
+
+
+
+    function getTournamentBroadcastMatchContext(
+        tournament,
+        reference
+    ) {
+
+        if (
+            !tournament
+
+            ||
+
+            !reference?.bracketId
+
+            ||
+
+            !reference?.matchId
+
+            ||
+
+            !Array.isArray(
+                tournament.brackets
+            )
+        ) {
+
+            return null;
+
+        }
+
+
+        const bracket =
+
+            tournament.brackets.find(
+                storedBracket =>
+
+                    storedBracket.id ===
+                        reference.bracketId
+            );
+
+
+        if (!bracket) {
+
+            return null;
+
+        }
+
+
+        const rounds =
+            getTournamentBracketSetup(
+                bracket
+            ).rounds;
+
+
+        if (
+            !Array.isArray(
+                rounds
+            )
+        ) {
+
+            return null;
+
+        }
+
+
+        for (
+            const round
+            of rounds
+        ) {
+
+            const matches =
+
+                Array.isArray(
+                    round.matches
+                )
+
+                    ? round.matches
+
+                    : [];
+
+
+            const match =
+
+                matches.find(
+                    storedMatch =>
+
+                        storedMatch.id ===
+                            reference.matchId
+                );
+
+
+            if (match) {
+
+                return {
+                    bracket,
+                    round,
+                    match
+                };
+
+            }
+
+        }
+
+
+        return null;
+
+    }
+
+
+
+    function getTournamentBroadcastParticipantLabel(
+        bracket,
+        participantId
+    ) {
+
+        if (!participantId) {
+
+            return "TBD";
+
+        }
+
+
+        return getTournamentEntrantDisplayName(
+            bracket,
+            participantId
+        ) || participantId;
+
+    }
+
+
+
+    function getTournamentBroadcastMatchLabel(
+        tournament,
+        reference
+    ) {
+
+        const context =
+
+            getTournamentBroadcastMatchContext(
+                tournament,
+                reference
+            );
+
+
+        if (!context) {
+
+            return `Missing bracket match — ${reference?.bracketId || "?"} / ${reference?.matchId || "?"}`;
+
+        }
+
+
+        const {
+            bracket,
+            round,
+            match
+        } = context;
+
+
+        const participantOne =
+
+            getTournamentBroadcastParticipantLabel(
+                bracket,
+                match.participantOneId
+            );
+
+
+        const participantTwo =
+
+            getTournamentBroadcastParticipantLabel(
+                bracket,
+                match.participantTwoId
+            );
+
+
+        const matchup =
+
+            match.isBye
+
+                ? `${participantOne !== "TBD" ? participantOne : participantTwo} — BYE`
+
+                : `${participantOne} vs ${participantTwo}`;
+
+
+        return [
+
+            bracket.name || bracket.id,
+
+            round.name || round.id,
+
+            `Match ${match.order || match.id}`
+
+        ]
+            .filter(
+                Boolean
+            )
+            .join(" • ")
+
+            + ` — ${matchup}`;
+
+    }
+
+
+
+    function getTournamentBroadcastAllMatchReferences(
+        tournament
+    ) {
+
+        if (
+            !tournament
+
+            ||
+
+            !Array.isArray(
+                tournament.brackets
+            )
+        ) {
+
+            return [];
+
+        }
+
+
+        const references =
+            [];
+
+
+        tournament.brackets.forEach(
+            bracket => {
+
+
+                const rounds =
+                    getTournamentBracketSetup(
+                        bracket
+                    ).rounds;
+
+
+                if (
+                    !Array.isArray(
+                        rounds
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                rounds.forEach(
+                    round => {
+
+
+                        const matches =
+
+                            Array.isArray(
+                                round.matches
+                            )
+
+                                ? round.matches
+
+                                : [];
+
+
+                        matches.forEach(
+                            match => {
+
+
+                                if (
+                                    match.isBye
+                                ) {
+
+                                    return;
+
+                                }
+
+
+                                references.push({
+                                    bracketId:
+                                        bracket.id,
+
+                                    matchId:
+                                        match.id
+                                });
+
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        return references;
+
+    }
+
+
+
+    function getTournamentBroadcastUsedMatchKeys(
+        tournament,
+        excludedBroadcastId = ""
+    ) {
+
+        const used =
+            new Set();
+
+
+        const broadcasts =
+
+            Array.isArray(
+                tournament?.broadcasts
+            )
+
+                ? tournament.broadcasts
+
+                : [];
+
+
+        broadcasts.forEach(
+            broadcast => {
+
+
+                if (
+                    broadcast.id ===
+                        excludedBroadcastId
+                ) {
+
+                    return;
+
+                }
+
+
+                const matches =
+
+                    Array.isArray(
+                        broadcast.matches
+                    )
+
+                        ? broadcast.matches
+
+                        : [];
+
+
+                matches.forEach(
+                    reference =>
+
+                        used.add(
+                            getTournamentBroadcastReferenceKey(
+                                reference
+                            )
+                        )
+                );
+
+            }
+        );
+
+
+        return used;
+
+    }
+
+
+
+    function tournamentBroadcastMatchListsEqual(
+        first,
+        second
+    ) {
+
+        if (
+            first.length !==
+                second.length
+        ) {
+
+            return false;
+
+        }
+
+
+        return first.every(
+            (
+                reference,
+                index
+            ) =>
+
+                getTournamentBroadcastReferenceKey(
+                    reference
+                )
+
+                ===
+
+                getTournamentBroadcastReferenceKey(
+                    second[index]
+                )
+        );
+
+    }
+
+
+
+    function updateTournamentBroadcastLineupButtons() {
+
+        const selectedIndex =
+
+            tournamentBroadcastLineup
+
+                ? tournamentBroadcastLineup.selectedIndex
+
+                : -1;
+
+
+        const hasSelection =
+
+            selectedIndex >=
+                0
+
+            &&
+
+            selectedIndex <
+                tournamentBroadcastDraftMatches.length;
+
+
+        if (
+            tournamentBroadcastMoveUpButton
+        ) {
+
+            tournamentBroadcastMoveUpButton.disabled =
+
+                !hasSelection
+
+                ||
+
+                selectedIndex ===
+                    0;
+
+        }
+
+
+        if (
+            tournamentBroadcastMoveDownButton
+        ) {
+
+            tournamentBroadcastMoveDownButton.disabled =
+
+                !hasSelection
+
+                ||
+
+                selectedIndex ===
+                    tournamentBroadcastDraftMatches.length - 1;
+
+        }
+
+
+        if (
+            tournamentBroadcastRemoveMatchButton
+        ) {
+
+            tournamentBroadcastRemoveMatchButton.disabled =
+                !hasSelection;
+
+        }
+
+
+        if (
+            tournamentBroadcastAddMatchButton
+        ) {
+
+            tournamentBroadcastAddMatchButton.disabled =
+
+                !tournamentBroadcastAvailableMatch
+
+                ||
+
+                !tournamentBroadcastAvailableMatch.value;
+
+        }
+
+    }
+
+
+
+    function renderTournamentBroadcastLineup(
+        preferredIndex = -1
+    ) {
+
+        const tournament =
+            getSelectedBroadcastTournament();
+
+
+        const broadcast =
+            getSelectedTournamentBroadcast();
+
+
+        if (
+            !tournament
+
+            ||
+
+            !broadcast
+
+            ||
+
+            !tournamentBroadcastLineup
+
+            ||
+
+            !tournamentBroadcastAvailableMatch
+        ) {
+
+            return;
+
+        }
+
+
+        tournamentBroadcastLineup.innerHTML =
+            "";
+
+
+        tournamentBroadcastDraftMatches.forEach(
+            (
+                reference,
+                index
+            ) => {
+
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    String(index);
+
+
+                option.textContent =
+                    `${index + 1}. ${getTournamentBroadcastMatchLabel(
+                        tournament,
+                        reference
+                    )}`;
+
+
+                tournamentBroadcastLineup.appendChild(
+                    option
+                );
+
+            }
+        );
+
+
+        if (
+            tournamentBroadcastDraftMatches.length ===
+                0
+        ) {
+
+            const emptyOption =
+                document.createElement(
+                    "option"
+                );
+
+
+            emptyOption.value =
+                "";
+
+
+            emptyOption.textContent =
+                "No matches assigned to this broadcast";
+
+
+            tournamentBroadcastLineup.appendChild(
+                emptyOption
+            );
+
+        }
+
+
+        tournamentBroadcastLineup.disabled =
+            tournamentBroadcastDraftMatches.length ===
+                0;
+
+
+        if (
+            preferredIndex >=
+                0
+
+            &&
+
+            preferredIndex <
+                tournamentBroadcastDraftMatches.length
+        ) {
+
+            tournamentBroadcastLineup.selectedIndex =
+                preferredIndex;
+
+        }
+
+
+        const currentKeys =
+
+            new Set(
+                tournamentBroadcastDraftMatches.map(
+                    getTournamentBroadcastReferenceKey
+                )
+            );
+
+
+        const usedElsewhere =
+
+            getTournamentBroadcastUsedMatchKeys(
+                tournament,
+                broadcast.id
+            );
+
+
+        const available =
+
+            getTournamentBroadcastAllMatchReferences(
+                tournament
+            ).filter(
+                reference => {
+
+
+                    const key =
+                        getTournamentBroadcastReferenceKey(
+                            reference
+                        );
+
+
+                    return (
+                        !currentKeys.has(
+                            key
+                        )
+
+                        &&
+
+                        !usedElsewhere.has(
+                            key
+                        )
+                    );
+
+                }
+            );
+
+
+        tournamentBroadcastAvailableMatch.innerHTML =
+            "";
+
+
+        const placeholder =
+            document.createElement(
+                "option"
+            );
+
+
+        placeholder.value =
+            "";
+
+
+        placeholder.textContent =
+
+            available.length > 0
+
+                ? "Select Bracket Match"
+
+                : "No Unassigned Bracket Matches";
+
+
+        tournamentBroadcastAvailableMatch.appendChild(
+            placeholder
+        );
+
+
+        available.forEach(
+            reference => {
+
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    JSON.stringify(
+                        reference
+                    );
+
+
+                option.textContent =
+                    getTournamentBroadcastMatchLabel(
+                        tournament,
+                        reference
+                    );
+
+
+                tournamentBroadcastAvailableMatch.appendChild(
+                    option
+                );
+
+            }
+        );
+
+
+        tournamentBroadcastAvailableMatch.disabled =
+            available.length ===
+                0;
+
+
+        tournamentBroadcastMatchCount.textContent =
+            String(
+                tournamentBroadcastDraftMatches.length
+            );
+
+
+        updateTournamentBroadcastLineupButtons();
+
+    }
+
+
+
+    function addTournamentBroadcastMatch() {
+
+        if (
+            !tournamentBroadcastAvailableMatch?.value
+        ) {
+
+            return;
+
+        }
+
+
+        let reference;
+
+
+        try {
+
+            reference =
+                JSON.parse(
+                    tournamentBroadcastAvailableMatch.value
+                );
+
+        }
+
+        catch (
+            error
+        ) {
+
+            return;
+
+        }
+
+
+        const key =
+            getTournamentBroadcastReferenceKey(
+                reference
+            );
+
+
+        if (
+            !key
+
+            ||
+
+            tournamentBroadcastDraftMatches.some(
+                storedReference =>
+
+                    getTournamentBroadcastReferenceKey(
+                        storedReference
+                    ) ===
+                        key
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        tournamentBroadcastDraftMatches.push({
+            bracketId:
+                reference.bracketId,
+
+            matchId:
+                reference.matchId
+        });
+
+
+        renderTournamentBroadcastLineup(
+            tournamentBroadcastDraftMatches.length - 1
+        );
+
+
+        renderTournamentBroadcastPreview();
+
+    }
+
+
+
+    function removeTournamentBroadcastMatch() {
+
+        const selectedIndex =
+
+            tournamentBroadcastLineup?.selectedIndex ??
+            -1;
+
+
+        if (
+            selectedIndex <
+                0
+
+            ||
+
+            selectedIndex >=
+                tournamentBroadcastDraftMatches.length
+        ) {
+
+            return;
+
+        }
+
+
+        tournamentBroadcastDraftMatches.splice(
+            selectedIndex,
+            1
+        );
+
+
+        renderTournamentBroadcastLineup(
+
+            Math.min(
+                selectedIndex,
+                tournamentBroadcastDraftMatches.length - 1
+            )
+
+        );
+
+
+        renderTournamentBroadcastPreview();
+
+    }
+
+
+
+    function moveTournamentBroadcastMatch(
+        direction
+    ) {
+
+        const selectedIndex =
+
+            tournamentBroadcastLineup?.selectedIndex ??
+            -1;
+
+
+        const nextIndex =
+            selectedIndex +
+            direction;
+
+
+        if (
+            selectedIndex <
+                0
+
+            ||
+
+            selectedIndex >=
+                tournamentBroadcastDraftMatches.length
+
+            ||
+
+            nextIndex <
+                0
+
+            ||
+
+            nextIndex >=
+                tournamentBroadcastDraftMatches.length
+        ) {
+
+            return;
+
+        }
+
+
+        [
+            tournamentBroadcastDraftMatches[
+                selectedIndex
+            ],
+
+            tournamentBroadcastDraftMatches[
+                nextIndex
+            ]
+
+        ] = [
+
+            tournamentBroadcastDraftMatches[
+                nextIndex
+            ],
+
+            tournamentBroadcastDraftMatches[
+                selectedIndex
+            ]
+
+        ];
+
+
+        renderTournamentBroadcastLineup(
+            nextIndex
+        );
+
+
+        renderTournamentBroadcastPreview();
 
     }
 
@@ -4517,9 +5564,23 @@
                 ? broadcast.matches
                 : [];
 
+
+        tournamentBroadcastDraftMatches =
+
+            matches.map(
+                reference => ({
+                    bracketId:
+                        reference.bracketId,
+
+                    matchId:
+                        reference.matchId
+                })
+            );
+
+
         tournamentBroadcastMatchCount.textContent =
             String(
-                matches.length
+                tournamentBroadcastDraftMatches.length
             );
 
         tournamentBroadcastTitle.value =
@@ -4546,7 +5607,10 @@
         tournamentBroadcastDescription.disabled =
             false;
 
-        // Saving is wired in the next step.
+
+        renderTournamentBroadcastLineup();
+
+
         tournamentBroadcastSaveButton.disabled =
             true;
 
@@ -4566,7 +5630,19 @@
                 tournamentBroadcastYoutube.value.trim(),
 
             description:
-                tournamentBroadcastDescription.value.trim()
+                tournamentBroadcastDescription.value.trim(),
+
+            matches:
+
+                tournamentBroadcastDraftMatches.map(
+                    reference => ({
+                        bracketId:
+                            reference.bracketId,
+
+                        matchId:
+                            reference.matchId
+                    })
+                )
         };
 
     }
@@ -4588,6 +5664,94 @@
             !draft.description
         ) {
             return "Public description is required.";
+        }
+
+
+        const tournament =
+            getSelectedBroadcastTournament();
+
+
+        const uniqueMatchKeys =
+            new Set();
+
+
+        for (
+            const reference
+            of draft.matches
+        ) {
+
+            const key =
+                getTournamentBroadcastReferenceKey(
+                    reference
+                );
+
+
+            if (
+                !key
+
+                ||
+
+                uniqueMatchKeys.has(
+                    key
+                )
+            ) {
+
+                return "The broadcast lineup contains a duplicate or invalid bracket match.";
+
+            }
+
+
+            uniqueMatchKeys.add(
+                key
+            );
+
+
+            const context =
+
+                getTournamentBroadcastMatchContext(
+                    tournament,
+                    reference
+                );
+
+
+            if (
+                !context
+
+                ||
+
+                context.match.isBye
+            ) {
+
+                return "Every broadcast lineup entry must reference a valid non-bye tournament match.";
+
+            }
+
+        }
+
+
+        const usedElsewhere =
+
+            getTournamentBroadcastUsedMatchKeys(
+                tournament,
+                getSelectedTournamentBroadcast()?.id || ""
+            );
+
+
+        for (
+            const key
+            of uniqueMatchKeys
+        ) {
+
+            if (
+                usedElsewhere.has(
+                    key
+                )
+            ) {
+
+                return "A bracket match cannot be assigned to more than one supplemental broadcast.";
+
+            }
+
         }
 
 
@@ -4727,6 +5891,38 @@
                 after:
                     draft.description || "—"
             });
+        }
+
+
+        const storedMatches =
+
+            Array.isArray(
+                broadcast.matches
+            )
+
+                ? broadcast.matches
+
+                : [];
+
+
+        if (
+            !tournamentBroadcastMatchListsEqual(
+                storedMatches,
+                draft.matches
+            )
+        ) {
+
+            changes.push({
+                label:
+                    "Match Lineup",
+
+                before:
+                    `${storedMatches.length} matches`,
+
+                after:
+                    `${draft.matches.length} matches — selection/order changed`
+            });
+
         }
 
 
@@ -5039,7 +6235,19 @@
                                                     draft.youtube,
 
                                                 description:
-                                                    draft.description
+                                                    draft.description,
+
+                                                matches:
+
+                                                    draft.matches.map(
+                                                        reference => ({
+                                                            bracketId:
+                                                                reference.bracketId,
+
+                                                            matchId:
+                                                                reference.matchId
+                                                        })
+                                                    )
 
                                             };
 
@@ -5230,6 +6438,48 @@
         }
     );
 
+
+
+    tournamentBroadcastLineup?.addEventListener(
+        "change",
+        updateTournamentBroadcastLineupButtons
+    );
+
+
+    tournamentBroadcastAvailableMatch?.addEventListener(
+        "change",
+        updateTournamentBroadcastLineupButtons
+    );
+
+
+    tournamentBroadcastAddMatchButton?.addEventListener(
+        "click",
+        addTournamentBroadcastMatch
+    );
+
+
+    tournamentBroadcastRemoveMatchButton?.addEventListener(
+        "click",
+        removeTournamentBroadcastMatch
+    );
+
+
+    tournamentBroadcastMoveUpButton?.addEventListener(
+        "click",
+        () =>
+            moveTournamentBroadcastMatch(
+                -1
+            )
+    );
+
+
+    tournamentBroadcastMoveDownButton?.addEventListener(
+        "click",
+        () =>
+            moveTournamentBroadcastMatch(
+                1
+            )
+    );
 
 
     tournamentBroadcastSaveButton?.addEventListener(
