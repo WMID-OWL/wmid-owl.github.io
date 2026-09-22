@@ -1,8 +1,8 @@
 # OWL Simulation Rulebook
 
 **Status:** Active internal rulebook  
-**Last revised:** August 12, 2026  
-**Applies to:** OWL Wrestling simulation, progression, injuries, recovery, and Control Room automation
+**Last revised:** September 22, 2026  
+**Applies to:** OWL Wrestling simulation, Fire Pro edit balance, CPU presentation philosophy, progression, injuries, recovery, and Control Room automation
 
 ---
 
@@ -14,6 +14,9 @@ It governs:
 
 - Fire Pro Wrestling World match settings
 - Wrestler rating baselines
+- Fire Pro parameter edit balance
+- DNMT offense/defense discipline
+- Ukemi match-structure philosophy
 - Championship rating bonuses
 - Permanent progression points
 - Injury triggers
@@ -27,6 +30,12 @@ It governs:
 - Future simulation-system revisions
 
 When a rule in this document conflicts with an older chat, note, or temporary implementation, this document takes priority after the conflict is reviewed and the rulebook is updated.
+
+Technical website and Control Room data-flow procedures are governed separately by:
+
+```text
+docs/OWL-WEBSITE-CONTROL-ROOM-OPERATIONS-GUIDE.md
+```
 
 ---
 
@@ -72,7 +81,119 @@ OWL does not use permanent negative rating penalties that reduce a wrestler belo
 
 Temporary changes caused by championships, injuries, recovery, or special match conditions do not alter this permanent minimum.
 
+### 3A. Fire Pro Parameter Edit-Balance Source of Truth
+
+The 160-point baseline is an **edit-point total**, not merely a display rating.
+
+The complete build includes the point costs of:
+
+- Offense parameters
+- Defense parameters
+- CRITICAL! Ability
+- Recovery
+- Recovery when bleeding
+- Breathing
+- Breathing when bleeding
+- Spirit
+- Spirit when bleeding
+- Body endurance
+- Movement settings
+- Special Skill
+
+The canonical cost catalog is:
+
+```text
+data/owl-parameter-reference.json
+```
+
+Individual completed wrestler builds are stored in:
+
+```text
+data/owl-parameter-profiles.json
+```
+
+The reference catalog, not memory or an old worksheet, controls the current point cost of each Fire Pro setting.
+
+#### Offense categories
+
+OWL uses the Fire Pro offense categories:
+
+```text
+Punch
+Kick
+Throw
+Joint
+Stretch
+Power
+Agility
+Arm
+Technical
+Rough
+MMA Overall
+Entertain
+```
+
+#### Defense categories
+
+OWL uses the Fire Pro defense categories:
+
+```text
+Punch
+Kick
+Throw
+Joint
+Stretch
+Aerial
+Impact
+Lariat
+Technical
+Rough
+MMA Overall
+Entertain
+```
+
+Offense and defense labels are not interchangeable.
+
+#### DNMT balance discipline
+
+OWL parameter builds preserve the established DNMT-style offense/defense relationship.
+
+The reference catalog identifies parameters excluded from the D/O ratio audit.
+
+Current builds must:
+
+- Preserve meaningful peaks and valleys
+- Avoid handing out 9s and 10s casually
+- Reserve extreme values for move-supported, style-supported strengths
+- Keep the wrestler’s actual Fire Pro move usage in mind
+- Preserve the intended offense/defense relationship
+- Finish at the exact approved point total after all skill and movement costs are included
+
+A build is not complete until the point audit passes.
+
+### 3B. Ukemi and CPU Match-Structure Philosophy
+
+Ukemi is treated as a match-structure control rather than a generic toughness score.
+
+Small-, Medium-, and Large-damage Ukemi values should be chosen wrestler by wrestler based on:
+
+- Alignment
+- Wrestling style
+- Card role
+- Desired match rhythm
+- Selling behavior
+- Comeback structure
+- The kind of offense the wrestler is expected to absorb
+
+OWL does not use one default Ukemi trio for the entire roster.
+
+CPU logic should likewise reinforce the wrestler’s identity rather than simply maximize move frequency.
+
+Finishers, signatures, rare late-match moves, spam-prone moves, and location-specific attacks should be weighted with the intended match presentation in mind.
+
 ---
+
+## 4. Championship Rating Bonus
 
 ## 4. Championship Rating Bonus
 
@@ -1315,6 +1436,21 @@ Fixed database totals must not be written into this rulebook because the number 
 ---
 
 ## 40. Revision Log
+
+### September 22, 2026
+
+Synchronized the Simulation Rulebook with the current Fire Pro edit-balance system.
+
+Documented:
+
+- `data/owl-parameter-reference.json` as the canonical edit-point cost catalog
+- `data/owl-parameter-profiles.json` as the wrestler parameter-profile database
+- The exact 160-point audit including skill, movement, and endurance costs
+- Correct offense and defense category sets
+- DNMT-style peaks-and-valleys and offense/defense discipline
+- Individualized Ukemi as a match-structure control
+- CPU logic as a presentation tool for finishers, signatures, rare moves, and spam control
+- The Website & Control Room Operations Guide as the separate technical data-flow source of truth
 
 ### August 12, 2026
 
