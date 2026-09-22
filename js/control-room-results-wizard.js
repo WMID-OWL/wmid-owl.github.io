@@ -222,6 +222,10 @@ const CR_RESULTS_FORCED_WIN_STIPULATIONS =
     ]);
 
 
+const CR_RESULTS_BROADCAST_SOURCE_PREFIX =
+    "tournament-broadcast::";
+
+
 
 // =================================
 // BASIC HELPERS
@@ -876,7 +880,806 @@ function crResultsCreateFieldGroup(
 
 
 
+function crResultsGetTournamentDatabase() {
+
+
+    const database =
+        owlControlRoomData.tournaments;
+
+
+    if (
+        !database
+
+        ||
+
+        Array.isArray(
+            database
+        )
+
+        ||
+
+        !Array.isArray(
+            database.tournaments
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    return database;
+
+}
+
+
+
+function crResultsBroadcastSourceValue(
+    tournamentId,
+    broadcastId
+) {
+
+
+    return `${CR_RESULTS_BROADCAST_SOURCE_PREFIX}${tournamentId}::${broadcastId}`;
+
+}
+
+
+
+function crResultsParseBroadcastSourceValue(
+    value
+) {
+
+
+    const text =
+        String(
+            value || ""
+        );
+
+
+    if (
+        !text.startsWith(
+            CR_RESULTS_BROADCAST_SOURCE_PREFIX
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    const payload =
+        text.slice(
+            CR_RESULTS_BROADCAST_SOURCE_PREFIX.length
+        );
+
+
+    const parts =
+        payload.split(
+            "::"
+        );
+
+
+    if (
+        parts.length !==
+            2
+
+        ||
+
+        !parts[0]
+
+        ||
+
+        !parts[1]
+    ) {
+
+        return null;
+
+    }
+
+
+    return {
+        tournamentId:
+            parts[0],
+
+        broadcastId:
+            parts[1]
+    };
+
+}
+
+
+
+function crResultsGetBroadcastContext(
+    tournamentId,
+    broadcastId
+) {
+
+
+    const database =
+        crResultsGetTournamentDatabase();
+
+
+    if (!database) {
+
+        return null;
+
+    }
+
+
+    const tournament =
+
+        database.tournaments.find(
+            storedTournament =>
+
+                storedTournament.id ===
+                    tournamentId
+        );
+
+
+    if (
+        !tournament
+
+        ||
+
+        !Array.isArray(
+            tournament.broadcasts
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    const broadcast =
+
+        tournament.broadcasts.find(
+            storedBroadcast =>
+
+                storedBroadcast.id ===
+                    broadcastId
+        );
+
+
+    if (!broadcast) {
+
+        return null;
+
+    }
+
+
+    return {
+        tournament,
+        broadcast
+    };
+
+}
+
+
+
+function crResultsGetSelectedBroadcastContext() {
+
+
+    const parsed =
+
+        crResultsParseBroadcastSourceValue(
+            crResultsEvent.value
+        );
+
+
+    if (!parsed) {
+
+        return null;
+
+    }
+
+
+    return crResultsGetBroadcastContext(
+
+        parsed.tournamentId,
+
+        parsed.broadcastId
+
+    );
+
+}
+
+
+
+function crResultsBuildBroadcastEvent(
+    tournament,
+    broadcast
+) {
+
+
+    const week =
+        Number(
+            broadcast?.week || 0
+        );
+
+
+    const periodId =
+
+        broadcast?.periodId
+
+        ||
+
+        tournament?.periodId
+
+        ||
+
+        "";
+
+
+    const stage =
+
+        broadcast?.stage
+
+        ||
+
+        (
+            week
+
+                ? `week-${week}`
+
+                : ""
+        );
+
+
+    return {
+
+        id:
+            `tournament-broadcast-${tournament.id}-${broadcast.id}`,
+
+        name:
+            broadcast.title
+            || broadcast.id,
+
+        brand:
+            "OWL",
+
+        eventType:
+            "tournament-broadcast",
+
+        periodId,
+
+        stage,
+
+        status:
+            String(
+                broadcast.status || "Upcoming"
+            ).toLowerCase(),
+
+        tournamentId:
+            tournament.id,
+
+        broadcastId:
+            broadcast.id
+
+    };
+
+}
+
+
+
+function crResultsFindBroadcastBracketMatch(
+    tournament,
+    reference
+) {
+
+
+    if (
+        !tournament
+
+        ||
+
+        !reference?.bracketId
+
+        ||
+
+        !reference?.matchId
+
+        ||
+
+        !Array.isArray(
+            tournament.brackets
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    const bracket =
+
+        tournament.brackets.find(
+            storedBracket =>
+
+                storedBracket.id ===
+                    reference.bracketId
+        );
+
+
+    if (!bracket) {
+
+        return null;
+
+    }
+
+
+    const rounds =
+        bracket?.bracketSetup?.rounds;
+
+
+    if (
+        !Array.isArray(
+            rounds
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    for (
+        const round
+        of rounds
+    ) {
+
+
+        const bracketMatch =
+
+            Array.isArray(
+                round.matches
+            )
+
+                ? round.matches.find(
+                    storedMatch =>
+
+                        storedMatch.id ===
+                            reference.matchId
+                )
+
+                : null;
+
+
+        if (bracketMatch) {
+
+            return {
+                bracket,
+                round,
+                bracketMatch
+            };
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+
+function crResultsGetBroadcastSide(
+    bracket,
+    participantId
+) {
+
+
+    if (!participantId) {
+
+        return null;
+
+    }
+
+
+    if (
+        bracket.participantType ===
+            "team"
+    ) {
+
+
+        const team =
+
+            owlControlRoomData.teams.find(
+                storedTeam =>
+
+                    storedTeam.id ===
+                        participantId
+            );
+
+
+        const members =
+
+            Array.isArray(
+                team?.members
+            )
+
+                ? team.members.filter(
+                    Boolean
+                )
+
+                : [];
+
+
+        return members.length > 0
+
+            ? {
+                wrestlers:
+                    members
+            }
+
+            : null;
+
+    }
+
+
+    return {
+        wrestlers:
+            [
+                participantId
+            ]
+    };
+
+}
+
+
+
+function crResultsBuildBroadcastMatch(
+    tournament,
+    broadcast,
+    reference,
+    broadcastOrder
+) {
+
+
+    const context =
+
+        crResultsFindBroadcastBracketMatch(
+            tournament,
+            reference
+        );
+
+
+    if (!context) {
+
+        return null;
+
+    }
+
+
+    const {
+        bracket,
+        round,
+        bracketMatch
+    } = context;
+
+
+    const status =
+
+        String(
+            bracketMatch.status || ""
+        ).toLowerCase();
+
+
+    if (
+        bracketMatch.isBye
+
+        ||
+
+        bracketMatch.winnerId
+
+        ||
+
+        status ===
+            "completed"
+
+        ||
+
+        bracketMatch.eventId
+
+        ||
+
+        bracketMatch.matchRecordId
+    ) {
+
+        return null;
+
+    }
+
+
+    const sideOne =
+
+        crResultsGetBroadcastSide(
+            bracket,
+            bracketMatch.participantOneId
+        );
+
+
+    const sideTwo =
+
+        crResultsGetBroadcastSide(
+            bracket,
+            bracketMatch.participantTwoId
+        );
+
+
+    if (
+        !sideOne
+
+        ||
+
+        !sideTwo
+    ) {
+
+        return null;
+
+    }
+
+
+    const event =
+
+        crResultsBuildBroadcastEvent(
+            tournament,
+            broadcast
+        );
+
+
+    const match = {
+
+        id:
+            [
+                "tournament-broadcast-match",
+                tournament.id,
+                broadcast.id,
+                bracket.id,
+                bracketMatch.id
+            ].join("--"),
+
+        eventId:
+            event.id,
+
+        order:
+            broadcastOrder,
+
+        matchType:
+
+            bracket.participantType ===
+                "team"
+
+                ? "Tag Team"
+
+                : "Singles",
+
+        sides:
+            [
+                sideOne,
+                sideTwo
+            ],
+
+        championshipId:
+            "",
+
+        stipulation:
+            "",
+
+        status:
+            "announced",
+
+        tournamentLink: {
+
+            tournamentId:
+                tournament.id,
+
+            bracketId:
+                bracket.id,
+
+            bracketMatchId:
+                bracketMatch.id,
+
+            roundId:
+                round.id,
+
+            roundOrder:
+                round.order
+
+        },
+
+        tournamentBroadcast: {
+
+            tournamentId:
+                tournament.id,
+
+            broadcastId:
+                broadcast.id,
+
+            broadcastTitle:
+                broadcast.title || broadcast.id,
+
+            bracketName:
+                bracket.name || bracket.id,
+
+            roundName:
+                round.name || round.id
+
+        }
+
+    };
+
+
+    if (
+        bracketMatch.matchGraphic
+    ) {
+
+        match.matchGraphic =
+            structuredClone(
+                bracketMatch.matchGraphic
+            );
+
+    }
+
+
+    return match;
+
+}
+
+
+
+function crResultsGetBroadcastMatches(
+    context
+) {
+
+
+    if (
+        !context?.tournament
+
+        ||
+
+        !context?.broadcast
+    ) {
+
+        return [];
+
+    }
+
+
+    const references =
+
+        Array.isArray(
+            context.broadcast.matches
+        )
+
+            ? context.broadcast.matches
+
+            : [];
+
+
+    return references
+
+        .map(
+            (
+                reference,
+                index
+            ) =>
+
+                crResultsBuildBroadcastMatch(
+
+                    context.tournament,
+
+                    context.broadcast,
+
+                    reference,
+
+                    index + 1
+
+                )
+        )
+
+        .filter(
+            Boolean
+        );
+
+}
+
+
+
+function crResultsGetSourceMatches() {
+
+
+    const broadcastContext =
+        crResultsGetSelectedBroadcastContext();
+
+
+    if (broadcastContext) {
+
+        return crResultsGetBroadcastMatches(
+            broadcastContext
+        );
+
+    }
+
+
+    const eventId =
+        crResultsEvent.value;
+
+
+    if (!eventId) {
+
+        return [];
+
+    }
+
+
+    return owlControlRoomData
+        .announcedMatches
+
+        .filter(
+            match =>
+                match.eventId ===
+                    eventId
+        )
+
+        .sort(
+            (
+                matchA,
+                matchB
+            ) =>
+
+                Number(
+                    matchA.order || 0
+                )
+
+                -
+
+                Number(
+                    matchB.order || 0
+                )
+        );
+
+}
+
+
+
 function crResultsGetSelectedEvent() {
+
+
+    const broadcastContext =
+
+        crResultsSelectedMatch
+            ?.tournamentBroadcast
+
+            ? crResultsGetBroadcastContext(
+
+                crResultsSelectedMatch
+                    .tournamentBroadcast
+                    .tournamentId,
+
+                crResultsSelectedMatch
+                    .tournamentBroadcast
+                    .broadcastId
+
+            )
+
+            : crResultsGetSelectedBroadcastContext();
+
+
+    if (broadcastContext) {
+
+        return crResultsBuildBroadcastEvent(
+
+            broadcastContext.tournament,
+
+            broadcastContext.broadcast
+
+        );
+
+    }
+
 
     const eventId =
 
@@ -895,7 +1698,6 @@ function crResultsGetSelectedEvent() {
     ) || null;
 
 }
-
 
 
 function crResultsGetWinnerSideMembers(
@@ -2298,7 +3100,7 @@ function crResultsPopulateEvents() {
 
             "",
 
-            "Select Event"
+            "Select Event / Broadcast"
 
         )
 
@@ -2403,35 +3205,265 @@ function crResultsPopulateEvents() {
             );
 
 
-    events.forEach(
+    if (
+        events.length >
+            0
+    ) {
 
-        event => {
 
-            crResultsEvent.appendChild(
+        const eventGroup =
+            document.createElement(
+                "optgroup"
+            );
 
-                crResultsCreateOption(
 
-                    event.id,
+        eventGroup.label =
+            "EVENT CARDS";
 
-                    `${formatEventSchedule(
-                        event
-                    )} — ${event.name}`
 
-                )
+        events.forEach(
 
+            event => {
+
+
+                eventGroup.appendChild(
+
+                    crResultsCreateOption(
+
+                        event.id,
+
+                        `${formatEventSchedule(
+                            event
+                        )} — ${event.name}`
+
+                    )
+
+                );
+
+            }
+
+        );
+
+
+        crResultsEvent.appendChild(
+            eventGroup
+        );
+
+    }
+
+
+    const tournamentDatabase =
+        crResultsGetTournamentDatabase();
+
+
+    const broadcastOptions =
+        [];
+
+
+    if (tournamentDatabase) {
+
+
+        tournamentDatabase.tournaments.forEach(
+            tournament => {
+
+
+                const broadcasts =
+
+                    Array.isArray(
+                        tournament.broadcasts
+                    )
+
+                        ? tournament.broadcasts
+
+                        : [];
+
+
+                broadcasts.forEach(
+                    broadcast => {
+
+
+                        const context = {
+                            tournament,
+                            broadcast
+                        };
+
+
+                        const matches =
+
+                            crResultsGetBroadcastMatches(
+                                context
+                            );
+
+
+                        if (
+                            matches.length ===
+                                0
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const event =
+
+                            crResultsBuildBroadcastEvent(
+                                tournament,
+                                broadcast
+                            );
+
+
+                        broadcastOptions.push({
+
+                            value:
+                                crResultsBroadcastSourceValue(
+
+                                    tournament.id,
+
+                                    broadcast.id
+
+                                ),
+
+                            label:
+                                `${formatEventSchedule(
+                                    event
+                                )} — ${broadcast.title || broadcast.id}`,
+
+                            tournamentName:
+                                tournament.name || tournament.id,
+
+                            week:
+                                Number(
+                                    broadcast.week || 0
+                                ),
+
+                            block:
+                                String(
+                                    broadcast.block || ""
+                                )
+
+                        });
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+
+    broadcastOptions.sort(
+        (
+            optionA,
+            optionB
+        ) => {
+
+            const tournamentDifference =
+
+                optionA.tournamentName.localeCompare(
+                    optionB.tournamentName
+                );
+
+
+            if (
+                tournamentDifference !==
+                    0
+            ) {
+
+                return tournamentDifference;
+
+            }
+
+
+            const weekDifference =
+
+                optionA.week -
+                optionB.week;
+
+
+            if (
+                weekDifference !==
+                    0
+            ) {
+
+                return weekDifference;
+
+            }
+
+
+            return optionA.block.localeCompare(
+                optionB.block
             );
 
         }
-
     );
 
 
     if (
-        events.some(
+        broadcastOptions.length >
+            0
+    ) {
 
-            event =>
-                event.id === oldValue
 
+        const broadcastGroup =
+            document.createElement(
+                "optgroup"
+            );
+
+
+        broadcastGroup.label =
+            "CHAMPIONSHIP SERIES BROADCASTS";
+
+
+        broadcastOptions.forEach(
+            option => {
+
+
+                broadcastGroup.appendChild(
+
+                    crResultsCreateOption(
+
+                        option.value,
+
+                        option.label
+
+                    )
+
+                );
+
+            }
+        );
+
+
+        crResultsEvent.appendChild(
+            broadcastGroup
+        );
+
+    }
+
+
+    const validValues =
+        new Set(
+
+            [
+                ...events.map(
+                    event =>
+                        event.id
+                ),
+
+                ...broadcastOptions.map(
+                    option =>
+                        option.value
+                )
+            ]
+
+        );
+
+
+    if (
+        validValues.has(
+            oldValue
         )
     ) {
 
@@ -2443,10 +3475,10 @@ function crResultsPopulateEvents() {
 }
 
 
-
 function crResultsPopulateMatches() {
 
-    const eventId =
+
+    const sourceValue =
         crResultsEvent.value;
 
 
@@ -2472,10 +3504,10 @@ function crResultsPopulateMatches() {
 
 
     crResultsMatch.disabled =
-        !eventId;
+        !sourceValue;
 
 
-    if (!eventId) {
+    if (!sourceValue) {
 
         return;
 
@@ -2483,37 +3515,13 @@ function crResultsPopulateMatches() {
 
 
     const matches =
-
-        owlControlRoomData
-            .announcedMatches
-
-            .filter(
-
-                match =>
-                    match.eventId === eventId
-
-            )
-
-            .sort(
-
-                (a, b) =>
-
-                    Number(
-                        a.order || 0
-                    )
-
-                    -
-
-                    Number(
-                        b.order || 0
-                    )
-
-            );
+        crResultsGetSourceMatches();
 
 
     matches.forEach(
 
         match => {
+
 
             const specialty =
 
@@ -2556,7 +3564,6 @@ function crResultsPopulateMatches() {
     }
 
 }
-
 
 
 // =================================
@@ -7797,9 +8804,8 @@ function crResultsLoadSelectedMatch() {
 
 
     const match =
-        owlControlRoomData
-            .announcedMatches
 
+        crResultsGetSourceMatches()
             .find(
 
                 item =>
@@ -7815,7 +8821,7 @@ function crResultsLoadSelectedMatch() {
 
         crResultsShowMessage(
 
-            "The selected announced match could not be found.",
+            "The selected match could not be found.",
 
             "save-error"
 
@@ -8031,6 +9037,16 @@ function crResultsBuildCompletedRecord(
         record.brand
         ||
         "";
+
+
+    if (
+        event.date
+    ) {
+
+        record.date =
+            event.date;
+
+    }
 
 
     record.status =
@@ -9157,6 +10173,153 @@ function crResultsSerializeJsonObject(
 
 }
 
+function crResultsUpdateBroadcastCompletionStatus(
+    tournamentDatabase,
+    match
+) {
+
+
+    const broadcastContext =
+        match?.tournamentBroadcast;
+
+
+    if (
+        !broadcastContext?.tournamentId
+
+        ||
+
+        !broadcastContext?.broadcastId
+    ) {
+
+        return false;
+
+    }
+
+
+    const tournament =
+
+        tournamentDatabase
+            ?.tournaments
+            ?.find(
+                storedTournament =>
+
+                    storedTournament.id ===
+                        broadcastContext.tournamentId
+            );
+
+
+    const broadcast =
+
+        tournament
+            ?.broadcasts
+            ?.find(
+                storedBroadcast =>
+
+                    storedBroadcast.id ===
+                        broadcastContext.broadcastId
+            );
+
+
+    if (
+        !tournament
+
+        ||
+
+        !broadcast
+
+        ||
+
+        !Array.isArray(
+            broadcast.matches
+        )
+
+        ||
+
+        broadcast.matches.length ===
+            0
+    ) {
+
+        return false;
+
+    }
+
+
+    const allCompleted =
+
+        broadcast.matches.every(
+            reference => {
+
+
+                const context =
+
+                    crResultsFindBroadcastBracketMatch(
+                        tournament,
+                        reference
+                    );
+
+
+                if (!context) {
+
+                    return false;
+
+                }
+
+
+                const status =
+
+                    String(
+                        context.bracketMatch.status || ""
+                    ).toLowerCase();
+
+
+                return (
+
+                    status ===
+                        "completed"
+
+                    ||
+
+                    status ===
+                        "bye"
+
+                    ||
+
+                    Boolean(
+                        context.bracketMatch.winnerId
+                    )
+
+                );
+
+            }
+        );
+
+
+    if (
+        !allCompleted
+
+        ||
+
+        String(
+            broadcast.status || ""
+        ).toLowerCase() ===
+            "completed"
+    ) {
+
+        return false;
+
+    }
+
+
+    broadcast.status =
+        "Completed";
+
+
+    return true;
+
+}
+
+
+
 // =================================
 // SAVE RESULT
 // =================================
@@ -9227,10 +10390,23 @@ async function crResultsSaveResult() {
             );
 
 
-        const announcedFile =
-            await crResultsReadDataFile(
-                "announced-matches.json"
+        const isBroadcastMatch =
+            Boolean(
+                crResultsSelectedMatch
+                    ?.tournamentBroadcast
+                    ?.broadcastId
             );
+
+
+        const announcedFile =
+
+            isBroadcastMatch
+
+                ? null
+
+                : await crResultsReadDataFile(
+                    "announced-matches.json"
+                );
 
 
         const updatedMatchesText =
@@ -9244,13 +10420,18 @@ async function crResultsSaveResult() {
 
 
         const updatedAnnouncedText =
-            crResultsRemoveRecordText(
 
-                announcedFile.text,
+            announcedFile
 
-                crResultsSelectedMatch.id
+                ? crResultsRemoveRecordText(
 
-            );
+                    announcedFile.text,
+
+                    crResultsSelectedMatch.id
+
+                )
+
+                : "";
 
         let tournamentFile =
             null;
@@ -9330,6 +10511,15 @@ async function crResultsSaveResult() {
             if (
                 tournamentUpdate.changed
             ) {
+
+
+                crResultsUpdateBroadcastCompletionStatus(
+
+                    tournamentUpdate.database,
+
+                    crResultsSelectedMatch
+
+                );
 
 
                 updatedTournamentText =
@@ -9425,18 +10615,25 @@ async function crResultsSaveResult() {
         );
 
 
-        writtenFiles.push(
+        if (
             announcedFile
-        );
+        ) {
 
 
-        await crResultsWriteFile(
+            writtenFiles.push(
+                announcedFile
+            );
 
-            announcedFile.fileHandle,
 
-            updatedAnnouncedText
+            await crResultsWriteFile(
 
-        );
+                announcedFile.fileHandle,
+
+                updatedAnnouncedText
+
+            );
+
+        }
 
 
                if (
@@ -9506,36 +10703,7 @@ async function crResultsSaveResult() {
 
 
         const remainingMatches =
-
-            owlControlRoomData
-                .announcedMatches
-
-                .filter(
-
-                    match =>
-                        match.eventId ===
-                            crResultsEvent.value
-
-                )
-
-                .sort(
-
-                    (
-                        matchA,
-                        matchB
-                    ) =>
-
-                        Number(
-                            matchA.order || 0
-                        )
-
-                        -
-
-                        Number(
-                            matchB.order || 0
-                        )
-
-                );
+            crResultsGetSourceMatches();
 
 
         const nextMatch =
@@ -9594,7 +10762,17 @@ async function crResultsSaveResult() {
 
                 "matches.json",
 
-                "announced-matches.json",
+                ...(
+
+                    announcedFile
+
+                        ? [
+                            "announced-matches.json"
+                        ]
+
+                        : []
+
+                ),
 
                                 ...(
 
