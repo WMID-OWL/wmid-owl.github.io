@@ -2760,14 +2760,27 @@ function crResultsRefreshBasicLayout() {
 
 
     crResultsResultType.disabled =
+
         CR_RESULTS_FORCED_WIN_STIPULATIONS.has(
             stipulation
+        )
+
+        ||
+
+        crResultsIsTournamentMatch(
+            crResultsSelectedMatch
         );
 
 
     if (
         CR_RESULTS_FORCED_WIN_STIPULATIONS.has(
             stipulation
+        )
+
+        ||
+
+        crResultsIsTournamentMatch(
+            crResultsSelectedMatch
         )
     ) {
 
