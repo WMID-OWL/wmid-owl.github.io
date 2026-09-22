@@ -2080,3 +2080,67 @@ text-transform:
 
 }
 }
+
+
+/* =================================
+   TOURNAMENT BROADCAST RESULTS — 328A-4
+================================= */
+
+.tournament-broadcast-match-main {
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.tournament-broadcast-match-result {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.tournament-broadcast-match-result > span {
+    color:#78d5a1;
+    font-size:.56rem;
+    font-weight:900;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+}
+
+.tournament-broadcast-match-result > strong {
+    color:#78d5a1;
+    font-size:.72rem;
+    font-weight:900;
+    line-height:1.35;
+}
+
+.tournament-broadcast-match-pending {
+    color:#737d7a;
+    font-size:.56rem;
+    font-weight:900;
+    letter-spacing:.10em;
+    text-transform:uppercase;
+}
+
+.tournament-broadcast-match-completed {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(120,213,161,.055),
+            transparent 58%
+        );
+}
+
+.tournament-broadcast-match-completed .tournament-broadcast-match-matchup {
+    color:#c9d3cf;
+}
+
+.tournament-broadcast-match-progress {
+    margin-left:auto;
+    color:#78d5a1;
+    font-size:.58rem;
+    font-weight:900;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+}
