@@ -20,9 +20,10 @@
     "M4":["Medium","Can Ascend","Medium"],
     "M5":["Medium Fast","Can Ascend While Running","Medium Fast"],
     "M6":["Fast","Can Ascend While Running","Fast"],
-    "M7":["Fast","Can Ascend While Running","Medium Fast"]
+    "M7":["Fast","Can Ascend While Running","Medium Fast"],
+    "M8":["Medium","Can Ascend While Running","Medium Fast"]
   };
-  const UPDATED_AT = "2026-09-23T12:03:00.000Z";
+  const UPDATED_AT = "2026-09-23T15:12:00.000Z";
 
   const ROWS = [
     ["johnny-gargano","Johnny Gargano",[3,4,5,4,5,2,7,3,6,3,1,1],[6,6,7,7,8,7,6,5,8,8,1,1],"S1","M1"],
@@ -53,7 +54,6 @@
     ["nathan-frazer","Nathan Frazer",[3,7,4,2,2,3,9,4,6,1,1,1],[5,6,6,5,5,9,5,5,7,5,1,1],"S1","M6"],
     ["mark-davis","Mark Davis",[7,5,8,2,3,8,4,8,6,5,1,1],[7,6,8,5,5,5,8,8,7,8,1,1],"S3","M4"],
     ["bronson-reed","Bronson Reed",[7,5,8,2,2,9,5,9,5,7,1,1],[7,6,8,5,5,4,9,9,5,6,1,1],"S3","M4"],
-
     ["tiffany-omari-porter","Tiffany Omari Porter",[4,5,7,4,5,4,5,4,8,5,1,1],[7,6,7,6,7,6,8,6,8,5,1,1],"S1","M4"],
     ["victoria-imani-porter","Victoria Imani Porter",[4,6,5,2,2,4,8,4,7,5,1,1],[6,6,6,5,5,8,6,5,7,7,1,1],"S1","M5"],
     ["kim-mccratt","Kim McCratt",[5,5,6,4,5,5,5,5,7,5,1,5],[7,7,7,6,6,6,7,6,8,6,1,2],"S3","M4"],
@@ -69,7 +69,39 @@
     ["martha-may-deddley","Martha May Deddley",[8,5,7,2,2,8,3,8,4,7,1,3],[6,5,6,4,4,4,7,7,5,4,1,1],"S6","M4"],
     ["chevonne-deddley","Chevonne Deddley",[4,5,5,2,2,4,7,5,7,3,1,3],[6,6,6,5,5,7,6,5,7,6,1,1],"S8","M5"],
     ["hitokiri-sune","Hitokiri Sune",[7,7,7,3,4,6,5,7,5,4,1,1],[7,7,8,6,6,6,8,7,8,5,1,1],"S3","M4"],
-    ["reiyu-hojima","Reiyu Hojima",[4,5,6,7,7,3,5,4,8,1,1,1],[7,7,7,8,8,6,7,6,8,3,1,1],"S1","M4"]
+    ["reiyu-hojima","Reiyu Hojima",[4,5,6,7,7,3,5,4,8,1,1,1],[7,7,7,8,8,6,7,6,8,3,1,1],"S1","M4"],
+    ["perro-rabioso","Perro Rabioso",[5,7,5,2,3,4,8,5,7,6,1,1],[6,6,6,5,5,8,5,5,6,4,1,1],"S1","M5"],
+    ["kage-oni","Kage-Oni",[4,8,6,5,5,4,8,4,7,4,1,1],[7,7,7,5,5,8,5,5,7,3,1,1],"S1","M8"],
+    ["danny-everhardt","Danny Everhardt",[5,5,6,3,4,6,5,6,6,5,1,8],[7,7,7,5,5,5,6,6,6,4,1,8],"S3","M4"],
+    ["jaxson-thriller","Jaxson Thriller",[3,8,4,2,2,3,9,4,6,2,1,6],[6,7,6,5,5,9,5,5,7,4,1,2],"S1","M5"],
+    ["jimbo-cooter","Jimbo Cooter",[8,4,8,2,3,9,2,9,4,9,1,3],[8,6,8,5,5,3,9,9,6,7,1,3],"S3","M3"],
+    ["isaiah-jackson","Isaiah Jackson",[6,5,8,2,3,9,5,8,6,4,1,1],[7,6,8,6,6,5,9,8,7,5,1,1],"S3","M4"],
+    ["pluto-carter","Pluto Carter",[3,6,4,2,2,3,8,4,7,3,1,1],[5,6,6,5,5,8,5,5,7,5,1,1],"S1","M6"],
+    ["reverend-ezekiel-cross","Reverend Ezekiel Cross",[4,4,6,5,6,5,4,4,7,6,1,6],[7,7,7,7,6,5,7,6,7,4,1,5],"S3","M4"],
+    ["liang-wei","Liang Wei",[6,9,6,4,4,4,5,8,7,2,1,1],[7,8,7,6,6,6,6,7,8,1,1,1],"S1","M4"],
+    ["austin-stevens","Austin Stevens",[8,5,7,3,4,7,3,8,6,8,1,1],[8,7,8,5,5,4,9,9,7,7,1,1],"S3","M3"],
+    ["kipp-stryker","Kipp Stryker",[3,9,5,2,2,3,8,4,7,5,1,1],[6,9,6,5,5,8,5,5,8,5,1,1],"S1","M1"],
+    ["lucas-madchild","Lucas Madchild",[7,5,7,2,3,8,4,9,5,6,1,1],[7,6,8,5,5,5,9,9,6,4,1,1],"S5","M4"],
+    ["thiago-cruz","Thiago Cruz",[3,9,5,2,2,3,9,4,6,4,1,1],[6,8,6,5,5,9,5,5,7,5,1,1],"S1","M5"],
+    ["chicago-hart","Chicago Hart",[4,7,6,6,7,4,5,4,8,2,1,1],[7,7,8,7,8,6,6,5,8,2,1,1],"S1","M4"],
+    ["justin-tyme","Justin Tyme",[3,6,5,2,2,3,9,4,8,3,1,1],[6,7,6,5,5,9,6,5,8,6,1,1],"S1","M5"],
+    ["mysterio-negro","Mysterio Negro",[5,8,6,3,3,5,7,5,6,5,1,1],[7,8,7,6,6,8,6,5,7,3,1,1],"S3","M1"],
+    ["gage-blackwell","Gage Blackwell",[7,5,8,2,3,8,4,8,6,5,1,1],[7,6,8,5,5,5,8,8,7,8,1,1],"S3","M4"],
+    ["ryuji-sakamoto","Ryuji Sakamoto",[4,8,6,3,4,5,5,4,7,4,1,1],[7,8,7,6,6,7,7,6,8,5,1,1],"S1","M4"],
+    ["virgil-kent","Virgil Kent",[3,5,5,2,2,3,8,4,7,3,1,5],[6,6,6,5,5,8,6,5,8,5,1,3],"S1","M5"],
+    ["kwame-mensah","Kwame Mensah",[8,5,8,2,3,9,3,8,5,8,1,1],[8,6,8,5,5,4,9,8,7,9,1,1],"S3","M3"],
+    ["tomasso-ciampa","Tomasso Ciampa",[6,5,7,3,4,6,4,7,7,2,1,1],[7,7,8,6,6,5,8,8,7,4,1,1],"S1","M4"],
+    ["je-von-evans","Je'von Evans",[3,6,4,2,2,3,9,4,6,1,1,1],[5,6,6,5,5,9,5,5,8,5,1,1],"S1","M6"],
+    ["yoshiki-inamura","Nick Wayne",[3,6,5,2,2,3,8,4,8,3,1,1],[6,7,7,5,5,8,6,5,8,7,1,1],"S1","M5"],
+    ["rey-fenix","Rey Fenix",[3,7,5,2,2,3,9,4,7,1,1,1],[5,6,6,5,5,9,5,5,7,3,1,1],"S1","M6"],
+    ["robert-roode","Amazing Red",[3,6,5,2,2,3,9,4,7,2,1,4],[6,7,6,5,5,9,6,5,8,4,1,2],"S1","M5"],
+    ["calvin-tankman","Calvin Tankman",[7,5,8,2,2,9,5,8,5,6,1,1],[7,6,8,5,5,5,9,8,6,7,1,1],"S3","M4"],
+    ["mike-santana","Mike Santana",[7,6,7,3,4,7,5,8,6,5,1,1],[7,7,8,5,5,5,8,8,7,5,1,1],"S3","M4"],
+    ["johnathan-gresham","Jonathan Gresham",[2,4,6,9,9,2,4,3,9,1,1,1],[6,6,7,9,9,6,6,5,9,5,1,1],"S1","M4"],
+    ["carmelo-hayes","Carmelo Hayes",[3,6,5,2,2,4,8,4,8,2,1,3],[6,7,6,5,5,8,6,5,8,5,1,2],"S1","M5"],
+    ["lee-moriarty","Lee Moriarty",[3,5,6,8,8,3,5,3,9,2,1,1],[7,7,8,8,8,6,6,5,8,2,1,1],"S1","M4"],
+    ["fabian-aichner","AR Fox",[4,6,5,2,2,4,9,4,7,3,1,1],[6,7,6,5,5,9,6,5,8,5,1,1],"S1","M5"],
+    ["tavion-heights","AJ Styles",[4,6,7,4,5,5,7,5,8,2,1,1],[7,7,8,6,6,7,7,6,7,3,1,1],"S1","M4"]
   ];
 
   const mapValues = (keys, values) =>
