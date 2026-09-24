@@ -213,7 +213,7 @@
         {
           "id": "announced-0004",
           "matchType": "Tag Team",
-          "resultText": "Johnny Gargano & Zack Sabre Jr. defeated Shane Taylor & Keith Lee by Submission.",
+          "resultText": "B.T.T.I.T.W (Best Tag Team In The World) defeated K.O.K : Kings Of Konsequence by Submission.",
           "rating": 3.5,
           "storyContext": ""
         },
@@ -227,14 +227,14 @@
         {
           "id": "announced-0006",
           "matchType": "Singles",
-          "resultText": "Speedball Mike Bailey defeated Blackheart Lio Rush by Pinfall.",
+          "resultText": "Mike Bailey defeated Lio Rush by Pinfall.",
           "rating": 4.5,
           "storyContext": ""
         },
         {
           "id": "announced-0007",
           "matchType": "Singles",
-          "resultText": "Willow Nightingale defeated Bayley by Pinfall.",
+          "resultText": "Willow Nightingale defeated Davina Rose by Pinfall.",
           "rating": 2,
           "storyContext": ""
         },
