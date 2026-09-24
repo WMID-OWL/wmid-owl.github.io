@@ -156,9 +156,7 @@
                     id = url.searchParams.get("v") || "";
                 } else {
                     const parts = url.pathname.split("/").filter(Boolean);
-                    if (["embed", "shorts", "live"].includes(parts[0])) {
-                        id = parts[1] || "";
-                    }
+                    if (["embed", "shorts", "live"].includes(parts[0])) id = parts[1] || "";
                 }
             }
 
@@ -246,9 +244,7 @@
             ui.select.appendChild(option);
         }
 
-        if (events.some(event => event.id === preferred)) {
-            ui.select.value = preferred;
-        }
+        if (events.some(event => event.id === preferred)) ui.select.value = preferred;
 
         if (ui.mode.value === "edit" && ui.select.value) {
             loadSelected();
@@ -287,12 +283,8 @@
 
     function displayValue(key, value) {
         const helper = calendar();
-        if (key === "periodId" && helper && typeof helper.formatPeriod === "function") {
-            return helper.formatPeriod(value);
-        }
-        if (key === "stage" && helper && typeof helper.formatStage === "function") {
-            return helper.formatStage(value);
-        }
+        if (key === "periodId" && helper && typeof helper.formatPeriod === "function") return helper.formatPeriod(value);
+        if (key === "stage" && helper && typeof helper.formatStage === "function") return helper.formatStage(value);
         return value === "" || value === null || value === undefined ? "Empty" : String(value);
     }
 
@@ -304,9 +296,7 @@
         if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(record.periodId)) errors.push("Select a valid event month.");
         if (!["week-1", "week-2", "week-3", "week-4"].includes(record.stage)) errors.push("Select Week 1, Week 2, Week 3, or Week 4.");
         if (!["upcoming", "completed"].includes(record.status)) errors.push("Select a valid event status.");
-        if (fields.youtubeVideoId.value.trim() && !record.youtubeVideoId) {
-            errors.push("The YouTube value is not a supported URL or clean video ID.");
-        }
+        if (fields.youtubeVideoId.value.trim() && !record.youtubeVideoId) errors.push("The YouTube value is not a supported URL or clean video ID.");
         return errors;
     }
 
@@ -464,16 +454,13 @@
 
         try {
             await ensurePermission();
-
             const form = getForm();
             const errors = validate(form);
             if (errors.length) throw new Error(errors.join(" "));
 
             const currentId = wasCreating ? "" : ui.select.value;
             const conflict = findConflict(form, currentId);
-            if (conflict) {
-                throw new Error(`Schedule conflict: ${conflict.name || conflict.id} already occupies ${formatSlot(conflict)}.`);
-            }
+            if (conflict) throw new Error(`Schedule conflict: ${conflict.name || conflict.id} already occupies ${formatSlot(conflict)}.`);
 
             const { fileHandle, events } = await readEventsFile();
             let savedId = "";
@@ -481,9 +468,7 @@
             if (wasCreating) {
                 const record = storedRecord(form);
                 if (!record.id) throw new Error("A database ID could not be generated for this event.");
-                if (events.some(event => event.id === record.id)) {
-                    throw new Error("An event with this database ID already exists.");
-                }
+                if (events.some(event => event.id === record.id)) throw new Error("An event with this database ID already exists.");
                 events.push(record);
                 savedId = record.id;
             } else {
@@ -518,9 +503,10 @@
             setStatus("SAVED");
         } catch (error) {
             console.error("Could not save event:", error);
-            showMessage(error?.message || "The event could not be saved.", "error");
-            setStatus("SAVE FAILED");
+            const errorText = error?.message || "The event could not be saved.";
             review();
+            showMessage(errorText, "error");
+            setStatus("SAVE FAILED");
         } finally {
             saving = false;
             if (ui.status.textContent === "SAVED") ui.save.disabled = true;
@@ -534,8 +520,6 @@
         field.addEventListener("change", review);
     });
 
-    // Delegated capture listener survives DOM moves/reordering and makes a dead save
-    // button impossible to fail silently if the section is rearranged again.
     document.addEventListener("click", event => {
         const button = event.target.closest?.("#cr-save-event");
         if (!button || button.disabled) return;
@@ -560,9 +544,7 @@
     };
 
     try {
-        if (typeof owlControlRoomData !== "undefined" && Array.isArray(owlControlRoomData.events)) {
-            populateEvents();
-        }
+        if (typeof owlControlRoomData !== "undefined" && Array.isArray(owlControlRoomData.events)) populateEvents();
     } catch (error) {
         console.warn("Event Manager waiting for repository data.", error);
     }
