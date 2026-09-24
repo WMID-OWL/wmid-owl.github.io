@@ -269,3 +269,148 @@
         window.addEventListener("owl-control-room-data-loaded", initializeLayout, {once: true});
     }
 })();
+
+/*
+ * Control Room write-health guard.
+ * This is intentionally separate from every manager's save code. It verifies the
+ * common dependency all writers share: the connected File System Access handle.
+ * The probe writes, reads back, and removes a temporary file so a broken or stale
+ * connection is visible before a manager claims a save succeeded.
+ */
+(() => {
+    "use strict";
+
+    const byId = id => document.getElementById(id);
+
+    function installWriteHealthUi() {
+        const grid = document.querySelector(".control-room-repo-grid");
+        if (grid && !byId("cr-write-health")) {
+            const item = document.createElement("div");
+            item.className = "control-room-repo-item";
+            item.innerHTML = '<span>WRITE ACCESS</span><strong id="cr-write-health">—</strong>';
+            grid.appendChild(item);
+        }
+
+        const actions = document.querySelector(".control-room-actions");
+        if (actions && !byId("cr-verify-write-access")) {
+            const button = document.createElement("button");
+            button.id = "cr-verify-write-access";
+            button.type = "button";
+            button.className = "control-room-button control-room-button-secondary";
+            button.textContent = "Verify Write Access";
+            button.hidden = true;
+            button.addEventListener("click", () => verifyWriteAccess(true));
+            actions.appendChild(button);
+        }
+    }
+
+    function render(result) {
+        window.owlControlRoomWriteHealth = result;
+        const label = byId("cr-write-health");
+        const button = byId("cr-verify-write-access");
+        if (button) button.hidden = result.state === "disconnected";
+        if (!label) return;
+
+        label.textContent = result.ok
+            ? "VERIFIED"
+            : result.state === "permission"
+                ? "PERMISSION REQUIRED"
+                : result.state === "disconnected"
+                    ? "DISCONNECTED"
+                    : "WRITE BLOCKED";
+        label.title = result.message || "";
+    }
+
+    async function verifyWriteAccess(requestIfNeeded = false) {
+        installWriteHealthUi();
+
+        if (typeof owlRepositoryHandle === "undefined" || !owlRepositoryHandle) {
+            const result = {ok: false, state: "disconnected", message: "No OWL folder is connected."};
+            render(result);
+            return result;
+        }
+
+        const options = {mode: "readwrite"};
+
+        try {
+            let permission = await owlRepositoryHandle.queryPermission(options);
+            if (permission !== "granted" && requestIfNeeded) {
+                permission = await owlRepositoryHandle.requestPermission(options);
+            }
+
+            if (permission !== "granted") {
+                const result = {
+                    ok: false,
+                    state: "permission",
+                    message: "Read/write permission is not granted. Click Verify Write Access or reconnect the exact repository folder GitHub Desktop is using."
+                };
+                render(result);
+                return result;
+            }
+
+            const dataDirectory = await owlRepositoryHandle.getDirectoryHandle("data");
+            const probeName = ".owl-control-room-write-probe.tmp";
+            const token = `OWL-WRITE-PROBE:${Date.now()}:${Math.random().toString(36).slice(2)}`;
+
+            try {
+                const probeHandle = await dataDirectory.getFileHandle(probeName, {create: true});
+                const writable = await probeHandle.createWritable();
+                await writable.write(token);
+                await writable.close();
+
+                const file = await probeHandle.getFile();
+                if (await file.text() !== token) {
+                    throw new Error("The write probe did not read back the same bytes.");
+                }
+
+                await dataDirectory.removeEntry(probeName);
+            } catch (probeError) {
+                try { await dataDirectory.removeEntry(probeName); } catch {}
+                throw probeError;
+            }
+
+            let gitMetadata = false;
+            try {
+                await owlRepositoryHandle.getDirectoryHandle(".git");
+                gitMetadata = true;
+            } catch {
+                // Some browser/filesystem combinations do not expose dot folders.
+            }
+
+            const folderName = owlRepositoryHandle.name || "OWL repository";
+            const result = {
+                ok: true,
+                state: "verified",
+                folderName,
+                gitMetadata,
+                message: gitMetadata
+                    ? `Read/write verified for ${folderName}; Git metadata is present.`
+                    : `Read/write verified for ${folderName}. Git metadata could not be confirmed, so make sure this is the exact folder GitHub Desktop is watching.`
+            };
+            render(result);
+            return result;
+        } catch (error) {
+            const result = {
+                ok: false,
+                state: "blocked",
+                message: error?.message || "The connected folder could not be written to."
+            };
+            render(result);
+            console.error("Control Room write verification failed:", error);
+            return result;
+        }
+    }
+
+    window.owlControlRoomVerifyWriteAccess = verifyWriteAccess;
+    installWriteHealthUi();
+
+    window.addEventListener("owl-control-room-data-loaded", () => {
+        verifyWriteAccess(false);
+    });
+
+    if (typeof owlRepositoryHandle !== "undefined" && owlRepositoryHandle) {
+        verifyWriteAccess(false);
+    } else {
+        render({ok: false, state: "disconnected", message: "Repository not connected."});
+    }
+})();
